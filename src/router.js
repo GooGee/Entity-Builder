@@ -24,6 +24,11 @@ export default new Router({
             component: require('@/pages/Template').default,
         },
         {
+            path: '/layer',
+            name: 'layer',
+            component: require('@/pages/Layer').default,
+        },
+        {
             path: '*',
             redirect: '/',
         },
