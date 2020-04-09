@@ -1,16 +1,24 @@
 <template>
     <div id="app">
-        <Home></Home>
+        <Bar></Bar>
+        <div class="container-fluid">
+            <div class="row">
+                <SideBar class="col-3"></SideBar>
+                <router-view class="col-9"></router-view>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import Home from './pages/Home.vue'
+import Bar from './components/Bar.vue'
+import SideBar from './components/SideBar.vue'
 
 export default {
     name: 'App',
     components: {
-        Home,
+        Bar,
+        SideBar,
     },
 }
 </script>
