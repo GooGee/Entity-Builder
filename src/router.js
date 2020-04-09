@@ -11,11 +11,16 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: require('@/pages/Home').default
+            component: require('@/pages/Home').default,
+        },
+        {
+            path: '/script',
+            name: 'script',
+            component: require('@/pages/Script').default,
         },
         {
             path: '*',
-            redirect: '/'
-        }
-    ]
+            redirect: '/',
+        },
+    ],
 })
