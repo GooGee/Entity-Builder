@@ -19,6 +19,11 @@ export default new Router({
             component: require('@/pages/Script').default,
         },
         {
+            path: '/template',
+            name: 'template',
+            component: require('@/pages/Template').default,
+        },
+        {
             path: '*',
             redirect: '/',
         },
