@@ -13,7 +13,16 @@
                     <b-nav-item v-if="builder.project" to="/script" active-class="active"> Script </b-nav-item>
                     <b-nav-item v-if="builder.project" to="/template" active-class="active"> Template </b-nav-item>
                     <b-nav-item v-if="builder.project" to="/layer" active-class="active"> Layer </b-nav-item>
-                    <b-nav-item v-if="builder.project" to="/entity" active-class="active"> Entity </b-nav-item>
+
+                    <b-nav-item-dropdown v-if="builder.project" text="Entity">
+                        <b-dropdown-item to="/table"> Table </b-dropdown-item>
+                        <b-dropdown-item to="/model"> Model </b-dropdown-item>
+                        <b-dropdown-item to="/factory"> Factory </b-dropdown-item>
+
+                        <b-dropdown-item v-for="layer in layerxx" :key="layer.name" :to="`/file/${layer.name}`">
+                            {{ layer.name }}
+                        </b-dropdown-item>
+                    </b-nav-item-dropdown>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->
@@ -36,6 +45,14 @@ export default {
         return {
             builder,
         }
+    },
+    computed: {
+        layerxx() {
+            const exclude = ['Table', 'Model', 'Factory']
+            return builder.project.LayerManager.list.filter(layer => {
+                return exclude.indexOf(layer.name) === -1
+            })
+        },
     },
 }
 </script>
