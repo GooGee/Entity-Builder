@@ -22,3 +22,13 @@ export default {
     },
 }
 </script>
+
+<style>
+.inline {
+    display: inline-block;
+}
+
+.table caption {
+    caption-side: top;
+}
+</style>
