@@ -34,4 +34,8 @@ export default {
 .table caption {
     caption-side: top;
 }
+
+.mr4px {
+    margin-right: 4px;
+}
 </style>
