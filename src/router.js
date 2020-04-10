@@ -29,6 +29,11 @@ export default new Router({
             component: require('@/pages/Layer').default,
         },
         {
+            path: '/table',
+            name: 'table',
+            component: require('@/pages/Migration').default,
+        },
+        {
             path: '/file/:name',
             name: 'file',
             component: require('@/pages/File').default,
