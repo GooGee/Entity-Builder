@@ -43,14 +43,6 @@
                 </td>
             </tr>
             <tr>
-                <td class="text-right">NameSpace</td>
-                <td>
-                    <b-button @click="change('NameSpace')" variant="outline-primary">
-                        {{ plus(sidebar.item.NameSpace) }}
-                    </b-button>
-                </td>
-            </tr>
-            <tr>
                 <td class="text-right">prefix</td>
                 <td>
                     <b-button @click="change('prefix')" variant="outline-primary">
