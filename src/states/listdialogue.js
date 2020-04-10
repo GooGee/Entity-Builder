@@ -5,6 +5,7 @@ class ListDialogue extends Dialogue {
         super()
         this.keyword = ''
         this.textKey = ''
+        this.showBlank = false
         this.list = []
         this.selected = null
     }

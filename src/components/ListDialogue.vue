@@ -3,6 +3,7 @@
         <b-form-input v-model="dialogue.keyword" placeholder="Search"></b-form-input>
         <br />
         <b-list-group>
+            <b-list-group-item v-if="dialogue.showBlank" @click="select(null)" button> ---- </b-list-group-item>
             <b-list-group-item @click="select(item)" v-for="item in dialogue.filtered" button>
                 {{ dialogue.textKey ? item[dialogue.textKey] : item }}
             </b-list-group-item>
