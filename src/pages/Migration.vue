@@ -23,12 +23,7 @@ export default {
         }
     },
     created() {
-        sidebar.show('Entity', this.manager)
-    },
-    computed: {
-        manager() {
-            return builder.project.EntityManager
-        },
+        sidebar.show('Entity', builder.project.EntityManager)
     },
 }
 </script>

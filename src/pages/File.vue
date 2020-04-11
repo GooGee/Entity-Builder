@@ -1,35 +1,27 @@
 <template>
     <div>
-        <h1>{{ name }}</h1>
+        <Render :manager="sidebar.item.FileManager" :layer="layer"></Render>
     </div>
 </template>
 
 <script>
+import Render from '../components/Render.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'File',
+    components: { Render },
     data() {
         return {
             builder,
             sidebar,
-            name: '',
-            layer: null,
+            layer: '',
         }
     },
     created() {
-        this.name = this.$route.query.name
-        sidebar.show('Entity', this.manager)
-        if (sidebar.item) {
-            this.layer = sidebar.item.FileManager.findByLayer(this.name)
-        }
+        this.layer = this.$route.params.layer
+        sidebar.show('Entity', builder.project.EntityManager)
     },
-    computed: {
-        manager() {
-            return builder.project.EntityManager
-        },
-    },
-    methods: {},
 }
 </script>
