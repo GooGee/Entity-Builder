@@ -26,6 +26,10 @@ class SideBar {
 
     show(title, manager, item = null) {
         this.title = title
+        if (Object.is(manager, this.manager)) {
+            return
+        }
+
         this.manager = manager
         if (item) {
             this.item = item
