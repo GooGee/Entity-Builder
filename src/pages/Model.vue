@@ -1,0 +1,29 @@
+<template>
+    <div>
+        <Render :manager="sidebar.item.FileManager" layer="Model"></Render>
+        <CastList :manager="sidebar.item.FieldManager"></CastList>
+        <RelationList :manager="sidebar.item.RelationManager"></RelationList>
+    </div>
+</template>
+
+<script>
+import CastList from '../components/CastList.vue'
+import RelationList from '../components/RelationList.vue'
+import Render from '../components/Render.vue'
+import builder from '../states/builder.js'
+import sidebar from '../states/sidebar.js'
+
+export default {
+    name: 'Model',
+    components: { CastList, RelationList, Render },
+    data() {
+        return {
+            builder,
+            sidebar,
+        }
+    },
+    created() {
+        sidebar.show('Entity', builder.project.EntityManager)
+    },
+}
+</script>
