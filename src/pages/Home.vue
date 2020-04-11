@@ -5,8 +5,8 @@
                 <b-button @click="create" variant="outline-primary"> New </b-button>
                 <b-button @click="load" variant="outline-primary"> Load </b-button>
                 <b-button @click="connect" variant="outline-primary"> Connect </b-button>
-                <b-button @click="download" variant="outline-success"> Download </b-button>
-                <b-button @click="save" variant="outline-success"> Save </b-button>
+                <b-button @click="download" :disabled="!builder.project" variant="outline-success"> Download </b-button>
+                <b-button @click="save" :disabled="!builder.project" variant="outline-success"> Save </b-button>
             </b-button-group>
         </div>
         <ul>
@@ -18,7 +18,7 @@
 <script>
 import FileSaver from 'file-saver'
 import builder from '../states/builder.js'
-import * as project from '../states/project.js'
+import * as project from '../helpers/project.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
