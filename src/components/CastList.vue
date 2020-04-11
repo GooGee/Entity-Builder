@@ -36,7 +36,7 @@ import dialogue from '../states/listdialogue.js'
 const CastTypeList = Array.from(Entity.PHPTypeCastMap.keys())
 
 export default {
-    name: 'Cast',
+    name: 'CastList',
     props: {
         manager: {
             type: Object,
