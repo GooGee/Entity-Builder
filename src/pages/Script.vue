@@ -4,7 +4,7 @@
             <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             <b-button @click="remove" variant="outline-danger"> X </b-button>
         </b-button-group>
-        <textarea class="form-control" rows="33">{{ sidebar.item.text }}</textarea>
+        <textarea v-model="sidebar.item.text" class="form-control" spellcheck="false" rows="33"></textarea>
     </div>
 </template>
 
