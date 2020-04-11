@@ -1,19 +1,21 @@
 <template>
     <div>
-        <Field :manager="sidebar.item.FieldManager"></Field>
-        <Index :manager="sidebar.item.IndexManager" :entity="sidebar.item"></Index>
+        <Render :manager="sidebar.item.FileManager" layer="Migration"></Render>
+        <FieldList :manager="sidebar.item.FieldManager"></FieldList>
+        <IndexList :manager="sidebar.item.IndexManager" :entity="sidebar.item"></IndexList>
     </div>
 </template>
 
 <script>
-import Field from '../components/Field.vue'
-import Index from '../components/Index.vue'
+import FieldList from '../components/FieldList.vue'
+import IndexList from '../components/IndexList.vue'
+import Render from '../components/Render.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Migration',
-    components: { Field,Index },
+    components: { FieldList, IndexList, Render },
     data() {
         return {
             builder,

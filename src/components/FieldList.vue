@@ -80,7 +80,7 @@ import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
 export default {
-    name: 'Field',
+    name: 'FieldList',
     components: { FieldPanel },
     props: {
         manager: {

@@ -57,7 +57,7 @@ import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
 export default {
-    name: 'Index',
+    name: 'IndexList',
     components: { IndexField },
     props: {
         manager: {
