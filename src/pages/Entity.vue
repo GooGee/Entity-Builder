@@ -110,7 +110,7 @@ export default {
         preview(file) {
             try {
                 this.title = file.fileName
-                this.code = render(file, sidebar.item, builder.project)
+                this.code = render(builder.project, sidebar.item, file)
                 this.visible = true
             } catch (error) {
                 console.error(error)
@@ -123,7 +123,7 @@ export default {
         },
         download(file) {
             try {
-                const text = render(file, sidebar.item, builder.project)
+                const text = render(builder.project, sidebar.item, file)
                 zip.download(file.fileName, text)
             } catch (error) {
                 console.error(error)
