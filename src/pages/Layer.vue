@@ -1,45 +1,17 @@
 <template>
     <table class="table">
-        <thead>
-            <tr>
-                <th style="width: 222px;"></th>
-                <th></th>
-            </tr>
-        </thead>
+        <caption>
+            <h1 class="inline mr11px">Layer</h1>
+            <b-button-group>
+                <b-button @click="remove" variant="outline-danger"> - </b-button>
+                <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
+            </b-button-group>
+        </caption>
         <tbody>
-            <tr>
-                <td class="text-right">name</td>
-                <td>
-                    <b-button-group>
-                        <b-button @click="change('name')" variant="outline-primary">
-                            {{ sidebar.item.name }}
-                        </b-button>
-                        <b-button @click="remove" variant="outline-danger"> X </b-button>
-                    </b-button-group>
-                </td>
-            </tr>
-            <tr>
-                <td class="text-right">script</td>
-                <td>
-                    <b-button @click="changeScript" variant="outline-primary">
-                        {{ sidebar.item.script }}
-                    </b-button>
-                </td>
-            </tr>
-            <tr>
-                <td class="text-right">template</td>
-                <td>
-                    <b-button @click="changeTemplate" variant="outline-primary">
-                        {{ sidebar.item.template }}
-                    </b-button>
-                </td>
-            </tr>
             <tr>
                 <td class="text-right">path</td>
                 <td>
-                    <b-button @click="change('path')" variant="outline-primary">
-                        {{ plus(sidebar.item.path) }}
-                    </b-button>
+                    <b-form-input v-model="sidebar.item.path"></b-form-input>
                 </td>
             </tr>
             <tr>
@@ -58,6 +30,22 @@
                     </b-button>
                 </td>
             </tr>
+            <tr>
+                <td class="text-right">script</td>
+                <td>
+                    <b-button @click="changeScript" variant="outline-primary">
+                        {{ sidebar.item.script }}
+                    </b-button>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">template</td>
+                <td>
+                    <b-button @click="changeTemplate" variant="outline-primary">
+                        {{ sidebar.item.template }}
+                    </b-button>
+                </td>
+            </tr>
         </tbody>
     </table>
 </template>
@@ -65,6 +53,7 @@
 <script>
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
+import dialogue from '../states/listdialogue.js'
 
 export default {
     name: 'Layer',
@@ -85,7 +74,7 @@ export default {
     methods: {
         change(key) {
             const name = prompt('Please input the name', sidebar.item[key])
-            if (name) {
+            if (name !== null) {
                 try {
                     sidebar.item[key] = name
                 } catch (error) {
@@ -109,8 +98,34 @@ export default {
             }
             return '+'
         },
-        changeScript() {},
-        changeTemplate() {},
+        changeScript() {
+            dialogue.show(builder.project.ScriptManager.list, 'name', 'Select a Script', ok => {
+                try {
+                    sidebar.item.script = dialogue.selected.name
+                } catch (error) {
+                    console.error(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
+                }
+            })
+        },
+        changeTemplate() {
+            dialogue.show(builder.project.TemplateManager.list, 'name', 'Select a Template', ok => {
+                try {
+                    sidebar.item.template = dialogue.selected.name
+                } catch (error) {
+                    console.error(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
+                }
+            })
+        },
     },
 }
 </script>
