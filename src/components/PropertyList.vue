@@ -24,9 +24,7 @@
                     <b-button @click="setName(property)" variant="outline-primary"> {{ property.name }} </b-button>
                 </td>
                 <td>
-                    <b-button @click="setValue(property)" variant="outline-primary">
-                        {{ plus(property.value) }}
-                    </b-button>
+                    <b-form-input v-model="property.value"></b-form-input>
                 </td>
             </tr>
             <tr v-if="mutable">
@@ -87,21 +85,6 @@ export default {
             if (name) {
                 try {
                     property.name = name
-                } catch (error) {
-                    console.error(error)
-                    this.$bvToast.toast(error.message, {
-                        title: 'i',
-                        variant: 'danger',
-                        solid: true,
-                    })
-                }
-            }
-        },
-        setValue(property) {
-            const value = prompt('Please input the value', property.value)
-            if (value) {
-                try {
-                    property.value = value
                 } catch (error) {
                     console.error(error)
                     this.$bvToast.toast(error.message, {
