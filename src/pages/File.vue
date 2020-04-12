@@ -1,6 +1,9 @@
 <template>
     <div>
-        <Render :manager="sidebar.item.FileManager" :layer="layer"></Render>
+        <div v-for="layer in layerxx" :key="layer.name">
+            <hr />
+            <Render :manager="sidebar.item.FileManager" :layer="layer.name"></Render>
+        </div>
     </div>
 </template>
 
@@ -16,12 +19,18 @@ export default {
         return {
             builder,
             sidebar,
-            layer: '',
         }
     },
     created() {
-        this.layer = this.$route.params.layer
         sidebar.show('Entity', builder.project.EntityManager)
+    },
+    computed: {
+        layerxx() {
+            const exclude = ['Migration', 'Model', 'Factory']
+            return builder.project.LayerManager.list.filter(layer => {
+                return exclude.indexOf(layer.name) === -1
+            })
+        },
     },
 }
 </script>

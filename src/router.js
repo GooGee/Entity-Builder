@@ -49,7 +49,7 @@ export default new Router({
             component: require('@/pages/Factory').default,
         },
         {
-            path: '/file/:layer',
+            path: '/file',
             name: 'file',
             component: require('@/pages/File').default,
         },

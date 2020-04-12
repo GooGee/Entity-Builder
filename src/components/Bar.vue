@@ -18,10 +18,7 @@
                         <b-dropdown-item to="/table"> Table </b-dropdown-item>
                         <b-dropdown-item to="/model"> Model </b-dropdown-item>
                         <b-dropdown-item to="/factory"> Factory </b-dropdown-item>
-
-                        <b-dropdown-item v-for="layer in layerxx" :key="layer.name" :to="`/file/${layer.name}`">
-                            {{ layer.name }}
-                        </b-dropdown-item>
+                        <b-dropdown-item to="/file"> Other </b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
 
@@ -45,14 +42,6 @@ export default {
         return {
             builder,
         }
-    },
-    computed: {
-        layerxx() {
-            const exclude = ['Table', 'Model', 'Factory']
-            return builder.project.LayerManager.list.filter(layer => {
-                return exclude.indexOf(layer.name) === -1
-            })
-        },
     },
 }
 </script>
