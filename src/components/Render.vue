@@ -11,7 +11,7 @@
             <b-button v-else @click="make" variant="outline-primary"> + </b-button>
         </div>
 
-        <b-modal v-model="visible" :title="layer" size="xl" hide-footer id="CodeDialogue">
+        <b-modal v-model="visible" :title="layer" size="xl" hide-footer>
             <pre>{{ code }}</pre>
         </b-modal>
     </div>
