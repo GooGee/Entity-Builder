@@ -1,5 +1,7 @@
 import nunjucks from 'nunjucks'
 
+nunjucks.configure({ autoescape: false })
+
 export default function render(project, entity, file) {
     const data = {
         project,
