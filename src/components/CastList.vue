@@ -51,8 +51,7 @@ export default {
             return '+'
         },
         select(field) {
-            dialogue.showBlank = true
-            dialogue.show(CastTypeList, '', 'Select a Type', ok => {
+            dialogue.showWithBlank(CastTypeList, '', 'Select a Type', ok => {
                 if (dialogue.selected) {
                     field.cast = dialogue.selected
                 } else {

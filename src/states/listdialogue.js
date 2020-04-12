@@ -30,7 +30,13 @@ class ListDialogue extends Dialogue {
         this.textKey = textKey
         this.keyword = ''
         this.selected = null
+        this.showBlank = false
         super.show(title, callback)
+    }
+
+    showWithBlank(list, textKey, title, callback) {
+        this.show(list, textKey, title, callback)
+        this.showBlank = true
     }
 
     select(item) {
