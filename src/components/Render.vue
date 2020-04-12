@@ -36,15 +36,17 @@ export default {
         return {
             builder,
             code: '',
-            file: null,
             visible: false,
         }
     },
-    created() {
-        const found = this.manager.findByLayer(this.layer)
-        if (found) {
-            this.file = found
-        }
+    computed: {
+        file() {
+            const found = this.manager.findByLayer(this.layer)
+            if (found) {
+                return found
+            }
+            return null
+        },
     },
     methods: {
         preview() {
@@ -62,8 +64,8 @@ export default {
         },
         make() {
             try {
-                this.file = this.manager.make(this.layer)
-                this.manager.add(this.file)
+                const file = this.manager.make(this.layer)
+                this.manager.add(file)
             } catch (error) {
                 console.error(error)
                 this.$bvToast.toast(error.message, {
@@ -76,7 +78,6 @@ export default {
         remove() {
             if (confirm('Are you sure?')) {
                 this.manager.remove(this.file)
-                this.file = null
             }
         },
     },
