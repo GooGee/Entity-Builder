@@ -65,7 +65,7 @@ function deploy(data) {
 
 function pack(project, entity, file, data) {
     const name = file.layer.path + '/' + file.fileName
-    data[name] = render(project, entity, file)
+    data[name] = render(file, entity, project)
 }
 
 function packGroup(project, entity, data) {

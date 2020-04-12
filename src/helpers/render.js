@@ -2,12 +2,12 @@ import nunjucks from 'nunjucks'
 
 nunjucks.configure({ autoescape: false })
 
-export default function render(project, entity, file) {
+export default function render(file, entity, project) {
     const data = {
         project,
         entity,
         file,
-        data: process(project, entity, file),
+        data: process(file, entity, project),
         model: entity.FileManager.findByLayer('Model'),
     }
     const template = project.TemplateManager.find(file.layer.template)
@@ -16,7 +16,7 @@ export default function render(project, entity, file) {
     return result
 }
 
-function process(project, entity, file) {
+function process(file, entity, project) {
     const data = {}
     const script = project.ScriptManager.find(file.layer.script)
     const fff = new Function('return ' + script.text)()

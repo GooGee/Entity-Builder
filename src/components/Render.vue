@@ -63,7 +63,7 @@ export default {
         },
         preview() {
             try {
-                this.code = render(builder.project, sidebar.item, this.file)
+                this.code = render(this.file, sidebar.item, builder.project)
                 this.visible = true
             } catch (error) {
                 console.error(error)
