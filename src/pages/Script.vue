@@ -8,7 +8,7 @@
             </b-button-group>
         </div>
 
-        <textarea v-model="sidebar.item.text" class="form-control" spellcheck="false" rows="33"></textarea>
+        <textarea v-model="sidebar.item.text" class="form-control" spellcheck="false" rows="22"></textarea>
     </div>
 </template>
 
