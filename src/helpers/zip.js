@@ -40,6 +40,6 @@ function renderFile(file, entity, project, zip) {
     nameList.forEach(item => {
         folder = folder.folder(item)
     })
-    const text = render(file, entity, project)
+    const text = render(project, entity, file)
     folder.file(file.fileName, text)
 }
