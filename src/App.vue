@@ -38,4 +38,8 @@ export default {
 .mr4px {
     margin-right: 4px;
 }
+
+.mr11px {
+    margin-right: 11px;
+}
 </style>

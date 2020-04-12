@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h1 class="inline mr4px">{{ layer }}</h1>
+            <h1 class="inline mr11px">{{ layer }}</h1>
             <b-button-group v-if="file">
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
                 <b-button @click="script" variant="outline-primary"> Script </b-button>

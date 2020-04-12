@@ -1,6 +1,13 @@
 <template>
     <div>
-        <h1>Project</h1>
+        <div>
+            <h1 class="inline mr11px">Project</h1>
+            <b-button-group>
+                <b-button @click="download" variant="outline-success"> Download </b-button>
+                <b-button @click="save" variant="outline-success"> Save </b-button>
+            </b-button-group>
+        </div>
+
         <PropertyList :manager="builder.project.PropertyManager">
             <tr>
                 <td></td>
@@ -21,6 +28,7 @@
 </template>
 
 <script>
+import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
 import builder from '../states/builder.js'
 
@@ -48,6 +56,22 @@ export default {
                 }
             }
         },
+        download() {
+            try {
+                const name = builder.project.fileName
+                const result = JSON.stringify(builder.project)
+                const blob = new Blob([result], { type: 'text/plain;charset=utf-8' })
+                FileSaver.saveAs(blob, name)
+            } catch (error) {
+                console.error(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
+            }
+        },
+        save() {},
     },
 }
 </script>
