@@ -34,7 +34,7 @@ function renderEntity(entity, project, zip) {
 }
 
 function renderFile(file, entity, project, zip) {
-    const list = file.FileType.path.split('/')
+    const list = file.layer.path.split('/')
     const nameList = list.filter(name => name.length)
     let folder = zip
     nameList.forEach(item => {

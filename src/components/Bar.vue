@@ -15,6 +15,7 @@
                     <b-nav-item v-if="builder.project" to="/layer" active-class="active"> Layer </b-nav-item>
 
                     <b-nav-item-dropdown v-if="builder.project" text="Entity">
+                        <b-dropdown-item to="/entity"> Entity </b-dropdown-item>
                         <b-dropdown-item to="/table"> Table </b-dropdown-item>
                         <b-dropdown-item to="/model"> Model </b-dropdown-item>
                         <b-dropdown-item to="/factory"> Factory </b-dropdown-item>

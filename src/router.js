@@ -34,6 +34,11 @@ export default new Router({
             component: require('@/pages/Layer').default,
         },
         {
+            path: '/entity',
+            name: 'entity',
+            component: require('@/pages/Entity').default,
+        },
+        {
             path: '/table',
             name: 'table',
             component: require('@/pages/Migration').default,

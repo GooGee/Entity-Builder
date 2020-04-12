@@ -3,7 +3,7 @@ import render from './render.js'
 
 const Version = '2.1'
 
-let request = null
+export let request = null
 
 export function connect(domain) {
     request = axios.create({
@@ -74,15 +74,9 @@ function packGroup(project, entity, data) {
     })
 }
 
-export function deployFile(project, entity, file) {
+export function deployFile(file, entity, project) {
     const data = {}
     pack(project, entity, file, data)
-    return deploy(data)
-}
-
-export function deployGroup(project, entity) {
-    const data = {}
-    packGroup(project, entity, data)
     return deploy(data)
 }
 
