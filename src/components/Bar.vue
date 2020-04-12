@@ -7,7 +7,7 @@
 
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                    <b-nav-item to="/" active-class="active"> Home </b-nav-item>
+                    <b-nav-item to="/" exact active-class="active"> Home </b-nav-item>
                     <b-nav-item to="/builder" active-class="active"> Builder </b-nav-item>
                     <b-nav-item v-if="builder.project" to="/project" active-class="active"> Project </b-nav-item>
                     <b-nav-item v-if="builder.project" to="/script" active-class="active"> Script </b-nav-item>
@@ -25,9 +25,7 @@
 
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
-                    <li class="nav-item">
-                        <a href="https://github.com/GooGee/Entity-Builder"> GitHub </a>
-                    </li>
+                    <b-nav-item href="https://github.com/GooGee/Entity-Builder" target="_blank"> GitHub </b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
         </div>
