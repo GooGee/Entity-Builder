@@ -105,7 +105,11 @@ export default {
                     this.manager.add(fff)
                 } catch (error) {
                     console.error(error)
-                    alert(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
                 }
             })
         },
@@ -117,7 +121,11 @@ export default {
                 this.manager.add(fff)
             } catch (error) {
                 console.error(error)
-                alert(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
             }
         },
         addName(name) {
@@ -126,7 +134,11 @@ export default {
                 this.manager.add(fff)
             } catch (error) {
                 console.error(error)
-                alert(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
             }
         },
         addType(type) {
@@ -137,7 +149,11 @@ export default {
                 this.rename(field)
             } catch (error) {
                 console.error(error)
-                alert(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
             }
         },
         remove(field) {
@@ -152,7 +168,11 @@ export default {
                     field.name = name
                 } catch (error) {
                     console.error(error)
-                    alert(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
                 }
             }
         },

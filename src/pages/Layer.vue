@@ -90,7 +90,11 @@ export default {
                     sidebar.item[key] = name
                 } catch (error) {
                     console.error(error)
-                    alert(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
                 }
             }
         },
