@@ -4,6 +4,8 @@
             <h1 class="inline mr4px">{{ layer }}</h1>
             <b-button-group v-if="file">
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
+                <b-button @click="script" variant="outline-primary"> Script </b-button>
+                <b-button @click="template" variant="outline-primary"> Template </b-button>
                 <b-button @click="preview" variant="outline-primary"> Preview </b-button>
             </b-button-group>
             <b-button v-else @click="make" variant="outline-primary"> + </b-button>
@@ -49,6 +51,16 @@ export default {
         },
     },
     methods: {
+        script() {
+            const script = builder.project.ScriptManager.find(this.file.layer.script)
+            this.code = script.text
+            this.visible = true
+        },
+        template() {
+            const template = builder.project.TemplateManager.find(this.file.layer.template)
+            this.code = template.text
+            this.visible = true
+        },
         preview() {
             try {
                 this.code = render(builder.project, sidebar.item, this.file)
