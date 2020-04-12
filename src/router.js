@@ -14,6 +14,11 @@ export default new Router({
             component: require('@/pages/Home').default,
         },
         {
+            path: '/project',
+            name: 'project',
+            component: require('@/pages/Project').default,
+        },
+        {
             path: '/script',
             name: 'script',
             component: require('@/pages/Script').default,
