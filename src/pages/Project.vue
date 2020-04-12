@@ -31,6 +31,7 @@
 import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
 import builder from '../states/builder.js'
+import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Project',
@@ -39,6 +40,9 @@ export default {
         return {
             builder,
         }
+    },
+    created() {
+        sidebar.show('', null)
     },
     methods: {
         setName() {
