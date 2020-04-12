@@ -39,6 +39,11 @@ export default new Router({
             component: require('@/pages/Model').default,
         },
         {
+            path: '/factory',
+            name: 'factory',
+            component: require('@/pages/Factory').default,
+        },
+        {
             path: '/file/:layer',
             name: 'file',
             component: require('@/pages/File').default,
