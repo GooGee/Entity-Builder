@@ -4,7 +4,7 @@ import { FakerMethodList, FakerPropertyList } from '../presets/seed.js'
 import { RuleList, REList } from '../presets/rule.js'
 import { RelationList } from '../presets/relation.js'
 import { PHPTypeCastMap } from '../presets/phpcast.js'
-import { FieldTypeList, CommonTypeList } from '../presets/fieldtype.js'
+import { FieldTypeMap, CommonTypeList } from '../presets/fieldtype.js'
 
 export function addUser(project) {
     const entity = project.EntityManager.make('user')
@@ -42,8 +42,9 @@ function loadPreset(project) {
 function loadFieldType(project) {
     const typeManager = project.PresetManager.make('FieldType')
     project.PresetManager.add(typeManager)
-    FieldTypeList.forEach(name => {
-        const item = typeManager.DataManager.make(name)
+    FieldTypeMap.forEach((value, key) => {
+        const item = typeManager.DataManager.make(key)
+        item.tag = value
         typeManager.DataManager.add(item)
     })
 
