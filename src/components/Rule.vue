@@ -3,33 +3,20 @@
         <template v-if="editing">
             <b-button @click="$emit('remove')" variant="outline-danger"> - {{ rule.name }} </b-button>
 
-            <template v-if="rule.isBoolean === false">
-                <template v-if="isRE" class="input-group">
-                    <b-dropdown text="" variant="outline-primary">
-                        <b-dropdown-item-button
-                            v-for="(re, index) in REList"
-                            :key="index"
-                            @click="rule.value = re.text"
-                        >
-                            {{ re.name }}
-                        </b-dropdown-item-button>
-                    </b-dropdown>
-                    <input v-model="rule.value" class="form-control" type="text" />
-                </template>
-
-                <input v-else v-model="rule.value" class="form-control" type="text" />
-            </template>
+            <b-dropdown v-if="isRE" text="" variant="outline-primary">
+                <b-dropdown-item-button v-for="re in REList" :key="re.name" @click="rule.value = re.data.text">
+                    {{ re.name }}
+                </b-dropdown-item-button>
+            </b-dropdown>
+            <b-form-input v-model="rule.value"></b-form-input>
         </template>
 
-        <template v-else>
-            <span>{{ rule.name }}</span>
-            <span v-if="rule.isBoolean === false"> {{ rule.value }}</span>
-        </template>
+        <span v-else>{{ rule.text }}</span>
     </span>
 </template>
 
 <script>
-import { REList } from '../presets/rule.js'
+import builder from '../states/builder.js'
 
 export default {
     name: 'Rule',
@@ -45,7 +32,7 @@ export default {
     },
     data() {
         return {
-            REList,
+            REList: builder.project.PresetManager.find('RegularExpression').DataManager.list,
         }
     },
     computed: {

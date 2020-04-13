@@ -11,14 +11,14 @@
             <br />
             <b-tabs>
                 <b-tab
-                    v-for="kind in KindList"
-                    :key="kind.title"
-                    :title="kind.title"
-                    @click="tab = kind.title"
-                    :class="{ active: kind.title == tab }"
+                    v-for="kind in tabxx"
+                    :key="kind"
+                    :title="kind"
+                    @click="tab = kind"
+                    :class="{ active: kind == tab }"
                 >
-                    <ul v-for="kind in kindInTab" :key="kind.title" class="rule">
-                        <li v-for="rule in kind.list" :key="rule.name">
+                    <ul>
+                        <li v-for="rule in rulexx" :key="rule.name">
                             <b-button @click="add(rule)" variant="outline-primary"> + </b-button>
                             <a :href="link(rule)" target="_blank">{{ rule.name }}</a>
                         </li>
@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import { KindList, REList } from '../presets/rule.js'
 import Rule from './Rule.vue'
+import builder from '../states/builder.js'
 
 export default {
     name: 'RuleTab',
@@ -48,21 +48,29 @@ export default {
     },
     data() {
         return {
-            REList,
-            KindList,
             editing: false,
             tab: 'Content',
+            tabxx: [],
+            RuleList: builder.project.PresetManager.find('ValidationRule').DataManager.list,
+            REList: builder.project.PresetManager.find('RegularExpression').DataManager.list,
         }
     },
     computed: {
-        kindInTab() {
-            return this.KindList.filter(kind => kind.title == this.tab)
+        rulexx() {
+            return this.RuleList.filter(rule => rule.tag == this.tab)
         },
+    },
+    created() {
+        const sss = new Set()
+        this.RuleList.forEach(rule => {
+            sss.add(rule.tag)
+        })
+        this.tabxx = Array.from(sss.keys())
     },
     methods: {
         add(rule) {
             try {
-                const rrr = this.manager.make(rule.name, rule.isBoolean)
+                const rrr = this.manager.make(rule.name)
                 this.manager.add(rrr)
             } catch (error) {
                 console.error(error)
