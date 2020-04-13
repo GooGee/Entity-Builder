@@ -8,7 +8,6 @@ export default function render(project, entity, file) {
         entity,
         file,
         data: process(project, entity, file),
-        model: entity.FileManager.findByLayer('Model'),
     }
     const template = project.TemplateManager.find(file.layer.template)
     const result = nunjucks.renderString(template.text, data)
