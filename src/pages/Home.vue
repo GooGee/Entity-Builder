@@ -3,7 +3,7 @@
         <div>
             <b-button-group>
                 <b-button @click="create" variant="outline-primary"> New </b-button>
-                <b-button @click="load" variant="outline-primary"> Load </b-button>
+                <b-button @click="upload" variant="outline-primary"> Upload </b-button>
                 <b-button @click="connect" variant="outline-primary"> Connect </b-button>
             </b-button-group>
         </div>
@@ -33,11 +33,10 @@ export default {
     methods: {
         connect() {},
         create() {
-            sidebar.show('', null)
             try {
                 const name = prompt('Please input the project name', 'Entity')
                 if (name) {
-                    builder.project = project.makeProject(name)
+                    builder.project = project.makeProject(name, builder.preset)
                     this.$router.push('/project')
                 }
             } catch (error) {
@@ -50,7 +49,7 @@ export default {
             }
         },
         open() {},
-        load() {},
+        upload() {},
     },
 }
 </script>

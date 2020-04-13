@@ -1,5 +1,4 @@
 import Entity from '../states/entity.js'
-import { getPreset } from './request.js'
 import { FakerMethodList, FakerPropertyList } from '../presets/seed.js'
 import { RuleList, REList } from '../presets/rule.js'
 import { RelationList } from '../presets/relation.js'
@@ -19,27 +18,24 @@ export function loadProject(json) {
     return project
 }
 
-export function makeProject(name) {
+export function makeProject(name, source) {
     const project = new Entity.Project(name)
-    loadPreset(project)
+    loadPreset(project, source)
     return project
 }
 
-function loadPreset(project) {
+function loadPreset(project, source) {
     // loadFieldType(project)
     // loadFieldName(project)
     // loadSeed(project)
     // loadRule(project)
     // loadRelation(project)
     // loadPHPCast(project)
-    getPreset().then(response => {
-        const source = response.data
-        project.PresetManager.load(source.PresetManager)
-        project.ScriptManager.load(source.ScriptManager)
-        project.TemplateManager.load(source.TemplateManager)
-        project.LayerManager.load(source.LayerManager)
-        project.EntityManager.load(source.EntityManager)
-    })
+    project.PresetManager.load(source.PresetManager)
+    project.ScriptManager.load(source.ScriptManager)
+    project.TemplateManager.load(source.TemplateManager)
+    project.LayerManager.load(source.LayerManager)
+    project.EntityManager.load(source.EntityManager)
 }
 
 function loadFieldType(project) {

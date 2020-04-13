@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { getPreset } from '../helpers/request.js'
 import builder from '../states/builder.js'
 
 export default {
@@ -42,6 +43,11 @@ export default {
         return {
             builder,
         }
+    },
+    created() {
+        getPreset().then(response => {
+            builder.preset = response.data
+        })
     },
 }
 </script>
