@@ -26,14 +26,15 @@ export function makeProject(name) {
 }
 
 function loadPreset(project) {
-    loadFieldType(project)
-    loadFieldName(project)
-    loadSeed(project)
-    loadRule(project)
-    loadRelation(project)
-    loadPHPCast(project)
+    // loadFieldType(project)
+    // loadFieldName(project)
+    // loadSeed(project)
+    // loadRule(project)
+    // loadRelation(project)
+    // loadPHPCast(project)
     getPreset().then(response => {
         const source = response.data
+        project.PresetManager.load(source.PresetManager)
         project.ScriptManager.load(source.ScriptManager)
         project.TemplateManager.load(source.TemplateManager)
         project.LayerManager.load(source.LayerManager)
