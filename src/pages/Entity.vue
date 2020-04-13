@@ -2,7 +2,7 @@
     <div>
         <h1>Entity</h1>
 
-        <PropertyList :manager="builder.project.PropertyManager">
+        <PropertyList :manager="sidebar.item.PropertyManager">
             <tr>
                 <td></td>
                 <td>name</td>
