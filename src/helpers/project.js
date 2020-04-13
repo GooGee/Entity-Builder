@@ -2,6 +2,7 @@ import Entity from '../states/entity.js'
 import { getPreset } from './request.js'
 import { FakerMethodList, FakerPropertyList } from '../presets/seed.js'
 import { RuleList, REList } from '../presets/rule.js'
+import { RelationList } from '../presets/relation.js'
 
 export function addUser(project) {
     const entity = project.EntityManager.make('user')
@@ -24,6 +25,7 @@ export function makeProject(name) {
 function loadPreset(project) {
     loadSeed(project)
     loadRule(project)
+    loadRelation(project)
     getPreset().then(response => {
         const source = response.data
         project.ScriptManager.load(source.ScriptManager)
@@ -64,5 +66,14 @@ function loadRule(project) {
         const item = reManager.DataManager.make(re.name)
         item.data.text = re.text
         reManager.DataManager.add(item)
+    })
+}
+
+function loadRelation(project) {
+    const relationManager = project.PresetManager.make('RelationType')
+    project.PresetManager.add(relationManager)
+    RelationList.forEach(relation => {
+        const item = relationManager.DataManager.make(relation)
+        relationManager.DataManager.add(item)
     })
 }

@@ -6,10 +6,9 @@
         <thead>
             <tr>
                 <th width="130px"></th>
-                <th width="180px">Type</th>
-                <th>Model</th>
                 <th>Method Name</th>
-                <th>Other Parameters</th>
+                <th>Type</th>
+                <th>Parameters</th>
             </tr>
         </thead>
         <tbody>
@@ -31,9 +30,6 @@
                         </option>
                     </select>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
             </tr>

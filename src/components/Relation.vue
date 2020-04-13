@@ -8,21 +8,17 @@
             </b-button-group>
         </td>
         <td>
-            <select v-model="relation.type" class="form-control">
-                <option value="belongsTo">belongsTo</option>
-                <option value="belongsToMany">belongsToMany</option>
-                <option value="hasOne">hasOne</option>
-                <option value="hasMany">hasMany</option>
-            </select>
-        </td>
-        <td>{{ relation.model }}</td>
-        <td>
             <b-button @click="rename" variant="outline-primary">
                 {{ relation.name }}
             </b-button>
         </td>
         <td>
-            <b-form-input v-model="relation.parameter" placeholder="other parameters"></b-form-input>
+            <select v-model="relation.type" class="form-control">
+                <option v-for="item in relationxx" :value="item.name"> {{ item.name }} </option>
+            </select>
+        </td>
+        <td>
+            <b-form-input v-model="relation.parameter"></b-form-input>
         </td>
     </tr>
 </template>
@@ -43,7 +39,9 @@ export default {
         },
     },
     data() {
-        return {}
+        return {
+            relationxx: builder.project.PresetManager.find('RelationType').DataManager.list,
+        }
     },
     computed: {
         hasForeignKey() {
