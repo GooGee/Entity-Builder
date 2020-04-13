@@ -10,6 +10,7 @@
                     <b-nav-item to="/" exact active-class="active"> Home </b-nav-item>
                     <b-nav-item to="/builder" active-class="active"> Builder </b-nav-item>
                     <b-nav-item v-if="builder.project" to="/project" active-class="active"> Project </b-nav-item>
+                    <b-nav-item v-if="builder.project" to="/preset" active-class="active"> Preset </b-nav-item>
                     <b-nav-item v-if="builder.project" to="/script" active-class="active"> Script </b-nav-item>
                     <b-nav-item v-if="builder.project" to="/template" active-class="active"> Template </b-nav-item>
                     <b-nav-item v-if="builder.project" to="/layer" active-class="active"> Layer </b-nav-item>

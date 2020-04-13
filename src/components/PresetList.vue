@@ -1,17 +1,13 @@
 <template>
     <table class="table">
-        <caption>
-            <h3>Property</h3>
-        </caption>
         <thead>
             <tr>
                 <th width="130px"></th>
                 <th width="160px">Name</th>
-                <th>Value</th>
+                <th>Data</th>
             </tr>
         </thead>
         <tbody>
-            <slot></slot>
             <tr v-for="property in manager.list" :key="property.name">
                 <td class="button-cell">
                     <b-button-group>
@@ -24,7 +20,7 @@
                     <b-button @click="setName(property)" variant="outline-primary"> {{ property.name }} </b-button>
                 </td>
                 <td>
-                    <b-form-input v-model="property.value"></b-form-input>
+                    <Data :item="property"></Data>
                 </td>
             </tr>
             <tr v-if="mutable">
@@ -39,8 +35,11 @@
 </template>
 
 <script>
+import Data from './Data.vue'
+
 export default {
-    name: 'PropertyList',
+    name: 'PresetList',
+    components: { Data },
     props: {
         manager: {
             type: Object,

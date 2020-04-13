@@ -19,6 +19,11 @@ export default new Router({
             component: require('@/pages/Project').default,
         },
         {
+            path: '/preset',
+            name: 'preset',
+            component: require('@/pages/Preset').default,
+        },
+        {
             path: '/script',
             name: 'script',
             component: require('@/pages/Script').default,
