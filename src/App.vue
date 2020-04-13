@@ -7,6 +7,8 @@
                 <router-view class="col-9"></router-view>
             </div>
         </div>
+        <div style="height: 33px;"></div>
+
         <ListDialogue></ListDialogue>
     </div>
 </template>
