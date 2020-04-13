@@ -1,6 +1,11 @@
 <template>
     <div>
-        <h1>Entity</h1>
+        <h1>
+            <b-button-group>
+                <b-button @click="remove" variant="outline-danger"> - </b-button>
+                <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
+            </b-button-group>
+        </h1>
 
         <PropertyList :manager="sidebar.item.PropertyManager">
             <tr>
@@ -156,6 +161,26 @@ export default {
                     variant: 'danger',
                     solid: true,
                 })
+            }
+        },
+        change() {
+            const name = prompt('Please input the name', sidebar.item.name)
+            if (name) {
+                try {
+                    sidebar.item.name = name
+                } catch (error) {
+                    console.error(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
+                }
+            }
+        },
+        remove() {
+            if (confirm('Are you sure?')) {
+                sidebar.remove(sidebar.item)
             }
         },
     },

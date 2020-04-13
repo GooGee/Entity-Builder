@@ -1,12 +1,11 @@
 <template>
     <div>
-        <div>
-            <h1 class="inline mr11px">Preset</h1>
+        <h1>
             <b-button-group>
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
                 <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             </b-button-group>
-        </div>
+        </h1>
 
         <PresetList :manager="sidebar.item.DataManager">
             <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
