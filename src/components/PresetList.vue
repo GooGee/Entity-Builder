@@ -1,5 +1,8 @@
 <template>
     <table class="table">
+        <caption>
+            <slot></slot>
+        </caption>
         <thead>
             <tr>
                 <th width="130px"></th>

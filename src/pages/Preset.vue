@@ -6,10 +6,11 @@
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
                 <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             </b-button-group>
-            <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
         </div>
 
-        <PresetList :manager="sidebar.item.DataManager"></PresetList>
+        <PresetList :manager="sidebar.item.DataManager">
+            <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
+        </PresetList>
     </div>
 </template>
 
