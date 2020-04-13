@@ -30,10 +30,9 @@
 </template>
 
 <script>
-import Entity from '../states/entity.js'
+import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
-const CastTypeList = Array.from(Entity.PHPTypeCastMap.keys())
 
 export default {
     name: 'CastList',
@@ -51,9 +50,10 @@ export default {
             return '+'
         },
         select(field) {
-            dialogue.showWithBlank(CastTypeList, '', 'Select a Type', ok => {
+            const list = builder.project.PresetManager.find('CastPHP').DataManager.list
+            dialogue.showWithBlank(list, 'name', 'Select a Type', ok => {
                 if (dialogue.selected) {
-                    field.cast = dialogue.selected
+                    field.cast = dialogue.selected.name
                 } else {
                     field.cast = ''
                 }

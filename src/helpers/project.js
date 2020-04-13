@@ -3,6 +3,7 @@ import { getPreset } from './request.js'
 import { FakerMethodList, FakerPropertyList } from '../presets/seed.js'
 import { RuleList, REList } from '../presets/rule.js'
 import { RelationList } from '../presets/relation.js'
+import { PHPTypeCastMap } from '../presets/phpcast.js'
 
 export function addUser(project) {
     const entity = project.EntityManager.make('user')
@@ -26,6 +27,7 @@ function loadPreset(project) {
     loadSeed(project)
     loadRule(project)
     loadRelation(project)
+    loadPHPCast(project)
     getPreset().then(response => {
         const source = response.data
         project.ScriptManager.load(source.ScriptManager)
@@ -75,5 +77,15 @@ function loadRelation(project) {
     RelationList.forEach(relation => {
         const item = relationManager.DataManager.make(relation)
         relationManager.DataManager.add(item)
+    })
+}
+
+function loadPHPCast(project) {
+    const castManager = project.PresetManager.make('CastPHP')
+    project.PresetManager.add(castManager)
+    PHPTypeCastMap.forEach((value, key) => {
+        const item = castManager.DataManager.make(key)
+        item.data.to = value
+        castManager.DataManager.add(item)
     })
 }
