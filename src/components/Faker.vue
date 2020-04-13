@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import Entity from '../states/entity.js'
+import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
 export default {
@@ -64,13 +64,15 @@ export default {
     },
     methods: {
         setMethod(field) {
-            dialogue.show(Entity.FakerMethodList, '', 'Select a Method', ok => {
-                field.seed.method = dialogue.selected
+            const list = builder.project.PresetManager.find('FakerMethod').DataManager.list
+            dialogue.show(list, 'name', 'Select a Method', ok => {
+                field.seed.method = dialogue.selected.name
             })
         },
         setProperty(field) {
-            dialogue.show(Entity.FakerPropertyList, '', 'Select a Property', ok => {
-                field.seed.property = dialogue.selected
+            const list = builder.project.PresetManager.find('FakerProperty').DataManager.list
+            dialogue.show(list, 'name', 'Select a Method', ok => {
+                field.seed.property = dialogue.selected.name
             })
         },
     },
