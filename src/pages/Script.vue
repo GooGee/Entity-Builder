@@ -25,12 +25,7 @@ export default {
         }
     },
     created() {
-        sidebar.show('Script', this.manager)
-    },
-    computed: {
-        manager() {
-            return builder.project.ScriptManager
-        },
+        sidebar.show('Script', builder.project.ScriptManager)
     },
     methods: {
         change() {

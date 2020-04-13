@@ -25,12 +25,7 @@ export default {
         }
     },
     created() {
-        sidebar.show('Template', this.manager)
-    },
-    computed: {
-        manager() {
-            return builder.project.TemplateManager
-        },
+        sidebar.show('Template', builder.project.TemplateManager)
     },
     methods: {
         change() {

@@ -64,12 +64,7 @@ export default {
         }
     },
     created() {
-        sidebar.show('Layer', this.manager)
-    },
-    computed: {
-        manager() {
-            return builder.project.LayerManager
-        },
+        sidebar.show('Layer', builder.project.LayerManager)
     },
     methods: {
         change(key) {
