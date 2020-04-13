@@ -1,7 +1,5 @@
 import Entity from '../states/entity'
 
-export const FieldTypeList = Entity.FieldTypeList
-
 export const IntegerFieldList = [
     new Entity.Field('id', 'increments'),
     new Entity.Field('category_id', 'integer'),
@@ -18,13 +16,12 @@ export const CommonFieldList = [
     new Entity.Field('image', 'string'),
     new Entity.Field('link', 'string'),
     new Entity.Field('name', 'string', '', false, 33),
+    new Entity.Field('phone', 'string'),
     new Entity.Field('text', 'string'),
     new Entity.Field('title', 'string'),
     new Entity.Field('uri', 'string'),
     new Entity.Field('url', 'string'),
 ]
-
-export const CommonTypeList = ['integer', 'char', 'string', 'text', 'dateTime', 'timestamp', 'decimal', 'float']
 
 function exclude(field) {
     field.fillable = false

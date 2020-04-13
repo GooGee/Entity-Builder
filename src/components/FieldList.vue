@@ -40,7 +40,7 @@
                 <td>
                     <select v-model="selected" @change="addType($event.target.value)" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
-                        <option v-for="name in CommonTypeList" :key="name">{{ name }}</option>
+                        <option v-for="type in CommonTypeList" :key="type.name">{{ type.name }}</option>
                     </select>
                 </td>
                 <td>
@@ -75,7 +75,7 @@
 
 <script>
 import FieldPanel from './FieldPanel.vue'
-import { CommonFieldList, CommonTypeList, FieldTypeList, IntegerFieldList } from '../presets/field.js'
+import { CommonFieldList, IntegerFieldList } from '../presets/field.js'
 import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
@@ -91,17 +91,18 @@ export default {
     data() {
         return {
             EntityList: builder.project.EntityManager.list,
+            FieldTypeList: builder.project.PresetManager.find('FieldType').DataManager.list,
+            CommonTypeList: builder.project.PresetManager.find('FieldTypeCommon').DataManager.list,
             CommonFieldList,
-            CommonTypeList,
             IntegerFieldList,
             selected: '',
         }
     },
     methods: {
         add() {
-            dialogue.show(FieldTypeList, 'name', 'Select a Type', ok => {
+            dialogue.show(this.FieldTypeList, 'name', 'Select a Type', ok => {
                 try {
-                    const fff = this.manager.cloneType(dialogue.selected.type)
+                    const fff = this.manager.cloneType(dialogue.selected.name)
                     this.manager.add(fff)
                 } catch (error) {
                     console.error(error)
@@ -177,8 +178,8 @@ export default {
             }
         },
         setType(field) {
-            dialogue.show(FieldTypeList, 'name', 'Select a Type', ok => {
-                field.type = dialogue.selected.type
+            dialogue.show(this.FieldTypeList, 'name', 'Select a Type', ok => {
+                field.type = dialogue.selected.name
             })
         },
     },
