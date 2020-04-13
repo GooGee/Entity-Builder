@@ -37,11 +37,12 @@ export default {
     caption-side: top;
 }
 
-.mr4px {
-    margin-right: 4px;
-}
-
 .mr11px {
     margin-right: 11px;
+}
+
+.mtb11px {
+    margin-top: 11px;
+    margin-bottom: 11px;
 }
 </style>

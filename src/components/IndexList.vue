@@ -32,7 +32,7 @@
                         :key="field.name"
                         :index="index"
                         :field="field"
-                        class="inline mr4px"
+                        class="inline mr11px"
                     ></IndexField>
 
                     <b-button @click="addField(index)" variant="outline-primary"> + </b-button>

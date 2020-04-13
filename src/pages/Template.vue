@@ -1,11 +1,13 @@
 <template>
     <div>
-        <h1>
-            <b-button-group>
+        <div class="mtb11px">
+            <b-button-group class="mr11px">
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
                 <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             </b-button-group>
-        </h1>
+
+            <a href="https://mozilla.github.io/nunjucks/templating.html" target="_blank">Document</a>
+        </div>
 
         <textarea v-model="sidebar.item.text" class="form-control" spellcheck="false" rows="22"></textarea>
     </div>
