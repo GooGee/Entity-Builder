@@ -44,15 +44,15 @@
                     </select>
                 </td>
                 <td>
-                    <select @change="addField($event.target.value, IntegerFieldList)" class="form-control">
+                    <select @change="addField($event.target.value, SpecialFieldList)" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
-                        <option v-for="field in IntegerFieldList" :value="field.name" :key="field.name">
+                        <option v-for="field in SpecialFieldList" :value="field.name" :key="field.name">
                             {{ field.name }}
                         </option>
                     </select>
                 </td>
                 <td>
-                    <select @change="addField($event.target.value, CommonFieldList)" class="form-control">
+                    <select @change="addItem($event.target.value, CommonFieldList)" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="field in CommonFieldList" :value="field.name" :key="field.name">
                             {{ field.name }}
@@ -75,7 +75,7 @@
 
 <script>
 import FieldPanel from './FieldPanel.vue'
-import { CommonFieldList, IntegerFieldList } from '../presets/field.js'
+import { SpecialFieldList } from '../presets/field.js'
 import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
@@ -93,8 +93,8 @@ export default {
             EntityList: builder.project.EntityManager.list,
             FieldTypeList: builder.project.PresetManager.find('FieldType').DataManager.list,
             CommonTypeList: builder.project.PresetManager.find('FieldTypeCommon').DataManager.list,
-            CommonFieldList,
-            IntegerFieldList,
+            CommonFieldList: builder.project.PresetManager.find('FieldNameCommon').DataManager.list,
+            SpecialFieldList,
             selected: '',
         }
     },
@@ -118,6 +118,21 @@ export default {
             try {
                 const found = list.find(item => item.name === name)
                 const fff = this.manager.make(found.name, found.type)
+                fff.load(found)
+                this.manager.add(fff)
+            } catch (error) {
+                console.error(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
+            }
+        },
+        addItem(name, list) {
+            try {
+                const found = list.find(item => item.name === name)
+                const fff = this.manager.make(found.name, found.tag)
                 fff.load(found)
                 this.manager.add(fff)
             } catch (error) {

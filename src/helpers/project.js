@@ -5,6 +5,7 @@ import { RuleList, REList } from '../presets/rule.js'
 import { RelationList } from '../presets/relation.js'
 import { PHPTypeCastMap } from '../presets/phpcast.js'
 import { FieldTypeMap, CommonTypeList } from '../presets/fieldtype.js'
+import { CommonFieldMap } from '../presets/field.js'
 
 export function addUser(project) {
     const entity = project.EntityManager.make('user')
@@ -26,6 +27,7 @@ export function makeProject(name) {
 
 function loadPreset(project) {
     loadFieldType(project)
+    loadFieldName(project)
     loadSeed(project)
     loadRule(project)
     loadRelation(project)
@@ -53,6 +55,16 @@ function loadFieldType(project) {
     CommonTypeList.forEach(name => {
         const item = propertyManager.DataManager.make(name)
         propertyManager.DataManager.add(item)
+    })
+}
+
+function loadFieldName(project) {
+    const typeManager = project.PresetManager.make('FieldNameCommon')
+    project.PresetManager.add(typeManager)
+    CommonFieldMap.forEach((value, key) => {
+        const item = typeManager.DataManager.make(key)
+        item.tag = value
+        typeManager.DataManager.add(item)
     })
 }
 
