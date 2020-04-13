@@ -3,7 +3,9 @@
         <thead>
             <tr>
                 <th width="130px"></th>
-                <th width="160px">Name</th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Tag</th>
                 <th>Data</th>
             </tr>
         </thead>
@@ -20,6 +22,12 @@
                     <b-button @click="setName(property)" variant="outline-primary"> {{ property.name }} </b-button>
                 </td>
                 <td>
+                    <b-form-input v-model="property.value"></b-form-input>
+                </td>
+                <td>
+                    <b-form-input v-model="property.tag"></b-form-input>
+                </td>
+                <td>
                     <Data :item="property"></Data>
                 </td>
             </tr>
@@ -28,6 +36,7 @@
                 <td>
                     <b-button @click="add" variant="outline-primary"> + </b-button>
                 </td>
+                <td></td>
                 <td></td>
             </tr>
         </tbody>

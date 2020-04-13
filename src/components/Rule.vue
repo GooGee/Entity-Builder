@@ -4,7 +4,7 @@
             <b-button @click="$emit('remove')" variant="outline-danger"> - {{ rule.name }} </b-button>
 
             <b-dropdown v-if="isRE" text="" variant="outline-primary">
-                <b-dropdown-item-button v-for="re in REList" :key="re.name" @click="rule.value = re.data.text">
+                <b-dropdown-item-button v-for="re in REList" :key="re.name" @click="rule.value = re.value">
                     {{ re.name }}
                 </b-dropdown-item-button>
             </b-dropdown>

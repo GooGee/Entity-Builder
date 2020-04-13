@@ -66,7 +66,7 @@ function loadRule(project) {
     project.PresetManager.add(reManager)
     REList.forEach(re => {
         const item = reManager.DataManager.make(re.name)
-        item.data.text = re.text
+        item.value = re.text
         reManager.DataManager.add(item)
     })
 }
@@ -85,7 +85,7 @@ function loadPHPCast(project) {
     project.PresetManager.add(castManager)
     PHPTypeCastMap.forEach((value, key) => {
         const item = castManager.DataManager.make(key)
-        item.data.to = value
+        item.value = value
         castManager.DataManager.add(item)
     })
 }
