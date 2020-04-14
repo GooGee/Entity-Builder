@@ -9,7 +9,6 @@
                 <th>Name</th>
                 <th>Value</th>
                 <th>Tag</th>
-                <th>Data</th>
             </tr>
         </thead>
         <tbody>
@@ -30,9 +29,6 @@
                 <td>
                     <b-form-input v-model="property.tag"></b-form-input>
                 </td>
-                <td>
-                    <Data :item="property"></Data>
-                </td>
             </tr>
             <tr v-if="mutable">
                 <td></td>
@@ -47,11 +43,8 @@
 </template>
 
 <script>
-import Data from './Data.vue'
-
 export default {
     name: 'PresetList',
-    components: { Data },
     props: {
         manager: {
             type: Object,
