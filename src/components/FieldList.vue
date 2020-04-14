@@ -44,7 +44,7 @@
                     </select>
                 </td>
                 <td>
-                    <select @change="addField($event.target.value, SpecialFieldList)" class="form-control">
+                    <select @change="addField($event.target.value)" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="field in SpecialFieldList" :value="field.name" :key="field.name">
                             {{ field.name }}
@@ -52,7 +52,7 @@
                     </select>
                 </td>
                 <td>
-                    <select @change="addItem($event.target.value, CommonFieldList)" class="form-control">
+                    <select @change="addItem($event.target.value)" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="field in CommonFieldList" :value="field.name" :key="field.name">
                             {{ field.name }}
@@ -60,13 +60,13 @@
                     </select>
                 </td>
                 <td>
-                    <select @change="addName($event.target.value)" class="form-control">
+                    <select @change="add($event.target.value, 'integer')" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="entity in EntityList" :key="entity.name">{{ entity.tableName }}_id</option>
                     </select>
                 </td>
                 <td>
-                    <b-button @click="add" variant="outline-primary"> + </b-button>
+                    <b-button @click="show" variant="outline-primary"> + </b-button>
                 </td>
             </tr>
         </tfoot>
@@ -99,24 +99,31 @@ export default {
         }
     },
     methods: {
-        add() {
+        show() {
             dialogue.show(this.FieldTypeList, 'name', 'Select a Type', ok => {
-                try {
-                    const fff = this.manager.cloneType(dialogue.selected.name)
-                    this.manager.add(fff)
-                } catch (error) {
-                    console.error(error)
-                    this.$bvToast.toast(error.message, {
-                        title: 'i',
-                        variant: 'danger',
-                        solid: true,
-                    })
-                }
+                this.addType(dialogue.selected.name)
             })
         },
-        addField(name, list) {
+        addType(type) {
+            this.selected = ''
+            this.add(type, type)
+        },
+        add(name, type) {
             try {
-                const found = list.find(item => item.name === name)
+                const field = this.manager.make(name, type)
+                this.manager.add(field)
+            } catch (error) {
+                console.error(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
+            }
+        },
+        addField(name) {
+            try {
+                const found = SpecialFieldList.find(item => item.name === name)
                 const fff = this.manager.make(found.name, found.type)
                 fff.load(found)
                 this.manager.add(fff)
@@ -129,48 +136,9 @@ export default {
                 })
             }
         },
-        addItem(name, list) {
-            try {
-                const found = list.find(item => item.name === name)
-                const fff = this.manager.make(found.name, found.tag)
-                fff.load(found)
-                this.manager.add(fff)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
-        addName(name) {
-            try {
-                const fff = this.manager.make(name, 'integer')
-                this.manager.add(fff)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
-        addType(type) {
-            try {
-                this.selected = ''
-                const field = this.manager.cloneType(type)
-                this.manager.add(field)
-                this.rename(field)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
+        addItem(name) {
+            const found = this.CommonFieldList.find(item => item.name === name)
+            this.add(found.name, found.tag)
         },
         remove(field) {
             if (confirm('Are you sure?')) {
