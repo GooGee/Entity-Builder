@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul @click="editing = true" class="rule">
+        <ul @click="editing = true" class="rule list-unstyled">
             <li v-for="rule in manager.list" :key="rule.name">
                 <Rule :rule="rule" :editing="editing" @remove="remove(rule)"></Rule>
             </li>
@@ -17,7 +17,7 @@
                     @click="tab = kind"
                     :class="{ active: kind == tab }"
                 >
-                    <ul>
+                    <ul class="list-unstyled">
                         <li v-for="rule in rulexx" :key="rule.name">
                             <b-button @click="add(rule)" variant="outline-primary"> + </b-button>
                             <a :href="link(rule)" target="_blank">{{ rule.name }}</a>
