@@ -1,12 +1,14 @@
 <template>
     <div>
-        <h1>
+        <div class="mtb11px">
             <b-button-group>
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
                 <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             </b-button-group>
-        </h1>
+        </div>
 
+        <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
+        <br />
         <textarea v-model="sidebar.item.text" class="form-control" spellcheck="false" rows="22"></textarea>
     </div>
 </template>

@@ -14,6 +14,12 @@
                 </td>
             </tr>
             <tr>
+                <td class="text-right">description</td>
+                <td>
+                    <b-form-input v-model="sidebar.item.description"></b-form-input>
+                </td>
+            </tr>
+            <tr>
                 <td class="text-right">prefix</td>
                 <td>
                     <b-button @click="change('prefix')" variant="outline-primary">

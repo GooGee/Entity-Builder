@@ -1,15 +1,15 @@
 <template>
     <div>
-        <h1>
+        <div class="mtb11px">
             <b-button-group>
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
                 <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             </b-button-group>
-        </h1>
+        </div>
 
-        <PresetList :manager="sidebar.item.DataManager">
-            <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
-        </PresetList>
+        <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
+
+        <PresetList :manager="sidebar.item.DataManager"></PresetList>
     </div>
 </template>
 
