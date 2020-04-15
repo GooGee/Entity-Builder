@@ -11,6 +11,8 @@
             <b-button v-else @click="make" variant="outline-primary"> + </b-button>
         </div>
 
+        <PropertyList v-if="file" :manager="file.PropertyManager"></PropertyList>
+
         <b-modal v-model="visible" :title="layer" size="xl" hide-footer>
             <pre>{{ code }}</pre>
         </b-modal>
@@ -18,12 +20,14 @@
 </template>
 
 <script>
+import PropertyList from '../components/PropertyList.vue'
 import render from '../helpers/render.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Render',
+    components: { PropertyList },
     props: {
         manager: {
             type: Object,
