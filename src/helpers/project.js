@@ -31,6 +31,7 @@ function loadPreset(project, source) {
     // loadRule(project)
     // loadRelation(project)
     // loadPHPCast(project)
+    project.PropertyManager.load(source.PropertyManager)
     project.PresetManager.load(source.PresetManager)
     project.ScriptManager.load(source.ScriptManager)
     project.TemplateManager.load(source.TemplateManager)
