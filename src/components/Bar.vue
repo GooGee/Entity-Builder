@@ -57,13 +57,11 @@ export default {
     padding: 0;
 }
 
-#bar a.nav-link.active {
-    color: white;
-    background-color: #00b0ff;
-}
-
+#bar a.nav-link.active,
 #bar a.nav-link:hover {
-    background-color: #00b0ff;
+    color: white;
+    font-weight: bolder;
+    background-color: #08f;
     padding-left: 1rem;
     padding-right: 1rem;
 }
