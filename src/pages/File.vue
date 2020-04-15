@@ -1,10 +1,17 @@
 <template>
     <div>
         <h1>File</h1>
-        <div v-for="layer in layerxx" :key="layer.name">
-            <hr />
-            <Render :manager="sidebar.item.FileManager" :layer="layer.name"></Render>
-        </div>
+
+        <b-tabs>
+            <b-tab
+                v-for="layer in layerxx"
+                @click="selected = layer"
+                :title="layer.name"
+                :class="{ active: selected.name === layer.name }"
+            >
+                <Render :manager="sidebar.item.FileManager" :layer="layer.name"></Render>
+            </b-tab>
+        </b-tabs>
     </div>
 </template>
 
@@ -20,10 +27,12 @@ export default {
         return {
             builder,
             sidebar,
+            selected: null,
         }
     },
     created() {
         sidebar.show('Entity', builder.project.EntityManager)
+        this.selected = this.layerxx[0]
     },
     computed: {
         layerxx() {
