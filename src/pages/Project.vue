@@ -12,14 +12,14 @@
         <PropertyList :manager="builder.project.PropertyManager">
             <tr>
                 <td></td>
-                <td>name</td>
+                <td class="text-right">name</td>
                 <td>
                     <b-button @click="setName" variant="outline-primary"> {{ builder.project.name }} </b-button>
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <td>NameSpace</td>
+                <td class="text-right">NameSpace</td>
                 <td>
                     <b-form-input v-model="builder.project.NameSpace"></b-form-input>
                 </td>

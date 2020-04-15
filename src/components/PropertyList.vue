@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th width="130px"></th>
-                <th width="160px">Name</th>
+                <th class="text-right">Name</th>
                 <th>Value</th>
             </tr>
         </thead>
@@ -20,7 +20,7 @@
                         <b-button @click="manager.moveDown(property)" variant="outline-primary"> ↓ </b-button>
                     </b-button-group>
                 </td>
-                <td>
+                <td class="text-right">
                     <b-button @click="setName(property)" variant="outline-primary"> {{ property.name }} </b-button>
                 </td>
                 <td>
@@ -29,7 +29,7 @@
             </tr>
             <tr v-if="mutable">
                 <td></td>
-                <td>
+                <td class="text-right">
                     <b-button @click="add" variant="outline-primary"> + </b-button>
                 </td>
                 <td></td>
