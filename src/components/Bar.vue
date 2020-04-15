@@ -58,6 +58,7 @@ export default {
 }
 
 #bar a.nav-link.active {
+    color: white;
     background-color: #00b0ff;
 }
 
@@ -68,7 +69,7 @@ export default {
 }
 
 #bar a.nav-link {
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
