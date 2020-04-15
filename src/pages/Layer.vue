@@ -3,7 +3,7 @@
         <caption>
             <b-button-group>
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
-                <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
+                <b-button @click="change('name')" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             </b-button-group>
 
             <b-modal v-model="visible" :title="title" size="xl" hide-footer>
