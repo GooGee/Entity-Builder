@@ -11,7 +11,7 @@
             <b-form-input v-model="rule.value"></b-form-input>
         </template>
 
-        <span v-else>{{ rule.text }}</span>
+        <span v-else>{{ rule.value ? `${rule.name}:${rule.value}` : rule.name }}</span>
     </span>
 </template>
 
