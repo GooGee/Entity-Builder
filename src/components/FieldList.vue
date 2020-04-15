@@ -8,7 +8,7 @@
                 <th width="130px"></th>
                 <th>Name</th>
                 <th>Type</th>
-                <th>Length / Enum</th>
+                <th width="111px">Length</th>
                 <th>Default / Comment</th>
             </tr>
         </thead>
@@ -38,9 +38,9 @@
         <tfoot>
             <tr>
                 <td>
-                    <select v-model="selected" @change="addType($event.target.value)" class="form-control">
+                    <select @change="add($event.target.value, 'integer')" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
-                        <option v-for="type in CommonTypeList" :key="type.name">{{ type.name }}</option>
+                        <option v-for="entity in EntityList" :key="entity.name">{{ entity.tableName }}_id</option>
                     </select>
                 </td>
                 <td>
@@ -60,9 +60,9 @@
                     </select>
                 </td>
                 <td>
-                    <select @change="add($event.target.value, 'integer')" class="form-control">
+                    <select v-model="selected" @change="addType($event.target.value)" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
-                        <option v-for="entity in EntityList" :key="entity.name">{{ entity.tableName }}_id</option>
+                        <option v-for="type in CommonTypeList" :key="type.name">{{ type.name }}</option>
                     </select>
                 </td>
                 <td>
