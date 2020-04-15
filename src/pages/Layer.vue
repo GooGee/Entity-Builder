@@ -5,6 +5,10 @@
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
                 <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             </b-button-group>
+
+            <b-modal v-model="visible" :title="title" size="xl" hide-footer>
+                <pre>{{ code }}</pre>
+            </b-modal>
         </caption>
         <tbody>
             <tr>
@@ -38,17 +42,23 @@
             <tr>
                 <td class="text-right">script</td>
                 <td>
-                    <b-button @click="changeScript" variant="outline-primary">
-                        {{ sidebar.item.script }}
-                    </b-button>
+                    <b-button-group>
+                        <b-button @click="changeScript" variant="outline-primary">
+                            {{ sidebar.item.script }}
+                        </b-button>
+                        <b-button @click="showScript" variant="outline-primary"> View </b-button>
+                    </b-button-group>
                 </td>
             </tr>
             <tr>
                 <td class="text-right">template</td>
                 <td>
-                    <b-button @click="changeTemplate" variant="outline-primary">
-                        {{ sidebar.item.template }}
-                    </b-button>
+                    <b-button-group>
+                        <b-button @click="changeTemplate" variant="outline-primary">
+                            {{ sidebar.item.template }}
+                        </b-button>
+                        <b-button @click="showTemplate" variant="outline-primary"> View </b-button>
+                    </b-button-group>
                 </td>
             </tr>
         </tbody>
@@ -66,6 +76,9 @@ export default {
         return {
             builder,
             sidebar,
+            code: '',
+            title: '',
+            visible: false,
         }
     },
     created() {
@@ -125,6 +138,18 @@ export default {
                     })
                 }
             })
+        },
+        showScript() {
+            const script = builder.project.ScriptManager.find(sidebar.item.script)
+            this.title = script.name
+            this.code = script.text
+            this.visible = true
+        },
+        showTemplate() {
+            const template = builder.project.TemplateManager.find(sidebar.item.template)
+            this.title = template.name
+            this.code = template.text
+            this.visible = true
         },
     },
 }
