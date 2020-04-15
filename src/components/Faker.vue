@@ -27,10 +27,10 @@
                         <input v-model="field.seed.raw" class="form-control" type="text" />
                     </div>
                     <div v-else class="form-inline">
-                        <label><input v-model="field.seed.unique" type="checkbox" /> Unique </label>
+                        <b-form-checkbox v-model="field.seed.unique" class="mr11px"> Unique </b-form-checkbox>
 
                         <template v-if="'method' == field.seed.type">
-                            <b-button @click="setMethod(field)" variant="outline-primary">
+                            <b-button @click="setMethod(field)" variant="outline-primary" class="mr11px">
                                 {{ field.seed.method }}
                             </b-button>
                             (

@@ -17,7 +17,7 @@
         </div>
 
         <div v-if="editing">
-            <label><input v-model="field.allowNull" class="checkbox" type="checkbox" /> Allow Null </label>
+            <b-form-checkbox v-model="field.allowNull"> Allow Null </b-form-checkbox>
         </div>
         <div v-else>
             <span v-if="field.allowNull"> Allow Null </span>
@@ -25,7 +25,7 @@
 
         <template v-if="field.isNumber">
             <div v-if="editing">
-                <label><input v-model="field.unsigned" class="checkbox" type="checkbox" /> Unsigned </label>
+                <b-form-checkbox v-model="field.unsigned"> Unsigned </b-form-checkbox>
             </div>
             <div v-else>
                 <span v-if="field.unsigned"> Unsigned </span>

@@ -16,8 +16,12 @@
             <tr v-for="field in manager.list" :key="field.name">
                 <td>{{ field.name }}</td>
                 <td>{{ field.type }}</td>
-                <td><input v-model="field.fillable" class="checkbox" type="checkbox" /></td>
-                <td><input v-model="field.hidden" class="checkbox" type="checkbox" /></td>
+                <td>
+                    <b-form-checkbox v-model="field.fillable"></b-form-checkbox>
+                </td>
+                <td>
+                    <b-form-checkbox v-model="field.hidden"></b-form-checkbox>
+                </td>
                 <td>
                     <b-button-group>
                         <b-button @click="select(field)" variant="outline-primary"> {{ plus(field) }} </b-button>
@@ -32,7 +36,6 @@
 <script>
 import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
-
 
 export default {
     name: 'CastList',

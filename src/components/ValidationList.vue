@@ -13,7 +13,7 @@
         <tbody>
             <tr v-for="field in manager.list" :key="field.name" :class="{ disabled: !field.included }">
                 <td>
-                    <label> <input v-model="field.included" type="checkbox" /> {{ field.name }} </label>
+                    <b-form-checkbox v-model="field.included"> {{ field.name }} </b-form-checkbox>
                 </td>
                 <td>{{ field.type }}</td>
                 <td>
