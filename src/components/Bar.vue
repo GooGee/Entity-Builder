@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" variant="primary">
+    <b-navbar id="bar" toggleable="lg" type="dark" variant="primary">
         <div class="container">
             <b-navbar-brand>Entity</b-navbar-brand>
 
@@ -15,7 +15,7 @@
                         <b-nav-item to="/script" active-class="active"> Script </b-nav-item>
                         <b-nav-item to="/template" active-class="active"> Template </b-nav-item>
                         <b-nav-item to="/layer" active-class="active"> Layer </b-nav-item>
-    
+
                         <b-nav-item to="/entity" active-class="active"> Entity </b-nav-item>
                         <b-nav-item to="/table" active-class="active"> Table </b-nav-item>
                         <b-nav-item to="/model" active-class="active"> Model </b-nav-item>
@@ -51,3 +51,25 @@ export default {
     },
 }
 </script>
+
+<style>
+#bar.navbar {
+    padding: 0;
+}
+
+#bar a.nav-link.active {
+    background-color: #00b0ff;
+}
+
+#bar a.nav-link:hover {
+    background-color: #00b0ff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#bar a.nav-link {
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+</style>
