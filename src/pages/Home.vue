@@ -3,7 +3,12 @@
         <div>
             <b-button-group>
                 <b-button @click="create" variant="outline-primary"> New </b-button>
-                <b-button @click="upload" variant="outline-primary"> Upload </b-button>
+                <b-button variant="outline-primary">
+                    <label class="button-label">
+                        Upload
+                        <input @change="upload($event)" type="file" accept=".json" style="display: none;" />
+                    </label>
+                </b-button>
                 <b-button @click="connect" variant="outline-primary"> Connect </b-button>
             </b-button-group>
         </div>
@@ -49,7 +54,27 @@ export default {
             }
         },
         open() {},
-        upload() {},
+        upload(event) {
+            const reader = new FileReader()
+            reader.onload = event => {
+                try {
+                    const data = JSON.parse(event.target.result)
+                    builder.project = project.loadProject(data)
+                    this.$router.push('/project')
+                } catch (error) {
+                    console.error(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
+                }
+            }
+            reader.onerror = error => {
+                alert(error)
+            }
+            reader.readAsText(event.target.files[0])
+        },
     },
 }
 </script>

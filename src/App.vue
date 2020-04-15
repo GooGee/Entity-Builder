@@ -45,4 +45,9 @@ export default {
     margin-top: 11px;
     margin-bottom: 11px;
 }
+
+.button-label {
+    padding: 0;
+    margin: 0;
+}
 </style>
