@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <Render :manager="sidebar.item.FileManager" layer="Factory"></Render>
+    <Render :manager="sidebar.item.FileManager" layer="Factory">
         <Faker :manager="sidebar.item.FieldManager"></Faker>
-    </div>
+    </Render>
 </template>
 
 <script>

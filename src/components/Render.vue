@@ -11,11 +11,15 @@
             <b-button v-else @click="make" variant="outline-primary"> + </b-button>
         </div>
 
-        <PropertyList v-if="file" :manager="file.PropertyManager"></PropertyList>
+        <div v-if="file">
+            <slot></slot>
 
-        <b-modal v-model="visible" :title="layer" size="xl" hide-footer>
-            <pre>{{ code }}</pre>
-        </b-modal>
+            <PropertyList :manager="file.PropertyManager"></PropertyList>
+    
+            <b-modal v-model="visible" :title="layer" size="xl" hide-footer>
+                <pre>{{ code }}</pre>
+            </b-modal>
+        </div>
     </div>
 </template>
 

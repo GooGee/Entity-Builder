@@ -1,9 +1,8 @@
 <template>
-    <div>
-        <Render :manager="sidebar.item.FileManager" layer="Migration"></Render>
+    <Render :manager="sidebar.item.FileManager" layer="Migration">
         <FieldList :manager="sidebar.item.FieldManager"></FieldList>
         <IndexList :manager="sidebar.item.IndexManager" :entity="sidebar.item"></IndexList>
-    </div>
+    </Render>
 </template>
 
 <script>

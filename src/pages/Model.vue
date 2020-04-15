@@ -1,10 +1,9 @@
 <template>
-    <div>
-        <Render :manager="sidebar.item.FileManager" layer="Model"></Render>
+    <Render :manager="sidebar.item.FileManager" layer="Model">
         <CastList :manager="sidebar.item.FieldManager"></CastList>
         <RelationList :manager="sidebar.item.RelationManager"></RelationList>
         <ValidationList :manager="sidebar.item.FieldManager" :entity="sidebar.item"></ValidationList>
-    </div>
+    </Render>
 </template>
 
 <script>
