@@ -3,7 +3,7 @@
         <Render :manager="sidebar.item.FileManager" layer="Model"></Render>
         <CastList :manager="sidebar.item.FieldManager"></CastList>
         <RelationList :manager="sidebar.item.RelationManager"></RelationList>
-        <ValidationList :manager="sidebar.item.FieldManager"></ValidationList>
+        <ValidationList :manager="sidebar.item.FieldManager" :entity="sidebar.item"></ValidationList>
     </div>
 </template>
 

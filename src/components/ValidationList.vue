@@ -23,16 +23,18 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2">
+                <td></td>
+                <td></td>
+                <td>
                     <b-button @click="setRule" variant="outline-primary"> Auto Set Rule </b-button>
                 </td>
-                <td></td>
             </tr>
         </tfoot>
     </table>
 </template>
 
 <script>
+import setRule from '../helpers/rule.js'
 import RuleTab from './RuleTab.vue'
 
 export default {
@@ -43,9 +45,15 @@ export default {
             type: Object,
             required: true,
         },
+        entity: {
+            type: Object,
+            required: true,
+        },
     },
     methods: {
-        setRule() {},
+        setRule() {
+            setRule(this.entity)
+        },
     },
 }
 </script>
