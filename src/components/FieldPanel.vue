@@ -2,7 +2,7 @@
     <div @click="editing = true">
         <div v-if="editing">
             <label><input type="checkbox" @click="check(field)" :checked="field.value" /> Default: </label>
-            <input v-model="field.value" class="form-control" type="text" />
+            <b-form-input v-model="field.value"></b-form-input>
         </div>
         <div v-else>
             <span v-if="field.value"> Default: {{ field.value }} </span>
@@ -10,7 +10,7 @@
 
         <div v-if="editing">
             <span> Comment: </span>
-            <input v-model="field.comment" class="form-control" type="text" />
+            <b-form-input v-model="field.comment"></b-form-input>
         </div>
         <div v-else>
             <span v-if="field.comment"> Comment: {{ field.comment }} </span>

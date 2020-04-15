@@ -24,7 +24,7 @@
                 </td>
                 <td>
                     <div v-if="'raw' == field.seed.type">
-                        <input v-model="field.seed.raw" class="form-control" type="text" />
+                        <b-form-input v-model="field.seed.raw"></b-form-input>
                     </div>
                     <div v-else class="form-inline">
                         <b-form-checkbox v-model="field.seed.unique" class="mr11px"> Unique </b-form-checkbox>
@@ -34,7 +34,7 @@
                                 {{ field.seed.method }}
                             </b-button>
                             (
-                            <input v-model="field.seed.parameter" class="form-control" type="text" />
+                            <b-form-input v-model="field.seed.parameter"></b-form-input>
                             )
                         </template>
 

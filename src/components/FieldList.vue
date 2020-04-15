@@ -28,7 +28,7 @@
                     <b-button @click="setType(field)" variant="outline-primary"> {{ field.type }} </b-button>
                 </td>
                 <td>
-                    <input v-if="field.hasLength" v-model="field.length" class="form-control" type="text" />
+                    <b-form-input v-if="field.hasLength" v-model="field.length"></b-form-input>
                 </td>
                 <td>
                     <FieldPanel :field="field"></FieldPanel>
