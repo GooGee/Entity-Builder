@@ -57,3 +57,9 @@ export default {
     },
 }
 </script>
+
+<style>
+    tr.disabled td {
+        color: darkgray;
+    }
+</style>

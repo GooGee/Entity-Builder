@@ -31,13 +31,13 @@
         </template>
 
         <template v-else>
-            <ul @click="editing = true" class="rule list-unstyled">
+            <div v-if="manager.list.length == 0" @click="editing = true">....</div>
+
+            <ul v-else @click="editing = true" class="rule list-unstyled">
                 <li v-for="rule in manager.list" :key="rule.name">
                     {{ rule.value ? `${rule.name}:${rule.value}` : rule.name }}
                 </li>
             </ul>
-
-            <p v-if="manager.list.length == 0" @click="editing = true">....</p>
         </template>
     </div>
 </template>
