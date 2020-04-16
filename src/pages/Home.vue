@@ -19,8 +19,9 @@
 </template>
 
 <script>
+import { connect, convert, getDB } from '../helpers/request.js'
 import builder from '../states/builder.js'
-import * as project from '../helpers/project.js'
+import { makeProject, loadProject } from '../helpers/project.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
@@ -28,7 +29,6 @@ export default {
     data() {
         return {
             builder,
-            project,
             sidebar,
         }
     },
@@ -36,12 +36,65 @@ export default {
         sidebar.show('', null)
     },
     methods: {
-        connect() {},
+        connect() {
+            const domain = prompt('Please enter the domain', 'http://localhost')
+            if (domain) {
+                connect(domain)
+                    .then(response => {
+                        if (builder.project) {
+                            return
+                        }
+                        if (response.data) {
+                            const data = JSON.parse(response.data)
+                            builder.project = loadProject(data)
+                            this.$router.push('/project')
+                            return
+                        }
+
+                        if (confirm('Do you want to load tables from your database schema?')) {
+                            this.convert()
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error)
+                        this.$bvToast.toast(error.message, {
+                            title: 'i',
+                            variant: 'danger',
+                            solid: true,
+                        })
+                    })
+            }
+        },
+        convert() {
+            getDB()
+                .then(response => {
+                    if (response.data.tables.length) {
+                        builder.project = makeProject('entity', builder.preset)
+                        builder.project.convertDB(response.data)
+                        this.$router.push('/project')
+                        return
+                    }
+
+                    this.$bvToast.toast('No table found', {
+                        title: 'OK',
+                        variant: 'success',
+                        solid: true,
+                    })
+                })
+                .catch(error => {
+                    console.error(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
+                })
+        },
         create() {
             try {
                 const name = prompt('Please input the project name', 'Entity')
                 if (name) {
-                    builder.project = project.makeProject(name, builder.preset)
+                    builder.project = makeProject(name, builder.preset)
                     this.$router.push('/project')
                 }
             } catch (error) {
@@ -53,13 +106,12 @@ export default {
                 })
             }
         },
-        open() {},
         upload(event) {
             const reader = new FileReader()
             reader.onload = event => {
                 try {
                     const data = JSON.parse(event.target.result)
-                    builder.project = project.loadProject(data)
+                    builder.project = loadProject(data)
                     this.$router.push('/project')
                 } catch (error) {
                     console.error(error)
