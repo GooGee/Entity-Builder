@@ -37,7 +37,10 @@
         <table class="table">
             <caption>
                 <h3 class="inline mr11px">File</h3>
-                <b-button @click="zip" variant="outline-success"> Zip </b-button>
+                <b-button-group>
+                    <b-button @click="zip" variant="outline-success"> Zip </b-button>
+                    <b-button v-if="request" @click="deployEntity" variant="outline-success"> Deploy </b-button>
+                </b-button-group>
             </caption>
             <thead>
                 <tr>
@@ -52,7 +55,7 @@
                         <b-button-group>
                             <b-button @click="preview(file)" variant="outline-primary"> Preview </b-button>
                             <b-button @click="download(file)" variant="outline-success"> Download </b-button>
-                            <b-button @click="deploy(file)" v-if="request" variant="outline-success"> Deploy </b-button>
+                            <b-button v-if="request" @click="deploy(file)" variant="outline-success"> Deploy </b-button>
                         </b-button-group>
                     </td>
                     <td>{{ file.layerName }}</td>
@@ -70,7 +73,7 @@
 <script>
 import PropertyList from '../components/PropertyList.vue'
 import render from '../helpers/render.js'
-import { deployFile, request } from '../helpers/request.js'
+import { deployFile, deployEntity, request } from '../helpers/request.js'
 import * as zip from '../helpers/zip.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
@@ -151,7 +154,29 @@ export default {
         },
         deploy(file) {
             try {
-                deployFile(file, sidebar.item, builder.project)
+                deployFile(builder.project, sidebar.item, file)
+                this.$bvToast.toast(`${file.fileName} deployed`, {
+                    title: 'OK',
+                    variant: 'success',
+                    solid: true,
+                })
+            } catch (error) {
+                console.error(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
+            }
+        },
+        deployEntity() {
+            try {
+                deployEntity(builder.project, sidebar.item)
+                this.$bvToast.toast(`${sidebar.item.name} deployed`, {
+                    title: 'OK',
+                    variant: 'success',
+                    solid: true,
+                })
             } catch (error) {
                 console.error(error)
                 this.$bvToast.toast(error.message, {

@@ -68,22 +68,20 @@ function pack(project, entity, file, data) {
     data[name] = render(project, entity, file)
 }
 
-function packGroup(project, entity, data) {
+function packEntity(project, entity, data) {
     entity.FileManager.list.forEach(file => {
         pack(project, entity, file, data)
     })
 }
 
-export function deployFile(file, entity, project) {
+export function deployFile(project, entity, file) {
     const data = {}
     pack(project, entity, file, data)
     return deploy(data)
 }
 
-export function deployAll(project) {
+export function deployEntity(project, entity) {
     const data = {}
-    project.EntityManager.list.forEach(entity => {
-        packGroup(project, entity, data)
-    })
+    packEntity(project, entity, data)
     return deploy(data)
 }
