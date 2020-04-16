@@ -5,6 +5,7 @@
             <b-button-group>
                 <b-button @click="download" variant="outline-success"> Download </b-button>
                 <b-button v-if="request" @click="save" variant="outline-success"> Save </b-button>
+                <b-button @click="zip" variant="outline-success"> Zip </b-button>
             </b-button-group>
         </div>
 
@@ -33,6 +34,7 @@
 import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
 import { request, save } from '../helpers/request.js'
+import * as zip from '../helpers/zip.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
@@ -87,6 +89,18 @@ export default {
                     variant: 'success',
                     solid: true,
                 })
+            } catch (error) {
+                console.error(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
+            }
+        },
+        zip() {
+            try {
+                zip.zipAll(builder.project)
             } catch (error) {
                 console.error(error)
                 this.$bvToast.toast(error.message, {
