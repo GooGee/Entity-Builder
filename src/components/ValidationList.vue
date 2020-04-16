@@ -57,31 +57,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.table tr.disabled {
-    color: #888888;
-}
-
-ul.rule {
-    margin: 0;
-    padding: 0;
-}
-
-.table tr.disabled ul.rule {
-    display: none;
-}
-
-.table tr.disabled .none-rule {
-    display: none;
-}
-
-ul.rule .editing {
-    line-height: 3;
-}
-
-ul.rule input {
-    width: 333px;
-    display: inline-block;
-}
-</style>

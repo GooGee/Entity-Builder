@@ -1,35 +1,44 @@
 <template>
     <div>
-        <ul @click="editing = true" class="rule list-unstyled">
-            <li v-for="rule in manager.list" :key="rule.name">
-                <Rule :rule="rule" :editing="editing" @remove="remove(rule)"></Rule>
-            </li>
-        </ul>
+        <template v-if="editing">
+            <table class="table">
+                <tbody>
+                    <Rule v-for="rule in manager.list" :key="rule.name" :rule="rule" :manager="manager"></Rule>
+                </tbody>
+                <caption>
+                    <b-button @click="editing = false" variant="outline-primary"> OK </b-button>
+                </caption>
+            </table>
 
-        <div v-if="editing">
-            <b-button @click="editing = false" variant="outline-primary"> OK </b-button>
-            <br />
-            <b-tabs>
-                <b-tab
-                    v-for="kind in tabxx"
-                    :key="kind"
-                    :title="kind"
-                    @click="tab = kind"
-                    :class="{ active: kind == tab }"
-                >
-                    <ul class="list-unstyled">
-                        <li v-for="rule in rulexx" :key="rule.name">
-                            <b-button @click="add(rule)" variant="outline-primary"> + </b-button>
-                            <a :href="link(rule)" target="_blank">{{ rule.name }}</a>
-                        </li>
-                    </ul>
-                </b-tab>
-            </b-tabs>
-        </div>
+            <b-card no-body>
+                <b-tabs pills vertical>
+                    <b-tab
+                        v-for="kind in tabxx"
+                        :key="kind"
+                        :title="kind"
+                        @click="tab = kind"
+                        :class="{ active: kind == tab }"
+                    >
+                        <ul class="list-unstyled">
+                            <li v-for="rule in rulexx" :key="rule.name" class="mt11px">
+                                <b-button @click="add(rule)" variant="outline-primary" class="mr11px"> + </b-button>
+                                <a :href="link(rule)" target="_blank">{{ rule.name }}</a>
+                            </li>
+                        </ul>
+                    </b-tab>
+                </b-tabs>
+            </b-card>
+        </template>
 
-        <div v-else class="none-rule">
+        <template v-else>
+            <ul @click="editing = true" class="rule list-unstyled">
+                <li v-for="rule in manager.list" :key="rule.name">
+                    {{ rule.value ? `${rule.name}:${rule.value}` : rule.name }}
+                </li>
+            </ul>
+
             <p v-if="manager.list.length == 0" @click="editing = true">....</p>
-        </div>
+        </template>
     </div>
 </template>
 
@@ -79,11 +88,6 @@ export default {
                     variant: 'danger',
                     solid: true,
                 })
-            }
-        },
-        remove(rule) {
-            if (confirm('Are you sure?')) {
-                this.manager.remove(rule)
             }
         },
         link(rule) {

@@ -1,18 +1,25 @@
 <template>
-    <span :class="{ editing: editing }">
-        <template v-if="editing">
-            <b-button @click="$emit('remove')" variant="outline-danger"> - {{ rule.name }} </b-button>
-
-            <b-dropdown v-if="isRE" text="" variant="outline-primary">
+    <tr>
+        <td>
+            <b-button-group>
+                <b-button @click="remove" variant="outline-danger"> - </b-button>
+                <b-button @click="manager.moveUp(rule)" variant="outline-primary"> ↑ </b-button>
+                <b-button @click="manager.moveDown(rule)" variant="outline-primary"> ↓ </b-button>
+            </b-button-group>
+        </td>
+        <td>
+            <b-dropdown v-if="isRE" :text="rule.name" variant="outline-primary">
                 <b-dropdown-item-button v-for="re in REList" :key="re.name" @click="rule.value = re.value">
                     {{ re.name }}
                 </b-dropdown-item-button>
             </b-dropdown>
-            <b-form-input v-model="rule.value"></b-form-input>
-        </template>
 
-        <span v-else>{{ rule.value ? `${rule.name}:${rule.value}` : rule.name }}</span>
-    </span>
+            <span v-else>{{ rule.name }}</span>
+        </td>
+        <td>
+            <b-form-input v-model="rule.value"></b-form-input>
+        </td>
+    </tr>
 </template>
 
 <script>
@@ -25,8 +32,8 @@ export default {
             type: Object,
             required: true,
         },
-        editing: {
-            type: Boolean,
+        manager: {
+            type: Object,
             required: true,
         },
     },
@@ -38,6 +45,13 @@ export default {
     computed: {
         isRE() {
             return this.rule.name === 'regex' || this.rule.name === 'not_regex'
+        },
+    },
+    methods: {
+        remove() {
+            if (confirm('Are you sure?')) {
+                this.manager.remove(this.rule)
+            }
         },
     },
 }

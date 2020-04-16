@@ -41,6 +41,10 @@ export default {
     margin-right: 11px;
 }
 
+.mt11px {
+    margin-top: 11px;
+}
+
 .mtb11px {
     margin-top: 11px;
     margin-bottom: 11px;
