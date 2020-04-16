@@ -9,18 +9,18 @@
 
         <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
 
-        <PresetList :manager="sidebar.item.DataManager"></PresetList>
+        <PropertyList :manager="sidebar.item.DataManager"></PropertyList>
     </div>
 </template>
 
 <script>
-import PresetList from '../components/PresetList.vue'
+import PropertyList from '../components/PropertyList.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Preset',
-    components: { PresetList },
+    components: { PropertyList },
     data() {
         return {
             builder,

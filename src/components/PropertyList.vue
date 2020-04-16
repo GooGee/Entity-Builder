@@ -6,8 +6,9 @@
         <thead>
             <tr>
                 <th width="130px"></th>
-                <th class="text-right">Name</th>
+                <th>Name</th>
                 <th>Value</th>
+                <th>Tag</th>
             </tr>
         </thead>
         <tbody>
@@ -20,18 +21,22 @@
                         <b-button @click="manager.moveDown(property)" variant="outline-primary"> ↓ </b-button>
                     </b-button-group>
                 </td>
-                <td class="text-right">
+                <td>
                     <b-button @click="setName(property)" variant="outline-primary"> {{ property.name }} </b-button>
                 </td>
                 <td>
                     <b-form-input v-model="property.value"></b-form-input>
                 </td>
+                <td>
+                    <b-form-input v-model="property.tag"></b-form-input>
+                </td>
             </tr>
             <tr v-if="mutable">
                 <td></td>
-                <td class="text-right">
+                <td>
                     <b-button @click="add" variant="outline-primary"> + </b-button>
                 </td>
+                <td></td>
                 <td></td>
             </tr>
         </tbody>
