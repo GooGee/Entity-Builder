@@ -42,7 +42,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Layer</th>
+                    <th>Layer Name</th>
                     <th>File Name</th>
                 </tr>
             </thead>
@@ -55,7 +55,7 @@
                             <b-button @click="deploy(file)" v-if="request" variant="outline-success"> Deploy </b-button>
                         </b-button-group>
                     </td>
-                    <td>{{ file.layer.name }}</td>
+                    <td>{{ file.layerName }}</td>
                     <td>{{ file.fileName }}</td>
                 </tr>
             </tbody>

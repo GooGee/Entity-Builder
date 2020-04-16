@@ -7,7 +7,7 @@
             <tr>
                 <th width="130px"></th>
                 <th width="120px">Type</th>
-                <th>Field</th>
+                <th>Field List</th>
             </tr>
         </thead>
         <tbody>

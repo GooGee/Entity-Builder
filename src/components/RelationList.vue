@@ -5,10 +5,10 @@
         </caption>
         <thead>
             <tr>
-                <th width="130px"></th>
+                <th width="130px"></th> 
                 <th>Method Name</th>
                 <th>Type</th>
-                <th>Parameters</th>
+                <th>Parameter List</th>
             </tr>
         </thead>
         <tbody>

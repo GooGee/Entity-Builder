@@ -7,7 +7,7 @@
             <tr>
                 <th width="120px">Field</th>
                 <th width="120px">Type</th>
-                <th>Rule</th>
+                <th>Rule List</th>
             </tr>
         </thead>
         <tbody>
