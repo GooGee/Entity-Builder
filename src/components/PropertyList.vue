@@ -1,14 +1,14 @@
 <template>
-    <table class="table">
+    <table class="table b-table b-table-caption-top">
         <caption>
             <h3>Property</h3>
         </caption>
         <thead>
             <tr>
                 <th width="130px"></th>
-                <th>Name</th>
-                <th>Value</th>
-                <th>Tag</th>
+                <th @click="sort('name')" :aria-sort="sortText('name')">name</th>
+                <th @click="sort('value')" :aria-sort="sortText('value')">value</th>
+                <th @click="sort('tag')" :aria-sort="sortText('tag')">tag</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +31,8 @@
                     <b-form-input v-model="property.tag"></b-form-input>
                 </td>
             </tr>
+        </tbody>
+        <tfoot>
             <tr v-if="mutable">
                 <td></td>
                 <td>
@@ -39,7 +41,7 @@
                 <td></td>
                 <td></td>
             </tr>
-        </tbody>
+        </tfoot>
     </table>
 </template>
 
@@ -57,7 +59,32 @@ export default {
             default: true,
         },
     },
+    data() {
+        return {
+            sortField: 'name',
+            sortAsc: true,
+        }
+    },
     methods: {
+        sort(field) {
+            this.sortField = field
+            this.sortAsc = !this.sortAsc
+            if (this.sortAsc) {
+                this.manager.list = this.manager.list.sort((one, two) => {
+                    return one[field].localeCompare(two[field])
+                })
+            } else {
+                this.manager.list = this.manager.list.sort((one, two) => {
+                    return two[field].localeCompare(one[field])
+                })
+            }
+        },
+        sortText(field) {
+            if (this.sortField === field) {
+                return this.sortAsc ? 'ascending' : 'descending'
+            }
+            return 'none'
+        },
         add() {
             const name = prompt('Please input the name')
             if (name) {
