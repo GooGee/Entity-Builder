@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             <tr v-for="index in manager.list" :key="index.name">
-                <td class="button-cell">
+                <td>
                     <b-button-group>
                         <b-button @click="remove(index)" variant="outline-danger"> - </b-button>
                         <b-button @click="manager.moveUp(index)" variant="outline-primary"> ↑ </b-button>

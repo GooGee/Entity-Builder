@@ -14,7 +14,7 @@
         <tbody>
             <slot></slot>
             <tr v-for="property in manager.list" :key="property.name">
-                <td class="button-cell">
+                <td>
                     <b-button-group>
                         <b-button @click="remove(property)" variant="outline-danger"> - </b-button>
                         <b-button @click="manager.moveUp(property)" variant="outline-primary"> ↑ </b-button>

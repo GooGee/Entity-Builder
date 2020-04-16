@@ -1,6 +1,6 @@
 <template>
     <tr>
-        <td class="button-cell">
+        <td>
             <b-button-group>
                 <b-button @click="remove(relation)" variant="outline-danger"> - </b-button>
                 <b-button @click="manager.moveUp(relation)" variant="outline-primary"> ↑ </b-button>

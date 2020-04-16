@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             <tr v-for="field in manager.list" :key="field.name">
-                <td class="button-cell">
+                <td>
                     <b-button-group>
                         <b-button @click="remove(field)" variant="outline-danger"> - </b-button>
                         <b-button @click="manager.moveUp(field)" variant="outline-primary"> ↑ </b-button>
