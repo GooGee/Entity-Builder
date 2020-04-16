@@ -4,8 +4,7 @@
             <h1 class="inline mr11px">Project</h1>
             <b-button-group>
                 <b-button @click="download" variant="outline-success"> Download </b-button>
-                <b-button @click="save" variant="outline-success"> Save </b-button>
-                <b-button @click="deploy" v-if="request" variant="outline-success"> Deploy </b-button>
+                <b-button v-if="request" @click="save" variant="outline-success"> Save </b-button>
             </b-button-group>
         </div>
 
@@ -33,7 +32,7 @@
 <script>
 import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
-import { deployAll, request } from '../helpers/request.js'
+import { request, save } from '../helpers/request.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
@@ -80,10 +79,14 @@ export default {
                 })
             }
         },
-        save() {},
-        deploy() {
+        save() {
             try {
-                deployAll(builder.project)
+                save(builder.project)
+                this.$bvToast.toast('Project saved', {
+                    title: 'OK',
+                    variant: 'success',
+                    solid: true,
+                })
             } catch (error) {
                 console.error(error)
                 this.$bvToast.toast(error.message, {

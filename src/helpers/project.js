@@ -6,12 +6,6 @@ import { PHPTypeCastMap } from '../presets/phpcast.js'
 import { FieldTypeMap, CommonTypeList } from '../presets/fieldtype.js'
 import { CommonFieldMap } from '../presets/field.js'
 
-export function addUser(project) {
-    const entity = project.EntityManager.make('user')
-    project.EntityManager.add(entity)
-    return entity
-}
-
 export function loadProject(json) {
     const project = new Entity.Project(json.name)
     project.load(json)
