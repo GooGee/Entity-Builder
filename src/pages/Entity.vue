@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td>table</td>
+                <td>tableName</td>
                 <td>
                     <b-button @click="setTableName" variant="outline-primary"> {{ sidebar.item.tableName }} </b-button>
                 </td>

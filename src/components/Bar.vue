@@ -60,8 +60,11 @@ export default {
 #bar a.nav-link.active,
 #bar a.nav-link:hover {
     color: white;
-    font-weight: bolder;
     background-color: #08f;
+}
+
+#bar a.nav-link.active {
+    font-weight: bolder;
     padding-left: 1rem;
     padding-right: 1rem;
 }
