@@ -4,28 +4,40 @@
             {{ sidebar.title }}
             <b-button v-if="sidebar.manager" @click="add" variant="outline-primary"> + </b-button>
         </h2>
-        <b-list-group v-if="sidebar.manager">
-            <b-list-group-item
+        <draggable
+            v-if="sidebar.manager"
+            v-model="sidebar.manager.list"
+            group="SideBar"
+            @start="drag = true"
+            @end="drag = false"
+            class="list-group"
+        >
+            <div
                 v-for="item in sidebar.manager.list"
                 :key="item.name"
                 @click="sidebar.item = item"
-                :variant="Object.is(sidebar.item, item) ? 'primary' : ''"
-                button
+                :class="Object.is(sidebar.item, item) ? 'active' : ''"
+                class="list-group-item list-group-item-action"
             >
                 {{ item.name }}
-            </b-list-group-item>
-        </b-list-group>
+            </div>
+        </draggable>
     </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'SideBar',
+    components: {
+        draggable,
+    },
     data() {
         return {
             sidebar,
+            drag: false,
         }
     },
     methods: {
