@@ -92,7 +92,7 @@ export default {
             EntityList: builder.project.EntityManager.list,
             FieldTypeList: builder.project.PresetManager.find('FieldType').DataManager.list,
             CommonTypeList: builder.project.PresetManager.find('FieldTypeCommon').DataManager.list,
-            CommonFieldList: builder.project.PresetManager.find('FieldNameCommon').DataManager.list,
+            CommonFieldList: builder.project.PresetManager.find('FieldName').DataManager.list,
             SpecialFieldList: builder.project.PresetManager.find('FieldSpecial').DataManager.list,
             selected: '',
         }
