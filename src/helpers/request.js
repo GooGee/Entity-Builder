@@ -18,6 +18,9 @@ export function connect(domain) {
             return data
         },
         error => {
+            if (error.response) {
+                return Promise.reject(error.response.data)
+            }
             return Promise.reject(error)
         },
     )
