@@ -30,6 +30,7 @@ export default {
         return {
             builder,
             sidebar,
+            domain: 'http://localhost',
         }
     },
     created() {
@@ -37,9 +38,9 @@ export default {
     },
     methods: {
         connect() {
-            const domain = prompt('Please enter the domain', 'http://localhost')
-            if (domain) {
-                connect(domain)
+            this.domain = prompt('Please enter the domain', this.domain)
+            if (this.domain) {
+                connect(this.domain)
                     .then(response => {
                         if (builder.project) {
                             return
