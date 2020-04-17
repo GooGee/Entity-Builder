@@ -36,12 +36,22 @@
             <tr v-if="mutable">
                 <td></td>
                 <td>
-                    <b-button @click="add" variant="outline-primary"> + </b-button>
+                    <b-button-group>
+                        <b-button @click="add" variant="outline-primary"> + </b-button>
+                        <b-button @click="visible = true" variant="outline-primary"> Import </b-button>
+                    </b-button-group>
                 </td>
                 <td></td>
                 <td></td>
             </tr>
         </tfoot>
+        <b-modal @ok="input" v-model="visible" title="Paste JSON here" size="xl">
+            <textarea v-model="json" class="form-control" spellcheck="false" rows="11"></textarea>
+            <b-form-group label="Unique Name">
+                <b-form-radio v-model="skip" :value="true">Skip if exist</b-form-radio>
+                <b-form-radio v-model="skip" :value="false">Replace if exist</b-form-radio>
+            </b-form-group>
+        </b-modal>
     </table>
 </template>
 
@@ -63,6 +73,9 @@ export default {
         return {
             sortField: 'name',
             sortAsc: true,
+            json: '',
+            visible: false,
+            skip: false,
         }
     },
     methods: {
@@ -99,6 +112,36 @@ export default {
                         solid: true,
                     })
                 }
+            }
+        },
+        input() {
+            try {
+                const list = JSON.parse(this.json)
+                if (Array.isArray(list)) {
+                    list.forEach(item => {
+                        let found = this.manager.find(item.name)
+                        if (found) {
+                            if (this.skip) {
+                                return
+                            }
+                        } else {
+                            found = this.manager.make(item.name)
+                            this.manager.add(found)
+                        }
+                        found.value = item.value
+                        found.tag = item.tag
+                    })
+                    return
+                }
+
+                throw new Error('JSON must be an Array')
+            } catch (error) {
+                console.error(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
             }
         },
         remove(property) {
