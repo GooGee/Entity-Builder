@@ -130,6 +130,11 @@ export default {
                         }
                         found.value = item.value
                         found.tag = item.tag
+                        if (item.data) {
+                            if ('object' === typeof item.data) {
+                                found.data = item.data
+                            }
+                        }
                     })
                     return
                 }
