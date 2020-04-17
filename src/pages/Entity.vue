@@ -7,30 +7,6 @@
             </b-button-group>
         </h1>
 
-        <PropertyList :manager="sidebar.item.PropertyManager">
-            <tr>
-                <td>entity.name</td>
-                <td>
-                    <b-button @click="setName" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>entity.tableName</td>
-                <td>
-                    <b-button @click="setTableName" variant="outline-primary"> {{ sidebar.item.tableName }} </b-button>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>entity.description</td>
-                <td>
-                    <b-form-input v-model="sidebar.item.description"></b-form-input>
-                </td>
-                <td></td>
-            </tr>
-        </PropertyList>
-
         <table class="table">
             <caption>
                 <h3 class="inline mr11px">File</h3>
@@ -60,6 +36,30 @@
                 </tr>
             </tbody>
         </table>
+
+        <PropertyList :manager="sidebar.item.PropertyManager">
+            <tr>
+                <td>entity.name</td>
+                <td>
+                    <b-button @click="setName" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>entity.tableName</td>
+                <td>
+                    <b-button @click="setTableName" variant="outline-primary"> {{ sidebar.item.tableName }} </b-button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>entity.description</td>
+                <td>
+                    <b-form-input v-model="sidebar.item.description"></b-form-input>
+                </td>
+                <td></td>
+            </tr>
+        </PropertyList>
 
         <b-modal v-model="visible" :title="title" size="xl" hide-footer>
             <pre>{{ code }}</pre>
