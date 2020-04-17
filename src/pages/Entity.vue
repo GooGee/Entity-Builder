@@ -9,24 +9,21 @@
 
         <PropertyList :manager="sidebar.item.PropertyManager">
             <tr>
-                <td></td>
-                <td>name</td>
+                <td>entity.name</td>
                 <td>
                     <b-button @click="setName" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
                 </td>
                 <td></td>
             </tr>
             <tr>
-                <td></td>
-                <td>tableName</td>
+                <td>entity.tableName</td>
                 <td>
                     <b-button @click="setTableName" variant="outline-primary"> {{ sidebar.item.tableName }} </b-button>
                 </td>
                 <td></td>
             </tr>
             <tr>
-                <td></td>
-                <td>description</td>
+                <td>entity.description</td>
                 <td>
                     <b-form-input v-model="sidebar.item.description"></b-form-input>
                 </td>

@@ -5,24 +5,19 @@
         </caption>
         <thead>
             <tr>
-                <th width="130px"></th>
                 <th @click="sort('name')" :aria-sort="sortText('name')">name</th>
                 <th @click="sort('value')" :aria-sort="sortText('value')">value</th>
                 <th @click="sort('tag')" :aria-sort="sortText('tag')">tag</th>
             </tr>
         </thead>
-        <tbody>
-            <slot></slot>
+
+        <draggable v-model="manager.list" group="PropertyList" tag="tbody" @start="drag = true" @end="drag = false">
             <tr v-for="property in manager.list" :key="property.name">
                 <td>
                     <b-button-group>
                         <b-button @click="remove(property)" variant="outline-danger"> - </b-button>
-                        <b-button @click="manager.moveUp(property)" variant="outline-primary"> ↑ </b-button>
-                        <b-button @click="manager.moveDown(property)" variant="outline-primary"> ↓ </b-button>
+                        <b-button @click="setName(property)" variant="outline-primary"> {{ property.name }} </b-button>
                     </b-button-group>
-                </td>
-                <td>
-                    <b-button @click="setName(property)" variant="outline-primary"> {{ property.name }} </b-button>
                 </td>
                 <td>
                     <b-form-input v-model="property.value"></b-form-input>
@@ -31,10 +26,11 @@
                     <b-form-input v-model="property.tag"></b-form-input>
                 </td>
             </tr>
-        </tbody>
+            <slot slot="header"></slot>
+        </draggable>
+
         <tfoot>
             <tr v-if="mutable">
-                <td></td>
                 <td>
                     <b-button-group>
                         <b-button @click="add" variant="outline-primary"> + </b-button>
@@ -45,6 +41,7 @@
                 <td></td>
             </tr>
         </tfoot>
+
         <b-modal @ok="input" v-model="visible" title="Paste JSON here" size="xl">
             <textarea v-model="json" class="form-control" spellcheck="false" rows="11"></textarea>
             <b-form-group label="Unique Name">
@@ -56,8 +53,13 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 export default {
     name: 'PropertyList',
+    components: {
+        draggable,
+    },
     props: {
         manager: {
             type: Object,
@@ -76,6 +78,7 @@ export default {
             json: '',
             visible: false,
             skip: false,
+            drag: false,
         }
     },
     methods: {
