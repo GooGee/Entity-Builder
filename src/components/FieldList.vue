@@ -75,7 +75,6 @@
 
 <script>
 import FieldPanel from './FieldPanel.vue'
-import { SpecialFieldList } from '../presets/field.js'
 import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
@@ -94,7 +93,7 @@ export default {
             FieldTypeList: builder.project.PresetManager.find('FieldType').DataManager.list,
             CommonTypeList: builder.project.PresetManager.find('FieldTypeCommon').DataManager.list,
             CommonFieldList: builder.project.PresetManager.find('FieldNameCommon').DataManager.list,
-            SpecialFieldList,
+            SpecialFieldList: builder.project.PresetManager.find('FieldSpecial').DataManager.list,
             selected: '',
         }
     },
@@ -123,9 +122,9 @@ export default {
         },
         addField(name) {
             try {
-                const found = SpecialFieldList.find(item => item.name === name)
-                const fff = this.manager.make(found.name, found.type)
-                fff.load(found)
+                const found = this.SpecialFieldList.find(item => item.name === name)
+                const fff = this.manager.make(found.name, found.tag)
+                fff.load(found.data)
                 this.manager.add(fff)
             } catch (error) {
                 console.error(error)
