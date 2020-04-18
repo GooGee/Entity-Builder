@@ -15,8 +15,8 @@
             <slot></slot>
 
             <PropertyList :manager="file.PropertyManager"></PropertyList>
-    
-            <b-modal v-model="visible" :title="layer" size="xl" hide-footer>
+
+            <b-modal v-model="visible" :title="title" size="xl" hide-footer>
                 <pre>{{ code }}</pre>
             </b-modal>
         </div>
@@ -45,6 +45,7 @@ export default {
     data() {
         return {
             builder,
+            title: '',
             code: '',
             visible: false,
         }
@@ -62,16 +63,19 @@ export default {
         script() {
             const script = builder.project.ScriptManager.find(this.file.layer.script)
             this.code = script.text
+            this.title = script.name
             this.visible = true
         },
         template() {
             const template = builder.project.TemplateManager.find(this.file.layer.template)
             this.code = template.text
+            this.title = template.name
             this.visible = true
         },
         preview() {
             try {
                 this.code = render(builder.project, sidebar.item, this.file)
+                this.title = this.file.fileName
                 this.visible = true
             } catch (error) {
                 console.error(error)
