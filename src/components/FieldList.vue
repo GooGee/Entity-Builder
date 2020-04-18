@@ -1,28 +1,25 @@
 <template>
-    <table class="table">
-        <caption>
+    <ItemList :manager="manager">
+        <template slot="caption">
             <h3>Field</h3>
-        </caption>
-        <thead>
+        </template>
+
+        <template slot="header">
             <tr>
-                <th width="130px"></th>
                 <th>Name</th>
                 <th>Type</th>
                 <th width="111px">Length</th>
                 <th>Default / Comment</th>
             </tr>
-        </thead>
-        <tbody>
+        </template>
+
+        <template slot="body">
             <tr v-for="field in manager.list" :key="field.name">
                 <td>
                     <b-button-group>
                         <b-button @click="remove(field)" variant="outline-danger"> - </b-button>
-                        <b-button @click="manager.moveUp(field)" variant="outline-primary"> ↑ </b-button>
-                        <b-button @click="manager.moveDown(field)" variant="outline-primary"> ↓ </b-button>
+                        <b-button @click="rename(field)" variant="outline-primary"> {{ field.name }} </b-button>
                     </b-button-group>
-                </td>
-                <td>
-                    <b-button @click="rename(field)" variant="outline-primary"> {{ field.name }} </b-button>
                 </td>
                 <td>
                     <b-button @click="setType(field)" variant="outline-primary"> {{ field.type }} </b-button>
@@ -34,13 +31,16 @@
                     <FieldPanel :field="field"></FieldPanel>
                 </td>
             </tr>
-        </tbody>
-        <tfoot>
+        </template>
+
+        <template slot="footer">
             <tr>
                 <td>
-                    <select @change="add($event.target.value, 'integer')" class="form-control">
+                    <select @change="addItem($event.target.value)" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
-                        <option v-for="entity in EntityList" :key="entity.name">{{ entity.tableName }}_id</option>
+                        <option v-for="field in CommonFieldList" :value="field.name" :key="field.name">
+                            {{ field.name }}
+                        </option>
                     </select>
                 </td>
                 <td>
@@ -52,35 +52,39 @@
                     </select>
                 </td>
                 <td>
-                    <select @change="addItem($event.target.value)" class="form-control">
+                    <select @change="add($event.target.value, 'integer')" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
-                        <option v-for="field in CommonFieldList" :value="field.name" :key="field.name">
-                            {{ field.name }}
-                        </option>
+                        <option v-for="entity in EntityList" :key="entity.name">{{ entity.tableName }}_id</option>
                     </select>
                 </td>
                 <td>
-                    <select v-model="selected" @change="addType($event.target.value)" class="form-control">
+                    <select
+                        v-model="selected"
+                        @change="addType($event.target.value)"
+                        class="form-control inline wa mr11px"
+                    >
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="type in CommonTypeList" :key="type.name">{{ type.name }}</option>
                     </select>
-                </td>
-                <td>
                     <b-button @click="show" variant="outline-primary"> + </b-button>
                 </td>
             </tr>
-        </tfoot>
-    </table>
+        </template>
+    </ItemList>
 </template>
 
 <script>
+import ItemList from './ItemList.vue'
 import FieldPanel from './FieldPanel.vue'
 import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
 export default {
     name: 'FieldList',
-    components: { FieldPanel },
+    components: {
+        ItemList,
+        FieldPanel,
+    },
     props: {
         manager: {
             type: Object,

@@ -33,6 +33,10 @@ export default {
     display: inline-block;
 }
 
+.wa {
+    width: auto;
+}
+
 .table caption {
     caption-side: top;
 }
