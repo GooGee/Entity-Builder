@@ -1,7 +1,7 @@
 <template>
     <Render :manager="sidebar.item.FileManager" layer="Model">
-        <CastList :manager="sidebar.item.FieldManager"></CastList>
         <RelationList :manager="sidebar.item.RelationManager"></RelationList>
+        <CastList :manager="sidebar.item.FieldManager"></CastList>
         <ValidationList :manager="sidebar.item.FieldManager" :entity="sidebar.item"></ValidationList>
     </Render>
 </template>
@@ -16,7 +16,12 @@ import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Model',
-    components: { CastList, RelationList, ValidationList, Render },
+    components: {
+        CastList,
+        RelationList,
+        ValidationList,
+        Render,
+    },
     data() {
         return {
             builder,
