@@ -1,27 +1,28 @@
 <template>
-    <table class="table">
-        <caption>
+    <ItemList :manager="manager">
+        <template slot="caption">
             <h3>Relation</h3>
-        </caption>
-        <thead>
+        </template>
+
+        <template slot="header">
             <tr>
-                <th width="130px"></th> 
                 <th>Method Name</th>
                 <th>Type</th>
                 <th>Parameter List</th>
             </tr>
-        </thead>
-        <tbody>
+        </template>
+
+        <template slot="body">
             <Relation
                 v-for="relation in manager.list"
                 :relation="relation"
                 :manager="manager"
                 :key="relation.name"
             ></Relation>
-        </tbody>
-        <tfoot>
+        </template>
+
+        <template slot="footer">
             <tr>
-                <td></td>
                 <td>
                     <select @change="add($event.target.value)" class="form-control">
                         <option selected="true" disabled="disabled"> ---- </option>
@@ -33,17 +34,21 @@
                 <td></td>
                 <td></td>
             </tr>
-        </tfoot>
-    </table>
+        </template>
+    </ItemList>
 </template>
 
 <script>
+import ItemList from './ItemList.vue'
 import Relation from './Relation.vue'
 import builder from '../states/builder.js'
 
 export default {
     name: 'RelationList',
-    components: { Relation },
+    components: {
+        ItemList,
+        Relation,
+    },
     props: {
         manager: {
             type: Object,

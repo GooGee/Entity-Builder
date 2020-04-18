@@ -3,14 +3,10 @@
         <td>
             <b-button-group>
                 <b-button @click="remove(relation)" variant="outline-danger"> - </b-button>
-                <b-button @click="manager.moveUp(relation)" variant="outline-primary"> ↑ </b-button>
-                <b-button @click="manager.moveDown(relation)" variant="outline-primary"> ↓ </b-button>
+                <b-button @click="rename" variant="outline-primary">
+                    {{ relation.name }}
+                </b-button>
             </b-button-group>
-        </td>
-        <td>
-            <b-button @click="rename" variant="outline-primary">
-                {{ relation.name }}
-            </b-button>
         </td>
         <td>
             <select v-model="relation.type" class="form-control">
