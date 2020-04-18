@@ -7,35 +7,7 @@
             </b-button-group>
         </h1>
 
-        <table class="table">
-            <caption>
-                <h3 class="inline mr11px">File</h3>
-                <b-button-group>
-                    <b-button @click="zip" variant="outline-success"> Zip </b-button>
-                    <b-button v-if="request" @click="deployEntity" variant="outline-success"> Deploy </b-button>
-                </b-button-group>
-            </caption>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Layer Name</th>
-                    <th>File Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="file in sidebar.item.FileManager.list" :key="file.name">
-                    <td>
-                        <b-button-group>
-                            <b-button @click="preview(file)" variant="outline-primary"> Preview </b-button>
-                            <b-button @click="download(file)" variant="outline-success"> Download </b-button>
-                            <b-button v-if="request" @click="deploy(file)" variant="outline-success"> Deploy </b-button>
-                        </b-button-group>
-                    </td>
-                    <td>{{ file.layerName }}</td>
-                    <td>{{ file.fileName }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <FileList :manager="sidebar.item.FileManager"></FileList>
 
         <PropertyList :manager="sidebar.item.PropertyManager">
             <tr>
@@ -60,32 +32,25 @@
                 <td></td>
             </tr>
         </PropertyList>
-
-        <b-modal v-model="visible" :title="title" size="xl" hide-footer>
-            <pre>{{ code }}</pre>
-        </b-modal>
     </div>
 </template>
 
 <script>
+import FileList from '../components/FileList.vue'
 import PropertyList from '../components/PropertyList.vue'
-import render from '../helpers/render.js'
-import { deployFile, deployEntity, request } from '../helpers/request.js'
-import * as zip from '../helpers/zip.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Entity',
-    components: { PropertyList },
+    components: {
+        FileList,
+        PropertyList,
+    },
     data() {
         return {
             builder,
             sidebar,
-            request,
-            title: '',
-            code: '',
-            visible: false,
         }
     },
     created() {
@@ -120,79 +85,6 @@ export default {
                         solid: true,
                     })
                 }
-            }
-        },
-        preview(file) {
-            try {
-                this.title = file.fileName
-                this.code = render(builder.project, sidebar.item, file)
-                this.visible = true
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
-        download(file) {
-            try {
-                const text = render(builder.project, sidebar.item, file)
-                zip.download(file.fileName, text)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
-        deploy(file) {
-            try {
-                deployFile(builder.project, sidebar.item, file)
-                this.$bvToast.toast(`${file.fileName} deployed`, {
-                    title: 'OK',
-                    variant: 'success',
-                    solid: true,
-                })
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
-        deployEntity() {
-            try {
-                deployEntity(builder.project, sidebar.item)
-                this.$bvToast.toast(`${sidebar.item.name} deployed`, {
-                    title: 'OK',
-                    variant: 'success',
-                    solid: true,
-                })
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
-        zip() {
-            try {
-                zip.zipEntity(sidebar.item, builder.project)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
             }
         },
         remove() {
