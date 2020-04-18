@@ -1,20 +1,22 @@
 <template>
-    <div>
-        <div>
-            <b-button-group>
-                <b-button @click="create" variant="outline-primary"> New </b-button>
-                <b-button variant="outline-primary">
-                    <label class="button-label">
-                        Upload
-                        <input @change="upload($event)" type="file" accept=".json" style="display: none;" />
-                    </label>
-                </b-button>
-                <b-button @click="connect" variant="outline-primary"> Connect </b-button>
-            </b-button-group>
+    <div class="col-sm-6">
+        <div class="text-center" style="margin-top: 22%;">
+            <div>
+                <img src="logo.svg" alt="logo" style="width: 222px;">
+            </div>
+            <div style="margin-top: 33px;">
+                <b-button-group>
+                    <b-button @click="create" variant="outline-primary"> New </b-button>
+                    <b-button variant="outline-primary">
+                        <label class="button-label">
+                            Upload
+                            <input @change="upload($event)" type="file" accept=".json" style="display: none;" />
+                        </label>
+                    </b-button>
+                    <b-button @click="connect" variant="outline-primary"> Connect </b-button>
+                </b-button-group>
+            </div>
         </div>
-        <ul>
-            <li v-for="item in builder.projectList" :key="item">{{ item }}</li>
-        </ul>
     </div>
 </template>
 
