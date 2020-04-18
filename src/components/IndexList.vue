@@ -27,13 +27,24 @@
                     </select>
                 </td>
                 <td>
-                    <IndexField
-                        v-for="field in index.FieldManager.list"
-                        :key="field.name"
-                        :index="index"
-                        :field="field"
-                        class="inline mr11px"
-                    ></IndexField>
+                    <draggable
+                        v-model="index.FieldManager.list"
+                        @start="drag = true"
+                        @end="drag = false"
+                        group="IndexField"
+                        class="inline"
+                    >
+                        <b-button-group
+                            v-for="field in index.FieldManager.list"
+                            :key="field.name"
+                            class="inline mr11px"
+                        >
+                            <b-button @click="index.FieldManager.remove(field)" variant="outline-danger">
+                                -
+                            </b-button>
+                            <b-button variant="outline-secondary"> {{ field.name }} </b-button>
+                        </b-button-group>
+                    </draggable>
 
                     <b-button @click="addField(index)" variant="outline-primary"> + </b-button>
                 </td>
@@ -52,13 +63,15 @@
 </template>
 
 <script>
-import IndexField from './IndexField.vue'
+import draggable from 'vuedraggable'
 import builder from '../states/builder.js'
 import dialogue from '../states/listdialogue.js'
 
 export default {
     name: 'IndexList',
-    components: { IndexField },
+    components: {
+        draggable,
+    },
     props: {
         manager: {
             type: Object,
@@ -68,6 +81,11 @@ export default {
             type: Object,
             required: true,
         },
+    },
+    data() {
+        return {
+            drag: false,
+        }
     },
     methods: {
         add() {
