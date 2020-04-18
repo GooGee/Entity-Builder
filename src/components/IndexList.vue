@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="index in manager.list">
+            <tr v-for="(index, key) in manager.list">
                 <td>
                     <b-button-group>
                         <b-button @click="remove(index)" variant="outline-danger"> - </b-button>
@@ -31,7 +31,7 @@
                         v-model="index.FieldManager.list"
                         @start="drag = true"
                         @end="drag = false"
-                        group="IndexField"
+                        :group="'Index' + key"
                         class="inline"
                     >
                         <b-button-group
