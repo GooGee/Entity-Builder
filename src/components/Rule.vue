@@ -1,15 +1,17 @@
 <template>
     <tr>
         <td>
-            <b-button @click="remove" variant="outline-danger" class="mr11px"> - </b-button>
+            <b-button-group>
+                <b-button @click="remove" variant="outline-danger"> - </b-button>
 
-            <b-dropdown v-if="isRE" :text="rule.name" variant="outline-primary">
-                <b-dropdown-item-button v-for="re in REList" :key="re.name" @click="rule.value = re.value">
-                    {{ re.name }}
-                </b-dropdown-item-button>
-            </b-dropdown>
+                <b-dropdown v-if="isRE" :text="rule.name" variant="outline-primary">
+                    <b-dropdown-item-button v-for="re in REList" :key="re.name" @click="rule.value = re.value">
+                        {{ re.name }}
+                    </b-dropdown-item-button>
+                </b-dropdown>
 
-            <span v-else>{{ rule.name }}</span>
+                <b-button v-else variant="outline-secondary"> {{ rule.name }} </b-button>
+            </b-button-group>
         </td>
         <td>
             <b-form-input v-model="rule.value"></b-form-input>
