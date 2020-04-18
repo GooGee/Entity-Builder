@@ -1,13 +1,8 @@
 <template>
     <tr>
         <td>
-            <b-button-group>
-                <b-button @click="remove" variant="outline-danger"> - </b-button>
-                <b-button @click="manager.moveUp(rule)" variant="outline-primary"> ↑ </b-button>
-                <b-button @click="manager.moveDown(rule)" variant="outline-primary"> ↓ </b-button>
-            </b-button-group>
-        </td>
-        <td>
+            <b-button @click="remove" variant="outline-danger" class="mr11px"> - </b-button>
+
             <b-dropdown v-if="isRE" :text="rule.name" variant="outline-primary">
                 <b-dropdown-item-button v-for="re in REList" :key="re.name" @click="rule.value = re.value">
                     {{ re.name }}

@@ -1,14 +1,14 @@
 <template>
     <div>
         <template v-if="editing">
-            <table class="table">
-                <tbody>
-                    <Rule v-for="rule in manager.list" :key="rule.name" :rule="rule" :manager="manager"></Rule>
-                </tbody>
-                <caption>
+            <ItemList :manager="manager">
+                <template slot="caption">
                     <b-button @click="editing = false" variant="outline-primary"> OK </b-button>
-                </caption>
-            </table>
+                </template>
+                <template slot="body">
+                    <Rule v-for="rule in manager.list" :key="rule.name" :rule="rule" :manager="manager"></Rule>
+                </template>
+            </ItemList>
 
             <b-card no-body>
                 <b-tabs pills vertical>
@@ -43,12 +43,15 @@
 </template>
 
 <script>
+import ItemList from './ItemList.vue'
 import Rule from './Rule.vue'
 import builder from '../states/builder.js'
 
 export default {
     name: 'RuleTab',
-    components: { Rule },
+    components: {
+        ItemList,
+         Rule },
     props: {
         manager: {
             type: Object,
@@ -58,7 +61,7 @@ export default {
     data() {
         return {
             editing: false,
-            tab: 'Content',
+            tab: 'WWW',
             tabxx: [],
             RuleList: builder.project.PresetManager.find('ValidationRule').DataManager.list,
             REList: builder.project.PresetManager.find('RegularExpression').DataManager.list,
