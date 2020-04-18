@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="index in manager.list" :key="index.name">
+            <tr v-for="index in manager.list">
                 <td>
                     <b-button-group>
                         <b-button @click="remove(index)" variant="outline-danger"> - </b-button>
