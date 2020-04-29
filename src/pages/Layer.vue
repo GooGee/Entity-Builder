@@ -1,46 +1,49 @@
 <template>
-    <table class="table">
-        <caption>
-            <b-button-group>
-                <b-button @click="remove" variant="outline-danger"> - </b-button>
-                <b-button @click="change('name')" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
-            </b-button-group>
+    <div>
+        <b-button-group class="mtb11px">
+            <b-button @click="remove" variant="outline-danger"> - </b-button>
+            <b-button @click="change('name')" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
+        </b-button-group>
 
-            <b-modal v-model="visible" :title="title" size="xl" hide-footer>
-                <pre>{{ code }}</pre>
-            </b-modal>
-        </caption>
-        <tbody>
+        <b-modal v-model="visible" :title="title" size="xl" hide-footer>
+            <pre>{{ code }}</pre>
+        </b-modal>
+
+        <PropertyList :manager="sidebar.item.PropertyManager">
             <tr>
-                <td class="text-right">path</td>
+                <td>layer.path</td>
                 <td>
                     <b-form-input v-model="sidebar.item.path"></b-form-input>
                 </td>
+                <td></td>
             </tr>
             <tr>
-                <td class="text-right">description</td>
+                <td>layer.description</td>
                 <td>
                     <b-form-input v-model="sidebar.item.description"></b-form-input>
                 </td>
+                <td></td>
             </tr>
             <tr>
-                <td class="text-right">prefix</td>
+                <td>layer.prefix</td>
                 <td>
                     <b-button @click="change('prefix')" variant="outline-primary">
                         {{ plus(sidebar.item.prefix) }}
                     </b-button>
                 </td>
+                <td></td>
             </tr>
             <tr>
-                <td class="text-right">suffix</td>
+                <td>layer.suffix</td>
                 <td>
                     <b-button @click="change('suffix')" variant="outline-primary">
                         {{ plus(sidebar.item.suffix) }}
                     </b-button>
                 </td>
+                <td></td>
             </tr>
             <tr>
-                <td class="text-right">script</td>
+                <td>layer.script</td>
                 <td>
                     <b-button-group>
                         <b-button @click="changeScript" variant="outline-primary">
@@ -49,9 +52,10 @@
                         <b-button @click="showScript" variant="outline-primary"> View </b-button>
                     </b-button-group>
                 </td>
+                <td></td>
             </tr>
             <tr>
-                <td class="text-right">template</td>
+                <td>layer.template</td>
                 <td>
                     <b-button-group>
                         <b-button @click="changeTemplate" variant="outline-primary">
@@ -60,18 +64,21 @@
                         <b-button @click="showTemplate" variant="outline-primary"> View </b-button>
                     </b-button-group>
                 </td>
+                <td></td>
             </tr>
-        </tbody>
-    </table>
+        </PropertyList>
+    </div>
 </template>
 
 <script>
+import PropertyList from '../components/PropertyList.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 import dialogue from '../states/listdialogue.js'
 
 export default {
     name: 'Layer',
+    components: { PropertyList },
     data() {
         return {
             builder,
