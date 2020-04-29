@@ -1,8 +1,9 @@
 import Entity from '../states/entity.js'
 
-export function loadProject(json) {
+export function loadProject(json, preset) {
     const project = new Entity.Project(json.name)
-    project.load(json)
+    const loader = new Entity.Loader(project, makeProject('preset', preset))
+    loader.load(json)
     return project
 }
 
