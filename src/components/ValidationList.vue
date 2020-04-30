@@ -35,6 +35,8 @@
 
 <script>
 import setRule from '../helpers/rule.js'
+import { makePreset } from '../helpers/project.js'
+import builder from '../states/builder.js'
 import RuleTab from './RuleTab.vue'
 
 export default {
@@ -52,14 +54,14 @@ export default {
     },
     methods: {
         setRule() {
-            setRule(this.entity)
+            setRule(this.entity, makePreset(builder.preset).PresetManager)
         },
     },
 }
 </script>
 
 <style>
-    tr.disabled td {
-        color: darkgray;
-    }
+tr.disabled td {
+    color: darkgray;
+}
 </style>
