@@ -1,7 +1,8 @@
 export default function(entity, preset) {
     setUnique(entity)
     const FieldTypeInteger = preset.find('FieldTypeInteger')
-    entity.FieldManager.list.forEach(field => setRule(field, FieldTypeInteger.DataManager))
+    const FieldTypeNumeric = preset.find('FieldTypeNumeric')
+    entity.FieldManager.list.forEach(field => setRule(field, FieldTypeInteger.DataManager, FieldTypeNumeric.DataManager))
 }
 
 function add(field, name, isBoolean = true) {
@@ -18,7 +19,7 @@ function isString(field) {
     return field.type === 'char' || field.type === 'string'
 }
 
-function setRule(field, IntegerManager) {
+function setRule(field, IntegerManager, NumericManager) {
     if (field.included) {
         // go on
     } else {
@@ -39,7 +40,7 @@ function setRule(field, IntegerManager) {
         add(field, 'integer')
         return
     }
-    if (field.isNumber) {
+    if (NumericManager.find(field.type)) {
         add(field, 'numeric')
         return
     }
