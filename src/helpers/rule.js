@@ -1,7 +1,7 @@
 export default function(entity, project) {
     setUnique(entity)
-    const FieldTypeInteger = project.PresetManager.find('FieldTypeInteger').DataManager
-    const FieldTypeNumeric = project.PresetManager.find('FieldTypeNumeric').DataManager
+    const FieldTypeInteger = project.PresetManager.find('FieldTypeInteger').PropertyManager
+    const FieldTypeNumeric = project.PresetManager.find('FieldTypeNumeric').PropertyManager
     entity.FieldManager.list.forEach(field => setRule(field, FieldTypeInteger, FieldTypeNumeric))
 }
 

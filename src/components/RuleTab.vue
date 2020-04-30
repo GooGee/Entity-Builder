@@ -63,8 +63,8 @@ export default {
             editing: false,
             tab: 'WWW',
             tabxx: [],
-            RuleList: builder.project.PresetManager.find('ValidationRule').DataManager.list,
-            REList: builder.project.PresetManager.find('RegularExpression').DataManager.list,
+            RuleList: builder.project.PresetManager.find('ValidationRule').PropertyManager.list,
+            REList: builder.project.PresetManager.find('RegularExpression').PropertyManager.list,
         }
     },
     computed: {

@@ -64,13 +64,13 @@ export default {
     },
     methods: {
         setMethod(field) {
-            const list = builder.project.PresetManager.find('FakerMethod').DataManager.list
+            const list = builder.project.PresetManager.find('FakerMethod').PropertyManager.list
             dialogue.show(list, 'name', 'Select a Method', ok => {
                 field.seed.method = dialogue.selected.name
             })
         },
         setProperty(field) {
-            const list = builder.project.PresetManager.find('FakerProperty').DataManager.list
+            const list = builder.project.PresetManager.find('FakerProperty').PropertyManager.list
             dialogue.show(list, 'name', 'Select a Method', ok => {
                 field.seed.property = dialogue.selected.name
             })

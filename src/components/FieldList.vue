@@ -94,11 +94,11 @@ export default {
     data() {
         return {
             EntityList: builder.project.EntityManager.list,
-            FieldTypeWithLength: builder.project.PresetManager.find('FieldTypeWithLength').DataManager,
-            FieldTypeList: builder.project.PresetManager.find('FieldType').DataManager.list,
-            CommonTypeList: builder.project.PresetManager.find('FieldTypeCommon').DataManager.list,
-            CommonFieldList: builder.project.PresetManager.find('FieldName').DataManager.list,
-            SpecialFieldList: builder.project.PresetManager.find('FieldSpecial').DataManager.list,
+            FieldTypeWithLength: builder.project.PresetManager.find('FieldTypeWithLength').PropertyManager,
+            FieldTypeList: builder.project.PresetManager.find('FieldType').PropertyManager.list,
+            CommonTypeList: builder.project.PresetManager.find('FieldTypeCommon').PropertyManager.list,
+            CommonFieldList: builder.project.PresetManager.find('FieldName').PropertyManager.list,
+            SpecialFieldList: builder.project.PresetManager.find('FieldSpecial').PropertyManager.list,
             selected: '',
         }
     },

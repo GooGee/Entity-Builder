@@ -9,7 +9,7 @@
 
         <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
 
-        <PropertyList :manager="sidebar.item.DataManager"></PropertyList>
+        <PropertyList :manager="sidebar.item.PropertyManager"></PropertyList>
     </div>
 </template>
 

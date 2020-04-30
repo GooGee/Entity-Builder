@@ -36,7 +36,7 @@ export default {
     },
     data() {
         return {
-            REList: builder.project.PresetManager.find('RegularExpression').DataManager.list,
+            REList: builder.project.PresetManager.find('RegularExpression').PropertyManager.list,
         }
     },
     computed: {

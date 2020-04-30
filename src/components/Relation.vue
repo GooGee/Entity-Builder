@@ -36,7 +36,7 @@ export default {
     },
     data() {
         return {
-            relationxx: builder.project.PresetManager.find('RelationType').DataManager.list,
+            relationxx: builder.project.PresetManager.find('RelationType').PropertyManager.list,
         }
     },
     computed: {

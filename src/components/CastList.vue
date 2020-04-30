@@ -53,7 +53,7 @@ export default {
             return '+'
         },
         select(field) {
-            const list = builder.project.PresetManager.find('CastPHP').DataManager.list
+            const list = builder.project.PresetManager.find('CastPHP').PropertyManager.list
             dialogue.showWithBlank(list, 'name', 'Select a Type', ok => {
                 if (dialogue.selected) {
                     field.cast = dialogue.selected.name
