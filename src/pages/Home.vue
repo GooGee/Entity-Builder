@@ -49,8 +49,7 @@ export default {
                         }
                         if (response.data) {
                             const data = JSON.parse(response.data)
-                            builder.project = loadProject(data, builder.preset)
-                            this.$router.push('/project')
+                            this.load(data)
                             return
                         }
 
@@ -114,8 +113,7 @@ export default {
             reader.onload = event => {
                 try {
                     const data = JSON.parse(event.target.result)
-                    builder.project = loadProject(data, builder.preset)
-                    this.$router.push('/project')
+                    this.load(data)
                 } catch (error) {
                     console.error(error)
                     this.$bvToast.toast(error.message, {
@@ -129,6 +127,15 @@ export default {
                 alert(error)
             }
             reader.readAsText(event.target.files[0])
+        },
+        load(data) {
+            if (data.version < 10) {
+                if (!confirm('This is an old version project,\nold templates may not work properly.\nContinue?')) {
+                    return
+                }
+            }
+            builder.project = loadProject(data, builder.preset)
+            this.$router.push('/project')
         },
     },
 }
