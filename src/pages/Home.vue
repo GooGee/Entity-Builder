@@ -2,7 +2,7 @@
     <div class="col-sm-6">
         <div class="text-center" style="margin-top: 22%;">
             <div>
-                <img src="logo.svg" alt="logo" style="width: 222px;">
+                <img src="logo.svg" alt="logo" style="width: 222px;" />
             </div>
             <div style="margin-top: 33px;">
                 <b-button-group>
@@ -23,7 +23,7 @@
 <script>
 import { connect, convert, getDB } from '../helpers/request.js'
 import builder from '../states/builder.js'
-import { makeProject, loadProject } from '../helpers/project.js'
+import { convertDB, makeProject, loadProject } from '../helpers/project.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
@@ -72,8 +72,7 @@ export default {
             getDB()
                 .then(response => {
                     if (response.data.tables.length) {
-                        builder.project = makeProject('entity', builder.preset)
-                        builder.project.convertDB(response.data)
+                        builder.project = convertDB(response.data, builder.preset)
                         this.$router.push('/project')
                         return
                     }

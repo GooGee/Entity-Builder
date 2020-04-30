@@ -13,6 +13,13 @@ export function makeProject(name, source) {
     return project
 }
 
+export function convertDB(data, preset) {
+    const project = makeProject(data.database, preset)
+    const convertor = new Entity.Convertor(project, makeProject('preset', preset))
+    convertor.convert(data)
+    return project
+}
+
 function loadPreset(project, source) {
     project.PropertyManager.load(source.PropertyManager)
     project.PresetManager.load(source.PresetManager)
