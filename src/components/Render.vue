@@ -62,15 +62,33 @@ export default {
     methods: {
         script() {
             const script = builder.project.ScriptManager.find(this.file.layer.script)
-            this.code = script.text
-            this.title = script.name
-            this.visible = true
+            if (script) {
+                this.code = script.text
+                this.title = script.name
+                this.visible = true
+                return
+            }
+
+            this.$bvToast.toast(this.file.layer.script + ' not found', {
+                title: 'i',
+                variant: 'danger',
+                solid: true,
+            })
         },
         template() {
             const template = builder.project.TemplateManager.find(this.file.layer.template)
-            this.code = template.text
-            this.title = template.name
-            this.visible = true
+            if (template) {
+                this.code = template.text
+                this.title = template.name
+                this.visible = true
+                return
+            }
+
+            this.$bvToast.toast(this.file.layer.template + ' not found', {
+                title: 'i',
+                variant: 'danger',
+                solid: true,
+            })
         },
         preview() {
             try {

@@ -143,15 +143,33 @@ export default {
         },
         showScript() {
             const script = builder.project.ScriptManager.find(sidebar.item.script)
-            this.title = script.name
-            this.code = script.text
-            this.visible = true
+            if (script) {
+                this.title = script.name
+                this.code = script.text
+                this.visible = true
+                return
+            }
+
+            this.$bvToast.toast(sidebar.item.script + ' not found', {
+                title: 'i',
+                variant: 'danger',
+                solid: true,
+            })
         },
         showTemplate() {
             const template = builder.project.TemplateManager.find(sidebar.item.template)
-            this.title = template.name
-            this.code = template.text
-            this.visible = true
+            if (template) {
+                this.title = template.name
+                this.code = template.text
+                this.visible = true
+                return
+            }
+
+            this.$bvToast.toast(sidebar.item.template + ' not found', {
+                title: 'i',
+                variant: 'danger',
+                solid: true,
+            })
         },
     },
 }
