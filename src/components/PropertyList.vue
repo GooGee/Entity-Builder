@@ -122,6 +122,9 @@ export default {
                 const list = JSON.parse(this.json)
                 if (Array.isArray(list)) {
                     list.forEach(item => {
+                        if ('string' === typeof item) {
+                            item = { name: item, value: '', tag: '' }
+                        }
                         let found = this.manager.find(item.name)
                         if (found) {
                             if (this.skip) {
