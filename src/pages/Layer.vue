@@ -20,6 +20,13 @@
                 <td></td>
             </tr>
             <tr>
+                <td>layer.extention</td>
+                <td>
+                    <b-form-input v-model="sidebar.item.extention"></b-form-input>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
                 <td>layer.prefix</td>
                 <td>
                     <b-button @click="change('prefix')" variant="outline-primary">
