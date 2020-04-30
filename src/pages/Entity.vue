@@ -1,11 +1,11 @@
 <template>
     <div>
-        <h1>
-            <b-button-group>
-                <b-button @click="remove" variant="outline-danger"> - </b-button>
-                <b-button @click="setName" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
-            </b-button-group>
-        </h1>
+        <b-button-group class="mtb11px">
+            <b-button @click="remove" variant="outline-danger"> - </b-button>
+            <b-button @click="setName" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
+        </b-button-group>
+
+        <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
 
         <FileList :manager="sidebar.item.FileManager"></FileList>
 
@@ -21,13 +21,6 @@
                 <td>entity.tableName</td>
                 <td>
                     <b-button @click="setTableName" variant="outline-primary"> {{ sidebar.item.tableName }} </b-button>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>entity.description</td>
-                <td>
-                    <b-form-input v-model="sidebar.item.description"></b-form-input>
                 </td>
                 <td></td>
             </tr>

@@ -5,6 +5,8 @@
             <b-button @click="change('name')" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
         </b-button-group>
 
+        <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
+
         <b-modal v-model="visible" :title="title" size="xl" hide-footer>
             <pre>{{ code }}</pre>
         </b-modal>
@@ -14,13 +16,6 @@
                 <td>layer.path</td>
                 <td>
                     <b-form-input v-model="sidebar.item.path"></b-form-input>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>layer.description</td>
-                <td>
-                    <b-form-input v-model="sidebar.item.description"></b-form-input>
                 </td>
                 <td></td>
             </tr>
