@@ -80,21 +80,22 @@ export default {
             }
         },
         save() {
-            try {
-                save(builder.project)
-                this.$bvToast.toast('Project saved', {
-                    title: 'OK',
-                    variant: 'success',
-                    solid: true,
+            save(builder.project)
+                .then(response => {
+                    this.$bvToast.toast('Project saved', {
+                        title: 'OK',
+                        variant: 'success',
+                        solid: true,
+                    })
                 })
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
+                .catch(error => {
+                    console.error(error)
+                    this.$bvToast.toast(error.message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
                 })
-            }
         },
         zip() {
             try {
