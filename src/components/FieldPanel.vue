@@ -1,7 +1,7 @@
 <template>
     <div @click="editing = true">
         <div v-if="editing">
-            <label><input type="checkbox" @click="check(field)" :checked="field.value" /> Default: </label>
+            <span> Default: </span>
             <b-form-input v-model="field.value"></b-form-input>
         </div>
         <div v-else>
@@ -23,14 +23,12 @@
             <span v-if="field.allowNull"> Allow Null </span>
         </div>
 
-        <template v-if="field.isNumber">
-            <div v-if="editing">
-                <b-form-checkbox v-model="field.unsigned"> Unsigned </b-form-checkbox>
-            </div>
-            <div v-else>
-                <span v-if="field.unsigned"> Unsigned </span>
-            </div>
-        </template>
+        <div v-if="editing">
+            <b-form-checkbox v-model="field.unsigned"> Unsigned </b-form-checkbox>
+        </div>
+        <div v-else>
+            <span v-if="field.unsigned"> Unsigned </span>
+        </div>
 
         <div v-if="editing">
             <b-button @click.stop="editing = false" variant="outline-primary"> OK </b-button>
@@ -52,19 +50,6 @@ export default {
         return {
             editing: false,
         }
-    },
-    methods: {
-        check(field) {
-            if (field.value === '') {
-                if (field.isNumber) {
-                    field.value = '0'
-                } else {
-                    field.value = "''"
-                }
-            } else {
-                field.value = ''
-            }
-        },
     },
 }
 </script>
