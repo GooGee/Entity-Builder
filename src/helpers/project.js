@@ -1,30 +1,36 @@
 import Entity from '../states/entity.js'
 
-export function loadProject(json, preset) {
-    const project = new Entity.Project(json.name)
-    const loader = new Entity.Loader(project, makeProject('preset', preset))
-    loader.load(json)
-    return project
-}
-
-export function makeProject(name, source) {
-    const project = new Entity.Project(name)
-    loadPreset(project, source)
-    return project
-}
-
 export function convertDB(data, preset) {
-    const project = makeProject(data.database, preset)
-    const convertor = new Entity.Convertor(project, makeProject('preset', preset))
+    const project = makeProject(data.database)
+    loadPreset(project, preset)
+    const convertor = new Entity.Convertor(project, makePreset(preset))
     convertor.convert(data)
     return project
 }
 
-function loadPreset(project, source) {
-    project.PropertyManager.load(source.PropertyManager)
-    project.PresetManager.load(source.PresetManager)
-    project.ScriptManager.load(source.ScriptManager)
-    project.TemplateManager.load(source.TemplateManager)
-    project.LayerManager.load(source.LayerManager)
-    project.EntityManager.load(source.EntityManager)
+export function loadProject(json, preset) {
+    const project = makeProject(json.name)
+    const loader = new Entity.Loader(project, makePreset(preset))
+    loader.load(json)
+    return project
+}
+
+export function loadPreset(project, preset) {
+    project.PropertyManager.load(preset.PropertyManager)
+    project.PresetManager.load(preset.PresetManager)
+    project.ScriptManager.load(preset.ScriptManager)
+    project.TemplateManager.load(preset.TemplateManager)
+    project.LayerManager.load(preset.LayerManager)
+    project.EntityManager.load(preset.EntityManager)
+}
+
+export function makePreset(data) {
+    const project = makeProject('preset')
+    loadPreset(project, data)
+    return project
+}
+
+export function makeProject(name) {
+    const project = new Entity.Project(name)
+    return project
 }

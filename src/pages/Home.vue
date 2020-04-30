@@ -23,7 +23,7 @@
 <script>
 import { connect, convert, getDB } from '../helpers/request.js'
 import builder from '../states/builder.js'
-import { convertDB, makeProject, loadProject } from '../helpers/project.js'
+import { convertDB, makeProject, loadPreset, loadProject } from '../helpers/project.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
@@ -96,7 +96,8 @@ export default {
             try {
                 const name = prompt('Please input the project name', 'Entity')
                 if (name) {
-                    builder.project = makeProject(name, builder.preset)
+                    builder.project = makeProject(name)
+                    loadPreset(builder.project, builder.preset)
                     this.$router.push('/project')
                 }
             } catch (error) {
