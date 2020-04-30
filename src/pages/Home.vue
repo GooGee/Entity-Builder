@@ -40,8 +40,9 @@ export default {
     },
     methods: {
         connect() {
-            this.domain = prompt('Please enter the domain', this.domain)
-            if (this.domain) {
+            const domain = prompt('Please enter the domain', this.domain)
+            if (domain) {
+                this.domain = domain
                 connect(this.domain)
                     .then(response => {
                         if (builder.project) {
