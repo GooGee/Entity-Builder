@@ -54,7 +54,16 @@ export default {
     },
     methods: {
         setRule() {
-            setRule(this.entity, makePreset(builder.preset).PresetManager)
+            try {
+                setRule(this.entity, builder.project)
+            } catch (error) {
+                console.error(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
+            }
         },
     },
 }

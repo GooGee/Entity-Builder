@@ -1,8 +1,8 @@
-export default function(entity, preset) {
+export default function(entity, project) {
     setUnique(entity)
-    const FieldTypeInteger = preset.find('FieldTypeInteger')
-    const FieldTypeNumeric = preset.find('FieldTypeNumeric')
-    entity.FieldManager.list.forEach(field => setRule(field, FieldTypeInteger.DataManager, FieldTypeNumeric.DataManager))
+    const FieldTypeInteger = project.PresetManager.find('FieldTypeInteger').DataManager
+    const FieldTypeNumeric = project.PresetManager.find('FieldTypeNumeric').DataManager
+    entity.FieldManager.list.forEach(field => setRule(field, FieldTypeInteger, FieldTypeNumeric))
 }
 
 function add(field, name, isBoolean = true) {
