@@ -1,54 +1,27 @@
 <template>
-    <div>
-        <div class="mtb11px">
-            <b-button-group>
-                <b-button @click="remove" variant="outline-danger"> - </b-button>
-                <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
-            </b-button-group>
-        </div>
-
-        <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
+    <Manager name="Script" :manager="builder.project.ScriptManager">
         <br />
-        <textarea v-model="sidebar.item.text" class="form-control" spellcheck="false" rows="22"></textarea>
-    </div>
+        <textarea v-if="ready" v-model="sidebar.item.text" class="form-control" spellcheck="false" rows="22"></textarea>
+    </Manager>
 </template>
 
 <script>
+import Manager from '../components/Manager.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Script',
+    components: { Manager },
     data() {
         return {
             builder,
             sidebar,
+            ready: false,
         }
     },
-    created() {
-        sidebar.show('Script', builder.project.ScriptManager)
-    },
-    methods: {
-        change() {
-            const name = prompt('Please input the name', sidebar.item.name)
-            if (name) {
-                try {
-                    sidebar.item.name = name
-                } catch (error) {
-                    console.error(error)
-                    this.$bvToast.toast(error.message, {
-                        title: 'i',
-                        variant: 'danger',
-                        solid: true,
-                    })
-                }
-            }
-        },
-        remove() {
-            if (confirm('Are you sure?')) {
-                sidebar.remove(sidebar.item)
-            }
-        },
+    mounted() {
+        this.ready = true
     },
 }
 </script>

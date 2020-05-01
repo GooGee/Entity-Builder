@@ -1,56 +1,30 @@
 <template>
-    <div>
-        <div class="mtb11px">
-            <b-button-group>
-                <b-button @click="remove" variant="outline-danger"> - </b-button>
-                <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
-            </b-button-group>
-        </div>
-
-        <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
-
-        <PropertyList :manager="sidebar.item.PropertyManager"></PropertyList>
-    </div>
+    <Manager name="Preset" :manager="builder.project.PresetManager">
+        <PropertyList v-if="ready" :manager="sidebar.item.PropertyManager"></PropertyList>
+    </Manager>
 </template>
 
 <script>
+import Manager from '../components/Manager.vue'
 import PropertyList from '../components/PropertyList.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Preset',
-    components: { PropertyList },
+    components: {
+        Manager,
+        PropertyList,
+    },
     data() {
         return {
             builder,
             sidebar,
+            ready: false,
         }
     },
-    created() {
-        sidebar.show('Preset', builder.project.PresetManager)
-    },
-    methods: {
-        change() {
-            const name = prompt('Please input the name', sidebar.item.name)
-            if (name) {
-                try {
-                    sidebar.item.name = name
-                } catch (error) {
-                    console.error(error)
-                    this.$bvToast.toast(error.message, {
-                        title: 'i',
-                        variant: 'danger',
-                        solid: true,
-                    })
-                }
-            }
-        },
-        remove() {
-            if (confirm('Are you sure?')) {
-                sidebar.remove(sidebar.item)
-            }
-        },
+    mounted() {
+        this.ready = true
     },
 }
 </script>

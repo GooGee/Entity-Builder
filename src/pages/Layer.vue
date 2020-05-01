@@ -1,9 +1,12 @@
 <template>
     <div>
-        <b-button-group class="mtb11px">
-            <b-button @click="remove" variant="outline-danger"> - </b-button>
-            <b-button @click="change('name')" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
-        </b-button-group>
+        <h1>
+            <span class="mr11px">Layer</span>
+            <b-button-group>
+                <b-button @click="remove" variant="outline-danger"> - </b-button>
+                <b-button @click="change('name')" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
+            </b-button-group>
+        </h1>
 
         <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
 
