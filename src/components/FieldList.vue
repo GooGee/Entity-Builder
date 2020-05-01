@@ -9,7 +9,7 @@
                 <th>Name</th>
                 <th>Type</th>
                 <th width="111px">Length</th>
-                <th>Default / Comment</th>
+                <th>Other</th>
             </tr>
         </template>
 

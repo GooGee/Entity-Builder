@@ -1,11 +1,11 @@
 <template>
     <div @click="editing = true">
         <div v-if="editing">
-            <span> Default: </span>
-            <b-form-input v-model="field.value"></b-form-input>
+            <span> Collation: </span>
+            <b-form-input v-model="field.collation"></b-form-input>
         </div>
         <div v-else>
-            <span v-if="field.value"> Default: {{ field.value }} </span>
+            <span v-if="field.collation"> Collation: {{ field.comment }} </span>
         </div>
 
         <div v-if="editing">
@@ -17,10 +17,25 @@
         </div>
 
         <div v-if="editing">
+            <span> Default: </span>
+            <b-form-input v-model="field.value"></b-form-input>
+        </div>
+        <div v-else>
+            <span v-if="field.value"> Default: {{ field.value }} </span>
+        </div>
+
+        <div v-if="editing">
             <b-form-checkbox v-model="field.allowNull"> Allow Null </b-form-checkbox>
         </div>
         <div v-else>
             <span v-if="field.allowNull"> Allow Null </span>
+        </div>
+
+        <div v-if="editing">
+            <b-form-checkbox v-model="field.useCurrent"> useCurrent </b-form-checkbox>
+        </div>
+        <div v-else>
+            <span v-if="field.useCurrent"> useCurrent </span>
         </div>
 
         <div v-if="editing">
