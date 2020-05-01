@@ -123,7 +123,7 @@ export default {
                 if (Array.isArray(list)) {
                     list.forEach(item => {
                         if ('string' === typeof item) {
-                            item = { name: item, value: '', tag: '' }
+                            item = { name: item }
                         }
                         let found = this.manager.find(item.name)
                         if (found) {
@@ -134,8 +134,12 @@ export default {
                             found = this.manager.make(item.name)
                             this.manager.add(found)
                         }
-                        found.value = item.value
-                        found.tag = item.tag
+                        if (item.value !== undefined) {
+                            found.value = item.value
+                        }
+                        if (item.tag !== undefined) {
+                            found.tag = item.tag
+                        }
                         if (item.data) {
                             if ('object' === typeof item.data) {
                                 found.data = item.data
@@ -144,7 +148,6 @@ export default {
                     })
                     return
                 }
-
                 throw new Error('JSON must be an Array')
             } catch (error) {
                 console.error(error)
