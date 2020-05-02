@@ -1,8 +1,9 @@
 
-<div class="text-center">
-    <img src="public/logo.svg" alt="logo" style="width: 222px;" />
-    <h1>Entity-Builder</h1>
-</div>
+<p align="center">
+    <img src="public/logo.svg" alt="logo" width="222" />
+</p>
+
+# Entity-Builder
 
 :tomato: Laravel generator [Online](https://googee.github.io/Entity-Builder/dist)
 
