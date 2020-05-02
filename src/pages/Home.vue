@@ -4,6 +4,8 @@
             <div>
                 <img src="logo.svg" alt="logo" style="width: 222px;" />
             </div>
+            <h1>{{ title }}</h1>
+            <p>{{ version }}</p>
             <div style="margin-top: 33px;">
                 <b-button-group>
                     <b-button @click="create" variant="outline-primary"> New </b-button>
@@ -30,6 +32,8 @@ export default {
     name: 'Home',
     data() {
         return {
+            title: process.env.VUE_APP_TITLE,
+            version: process.env.VUE_APP_VERSION,
             builder,
             sidebar,
             domain: 'http://localhost',

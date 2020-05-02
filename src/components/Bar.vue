@@ -1,7 +1,7 @@
 <template>
     <b-navbar id="bar" toggleable="lg" type="dark" variant="primary">
         <div class="container">
-            <b-navbar-brand>Entity</b-navbar-brand>
+            <b-navbar-brand></b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
