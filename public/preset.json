@@ -1,0 +1,3999 @@
+{
+    "_name": "Entity",
+    "version": 10,
+    "NameSpace": "App",
+    "LayerManager": {
+        "list": [
+            {
+                "_name": "Controller",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "app/Http/Controllers",
+                "prefix": "",
+                "suffix": "Controller",
+                "script": "Controller",
+                "template": "Controller",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "ControllerAPI",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "app/Http/Controllers",
+                "prefix": "",
+                "suffix": "Controller",
+                "script": "Controller",
+                "template": "ControllerAPI",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "Factory",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "database/factories",
+                "prefix": "",
+                "suffix": "Factory",
+                "script": "Factory",
+                "template": "Factory",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "Migration",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "database/migrations",
+                "prefix": "Create",
+                "suffix": "Table",
+                "script": "Migration",
+                "template": "Migration",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": true,
+                    "prefix": "0000_00_00_000000",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "Model",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "app/Models",
+                "prefix": "",
+                "suffix": "",
+                "script": "Model",
+                "template": "Model",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "Policy",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "app/Policies",
+                "prefix": "",
+                "suffix": "Policy",
+                "script": "Request",
+                "template": "Policy",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "Repository",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "app/Repositories",
+                "prefix": "",
+                "suffix": "Repository",
+                "script": "Request",
+                "template": "Repository",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "Request",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "app/Http/Requests",
+                "prefix": "Store",
+                "suffix": "Request",
+                "script": "Request",
+                "template": "Request",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "Resource",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "app/Http/Resources",
+                "prefix": "",
+                "suffix": "Resource",
+                "script": "Request",
+                "template": "Resource",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "Seeder",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "database/seeds",
+                "prefix": "",
+                "suffix": "TableSeeder",
+                "script": "Request",
+                "template": "Seeder",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            },
+            {
+                "_name": "TestAPI",
+                "original": true,
+                "description": "",
+                "extention": ".php",
+                "path": "tests/Feature/API",
+                "prefix": "",
+                "suffix": "Test",
+                "script": "Request",
+                "template": "TestAPI",
+                "file": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "PropertyManager": {
+                    "list": []
+                }
+            }
+        ]
+    },
+    "PresetManager": {
+        "list": [
+            {
+                "_name": "CastPHP",
+                "description": "for Cast in Model",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "array",
+                            "tag": "",
+                            "value": "array",
+                            "data": {}
+                        },
+                        {
+                            "_name": "boolean",
+                            "tag": "",
+                            "value": "boolean",
+                            "data": {}
+                        },
+                        {
+                            "_name": "collection",
+                            "tag": "",
+                            "value": "\\Illuminate\\Support\\Collection",
+                            "data": {}
+                        },
+                        {
+                            "_name": "date",
+                            "tag": "",
+                            "value": "\\Illuminate\\Support\\Carbon",
+                            "data": {}
+                        },
+                        {
+                            "_name": "datetime",
+                            "tag": "",
+                            "value": "\\Illuminate\\Support\\Carbon",
+                            "data": {}
+                        },
+                        {
+                            "_name": "decimal:8",
+                            "tag": "",
+                            "value": "double",
+                            "data": {}
+                        },
+                        {
+                            "_name": "double",
+                            "tag": "",
+                            "value": "double",
+                            "data": {}
+                        },
+                        {
+                            "_name": "float",
+                            "tag": "",
+                            "value": "float",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "",
+                            "value": "integer",
+                            "data": {}
+                        },
+                        {
+                            "_name": "object",
+                            "tag": "",
+                            "value": "object",
+                            "data": {}
+                        },
+                        {
+                            "_name": "string",
+                            "tag": "",
+                            "value": "string",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestamp",
+                            "tag": "",
+                            "value": "integer",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FakerMethod",
+                "description": "for Factory",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "amPm",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "asciify",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "biasedNumberBetween",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "boolean",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bothify",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "creditCardNumber",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "date",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTime",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeAd",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeBetween",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeInInterval",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeThisCentury",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeThisDecade",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeThisMonth",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeThisYear",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dayOfMonth",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dayOfWeek",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "file",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "firstName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "iban",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "image",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "imageUrl",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "iso8601",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "lexify",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "month",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "monthName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "name",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "numberBetween",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "numerify",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "optional",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "paragraph",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "paragraphs",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "passthrough",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "password",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomElement",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomElements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomFloat",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomHtml",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomKey",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomNumber",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "realText",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "regexify",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "sentence",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "sentences",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "shuffle",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "shuffleArray",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "shuffleString",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "slug",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "text",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "time",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "title",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "toLower",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "toUpper",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "unique",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "unixTime",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "valid",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "words",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "year",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FakerProperty",
+                "description": "for Factory",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "address",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "amPm",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bankAccountNumber",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "boolean",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "buildingNumber",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "century",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "chrome",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "city",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "citySuffix",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "colorName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "company",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "companyEmail",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "companySuffix",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "country",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "countryCode",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "countryISOAlpha3",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "creditCardDetails",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "creditCardExpirationDate",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "creditCardExpirationDateString",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "creditCardNumber",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "creditCardType",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "currencyCode",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTime",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeAD",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeThisCentury",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeThisDecade",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeThisMonth",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeThisYear",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dayOfMonth",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dayOfWeek",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "domainName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "domainWord",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "e164PhoneNumber",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ean13",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ean8",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "email",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "fileExtension",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "firefox",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "firstName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "firstNameFemale",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "firstNameMale",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "freeEmail",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "freeEmailDomain",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "hexColor",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "internetExplorer",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ipv4",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ipv6",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "isbn10",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "isbn13",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "iso8601",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "jobTitle",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "languageCode",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "lastName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "latitude",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "linuxPlatformToken",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "linuxProcessor",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "locale",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "localIpv4",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "longitude",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "macAddress",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "macPlatformToken",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "macProcessor",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "md5",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mimeType",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "month",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "monthName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "name",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "opera",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "paragraph",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "paragraphs",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "password",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "phoneNumber",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "postcode",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomAscii",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomDigit",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomDigitNotNull",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "randomLetter",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "rgbColor",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "rgbColorAsArray",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "rgbCssColor",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "safari",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "safeColorName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "safeEmail",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "safeEmailDomain",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "safeHexColor",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "sentence",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "sentences",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "sha1",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "sha256",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "slug",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "streetAddress",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "streetName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "streetSuffix",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "swiftBicNumber",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "text",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timezone",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "title",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "titleFemale",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "titleMale",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tld",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "unixTime",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "url",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "userAgent",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "userName",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "uuid",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "vat",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "windowsPlatformToken",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "word",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "words",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "year",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldName",
+                "description": "for Migration (tag is FieldType)",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "category_id",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "content",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "email",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "image",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "link",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "name",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "parent_id",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "phone",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "sort",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "status",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "text",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "title",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "type",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "url",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldSpecial",
+                "description": "for Migration (tag is FieldType)",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "id",
+                            "tag": "increments",
+                            "value": "",
+                            "data": {
+                                "allowNull": false,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": true,
+                                "value": "",
+                                "seed": {
+                                    "unique": false,
+                                    "type": "raw",
+                                    "method": "name",
+                                    "parameter": "",
+                                    "property": "name",
+                                    "raw": ""
+                                },
+                                "type": "increments"
+                            }
+                        },
+                        {
+                            "_name": "user_id",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {
+                                "allowNull": false,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "seed": {
+                                    "unique": false,
+                                    "type": "raw",
+                                    "method": "name",
+                                    "parameter": "",
+                                    "property": "name",
+                                    "raw": ""
+                                },
+                                "type": "integer"
+                            }
+                        },
+                        {
+                            "_name": "password",
+                            "tag": "char",
+                            "value": "",
+                            "data": {
+                                "allowNull": false,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": true,
+                                "included": true,
+                                "length": 60,
+                                "unsigned": false,
+                                "value": "",
+                                "seed": {
+                                    "unique": false,
+                                    "type": "raw",
+                                    "method": "name",
+                                    "parameter": "",
+                                    "property": "name",
+                                    "raw": ""
+                                },
+                                "type": "char"
+                            }
+                        },
+                        {
+                            "_name": "remember_token",
+                            "tag": "string",
+                            "value": "",
+                            "data": {
+                                "allowNull": true,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": true,
+                                "included": false,
+                                "length": 60,
+                                "unsigned": false,
+                                "value": "",
+                                "seed": {
+                                    "unique": false,
+                                    "type": "raw",
+                                    "method": "name",
+                                    "parameter": "",
+                                    "property": "name",
+                                    "raw": ""
+                                },
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "_name": "created_at",
+                            "tag": "timestamp",
+                            "value": "",
+                            "data": {
+                                "allowNull": true,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "seed": {
+                                    "unique": false,
+                                    "type": "property",
+                                    "method": "dateTimeThisMonth",
+                                    "parameter": "",
+                                    "property": "dateTimeThisMonth",
+                                    "raw": ""
+                                },
+                                "type": "timestamp"
+                            }
+                        },
+                        {
+                            "_name": "updated_at",
+                            "tag": "timestamp",
+                            "value": "",
+                            "data": {
+                                "allowNull": true,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "seed": {
+                                    "unique": false,
+                                    "type": "property",
+                                    "method": "dateTimeThisMonth",
+                                    "parameter": "",
+                                    "property": "dateTimeThisMonth",
+                                    "raw": ""
+                                },
+                                "type": "timestamp"
+                            }
+                        },
+                        {
+                            "_name": "deleted_at",
+                            "tag": "timestamp",
+                            "value": "",
+                            "data": {
+                                "allowNull": true,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "seed": {
+                                    "unique": false,
+                                    "type": "raw",
+                                    "method": "dateTimeThisMonth",
+                                    "parameter": "",
+                                    "property": "dateTimeThisMonth",
+                                    "raw": ""
+                                },
+                                "type": "timestamp"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldType",
+                "description": "for Migration (tag is PHP type)",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "bigIncrements",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bigInteger",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "binary",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "boolean",
+                            "tag": "boolean",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "char",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "date",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTime",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeTz",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "decimal",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "double",
+                            "tag": "double",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "enum",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "float",
+                            "tag": "float",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "geometry",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "geometryCollection",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "increments",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ipAddress",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "json",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "jsonb",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "lineString",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "longText",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "macAddress",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumIncrements",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumInteger",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumText",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "morphs",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "uuidMorphs",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "multiLineString",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "multiPoint",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "multiPolygon",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "point",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "polygon",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "set",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallIncrements",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallInteger",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "string",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "text",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "time",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timeTz",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestamp",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestampTz",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyIncrements",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyInteger",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "uuid",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldTypeCommon",
+                "description": "for Migration",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "integer",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "char",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "string",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "text",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTime",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestamp",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "decimal",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "float",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldTypeMySQL",
+                "description": "MySQL type (tag is FieldType)",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "bigint",
+                            "tag": "bigInteger",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "binary",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bit",
+                            "tag": "boolean",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "blob",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "char",
+                            "tag": "char",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "date",
+                            "tag": "date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "datetime",
+                            "tag": "dateTime",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "decimal",
+                            "tag": "decimal",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "double",
+                            "tag": "double",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "enum",
+                            "tag": "enum",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "float",
+                            "tag": "float",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "geometry",
+                            "tag": "geometry",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "geometrycollection",
+                            "tag": "geometryCollection",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "int",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "json",
+                            "tag": "json",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "linestring",
+                            "tag": "lineString",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "longblob",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "longtext",
+                            "tag": "longText",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumblob",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumint",
+                            "tag": "mediumInteger",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumtext",
+                            "tag": "mediumText",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "multilinestring",
+                            "tag": "multiLineString",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "multipoint",
+                            "tag": "multiPoint",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "multipolygon",
+                            "tag": "multiPolygon",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "point",
+                            "tag": "point",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "polygon",
+                            "tag": "polygon",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "set",
+                            "tag": "set",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallint",
+                            "tag": "smallInteger",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "text",
+                            "tag": "text",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "time",
+                            "tag": "time",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestamp",
+                            "tag": "timestamp",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyblob",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyint",
+                            "tag": "tinyInteger",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinytext",
+                            "tag": "text",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "varbinary",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "varchar",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldTypePGSQL",
+                "description": "PostgreSQL type (tag is FieldType)",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "bigint",
+                            "tag": "bigInteger",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bigserial",
+                            "tag": "bigIncrements",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bit",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bit varying",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "boolean",
+                            "tag": "boolean",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "box",
+                            "tag": "lineString",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bytea",
+                            "tag": "binary",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "character",
+                            "tag": "char",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "character varying",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "cidr",
+                            "tag": "ipAddress",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "circle",
+                            "tag": "string",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "date",
+                            "tag": "date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "double precision",
+                            "tag": "double",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "inet",
+                            "tag": "ipAddress",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "integer",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "interval",
+                            "tag": "dateTime",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "json",
+                            "tag": "json",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "jsonb",
+                            "tag": "jsonb",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "line",
+                            "tag": "lineString",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "lseg",
+                            "tag": "lineString",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "macaddr",
+                            "tag": "macAddress",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "money",
+                            "tag": "decimal",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "numeric",
+                            "tag": "decimal",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "path",
+                            "tag": "lineString",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "pg_lsn",
+                            "tag": "bigInteger",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "point",
+                            "tag": "point",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "polygon",
+                            "tag": "polygon",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "real",
+                            "tag": "float",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallint",
+                            "tag": "smallInteger",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallserial",
+                            "tag": "smallIncrements",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "serial",
+                            "tag": "increments",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "text",
+                            "tag": "text",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "time without time zone",
+                            "tag": "time",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "time with time zone",
+                            "tag": "timeTz",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestamp without time zone",
+                            "tag": "timestamp",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestamp with time zone",
+                            "tag": "timestampTz",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tsquery",
+                            "tag": "text",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tsvector",
+                            "tag": "text",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "txid_snapshot",
+                            "tag": "bigInteger",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "uuid",
+                            "tag": "uuid",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "xml",
+                            "tag": "longText",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "RegularExpression",
+                "description": "for Validation in Model",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "A-Z",
+                            "tag": "",
+                            "value": "/^[A-Z]+$/",
+                            "data": {}
+                        },
+                        {
+                            "_name": "a-z",
+                            "tag": "",
+                            "value": "/^[a-z]+$/",
+                            "data": {}
+                        },
+                        {
+                            "_name": "0-9",
+                            "tag": "",
+                            "value": "/^\\d+$/",
+                            "data": {}
+                        },
+                        {
+                            "_name": "A-Z a-z",
+                            "tag": "",
+                            "value": "/^[A-Za-z]+$/",
+                            "data": {}
+                        },
+                        {
+                            "_name": "A-Z a-z 0-9",
+                            "tag": "",
+                            "value": "/^[A-Za-z0-9]+$/",
+                            "data": {}
+                        },
+                        {
+                            "_name": "A-Z a-z 0-9 _",
+                            "tag": "",
+                            "value": "/^[A-Z_a-z][A-Z_a-z0-9]+$/",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "RelationType",
+                "description": "for Relation in Model",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "hasOne",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "belongsTo",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "hasMany",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "belongsToMany",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "hasOneThrough",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "hasManyThrough",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "morphOne",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "morphMany",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "morphToMany",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "morphedByMany",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "ValidationRule",
+                "description": "for Validation in Model",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "accepted",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "active_url",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "after",
+                            "tag": "Date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "after_or_equal",
+                            "tag": "Date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "alpha",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "alpha_dash",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "alpha_num",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "array",
+                            "tag": "Type",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bail",
+                            "tag": "Other",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "before",
+                            "tag": "Date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "before_or_equal",
+                            "tag": "Date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "between",
+                            "tag": "Size",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "boolean",
+                            "tag": "Type",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "confirmed",
+                            "tag": "Field",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "date",
+                            "tag": "Date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "date_equals",
+                            "tag": "Date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "date_format",
+                            "tag": "Date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "different",
+                            "tag": "Field",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "digits",
+                            "tag": "Size",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "digits_between",
+                            "tag": "Size",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dimensions",
+                            "tag": "File",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "distinct",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "email",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ends_with",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "exists",
+                            "tag": "Other",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "file",
+                            "tag": "File",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "filled",
+                            "tag": "Other",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "gt",
+                            "tag": "Field",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "gte",
+                            "tag": "Field",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "image",
+                            "tag": "File",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "in",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "in_array",
+                            "tag": "Field",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "Type",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ip",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ipv4",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "ipv6",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "json",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "lt",
+                            "tag": "Field",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "lte",
+                            "tag": "Field",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "max",
+                            "tag": "Size",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mimetypes",
+                            "tag": "File",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mimes",
+                            "tag": "File",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "min",
+                            "tag": "Size",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "not_in",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "not_regex",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "nullable",
+                            "tag": "Type",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "numeric",
+                            "tag": "Type",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "present",
+                            "tag": "Other",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "regex",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "required",
+                            "tag": "Other",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "required_if",
+                            "tag": "Require",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "required_unless",
+                            "tag": "Require",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "required_with",
+                            "tag": "Require",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "required_with_all",
+                            "tag": "Require",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "required_without",
+                            "tag": "Require",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "required_without_all",
+                            "tag": "Require",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "same",
+                            "tag": "Field",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "size",
+                            "tag": "Size",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "sometimes",
+                            "tag": "Other",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "starts_with",
+                            "tag": "Content",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "string",
+                            "tag": "Type",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timezone",
+                            "tag": "Date",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "unique",
+                            "tag": "Other",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "url",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "uuid",
+                            "tag": "WWW",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "IncrementMySQL",
+                "description": "increments of MySQL schema",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "bigint",
+                            "tag": "bigIncrements",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "int",
+                            "tag": "increments",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "increments",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumint",
+                            "tag": "mediumIncrements",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallint",
+                            "tag": "smallIncrements",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyint",
+                            "tag": "tinyIncrements",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "IncrementPGSQL",
+                "description": "increments of PostgreSQL schema",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "bigInteger",
+                            "tag": "bigIncrements",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "increments",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumInteger",
+                            "tag": "mediumIncrements",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallInteger",
+                            "tag": "smallIncrements",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyInteger",
+                            "tag": "tinyIncrements",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldTypeInteger",
+                "description": "for Validation in Model",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "bigIncrements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "increments",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumIncrements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallIncrements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyIncrements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bigInteger",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumInteger",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallInteger",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyInteger",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldTypeNumeric",
+                "description": "for Validation in Model",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "bigIncrements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "increments",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumIncrements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallIncrements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyIncrements",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "bigInteger",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "mediumInteger",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "smallInteger",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "tinyInteger",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "decimal",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "double",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "float",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "FieldTypeWithLength",
+                "description": "for Migration",
+                "PropertyManager": {
+                    "list": [
+                        {
+                            "_name": "char",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "string",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "decimal",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "double",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "float",
+                            "tag": "",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "enum",
+                            "tag": "array",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "set",
+                            "tag": "array",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTime",
+                            "tag": "precision",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "dateTimeTz",
+                            "tag": "precision",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "time",
+                            "tag": "precision",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timeTz",
+                            "tag": "precision",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestamp",
+                            "tag": "precision",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "timestampTz",
+                            "tag": "precision",
+                            "value": "",
+                            "data": {}
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "PropertyManager": {
+        "list": [
+            {
+                "_name": "version",
+                "tag": "",
+                "value": "1.0",
+                "data": {}
+            }
+        ]
+    },
+    "ScriptManager": {
+        "list": [
+            {
+                "_name": "blank",
+                "original": false,
+                "description": "",
+                "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n}"
+            },
+            {
+                "_name": "Request",
+                "original": false,
+                "description": "",
+                "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.model = entity.FileManager.findByLayer('Model')\n    if (!data.model) throw new Error('Model is missing!')\n}"
+            },
+            {
+                "_name": "Controller",
+                "original": false,
+                "description": "",
+                "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.model = entity.FileManager.findByLayer('Model')\n    if (!data.model) throw new Error('Model is missing!')\n\n    data.request = entity.FileManager.findByLayer('Request')\n    if (!data.request) throw new Error('Request is missing!')\n}"
+            },
+            {
+                "_name": "Model",
+                "original": false,
+                "description": "",
+                "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.phptype = field => {\n        if (field.cast) {\n            const found = project.PresetManager.find('CastPHP').PropertyManager.find(field.cast)\n            if (found) {\n                return found.value\n            }\n        }\n\n        if (['created_at', 'updated_at', 'deleted_at'].indexOf(field.name) > -1) {\n            return '\\\\Illuminate\\\\Support\\\\Carbon'\n        }\n\n        const found = project.PresetManager.find('FieldType').PropertyManager.find(field.type)\n        if (found) {\n            return found.tag\n        }\n\n        return 'mixed'\n    }\n\n    data.ruletext = field => {\n        if (field.RuleManager.list.length) {\n            const list = field.RuleManager.list.map(rule => {\n                return rule.value ? `${rule.name}:${rule.value}` : rule.name\n            })\n            return `['${list.join(\"', '\")}']`\n        }\n        return '[]'\n    }\n\n    data.hasTimeStamp = () => {\n        const created_at = entity.FieldManager.list.find(field => field.name === 'created_at')\n        if (created_at) {\n            const updated_at = entity.FieldManager.list.find(field => field.name === 'updated_at')\n            if (updated_at) {\n                return true\n            }\n        }\n        return false\n    }\n}"
+            },
+            {
+                "_name": "Factory",
+                "original": false,
+                "description": "",
+                "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.model = entity.FileManager.findByLayer('Model')\n    if (!data.model) throw new Error('Model is missing!')\n\n    data.seedtext = seed => {\n        const list = ['$faker']\n        if (seed.unique) {\n            list.push('unique()')\n        }\n\n        if (seed.type === 'property') {\n            list.push(seed.property)\n            return list.join('->')\n        }\n\n        if (seed.type === 'method') {\n            list.push(`${seed.method}(${seed.parameter})`)\n            return list.join('->')\n        }\n\n        return seed.raw\n    }\n}"
+            },
+            {
+                "_name": "Migration",
+                "original": false,
+                "description": "",
+                "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.fieldtext = field => {\n        const list = ['$table']\n\n        if (field.length) {\n            list.push(`${field.type}('${field.name}', ${field.length})`)\n        } else {\n            list.push(`${field.type}('${field.name}')`)\n        }\n\n        if (field.collation) {\n            list.push(`collation(${field.collation})`)\n        }\n\n        if (field.comment) {\n            list.push(`comment(${field.comment})`)\n        }\n\n        if (field.value) {\n            list.push(`default(${field.value})`)\n        }\n\n        if (field.allowNull) {\n            list.push('nullable()')\n        }\n\n        if (field.useCurrent) {\n            list.push('useCurrent()')\n        }\n\n        if (field.unsigned) {\n            list.push('unsigned()')\n        }\n\n        return list.join('->')\n    }\n}"
+            }
+        ]
+    },
+    "TemplateManager": {
+        "list": [
+            {
+                "_name": "blank",
+                "original": false,
+                "description": "",
+                "text": ""
+            },
+            {
+                "_name": "Controller",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Http\\Controllers;\n\nuse {{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }};\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\n\nclass {{ file.name }} extends Controller\n{\n    protected $routePath = '{{ entity.snakeCase }}';\n    protected $viewPath = '{{ entity.snakeCase }}';\n\n    /**\n     * Display a listing of the resource.\n     *\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function index()\n    {\n        $page = {{ data.model.name }}::query()->paginate();\n        return view(\"$this->viewPath.index\", compact('page'));\n    }\n\n    /**\n     * Show the form for creating a new resource.\n     *\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function create()\n    {\n        $item = new {{ data.model.name }};\n        $item->_token = csrf_token();\n        $item->_uri = \"/$this->routePath\";\n        return view(\"$this->viewPath.form\", compact('item'));\n    }\n\n    /**\n     * Store a newly created resource in storage.\n     *\n     * @param \\{{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }} $request\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function store({{ data.request.name }} $request)\n    {\n        $item = new {{ data.model.name }};\n        $item->fill($request->validated());\n        $item->save();\n        return redirect(\"/$this->routePath/$item->id\");\n    }\n\n    /**\n     * Display the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function show($id)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        return view(\"$this->viewPath.show\", compact('item'));\n    }\n\n    /**\n     * Show the form for editing the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function edit($id)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        $item->_token = csrf_token();\n        $item->_method = 'PATCH';\n        $item->_uri = \"/$this->routePath/$item->id\";\n        return view(\"$this->viewPath.form\", compact('item'));\n    }\n\n    /**\n     * Update the specified resource in storage.\n     *\n     * @param int $id\n     * @param \\{{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }} $request\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function update($id, {{ data.request.name }} $request)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        $item->update($request->validated());\n        return redirect(\"/$this->routePath/$item->id\");\n    }\n\n    /**\n     * Remove the specified resource from storage.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function destroy($id)\n    {\n        {{ data.model.name }}::destroy($id);\n        return redirect(\"/$this->routePath\");\n    }\n}\n"
+            },
+            {
+                "_name": "ControllerAPI",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Http\\Controllers;\n\nuse {{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }};\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\n\nclass {{ file.name }} extends Controller\n{\n\n    /**\n     * Display a listing of the resource.\n     *\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function index()\n    {\n        $page = {{ data.model.name }}::query()->paginate();\n        return response()->json(compact('page'));\n    }\n\n    /**\n     * Store a newly created resource in storage.\n     *\n     * @param \\{{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }} $request\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function store({{ data.request.name }} $request)\n    {\n        $item = new {{ data.model.name }};\n        $item->fill($request->validated());\n        $item->save();\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Display the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function show($id)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Update the specified resource in storage.\n     *\n     * @param int $id\n     * @param \\{{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }} $request\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function update($id, {{ data.request.name }} $request)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        $item->update($request->validated());\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Remove the specified resource from storage.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function destroy($id)\n    {\n        $count = {{ data.model.name }}::destroy($id);\n        if ($count) {\n            return response()->json('OK');\n        }\n        return response()->json('Resource already deleted!', 410);\n    }\n}\n"
+            },
+            {
+                "_name": "Factory",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\n/** @var \\Illuminate\\Database\\Eloquent\\Factory $factory */\n\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\nuse Faker\\Generator as Faker;\n\n$factory->define({{ data.model.name }}::class, function (Faker $faker) {\n    static $index = 0;\n    $index += 1;\n    return [\n{% for field in entity.FieldManager.list %}{% if data.seedtext(field.seed) %}\n        '{{ field.name }}' => {{ data.seedtext(field.seed) }},\n{% endif %}{% endfor %}\n    ];\n});\n"
+            },
+            {
+                "_name": "Migration",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nuse Illuminate\\Support\\Facades\\Schema;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Database\\Migrations\\Migration;\n\nclass {{ file.name }} extends Migration\n{\n    /**\n     * Run the migrations.\n     *\n     * @return void\n     */\n    public function up()\n    {\n        Schema::create('{{ entity.tableName }}', function (Blueprint $table) {\n{% for field in entity.FieldManager.list %}\n            {{ data.fieldtext(field) }};\n{% endfor %}\n{% for index in entity.IndexManager.list %}\n            $table->{{ index.type }}(['{{ index.FieldManager.list | join(\"', '\", \"name\") }}']);\n{% endfor %}\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     *\n     * @return void\n     */\n    public function down()\n    {\n        Schema::dropIfExists('{{ entity.tableName }}');\n    }\n}\n"
+            },
+            {
+                "_name": "Model",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Models;\n\nuse Illuminate\\Notifications\\Notifiable;\nuse Illuminate\\Foundation\\Auth\\User as Authenticatable;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n/**\n * class {{ file.name }}\n * {% for field in entity.FieldManager.list %}\n * @property {{ data.phptype(field) }} ${{ field.name }}{% endfor %}\n */\nclass {{ file.name }} extends {% if file.name == 'User' %}Authenticatable{% else %}Model{% endif %}\n{\n{% if file.name == 'User' %}    use Notifiable;\n{% endif %}\n    /**\n     * The table associated with the file.\n     *\n     * @var string\n     */\n    protected $table = '{{ entity.tableName }}';\n\n    /**\n     * The primary key for the file.\n     *\n     * @var string\n     */\n    protected $primaryKey = '{{ entity.primaryKey }}';\n\n    /**\n     * Indicates if the IDs are auto-incrementing.\n     *\n     * @var bool\n     */\n    public $incrementing = {{ entity.FieldManager.hasIncrement }};\n\n    /**\n     * Indicates if the model should be timestamped.\n     *\n     * @var bool\n     */\n    public $timestamps = {{ data.hasTimeStamp() }};\n\n    /**\n     * The attributes that are mass assignable.\n     *\n     * @var array\n     */\n    protected $fillable = [\n{% for field in entity.FieldManager.list | selectattr('fillable') %}\n        '{{ field.name }}',\n{% endfor %}\n    ];\n\n    /**\n     * The attributes that should be hidden for arrays.\n     *\n     * @var array\n     */\n    protected $hidden = [\n{% for field in entity.FieldManager.list | selectattr('hidden') %}\n        '{{ field.name }}',\n{% endfor %}\n    ];\n\n    /**\n     * The attributes that should be cast to native types.\n     *\n     * @var array\n     */\n    protected $casts = [\n{% for field in entity.FieldManager.list | selectattr('cast') %}\n        '{{ field.name }}' => '{{ field.cast }}',\n{% endfor %}\n    ];\n\n    const RuleList = [\n{% for field in entity.FieldManager.list | selectattr('included') %}\n        '{{ field.name }}' => {{ data.ruletext(field) }},\n{% endfor %}\n    ];\n\n{% for relation in entity.RelationManager.list %}\n    public function {{ relation.name }}()\n    {\n        return $this->{{ relation.type }}({{ relation.parameter }});\n    }\n{% endfor %}\n}\n"
+            },
+            {
+                "_name": "Policy",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Policies;\n\nuse {{ project.NameSpace }}\\Models\\User;\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\nuse Illuminate\\Auth\\Access\\HandlesAuthorization;\n\nclass {{ file.name }}\n{\n    use HandlesAuthorization;\n\n    /**\n     * Determine whether the user can view the {{ data.model.name }}.\n     *\n     * @param \\{{ project.NameSpace }}\\Models\\User $user\n     * @param \\{{ project.NameSpace }}\\Models\\{{ data.model.name }} ${{ data.model.snakeCase }}\n     * @return mixed\n     */\n    public function view(User $user, {{ data.model.name }} ${{ data.model.snakeCase }})\n    {\n        return true;\n    }\n\n    /**\n     * Determine whether the user can create {{ data.model.name }}.\n     *\n     * @param \\{{ project.NameSpace }}\\Models\\User $user\n     * @return mixed\n     */\n    public function create(User $user)\n    {\n        return true;\n    }\n\n    /**\n     * Determine whether the user can update the {{ data.model.name }}.\n     *\n     * @param \\{{ project.NameSpace }}\\Models\\User $user\n     * @param \\{{ project.NameSpace }}\\Models\\{{ data.model.name }} ${{ data.model.snakeCase }}\n     * @return mixed\n     */\n    public function update(User $user, {{ data.model.name }} ${{ data.model.snakeCase }})\n    {\n        return $user->id === ${{ data.model.snakeCase }}->user_id;\n    }\n\n    /**\n     * Determine whether the user can delete the {{ data.model.name }}.\n     *\n     * @param \\{{ project.NameSpace }}\\Models\\User $user\n     * @param \\{{ project.NameSpace }}\\Models\\{{ data.model.name }} ${{ data.model.snakeCase }}\n     * @return mixed\n     */\n    public function delete(User $user, {{ data.model.name }} ${{ data.model.snakeCase }})\n    {\n        return $user->id === ${{ data.model.snakeCase }}->user_id;\n    }\n}\n"
+            },
+            {
+                "_name": "Repository",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Repositories;\n\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\n\nclass {{ file.name }} extends Base\n{\n\n    public function make()\n    {\n        return new {{ data.model.name }}();\n    }\n\n    public function query()\n    {\n        return {{ data.model.name }}::query();\n    }\n\n}\n"
+            },
+            {
+                "_name": "Request",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Http\\Requests;\n\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\nuse Illuminate\\Foundation\\Http\\FormRequest;\n\nclass {{ file.name }} extends FormRequest\n{\n    /**\n     * Determine if the user is authorized to make this data.request.\n     *\n     * @return bool\n     */\n    public function authorize()\n    {\n        return true;\n    }\n\n    /**\n     * Get the validation rules that apply to the data.request.\n     *\n     * @return array\n     */\n    public function rules()\n    {\n        return {{ data.model.name }}::RuleList;\n    }\n}\n"
+            },
+            {
+                "_name": "Resource",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Http\\Resources;\n\nuse Illuminate\\Http\\Resources\\Json\\Resource;\n\nclass {{ file.name }} extends Resource\n{\n    /**\n     * Transform the resource into an array.\n     *\n     * @param \\Illuminate\\Http\\Request $request\n     * @return array\n     */\n    public function toArray($request)\n    {\n        return [\n{% for field in entity.FieldManager.list %}{% if field.hidden == false %}\n            '{{ field.name }}' => $this->{{ field.name }},\n{% endif %}{% endfor %}\n        ];\n    }\n}\n"
+            },
+            {
+                "_name": "Seeder",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nuse Illuminate\\Database\\Seeder;\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\n\nclass {{ file.name }} extends Seeder\n{\n    /**\n     * Run the database seeds.\n     *\n     * @return void\n     */\n    public function run()\n    {\n        factory({{ data.model.name }}::class, 1)->create();\n    }\n}\n"
+            },
+            {
+                "_name": "TestAPI",
+                "original": false,
+                "description": "",
+                "text": "<?php\n\nnamespace Tests\\Feature\\API;\n\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\nuse Tests\\TestCase;\nuse Illuminate\\Foundation\\Testing\\WithFaker;\nuse Illuminate\\Foundation\\Testing\\RefreshDatabase;\nuse Illuminate\\Foundation\\Testing\\TestResponse;\n\nclass {{ file.name }} extends TestCase\n{\n    static $id = 0;\n    protected $uri = '/api/{{ entity.snakeCase }}';\n\n    public function testIndex()\n    {\n        $response = $this->getJson($this->uri);\n        $response->assertSuccessful();\n    }\n\n    public function testStore()\n    {\n        $item = factory({{ data.model.name }}::class)->make()->toArray();\n        $response = $this->postJson($this->uri, $item);\n        $response->assertSuccessful();\n        $data = $response->json();\n        static::$id = $data['item']['id'];\n    }\n\n    public function testShow()\n    {\n        $response = $this->getJson(\"$this->uri/\" . static::$id);\n        $response->assertSuccessful();\n    }\n\n    public function testUpdate()\n    {\n        $item = {{ data.model.name }}::query()->findOrFail(static::$id)->toArray();\n        $response = $this->patchJson(\"$this->uri/\" . static::$id, $item);\n        $response->assertSuccessful();\n    }\n\n    public function testDestroy()\n    {\n        $response = $this->deleteJson(\"$this->uri/\" . static::$id);\n        $response->assertSuccessful();\n    }\n\n}\n"
+            }
+        ]
+    },
+    "EntityManager": {
+        "list": [
+            {
+                "_name": "User",
+                "description": "",
+                "table": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "FieldManager": {
+                    "list": [
+                        {
+                            "_name": "id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": ""
+                            },
+                            "type": "increments"
+                        },
+                        {
+                            "_name": "name",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": 33,
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": [
+                                    {
+                                        "_name": "required",
+                                        "tag": "",
+                                        "value": ""
+                                    },
+                                    {
+                                        "_name": "unique",
+                                        "tag": "",
+                                        "value": "user"
+                                    },
+                                    {
+                                        "_name": "regex",
+                                        "tag": "",
+                                        "value": "/^[A-Za-z0-9]+$/"
+                                    },
+                                    {
+                                        "_name": "max",
+                                        "tag": "",
+                                        "value": 33
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": true,
+                                "type": "property",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "userName",
+                                "raw": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "_name": "email",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": 33,
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": [
+                                    {
+                                        "_name": "required",
+                                        "tag": "",
+                                        "value": ""
+                                    },
+                                    {
+                                        "_name": "email",
+                                        "tag": "",
+                                        "value": ""
+                                    },
+                                    {
+                                        "_name": "max",
+                                        "tag": "",
+                                        "value": 33
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": true,
+                                "type": "property",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "safeEmail",
+                                "raw": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "_name": "password",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": true,
+                            "included": true,
+                            "length": 60,
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": [
+                                    {
+                                        "_name": "required",
+                                        "tag": "",
+                                        "value": ""
+                                    },
+                                    {
+                                        "_name": "min",
+                                        "tag": "",
+                                        "value": "8"
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": "bcrypt('123456')"
+                            },
+                            "type": "char"
+                        },
+                        {
+                            "_name": "remember_token",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": true,
+                            "included": false,
+                            "length": 60,
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "_name": "created_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "method",
+                                "method": "dateTimeThisMonth",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": ""
+                            },
+                            "type": "timestamp"
+                        },
+                        {
+                            "_name": "updated_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "method",
+                                "method": "dateTimeThisMonth",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": ""
+                            },
+                            "type": "timestamp"
+                        },
+                        {
+                            "_name": "deleted_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": ""
+                            },
+                            "type": "timestamp"
+                        }
+                    ]
+                },
+                "IndexManager": {
+                    "list": [
+                        {
+                            "FieldManager": {
+                                "list": [
+                                    {
+                                        "_name": "name"
+                                    }
+                                ]
+                            },
+                            "type": "unique"
+                        }
+                    ]
+                },
+                "PropertyManager": {
+                    "list": []
+                },
+                "RelationManager": {
+                    "list": [
+                        {
+                            "_name": "posts",
+                            "parameter": "Post::class",
+                            "type": "hasMany"
+                        }
+                    ]
+                },
+                "FileManager": {
+                    "list": [
+                        {
+                            "_name": "",
+                            "PropertyManager": {
+                                "list": []
+                            },
+                            "layerName": "Migration"
+                        },
+                        {
+                            "_name": "",
+                            "PropertyManager": {
+                                "list": []
+                            },
+                            "layerName": "Model"
+                        },
+                        {
+                            "_name": "",
+                            "PropertyManager": {
+                                "list": []
+                            },
+                            "layerName": "Factory"
+                        }
+                    ]
+                }
+            },
+            {
+                "_name": "Post",
+                "description": "",
+                "table": {
+                    "_name": "",
+                    "isSnakeCase": false,
+                    "prefix": "",
+                    "suffix": "",
+                    "checkValid": false
+                },
+                "FieldManager": {
+                    "list": [
+                        {
+                            "_name": "id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": ""
+                            },
+                            "type": "increments"
+                        },
+                        {
+                            "_name": "user_id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": "1"
+                            },
+                            "type": "integer"
+                        },
+                        {
+                            "_name": "title",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "33",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": [
+                                    {
+                                        "_name": "required",
+                                        "tag": "",
+                                        "value": ""
+                                    },
+                                    {
+                                        "_name": "min",
+                                        "tag": "",
+                                        "value": "3"
+                                    },
+                                    {
+                                        "_name": "max",
+                                        "tag": "",
+                                        "value": "33"
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "sentence",
+                                "raw": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "_name": "content",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "333",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": [
+                                    {
+                                        "_name": "required",
+                                        "tag": "",
+                                        "value": ""
+                                    },
+                                    {
+                                        "_name": "min",
+                                        "tag": "",
+                                        "value": "3"
+                                    },
+                                    {
+                                        "_name": "max",
+                                        "tag": "",
+                                        "value": "333"
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "paragraph",
+                                "raw": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "_name": "created_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "dateTimeThisMonth",
+                                "raw": ""
+                            },
+                            "type": "timestamp"
+                        },
+                        {
+                            "_name": "updated_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "dateTimeThisMonth",
+                                "raw": ""
+                            },
+                            "type": "timestamp"
+                        },
+                        {
+                            "_name": "deleted_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "RuleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "method": "name",
+                                "parameter": "",
+                                "property": "name",
+                                "raw": ""
+                            },
+                            "type": "timestamp"
+                        }
+                    ]
+                },
+                "IndexManager": {
+                    "list": [
+                        {
+                            "FieldManager": {
+                                "list": [
+                                    {
+                                        "_name": "user_id"
+                                    }
+                                ]
+                            },
+                            "type": "index"
+                        }
+                    ]
+                },
+                "PropertyManager": {
+                    "list": []
+                },
+                "RelationManager": {
+                    "list": [
+                        {
+                            "_name": "user",
+                            "parameter": "User::class",
+                            "type": "belongsTo"
+                        }
+                    ]
+                },
+                "FileManager": {
+                    "list": [
+                        {
+                            "_name": "",
+                            "PropertyManager": {
+                                "list": []
+                            },
+                            "layerName": "Factory"
+                        },
+                        {
+                            "_name": "",
+                            "PropertyManager": {
+                                "list": []
+                            },
+                            "layerName": "Model"
+                        },
+                        {
+                            "_name": "",
+                            "PropertyManager": {
+                                "list": []
+                            },
+                            "layerName": "Migration"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
