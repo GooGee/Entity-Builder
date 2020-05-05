@@ -7,7 +7,7 @@
 
 :tomato: Laravel generator [Online](https://googee.github.io/Entity-Builder/dist)
 
-Deeply customizable templating tool.
+With deeply customizable template.
 
 [中文介绍](README.zh.md)
 
@@ -35,6 +35,21 @@ Only available in `local` environment!
 - Visit http://localhost/dist/index.html
 - Install the PHP [package](https://github.com/GooGee/Entity)
 - Click 'Connect' button
+
+
+## Quick Start
+
+If you just want some templates
+Stay at 'Table', 'Model', 'File' pages
+
+If you want to do some customization
+Focus on 'Script' and 'Template' pages
+Define a function in a `Script`, then you can call it in a `Template`
+
+Relation
+- An `Entity` includes many `File` eg: UserController.php, UserRepository.php
+- A `File` belongs to a `Layer`
+- Every `Layer` has a `Script` and a `Template`
 
 
 ## Document
