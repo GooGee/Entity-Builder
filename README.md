@@ -30,26 +30,26 @@ Add doc to `Model` automatically
 
 Only available in `local` environment!
 
-- Download the [dist.zip](https://github.com/GooGee/Entity-Builder/releases)
-- Unzip it to the public folder of your Laravel project
-- Visit http://localhost/dist/index.html
-- Install the PHP [package](https://github.com/GooGee/Entity)
-- Click 'Connect' button
+1. Download the [dist.zip](https://github.com/GooGee/Entity-Builder/releases)
+1. Unzip it to the public folder of your Laravel project
+1. Visit http://localhost/dist/index.html
+1. Install the PHP [package](https://github.com/GooGee/Entity)
+1. Click 'Connect' button
 
 
 ## Quick Start
 
 If you just want some templates
-Stay at 'Table', 'Model', 'File' pages
+> Stay at 'Table', 'Model', 'File' pages
 
 If you want to do some customization
-Focus on 'Script' and 'Template' pages
-Define a function in a `Script`, then you can call it in a `Template`
+> Focus on 'Script' and 'Template' pages
+> Define a function in a `Script`, then you can call it in a `Template`
 
 Relation
-- An `Entity` includes many `File` eg: UserController.php, UserRepository.php
-- A `File` belongs to a `Layer`
-- Every `Layer` has a `Script` and a `Template`
+> An `Entity` includes many `File` eg: UserController.php, UserRepository.php
+> A `File` belongs to a `Layer`
+> Every `Layer` has a `Script` and a `Template`
 
 
 ## Document
