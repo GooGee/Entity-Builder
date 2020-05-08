@@ -19,6 +19,10 @@
 
 ## 应用举例
 
+创建 Migration
+
+![Table](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/table.gif)
+
 自动添加注释到 `Model`
 
 ![Model](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/model.png)

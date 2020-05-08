@@ -21,6 +21,10 @@ With deeply customizable template.
 
 ## Example
 
+Create a Migration
+
+![Table](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/table.gif)
+
 Add doc to `Model` automatically
 
 ![Model](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/model.png)
