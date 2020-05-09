@@ -17,6 +17,11 @@ With deeply customizable template.
 - Custom layer (Controller, Model, Repository, etc.)
 - Custom preset (Laravel type, PHP type, MySQL type, etc.)
 - Custom template (not plain text, with syntax: `for`, `if`, etc.)
+- Convert database schema to Laravel Migration
+- Deploy PHP code online
+- Design table fields and indexes
+- Define model factories
+- Make field validation rules
 
 
 ## Example

@@ -15,6 +15,11 @@
 - 自定义逻辑层 (Controller, Model, Repository, 等等)
 - 自定义预设值 (Laravel type, PHP type, MySQL type, 等等)
 - 自定义模板 (模板引擎支持指令: `for`, `if`, 等等)
+- 根据数据库 schema 生成 Laravel Migration
+- 在线部署 PHP 代码
+- 设计数据表
+- 定义模型工厂
+- 添加数据验证规则
 
 
 ## 应用举例
