@@ -18,7 +18,7 @@ class SideBar {
         const item = this.manager.make(name)
         this.manager.add(item)
 
-        if (item.constructor.name === 'Entity') {
+        if (this.title === 'Entity') {
             this.makeFile('Migration', item.FileManager)
             this.makeFile('Model', item.FileManager)
         }
