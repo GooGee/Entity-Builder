@@ -16,6 +16,7 @@ export function loadProject(json, preset) {
 }
 
 export function loadPreset(project, preset) {
+    project.scriptSetValidationRule = preset.scriptSetValidationRule
     project.PropertyManager.load(preset.PropertyManager)
     project.PresetManager.load(preset.PresetManager)
     project.ScriptManager.load(preset.ScriptManager)

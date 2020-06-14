@@ -26,7 +26,20 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <b-button @click="setRule" variant="outline-primary"> Auto Set Rule </b-button>
+                    <b-button-group>
+                        <b-button @click="setRule" variant="outline-primary"> Run </b-button>
+                        <b-button @click="visible = !visible" variant="outline-primary"> Script </b-button>
+                    </b-button-group>
+                </td>
+            </tr>
+            <tr v-if="visible">
+                <td colspan="3">
+                    <textarea
+                        v-model="builder.project.scriptSetValidationRule"
+                        class="form-control"
+                        spellcheck="false"
+                        rows="22"
+                    ></textarea>
                 </td>
             </tr>
         </tfoot>
@@ -34,7 +47,6 @@
 </template>
 
 <script>
-import setRule from '../helpers/rule.js'
 import { makePreset } from '../helpers/project.js'
 import builder from '../states/builder.js'
 import RuleTab from './RuleTab.vue'
@@ -52,10 +64,17 @@ export default {
             required: true,
         },
     },
+    data() {
+        return {
+            builder,
+            visible: false,
+        }
+    },
     methods: {
         setRule() {
             try {
-                setRule(this.entity, builder.project)
+                const fff = new Function('return ' + builder.project.scriptSetValidationRule)()
+                fff(this.entity, builder.project)
             } catch (error) {
                 console.error(error)
                 this.$bvToast.toast(error.message, {
