@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import { connect, convert, getDB } from '../helpers/request.js'
+import { connect } from '../helpers/request.js'
 import builder from '../states/builder.js'
-import { convertDB, makeProject, loadPreset, loadProject } from '../helpers/project.js'
+import { makeProject, loadPreset, loadProject } from '../helpers/project.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
@@ -57,10 +57,12 @@ export default {
                             this.load(data)
                             return
                         }
-
-                        if (confirm('Do you want to load tables from your database schema?')) {
-                            this.convert()
-                        }
+                        
+                        this.$bvToast.toast('No saved data', {
+                            title: 'i',
+                            variant: 'success',
+                            solid: true,
+                        })
                     })
                     .catch(error => {
                         console.error(error)
@@ -71,30 +73,6 @@ export default {
                         })
                     })
             }
-        },
-        convert() {
-            getDB()
-                .then(response => {
-                    if (response.data.tables.length) {
-                        builder.project = convertDB(response.data, builder.preset)
-                        this.$router.push('/project')
-                        return
-                    }
-
-                    this.$bvToast.toast('No table found', {
-                        title: 'OK',
-                        variant: 'success',
-                        solid: true,
-                    })
-                })
-                .catch(error => {
-                    console.error(error)
-                    this.$bvToast.toast(error.message, {
-                        title: 'i',
-                        variant: 'danger',
-                        solid: true,
-                    })
-                })
         },
         create() {
             try {
