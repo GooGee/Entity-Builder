@@ -9,6 +9,8 @@
             </b-button-group>
         </div>
 
+        <SchemaList v-if="request"></SchemaList>
+
         <PropertyList :manager="builder.project.PropertyManager">
             <tr>
                 <td>project.name</td>
@@ -31,6 +33,7 @@
 <script>
 import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
+import SchemaList from '../components/SchemaList.vue'
 import { request, save } from '../helpers/request.js'
 import * as zip from '../helpers/zip.js'
 import builder from '../states/builder.js'
@@ -38,7 +41,10 @@ import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Project',
-    components: { PropertyList },
+    components: {
+        PropertyList,
+        SchemaList,
+    },
     data() {
         return {
             builder,

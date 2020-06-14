@@ -1,8 +1,6 @@
 import Entity from '../states/entity.js'
 
-export function convertDB(data, preset) {
-    const project = makeProject(data.database)
-    loadPreset(project, preset)
+export function convertDB(data, project, preset) {
     const convertor = new Entity.Convertor(project, makePreset(preset))
     convertor.convert(data)
     return project
