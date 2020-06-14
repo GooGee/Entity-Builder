@@ -14,7 +14,9 @@
         <div v-if="file">
             <slot></slot>
 
-            <PropertyList :manager="file.PropertyManager"></PropertyList>
+            <PropertyList :manager="file.PropertyManager">
+                <slot name="property"></slot>
+            </PropertyList>
 
             <b-modal v-model="visible" :title="title" size="xl" hide-footer>
                 <pre>{{ code }}</pre>
