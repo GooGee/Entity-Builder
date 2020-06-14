@@ -41,6 +41,10 @@ export default {
     caption-side: top;
 }
 
+.mb11px {
+    margin-bottom: 11px;
+}
+
 .mr11px {
     margin-right: 11px;
 }
