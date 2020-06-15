@@ -1,8 +1,20 @@
 class SideBar {
     constructor() {
         this.title = ''
+        this.search = ''
         this.item = null
         this.manager = null
+    }
+
+    get list() {
+        if (this.manager) {
+            if (this.search) {
+                const re = new RegExp(this.search, 'i')
+                return this.manager.list.filter(item => re.test(item.name))
+            }
+            return this.manager.list
+        }
+        return []
     }
 
     get first() {
@@ -41,6 +53,7 @@ class SideBar {
         }
 
         this.manager = manager
+        this.search = ''
         if (item) {
             this.item = item
             return
