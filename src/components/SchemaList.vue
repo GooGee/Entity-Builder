@@ -1,7 +1,8 @@
 <template>
     <table class="table">
         <caption>
-            <h3>DataBase Schema</h3>
+            <h3 class="inline mr11px">DataBase Schema</h3>
+            <b-button @click="read" variant="outline-primary"> Read </b-button>
         </caption>
         <tbody>
             <tr>
@@ -17,10 +18,11 @@
             <tr>
                 <td>
                     <b-form-checkbox v-model="all" class="inline mr11px"> All </b-form-checkbox>
-                    <b-button-group>
-                        <b-button @click="read" variant="outline-primary"> Read DataBase Schema </b-button>
-                        <b-button @click="make" variant="outline-primary"> Import selected table </b-button>
-                    </b-button-group>
+                    <b-button @click="make" variant="outline-primary" class="mr11px"> Import selected table </b-button>
+                    <span>
+                        <b-form-radio v-model="skip" :value="true" class="inline mr11px">Skip if exist</b-form-radio>
+                        <b-form-radio v-model="skip" :value="false" class="inline">Replace if exist</b-form-radio>
+                    </span>
                 </td>
             </tr>
         </tfoot>
@@ -38,6 +40,7 @@ export default {
         return {
             loaded: false,
             all: true,
+            skip: false,
             data: {
                 prefix: '',
                 tables: [],
@@ -80,7 +83,7 @@ export default {
                     if (this.data.tables.length === 0) {
                         return
                     }
-                    convertDB(this.data, builder.project, builder.preset)
+                    convertDB(this.data, builder.project, builder.preset, this.skip)
                     this.$bvToast.toast('Table imported', {
                         title: 'i',
                         variant: 'success',
