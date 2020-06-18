@@ -9,7 +9,7 @@
         </div>
         <draggable
             v-if="sidebar.manager"
-            v-model="list"
+            v-model="sidebar.list"
             group="SideBar"
             @start="drag = true"
             @end="drag = false"
