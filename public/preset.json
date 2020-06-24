@@ -1454,7 +1454,7 @@
                                 "hidden": false,
                                 "included": false,
                                 "length": "",
-                                "unsigned": true,
+                                "unsigned": false,
                                 "value": "",
                                 "seed": {
                                     "unique": false,
