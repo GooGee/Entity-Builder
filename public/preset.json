@@ -2,8 +2,8 @@
     "_name": "Entity",
     "version": 11,
     "NameSpace": "App",
-    "scriptEntity": "function run(entity, project) {\n    entity.FieldManager.list.forEach(field => {\n        console.log(field.name)\n    })\n}",
-    "scriptSetValidationRule": "function run(entity, project) {\n    const FieldTypeInteger = project.PresetManager.find('FieldTypeInteger').PropertyManager\n    const FieldTypeNumeric = project.PresetManager.find('FieldTypeNumeric').PropertyManager\n\n    const addField = function (field, name, isBoolean = true) {\n        const found = field.RuleManager.find(name)\n        if (found) {\n            return found\n        }\n        const rule = field.RuleManager.make(name, isBoolean)\n        field.RuleManager.add(rule)\n        return rule\n    }\n\n    const setUnique = function (entity) {\n        entity.IndexManager.uniqueIndexList.forEach(index => {\n            if (index.FieldManager.list.length === 1) {\n                const field = index.FieldManager.list[0]\n                const found = entity.FieldManager.find(field.name)\n                if (found) {\n                    const rule = addField(found, 'unique', false)\n                    rule.value = entity.tableName\n                }\n            }\n        })\n    }\n    setUnique(entity)\n\n    const setRule = function (field, IntegerManager, NumericManager) {\n        if (field.included) {\n            // go on\n        } else {\n            return\n        }\n\n        if (field.isIncrement) {\n            return\n        }\n\n        addField(field, 'required')\n\n        if (field.type === 'boolean') {\n            addField(field, 'boolean')\n            return\n        }\n        if (IntegerManager.find(field.type)) {\n            addField(field, 'integer')\n            return\n        }\n        if (NumericManager.find(field.type)) {\n            addField(field, 'numeric')\n            return\n        }\n        if (field.type === 'char' || field.type === 'string') {\n            if (field.length) {\n                const max = addField(field, 'max', false)\n                max.value = field.length\n            }\n        }\n    }\n    entity.FieldManager.list.forEach(field => setRule(field, FieldTypeInteger, FieldTypeNumeric))\n}",
+    "scriptEntity": "Entity",
+    "scriptSetValidationRule": "SetValidationRule",
     "LayerManager": {
         "list": [
             {
@@ -3313,6 +3313,18 @@
                 "original": false,
                 "description": "",
                 "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.fieldtext = field => {\n        const list = ['$table']\n\n        if (field.length) {\n            list.push(`${field.type}('${field.name}', ${field.length})`)\n        } else {\n            list.push(`${field.type}('${field.name}')`)\n        }\n\n        if (field.collation) {\n            list.push(`collation(${field.collation})`)\n        }\n\n        if (field.comment) {\n            list.push(`comment(${field.comment})`)\n        }\n\n        if (field.value) {\n            list.push(`default(${field.value})`)\n        }\n\n        if (field.allowNull) {\n            list.push('nullable()')\n        }\n\n        if (field.useCurrent) {\n            list.push('useCurrent()')\n        }\n\n        if (field.unsigned) {\n            list.push('unsigned()')\n        }\n\n        return list.join('->')\n    }\n}"
+            },
+            {
+                "_name": "Entity",
+                "original": false,
+                "description": "",
+                "text": "function run(entity, project) {\n    entity.FieldManager.list.forEach(field => {\n        console.log(field.name)\n    })\n}"
+            },
+            {
+                "_name": "SetValidationRule",
+                "original": false,
+                "description": "",
+                "text": "function run(entity, project) {\n    const FieldTypeInteger = project.PresetManager.find('FieldTypeInteger').PropertyManager\n    const FieldTypeNumeric = project.PresetManager.find('FieldTypeNumeric').PropertyManager\n\n    const addField = function (field, name, isBoolean = true) {\n        const found = field.RuleManager.find(name)\n        if (found) {\n            return found\n        }\n        const rule = field.RuleManager.make(name, isBoolean)\n        field.RuleManager.add(rule)\n        return rule\n    }\n\n    const setUnique = function (entity) {\n        entity.IndexManager.uniqueIndexList.forEach(index => {\n            if (index.FieldManager.list.length === 1) {\n                const field = index.FieldManager.list[0]\n                const found = entity.FieldManager.find(field.name)\n                if (found) {\n                    const rule = addField(found, 'unique', false)\n                    rule.value = entity.tableName\n                }\n            }\n        })\n    }\n    setUnique(entity)\n\n    const setRule = function (field, IntegerManager, NumericManager) {\n        if (field.included) {\n            // go on\n        } else {\n            return\n        }\n\n        if (field.isIncrement) {\n            return\n        }\n\n        addField(field, 'required')\n\n        if (field.type === 'boolean') {\n            addField(field, 'boolean')\n            return\n        }\n        if (IntegerManager.find(field.type)) {\n            addField(field, 'integer')\n            return\n        }\n        if (NumericManager.find(field.type)) {\n            addField(field, 'numeric')\n            return\n        }\n        if (field.type === 'char' || field.type === 'string') {\n            if (field.length) {\n                const max = addField(field, 'max', false)\n                max.value = field.length\n            }\n        }\n    }\n    entity.FieldManager.list.forEach(field => setRule(field, FieldTypeInteger, FieldTypeNumeric))\n}"
             }
         ]
     },
