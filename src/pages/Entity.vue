@@ -3,19 +3,8 @@
         <FileList v-if="ready" :manager="sidebar.item.FileManager"></FileList>
         <PropertyList v-if="ready" :manager="sidebar.item.PropertyManager"></PropertyList>
         <div>
-            <b-button-group>
-                <b-button @click="run" variant="outline-primary"> Run </b-button>
-                <b-button @click="visible = !visible" variant="outline-primary"> Script </b-button>
-            </b-button-group>
-            <br />
-            <br />
-            <textarea
-                v-if="visible"
-                v-model="builder.project.scriptEntity"
-                class="form-control"
-                spellcheck="false"
-                rows="22"
-            ></textarea>
+            <h2 class="inline mr11px">Script</h2>
+            <ScriptButton :item="builder.project" name="scriptEntity" :cb="cb"></ScriptButton>
         </div>
     </Manager>
 </template>
@@ -24,6 +13,7 @@
 import FileList from '../components/FileList.vue'
 import Manager from '../components/Manager.vue'
 import PropertyList from '../components/PropertyList.vue'
+import ScriptButton from '../components/ScriptButton.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
@@ -33,32 +23,18 @@ export default {
         FileList,
         Manager,
         PropertyList,
+        ScriptButton,
     },
     data() {
         return {
             builder,
             sidebar,
             ready: false,
-            visible: false,
+            cb: fff => fff(sidebar.item, builder.project),
         }
     },
     mounted() {
         this.ready = true
-    },
-    methods: {
-        run() {
-            try {
-                const fff = new Function('return ' + builder.project.scriptEntity)()
-                fff(sidebar.item, builder.project)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
     },
 }
 </script>

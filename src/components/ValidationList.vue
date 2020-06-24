@@ -23,23 +23,9 @@
         </tbody>
         <tfoot>
             <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <b-button-group>
-                        <b-button @click="setRule" variant="outline-primary"> Run </b-button>
-                        <b-button @click="visible = !visible" variant="outline-primary"> Script </b-button>
-                    </b-button-group>
-                </td>
-            </tr>
-            <tr v-if="visible">
                 <td colspan="3">
-                    <textarea
-                        v-model="builder.project.scriptSetValidationRule"
-                        class="form-control"
-                        spellcheck="false"
-                        rows="22"
-                    ></textarea>
+                    <span class="mr11px">Script</span>
+                    <ScriptButton :item="builder.project" name="scriptSetValidationRule" :cb="cb"></ScriptButton>
                 </td>
             </tr>
         </tfoot>
@@ -47,13 +33,17 @@
 </template>
 
 <script>
+import ScriptButton from '../components/ScriptButton.vue'
 import { makePreset } from '../helpers/project.js'
 import builder from '../states/builder.js'
 import RuleTab from './RuleTab.vue'
 
 export default {
     name: 'ValidationList',
-    components: { RuleTab },
+    components: {
+        RuleTab,
+        ScriptButton,
+    },
     props: {
         manager: {
             type: Object,
@@ -67,23 +57,8 @@ export default {
     data() {
         return {
             builder,
-            visible: false,
+            cb: fff => fff(this.entity, builder.project),
         }
-    },
-    methods: {
-        setRule() {
-            try {
-                const fff = new Function('return ' + builder.project.scriptSetValidationRule)()
-                fff(this.entity, builder.project)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
     },
 }
 </script>
