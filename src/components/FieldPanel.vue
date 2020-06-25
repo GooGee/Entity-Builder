@@ -32,10 +32,10 @@
         </div>
 
         <div v-if="editing">
-            <b-form-checkbox v-model="field.useCurrent"> useCurrent </b-form-checkbox>
+            <b-form-checkbox v-model="field.useCurrent"> Current TimeStamp </b-form-checkbox>
         </div>
         <div v-else>
-            <span v-if="field.useCurrent"> useCurrent </span>
+            <span v-if="field.useCurrent"> Current TimeStamp </span>
         </div>
 
         <div v-if="editing">
