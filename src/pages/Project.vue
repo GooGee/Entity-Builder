@@ -2,14 +2,13 @@
     <div>
         <div>
             <h1 class="inline mr11px">Project</h1>
-            <b-button-group>
+            <b-button-group class="mr11px">
                 <b-button @click="download" variant="outline-success"> Download </b-button>
                 <b-button v-if="request" @click="save" variant="outline-success"> Save </b-button>
                 <b-button @click="zip" variant="outline-success"> Zip </b-button>
             </b-button-group>
+            <b-button @click="update" variant="outline-primary"> Update Preset </b-button>
         </div>
-
-        <SchemaList v-if="request"></SchemaList>
 
         <PropertyList :manager="builder.project.PropertyManager">
             <tr>
@@ -27,6 +26,8 @@
                 <td></td>
             </tr>
         </PropertyList>
+
+        <SchemaList v-if="request"></SchemaList>
     </div>
 </template>
 
@@ -34,6 +35,7 @@
 import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
 import SchemaList from '../components/SchemaList.vue'
+import { makePreset } from '../helpers/project.js'
 import { request, save } from '../helpers/request.js'
 import * as zip from '../helpers/zip.js'
 import builder from '../states/builder.js'
@@ -106,6 +108,23 @@ export default {
         zip() {
             try {
                 zip.zipAll(builder.project)
+            } catch (error) {
+                console.error(error)
+                this.$bvToast.toast(error.message, {
+                    title: 'i',
+                    variant: 'danger',
+                    solid: true,
+                })
+            }
+        },
+        update() {
+            try {
+                builder.project.update(makePreset(builder.preset))
+                this.$bvToast.toast('Preset updated', {
+                    title: 'i',
+                    variant: 'success',
+                    solid: true,
+                })
             } catch (error) {
                 console.error(error)
                 this.$bvToast.toast(error.message, {
