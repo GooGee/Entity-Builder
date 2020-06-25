@@ -24,6 +24,12 @@ export function loadPreset(project, preset) {
     project.EntityManager.load(preset.EntityManager)
 }
 
+/**
+ * convert JSON to Project
+ * 'name' does not exist in JSON, it can cause trouble
+ * 
+ * @param {Project} data 
+ */
 export function makePreset(data) {
     const project = makeProject('preset')
     loadPreset(project, data)
