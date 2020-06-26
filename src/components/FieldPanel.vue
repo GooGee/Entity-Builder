@@ -1,5 +1,15 @@
 <template>
     <div @click="editing = true">
+        <template v-if="hasParameter">
+            <div v-if="editing">
+                <span> Parameter: </span>
+                <b-form-input v-model="field.length"></b-form-input>
+            </div>
+            <div v-else>
+                <span v-if="field.length"> Parameter: {{ field.length }} </span>
+            </div>
+        </template>
+
         <div v-if="editing">
             <span> Collation: </span>
             <b-form-input v-model="field.collation"></b-form-input>
@@ -53,6 +63,8 @@
 </template>
 
 <script>
+import builder from '../states/builder.js'
+
 export default {
     name: 'FieldPanel',
     props: {
@@ -64,7 +76,13 @@ export default {
     data() {
         return {
             editing: false,
+            FieldTypeWithParameter: builder.project.PresetManager.find('FieldTypeWithParameter').PropertyManager,
         }
+    },
+    computed: {
+        hasParameter() {
+            return this.FieldTypeWithParameter.find(this.field.type)
+        },
     },
 }
 </script>

@@ -3143,37 +3143,25 @@
                 }
             },
             {
-                "_name": "FieldTypeWithLength",
+                "_name": "FieldTypeWithParameter",
                 "description": "for Migration",
                 "PropertyManager": {
                     "list": [
                         {
-                            "_name": "char",
-                            "tag": "",
-                            "value": "",
-                            "data": {}
-                        },
-                        {
-                            "_name": "string",
-                            "tag": "",
-                            "value": "",
-                            "data": {}
-                        },
-                        {
                             "_name": "decimal",
-                            "tag": "",
+                            "tag": "precision",
                             "value": "",
                             "data": {}
                         },
                         {
                             "_name": "double",
-                            "tag": "",
+                            "tag": "precision",
                             "value": "",
                             "data": {}
                         },
                         {
                             "_name": "float",
-                            "tag": "",
+                            "tag": "precision",
                             "value": "",
                             "data": {}
                         },

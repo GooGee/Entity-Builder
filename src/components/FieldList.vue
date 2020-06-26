@@ -25,7 +25,7 @@
                     <b-button @click="setType(field)" variant="outline-primary"> {{ field.type }} </b-button>
                 </td>
                 <td>
-                    <b-form-input v-if="hasLength(field.type)" v-model="field.length"></b-form-input>
+                    <b-form-input v-if="field.type === 'string' || field.type === 'char'" v-model="field.length" />
                 </td>
                 <td>
                     <FieldPanel :field="field"></FieldPanel>
@@ -86,7 +86,6 @@ export default {
     data() {
         return {
             EntityList: builder.project.EntityManager.list,
-            FieldTypeWithLength: builder.project.PresetManager.find('FieldTypeWithLength').PropertyManager,
             FieldTypeList: builder.project.PresetManager.find('FieldType').PropertyManager.list,
             CommonFieldList: builder.project.PresetManager.find('FieldName').PropertyManager.list,
             SpecialFieldList: builder.project.PresetManager.find('FieldSpecial').PropertyManager.list,
@@ -160,9 +159,6 @@ export default {
             dialogue.show(this.FieldTypeList, 'name', 'Select a Type', ok => {
                 field.type = dialogue.selected.name
             })
-        },
-        hasLength(type) {
-            return this.FieldTypeWithLength.find(type)
         },
     },
 }
