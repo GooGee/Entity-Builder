@@ -5,7 +5,7 @@
             <b-button @click="showScript" variant="outline-primary"> View </b-button>
             <b-button @click="runScript" variant="outline-primary"> Run </b-button>
         </b-button-group>
-        
+
         <b-modal v-model="visible" :title="title" size="xl" hide-footer>
             <pre>{{ code }}</pre>
         </b-modal>
@@ -63,9 +63,13 @@ export default {
         runScript() {
             try {
                 const script = builder.project.ScriptManager.find(this.scriptName)
-                const fff = new Function('return ' + script.text)()
-                if (this.cb) {
-                    this.cb(fff)
+                if (script) {
+                    const fff = new Function('return ' + script.text)()
+                    if (this.cb) {
+                        this.cb(fff)
+                    }
+                } else {
+                    throw new Error(`Script ${this.scriptName} not found`)
                 }
             } catch (error) {
                 console.error(error)
@@ -85,7 +89,7 @@ export default {
                 return
             }
 
-            this.$bvToast.toast(this.scriptName + ' not found', {
+            this.$bvToast.toast(`Script ${this.scriptName} not found`, {
                 title: 'i',
                 variant: 'danger',
                 solid: true,
