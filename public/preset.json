@@ -1899,50 +1899,88 @@
                     "list": [
                         {
                             "_name": "integer",
-                            "tag": "",
+                            "tag": "integer",
                             "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "integer 0",
+                            "tag": "integer",
+                            "value": 0,
                             "data": {}
                         },
                         {
                             "_name": "char",
-                            "tag": "",
+                            "tag": "char",
                             "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "char ''",
+                            "tag": "char",
+                            "value": "''",
                             "data": {}
                         },
                         {
                             "_name": "string",
-                            "tag": "",
+                            "tag": "string",
                             "value": "",
                             "data": {}
                         },
                         {
+                            "_name": "string ''",
+                            "tag": "string",
+                            "value": "''",
+                            "data": {}
+                        },
+                        {
                             "_name": "text",
-                            "tag": "",
+                            "tag": "text",
                             "value": "",
                             "data": {}
                         },
                         {
                             "_name": "dateTime",
-                            "tag": "",
+                            "tag": "dateTime",
                             "value": "",
                             "data": {}
                         },
                         {
                             "_name": "timestamp",
-                            "tag": "",
+                            "tag": "timestamp",
                             "value": "",
                             "data": {}
                         },
                         {
-                            "_name": "decimal",
-                            "tag": "",
+                            "_name": "timestamp now",
+                            "tag": "timestamp",
                             "value": "",
+                            "data": {
+                                "useCurrent": true
+                            }
+                        },
+                        {
+                            "_name": "decimal",
+                            "tag": "decimal",
+                            "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "decimal 0",
+                            "tag": "decimal",
+                            "value": 0,
                             "data": {}
                         },
                         {
                             "_name": "float",
-                            "tag": "",
+                            "tag": "float",
                             "value": "",
+                            "data": {}
+                        },
+                        {
+                            "_name": "float 0",
+                            "tag": "float",
+                            "value": 0,
                             "data": {}
                         }
                     ]
