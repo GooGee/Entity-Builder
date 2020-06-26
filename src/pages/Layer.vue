@@ -1,15 +1,5 @@
 <template>
-    <div>
-        <h1>
-            <span class="mr11px">Layer</span>
-            <b-button-group>
-                <b-button @click="remove" variant="outline-danger"> - </b-button>
-                <b-button @click="change('name')" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
-            </b-button-group>
-        </h1>
-
-        <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
-
+    <Manager :manager="builder.project.LayerManager" name="Layer">
         <b-modal v-model="visible" :title="title" size="xl" hide-footer>
             <pre>{{ code }}</pre>
         </b-modal>
@@ -72,10 +62,11 @@
                 <td></td>
             </tr>
         </PropertyList>
-    </div>
+    </Manager>
 </template>
 
 <script>
+import Manager from '../components/Manager.vue'
 import PropertyList from '../components/PropertyList.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
@@ -83,7 +74,10 @@ import dialogue from '../states/listdialogue.js'
 
 export default {
     name: 'Layer',
-    components: { PropertyList },
+    components: {
+        Manager,
+        PropertyList,
+    },
     data() {
         return {
             builder,
