@@ -1,30 +1,45 @@
 <template>
     <div>
-        <h2 class="text-center">
-            {{ sidebar.title }}
-            <b-button v-if="sidebar.manager" @click="add" variant="outline-primary"> + </b-button>
-        </h2>
-        <div v-if="sidebar.manager" class="mb11px">
-            <b-form-input v-model="sidebar.search" placeholder="Search"></b-form-input>
-        </div>
-        <draggable
-            v-if="sidebar.manager"
-            v-model="sidebar.list"
-            group="SideBar"
-            @start="drag = true"
-            @end="drag = false"
-            class="list-group"
-        >
-            <div
-                v-for="item in sidebar.list"
-                :key="item.name"
-                @click="sidebar.item = item"
-                :class="Object.is(sidebar.item, item) ? 'active' : ''"
-                class="list-group-item list-group-item-action"
-            >
-                {{ item.name }}
+        <template v-if="sidebar.manager">
+            <h2 class="text-center">
+                {{ sidebar.title }}
+                <b-button @click="add" variant="outline-primary"> + </b-button>
+            </h2>
+
+            <div class="mb11px">
+                <b-form-input v-model="sidebar.search" placeholder="Search"></b-form-input>
             </div>
-        </draggable>
+
+            <div v-if="sidebar.search" class="list-group">
+                <div
+                    v-for="item in sidebar.list"
+                    :key="item.name"
+                    @click="sidebar.item = item"
+                    :class="Object.is(sidebar.item, item) ? 'active' : ''"
+                    class="list-group-item list-group-item-action"
+                >
+                    {{ item.name }}
+                </div>
+            </div>
+            <draggable
+                v-else
+                v-model="sidebar.manager.list"
+                group="SideBar"
+                @start="drag = true"
+                @end="drag = false"
+                class="list-group"
+            >
+                <div
+                    v-for="item in sidebar.list"
+                    :key="item.name"
+                    @click="sidebar.item = item"
+                    :class="Object.is(sidebar.item, item) ? 'active' : ''"
+                    class="list-group-item list-group-item-action"
+                >
+                    {{ item.name }}
+                </div>
+            </draggable>
+        </template>
     </div>
 </template>
 
