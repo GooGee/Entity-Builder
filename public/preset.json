@@ -319,7 +319,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FakerMethod",
@@ -675,7 +676,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FakerProperty",
@@ -1343,7 +1345,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FieldName",
@@ -1435,7 +1438,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FieldSpecial",
@@ -1638,7 +1642,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FieldType",
@@ -1910,7 +1915,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FieldTypeMySQL",
@@ -2140,7 +2146,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FieldTypePGSQL",
@@ -2394,7 +2401,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "RegularExpression",
@@ -2438,7 +2446,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "RelationType",
@@ -2506,7 +2515,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "ValidationRule",
@@ -2904,7 +2914,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "IncrementMySQL",
@@ -2948,7 +2959,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "IncrementPGSQL",
@@ -2986,7 +2998,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FieldTypeInteger",
@@ -3054,7 +3067,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FieldTypeNumeric",
@@ -3140,7 +3154,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             },
             {
                 "_name": "FieldTypeWithParameter",
@@ -3214,7 +3229,8 @@
                             "data": {}
                         }
                     ]
-                }
+                },
+                "original": true
             }
         ]
     },
@@ -3232,49 +3248,49 @@
         "list": [
             {
                 "_name": "blank",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n}"
             },
             {
                 "_name": "Request",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.model = entity.FileManager.findByLayer('Model')\n    if (!data.model) throw new Error('Model is missing!')\n}"
             },
             {
                 "_name": "Controller",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.model = entity.FileManager.findByLayer('Model')\n    if (!data.model) throw new Error('Model is missing!')\n\n    data.request = entity.FileManager.findByLayer('Request')\n    if (!data.request) throw new Error('Request is missing!')\n}"
             },
             {
                 "_name": "Model",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.phptype = field => {\n        if (field.cast) {\n            const found = project.PresetManager.find('CastPHP').PropertyManager.find(field.cast)\n            if (found) {\n                return found.value\n            }\n        }\n\n        if (['created_at', 'updated_at', 'deleted_at'].indexOf(field.name) > -1) {\n            return '\\\\Illuminate\\\\Support\\\\Carbon'\n        }\n\n        const found = project.PresetManager.find('FieldType').PropertyManager.find(field.type)\n        if (found) {\n            return found.tag\n        }\n\n        return 'mixed'\n    }\n\n    data.ruletext = field => {\n        if (field.RuleManager.list.length) {\n            const list = field.RuleManager.list.map(rule => {\n                return rule.value ? `${rule.name}:${rule.value}` : rule.name\n            })\n            return `['${list.join(\"', '\")}']`\n        }\n        return '[]'\n    }\n\n    data.hasTimeStamp = () => {\n        const created_at = entity.FieldManager.list.find(field => field.name === 'created_at')\n        if (created_at) {\n            const updated_at = entity.FieldManager.list.find(field => field.name === 'updated_at')\n            if (updated_at) {\n                return true\n            }\n        }\n        return false\n    }\n}"
             },
             {
                 "_name": "Factory",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.model = entity.FileManager.findByLayer('Model')\n    if (!data.model) throw new Error('Model is missing!')\n\n    data.seedtext = seed => {\n        const list = ['$faker']\n        if (seed.unique) {\n            list.push('unique()')\n        }\n\n        if (seed.type === 'property') {\n            list.push(seed.property)\n            return list.join('->')\n        }\n\n        if (seed.type === 'method') {\n            list.push(`${seed.method}(${seed.parameter})`)\n            return list.join('->')\n        }\n\n        return seed.raw\n    }\n}"
             },
             {
                 "_name": "Migration",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "function run(project, entity, file, data) {\n    // do not change anything in project, entity, file!\n\n    data.fieldtext = field => {\n        const list = ['$table']\n\n        if (field.length) {\n            list.push(`${field.type}('${field.name}', ${field.length})`)\n        } else {\n            list.push(`${field.type}('${field.name}')`)\n        }\n\n        if (field.collation) {\n            list.push(`collation(${field.collation})`)\n        }\n\n        if (field.comment) {\n            list.push(`comment(${field.comment})`)\n        }\n\n        if (field.value) {\n            list.push(`default(${field.value})`)\n        }\n\n        if (field.allowNull) {\n            list.push('nullable()')\n        }\n\n        if (field.useCurrent) {\n            list.push('useCurrent()')\n        }\n\n        if (field.unsigned) {\n            list.push('unsigned()')\n        }\n\n        return list.join('->')\n    }\n}"
             },
             {
                 "_name": "Entity",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "function run(entity, project) {\n    entity.FieldManager.list.forEach(field => {\n        console.log(field.name)\n    })\n}"
             },
             {
                 "_name": "SetValidationRule",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "function run(entity, project) {\n    const FieldTypeInteger = project.PresetManager.find('FieldTypeInteger').PropertyManager\n    const FieldTypeNumeric = project.PresetManager.find('FieldTypeNumeric').PropertyManager\n\n    const addField = function (field, name, isBoolean = true) {\n        const found = field.RuleManager.find(name)\n        if (found) {\n            return found\n        }\n        const rule = field.RuleManager.make(name, isBoolean)\n        field.RuleManager.add(rule)\n        return rule\n    }\n\n    const setUnique = function (entity) {\n        entity.IndexManager.uniqueIndexList.forEach(index => {\n            if (index.FieldManager.list.length === 1) {\n                const field = index.FieldManager.list[0]\n                const found = entity.FieldManager.find(field.name)\n                if (found) {\n                    const rule = addField(found, 'unique', false)\n                    rule.value = entity.tableName\n                }\n            }\n        })\n    }\n    setUnique(entity)\n\n    const setRule = function (field, IntegerManager, NumericManager) {\n        if (field.included) {\n            // go on\n        } else {\n            return\n        }\n\n        if (field.isIncrement) {\n            return\n        }\n\n        addField(field, 'required')\n\n        if (field.type === 'boolean') {\n            addField(field, 'boolean')\n            return\n        }\n        if (IntegerManager.find(field.type)) {\n            addField(field, 'integer')\n            return\n        }\n        if (NumericManager.find(field.type)) {\n            addField(field, 'numeric')\n            return\n        }\n        if (field.type === 'char' || field.type === 'string') {\n            if (field.length) {\n                const max = addField(field, 'max', false)\n                max.value = field.length\n            }\n        }\n    }\n    entity.FieldManager.list.forEach(field => setRule(field, FieldTypeInteger, FieldTypeNumeric))\n}"
             }
@@ -3284,73 +3300,73 @@
         "list": [
             {
                 "_name": "blank",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": ""
             },
             {
                 "_name": "Controller",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Http\\Controllers;\n\nuse {{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }};\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\n\nclass {{ file.name }} extends Controller\n{\n    protected $routePath = '{{ entity.snakeCase }}';\n    protected $viewPath = '{{ entity.snakeCase }}';\n\n    /**\n     * Display a listing of the resource.\n     *\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function index()\n    {\n        $page = {{ data.model.name }}::query()->paginate();\n        return view(\"$this->viewPath.index\", compact('page'));\n    }\n\n    /**\n     * Show the form for creating a new resource.\n     *\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function create()\n    {\n        $item = new {{ data.model.name }};\n        $item->_token = csrf_token();\n        $item->_uri = \"/$this->routePath\";\n        return view(\"$this->viewPath.form\", compact('item'));\n    }\n\n    /**\n     * Store a newly created resource in storage.\n     *\n     * @param \\{{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }} $request\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function store({{ data.request.name }} $request)\n    {\n        $item = new {{ data.model.name }};\n        $item->fill($request->validated());\n        $item->save();\n        return redirect(\"/$this->routePath/$item->id\");\n    }\n\n    /**\n     * Display the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function show($id)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        return view(\"$this->viewPath.show\", compact('item'));\n    }\n\n    /**\n     * Show the form for editing the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function edit($id)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        $item->_token = csrf_token();\n        $item->_method = 'PATCH';\n        $item->_uri = \"/$this->routePath/$item->id\";\n        return view(\"$this->viewPath.form\", compact('item'));\n    }\n\n    /**\n     * Update the specified resource in storage.\n     *\n     * @param int $id\n     * @param \\{{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }} $request\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function update($id, {{ data.request.name }} $request)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        $item->update($request->validated());\n        return redirect(\"/$this->routePath/$item->id\");\n    }\n\n    /**\n     * Remove the specified resource from storage.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function destroy($id)\n    {\n        {{ data.model.name }}::destroy($id);\n        return redirect(\"/$this->routePath\");\n    }\n}\n"
             },
             {
                 "_name": "ControllerAPI",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Http\\Controllers;\n\nuse {{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }};\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\n\nclass {{ file.name }} extends Controller\n{\n\n    /**\n     * Display a listing of the resource.\n     *\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function index()\n    {\n        $page = {{ data.model.name }}::query()->paginate();\n        return response()->json(compact('page'));\n    }\n\n    /**\n     * Store a newly created resource in storage.\n     *\n     * @param \\{{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }} $request\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function store({{ data.request.name }} $request)\n    {\n        $item = new {{ data.model.name }};\n        $item->fill($request->validated());\n        $item->save();\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Display the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function show($id)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Update the specified resource in storage.\n     *\n     * @param int $id\n     * @param \\{{ project.NameSpace }}\\Http\\Requests\\{{ data.request.name }} $request\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function update($id, {{ data.request.name }} $request)\n    {\n        $item = {{ data.model.name }}::query()->findOrFail($id);\n        $item->update($request->validated());\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Remove the specified resource from storage.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function destroy($id)\n    {\n        $count = {{ data.model.name }}::destroy($id);\n        if ($count) {\n            return response()->json('OK');\n        }\n        return response()->json('Resource already deleted!', 410);\n    }\n}\n"
             },
             {
                 "_name": "Factory",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\n/** @var \\Illuminate\\Database\\Eloquent\\Factory $factory */\n\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\nuse Faker\\Generator as Faker;\n\n$factory->define({{ data.model.name }}::class, function (Faker $faker) {\n    static $index = 0;\n    $index += 1;\n    return [\n{% for field in entity.FieldManager.list %}{% if data.seedtext(field.seed) %}\n        '{{ field.name }}' => {{ data.seedtext(field.seed) }},\n{% endif %}{% endfor %}\n    ];\n});\n"
             },
             {
                 "_name": "Migration",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nuse Illuminate\\Support\\Facades\\Schema;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Database\\Migrations\\Migration;\n\nclass {{ file.name }} extends Migration\n{\n    /**\n     * Run the migrations.\n     *\n     * @return void\n     */\n    public function up()\n    {\n        Schema::create('{{ entity.tableName }}', function (Blueprint $table) {\n{% for field in entity.FieldManager.list %}\n            {{ data.fieldtext(field) }};\n{% endfor %}\n{% for index in entity.IndexManager.list %}\n            $table->{{ index.type }}(['{{ index.FieldManager.list | join(\"', '\", \"name\") }}']);\n{% endfor %}\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     *\n     * @return void\n     */\n    public function down()\n    {\n        Schema::dropIfExists('{{ entity.tableName }}');\n    }\n}\n"
             },
             {
                 "_name": "Model",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Models;\n\nuse Illuminate\\Notifications\\Notifiable;\nuse Illuminate\\Foundation\\Auth\\User as Authenticatable;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n/**\n * class {{ file.name }}\n * {% for field in entity.FieldManager.list %}\n * @property {{ data.phptype(field) }} ${{ field.name }}{% endfor %}\n */\nclass {{ file.name }} extends {% if file.name == 'User' %}Authenticatable{% else %}Model{% endif %}\n{\n{% if file.name == 'User' %}    use Notifiable;\n{% endif %}\n    /**\n     * The table associated with the file.\n     *\n     * @var string\n     */\n    protected $table = '{{ entity.tableName }}';\n\n    /**\n     * The primary key for the file.\n     *\n     * @var string\n     */\n    protected $primaryKey = '{{ entity.primaryKey }}';\n\n    /**\n     * Indicates if the IDs are auto-incrementing.\n     *\n     * @var bool\n     */\n    public $incrementing = {{ entity.FieldManager.hasIncrement }};\n\n    /**\n     * Indicates if the model should be timestamped.\n     *\n     * @var bool\n     */\n    public $timestamps = {{ data.hasTimeStamp() }};\n\n    /**\n     * The attributes that are mass assignable.\n     *\n     * @var array\n     */\n    protected $fillable = [\n{% for field in entity.FieldManager.list | selectattr('fillable') %}\n        '{{ field.name }}',\n{% endfor %}\n    ];\n\n    /**\n     * The attributes that should be hidden for arrays.\n     *\n     * @var array\n     */\n    protected $hidden = [\n{% for field in entity.FieldManager.list | selectattr('hidden') %}\n        '{{ field.name }}',\n{% endfor %}\n    ];\n\n    /**\n     * The attributes that should be cast to native types.\n     *\n     * @var array\n     */\n    protected $casts = [\n{% for field in entity.FieldManager.list | selectattr('cast') %}\n        '{{ field.name }}' => '{{ field.cast }}',\n{% endfor %}\n    ];\n\n    const RuleList = [\n{% for field in entity.FieldManager.list | selectattr('included') %}\n        '{{ field.name }}' => {{ data.ruletext(field) }},\n{% endfor %}\n    ];\n\n{% for relation in entity.RelationManager.list %}\n    public function {{ relation.name }}()\n    {\n        return $this->{{ relation.type }}({{ relation.parameter }});\n    }\n{% endfor %}\n}\n"
             },
             {
                 "_name": "Policy",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Policies;\n\nuse {{ project.NameSpace }}\\Models\\User;\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\nuse Illuminate\\Auth\\Access\\HandlesAuthorization;\n\nclass {{ file.name }}\n{\n    use HandlesAuthorization;\n\n    /**\n     * Determine whether the user can view the {{ data.model.name }}.\n     *\n     * @param \\{{ project.NameSpace }}\\Models\\User $user\n     * @param \\{{ project.NameSpace }}\\Models\\{{ data.model.name }} ${{ data.model.snakeCase }}\n     * @return mixed\n     */\n    public function view(User $user, {{ data.model.name }} ${{ data.model.snakeCase }})\n    {\n        return true;\n    }\n\n    /**\n     * Determine whether the user can create {{ data.model.name }}.\n     *\n     * @param \\{{ project.NameSpace }}\\Models\\User $user\n     * @return mixed\n     */\n    public function create(User $user)\n    {\n        return true;\n    }\n\n    /**\n     * Determine whether the user can update the {{ data.model.name }}.\n     *\n     * @param \\{{ project.NameSpace }}\\Models\\User $user\n     * @param \\{{ project.NameSpace }}\\Models\\{{ data.model.name }} ${{ data.model.snakeCase }}\n     * @return mixed\n     */\n    public function update(User $user, {{ data.model.name }} ${{ data.model.snakeCase }})\n    {\n        return $user->id === ${{ data.model.snakeCase }}->user_id;\n    }\n\n    /**\n     * Determine whether the user can delete the {{ data.model.name }}.\n     *\n     * @param \\{{ project.NameSpace }}\\Models\\User $user\n     * @param \\{{ project.NameSpace }}\\Models\\{{ data.model.name }} ${{ data.model.snakeCase }}\n     * @return mixed\n     */\n    public function delete(User $user, {{ data.model.name }} ${{ data.model.snakeCase }})\n    {\n        return $user->id === ${{ data.model.snakeCase }}->user_id;\n    }\n}\n"
             },
             {
                 "_name": "Repository",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Repositories;\n\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\n\nclass {{ file.name }} extends Base\n{\n\n    public function make()\n    {\n        return new {{ data.model.name }}();\n    }\n\n    public function query()\n    {\n        return {{ data.model.name }}::query();\n    }\n\n}\n"
             },
             {
                 "_name": "Request",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Http\\Requests;\n\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\nuse Illuminate\\Foundation\\Http\\FormRequest;\n\nclass {{ file.name }} extends FormRequest\n{\n    /**\n     * Determine if the user is authorized to make this data.request.\n     *\n     * @return bool\n     */\n    public function authorize()\n    {\n        return true;\n    }\n\n    /**\n     * Get the validation rules that apply to the data.request.\n     *\n     * @return array\n     */\n    public function rules()\n    {\n        return {{ data.model.name }}::RuleList;\n    }\n}\n"
             },
             {
                 "_name": "Resource",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nnamespace {{ project.NameSpace }}\\Http\\Resources;\n\nuse Illuminate\\Http\\Resources\\Json\\Resource;\n\nclass {{ file.name }} extends Resource\n{\n    /**\n     * Transform the resource into an array.\n     *\n     * @param \\Illuminate\\Http\\Request $request\n     * @return array\n     */\n    public function toArray($request)\n    {\n        return [\n{% for field in entity.FieldManager.list %}{% if field.hidden == false %}\n            '{{ field.name }}' => $this->{{ field.name }},\n{% endif %}{% endfor %}\n        ];\n    }\n}\n"
             },
             {
                 "_name": "Seeder",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nuse Illuminate\\Database\\Seeder;\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\n\nclass {{ file.name }} extends Seeder\n{\n    /**\n     * Run the database seeds.\n     *\n     * @return void\n     */\n    public function run()\n    {\n        factory({{ data.model.name }}::class, 1)->create();\n    }\n}\n"
             },
             {
                 "_name": "TestAPI",
-                "original": false,
+                "original": true,
                 "description": "",
                 "text": "<?php\n\nnamespace Tests\\Feature\\API;\n\nuse {{ project.NameSpace }}\\Models\\{{ data.model.name }};\nuse Tests\\TestCase;\nuse Illuminate\\Foundation\\Testing\\WithFaker;\nuse Illuminate\\Foundation\\Testing\\RefreshDatabase;\nuse Illuminate\\Foundation\\Testing\\TestResponse;\n\nclass {{ file.name }} extends TestCase\n{\n    static $id = 0;\n    protected $uri = '/api/{{ entity.snakeCase }}';\n\n    public function testIndex()\n    {\n        $response = $this->getJson($this->uri);\n        $response->assertSuccessful();\n    }\n\n    public function testStore()\n    {\n        $item = factory({{ data.model.name }}::class)->make()->toArray();\n        $response = $this->postJson($this->uri, $item);\n        $response->assertSuccessful();\n        $data = $response->json();\n        static::$id = $data['item']['id'];\n    }\n\n    public function testShow()\n    {\n        $response = $this->getJson(\"$this->uri/\" . static::$id);\n        $response->assertSuccessful();\n    }\n\n    public function testUpdate()\n    {\n        $item = {{ data.model.name }}::query()->findOrFail(static::$id)->toArray();\n        $response = $this->patchJson(\"$this->uri/\" . static::$id, $item);\n        $response->assertSuccessful();\n    }\n\n    public function testDestroy()\n    {\n        $response = $this->deleteJson(\"$this->uri/\" . static::$id);\n        $response->assertSuccessful();\n    }\n\n}\n"
             }
