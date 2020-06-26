@@ -13,7 +13,7 @@
 import FileList from '../components/FileList.vue'
 import Manager from '../components/Manager.vue'
 import PropertyList from '../components/PropertyList.vue'
-import ScriptButton from '../components/ScriptButton.vue'
+import ScriptButton from '../components/button/ScriptButton.vue'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 

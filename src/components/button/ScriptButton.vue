@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import builder from '../states/builder.js'
-import dialogue from '../states/listdialogue.js'
+import builder from '../../states/builder.js'
+import dialogue from '../../states/listdialogue.js'
 
 export default {
     name: 'ScriptButton',

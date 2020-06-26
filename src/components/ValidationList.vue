@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import ScriptButton from '../components/ScriptButton.vue'
+import ScriptButton from '../components/button/ScriptButton.vue'
 import { makePreset } from '../helpers/project.js'
 import builder from '../states/builder.js'
 import RuleTab from './RuleTab.vue'
