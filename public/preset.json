@@ -1456,14 +1456,6 @@
                                 "length": "",
                                 "unsigned": false,
                                 "value": "",
-                                "seed": {
-                                    "unique": false,
-                                    "type": "raw",
-                                    "method": "name",
-                                    "parameter": "",
-                                    "property": "name",
-                                    "raw": ""
-                                },
                                 "type": "increments"
                             }
                         },
@@ -1481,65 +1473,7 @@
                                 "length": "",
                                 "unsigned": false,
                                 "value": "",
-                                "seed": {
-                                    "unique": false,
-                                    "type": "raw",
-                                    "method": "name",
-                                    "parameter": "",
-                                    "property": "name",
-                                    "raw": ""
-                                },
                                 "type": "integer"
-                            }
-                        },
-                        {
-                            "_name": "password",
-                            "tag": "char",
-                            "value": "",
-                            "data": {
-                                "allowNull": false,
-                                "cast": "",
-                                "comment": "",
-                                "fillable": false,
-                                "hidden": true,
-                                "included": true,
-                                "length": 60,
-                                "unsigned": false,
-                                "value": "",
-                                "seed": {
-                                    "unique": false,
-                                    "type": "raw",
-                                    "method": "name",
-                                    "parameter": "",
-                                    "property": "name",
-                                    "raw": ""
-                                },
-                                "type": "char"
-                            }
-                        },
-                        {
-                            "_name": "remember_token",
-                            "tag": "string",
-                            "value": "",
-                            "data": {
-                                "allowNull": true,
-                                "cast": "",
-                                "comment": "",
-                                "fillable": false,
-                                "hidden": true,
-                                "included": false,
-                                "length": 60,
-                                "unsigned": false,
-                                "value": "",
-                                "seed": {
-                                    "unique": false,
-                                    "type": "raw",
-                                    "method": "name",
-                                    "parameter": "",
-                                    "property": "name",
-                                    "raw": ""
-                                },
-                                "type": "string"
                             }
                         },
                         {
@@ -1626,7 +1560,7 @@
                         {
                             "_name": "integer 0",
                             "tag": "integer",
-                            "value": 0,
+                            "value": "0",
                             "data": {}
                         },
                         {
@@ -1688,7 +1622,7 @@
                         {
                             "_name": "decimal 0",
                             "tag": "decimal",
-                            "value": 0,
+                            "value": "0",
                             "data": {}
                         },
                         {
@@ -1700,7 +1634,7 @@
                         {
                             "_name": "float 0",
                             "tag": "float",
-                            "value": 0,
+                            "value": "0",
                             "data": {}
                         }
                     ]
