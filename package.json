@@ -1,6 +1,6 @@
 {
   "name": "entity-builder",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,7 +11,7 @@
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.10.1",
     "core-js": "^3.6.4",
-    "entity-builder": "^5.1.0",
+    "entity-builder": "^5.2.0",
     "file-saver": "^2.0.2",
     "jszip": "^3.3.0",
     "nunjucks": "^3.2.1",
