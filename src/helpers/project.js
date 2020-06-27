@@ -1,9 +1,7 @@
 import Entity from '../states/entity.js'
 
-export function convertDB(data, preset) {
-    const project = makeProject(data.database)
-    loadPreset(project, preset)
-    const convertor = new Entity.Convertor(project, makePreset(preset))
+export function convertDB(data, project, preset, skip) {
+    const convertor = new Entity.Convertor(project, makePreset(preset), skip)
     convertor.convert(data)
     return project
 }
@@ -16,6 +14,8 @@ export function loadProject(json, preset) {
 }
 
 export function loadPreset(project, preset) {
+    project.scriptEntity = preset.scriptEntity
+    project.scriptSetValidationRule = preset.scriptSetValidationRule
     project.PropertyManager.load(preset.PropertyManager)
     project.PresetManager.load(preset.PresetManager)
     project.ScriptManager.load(preset.ScriptManager)
@@ -24,6 +24,12 @@ export function loadPreset(project, preset) {
     project.EntityManager.load(preset.EntityManager)
 }
 
+/**
+ * convert JSON to Project
+ * 'name' does not exist in JSON, it can cause trouble
+ * 
+ * @param {Project} data 
+ */
 export function makePreset(data) {
     const project = makeProject('preset')
     loadPreset(project, data)

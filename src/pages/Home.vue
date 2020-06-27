@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import { connect, convert, getDB } from '../helpers/request.js'
+import { connect } from '../helpers/request.js'
 import builder from '../states/builder.js'
-import { convertDB, makeProject, loadPreset, loadProject } from '../helpers/project.js'
+import { makePreset, makeProject, loadPreset, loadProject } from '../helpers/project.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
@@ -36,7 +36,7 @@ export default {
             version: process.env.VUE_APP_VERSION,
             builder,
             sidebar,
-            domain: 'http://localhost',
+            domain: window.location.origin,
         }
     },
     created() {
@@ -58,9 +58,11 @@ export default {
                             return
                         }
 
-                        if (confirm('Do you want to load tables from your database schema?')) {
-                            this.convert()
-                        }
+                        this.$bvToast.toast('No saved data', {
+                            title: 'i',
+                            variant: 'success',
+                            solid: true,
+                        })
                     })
                     .catch(error => {
                         console.error(error)
@@ -71,30 +73,6 @@ export default {
                         })
                     })
             }
-        },
-        convert() {
-            getDB()
-                .then(response => {
-                    if (response.data.tables.length) {
-                        builder.project = convertDB(response.data, builder.preset)
-                        this.$router.push('/project')
-                        return
-                    }
-
-                    this.$bvToast.toast('No table found', {
-                        title: 'OK',
-                        variant: 'success',
-                        solid: true,
-                    })
-                })
-                .catch(error => {
-                    console.error(error)
-                    this.$bvToast.toast(error.message, {
-                        title: 'i',
-                        variant: 'danger',
-                        solid: true,
-                    })
-                })
         },
         create() {
             try {
@@ -134,12 +112,16 @@ export default {
             reader.readAsText(event.target.files[0])
         },
         load(data) {
-            if (data.version < 10) {
+            const version = data.version
+            if (version < 10) {
                 if (!confirm('This is an old version project,\nold templates may not work properly.\nContinue?')) {
                     return
                 }
             }
             builder.project = loadProject(data, builder.preset)
+            if (version === 10) {
+                builder.project.update(makePreset(builder.preset))
+            }
             this.$router.push('/project')
         },
     },

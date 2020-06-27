@@ -82,6 +82,10 @@
 <polygon points="208 803, 320 803, 264 706" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
 <polygon points="264 706, 376 706, 320 803" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
 <polygon points="320 803, 432 803, 376 706" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
+<polygon points="768 803, 880 803, 824 706" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
+<polygon points="824 706, 936 706, 880 803" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
+<polygon points="880 803, 992 803, 936 706" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
+<polygon points="936 706, 1048 706, 992 803" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
 <polygon points="208 803, 320 803, 264 900" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
 <polygon points="264 900, 376 900, 320 803" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />
 <polygon points="320 803, 432 803, 376 900" fill="DodgerBlue" stroke="white" stroke-width="16" stroke-linejoin="miter" />

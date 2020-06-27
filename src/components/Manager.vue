@@ -1,12 +1,13 @@
 <template>
     <div>
-        <h1>
-            <span class="mr11px">{{ name }}</span>
-            <b-button-group>
+        <div class="mb11px">
+            <h1 class="inline mr11px">{{ name }}</h1>
+            <span v-if="sidebar.item.original"> {{ sidebar.item.name }} </span>
+            <b-button-group v-else>
                 <b-button @click="remove" variant="outline-danger"> - </b-button>
                 <b-button @click="change" variant="outline-primary"> {{ sidebar.item.name }} </b-button>
             </b-button-group>
-        </h1>
+        </div>
 
         <b-form-input v-model="sidebar.item.description" placeholder="Description"></b-form-input>
 

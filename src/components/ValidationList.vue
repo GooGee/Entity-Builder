@@ -23,10 +23,9 @@
         </tbody>
         <tfoot>
             <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <b-button @click="setRule" variant="outline-primary"> Auto Set Rule </b-button>
+                <td colspan="3">
+                    <span class="mr11px">Script</span>
+                    <ScriptButton :item="builder.project" name="scriptSetValidationRule" :cb="cb"></ScriptButton>
                 </td>
             </tr>
         </tfoot>
@@ -34,14 +33,17 @@
 </template>
 
 <script>
-import setRule from '../helpers/rule.js'
+import ScriptButton from '../components/button/ScriptButton.vue'
 import { makePreset } from '../helpers/project.js'
 import builder from '../states/builder.js'
 import RuleTab from './RuleTab.vue'
 
 export default {
     name: 'ValidationList',
-    components: { RuleTab },
+    components: {
+        RuleTab,
+        ScriptButton,
+    },
     props: {
         manager: {
             type: Object,
@@ -52,19 +54,11 @@ export default {
             required: true,
         },
     },
-    methods: {
-        setRule() {
-            try {
-                setRule(this.entity, builder.project)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
+    data() {
+        return {
+            builder,
+            cb: fff => fff(this.entity, builder.project),
+        }
     },
 }
 </script>

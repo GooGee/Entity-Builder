@@ -2,7 +2,7 @@
     <div>
         <div>
             <h1 class="inline mr11px">Project</h1>
-            <b-button-group>
+            <b-button-group class="mr11px">
                 <b-button @click="download" variant="outline-success"> Download </b-button>
                 <b-button v-if="request" @click="save" variant="outline-success"> Save </b-button>
                 <b-button @click="zip" variant="outline-success"> Zip </b-button>
@@ -25,12 +25,15 @@
                 <td></td>
             </tr>
         </PropertyList>
+
+        <SchemaList></SchemaList>
     </div>
 </template>
 
 <script>
 import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
+import SchemaList from '../components/SchemaList.vue'
 import { request, save } from '../helpers/request.js'
 import * as zip from '../helpers/zip.js'
 import builder from '../states/builder.js'
@@ -38,7 +41,10 @@ import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'Project',
-    components: { PropertyList },
+    components: {
+        PropertyList,
+        SchemaList,
+    },
     data() {
         return {
             builder,
