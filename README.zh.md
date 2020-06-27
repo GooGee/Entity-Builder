@@ -7,9 +7,6 @@
 
 :tomato: Laravel 代码生成器 [Online](https://googee.github.io/Entity-Builder/dist)
 
-可深度定制模板。
-
-
 ## 功能
 
 - 自定义逻辑层 (Controller, Model, Repository, 等等)
@@ -28,6 +25,14 @@
 
 ![Table](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/table.gif)
 
+根据数据库结构生成 Laravel Migration
+
+![Schema](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/schema.gif)
+
+添加数据验证规则
+
+![Validation](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/validation.gif)
+
 自动添加注释到 `Model`
 
 ![Model](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/model.png)
@@ -42,21 +47,6 @@
 1. 访问 http://localhost/dist/index.html
 1. 安装 PHP [package](https://github.com/GooGee/Entity)
 1. 点击 'Connect' 按钮
-
-
-## 快速开始
-
-如果只需要生成简单模板
-> 用这几个页面即可: 'Table', 'Model', 'File'
-
-如果想要定制模板
-> 关注 'Script' 和 'Template' 页  
-> 在 'Script' 中定义方法后，就可以在 'Template' 中调用  
-
-关系
-> 一个 `Entity` 包含很多 `File` 例如: UserController.php, UserRepository.php  
-> 一个 `File` 属于一个 `Layer`  
-> 每个 `Layer` 都有一个 `Script` 和一个 `Template`  
 
 
 ## 文档

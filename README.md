@@ -7,8 +7,6 @@
 
 :tomato: Laravel generator [Online](https://googee.github.io/Entity-Builder/dist)
 
-With deeply customizable template.
-
 [中文介绍](README.zh.md)
 
 
@@ -30,6 +28,14 @@ Create a Migration
 
 ![Table](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/table.gif)
 
+Convert database schema to Laravel Migration
+
+![Schema](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/schema.gif)
+
+Add validation rules
+
+![Validation](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/validation.gif)
+
 Add doc to `Model` automatically
 
 ![Model](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/model.png)
@@ -44,21 +50,6 @@ Only available in `local` environment!
 1. Visit http://localhost/dist/index.html
 1. Install the PHP [package](https://github.com/GooGee/Entity)
 1. Click 'Connect' button
-
-
-## Quick Start
-
-If you just want some templates
-> Stay at 'Table', 'Model', 'File' pages
-
-If you want to do some customization
-> Focus on 'Script' and 'Template' pages  
-> Define a function in a `Script`, then you can call it in a `Template`  
-
-Relation
-> An `Entity` includes many `File` eg: UserController.php, UserRepository.php  
-> A `File` belongs to a `Layer`  
-> Every `Layer` has a `Script` and a `Template`  
 
 
 ## Document
