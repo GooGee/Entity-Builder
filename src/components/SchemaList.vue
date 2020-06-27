@@ -2,9 +2,10 @@
     <table class="table">
         <caption>
             <h3 class="inline mr11px">DataBase Schema</h3>
-            <b-button @click="read" variant="outline-primary"> Read </b-button>
+            <b-button v-if="request" @click="read" variant="outline-primary"> Read </b-button>
+            <span v-else>not connected</span>
         </caption>
-        <tbody>
+        <tbody v-if="request">
             <tr>
                 <td>prefix {{ data.prefix }}</td>
             </tr>
@@ -14,7 +15,7 @@
                 </td>
             </tr>
         </tbody>
-        <tfoot>
+        <tfoot v-if="request">
             <tr>
                 <td>
                     <b-form-checkbox v-model="all" class="inline mr11px"> All </b-form-checkbox>
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-import { convert, getDB } from '../helpers/request.js'
+import { convert, getDB, request } from '../helpers/request.js'
 import { convertDB } from '../helpers/project.js'
 import builder from '../states/builder.js'
 
@@ -41,6 +42,7 @@ export default {
             loaded: false,
             all: true,
             skip: false,
+            request,
             data: {
                 prefix: '',
                 tables: [],

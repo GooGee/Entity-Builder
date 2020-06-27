@@ -26,7 +26,7 @@
             </tr>
         </PropertyList>
 
-        <SchemaList v-if="request"></SchemaList>
+        <SchemaList></SchemaList>
     </div>
 </template>
 
