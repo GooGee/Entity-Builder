@@ -7,7 +7,7 @@
         <template slot="header">
             <tr>
                 <th>Name</th>
-                <th>Type</th>
+                <th width="222px">Type</th>
                 <th width="111px">Length</th>
                 <th>Other</th>
             </tr>
