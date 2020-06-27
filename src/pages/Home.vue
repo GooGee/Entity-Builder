@@ -36,7 +36,7 @@ export default {
             version: process.env.VUE_APP_VERSION,
             builder,
             sidebar,
-            domain: 'http://localhost',
+            domain: window.location.origin,
         }
     },
     created() {
