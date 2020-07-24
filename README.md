@@ -5,7 +5,7 @@
 
 # Entity-Builder
 
-:tomato: Laravel generator [Online](https://googee.github.io/Entity-Builder/dist)
+:tomato: Laravel generator with GUI [Online](https://googee.github.io/Entity-Builder/dist)
 
 [中文介绍](README.zh.md)
 
@@ -19,24 +19,24 @@
 - Deploy PHP code online
 - Design table fields and indexes
 - Define model factories
-- Make field validation rules
+- Generate field validation rules
 
 
 ## Example
 
-Create a Migration
+### Create a Migration
 
 ![Table](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/table.gif)
 
-Convert database schema to Laravel Migration
+### Convert database schema to Laravel Migration
 
 ![Schema](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/schema.gif)
 
-Add validation rules
+### Add validation rules
 
 ![Validation](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/validation.gif)
 
-Add doc to `Model` automatically
+### Add doc to `Model` automatically
 
 ![Model](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/model.png)
 
