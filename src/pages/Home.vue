@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { connect } from '../helpers/request.js'
+import { connect, getErrorMessage } from '../helpers/request.js'
 import builder from '../states/builder.js'
 import { makePreset, makeProject, loadPreset, loadProject } from '../helpers/project.js'
 import sidebar from '../states/sidebar.js'
@@ -66,7 +66,8 @@ export default {
                     })
                     .catch(error => {
                         console.error(error)
-                        this.$bvToast.toast(error.message, {
+                        const message = getErrorMessage(error)
+                        this.$bvToast.toast(message, {
                             title: 'i',
                             variant: 'danger',
                             solid: true,

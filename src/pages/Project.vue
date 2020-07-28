@@ -34,7 +34,7 @@
 import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
 import SchemaList from '../components/SchemaList.vue'
-import { request, save } from '../helpers/request.js'
+import { request, save, getErrorMessage } from '../helpers/request.js'
 import * as zip from '../helpers/zip.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
@@ -96,7 +96,8 @@ export default {
                 })
                 .catch(error => {
                     console.error(error)
-                    this.$bvToast.toast(error.message, {
+                    const message = getErrorMessage(error)
+                    this.$bvToast.toast(message, {
                         title: 'i',
                         variant: 'danger',
                         solid: true,

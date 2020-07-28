@@ -3,7 +3,7 @@
         <caption>
             <h3 class="inline mr11px">DataBase Schema</h3>
             <b-button v-if="request" @click="read" variant="outline-primary"> Read </b-button>
-            <span v-else>not connected</span>
+            <span v-else>not connected to a server</span>
         </caption>
         <tbody v-if="request">
             <tr>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { convert, getDB, request } from '../helpers/request.js'
+import { convert, getDB, request, getErrorMessage } from '../helpers/request.js'
 import { convertDB } from '../helpers/project.js'
 import builder from '../states/builder.js'
 
@@ -72,7 +72,8 @@ export default {
                 })
                 .catch(error => {
                     console.error(error)
-                    this.$bvToast.toast(error.message, {
+                    const message = getErrorMessage(error)
+                    this.$bvToast.toast(message, {
                         title: 'i',
                         variant: 'danger',
                         solid: true,
