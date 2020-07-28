@@ -18,14 +18,30 @@ export function connect(domain) {
             return data
         },
         error => {
-            if (error.response) {
-                return Promise.reject(error.response.data)
-            }
+            request = null
             return Promise.reject(error)
         },
     )
 
     return load()
+}
+
+export function getErrorMessage(error) {
+    if ('string' === typeof error) {
+        return error
+    }
+
+    if (error.response) {
+        if (error.response.data.message) {
+            return error.response.data.message
+        }
+    }
+
+    if (error.message) {
+        return error.message
+    }
+
+    return 'Error'
 }
 
 export function getPreset() {
