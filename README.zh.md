@@ -18,22 +18,24 @@
 - 定义模型工厂
 - 添加数据验证规则
 
+![Tab](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/tab.png)
+
 
 ## 应用举例
 
-创建 Migration
+### 创建 Migration
 
 ![Table](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/table.gif)
 
-根据数据库结构生成 Laravel Migration
+### 根据数据库结构生成 Laravel Migration
 
 ![Schema](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/schema.gif)
 
-添加数据验证规则
+### 添加数据验证规则
 
 ![Validation](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/validation.gif)
 
-自动添加注释到 `Model`
+### 自动添加注释到 `Model`
 
 ![Model](https://github.com/GooGee/Entity-Builder/raw/gh-pages/image/model.png)
 
