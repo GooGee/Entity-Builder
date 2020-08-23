@@ -24,8 +24,8 @@
         <template slot="footer">
             <tr>
                 <td>
-                    <select @change="add($event.target.value)" class="form-control">
-                        <option selected="true" disabled="disabled"> ---- </option>
+                    <select v-model="selected" @change="add($event.target.value)" class="form-control">
+                        <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="entity in EntityList" :value="entity.name" :key="entity.name">
                             {{ entity.name }}
                         </option>
@@ -58,10 +58,14 @@ export default {
     data() {
         return {
             EntityList: builder.project.EntityManager.list,
+            selected: '',
         }
     },
     methods: {
         add(name) {
+            if (!name) {
+                return
+            }
             try {
                 const found = this.EntityList.find(item => item.name === name)
                 const relation = this.manager.link(found)
@@ -74,6 +78,7 @@ export default {
                     solid: true,
                 })
             }
+            this.selected = ''
         },
     },
 }
