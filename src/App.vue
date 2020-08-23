@@ -9,6 +9,7 @@
         </div>
         <div style="height: 33px;"></div>
 
+        <Top></Top>
         <ListDialogue></ListDialogue>
     </div>
 </template>
@@ -17,6 +18,7 @@
 import Bar from './components/Bar.vue'
 import SideBar from './components/SideBar.vue'
 import ListDialogue from './components/ListDialogue.vue'
+import Top from './components/Top.vue'
 
 export default {
     name: 'App',
@@ -24,6 +26,7 @@ export default {
         Bar,
         SideBar,
         ListDialogue,
+        Top,
     },
 }
 </script>
