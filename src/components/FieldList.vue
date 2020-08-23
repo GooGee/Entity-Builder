@@ -36,7 +36,7 @@
         <template slot="footer">
             <tr>
                 <td>
-                    <select @change="addCommonField($event.target.value)" class="form-control">
+                    <select v-model="selectedCommon" @change="addCommonField($event.target.value)" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="field in CommonFieldList" :value="field.name" :key="field.name">
                             {{ field.name }}
@@ -44,7 +44,11 @@
                     </select>
                 </td>
                 <td>
-                    <select @change="addSpecialField($event.target.value)" class="form-control">
+                    <select
+                        v-model="selectedSpecial"
+                        @change="addSpecialField($event.target.value)"
+                        class="form-control"
+                    >
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="field in SpecialFieldList" :value="field.name" :key="field.name">
                             {{ field.name }}
@@ -52,7 +56,7 @@
                     </select>
                 </td>
                 <td>
-                    <select @change="add($event.target.value, 'integer')" class="form-control">
+                    <select v-model="selectedId" @change="add($event.target.value, 'integer')" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="entity in EntityList" :key="entity.name">{{ entity.tableName }}_id</option>
                     </select>
@@ -90,6 +94,9 @@ export default {
             CommonFieldList: builder.project.PresetManager.find('FieldName').PropertyManager.list,
             SpecialFieldList: builder.project.PresetManager.find('FieldSpecial').PropertyManager.list,
             selected: '',
+            selectedId: '',
+            selectedCommon: '',
+            selectedSpecial: '',
         }
     },
     methods: {
@@ -103,6 +110,9 @@ export default {
             this.add(type, type)
         },
         add(name, type) {
+            if (!name) {
+                return
+            }
             try {
                 const field = this.manager.make(name, type)
                 this.manager.add(field)
@@ -114,8 +124,12 @@ export default {
                     solid: true,
                 })
             }
+            this.selectedId = ''
         },
         addSpecialField(name) {
+            if (!name) {
+                return
+            }
             try {
                 const found = this.SpecialFieldList.find(item => item.name === name)
                 const fff = this.manager.make(found.name, found.tag)
@@ -130,8 +144,13 @@ export default {
                     solid: true,
                 })
             }
+            this.selectedSpecial = ''
         },
         addCommonField(name) {
+            if (!name) {
+                return
+            }
+            this.selectedCommon = ''
             const found = this.CommonFieldList.find(item => item.name === name)
             this.add(found.name, found.tag)
         },
