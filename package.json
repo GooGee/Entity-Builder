@@ -10,6 +10,8 @@
   "dependencies": {
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
+    "ts-loader": "^8.0.5",
+    "typescript": "^3.9.7",
     "vue": "^2.6.11"
   },
   "devDependencies": {

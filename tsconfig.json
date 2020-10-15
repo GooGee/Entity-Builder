@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitReturns": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "es2015",
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "include": [
+        "./src/model/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
