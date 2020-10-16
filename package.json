@@ -14,7 +14,8 @@
     "strict-event-emitter-types": "^2.0.0",
     "ts-loader": "^8.0.5",
     "typescript": "^3.9.7",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.4.6"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.162",
