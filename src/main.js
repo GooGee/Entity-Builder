@@ -5,6 +5,7 @@ import router from './router.js'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './assets/style.css'
 
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
