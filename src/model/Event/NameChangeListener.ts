@@ -24,7 +24,7 @@ class NameChangeListener<T> {
     }
 
     emitBeforeNameChange(sender: T, name: string, old: string) {
-        this.ee.emit(EventEnum.AfterNameChange, sender, name, old)
+        this.ee.emit(EventEnum.BeforeNameChange, sender, name, old)
     }
 
     onAfterNameChange(callback: CallBack<T>) {
