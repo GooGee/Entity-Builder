@@ -14,6 +14,11 @@ export default new Router({
             component: require('@/view/Home').default,
         },
         {
+            path: '/preset',
+            name: 'preset',
+            component: require('@/view/PresetPage').default,
+        },
+        {
             path: '*',
             redirect: '/',
         },
