@@ -2,6 +2,36 @@
     display: inline-block;
 }
 
+.m11 {
+    margin: 11px;
+}
+
+.mb11 {
+    margin-bottom: 11px;
+}
+
+.ml11 {
+    margin-left: 11px;
+}
+
+.mlr11 {
+    margin-left: 11px;
+    margin-right: 11px;
+}
+
+.mr11 {
+    margin-right: 11px;
+}
+
+.mt11 {
+    margin-top: 11px;
+}
+
+.mtb11 {
+    margin-top: 11px;
+    margin-bottom: 11px;
+}
+
 .wa {
     width: auto;
 }
