@@ -14,6 +14,11 @@ export default new Router({
             component: require('@/view/Home').default,
         },
         {
+            path: '/layer',
+            name: 'layer',
+            component: require('@/view/LayerPage').default,
+        },
+        {
             path: '/preset',
             name: 'preset',
             component: require('@/view/PresetPage').default,
