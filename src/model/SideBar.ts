@@ -4,7 +4,7 @@ import UniqueList from './Base/UniqueList'
 export default class SideBar {
     readonly manager: UniqueList<UniqueItem> | null = null
     item: UniqueItem | null = null
-    search: string = ''
+    keyword: string = ''
 
     constructor(manager: UniqueList<UniqueItem>) {
         this.manager = manager
@@ -15,8 +15,8 @@ export default class SideBar {
             return []
         }
 
-        if (this.search) {
-            return this.manager.list.filter(item => item.name.includes(this.search))
+        if (this.keyword) {
+            return this.manager.list.filter(item => item.name.includes(this.keyword))
         }
         return this.manager.list
     }

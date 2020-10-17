@@ -6,7 +6,7 @@
         </div>
 
         <div class="mb11">
-            <b-form-input v-model="sidebar.search" placeholder="Search"></b-form-input>
+            <b-form-input v-model="sidebar.keyword" placeholder="Search"></b-form-input>
         </div>
 
         <div>
