@@ -7,6 +7,7 @@
             <tr>
                 <th @click="sort('name')" :aria-sort="sortText('name')">name</th>
                 <th @click="sort('value')" :aria-sort="sortText('value')">value</th>
+                <th>tag</th>
             </tr>
         </thead>
 
@@ -21,6 +22,9 @@
                 <td>
                     <b-form-input v-model="item.value"></b-form-input>
                 </td>
+                <td>
+                    <b-form-input v-model="item.tag"></b-form-input>
+                </td>
             </tr>
         </tbody>
 
@@ -29,6 +33,7 @@
                 <td>
                     <AddButton :manager="manager"></AddButton>
                 </td>
+                <td></td>
                 <td></td>
             </tr>
         </tfoot>
