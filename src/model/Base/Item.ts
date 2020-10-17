@@ -68,13 +68,13 @@ export default class Item {
         const me = this as IKeyValue
         const names = Object.getOwnPropertyNames(me)
         const result: IKeyValue = {}
+        this.includeList.forEach(name => {
+            result[name] = me[name]
+        })
         names.forEach(name => {
             if (this.mustIgnore(name)) {
                 return
             }
-            result[name] = me[name]
-        })
-        this.includeList.forEach(name => {
             result[name] = me[name]
         })
         return result
