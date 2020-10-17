@@ -59,13 +59,21 @@
                     <tr>
                         <td class="text-right">template</td>
                         <td>
-                            <b-form-textarea v-model="sss.sidebar.item.template" rows="11"></b-form-textarea>
+                            <b-form-textarea
+                                v-model="sss.sidebar.item.template"
+                                rows="11"
+                                spellcheck="false"
+                            ></b-form-textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="text-right">script</td>
                         <td>
-                            <b-form-textarea v-model="sss.sidebar.item.script" rows="11"></b-form-textarea>
+                            <b-form-textarea
+                                v-model="sss.sidebar.item.script"
+                                rows="11"
+                                spellcheck="false"
+                            ></b-form-textarea>
                         </td>
                     </tr>
                 </tbody>

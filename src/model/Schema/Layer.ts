@@ -20,7 +20,7 @@ export default class Layer extends UniqueItem {
     path: string = ''
     script: string = ''
     template: string = ''
-    readonly PropertyManager = new PropertyManager()
+    readonly propertyManager = new PropertyManager()
 
     getClassName(project: Project, entity: Entity) {
         const data = {
