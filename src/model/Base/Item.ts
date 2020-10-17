@@ -6,8 +6,8 @@ export default class Item {
     protected static IgnoreList: Array<string> = ['__ob__']
     protected static IncludeList: Array<string> = []
 
-    mustIgnore(name: string) {
-        return Object.getPrototypeOf(this).constructor.IgnoreList.includes(name)
+    get ignoreList(): Array<string> {
+        return Object.getPrototypeOf(this).constructor.IgnoreList
     }
 
     get includeList(): Array<string> {
@@ -16,16 +16,16 @@ export default class Item {
 
     load(source: Item) {
         const names = Object.getOwnPropertyNames(source)
+        const ignoreList = this.ignoreList
         names.forEach(name => {
+            if (ignoreList.includes(name)) {
+                return
+            }
             this.loadProperty(name, source)
         })
     }
 
     protected loadProperty(name: string, source: IKeyValue) {
-        if (this.mustIgnore(name)) {
-            return
-        }
-
         const descriptor = this.getDescriptor(name)
         if (descriptor) {
             if (descriptor.writable) {
@@ -71,8 +71,9 @@ export default class Item {
         this.includeList.forEach(name => {
             result[name] = me[name]
         })
+        const ignoreList = this.ignoreList
         names.forEach(name => {
-            if (this.mustIgnore(name)) {
+            if (ignoreList.includes(name)) {
                 return
             }
             result[name] = me[name]
