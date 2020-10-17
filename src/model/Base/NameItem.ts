@@ -3,6 +3,8 @@ import Item from './Item'
 
 export default class NameItem extends Item {
     protected _name: string
+    protected static IgnoreList: Array<string> = Item.IgnoreList.concat(['_name'])
+    protected static IncludeList: Array<string> = Item.IncludeList.concat(['name'])
 
     constructor(name: string) {
         super()
