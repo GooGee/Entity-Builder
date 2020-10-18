@@ -1,8 +1,8 @@
 import UniqueItem from '../Base/UniqueItem'
 import UniqueList from '../Base/UniqueList'
-import { PropertyManager } from './Property'
-import Project from './Project'
 import Entity from './Entity'
+import { PresetManager } from './Preset'
+import Project from './Project'
 import { exeText } from '../Text'
 
 export enum LayerEnum {
@@ -20,7 +20,7 @@ export default class Layer extends UniqueItem {
     path: string = ''
     script: string = ''
     template: string = ''
-    readonly propertyManager = new PropertyManager()
+    readonly dataManager = new PresetManager()
 
     getClassName(project: Project, entity: Entity) {
         const data = {
