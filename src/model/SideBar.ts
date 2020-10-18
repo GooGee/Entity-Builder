@@ -16,7 +16,8 @@ export default class SideBar {
         }
 
         if (this.keyword) {
-            return this.manager.list.filter(item => item.name.includes(this.keyword))
+            const re = new RegExp(this.keyword, 'i')
+            return this.manager.list.filter(item => item.name.search(re) > -1)
         }
         return this.manager.list
     }
