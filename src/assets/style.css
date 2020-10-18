@@ -1,3 +1,13 @@
+.drag-handle{
+    font-size: x-large;
+    cursor: all-scroll;
+    padding: 3px 11px;
+}
+
+.gray {
+    color: gray;
+}
+
 .inline {
     display: inline-block;
 }
@@ -30,6 +40,10 @@
 .mtb11 {
     margin-top: 11px;
     margin-bottom: 11px;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .wa {

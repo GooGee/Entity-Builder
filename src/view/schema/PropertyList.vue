@@ -11,9 +11,10 @@
             </tr>
         </thead>
 
-        <tbody>
+        <draggable v-model="manager.list" group="property" handle=".drag-handle" tag="tbody">
             <tr v-for="item in manager.list" :key="item.name">
                 <td>
+                    <span class="drag-handle"> ✥ </span>
                     <b-button-group>
                         <DeleteButton :manager="manager" :item="item"></DeleteButton>
                         <ChangeButton :item="item" name="name"></ChangeButton>
@@ -26,7 +27,7 @@
                     <b-form-input v-model="item.tag"></b-form-input>
                 </td>
             </tr>
-        </tbody>
+        </draggable>
 
         <tfoot>
             <tr v-if="mutable">
@@ -44,6 +45,7 @@
 import AddButton from '../button/AddButton.vue'
 import ChangeButton from '../button/ChangeButton.vue'
 import DeleteButton from '../button/DeleteButton.vue'
+import draggable from 'vuedraggable'
 
 export default {
     name: 'PropertyList',
@@ -51,6 +53,7 @@ export default {
         AddButton,
         ChangeButton,
         DeleteButton,
+        draggable,
     },
     props: {
         manager: {
