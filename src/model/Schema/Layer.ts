@@ -50,7 +50,10 @@ export default class Layer extends UniqueItem {
             entity,
             layer: this,
         }
-        return exeText(this.nsPattern, data)
+        const text = this.nsPattern.split('\\').join('/')
+        return exeText(text, data)
+            .split('/')
+            .join('\\')
     }
 }
 
