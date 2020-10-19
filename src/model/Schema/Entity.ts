@@ -34,6 +34,17 @@ export default class Entity extends UniqueItem {
 
         return ''
     }
+
+    get hasTimeStamp() {
+        const created_at = this.fieldManager.list.find(field => field.name === 'created_at')
+        if (created_at) {
+            const updated_at = this.fieldManager.list.find(field => field.name === 'updated_at')
+            if (updated_at) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 export class EntityManager extends UniqueList<Entity> {
