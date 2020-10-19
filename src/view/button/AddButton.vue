@@ -48,7 +48,9 @@ export default {
             if (value) {
                 try {
                     const item = this.manager.make(value)
-                    item.name = value
+                    if (this.name === '') {
+                        item.name = value
+                    }
                     this.manager.add(item)
                 } catch (error) {
                     this.$bvToast.toast(error.message, {
