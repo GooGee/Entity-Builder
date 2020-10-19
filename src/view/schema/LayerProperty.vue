@@ -35,7 +35,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="text-right">namespace</td>
+                <td class="text-right">name space</td>
                 <td>
                     <b-form-input v-model="item.nsPattern"></b-form-input>
                 </td>
