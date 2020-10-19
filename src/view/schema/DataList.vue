@@ -6,15 +6,17 @@
                 <AddButton :manager="manager"></AddButton>
             </div>
 
-            <div
-                v-for="one in manager.list"
-                :key="one.name"
-                @click="item = one"
-                :class="Object.is(item, one) ? 'active' : ''"
-                class="list-group-item list-group-item-action"
-            >
-                {{ one.name }}
-            </div>
+            <draggable v-model="manager.list" group="data">
+                <div
+                    v-for="one in manager.list"
+                    :key="one.name"
+                    @click="item = one"
+                    :class="Object.is(item, one) ? 'active' : ''"
+                    class="list-group-item list-group-item-action"
+                >
+                    ✥ {{ one.name }}
+                </div>
+            </draggable>
         </div>
 
         <div class="col-9">
@@ -33,6 +35,7 @@
 import AddButton from '../button/AddButton.vue'
 import ChangeButton from '../button/ChangeButton.vue'
 import DeleteButton from '../button/DeleteButton.vue'
+import draggable from 'vuedraggable'
 import PropertyList from './PropertyList.vue'
 
 export default {
@@ -41,6 +44,7 @@ export default {
         AddButton,
         ChangeButton,
         DeleteButton,
+        draggable,
         PropertyList,
     },
     data() {

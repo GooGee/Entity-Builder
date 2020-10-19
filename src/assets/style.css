@@ -1,7 +1,12 @@
-.drag-handle{
+.drag-handle {
     font-size: x-large;
     cursor: all-scroll;
     padding: 3px 11px;
+    color: lightgray;
+}
+
+.drag-handle:hover {
+    color: red;
 }
 
 .gray {

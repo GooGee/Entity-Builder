@@ -29,7 +29,7 @@
                 :class="Object.is(sidebar.item, item) ? 'active' : ''"
                 class="list-group-item list-group-item-action"
             >
-                {{ item.name }}
+                ✥ {{ item.name }}
             </div>
         </draggable>
     </div>
