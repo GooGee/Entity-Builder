@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import lodash from 'lodash'
 import Item from './Item'
 
 export default class NameItem extends Item {
@@ -20,10 +20,14 @@ export default class NameItem extends Item {
     }
 
     get camelCase() {
-        return _.upperFirst(_.camelCase(this.name))
+        return lodash.upperFirst(lodash.camelCase(this.name))
     }
 
     get snakeCase() {
-        return _.snakeCase(this.name)
+        return lodash.snakeCase(this.name)
+    }
+
+    get wavelCase() {
+        return lodash.camelCase(this.name)
     }
 }
