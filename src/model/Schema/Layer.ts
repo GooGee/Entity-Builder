@@ -30,6 +30,10 @@ export default class Layer extends UniqueItem {
         return exeText(this.classPattern, data)
     }
 
+    getData(name: string) {
+        return this.dataManager.find(name)
+    }
+
     getFileName(entity: Entity) {
         const data = {
             entity,

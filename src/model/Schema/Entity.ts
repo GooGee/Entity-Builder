@@ -19,6 +19,10 @@ export default class Entity extends UniqueItem {
         this.tableName = this.snakeCase
     }
 
+    getData(name: string) {
+        return this.dataManager.find(name)
+    }
+
     get primaryKey() {
         const field = this.fieldManager.incrementField
         if (field) {
