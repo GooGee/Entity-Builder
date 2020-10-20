@@ -37,8 +37,7 @@ export default class UniqueList<T extends UniqueItem> extends ItemList<T> {
 
     load(manager: UniqueList<T>) {
         manager.list.forEach(item => {
-            const one = item as any
-            const iii = this.make(one._name)
+            const iii = this.make(item.name)
             iii.load(item)
             this.add(iii)
         })
