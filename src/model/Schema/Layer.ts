@@ -42,6 +42,10 @@ export default class Layer extends UniqueItem {
         return this.getNameSpace(project, entity) + '\\' + this.getClassName(entity)
     }
 
+    getFullPath(project: Project, entity: Entity) {
+        return this.getPath(project, entity) + '/' + this.getFileName(entity)
+    }
+
     getNameSpace(project: Project, entity: Entity) {
         const data = {
             project,
