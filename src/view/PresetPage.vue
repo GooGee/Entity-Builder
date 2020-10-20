@@ -4,7 +4,7 @@
             <SideBar :sidebar="sss.sidebar" title="Preset"></SideBar>
         </div>
 
-        <div class="col-9">
+        <div v-if="sss.sidebar.item" class="col-9">
             <table class="table table-borderless">
                 <tbody>
                     <tr style="height: 71px;">
@@ -29,7 +29,7 @@
                 </tbody>
             </table>
 
-            <PropertyList v-if="sss.sidebar.item" :manager="sss.sidebar.item.propertyManager"></PropertyList>
+            <PropertyList :manager="sss.sidebar.item.propertyManager"></PropertyList>
         </div>
     </div>
 </template>
