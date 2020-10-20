@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import sss from '../../state.js'
+import sss from '@/state.js'
 
 export default {
     name: 'ListDialogue',
