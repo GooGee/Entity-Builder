@@ -34,7 +34,7 @@ export default class ListDialogue extends Dialogue {
     select(item: Item) {
         this.selected = item
         if (this.callback) {
-            this.callback(true)
+            this.callback(true, item)
         }
     }
 }

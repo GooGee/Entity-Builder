@@ -1,5 +1,6 @@
 import Project from './Schema/Project'
 import SideBar from './SideBar'
+import InputDialogue from './Dialogue/InputDialogue'
 import ListDialogue from './Dialogue/ListDialogue'
 import { render, run } from './Text'
 import Layer from './Schema/Layer'
@@ -10,6 +11,7 @@ export default class State {
     project: Project | null = null
     sidebar: SideBar | null = null
 
+    readonly inputDialogue = new InputDialogue()
     readonly listDialogue = new ListDialogue()
 
     private sidebarEntity: SideBar | null = null
