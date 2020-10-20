@@ -2,6 +2,7 @@ import UniqueItem from '../Base/UniqueItem'
 import UniqueList from '../Base/UniqueList'
 import { RuleManager } from './Rule'
 import Seed from './Seed'
+import listener from '../Event/ItemDeleteListener'
 
 export default class Field extends UniqueItem {
     allowNull: boolean = false
@@ -38,6 +39,12 @@ export class FieldManager extends UniqueList<Field> {
     make(name: string, type: string) {
         const field = new Field(name, type)
         return field
+    }
+
+    remove(item: Field) {
+        listener.emitBeforeFieldDelete(this, item)
+        super.remove(item)
+        listener.emitAfterFieldDelete(this, item)
     }
 
     get hasIncrement() {
