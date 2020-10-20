@@ -16,7 +16,7 @@
                 <td>{{ layer.getClassName(entity) }}</td>
                 <td>
                     <b-button-group class="mr11">
-                        <b-button @click="add" variant="outline-primary"> ▼ </b-button>
+                        <WriteButton :entity="entity" :layer="layer"></WriteButton>
                         <RenderButton :entity="entity" :layer="layer"></RenderButton>
                     </b-button-group>
 
@@ -29,11 +29,13 @@
 
 <script>
 import RenderButton from '../button/RenderButton.vue'
+import WriteButton from '../button/WriteButton.vue'
 
 export default {
     name: 'FileList',
     components: {
         RenderButton,
+        WriteButton,
     },
     props: {
         layerxx: {
@@ -47,11 +49,6 @@ export default {
         entity: {
             type: Object,
             required: true,
-        },
-    },
-    methods: {
-        add() {
-            //
         },
     },
 }

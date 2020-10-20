@@ -13,7 +13,8 @@
             <tr>
                 <td class="text-right">single</td>
                 <td>
-                    <b-form-checkbox v-model="item.single" switch></b-form-checkbox>
+                    <b-form-checkbox v-model="item.single" switch class="mr11 wa inline"></b-form-checkbox>
+                    <WriteButton v-if="item.single" :layer="item"></WriteButton>
                 </td>
             </tr>
             <tr>
@@ -45,8 +46,13 @@
 </template>
 
 <script>
+import WriteButton from '../button/WriteButton.vue'
+
 export default {
     name: 'LayerProperty',
+    components: {
+        WriteButton,
+    },
     props: {
         item: {
             type: Object,
