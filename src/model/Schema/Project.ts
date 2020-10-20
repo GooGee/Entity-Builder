@@ -8,6 +8,9 @@ const Version = 1
 export default class Project extends NameItem {
     version = Version
     ns = 'App'
+    dataVersion = '1.0'
+    description: string = ''
+    script: string = ''
 
     readonly layerManager = new LayerManager()
     readonly presetManager = new PresetManager()

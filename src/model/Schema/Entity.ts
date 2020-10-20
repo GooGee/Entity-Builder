@@ -7,6 +7,7 @@ import { RelationManager } from './Relation'
 
 export default class Entity extends UniqueItem {
     description: string = ''
+    script: string = ''
     tableName: string = ''
     readonly fieldManager = new FieldManager()
     readonly indexManager = new IndexManager()

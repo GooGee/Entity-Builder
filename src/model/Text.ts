@@ -37,6 +37,8 @@ export function render(template: string, data: object) {
 }
 
 export function run(code: string, data: object) {
-    const fff = new Function('return ' + code)()
-    fff(data)
+    if (code) {
+        const fff = new Function('return ' + code)()
+        fff(data)
+    }
 }
