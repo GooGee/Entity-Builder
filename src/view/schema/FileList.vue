@@ -17,7 +17,7 @@
                 <td>
                     <b-button-group class="mr11">
                         <b-button @click="add" variant="outline-primary"> ▼ </b-button>
-                        <b-button @click="render(layer)" variant="outline-primary"> ▶ </b-button>
+                        <RenderButton :entity="entity" :layer="layer"></RenderButton>
                     </b-button-group>
 
                     <span>{{ layer.getFileName(entity) }}</span>
@@ -28,10 +28,13 @@
 </template>
 
 <script>
-import sss from '@/state.js'
+import RenderButton from '../button/RenderButton.vue'
 
 export default {
     name: 'FileList',
+    components: {
+        RenderButton,
+    },
     props: {
         layerxx: {
             type: Array,
@@ -49,10 +52,6 @@ export default {
     methods: {
         add() {
             //
-        },
-        render(layer) {
-            const text = sss.render(layer, this.entity)
-            sss.inputDialogue.showText(layer.name, text)
         },
     },
 }
