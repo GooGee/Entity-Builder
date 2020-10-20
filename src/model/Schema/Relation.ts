@@ -23,7 +23,7 @@ export class RelationManager extends UniqueList<Relation> {
         const relation = this.make(entity.snakeCase)
         const model = project.layerManager.find(LayerEnum.Model)
         if (model) {
-            const name = model.getClassName(project, entity)
+            const name = model.getClassName(entity)
             relation.parameter = `${name}::class`
             return relation
         }

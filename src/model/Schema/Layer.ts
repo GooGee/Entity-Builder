@@ -17,23 +17,21 @@ export default class Layer extends UniqueItem {
     classPattern: string = ''
     filePattern: string = ''
     nsPattern: string = ''
-    path: string = ''
+    pathPattern: string = ''
     script: string = ''
     template: string = ''
     readonly dataManager = new PresetManager()
 
-    getClassName(project: Project, entity: Entity) {
+    getClassName(entity: Entity) {
         const data = {
-            project,
             entity,
             layer: this,
         }
         return exeText(this.classPattern, data)
     }
 
-    getFileName(project: Project, entity: Entity) {
+    getFileName(entity: Entity) {
         const data = {
-            project,
             entity,
             layer: this,
         }
@@ -41,7 +39,7 @@ export default class Layer extends UniqueItem {
     }
 
     getFullName(project: Project, entity: Entity) {
-        return this.getNameSpace(project, entity) + '\\' + this.getClassName(project, entity)
+        return this.getNameSpace(project, entity) + '\\' + this.getClassName(entity)
     }
 
     getNameSpace(project: Project, entity: Entity) {
@@ -54,6 +52,15 @@ export default class Layer extends UniqueItem {
         return exeText(text, data)
             .split('/')
             .join('\\')
+    }
+
+    getPath(project: Project, entity: Entity) {
+        const data = {
+            project,
+            entity,
+            layer: this,
+        }
+        return exeText(this.pathPattern, data)
     }
 }
 

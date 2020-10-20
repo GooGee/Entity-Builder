@@ -43,7 +43,7 @@
             <tr>
                 <td class="text-right">path</td>
                 <td>
-                    <b-form-input v-model="item.path"></b-form-input>
+                    <b-form-input v-model="item.pathPattern"></b-form-input>
                 </td>
             </tr>
         </tbody>
