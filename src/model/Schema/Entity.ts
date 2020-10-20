@@ -4,7 +4,8 @@ import { FieldManager } from './Field'
 import { IndexManager } from './Index'
 import { PresetManager } from './Preset'
 import { RelationManager } from './Relation'
-import listener from '../Event/NameChangeListener'
+import ncListener from '../Event/NameChangeListener'
+import idListener from '../Event/ItemDeleteListener'
 
 export default class Entity extends UniqueItem {
     description: string = ''
@@ -20,12 +21,23 @@ export default class Entity extends UniqueItem {
         this.name = this.camelCase
         this.tableName = this.snakeCase
 
-        listener.onAfterNameChange((sender, name, old) => {
+        ncListener.onAfterNameChange((sender, name, old) => {
             if (this.fieldManager.list.includes(sender as any)) {
                 this.indexManager.list.forEach(index => {
                     const found = index.fieldManager.find(old)
                     if (found) {
                         found.name = name
+                    }
+                })
+            }
+        })
+
+        idListener.onAfterFieldDelete((sender, item) => {
+            if (Object.is(sender, this.fieldManager)) {
+                this.indexManager.list.forEach(index => {
+                    const found = index.fieldManager.find(item.name)
+                    if (found) {
+                        index.fieldManager.remove(found)
                     }
                 })
             }
