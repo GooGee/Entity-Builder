@@ -17,12 +17,6 @@
                 </td>
             </tr>
             <tr>
-                <td class="text-right">description</td>
-                <td>
-                    <b-form-input v-model="item.description"></b-form-input>
-                </td>
-            </tr>
-            <tr>
                 <td class="text-right">class name</td>
                 <td>
                     <b-form-input v-model="item.classPattern"></b-form-input>

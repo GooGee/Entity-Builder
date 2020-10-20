@@ -5,18 +5,31 @@
         </div>
 
         <div class="col-9">
-            <PropertyList v-if="sss.sidebar.item" :manager="sss.sidebar.item.propertyManager">
-                <h2 v-if="sss.sidebar.item.original">{{ sss.sidebar.item.name }}</h2>
-                <b-button-group v-else class="mb11">
-                    <DeleteButton
-                        :manager="sss.sidebar.manager"
-                        :item="sss.sidebar.item"
-                        @deleted="sss.sidebar.item = null"
-                    ></DeleteButton>
-                    <ChangeButton :item="sss.sidebar.item" name="name"></ChangeButton>
-                </b-button-group>
-                <b-form-input v-model="sss.sidebar.item.description" placeholder="description"></b-form-input>
-            </PropertyList>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr style="height: 71px;">
+                        <td style="width: 333px;">
+                            <h2 v-if="sss.sidebar.item.original">{{ sss.sidebar.item.name }}</h2>
+                            <b-button-group v-else>
+                                <DeleteButton
+                                    :manager="sss.sidebar.manager"
+                                    :item="sss.sidebar.item"
+                                    @deleted="sss.sidebar.item = null"
+                                ></DeleteButton>
+                                <ChangeButton :item="sss.sidebar.item" name="name"></ChangeButton>
+                            </b-button-group>
+                        </td>
+                        <td>
+                            <b-form-input
+                                v-model="sss.sidebar.item.description"
+                                placeholder="description"
+                            ></b-form-input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <PropertyList v-if="sss.sidebar.item" :manager="sss.sidebar.item.propertyManager"></PropertyList>
         </div>
     </div>
 </template>
