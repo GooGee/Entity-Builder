@@ -25,10 +25,10 @@ export class IndexManager extends ItemList<Index> {
     }
 
     get primaryIndex() {
-        return this.list.find(index => index.type == 'primary')
+        return this.list.find(index => index.type === 'primary')
     }
 
     get uniqueIndexList() {
-        return this.list.filter(index => index.type == 'unique')
+        return this.list.filter(index => index.type === 'unique')
     }
 }

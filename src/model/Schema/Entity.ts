@@ -4,6 +4,7 @@ import { FieldManager } from './Field'
 import { IndexManager } from './Index'
 import { PresetManager } from './Preset'
 import { RelationManager } from './Relation'
+import listener from '../Event/NameChangeListener'
 
 export default class Entity extends UniqueItem {
     description: string = ''
@@ -18,6 +19,17 @@ export default class Entity extends UniqueItem {
         super(name)
         this.name = this.camelCase
         this.tableName = this.snakeCase
+
+        listener.onAfterNameChange((sender, name, old) => {
+            if (this.fieldManager.list.includes(sender as any)) {
+                this.indexManager.list.forEach(index => {
+                    const found = index.fieldManager.find(old)
+                    if (found) {
+                        found.name = name
+                    }
+                })
+            }
+        })
     }
 
     getData(name: string) {
@@ -32,7 +44,7 @@ export default class Entity extends UniqueItem {
 
         const index = this.indexManager.primaryIndex
         if (index) {
-            if (index.fieldManager.list.length == 1) {
+            if (index.fieldManager.list.length === 1) {
                 return index.fieldManager.list[0].name
             }
         }
