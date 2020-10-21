@@ -3,6 +3,9 @@ import nunjucks from 'nunjucks'
 nunjucks.configure({ autoescape: false })
 
 export function addQuote(text: any, quote: string = "'") {
+    if (hasQuote(text)) {
+        return text
+    }
     return `${quote}${text}${quote}`
 }
 
@@ -14,10 +17,13 @@ export function exeText(text: string, data: Object): string {
 
 export function hasQuote(text: any) {
     if (typeof text === 'string') {
-        if (text.match(/^".*"$/)) {
+        if (text.length < 2) {
+            return false
+        }
+        if (text[0] === "'" && text[text.length - 1] === "'") {
             return true
         }
-        if (text.match(/^'.*'$/)) {
+        if (text[0] === '"' && text[text.length - 1] === '"') {
             return true
         }
     }
