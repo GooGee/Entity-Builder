@@ -21,29 +21,13 @@ export default {
             default: 'name',
         },
     },
-    data() {
-        return {
-            index: 0,
-        }
-    },
-    created() {
-        if (this.name) {
-            return
-        }
-
-        this.manager.list.forEach(item => {
-            this.index += 1
-            item.name = 'key' + this.index
-        })
-    },
     methods: {
         add() {
-            let value = ''
+            let value = this.value
             if (this.name) {
                 value = prompt(`Please input the ${this.name}`, this.value)
             } else {
-                this.index += 1
-                value = 'key' + this.index
+                value = Math.random()
             }
             if (value) {
                 try {
