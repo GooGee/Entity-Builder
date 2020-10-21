@@ -12,7 +12,7 @@
         </thead>
 
         <tbody>
-            <tr v-for="(index, key) in manager.list" :key="key">
+            <tr v-for="index in manager.list" :key="index.name">
                 <td>
                     <b-button-group>
                         <DeleteButton :manager="manager" :item="index"></DeleteButton>

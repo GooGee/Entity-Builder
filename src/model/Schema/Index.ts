@@ -1,5 +1,3 @@
-import Item from '../Base/Item'
-import ItemList from '../Base/ItemList'
 import UniqueItem from '../Base/UniqueItem'
 import UniqueList from '../Base/UniqueList'
 
@@ -9,26 +7,26 @@ export enum IndexTypeEnum {
     unique = 'unique',
 }
 
-export default class Index extends Item {
+export default class Index extends UniqueItem {
     type: IndexTypeEnum
     readonly fieldManager = new UniqueList(UniqueItem)
 
-    constructor(type: IndexTypeEnum = IndexTypeEnum.index) {
-        super()
+    constructor(name: string, type: IndexTypeEnum = IndexTypeEnum.index) {
+        super(name)
         this.type = type
     }
 }
 
-export class IndexManager extends ItemList<Index> {
+export class IndexManager extends UniqueList<Index> {
     constructor() {
         super(Index)
     }
 
     get primaryIndex() {
-        return this.list.find(index => index.type === 'primary')
+        return this.list.find((index) => index.type === 'primary')
     }
 
     get uniqueIndexList() {
-        return this.list.filter(index => index.type === 'unique')
+        return this.list.filter((index) => index.type === 'unique')
     }
 }
