@@ -1,7 +1,8 @@
 <template>
     <table id="validation" class="table b-table b-table-caption-top">
         <caption>
-            <h3>Validation</h3>
+            <h3 class="inline mr11">Validation</h3>
+            <span>validate request</span>
         </caption>
         <thead>
             <tr>

@@ -1,7 +1,8 @@
 <template>
     <table class="table b-table b-table-caption-top">
         <caption>
-            <h3>File</h3>
+            <h3 class="inline mr11">File</h3>
+            <span>generate PHP file</span>
         </caption>
         <thead>
             <tr>

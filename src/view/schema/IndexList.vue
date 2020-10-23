@@ -1,7 +1,8 @@
 <template>
     <table class="table b-table b-table-caption-top">
         <caption>
-            <h3>Index</h3>
+            <h3 class="inline mr11">Index</h3>
+            <span>database table index</span>
         </caption>
         <thead>
             <tr>

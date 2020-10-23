@@ -1,7 +1,8 @@
 <template>
     <table class="table b-table b-table-caption-top">
         <caption>
-            <h3>Faker</h3>
+            <h3 class="inline mr11">Faker</h3>
+            <a href="https://github.com/fzaninotto/Faker" target="_blank">GitHub</a>
         </caption>
         <thead>
             <tr>

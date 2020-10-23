@@ -1,27 +1,28 @@
 <template>
     <table class="table b-table b-table-caption-top">
         <caption>
-            <h3>Cast</h3>
+            <h3 class="inline mr11">Cast</h3>
+            <span>cast database type to PHP type (e.g. timestamp to Carbon)</span>
         </caption>
         <thead>
             <tr>
-                <th width="120px">Field</th>
-                <th width="120px">Type</th>
+                <th width="222px" class="text-right">Field</th>
                 <th width="66px">Fillable</th>
                 <th width="66px">Hidden</th>
+                <th width="120px">Type</th>
                 <th>Cast</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="field in manager.list" :key="field.name">
-                <td>{{ field.name }}</td>
-                <td>{{ field.type }}</td>
+                <td class="text-right">{{ field.name }}</td>
                 <td>
                     <b-form-checkbox v-model="field.fillable"></b-form-checkbox>
                 </td>
                 <td>
                     <b-form-checkbox v-model="field.hidden"></b-form-checkbox>
                 </td>
+                <td>{{ field.type }}</td>
                 <td>
                     <b-button-group>
                         <b-button @click="select(field)" variant="outline-primary"> {{ plus(field) }} </b-button>

@@ -1,7 +1,8 @@
 <template>
     <table class="table b-table b-table-caption-top">
         <caption>
-            <h3>Field</h3>
+            <h3 class="inline mr11">Field</h3>
+            <span>database table field</span>
         </caption>
         <thead>
             <tr>

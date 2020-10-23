@@ -1,7 +1,8 @@
 <template>
     <table class="table b-table b-table-caption-top">
         <caption>
-            <h3>Relation</h3>
+            <h3 class="inline mr11">Relation</h3>
+            <span>model relationship</span>
         </caption>
         <thead>
             <tr>
