@@ -10,6 +10,7 @@
             </tr>
         </thead>
         <tbody>
+            <slot></slot>
             <tr>
                 <td class="text-right">single</td>
                 <td>
@@ -36,9 +37,15 @@
                 </td>
             </tr>
             <tr>
-                <td class="text-right">path</td>
+                <td class="text-right">pathPattern</td>
                 <td>
                     <b-form-input v-model="item.pathPattern"></b-form-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">description</td>
+                <td>
+                    <b-form-textarea v-model="item.description" rows="11"></b-form-textarea>
                 </td>
             </tr>
         </tbody>

@@ -5,30 +5,7 @@
         </div>
 
         <div v-if="sss.sidebar.item" class="col-9">
-            <table class="table table-borderless">
-                <tbody>
-                    <tr style="height: 71px;">
-                        <td style="width: 333px;">
-                            <b-button-group>
-                                <DeleteButton
-                                    :manager="sss.sidebar.manager"
-                                    :item="sss.sidebar.item"
-                                    @deleted="sss.sidebar.item = null"
-                                ></DeleteButton>
-                                <ChangeButton :item="sss.sidebar.item" name="name"></ChangeButton>
-                            </b-button-group>
-                        </td>
-                        <td>
-                            <b-form-input
-                                v-model="sss.sidebar.item.description"
-                                placeholder="description"
-                            ></b-form-input>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <b-nav tabs>
+            <b-nav tabs class="mt11">
                 <b-nav-item @click="tab = 'File'" :active="tab === 'File'"> File </b-nav-item>
                 <b-nav-item @click="tab = 'Field'" :active="tab === 'Field'"> Field </b-nav-item>
                 <b-nav-item @click="tab = 'Index'" :active="tab === 'Index'"> Index </b-nav-item>
@@ -57,7 +34,21 @@
 
             <Faker v-if="tab === 'Faker'"></Faker>
 
-            <EntityProperty v-if="tab === 'Property'" :item="sss.sidebar.item"></EntityProperty>
+            <EntityProperty v-if="tab === 'Property'" :item="sss.sidebar.item">
+                <tr>
+                    <td class="text-right">name</td>
+                    <td>
+                        <b-button-group>
+                            <DeleteButton
+                                :manager="sss.sidebar.manager"
+                                :item="sss.sidebar.item"
+                                @deleted="sss.sidebar.item = null"
+                            ></DeleteButton>
+                            <ChangeButton :item="sss.sidebar.item" name="name"></ChangeButton>
+                        </b-button-group>
+                    </td>
+                </tr>
+            </EntityProperty>
 
             <RelationList v-if="tab === 'Relation'"></RelationList>
 
@@ -67,10 +58,10 @@
 </template>
 
 <script>
+import CastList from './schema/CastList.vue'
 import ChangeButton from './button/ChangeButton.vue'
 import DataList from './schema/DataList.vue'
 import DeleteButton from './button/DeleteButton.vue'
-import CastList from './schema/CastList.vue'
 import Faker from './schema/Faker.vue'
 import FieldList from './schema/FieldList.vue'
 import FileList from './schema/FileList.vue'
@@ -84,10 +75,10 @@ import sss from '../state.js'
 export default {
     name: 'EntityPage',
     components: {
+        CastList,
         ChangeButton,
         DataList,
         DeleteButton,
-        CastList,
         Faker,
         FieldList,
         FileList,

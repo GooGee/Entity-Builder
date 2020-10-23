@@ -5,32 +5,7 @@
         </div>
 
         <div v-if="sss.sidebar.item" class="col-9">
-            <table class="table table-borderless">
-                <tbody>
-                    <tr style="height: 71px;">
-                        <td style="width: 333px;">
-                            <h2 v-if="sss.sidebar.item.original">{{ sss.sidebar.item.name }}</h2>
-                            <b-button-group v-else>
-                                <DeleteButton
-                                    :manager="sss.sidebar.manager"
-                                    :item="sss.sidebar.item"
-                                    @deleted="sss.sidebar.item = null"
-                                ></DeleteButton>
-                                <ChangeButton :item="sss.sidebar.item" name="name"></ChangeButton>
-                            </b-button-group>
-                        </td>
-                        <td>
-                            <b-form-input
-                                v-model="sss.sidebar.item.description"
-                                placeholder="description"
-                                class="inline"
-                            ></b-form-input>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <b-nav tabs>
+            <b-nav tabs class="mt11">
                 <b-nav-item @click="tab = 'Property'" :active="tab === 'Property'"> Property </b-nav-item>
                 <b-nav-item @click="tab = 'Script'" :active="tab === 'Script'"> Script </b-nav-item>
                 <b-nav-item @click="tab = 'Template'" :active="tab === 'Template'"> Template </b-nav-item>
@@ -39,7 +14,22 @@
 
             <DataList v-if="tab === 'Data'" :manager="sss.sidebar.item.dataManager"></DataList>
 
-            <LayerProperty v-if="tab === 'Property'" :item="sss.sidebar.item"></LayerProperty>
+            <LayerProperty v-if="tab === 'Property'" :item="sss.sidebar.item">
+                <tr>
+                    <td class="text-right">name</td>
+                    <td>
+                        <span v-if="sss.sidebar.item.original">{{ sss.sidebar.item.name }}</span>
+                        <b-button-group v-else>
+                            <DeleteButton
+                                :manager="sss.sidebar.manager"
+                                :item="sss.sidebar.item"
+                                @deleted="sss.sidebar.item = null"
+                            ></DeleteButton>
+                            <ChangeButton :item="sss.sidebar.item" name="name"></ChangeButton>
+                        </b-button-group>
+                    </td>
+                </tr>
+            </LayerProperty>
 
             <Script v-if="tab === 'Script'" :item="sss.sidebar.item"></Script>
 
