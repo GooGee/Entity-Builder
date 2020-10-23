@@ -3,7 +3,7 @@ import { EntityManager } from './Entity'
 import { LayerManager } from './Layer'
 import { PresetManager } from './Preset'
 
-const Version = 1
+const Version = 12
 
 export default class Project extends NameItem {
     version = Version
@@ -12,17 +12,14 @@ export default class Project extends NameItem {
     description: string = ''
     script: string = ''
 
-    readonly layerManager = new LayerManager()
-    readonly presetManager = new PresetManager()
-    /**
-     * must load after LayerManager
-     */
-    readonly entityManager = new EntityManager()
-
     validationScript: string = ''
 
+    readonly entityManager = new EntityManager()
+    readonly layerManager = new LayerManager()
+    readonly presetManager = new PresetManager()
+
     get fileName() {
-        return 'laravel-generator.json'
+        return this.name + '.json'
     }
 
     getEntity(name: string) {
