@@ -1,8 +1,9 @@
 .drag-handle {
     font-size: x-large;
     cursor: all-scroll;
-    padding: 3px 11px;
+    padding: 0 11px;
     color: lightgray;
+    vertical-align: middle;
 }
 
 .drag-handle:hover {
@@ -15,6 +16,10 @@
 
 .inline {
     display: inline-block;
+}
+
+.m0 {
+    margin: 0;
 }
 
 .m11 {
@@ -47,8 +52,16 @@
     margin-bottom: 11px;
 }
 
+.p0 {
+    padding: 0;
+}
+
 .pointer {
     cursor: pointer;
+}
+
+.red {
+    color: red;
 }
 
 .wa {

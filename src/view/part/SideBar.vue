@@ -9,7 +9,7 @@
             <b-form-input v-model="sidebar.keyword" placeholder="Search"></b-form-input>
         </div>
 
-        <div v-if="sidebar.keyword">
+        <div v-if="sidebar.keyword" class="list-group">
             <div
                 v-for="item in sidebar.list"
                 :key="item.name"
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <draggable v-else v-model="sidebar.manager.list" group="sidebar">
+        <draggable v-else v-model="sidebar.manager.list" group="sidebar" class="list-group">
             <div
                 v-for="item in sidebar.manager.list"
                 :key="item.name"

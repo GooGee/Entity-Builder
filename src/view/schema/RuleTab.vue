@@ -45,7 +45,7 @@
         <template v-else>
             <div v-if="manager.list.length === 0" @click="editing = true" class="pointer">....</div>
 
-            <ul v-else @click="editing = true" class="list-unstyled">
+            <ul v-else @click="editing = true" class="list-unstyled pointer">
                 <li v-for="rule in manager.list" :key="rule.name">
                     {{ rule.value ? `${rule.name}:${rule.value}` : rule.name }}
                 </li>
