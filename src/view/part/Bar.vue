@@ -1,5 +1,5 @@
 <template>
-    <b-navbar id="bar">
+    <b-navbar id="bar" type="dark" variant="primary">
         <div class="container">
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-
 export default {
     name: 'Bar',
     props: {
@@ -29,3 +28,27 @@ export default {
     },
 }
 </script>
+
+<style>
+#bar.navbar {
+    padding: 0;
+}
+
+#bar a.nav-link.active,
+#bar a.nav-link:hover {
+    color: white;
+    background-color: #08f;
+}
+
+#bar a.nav-link.active {
+    font-weight: bolder;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#bar a.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+</style>
