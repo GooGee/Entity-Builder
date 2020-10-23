@@ -7,8 +7,8 @@
         <thead>
             <tr>
                 <th>Layer</th>
-                <th>Class</th>
-                <th>File</th>
+                <th>Class name</th>
+                <th>File name</th>
             </tr>
         </thead>
         <tbody>

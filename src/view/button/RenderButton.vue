@@ -20,7 +20,7 @@ export default {
     methods: {
         render() {
             try {
-                const title = this.layer.getFullPath(sss.project, this.entity) ?? this.layer.name
+                const title = this.layer.getFilePath(sss.project, this.entity) ?? this.layer.name
                 const text = sss.render(this.layer, this.entity)
                 sss.inputDialogue.showText(title, text)
             } catch (error) {

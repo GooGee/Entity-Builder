@@ -42,12 +42,12 @@ export default class Layer extends UniqueItem {
         return exeText(this.filePattern, data)
     }
 
-    getFullName(project: Project, entity: Entity) {
-        return this.getNameSpace(project, entity) + '\\' + this.getClassName(entity)
+    getFilePath(project: Project, entity: Entity) {
+        return this.getPath(project, entity) + '/' + this.getFileName(entity)
     }
 
-    getFullPath(project: Project, entity: Entity) {
-        return this.getPath(project, entity) + '/' + this.getFileName(entity)
+    getFullName(project: Project, entity: Entity) {
+        return this.getNameSpace(project, entity) + '\\' + this.getClassName(entity)
     }
 
     getNameSpace(project: Project, entity: Entity) {

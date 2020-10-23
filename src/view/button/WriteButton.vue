@@ -29,7 +29,7 @@ export default {
                     }
                     entity = sss.project.entityManager.make(name)
                 }
-                const file = this.layer.getFullPath(sss.project, entity)
+                const file = this.layer.getFilePath(sss.project, entity)
                 // const text = sss.render(this.layer, this.entity)
                 console.log(file)
                 // console.log(text)
