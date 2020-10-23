@@ -5,31 +5,22 @@
         </div>
 
         <div v-if="sss.sidebar.item" class="col-9">
-            <table class="table table-borderless">
-                <tbody>
-                    <tr style="height: 71px;">
-                        <td style="width: 333px;">
-                            <h2 v-if="sss.sidebar.item.original">{{ sss.sidebar.item.name }}</h2>
-                            <b-button-group v-else>
-                                <DeleteButton
-                                    :manager="sss.sidebar.manager"
-                                    :item="sss.sidebar.item"
-                                    @deleted="sss.sidebar.item = null"
-                                ></DeleteButton>
-                                <ChangeButton :item="sss.sidebar.item" name="name"></ChangeButton>
-                            </b-button-group>
-                        </td>
-                        <td>
-                            <b-form-input
-                                v-model="sss.sidebar.item.description"
-                                placeholder="description"
-                            ></b-form-input>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <PropertyList :manager="sss.sidebar.item.propertyManager"></PropertyList>
+            <PropertyList :manager="sss.sidebar.item.propertyManager">
+                <div>
+                    <h2 v-if="sss.sidebar.item.original">{{ sss.sidebar.item.name }}</h2>
+                    <b-button-group v-else>
+                        <DeleteButton
+                            :manager="sss.sidebar.manager"
+                            :item="sss.sidebar.item"
+                            @deleted="sss.sidebar.item = null"
+                        ></DeleteButton>
+                        <ChangeButton :item="sss.sidebar.item" name="name"></ChangeButton>
+                    </b-button-group>
+                </div>
+                <div>
+                    <b-form-input v-model="sss.sidebar.item.description" placeholder="description"></b-form-input>
+                </div>
+            </PropertyList>
         </div>
     </div>
 </template>
