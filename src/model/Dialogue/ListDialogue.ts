@@ -1,4 +1,5 @@
 import Dialogue from './Dialogue'
+import { filter } from '../Text'
 import Item from '../Base/Item'
 import UniqueItem from '../Base/UniqueItem'
 
@@ -10,8 +11,7 @@ export default class ListDialogue extends Dialogue {
 
     get list() {
         if (this.keyword) {
-            const re = new RegExp(this.keyword, 'i')
-            return this.source.filter(item => item.name.search(re) > -1)
+            return filter(this.keyword, this.source)
         }
 
         return this.source

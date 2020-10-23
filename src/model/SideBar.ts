@@ -1,3 +1,4 @@
+import { filter } from './Text'
 import UniqueItem from './Base/UniqueItem'
 import UniqueList from './Base/UniqueList'
 
@@ -16,8 +17,7 @@ export default class SideBar {
         }
 
         if (this.keyword) {
-            const re = new RegExp(this.keyword, 'i')
-            return this.manager.list.filter(item => item.name.search(re) > -1)
+            return filter(this.keyword, this.manager.list)
         }
         return this.manager.list
     }

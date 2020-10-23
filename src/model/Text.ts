@@ -1,4 +1,5 @@
 import nunjucks from 'nunjucks'
+import UniqueItem from './Base/UniqueItem'
 
 nunjucks.configure({ autoescape: false })
 
@@ -13,6 +14,11 @@ export function exeText(text: string, data: Object): string {
     const names = Object.keys(data)
     const values = Object.values(data)
     return new Function(...names, `return \`${text}\`;`)(...values)
+}
+
+export function filter(keyword: string, list: Array<UniqueItem>) {
+    const re = new RegExp(keyword, 'i')
+    return list.filter(item => item.name.search(re) > -1)
 }
 
 export function hasQuote(text: any) {
