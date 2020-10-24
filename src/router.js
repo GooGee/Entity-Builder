@@ -29,6 +29,11 @@ export default new Router({
             component: require('@/view/PresetPage').default,
         },
         {
+            path: '/project',
+            name: 'project',
+            component: require('@/view/ProjectPage').default,
+        },
+        {
             path: '*',
             redirect: '/',
         },
