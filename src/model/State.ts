@@ -5,8 +5,10 @@ import ListDialogue from './Dialogue/ListDialogue'
 import { render, run } from './Text'
 import Layer from './Schema/Layer'
 import Entity from './Schema/Entity'
+import Loader from './Loader/Loader'
 
 export default class State {
+    bridge = null
     preset: Project | null = null
     project: Project | null = null
     sidebar: SideBar | null = null
@@ -18,13 +20,27 @@ export default class State {
     private sidebarLayer: SideBar | null = null
     private sidebarPreset: SideBar | null = null
 
-    create() {
-        this.project = new Project('Project')
-        this.project.load(this.preset!)
-        this.sidebarEntity = new SideBar(this.project.entityManager)
-        this.sidebarLayer = new SideBar(this.project.layerManager)
-        this.sidebarPreset = new SideBar(this.project.presetManager)
+    private prepare() {
+        this.sidebarEntity = new SideBar(this.project!.entityManager)
+        this.sidebarLayer = new SideBar(this.project!.layerManager)
+        this.sidebarPreset = new SideBar(this.project!.presetManager)
         this.showEntity()
+    }
+
+    create(name: string) {
+        const preset = this.preset!
+        preset.name = name
+        this.project = new Project(name)
+        this.project.load(preset)
+        this.prepare()
+    }
+
+    load(data: Project) {
+        const project = new Project(data.name)
+        const loader = new Loader(project)
+        loader.load(data)
+        this.project = project
+        this.prepare()
     }
 
     showEntity() {
