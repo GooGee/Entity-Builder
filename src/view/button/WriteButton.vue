@@ -1,5 +1,5 @@
 <template>
-    <b-button @click="render" variant="outline-primary"> ▼ </b-button>
+    <b-button @click="render" variant="outline-success"> ▼ </b-button>
 </template>
 
 <script>
@@ -30,9 +30,13 @@ export default {
                     entity = sss.project.entityManager.make(name)
                 }
                 const file = this.layer.getFilePath(sss.project, entity)
-                // const text = sss.render(this.layer, this.entity)
-                console.log(file)
-                // console.log(text)
+                const text = sss.render(this.layer, entity)
+                sss.bridge.make(file, text)
+                this.$bvToast.toast('OK', {
+                    title: 'i',
+                    variant: 'success',
+                    solid: true,
+                })
             } catch (error) {
                 this.$bvToast.toast(error.message, {
                     title: 'i',
