@@ -1,0 +1,3769 @@
+{
+    "name": "Entity",
+    "version": 12,
+    "ns": "App",
+    "dataVersion": "1.0",
+    "description": "",
+    "script": "",
+    "validationScript": "function run(data) {\n    const integerManager = data.project.getPreset('FieldTypeInteger').propertyManager\n    const numericManager = data.project.getPreset('FieldTypeNumeric').propertyManager\n    const ruleManager = data.project.getPreset('ValidationRule').propertyManager\n    const nameSet = new Set()\n    ruleManager.list.forEach(rule => {\n        if (rule.tag === 'WWW') {\n            nameSet.add(rule.name)\n        }\n    })\n\n    const addField = function(field, name) {\n        const found = field.ruleManager.find(name)\n        if (found) {\n            return found\n        }\n        const rule = field.ruleManager.make(name)\n        field.ruleManager.add(rule)\n        return rule\n    }\n\n    data.entity.fieldManager.list.forEach(field => {\n        if (field.included === false) {\n            return\n        }\n        if (field.isIncrement) {\n            return\n        }\n\n        addField(field, 'required')\n\n        if (field.type === 'boolean') {\n            addField(field, 'boolean')\n            return\n        }\n        if (integerManager.find(field.type)) {\n            addField(field, 'integer')\n            return\n        }\n        if (numericManager.find(field.type)) {\n            addField(field, 'numeric')\n            return\n        }\n        if (field.type === 'char' || field.type === 'string') {\n            if (field.length) {\n                const max = addField(field, 'max')\n                max.value = field.length\n            }\n        }\n\n        if (nameSet.has(field.name)) {\n            addField(field, field.name)\n        }\n    })\n}\n",
+    "entityManager": {
+        "list": [
+            {
+                "name": "User",
+                "description": "",
+                "script": "",
+                "tableName": "user",
+                "fieldManager": {
+                    "list": [
+                        {
+                            "name": "id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "increments"
+                        },
+                        {
+                            "name": "name",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "value": "colorName",
+                                "parameter": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "email",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": true,
+                                "type": "property",
+                                "value": "safeEmail",
+                                "parameter": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "password",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": true,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "bcrypt('123456')",
+                                "parameter": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "remember_token",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": true,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "created_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "value": "dateTime",
+                                "parameter": ""
+                            },
+                            "type": "timestamp"
+                        },
+                        {
+                            "name": "updated_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "value": "dateTime",
+                                "parameter": ""
+                            },
+                            "type": "timestamp"
+                        }
+                    ]
+                },
+                "indexManager": {
+                    "list": [
+                        {
+                            "name": "key1",
+                            "fieldManager": {
+                                "list": [
+                                    {
+                                        "name": "email"
+                                    }
+                                ]
+                            },
+                            "type": "unique"
+                        }
+                    ]
+                },
+                "dataManager": {
+                    "list": []
+                },
+                "relationManager": {
+                    "list": [
+                        {
+                            "name": "posts",
+                            "parameter": "Post::class",
+                            "type": "hasMany"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Post",
+                "description": "",
+                "script": "",
+                "tableName": "post",
+                "fieldManager": {
+                    "list": [
+                        {
+                            "name": "id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "increments"
+                        },
+                        {
+                            "name": "user_id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "1",
+                                "parameter": ""
+                            },
+                            "type": "integer"
+                        },
+                        {
+                            "name": "text",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "method",
+                                "value": "sentences",
+                                "parameter": "3"
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "created_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "value": "dateTime",
+                                "parameter": ""
+                            },
+                            "type": "timestamp"
+                        },
+                        {
+                            "name": "updated_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": false,
+                            "hidden": false,
+                            "included": false,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "property",
+                                "value": "dateTime",
+                                "parameter": ""
+                            },
+                            "type": "timestamp"
+                        }
+                    ]
+                },
+                "indexManager": {
+                    "list": [
+                        {
+                            "fieldManager": {
+                                "list": [
+                                    {
+                                        "name": "user_id"
+                                    }
+                                ]
+                            },
+                            "type": "index"
+                        }
+                    ]
+                },
+                "dataManager": {
+                    "list": []
+                },
+                "relationManager": {
+                    "list": [
+                        {
+                            "name": "user",
+                            "parameter": "User::class",
+                            "type": "belongsTo"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "layerManager": {
+        "list": [
+            {
+                "name": "Channel",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Channel",
+                "filePattern": "${entity.name}Channel.php",
+                "nsPattern": "${project.ns}\\Broadcasting",
+                "pathPattern": "app/Broadcasting",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n    data.user = data.project.getEntity('User')\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse {{ model.getFullName(project, user) }};\n\nclass {{ layer.getClassName(entity) }}\n{\n    /**\n     * Create a new channel instance.\n     *\n     * @return void\n     */\n    public function __construct()\n    {\n        //\n    }\n\n    /**\n     * Authenticate the user's access to the channel.\n     *\n     * @param  User $user\n     * @return array|bool\n     */\n    public function join(User $user)\n    {\n        //\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Command",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Command",
+                "filePattern": "${entity.name}Command.php",
+                "nsPattern": "${project.ns}\\Console\\Commands",
+                "pathPattern": "app/Console/Commands",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Console\\Command;\n\nclass {{ layer.getClassName(entity) }} extends Command\n{\n    /**\n     * The name and signature of the console command.\n     *\n     * @var string\n     */\n    protected $signature = 'command:name';\n\n    /**\n     * The console command description.\n     *\n     * @var string\n     */\n    protected $description = 'Command description';\n\n    /**\n     * Create a new command instance.\n     *\n     * @return void\n     */\n    public function __construct()\n    {\n        parent::__construct();\n    }\n\n    /**\n     * Execute the console command.\n     *\n     * @return mixed\n     */\n    public function handle()\n    {\n        //\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Controller",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}Controller",
+                "filePattern": "${entity.name}Controller.php",
+                "nsPattern": "${project.ns}\\Http\\Controllers",
+                "pathPattern": "app/Http/Controllers",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n    data.request = data.project.getLayer('Request')\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse {{ model.getFullName(project, entity) }};\nuse {{ request.getFullName(project, entity) }};\n\nclass {{ layer.getClassName(entity) }} extends Controller\n{\n    protected $routePath = '{{ entity.snakeCase }}';\n    protected $viewPath = '{{ entity.snakeCase }}';\n\n    /**\n     * Display a listing of the resource.\n     *\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function index()\n    {\n        $page = {{ model.getClassName(entity) }}::query()->paginate();\n        return view(\"$this->viewPath.index\", compact('page'));\n    }\n\n    /**\n     * Show the form for creating a new resource.\n     *\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function create()\n    {\n        $item = new {{ model.getClassName(entity) }}();\n        $item->_token = csrf_token();\n        $item->_uri = \"/$this->routePath\";\n        return view(\"$this->viewPath.form\", compact('item'));\n    }\n\n    /**\n     * Store a newly created resource in storage.\n     *\n     * @param {{ request.getClassName(entity) }} $request\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function store({{ request.getClassName(entity) }} $request)\n    {\n        $item = new {{ model.getClassName(entity) }};\n        $item->fill($request->validated());\n        $item->save();\n        return redirect(\"/$this->routePath/$item->id\");\n    }\n\n    /**\n     * Display the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function show($id)\n    {\n        $item = {{ model.getClassName(entity) }}::query()->findOrFail($id);\n        return view(\"$this->viewPath.show\", compact('item'));\n    }\n\n    /**\n     * Show the form for editing the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function edit($id)\n    {\n        $item = {{ model.getClassName(entity) }}::query()->findOrFail($id);\n        $item->_token = csrf_token();\n        $item->_method = 'PATCH';\n        $item->_uri = \"/$this->routePath/$item->id\";\n        return view(\"$this->viewPath.form\", compact('item'));\n    }\n\n    /**\n     * Update the specified resource in storage.\n     *\n     * @param int $id\n     * @param {{ request.getClassName(entity) }} $request\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function update($id, {{ request.getClassName(entity) }} $request)\n    {\n        $item = {{ model.getClassName(entity) }}::query()->findOrFail($id);\n        $item->update($request->validated());\n        return redirect(\"/$this->routePath/$item->id\");\n    }\n\n    /**\n     * Remove the specified resource from storage.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\Response\n     */\n    public function destroy($id)\n    {\n        {{ model.getClassName(entity) }}::destroy($id);\n        return redirect(\"/$this->routePath\");\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "ControllerAPI",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}Controller",
+                "filePattern": "${entity.name}Controller.php",
+                "nsPattern": "${project.ns}\\Http\\Controllers",
+                "pathPattern": "app/Http/Controllers",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n    data.request = data.project.getLayer('Request')\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse {{ model.getFullName(project, entity) }};\nuse {{ request.getFullName(project, entity) }};\n\nclass {{ layer.getClassName(entity) }} extends Controller\n{\n\n    /**\n     * Display a listing of the resource.\n     *\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function index()\n    {\n        $page = {{ model.getClassName(entity) }}::query()->paginate();\n        return response()->json(compact('page'));\n    }\n\n    /**\n     * Store a newly created resource in storage.\n     *\n     * @param {{ request.getClassName(entity) }} $request\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function store({{ request.getClassName(entity) }} $request)\n    {\n        $item = new {{ model.getClassName(entity) }};\n        $item->fill($request->validated());\n        $item->save();\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Display the specified resource.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function show($id)\n    {\n        $item = {{ model.getClassName(entity) }}::query()->findOrFail($id);\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Update the specified resource in storage.\n     *\n     * @param int $id\n     * @param {{ request.getClassName(entity) }} $request\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function update($id, {{ request.getClassName(entity) }} $request)\n    {\n        $item = {{ model.getClassName(entity) }}::query()->findOrFail($id);\n        $item->update($request->validated());\n        return response()->json(compact('item'));\n    }\n\n    /**\n     * Remove the specified resource from storage.\n     *\n     * @param int $id\n     * @return \\Illuminate\\Http\\JsonResponse\n     */\n    public function destroy($id)\n    {\n        $count = {{ model.getClassName(entity) }}::destroy($id);\n        if ($count) {\n            return response()->json('OK');\n        }\n        return response()->json('Resource already deleted!', 410);\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "DBFactory",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "",
+                "filePattern": "${entity.name}Factory.php",
+                "nsPattern": "",
+                "pathPattern": "database/factories",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n\n    data.seedText = seed => {\n        const list = ['$faker']\n        if (seed.unique) {\n            list.push('unique()')\n        }\n\n        if (seed.type === 'property') {\n            list.push(seed.value)\n            return list.join('->')\n        }\n\n        if (seed.type === 'method') {\n            list.push(`${seed.value}(${seed.parameter})`)\n            return list.join('->')\n        }\n\n        return seed.value\n    }\n}\n",
+                "template": "<?php\n\n/** @var \\Illuminate\\Database\\Eloquent\\Factory $factory */\n\nuse {{ model.getFullName(project, entity) }};\nuse Faker\\Generator as Faker;\n\n$factory->define({{ model.getClassName(entity) }}::class, function (Faker $faker) {\n    static $index = 0;\n    $index += 1;\n    return [\n{% for field in entity.fieldManager.list %}{% if field.seed.value !== '' %}\n        '{{ field.name }}' => {{ seedText(field.seed) }},\n{% endif %}{% endfor %}\n    ];\n});\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "DBSeeder",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}TableSeeder",
+                "filePattern": "${entity.name}TableSeeder.php",
+                "nsPattern": "",
+                "pathPattern": "database/seeds",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n}\n",
+                "template": "<?php\n\nuse {{ model.getFullName(project, entity) }};\nuse Illuminate\\Database\\Seeder;\n\nclass {{ layer.getClassName(entity) }} extends Seeder\n{\n    /**\n     * Run the database seeds.\n     *\n     * @return void\n     */\n    public function run()\n    {\n        factory({{ model.getClassName(entity) }}::class, 1)->create();\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Event",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Event",
+                "filePattern": "${entity.name}Event.php",
+                "nsPattern": "${project.ns}\\Events",
+                "pathPattern": "app/Events",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Broadcasting\\Channel;\nuse Illuminate\\Broadcasting\\InteractsWithSockets;\nuse Illuminate\\Broadcasting\\PresenceChannel;\nuse Illuminate\\Broadcasting\\PrivateChannel;\nuse Illuminate\\Contracts\\Broadcasting\\ShouldBroadcast;\nuse Illuminate\\Foundation\\Events\\Dispatchable;\nuse Illuminate\\Queue\\SerializesModels;\n\nclass {{ layer.getClassName(entity) }}\n{\n    use Dispatchable, InteractsWithSockets, SerializesModels;\n\n    /**\n     * Create a new event instance.\n     *\n     * @return void\n     */\n    public function __construct()\n    {\n        //\n    }\n\n    /**\n     * Get the channels the event should broadcast on.\n     *\n     * @return \\Illuminate\\Broadcasting\\Channel|array\n     */\n    public function broadcastOn()\n    {\n        return new PrivateChannel('channel-name');\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Exception",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Exception",
+                "filePattern": "${entity.name}Exception.php",
+                "nsPattern": "${project.ns}\\Exceptions",
+                "pathPattern": "app/Exceptions",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Exception;\n\nclass {{ layer.getClassName(entity) }} extends Exception\n{\n    //\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Job",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Job",
+                "filePattern": "${entity.name}Job.php",
+                "nsPattern": "${project.ns}\\Jobs",
+                "pathPattern": "app/Jobs",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Bus\\Queueable;\nuse Illuminate\\Contracts\\Queue\\ShouldQueue;\nuse Illuminate\\Foundation\\Bus\\Dispatchable;\nuse Illuminate\\Queue\\InteractsWithQueue;\nuse Illuminate\\Queue\\SerializesModels;\n\nclass {{ layer.getClassName(entity) }} implements ShouldQueue\n{\n    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;\n\n    /**\n     * Create a new job instance.\n     *\n     * @return void\n     */\n    public function __construct()\n    {\n        //\n    }\n\n    /**\n     * Execute the job.\n     *\n     * @return void\n     */\n    public function handle()\n    {\n        //\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Listener",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Listener",
+                "filePattern": "${entity.name}Listener.php",
+                "nsPattern": "${project.ns}\\Listeners",
+                "pathPattern": "app/Listeners",
+                "script": "function run(data) {\n    data.event = data.project.getLayer('Event')\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse {{ event.getFullName(project, entity) }};\nuse Illuminate\\Contracts\\Queue\\ShouldQueue;\nuse Illuminate\\Queue\\InteractsWithQueue;\n\nclass {{ layer.getClassName(entity) }}\n{\n    /**\n     * Create the event listener.\n     *\n     * @return void\n     */\n    public function __construct()\n    {\n        //\n    }\n\n    /**\n     * Handle the event.\n     *\n     * @param  {{ event.getClassName(entity) }} $event\n     * @return void\n     */\n    public function handle({{ event.getClassName(entity) }} $event)\n    {\n        //\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Mail",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Mail",
+                "filePattern": "${entity.name}Mail.php",
+                "nsPattern": "${project.ns}\\Mails",
+                "pathPattern": "app/Mails",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Bus\\Queueable;\nuse Illuminate\\Contracts\\Queue\\ShouldQueue;\nuse Illuminate\\Mail\\Mailable;\nuse Illuminate\\Queue\\SerializesModels;\n\nclass {{ layer.getClassName(entity) }} extends Mailable\n{\n    use Queueable, SerializesModels;\n\n    /**\n     * Create a new message instance.\n     *\n     * @return void\n     */\n    public function __construct()\n    {\n        //\n    }\n\n    /**\n     * Build the message.\n     *\n     * @return $this\n     */\n    public function build()\n    {\n        return $this->view('view.name');\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Middleware",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}",
+                "filePattern": "${entity.name}.php",
+                "nsPattern": "${project.ns}\\Http\\Middleware",
+                "pathPattern": "app/Http/Middleware",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Closure;\n\nclass {{ layer.getClassName(entity) }}\n{\n    /**\n     * Handle an incoming request.\n     *\n     * @param  \\Illuminate\\Http\\Request  $request\n     * @param  \\Closure  $next\n     * @return mixed\n     */\n    public function handle($request, Closure $next)\n    {\n        return $next($request);\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Migration",
+                "original": true,
+                "single": false,
+                "description": "",
+                "classPattern": "Create${entity.name}Table",
+                "filePattern": "0000_00_00_000000_create_${entity.tableName}_table.php",
+                "nsPattern": "",
+                "pathPattern": "database/migrations",
+                "script": "function run(data) {\n    data.fieldText = function(field) {\n        const list = ['$table']\n\n        if (field.length) {\n            list.push(`${field.type}('${field.name}', ${field.length})`)\n        } else {\n            list.push(`${field.type}('${field.name}')`)\n        }\n\n        if (field.collation) {\n            list.push(`collation(${field.collation})`)\n        }\n\n        if (field.comment) {\n            list.push(`comment(${field.comment})`)\n        }\n\n        if (field.value) {\n            list.push(`default(${field.value})`)\n        }\n\n        if (field.allowNull) {\n            list.push('nullable()')\n        }\n\n        if (field.useCurrent) {\n            list.push('useCurrent()')\n        }\n\n        if (field.unsigned) {\n            list.push('unsigned()')\n        }\n\n        return list.join('->')\n    }\n\n    data.indexText = function(index) {\n        const text = index.fieldManager.list.map(field => field.name).join(\"', '\")\n        return `$table->${index.type}(['${text}'])`\n    }\n}\n",
+                "template": "<?php\n\nuse Illuminate\\Support\\Facades\\Schema;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Database\\Migrations\\Migration;\n\nclass {{ layer.getClassName(entity) }} extends Migration\n{\n    /**\n     * Run the migrations.\n     *\n     * @return void\n     */\n    public function up()\n    {\n        Schema::create('{{ entity.tableName }}', function (Blueprint $table) {\n{% for field in entity.fieldManager.list %}\n            {{ fieldText(field) }};\n{% endfor %}\n{% for field in entity.indexManager.list %}\n            {{ indexText(field) }};\n{% endfor %}\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     *\n     * @return void\n     */\n    public function down()\n    {\n        Schema::dropIfExists('{{ entity.tableName }}');\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Model",
+                "original": true,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}",
+                "filePattern": "${entity.name}.php",
+                "nsPattern": "${project.ns}\\Models",
+                "pathPattern": "app/Models",
+                "script": "function run(data) {\n    const castManager = data.project.getPreset('CastPHP').propertyManager\n    const typeManager = data.project.getPreset('FieldType').propertyManager\n    data.phptype = field => {\n        if (field.cast) {\n            const found = castManager.find(field.cast)\n            if (found) {\n                return found.value\n            }\n        }\n\n        if (['created_at', 'updated_at', 'deleted_at'].includes(field.name)) {\n            return '\\\\Illuminate\\\\Support\\\\Carbon'\n        }\n\n        const found = typeManager.find(field.type)\n        if (found) {\n            return found.tag\n        }\n\n        return 'mixed'\n    }\n\n    data.ruleText = field => {\n        if (field.ruleManager.list.length) {\n            const list = field.ruleManager.list.map(rule => {\n                return rule.value ? `${rule.name}:${rule.value}` : rule.name\n            })\n            return `['${list.join(\"', '\")}']`\n        }\n        return '[]'\n    }\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Notifications\\Notifiable;\nuse Illuminate\\Foundation\\Auth\\User as Authenticatable;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n/**\n * Class {{ layer.getClassName(entity) }}\n * @package {{ layer.getNameSpace(project, entity) }}\n * {% for field in entity.fieldManager.list %}\n * @property {{ phptype(field) }} ${{ field.name }}{% endfor %}\n */\nclass {{ layer.getClassName(entity) }} extends {% if entity.name === 'User' %}Authenticatable{% else %}Model{% endif %}\n{\n{% if entity.name === 'User' %}    use Notifiable;\n{% endif %}\n    /**\n     * The table associated with the model.\n     *\n     * @var string\n     */\n    protected $table = '{{ entity.tableName }}';\n\n    /**\n     * The primary key for the model.\n     *\n     * @var string\n     */\n    protected $primaryKey = '{{ entity.primaryKey }}';\n\n    /**\n     * Indicates if the IDs are auto-incrementing.\n     *\n     * @var bool\n     */\n    public $incrementing = {{ entity.fieldManager.hasIncrement }};\n\n    /**\n     * Indicates if the model should be timestamped.\n     *\n     * @var bool\n     */\n    public $timestamps = {{ entity.hasTimeStamp}};\n\n    /**\n     * The attributes that are mass assignable.\n     *\n     * @var array\n     */\n    protected $fillable = [\n{% for field in entity.fieldManager.list | selectattr('fillable') %}\n        '{{ field.name }}',\n{% endfor %}\n    ];\n\n    /**\n     * The attributes that should be hidden for arrays.\n     *\n     * @var array\n     */\n    protected $hidden = [\n{% for field in entity.fieldManager.list | selectattr('hidden') %}\n        '{{ field.name }}',\n{% endfor %}\n    ];\n\n    /**\n     * The attributes that should be cast to native types.\n     *\n     * @var array\n     */\n    protected $casts = [\n{% for field in entity.fieldManager.list | selectattr('cast') %}\n        '{{ field.name }}' => '{{ field.cast }}',\n{% endfor %}\n    ];\n\n    const RuleList = [\n{% for field in entity.fieldManager.list | selectattr('included') %}\n        '{{ field.name }}' => {{ ruleText(field) }},\n{% endfor %}\n    ];\n\n{% for relation in entity.relationManager.list %}\n    public function {{ relation.name }}()\n    {\n        return $this->{{ relation.type }}({{ relation.parameter }});\n    }\n{% endfor %}\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Notification",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Notification",
+                "filePattern": "${entity.name}Notification.php",
+                "nsPattern": "${project.ns}\\Notifications",
+                "pathPattern": "app/Notifications",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Bus\\Queueable;\nuse Illuminate\\Contracts\\Queue\\ShouldQueue;\nuse Illuminate\\Notifications\\Messages\\MailMessage;\nuse Illuminate\\Notifications\\Notification;\n\nclass {{ layer.getClassName(entity) }} extends Notification\n{\n    use Queueable;\n\n    /**\n     * Create a new notification instance.\n     *\n     * @return void\n     */\n    public function __construct()\n    {\n        //\n    }\n\n    /**\n     * Get the notification's delivery channels.\n     *\n     * @param  mixed  $notifiable\n     * @return array\n     */\n    public function via($notifiable)\n    {\n        return ['mail'];\n    }\n\n    /**\n     * Get the mail representation of the notification.\n     *\n     * @param  mixed  $notifiable\n     * @return \\Illuminate\\Notifications\\Messages\\MailMessage\n     */\n    public function toMail($notifiable)\n    {\n        return (new MailMessage)\n                    ->line('The introduction to the notification.')\n                    ->action('Notification Action', url('/'))\n                    ->line('Thank you for using our application!');\n    }\n\n    /**\n     * Get the array representation of the notification.\n     *\n     * @param  mixed  $notifiable\n     * @return array\n     */\n    public function toArray($notifiable)\n    {\n        return [\n            //\n        ];\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Observer",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}Observer",
+                "filePattern": "${entity.name}Observer.php",
+                "nsPattern": "${project.ns}\\Observers",
+                "pathPattern": "app/Observers",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse {{ model.getFullName(project, entity) }};\n\nclass {{ layer.getClassName(entity) }}\n{\n    /**\n     * Handle the item \"created\" event.\n     *\n     * @param  {{ model.getClassName(entity) }} $item\n     * @return void\n     */\n    public function created({{ model.getClassName(entity) }} $item)\n    {\n        //\n    }\n\n    /**\n     * Handle the item \"updated\" event.\n     *\n     * @param  {{ model.getClassName(entity) }} $item\n     * @return void\n     */\n    public function updated({{ model.getClassName(entity) }} $item)\n    {\n        //\n    }\n\n    /**\n     * Handle the item \"deleted\" event.\n     *\n     * @param  {{ model.getClassName(entity) }} $item\n     * @return void\n     */\n    public function deleted({{ model.getClassName(entity) }} $item)\n    {\n        //\n    }\n\n    /**\n     * Handle the item \"restored\" event.\n     *\n     * @param  {{ model.getClassName(entity) }} $item\n     * @return void\n     */\n    public function restored({{ model.getClassName(entity) }} $item)\n    {\n        //\n    }\n\n    /**\n     * Handle the item \"force deleted\" event.\n     *\n     * @param  {{ model.getClassName(entity) }} $item\n     * @return void\n     */\n    public function forceDeleted({{ model.getClassName(entity) }} $item)\n    {\n        //\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Policy",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}Policy",
+                "filePattern": "${entity.name}Policy.php",
+                "nsPattern": "${project.ns}\\Policies",
+                "pathPattern": "app/Policies",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n    data.user = data.project.getEntity('User')\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse {{ model.getFullName(project, entity) }};\nuse {{ model.getFullName(project, user) }};\nuse Illuminate\\Auth\\Access\\HandlesAuthorization;\n\nclass {{ layer.getClassName(entity) }}\n{\n    use HandlesAuthorization;\n\n    /**\n     * Determine whether the user can view any item.\n     *\n     * @param  User $user\n     * @return mixed\n     */\n    public function viewAny(User $user)\n    {\n        return true;\n    }\n\n    /**\n     * Determine whether the user can view the item.\n     *\n     * @param User $user\n     * @param {{ model.getClassName(entity) }} $item\n     * @return mixed\n     */\n    public function view(User $user, {{ model.getClassName(entity) }} $item)\n    {\n        return true;\n    }\n\n    /**\n     * Determine whether the user can create item.\n     *\n     * @param User $user\n     * @return mixed\n     */\n    public function create(User $user)\n    {\n        return true;\n    }\n\n    /**\n     * Determine whether the user can update the item.\n     *\n     * @param User $user\n     * @param {{ model.getClassName(entity) }} $item\n     * @return mixed\n     */\n    public function update(User $user, {{ model.getClassName(entity) }} $item)\n    {\n        return $user->id === $item->user_id;\n    }\n\n    /**\n     * Determine whether the user can delete the item.\n     *\n     * @param User $user\n     * @param {{ model.getClassName(entity) }} $item\n     * @return mixed\n     */\n    public function delete(User $user, {{ model.getClassName(entity) }} $item)\n    {\n        return $user->id === $item->user_id;\n    }\n\n    /**\n     * Determine whether the user can restore the item.\n     *\n     * @param User $user\n     * @param {{ model.getClassName(entity) }} $item\n     * @return mixed\n     */\n    public function restore(User $user, {{ model.getClassName(entity) }} $item)\n    {\n        //\n    }\n\n    /**\n     * Determine whether the user can permanently delete the item.\n     *\n     * @param User $user\n     * @param {{ model.getClassName(entity) }} $item\n     * @return mixed\n     */\n    public function forceDelete(User $user, {{ model.getClassName(entity) }} $item)\n    {\n        //\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Provider",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Provider",
+                "filePattern": "${entity.name}Provider.php",
+                "nsPattern": "${project.ns}\\Providers",
+                "pathPattern": "app/Providers",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Support\\ServiceProvider;\n\nclass {{ layer.getClassName(entity) }} extends ServiceProvider\n{\n    /**\n     * Register services.\n     *\n     * @return void\n     */\n    public function register()\n    {\n        //\n    }\n\n    /**\n     * Bootstrap services.\n     *\n     * @return void\n     */\n    public function boot()\n    {\n        //\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Repository",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}Repository",
+                "filePattern": "${entity.name}Repository.php",
+                "nsPattern": "${project.ns}\\Repositories",
+                "pathPattern": "app/Repositories",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse {{ model.getFullName(project, entity) }};\n\n/**\n * Class {{ layer.getClassName(entity) }}\n * @package {{ layer.getNameSpace(project, entity) }}\n *\n * @method {{ model.getClassName(entity) }}|null find($id)\n * @method {{ model.getClassName(entity) }} findOrFail($id)\n */\nclass {{ layer.getClassName(entity) }} extends BaseRepository\n{\n\n    public function query()\n    {\n        return {{ model.getClassName(entity) }}::query();\n    }\n\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Request",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "Store${entity.name}Request",
+                "filePattern": "Store${entity.name}Request.php",
+                "nsPattern": "${project.ns}\\Http\\Requests",
+                "pathPattern": "app/Http/Requests",
+                "script": "function run(data) {\n    data.model = data.project.getLayer('Model')\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse {{ model.getFullName(project, entity) }};\nuse Illuminate\\Foundation\\Http\\FormRequest;\n\nclass {{ layer.getClassName(entity) }} extends FormRequest\n{\n    /**\n     * Determine if the user is authorized to make this request.\n     *\n     * @return bool\n     */\n    public function authorize()\n    {\n        return true;\n    }\n\n    /**\n     * Get the validation rules that apply to the request.\n     *\n     * @return array\n     */\n    public function rules()\n    {\n        return {{ model.getClassName(entity) }}::RuleList;\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Resource",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}Resource",
+                "filePattern": "${entity.name}Resource.php",
+                "nsPattern": "${project.ns}\\Http\\Resources",
+                "pathPattern": "app/Http/Resources",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Http\\Resources\\Json\\JsonResource;\n\nclass {{ layer.getClassName(entity) }} extends JsonResource\n{\n    /**\n     * Transform the resource into an array.\n     *\n     * @param \\Illuminate\\Http\\Request $request\n     * @return array\n     */\n    public function toArray($request)\n    {\n        return [\n{% for field in entity.fieldManager.list %}{% if field.hidden === false %}\n            '{{ field.name }}' => $this->{{ field.name }},\n{% endif %}{% endfor %}\n        ];\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "Rule",
+                "original": false,
+                "single": true,
+                "description": "",
+                "classPattern": "${entity.name}Rule",
+                "filePattern": "${entity.name}Rule.php",
+                "nsPattern": "${project.ns}\\Rules",
+                "pathPattern": "app/Rules",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Contracts\\Validation\\Rule;\n\nclass {{ layer.getClassName(entity) }} implements Rule\n{\n    /**\n     * Create a new rule instance.\n     *\n     * @return void\n     */\n    public function __construct()\n    {\n        //\n    }\n\n    /**\n     * Determine if the validation rule passes.\n     *\n     * @param  string  $attribute\n     * @param  mixed  $value\n     * @return bool\n     */\n    public function passes($attribute, $value)\n    {\n        //\n    }\n\n    /**\n     * Get the validation error message.\n     *\n     * @return string\n     */\n    public function message()\n    {\n        return 'The validation error message.';\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "TestFeature",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}Test",
+                "filePattern": "${entity.name}Test.php",
+                "nsPattern": "Tests\\Feature",
+                "pathPattern": "tests/Feature",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse Illuminate\\Foundation\\Testing\\RefreshDatabase;\nuse Illuminate\\Foundation\\Testing\\WithFaker;\nuse PHPUnit\\Framework\\TestCase;\n\nclass {{ layer.getClassName(entity) }} extends TestCase\n{\n    /**\n     * A basic test example.\n     *\n     * @return void\n     */\n    public function testTrue()\n    {\n        $this->assertTrue(true);\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "TestUnit",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "${entity.name}Test",
+                "filePattern": "${entity.name}Test.php",
+                "nsPattern": "Tests\\Unit",
+                "pathPattern": "tests/Unit",
+                "script": "function run(data) {\n}\n",
+                "template": "<?php\n\nnamespace {{ layer.getNameSpace(project, entity) }};\n\nuse PHPUnit\\Framework\\TestCase;\n\nclass {{ layer.getClassName(entity) }} extends TestCase\n{\n    /**\n     * A basic test example.\n     *\n     * @return void\n     */\n    public function testTrue()\n    {\n        $this->assertTrue(true);\n    }\n}\n",
+                "dataManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "View",
+                "original": false,
+                "single": false,
+                "description": "",
+                "classPattern": "",
+                "filePattern": "index.blade.php",
+                "nsPattern": "",
+                "pathPattern": "resources/views/${entity.name}",
+                "script": "",
+                "template": "",
+                "dataManager": {
+                    "list": []
+                }
+            }
+        ]
+    },
+    "presetManager": {
+        "list": [
+            {
+                "name": "CastPHP",
+                "original": true,
+                "version": 1,
+                "description": "for Cast in Model",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "array",
+                            "data": {},
+                            "tag": "",
+                            "value": "array"
+                        },
+                        {
+                            "name": "boolean",
+                            "data": {},
+                            "tag": "",
+                            "value": "boolean"
+                        },
+                        {
+                            "name": "collection",
+                            "data": {},
+                            "tag": "",
+                            "value": "\\Illuminate\\Support\\Collection"
+                        },
+                        {
+                            "name": "date",
+                            "data": {},
+                            "tag": "",
+                            "value": "\\Illuminate\\Support\\Carbon"
+                        },
+                        {
+                            "name": "datetime",
+                            "data": {},
+                            "tag": "",
+                            "value": "\\Illuminate\\Support\\Carbon"
+                        },
+                        {
+                            "name": "decimal:8",
+                            "data": {},
+                            "tag": "",
+                            "value": "double"
+                        },
+                        {
+                            "name": "double",
+                            "data": {},
+                            "tag": "",
+                            "value": "double"
+                        },
+                        {
+                            "name": "float",
+                            "data": {},
+                            "tag": "",
+                            "value": "float"
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "",
+                            "value": "integer"
+                        },
+                        {
+                            "name": "object",
+                            "data": {},
+                            "tag": "",
+                            "value": "object"
+                        },
+                        {
+                            "name": "string",
+                            "data": {},
+                            "tag": "",
+                            "value": "string"
+                        },
+                        {
+                            "name": "timestamp",
+                            "data": {},
+                            "tag": "",
+                            "value": "integer"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FakerMethod",
+                "original": true,
+                "version": 1,
+                "description": "for Factory",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "amPm",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "asciify",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "biasedNumberBetween",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "boolean",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "bothify",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "creditCardNumber",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "date",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTime",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeAd",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeBetween",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeInInterval",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeThisCentury",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeThisDecade",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeThisMonth",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeThisYear",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dayOfMonth",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dayOfWeek",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "file",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "firstName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "iban",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "image",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "imageUrl",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "iso8601",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "lexify",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "month",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "monthName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "name",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "numberBetween",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "numerify",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "optional",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "paragraph",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "paragraphs",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "passthrough",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "password",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomElement",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomElements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomFloat",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomHtml",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomKey",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomNumber",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "realText",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "regexify",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "sentence",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "sentences",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "shuffle",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "shuffleArray",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "shuffleString",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "slug",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "text",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "time",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "title",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "toLower",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "toUpper",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "unique",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "unixTime",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "valid",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "words",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "year",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FakerProperty",
+                "original": true,
+                "version": 1,
+                "description": "for Factory",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "address",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "amPm",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "bankAccountNumber",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "boolean",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "buildingNumber",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "century",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "chrome",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "city",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "citySuffix",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "colorName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "company",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "companyEmail",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "companySuffix",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "country",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "countryCode",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "countryISOAlpha3",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "creditCardDetails",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "creditCardExpirationDate",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "creditCardExpirationDateString",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "creditCardNumber",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "creditCardType",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "currencyCode",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTime",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeAD",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeThisCentury",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeThisDecade",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeThisMonth",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeThisYear",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dayOfMonth",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "dayOfWeek",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "domainName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "domainWord",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "e164PhoneNumber",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "ean13",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "ean8",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "email",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "fileExtension",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "firefox",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "firstName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "firstNameFemale",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "firstNameMale",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "freeEmail",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "freeEmailDomain",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "hexColor",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "internetExplorer",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "ipv4",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "ipv6",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "isbn10",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "isbn13",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "iso8601",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "jobTitle",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "languageCode",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "lastName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "latitude",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "linuxPlatformToken",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "linuxProcessor",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "locale",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "localIpv4",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "longitude",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "macAddress",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "macPlatformToken",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "macProcessor",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "md5",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "mimeType",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "month",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "monthName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "name",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "opera",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "paragraph",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "paragraphs",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "password",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "phoneNumber",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "postcode",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomAscii",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomDigit",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomDigitNotNull",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "randomLetter",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "rgbColor",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "rgbColorAsArray",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "rgbCssColor",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "safari",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "safeColorName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "safeEmail",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "safeEmailDomain",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "safeHexColor",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "sentence",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "sentences",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "sha1",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "sha256",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "slug",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "streetAddress",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "streetName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "streetSuffix",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "swiftBicNumber",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "text",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "timezone",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "title",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "titleFemale",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "titleMale",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "tld",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "unixTime",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "url",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "userAgent",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "userName",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "uuid",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "vat",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "windowsPlatformToken",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "word",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "words",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "year",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FieldName",
+                "original": true,
+                "version": 1,
+                "description": "for Migration (tag is FieldType)",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "category_id",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "content",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "email",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "image",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "link",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "name",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "parent_id",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "password",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "phone",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "sort",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "status",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "text",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "title",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "type",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "url",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FieldSpecial",
+                "original": true,
+                "version": 1,
+                "description": "for Migration (tag is FieldType)",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "id",
+                            "data": {
+                                "allowNull": false,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "type": "increments"
+                            },
+                            "tag": "increments",
+                            "value": ""
+                        },
+                        {
+                            "name": "user_id",
+                            "data": {
+                                "allowNull": false,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "type": "integer"
+                            },
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "created_at",
+                            "data": {
+                                "allowNull": true,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "type": "timestamp"
+                            },
+                            "tag": "timestamp",
+                            "value": ""
+                        },
+                        {
+                            "name": "updated_at",
+                            "data": {
+                                "allowNull": true,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "type": "timestamp"
+                            },
+                            "tag": "timestamp",
+                            "value": ""
+                        },
+                        {
+                            "name": "deleted_at",
+                            "data": {
+                                "allowNull": true,
+                                "cast": "",
+                                "comment": "",
+                                "fillable": false,
+                                "hidden": false,
+                                "included": false,
+                                "length": "",
+                                "unsigned": false,
+                                "value": "",
+                                "type": "timestamp"
+                            },
+                            "tag": "timestamp",
+                            "value": ""
+                        },
+                        {
+                            "name": "decimal",
+                            "data": {},
+                            "tag": "decimal",
+                            "value": ""
+                        },
+                        {
+                            "name": "decimal 0",
+                            "data": {},
+                            "tag": "decimal",
+                            "value": "0"
+                        },
+                        {
+                            "name": "float",
+                            "data": {},
+                            "tag": "float",
+                            "value": ""
+                        },
+                        {
+                            "name": "float 0",
+                            "data": {},
+                            "tag": "float",
+                            "value": "0"
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer 0",
+                            "data": {},
+                            "tag": "integer",
+                            "value": "0"
+                        },
+                        {
+                            "name": "char",
+                            "data": {},
+                            "tag": "char",
+                            "value": ""
+                        },
+                        {
+                            "name": "char ''",
+                            "data": {},
+                            "tag": "char",
+                            "value": "''"
+                        },
+                        {
+                            "name": "string",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "string ''",
+                            "data": {},
+                            "tag": "string",
+                            "value": "''"
+                        },
+                        {
+                            "name": "text",
+                            "data": {},
+                            "tag": "text",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTime",
+                            "data": {},
+                            "tag": "dateTime",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestamp",
+                            "data": {},
+                            "tag": "timestamp",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestamp now",
+                            "data": {
+                                "useCurrent": true
+                            },
+                            "tag": "timestamp",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FieldType",
+                "original": true,
+                "version": 1,
+                "description": "for Migration (tag is PHP type)",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "bigIncrements",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "bigInteger",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "binary",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "boolean",
+                            "data": {},
+                            "tag": "boolean",
+                            "value": ""
+                        },
+                        {
+                            "name": "char",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "date",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTime",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeTz",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "decimal",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "double",
+                            "data": {},
+                            "tag": "double",
+                            "value": ""
+                        },
+                        {
+                            "name": "enum",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "float",
+                            "data": {},
+                            "tag": "float",
+                            "value": ""
+                        },
+                        {
+                            "name": "geometry",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "geometryCollection",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "increments",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "ipAddress",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "json",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "jsonb",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "lineString",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "longText",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "macAddress",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumIncrements",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumInteger",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumText",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "morphs",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "uuidMorphs",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "multiLineString",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "multiPoint",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "multiPolygon",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "point",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "polygon",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "set",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallIncrements",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallInteger",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "string",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "text",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "time",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "timeTz",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestamp",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestampTz",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyIncrements",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyInteger",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "uuid",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FieldTypeInteger",
+                "original": true,
+                "version": 1,
+                "description": "for Field Validation",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "bigIncrements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "increments",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumIncrements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallIncrements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyIncrements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "bigInteger",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumInteger",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallInteger",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyInteger",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FieldTypeNumeric",
+                "original": true,
+                "version": 1,
+                "description": "for Field Validation",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "bigIncrements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "increments",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumIncrements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallIncrements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyIncrements",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "bigInteger",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumInteger",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallInteger",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyInteger",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "decimal",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "double",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "float",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FieldTypeMySQL",
+                "original": true,
+                "version": 1,
+                "description": "MySQL type (tag is FieldType)",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "bigint",
+                            "data": {},
+                            "tag": "bigInteger",
+                            "value": ""
+                        },
+                        {
+                            "name": "binary",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "bit",
+                            "data": {},
+                            "tag": "boolean",
+                            "value": ""
+                        },
+                        {
+                            "name": "blob",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "char",
+                            "data": {},
+                            "tag": "char",
+                            "value": ""
+                        },
+                        {
+                            "name": "date",
+                            "data": {},
+                            "tag": "date",
+                            "value": ""
+                        },
+                        {
+                            "name": "datetime",
+                            "data": {},
+                            "tag": "dateTime",
+                            "value": ""
+                        },
+                        {
+                            "name": "decimal",
+                            "data": {},
+                            "tag": "decimal",
+                            "value": ""
+                        },
+                        {
+                            "name": "double",
+                            "data": {},
+                            "tag": "double",
+                            "value": ""
+                        },
+                        {
+                            "name": "enum",
+                            "data": {},
+                            "tag": "enum",
+                            "value": ""
+                        },
+                        {
+                            "name": "float",
+                            "data": {},
+                            "tag": "float",
+                            "value": ""
+                        },
+                        {
+                            "name": "geometry",
+                            "data": {},
+                            "tag": "geometry",
+                            "value": ""
+                        },
+                        {
+                            "name": "geometrycollection",
+                            "data": {},
+                            "tag": "geometryCollection",
+                            "value": ""
+                        },
+                        {
+                            "name": "int",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "json",
+                            "data": {},
+                            "tag": "json",
+                            "value": ""
+                        },
+                        {
+                            "name": "linestring",
+                            "data": {},
+                            "tag": "lineString",
+                            "value": ""
+                        },
+                        {
+                            "name": "longblob",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "longtext",
+                            "data": {},
+                            "tag": "longText",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumblob",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumint",
+                            "data": {},
+                            "tag": "mediumInteger",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumtext",
+                            "data": {},
+                            "tag": "mediumText",
+                            "value": ""
+                        },
+                        {
+                            "name": "multilinestring",
+                            "data": {},
+                            "tag": "multiLineString",
+                            "value": ""
+                        },
+                        {
+                            "name": "multipoint",
+                            "data": {},
+                            "tag": "multiPoint",
+                            "value": ""
+                        },
+                        {
+                            "name": "multipolygon",
+                            "data": {},
+                            "tag": "multiPolygon",
+                            "value": ""
+                        },
+                        {
+                            "name": "point",
+                            "data": {},
+                            "tag": "point",
+                            "value": ""
+                        },
+                        {
+                            "name": "polygon",
+                            "data": {},
+                            "tag": "polygon",
+                            "value": ""
+                        },
+                        {
+                            "name": "set",
+                            "data": {},
+                            "tag": "set",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallint",
+                            "data": {},
+                            "tag": "smallInteger",
+                            "value": ""
+                        },
+                        {
+                            "name": "text",
+                            "data": {},
+                            "tag": "text",
+                            "value": ""
+                        },
+                        {
+                            "name": "time",
+                            "data": {},
+                            "tag": "time",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestamp",
+                            "data": {},
+                            "tag": "timestamp",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyblob",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyint",
+                            "data": {},
+                            "tag": "tinyInteger",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinytext",
+                            "data": {},
+                            "tag": "text",
+                            "value": ""
+                        },
+                        {
+                            "name": "varbinary",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "varchar",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FieldTypePGSQL",
+                "original": true,
+                "version": 1,
+                "description": "PostgreSQL type (tag is FieldType)",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "bigint",
+                            "data": {},
+                            "tag": "bigInteger",
+                            "value": ""
+                        },
+                        {
+                            "name": "bigserial",
+                            "data": {},
+                            "tag": "bigIncrements",
+                            "value": ""
+                        },
+                        {
+                            "name": "bit",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "bit varying",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "boolean",
+                            "data": {},
+                            "tag": "boolean",
+                            "value": ""
+                        },
+                        {
+                            "name": "box",
+                            "data": {},
+                            "tag": "lineString",
+                            "value": ""
+                        },
+                        {
+                            "name": "bytea",
+                            "data": {},
+                            "tag": "binary",
+                            "value": ""
+                        },
+                        {
+                            "name": "character",
+                            "data": {},
+                            "tag": "char",
+                            "value": ""
+                        },
+                        {
+                            "name": "character varying",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "cidr",
+                            "data": {},
+                            "tag": "ipAddress",
+                            "value": ""
+                        },
+                        {
+                            "name": "circle",
+                            "data": {},
+                            "tag": "string",
+                            "value": ""
+                        },
+                        {
+                            "name": "date",
+                            "data": {},
+                            "tag": "date",
+                            "value": ""
+                        },
+                        {
+                            "name": "double precision",
+                            "data": {},
+                            "tag": "double",
+                            "value": ""
+                        },
+                        {
+                            "name": "inet",
+                            "data": {},
+                            "tag": "ipAddress",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "integer",
+                            "value": ""
+                        },
+                        {
+                            "name": "interval",
+                            "data": {},
+                            "tag": "dateTime",
+                            "value": ""
+                        },
+                        {
+                            "name": "json",
+                            "data": {},
+                            "tag": "json",
+                            "value": ""
+                        },
+                        {
+                            "name": "jsonb",
+                            "data": {},
+                            "tag": "jsonb",
+                            "value": ""
+                        },
+                        {
+                            "name": "line",
+                            "data": {},
+                            "tag": "lineString",
+                            "value": ""
+                        },
+                        {
+                            "name": "lseg",
+                            "data": {},
+                            "tag": "lineString",
+                            "value": ""
+                        },
+                        {
+                            "name": "macaddr",
+                            "data": {},
+                            "tag": "macAddress",
+                            "value": ""
+                        },
+                        {
+                            "name": "money",
+                            "data": {},
+                            "tag": "decimal",
+                            "value": ""
+                        },
+                        {
+                            "name": "numeric",
+                            "data": {},
+                            "tag": "decimal",
+                            "value": ""
+                        },
+                        {
+                            "name": "path",
+                            "data": {},
+                            "tag": "lineString",
+                            "value": ""
+                        },
+                        {
+                            "name": "pg_lsn",
+                            "data": {},
+                            "tag": "bigInteger",
+                            "value": ""
+                        },
+                        {
+                            "name": "point",
+                            "data": {},
+                            "tag": "point",
+                            "value": ""
+                        },
+                        {
+                            "name": "polygon",
+                            "data": {},
+                            "tag": "polygon",
+                            "value": ""
+                        },
+                        {
+                            "name": "real",
+                            "data": {},
+                            "tag": "float",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallint",
+                            "data": {},
+                            "tag": "smallInteger",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallserial",
+                            "data": {},
+                            "tag": "smallIncrements",
+                            "value": ""
+                        },
+                        {
+                            "name": "serial",
+                            "data": {},
+                            "tag": "increments",
+                            "value": ""
+                        },
+                        {
+                            "name": "text",
+                            "data": {},
+                            "tag": "text",
+                            "value": ""
+                        },
+                        {
+                            "name": "time without time zone",
+                            "data": {},
+                            "tag": "time",
+                            "value": ""
+                        },
+                        {
+                            "name": "time with time zone",
+                            "data": {},
+                            "tag": "timeTz",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestamp without time zone",
+                            "data": {},
+                            "tag": "timestamp",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestamp with time zone",
+                            "data": {},
+                            "tag": "timestampTz",
+                            "value": ""
+                        },
+                        {
+                            "name": "tsquery",
+                            "data": {},
+                            "tag": "text",
+                            "value": ""
+                        },
+                        {
+                            "name": "tsvector",
+                            "data": {},
+                            "tag": "text",
+                            "value": ""
+                        },
+                        {
+                            "name": "txid_snapshot",
+                            "data": {},
+                            "tag": "bigInteger",
+                            "value": ""
+                        },
+                        {
+                            "name": "uuid",
+                            "data": {},
+                            "tag": "uuid",
+                            "value": ""
+                        },
+                        {
+                            "name": "xml",
+                            "data": {},
+                            "tag": "longText",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "FieldTypeWithParameter",
+                "original": true,
+                "version": 1,
+                "description": "for Migration",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "decimal",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        },
+                        {
+                            "name": "double",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        },
+                        {
+                            "name": "float",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        },
+                        {
+                            "name": "enum",
+                            "data": {},
+                            "tag": "array",
+                            "value": ""
+                        },
+                        {
+                            "name": "set",
+                            "data": {},
+                            "tag": "array",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTime",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        },
+                        {
+                            "name": "dateTimeTz",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        },
+                        {
+                            "name": "time",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        },
+                        {
+                            "name": "timeTz",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestamp",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        },
+                        {
+                            "name": "timestampTz",
+                            "data": {},
+                            "tag": "precision",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "IncrementMySQL",
+                "original": true,
+                "version": 1,
+                "description": "increments of MySQL schema",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "bigint",
+                            "data": {},
+                            "tag": "bigIncrements",
+                            "value": ""
+                        },
+                        {
+                            "name": "int",
+                            "data": {},
+                            "tag": "increments",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "increments",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumint",
+                            "data": {},
+                            "tag": "mediumIncrements",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallint",
+                            "data": {},
+                            "tag": "smallIncrements",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyint",
+                            "data": {},
+                            "tag": "tinyIncrements",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "IncrementPGSQL",
+                "original": true,
+                "version": 1,
+                "description": "increments of PostgreSQL schema",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "bigInteger",
+                            "data": {},
+                            "tag": "bigIncrements",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "increments",
+                            "value": ""
+                        },
+                        {
+                            "name": "mediumInteger",
+                            "data": {},
+                            "tag": "mediumIncrements",
+                            "value": ""
+                        },
+                        {
+                            "name": "smallInteger",
+                            "data": {},
+                            "tag": "smallIncrements",
+                            "value": ""
+                        },
+                        {
+                            "name": "tinyInteger",
+                            "data": {},
+                            "tag": "tinyIncrements",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "RegularExpression",
+                "original": true,
+                "version": 1,
+                "description": "for Field Validation",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "A-Z",
+                            "data": {},
+                            "tag": "",
+                            "value": "/^[A-Z]+$/"
+                        },
+                        {
+                            "name": "a-z",
+                            "data": {},
+                            "tag": "",
+                            "value": "/^[a-z]+$/"
+                        },
+                        {
+                            "name": "0-9",
+                            "data": {},
+                            "tag": "",
+                            "value": "/^\\d+$/"
+                        },
+                        {
+                            "name": "A-Z a-z",
+                            "data": {},
+                            "tag": "",
+                            "value": "/^[A-Za-z]+$/"
+                        },
+                        {
+                            "name": "A-Z a-z 0-9",
+                            "data": {},
+                            "tag": "",
+                            "value": "/^[A-Za-z0-9]+$/"
+                        },
+                        {
+                            "name": "A-Z a-z 0-9 _",
+                            "data": {},
+                            "tag": "",
+                            "value": "/^[A-Za-z0-9_]+$/"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "RelationType",
+                "original": true,
+                "version": 1,
+                "description": "for Model Relation",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "hasOne",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "belongsTo",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "hasMany",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "belongsToMany",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "hasOneThrough",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "hasManyThrough",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "morphOne",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "morphMany",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "morphToMany",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        },
+                        {
+                            "name": "morphedByMany",
+                            "data": {},
+                            "tag": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "ValidationRule",
+                "original": true,
+                "version": 1,
+                "description": "for Field Validation",
+                "propertyManager": {
+                    "list": [
+                        {
+                            "name": "accepted",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "active_url",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "after",
+                            "data": {},
+                            "tag": "Date",
+                            "value": ""
+                        },
+                        {
+                            "name": "after_or_equal",
+                            "data": {},
+                            "tag": "Date",
+                            "value": ""
+                        },
+                        {
+                            "name": "alpha",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "alpha_dash",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "alpha_num",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "array",
+                            "data": {},
+                            "tag": "Type",
+                            "value": ""
+                        },
+                        {
+                            "name": "bail",
+                            "data": {},
+                            "tag": "Other",
+                            "value": ""
+                        },
+                        {
+                            "name": "before",
+                            "data": {},
+                            "tag": "Date",
+                            "value": ""
+                        },
+                        {
+                            "name": "before_or_equal",
+                            "data": {},
+                            "tag": "Date",
+                            "value": ""
+                        },
+                        {
+                            "name": "between",
+                            "data": {},
+                            "tag": "Size",
+                            "value": ""
+                        },
+                        {
+                            "name": "boolean",
+                            "data": {},
+                            "tag": "Type",
+                            "value": ""
+                        },
+                        {
+                            "name": "confirmed",
+                            "data": {},
+                            "tag": "Field",
+                            "value": ""
+                        },
+                        {
+                            "name": "date",
+                            "data": {},
+                            "tag": "Date",
+                            "value": ""
+                        },
+                        {
+                            "name": "date_equals",
+                            "data": {},
+                            "tag": "Date",
+                            "value": ""
+                        },
+                        {
+                            "name": "date_format",
+                            "data": {},
+                            "tag": "Date",
+                            "value": ""
+                        },
+                        {
+                            "name": "different",
+                            "data": {},
+                            "tag": "Field",
+                            "value": ""
+                        },
+                        {
+                            "name": "digits",
+                            "data": {},
+                            "tag": "Size",
+                            "value": ""
+                        },
+                        {
+                            "name": "digits_between",
+                            "data": {},
+                            "tag": "Size",
+                            "value": ""
+                        },
+                        {
+                            "name": "dimensions",
+                            "data": {},
+                            "tag": "File",
+                            "value": ""
+                        },
+                        {
+                            "name": "distinct",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "email",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "ends_with",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "exclude_if",
+                            "data": {},
+                            "tag": "Require",
+                            "value": ""
+                        },
+                        {
+                            "name": "exclude_unless",
+                            "data": {},
+                            "tag": "Require",
+                            "value": ""
+                        },
+                        {
+                            "name": "exists",
+                            "data": {},
+                            "tag": "Other",
+                            "value": ""
+                        },
+                        {
+                            "name": "file",
+                            "data": {},
+                            "tag": "File",
+                            "value": ""
+                        },
+                        {
+                            "name": "filled",
+                            "data": {},
+                            "tag": "Other",
+                            "value": ""
+                        },
+                        {
+                            "name": "gt",
+                            "data": {},
+                            "tag": "Field",
+                            "value": ""
+                        },
+                        {
+                            "name": "gte",
+                            "data": {},
+                            "tag": "Field",
+                            "value": ""
+                        },
+                        {
+                            "name": "image",
+                            "data": {},
+                            "tag": "File",
+                            "value": ""
+                        },
+                        {
+                            "name": "in",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "in_array",
+                            "data": {},
+                            "tag": "Field",
+                            "value": ""
+                        },
+                        {
+                            "name": "integer",
+                            "data": {},
+                            "tag": "Type",
+                            "value": ""
+                        },
+                        {
+                            "name": "ip",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "ipv4",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "ipv6",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "json",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "lt",
+                            "data": {},
+                            "tag": "Field",
+                            "value": ""
+                        },
+                        {
+                            "name": "lte",
+                            "data": {},
+                            "tag": "Field",
+                            "value": ""
+                        },
+                        {
+                            "name": "max",
+                            "data": {},
+                            "tag": "Size",
+                            "value": ""
+                        },
+                        {
+                            "name": "mimetypes",
+                            "data": {},
+                            "tag": "File",
+                            "value": ""
+                        },
+                        {
+                            "name": "mimes",
+                            "data": {},
+                            "tag": "File",
+                            "value": ""
+                        },
+                        {
+                            "name": "min",
+                            "data": {},
+                            "tag": "Size",
+                            "value": ""
+                        },
+                        {
+                            "name": "not_in",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "not_regex",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "nullable",
+                            "data": {},
+                            "tag": "Type",
+                            "value": ""
+                        },
+                        {
+                            "name": "numeric",
+                            "data": {},
+                            "tag": "Type",
+                            "value": ""
+                        },
+                        {
+                            "name": "password",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "present",
+                            "data": {},
+                            "tag": "Other",
+                            "value": ""
+                        },
+                        {
+                            "name": "regex",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "required",
+                            "data": {},
+                            "tag": "Other",
+                            "value": ""
+                        },
+                        {
+                            "name": "required_if",
+                            "data": {},
+                            "tag": "Require",
+                            "value": ""
+                        },
+                        {
+                            "name": "required_unless",
+                            "data": {},
+                            "tag": "Require",
+                            "value": ""
+                        },
+                        {
+                            "name": "required_with",
+                            "data": {},
+                            "tag": "Require",
+                            "value": ""
+                        },
+                        {
+                            "name": "required_with_all",
+                            "data": {},
+                            "tag": "Require",
+                            "value": ""
+                        },
+                        {
+                            "name": "required_without",
+                            "data": {},
+                            "tag": "Require",
+                            "value": ""
+                        },
+                        {
+                            "name": "required_without_all",
+                            "data": {},
+                            "tag": "Require",
+                            "value": ""
+                        },
+                        {
+                            "name": "same",
+                            "data": {},
+                            "tag": "Field",
+                            "value": ""
+                        },
+                        {
+                            "name": "size",
+                            "data": {},
+                            "tag": "Size",
+                            "value": ""
+                        },
+                        {
+                            "name": "sometimes",
+                            "data": {},
+                            "tag": "Other",
+                            "value": ""
+                        },
+                        {
+                            "name": "starts_with",
+                            "data": {},
+                            "tag": "Content",
+                            "value": ""
+                        },
+                        {
+                            "name": "string",
+                            "data": {},
+                            "tag": "Type",
+                            "value": ""
+                        },
+                        {
+                            "name": "timezone",
+                            "data": {},
+                            "tag": "Date",
+                            "value": ""
+                        },
+                        {
+                            "name": "unique",
+                            "data": {},
+                            "tag": "Other",
+                            "value": ""
+                        },
+                        {
+                            "name": "url",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        },
+                        {
+                            "name": "uuid",
+                            "data": {},
+                            "tag": "WWW",
+                            "value": ""
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
