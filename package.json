@@ -1,15 +1,18 @@
 {
-  "name": "code-generator",
-  "version": "0.1.0",
+  "name": "entity-builder",
+  "version": "6.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "doc": "typedoc --tsconfig"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
+    "file-saver": "^2.0.2",
     "lodash": "^4.17.20",
     "nunjucks": "^3.2.2",
     "strict-event-emitter-types": "^2.0.0",
@@ -28,6 +31,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "typedoc": "^0.19.2",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
