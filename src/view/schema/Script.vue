@@ -6,6 +6,14 @@
         </div>
         <ul class="gray">
             <li>function must be on the first line</li>
+            <li>
+                <a
+                    href="https://googee.github.io/Entity-Builder/docs/model/interfaces/jsparameter.html"
+                    target="_blank"
+                >
+                    parameter doc
+                </a>
+            </li>
             <li>do not change anything in data.project, data.layer, data.entity</li>
             <li>function will be called before render template</li>
             <li>properties of "data" will be available in template</li>
