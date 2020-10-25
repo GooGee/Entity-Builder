@@ -1,5 +1,6 @@
 import nunjucks from 'nunjucks'
 import UniqueItem from './Base/UniqueItem'
+import { JSParameter } from './JSParameter'
 
 nunjucks.configure({ autoescape: false })
 
@@ -52,5 +53,23 @@ export function run(code: string, data: object) {
     if (code) {
         const fff = new Function('return ' + code)()
         fff(data)
+    }
+}
+
+export function runAndRender(data: JSParameter) {
+    let message = 'Failed to run script of project'
+    try {
+        run(data.project.script, data)
+
+        message = 'Failed to run script of layer ' + data.layer.name
+        run(data.layer.script, data)
+
+        message = 'Failed to run script of entity ' + data.layer.name
+        run(data.entity.script, data)
+
+        message = 'Failed to render template of ' + data.layer.name
+        return render(data.layer.template, data)
+    } catch (error) {
+        throw new Error(message + ': ' + error.message)
     }
 }

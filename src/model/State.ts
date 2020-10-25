@@ -2,7 +2,7 @@ import Project from './Schema/Project'
 import SideBar from './SideBar'
 import InputDialogue from './Dialogue/InputDialogue'
 import ListDialogue from './Dialogue/ListDialogue'
-import { render, run } from './Text'
+import { run, runAndRender } from './Text'
 import Layer from './Schema/Layer'
 import Entity from './Schema/Entity'
 import Loader from './Loader/Loader'
@@ -69,12 +69,11 @@ export default class State {
 
     render(layer: Layer, entity: Entity) {
         const data = {
-            project: this.project,
+            project: this.project!,
             layer,
             entity,
         }
-        run(layer.script, data)
-        return render(layer.template, data)
+        return runAndRender(data)
     }
 
     setValidation(entity: Entity) {
