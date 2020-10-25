@@ -9,7 +9,7 @@
             <b-nav tabs>
                 <b-nav-item @click="tab = 'Property'" :active="tab === 'Property'"> Property </b-nav-item>
                 <b-nav-item @click="tab = 'Script'" :active="tab === 'Script'"> Script </b-nav-item>
-                <b-nav-item @click="tab = 'Schema'" :active="tab === 'Schema'"> DataBase </b-nav-item>
+                <!-- <b-nav-item @click="tab = 'Schema'" :active="tab === 'Schema'"> DataBase </b-nav-item> -->
             </b-nav>
 
             <ProjectProperty v-if="tab === 'Property'" :item="sss.project"></ProjectProperty>
