@@ -6,9 +6,10 @@ import { run, runAndRender } from './Text'
 import Layer from './Schema/Layer'
 import Entity from './Schema/Entity'
 import Loader from './Loader/Loader'
+import { IData } from './DataBase/IData'
+import Convertor from './DataBase/Convertor'
 
 export default class State {
-    bridge = null
     preset: Project | null = null
     project: Project | null = null
     sidebar: SideBar | null = null
@@ -25,6 +26,11 @@ export default class State {
         this.sidebarLayer = new SideBar(this.project!.layerManager)
         this.sidebarPreset = new SideBar(this.project!.presetManager)
         this.showEntity()
+    }
+
+    convert(data: IData, skip: boolean) {
+        const convertor = new Convertor(this.project!, this.preset!, skip)
+        convertor.convert(data)
     }
 
     create(name: string) {
