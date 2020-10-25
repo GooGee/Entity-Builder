@@ -12,6 +12,11 @@
                         <b-nav-item to="/preset" active-class="active"> Preset </b-nav-item>
                     </template>
                 </b-navbar-nav>
+
+                <!-- Right aligned nav items -->
+                <b-navbar-nav class="ml-auto">
+                    <b-nav-item href="https://github.com/GooGee/Entity-Builder" target="_blank"> GitHub </b-nav-item>
+                </b-navbar-nav>
             </b-collapse>
         </div>
     </b-navbar>
