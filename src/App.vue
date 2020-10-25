@@ -31,6 +31,10 @@ export default {
         }
     },
     created() {
+        window.addEventListener('beforeunload', e => {
+            e.preventDefault()
+            e.returnValue = ''
+        })
         fetch('preset.json')
             .then(response => response.json())
             .then(json => {
