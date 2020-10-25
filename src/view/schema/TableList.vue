@@ -2,16 +2,17 @@
     <table class="table b-table b-table-caption-top">
         <caption>
             <h3 class="inline mr11">DataBase Schema</h3>
-            <b-button @click="read" variant="outline-success"> Read </b-button>
+            <b-button v-if="connected" @click="read" variant="outline-success"> Read </b-button>
+            <ConnectButton v-else @connect="load"></ConnectButton>
         </caption>
-        <tbody>
+        <tbody v-if="connected">
             <tr v-for="table in data.tables" :key="table.name">
                 <td>
                     <b-form-checkbox v-model="table.included"> {{ table.name }} </b-form-checkbox>
                 </td>
             </tr>
         </tbody>
-        <tfoot>
+        <tfoot v-if="connected">
             <tr>
                 <td>
                     <b-form-checkbox v-model="all" @change="select" switch> All </b-form-checkbox>
@@ -39,14 +40,20 @@
 </template>
 
 <script>
+import ConnectButton from '../button/ConnectButton.vue'
+import { readDB, isConnected, getErrorMessage } from '@/request.js'
 import sss from '@/state.js'
 
 export default {
     name: 'TableList',
+    components: {
+        ConnectButton,
+    },
     data() {
         return {
             all: true,
             skip: false,
+            connected: isConnected(),
             data: {
                 prefix: '',
                 tables: [],
@@ -54,25 +61,33 @@ export default {
         }
     },
     methods: {
+        load(data) {
+            this.connected = isConnected()
+            console.log(data.version)
+        },
         read() {
-            try {
-                const data = sss.bridge.readDB()
-                if (data) {
-                    this.data = data
-                    return
-                }
-                this.$bvToast.toast('No table found', {
-                    title: 'i',
-                    variant: 'success',
-                    solid: true,
+            readDB()
+                .then(response => {
+                    if (response.data.tables.length) {
+                        this.data = response.data
+                        this.select(true)
+                        return
+                    }
+
+                    this.$bvToast.toast('No table found', {
+                        title: 'OK',
+                        variant: 'success',
+                        solid: true,
+                    })
                 })
-            } catch (error) {
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
+                .catch(error => {
+                    const message = getErrorMessage(error)
+                    this.$bvToast.toast(message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
                 })
-            }
         },
         convert() {
             if (this.data.tables.length === 0) {
