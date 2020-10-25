@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { isConnected, deploy, download, getErrorMessage } from '@/request.js'
 import sss from '@/state.js'
 
 export default {
@@ -29,14 +30,14 @@ export default {
                     }
                     entity = sss.project.entityManager.make(name)
                 }
-                const file = this.layer.getFilePath(sss.project, entity)
                 const text = sss.render(this.layer, entity)
-                sss.bridge.make(file, text)
-                this.$bvToast.toast('OK', {
-                    title: 'i',
-                    variant: 'success',
-                    solid: true,
-                })
+                if (isConnected()) {
+                    const file = this.layer.getFilePath(sss.project, entity)
+                    this.deploy(file, text)
+                } else {
+                    const file = this.layer.getFileName(entity)
+                    download(file, text)
+                }
             } catch (error) {
                 this.$bvToast.toast(error.message, {
                     title: 'i',
@@ -44,6 +45,27 @@ export default {
                     solid: true,
                 })
             }
+        },
+        deploy(file, text) {
+            const data = {
+                [file]: text,
+            }
+            deploy(data)
+                .then(response => {
+                    this.$bvToast.toast('File deployed', {
+                        title: 'i',
+                        variant: 'success',
+                        solid: true,
+                    })
+                })
+                .catch(error => {
+                    const message = getErrorMessage(error)
+                    this.$bvToast.toast(message, {
+                        title: 'i',
+                        variant: 'danger',
+                        solid: true,
+                    })
+                })
         },
     },
 }
