@@ -2,31 +2,25 @@ import sss from './state.js'
 
 const bridge = {
     load() {
-        const text = window.JavaBridge.load()
-        console.log(text)
+        window.JavaBridge.load()
+    },
+    loadCB(text) {
+        // console.log(text)
         if (text) {
             const data = JSON.parse(text)
-            return sss.load(data)
+            sss.load(data)
+            return
         }
-        return sss.create('Project')
+        sss.create('Project')
     },
     make(file, text) {
-        const data = {
-            file,
-            text,
-        }
-        window.JavaBridge.make(JSON.stringify(data))
+        window.JavaBridge.make(file + '*' + text)
     },
     save(project) {
         window.JavaBridge.save(JSON.stringify(project))
     },
     readDB() {
-        const text = window.JavaBridge.readDB()
-        console.log(text)
-        if (text) {
-            return JSON.parse(text)
-        }
-        return null
+        window.JavaBridge.readDB()
     },
 }
 
