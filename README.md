@@ -7,6 +7,8 @@
 
 :tomato: Laravel generator [Online](https://googee.github.io/Entity-Builder/dist)
 
+[PHPStorm plugin](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator)
+
 [中文介绍](README.zh.md)
 
 

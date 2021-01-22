@@ -7,6 +7,9 @@
 
 :tomato: Laravel 代码生成器 [Online](https://googee.github.io/Entity-Builder/dist)
 
+[PHPStorm 插件](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator)
+
+
 ## 功能
 
 - 自定义逻辑层 (Controller, Model, Repository, 等等)
