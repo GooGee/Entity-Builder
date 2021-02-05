@@ -6,7 +6,9 @@
 
         <h1>{{ title }}</h1>
         <p>{{ version }}</p>
-        <p><a href="../dist5">Use version 5</a></p>
+        <p>
+            <a href="https://plugins.jetbrains.com/plugin/15276">PHPStorm plugin</a>
+        </p>
 
         <div>
             <b-button-group>
