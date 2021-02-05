@@ -48,9 +48,9 @@
                 </td>
                 <td colspan="2">
                     <select v-model="selectedId" @change="add($event.target.value, 'integer')" class="form-control">
-                        <option selected="true" disabled="disabled" value=""> ---- </option>
-                        <option v-for="entity in entityList" :value="entity.name" :key="entity.name">
-                            {{ entity.tableName }}_id
+                        <option selected="true" disabled="disabled" value=""> ---- </option> 
+                        <option v-for="entity in entityList" :value="entity.snakeCase + '_id'" :key="entity.name">
+                            {{ entity.snakeCase }}_id
                         </option>
                     </select>
                 </td>
