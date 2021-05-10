@@ -13,7 +13,7 @@
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
     "file-saver": "^2.0.2",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "nunjucks": "^3.2.2",
     "strict-event-emitter-types": "^2.0.0",
     "ts-loader": "^8.0.5",
