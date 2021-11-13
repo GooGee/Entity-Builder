@@ -49,6 +49,10 @@ export default class MySQLConvertor extends DBConvertor {
                 fff.type = increment.tag
             }
         }
+        
+        if (field.Comment !== null) {
+            fff.comment = field.Comment
+        }
 
         if (this.isInteger(fff)) {
             // no length for Integer
