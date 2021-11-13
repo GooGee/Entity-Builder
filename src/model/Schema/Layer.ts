@@ -41,6 +41,14 @@ export default class Layer extends UniqueItem {
         }
         return exeText(this.filePattern, data)
     }
+    
+    getDescription(entity: Entity) {
+        const data = {
+            entity,
+            layer: this,
+        }
+        return exeText(this.description, data)
+    }
 
     getFilePath(project: Project, entity: Entity) {
         return this.getPath(project, entity) + '/' + this.getFileName(entity)
