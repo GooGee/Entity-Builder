@@ -1,0 +1,205 @@
+.ReactModal__Content--after-open {
+    inset: 0 0 0 55% !important;
+}
+
+.ReactModal__Content--after-open.top {
+    inset: 0 0 55% 0 !important;
+    position: absolute;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+}
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 333ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+    z-index: 111;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+.bi {
+    display: inline-block;
+    vertical-align: -0.125em;
+    fill: currentcolor;
+}
+
+.btn-outline-primary.danger:hover {
+    background-color: var(--bs-red);
+    border-color: var(--bs-red);
+    color: #fff;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    color: var(--bs-dark);
+    cursor: pointer;
+    display: inline-block;
+}
+
+.button:hover,
+.button.active {
+    color: var(--bs-blue);
+}
+
+.button.danger:hover {
+    color: var(--bs-red);
+}
+
+.button.gray {
+    color: var(--bs-secondary);
+}
+
+.button.gray:hover {
+    color: var(--bs-dark);
+}
+
+.button.yellow:hover,
+.button.yellow.active {
+    color: var(--bs-yellow);
+}
+
+.color-button {
+    display: inline-block;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 4px;
+    cursor: pointer;
+    width: 33px;
+    height: 33px;
+    margin: 3px;
+    opacity: 0.2;
+}
+
+.color-button.active,
+.color-button:hover {
+    opacity: 1;
+}
+
+.color-button-group.row2 {
+    width: 200px;
+}
+
+.dt {
+    display: table;
+}
+
+.h100 {
+    height: calc(100vh - 56px);
+}
+
+.h100.h100-module {
+    height: calc(100vh - 56px - 58px);
+}
+
+.hover-group:hover .hover-item {
+    display: inline-block;
+}
+
+.hover-item {
+    display: none;
+}
+
+.hover-list {
+    background-color: white;
+    border: solid 1px #ccc;
+    display: none;
+}
+
+.hover-trigger {
+    display: inline-block;
+    position: relative;
+}
+
+.hover-trigger:hover .hover-list {
+    display: inline-block;
+    position: absolute;
+    z-index: 111;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.mt011 {
+    margin-top: 11%;
+}
+
+.nav-item.nav-item-fill span.nav-link.active {
+    color: white;
+    background-color: var(--bs-blue);
+}
+
+.nav-item span.nav-link {
+    cursor: pointer;
+}
+
+.nav-item span.nav-link.active {
+    color: var(--bs-blue);
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+select.swal2-select {
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.table-text-right tr td:first-child,
+.table-text-right tr th:first-child {
+    text-align: right;
+}
+
+.toast-container {
+    z-index: 111;
+}
+
+.toast-body {
+    word-wrap: anywhere;
+}
+
+.w111 {
+    width: 111px;
+}
+
+.w222 {
+    width: 222px;
+}
+
+.w333 {
+    width: 333px;
+}
+
+.wa {
+    width: auto;
+}
