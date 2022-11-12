@@ -1,8 +1,4 @@
-interface ItemType {
-    id: number
-}
-
-export function makeIdItemMap<T extends ItemType>(
+export function makeIdItemMap<T extends LB.IdItem>(
     itemzz: T[],
     kv: Map<number, T> = new Map(),
 ) {

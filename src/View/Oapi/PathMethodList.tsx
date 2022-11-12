@@ -25,6 +25,7 @@ export default function PathMethodList(property: Property) {
             const name = found?.name ?? `${ma.collectionItemId} not found`
             return { ...ma, name }
         })
+        .sort((aa, bb) => aa.name.localeCompare(bb.name))
 
     useEffect(() => {
         refresh()

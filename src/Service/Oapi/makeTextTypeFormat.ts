@@ -1,7 +1,4 @@
 import { OapiType } from "@/Model/Oapi"
-import { VariablezzStoreType } from "@/Store/useVariablezzStore"
-import { WuParameterzzStoreType } from "@/Store/useWuParameterzzStore"
-import { WuzzStoreType } from "@/Store/useWuzzStore"
 
 export let errorTypeFormat = false
 
@@ -11,9 +8,9 @@ export function clearError() {
 
 export default function makeTextTypeFormat(
     tf: LB.TypeFormat,
-    sVariablezzStore: VariablezzStoreType,
-    sWuParameterzzStore: WuParameterzzStoreType,
-    sWuzzStore: WuzzStoreType,
+    sVariablezzStore: LB.Finder<LB.Variable>,
+    sWuParameterzzStore: LB.Finder<LB.WuParameter>,
+    sWuzzStore: LB.Finder<LB.Wu>,
 ): string {
     const text = make(tf, sVariablezzStore, sWuParameterzzStore, sWuzzStore)
     if (tf.isArray) {
@@ -22,11 +19,11 @@ export default function makeTextTypeFormat(
     return text
 }
 
-export function make(
+function make(
     tf: LB.TypeFormat,
-    sVariablezzStore: VariablezzStoreType,
-    sWuParameterzzStore: WuParameterzzStoreType,
-    sWuzzStore: WuzzStoreType,
+    sVariablezzStore: LB.Finder<LB.Variable>,
+    sWuParameterzzStore: LB.Finder<LB.WuParameter>,
+    sWuzzStore: LB.Finder<LB.Wu>,
 ): string {
     if (tf.type === OapiType.Enum) {
         const found = sVariablezzStore.find(tf.targetId)
@@ -55,9 +52,9 @@ export function make(
 
 function makeWuText(
     tf: LB.TypeFormat,
-    sVariablezzStore: VariablezzStoreType,
-    sWuParameterzzStore: WuParameterzzStoreType,
-    sWuzzStore: WuzzStoreType,
+    sVariablezzStore: LB.Finder<LB.Variable>,
+    sWuParameterzzStore: LB.Finder<LB.WuParameter>,
+    sWuzzStore: LB.Finder<LB.Wu>,
 ): string {
     const found = sWuzzStore.find(tf.targetId)
     if (found === undefined) {

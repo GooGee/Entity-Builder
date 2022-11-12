@@ -395,7 +395,16 @@ declare namespace LB {
         relationzz: DoctrineRelation[]
     }
 
-    interface IdNameItem {
+    interface Finder<T extends IdItem> {
+        find(id: number): T | undefined
+        itemzz: T[]
+    }
+
+    interface IdItem {
+        id: number
+    }
+
+    interface IdNameItem extends IdItem {
         id: number
         name: string
     }
@@ -449,9 +458,5 @@ declare namespace LB {
         format: string
         targetId: number
         argumentzz: TypeFormat[]
-    }
-
-    interface WithId {
-        id: number
     }
 }

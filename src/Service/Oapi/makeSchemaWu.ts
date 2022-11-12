@@ -7,6 +7,7 @@ import {
     makeSchemaComposition,
     CompositionKind,
     isSchemaColumn,
+    OapiSchemaAny,
 } from "@/Model/Oapi"
 import { makeReferenceEmpty } from "./makeReference"
 import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
@@ -22,7 +23,7 @@ export default function makeSchemaWu(
     wiwczzm: Map<number, LB.WuChild[]>,
     wiwm: Map<number, LB.Wu>,
     wiwpzzm: Map<number, LB.WuParameter[]>,
-    parameterzz: (object | OapiReference | OapiSchema)[],
+    parameterzz: (OapiSchemaAny | OapiReference | OapiSchema)[],
 ): OapiReference | OapiSchemaComposition | OapiSchemaObject {
     const wpzz = wiwpzzm.get(wu.id) ?? []
     if (parameterzz.length < wpzz.length) {
@@ -53,7 +54,9 @@ export default function makeSchemaWu(
 
         old[column.name] = data
         return old
-    }, Object.create(null) as Record<string, object | OapiReference | OapiSchema>)
+    }, Object.create(
+        null,
+    ) as Record<string, OapiSchemaAny | OapiReference | OapiSchema>)
 
     const wczz = wiwczzm.get(wu.id) ?? []
     if (wczz.length === 0 && czz.length === 0 && wu.isMap === false) {

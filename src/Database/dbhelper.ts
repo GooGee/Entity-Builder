@@ -5,7 +5,7 @@ import { getMaxId } from "./getDBC"
 
 export type idOrName = "id" | "name"
 
-export type OmitId<T extends LB.WithId> = Omit<T, "id">
+export type OmitId<T extends LB.IdItem> = Omit<T, "id">
 
 export function count(dbc: DatabaseConnection, schema: SchemaEnum) {
     const tt = dbc.getSchema().table(schema)
@@ -15,7 +15,7 @@ export function count(dbc: DatabaseConnection, schema: SchemaEnum) {
     return pp.then((zz) => zz[0])
 }
 
-export function create<T extends LB.WithId>(
+export function create<T extends LB.IdItem>(
     dbc: DatabaseConnection,
     schema: SchemaEnum,
     data: T,
@@ -28,7 +28,7 @@ export function create<T extends LB.WithId>(
     })
 }
 
-export function createMany<T extends LB.WithId>(
+export function createMany<T extends LB.IdItem>(
     dbc: DatabaseConnection,
     schema: SchemaEnum,
     data: T[],
@@ -111,7 +111,7 @@ export function findOne<T>(
     })
 }
 
-export function update<T extends LB.WithId>(
+export function update<T extends LB.IdItem>(
     dbc: DatabaseConnection,
     schema: SchemaEnum,
     data: T,
@@ -124,7 +124,7 @@ export function update<T extends LB.WithId>(
     })
 }
 
-export function updateMany<T extends LB.WithId>(
+export function updateMany<T extends LB.IdItem>(
     dbc: DatabaseConnection,
     schema: SchemaEnum,
     data: T[],

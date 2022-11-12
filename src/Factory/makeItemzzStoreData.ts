@@ -5,10 +5,6 @@ export interface CRUD<K> {
     observeAll(handler: (itemzz: K[]) => void): Promise<void>
 }
 
-interface Item {
-    id: number
-}
-
 export interface ItemzzStoreDataType<K> {
     itemzz: K[]
     observed: boolean
@@ -19,7 +15,7 @@ export interface ItemzzStoreDataType<K> {
 
 export default function makeItemzzStoreData<
     T extends ItemzzStoreDataType<K>,
-    K extends Item,
+    K extends LB.IdItem,
 >(
     set: (state: T | ((state: T) => T)) => void,
     get: GetState<T>,

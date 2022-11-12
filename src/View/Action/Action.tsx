@@ -6,7 +6,7 @@ import ParameterList from "../Oapi/ParameterList"
 import TabList from "../Part/TabList"
 import ActionRequest from "./ActionRequest"
 import Detail from "./Detail"
-import FileList from "./FileList"
+import FileView from "./FileView"
 import ResponseList from "./ResponseList"
 import RouteList from "./RouteList"
 
@@ -47,26 +47,26 @@ export default function Action(property: Property) {
 
         if (tab === TabEnum.File) {
             return (
-                <FileList
+                <FileView
                     action={property.name}
                     directoryId={property.item.directoryId}
                     isTest={false}
-                    item={property.item}
+                    ma={property.item}
                     module={property.module}
                     schema={property.schema}
-                ></FileList>
+                ></FileView>
             )
         }
         if (tab === TabEnum.Test) {
             return (
-                <FileList
+                <FileView
                     action={property.name}
                     directoryId={property.item.testDirectoryId}
                     isTest={true}
-                    item={property.item}
+                    ma={property.item}
                     module={property.module}
                     schema={property.schema}
-                ></FileList>
+                ></FileView>
             )
         }
 

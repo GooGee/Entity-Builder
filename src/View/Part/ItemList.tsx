@@ -3,7 +3,7 @@ import SelectButton from "../Button/SelectButton"
 
 interface Property {
     fieldName: string
-    itemzz: LB.WithId[]
+    itemzz: LB.IdItem[]
     source: LB.IdNameItem[]
     title?: string
     create(id: number): Promise<any>
@@ -13,7 +13,7 @@ interface Property {
 export default function ItemList(property: Property) {
     const sToastzzStore = useToastzzStore()
 
-    function getName(item: LB.WithId) {
+    function getName(item: LB.IdItem) {
         if (property.fieldName in item) {
             //
         } else {

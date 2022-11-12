@@ -47,38 +47,44 @@ export default function LeftRightPanel(property: Property) {
         sPageStore.setItem(found)
     }, [sItemzzStore.itemzz])
 
+    function makeButton() {
+        if (property.onCreateClick === undefined && property.onCreate === undefined) {
+            return
+        }
+
+        return (
+            <button
+                onClick={
+                    property.onCreateClick ??
+                    function () {
+                        showDialog(message, "")
+                            .then((response) => {
+                                if (response.isConfirmed) {
+                                    if (response.value) {
+                                        if (property.onCreate) {
+                                            return property.onCreate(response.value)
+                                        }
+                                    }
+                                }
+                            })
+                            .catch(sToastzzStore.showError)
+                    }
+                }
+                className="btn btn-outline-primary"
+                type="button"
+            >
+                +
+            </button>
+        )
+    }
+
     return (
         <>
             <SideBar
                 className={property.className}
                 sorting={property.sorting}
                 title={property.title}
-                button={
-                    <button
-                        onClick={
-                            property.onCreateClick ??
-                            function () {
-                                showDialog(message, "")
-                                    .then((response) => {
-                                        if (response.isConfirmed) {
-                                            if (response.value) {
-                                                if (property.onCreate) {
-                                                    return property.onCreate(
-                                                        response.value,
-                                                    )
-                                                }
-                                            }
-                                        }
-                                    })
-                                    .catch(sToastzzStore.showError)
-                            }
-                        }
-                        className="btn btn-outline-primary"
-                        type="button"
-                    >
-                        +
-                    </button>
-                }
+                button={makeButton()}
                 itemzz={property.itemzz ?? sItemzzStore.itemzz}
                 useStore={property.useItemPageStore}
             ></SideBar>

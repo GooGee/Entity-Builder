@@ -3,7 +3,7 @@ import CRUD from "./CRUD/CRUD"
 import RelationCRUD from "./CRUD/RelationCRUD"
 import getDBC, { DBCFactory } from "./getDBC"
 
-export default function makeCRUD<T extends LB.WithId>(
+export default function makeCRUD<T extends LB.IdItem>(
     dbcf: DBCFactory,
     schema: SchemaEnum,
 ) {

@@ -7,10 +7,6 @@ export type ModuleActionResponseWithName = LB.ModuleActionResponse & { name: str
 
 export type ModuleActionWithMethod = LB.ModuleAction & { method: string }
 
-interface Item {
-    id: number
-}
-
 export default function makePath(
     item: LB.Path,
     marzzm: Map<number, ModuleActionResponseWithName[]>,
@@ -79,7 +75,7 @@ export default function makePath(
 }
 
 function makeServerzz(
-    item: Item,
+    item: LB.IdItem,
     smzz: LB.ServerMap[],
     sism: Map<number, LB.Server>,
     sivzzm: Map<number, LB.Variable[]>,

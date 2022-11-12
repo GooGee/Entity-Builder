@@ -15,7 +15,7 @@ import {
 } from "../dbhelper"
 import { DBCFactory } from "../getDBC"
 
-export default class CRUD<T extends LB.WithId> {
+export default class CRUD<T extends LB.IdItem> {
     constructor(readonly dbcf: DBCFactory, readonly schema: SchemaEnum) {}
 
     create(data: OmitId<T>) {

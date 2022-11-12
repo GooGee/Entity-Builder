@@ -87,8 +87,10 @@ export type OapiSchema =
     | OapiSchemaComposition
     | OapiSchemaObject
 
+export interface OapiSchemaAny {}
+
 export interface OapiSchemaArray {
-    items: object | OapiReference | OapiSchema
+    items: OapiSchemaAny | OapiReference | OapiSchema
     type: "array"
 }
 
@@ -120,10 +122,10 @@ interface OapiSchemaCompositionOneOf {
 }
 
 export interface OapiSchemaObject {
-    additionalProperties?: object | OapiReference | OapiSchema
+    additionalProperties?: OapiSchemaAny | OapiReference | OapiSchema
     description?: string
     example?: string
-    properties?: Record<string, object | OapiReference | OapiSchema>
+    properties?: Record<string, OapiSchemaAny | OapiReference | OapiSchema>
     required?: string[]
     type: "object"
 }
@@ -137,25 +139,25 @@ export function isReference(type: OapiType) {
 }
 
 export function isSchema(
-    item: object | OapiReference | OapiSchema,
+    item: OapiSchemaAny | OapiReference | OapiSchema,
 ): item is OapiSchema {
     return isSchemaArray(item) || isSchemaColumn(item) || isSchemaComposition(item)
 }
 
 export function isSchemaArray(
-    item: object | OapiReference | OapiSchema,
+    item: OapiSchemaAny | OapiReference | OapiSchema,
 ): item is OapiSchemaArray {
     return "items" in item
 }
 
 export function isSchemaColumn(
-    item: object | OapiReference | OapiSchema,
+    item: OapiSchemaAny | OapiReference | OapiSchema,
 ): item is OapiSchemaColumn {
     return "type" in item
 }
 
 function isSchemaComposition(
-    item: object | OapiReference | OapiSchema,
+    item: OapiSchemaAny | OapiReference | OapiSchema,
 ): item is OapiSchemaComposition {
     if (CompositionKindzz.find((key) => key in item)) {
         return true
@@ -164,13 +166,13 @@ function isSchemaComposition(
 }
 
 export function isSchemaReference(
-    item: object | OapiReference | OapiSchema,
+    item: OapiSchemaAny | OapiReference | OapiSchema,
 ): item is OapiReference {
     return "$ref" in item
 }
 
 export function makeSchemaArray(
-    items: object | OapiReference | OapiSchema,
+    items: OapiSchemaAny | OapiReference | OapiSchema,
 ): OapiSchemaArray {
     return {
         type: "array",
@@ -179,7 +181,7 @@ export function makeSchemaArray(
 }
 
 export function makeSchemaComposition(
-    itemzz: (object | OapiReference | OapiSchema)[] = [],
+    itemzz: (OapiSchemaAny | OapiReference | OapiSchema)[] = [],
     kind: CompositionKind,
 ): OapiSchemaComposition {
     const zz: (OapiReference | OapiSchema)[] = []

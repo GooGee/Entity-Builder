@@ -6,10 +6,8 @@ import useModulezzStore from "@/Store/useModulezzStore"
 import usePathPageStore from "@/Store/usePathPageStore"
 import usePathzzStore from "@/Store/usePathzzStore"
 import useSchemazzStore from "@/Store/useSchemazzStore"
-import useToastzzStore from "@/Store/useToastzzStore"
 import FileButton from "./Button/FileButton"
 import WebLink from "./Button/WebLink"
-import showSelect from "./Dialog/showSelect"
 import PathDetail from "./Oapi/PathDetail"
 import SideBar from "./Part/SideBar"
 
@@ -19,7 +17,6 @@ export default function PathPage() {
     const sPathPageStore = usePathPageStore()
     const sPathzzStore = usePathzzStore()
     const sSchemazzStore = useSchemazzStore()
-    const sToastzzStore = useToastzzStore()
 
     const module = sModulezzStore.find(sPathPageStore.moduleId)
     const schema = sSchemazzStore.itemzz[0]
@@ -85,27 +82,6 @@ export default function PathPage() {
                     itemzz={sPathzzStore.itemzz.filter(
                         (item) => item.moduleId === module.id,
                     )}
-                    button={
-                        <button
-                            onClick={function () {
-                                showSelect(
-                                    "Please select a Schema",
-                                    "",
-                                    makeNameMap(sSchemazzStore.itemzz),
-                                )
-                                    .then((response) => {
-                                        if (response.isConfirmed) {
-                                            return makeItem(response.value)
-                                        }
-                                    })
-                                    .catch(sToastzzStore.showError)
-                            }}
-                            className="btn btn-outline-primary"
-                            type="button"
-                        >
-                            +
-                        </button>
-                    }
                 ></SideBar>
 
                 <div className="col-9 py-3 h100 h100-module overflow-auto ">

@@ -2,6 +2,7 @@ import {
     makeSchemaArray,
     OapiReference,
     OapiSchema,
+    OapiSchemaAny,
     OapiSchemaColumn,
     OapiType,
 } from "@/Model/Oapi"
@@ -20,9 +21,9 @@ export default function makeSchemaTypeFormat(
     wiwczzm: Map<number, LB.WuChild[]>,
     wiwm: Map<number, LB.Wu>,
     wiwpzzm: Map<number, LB.WuParameter[]>,
-    parameterzz: (object | OapiReference | OapiSchema)[],
-    wpism: Map<number, object | OapiReference | OapiSchema>,
-): object | OapiReference | OapiSchema {
+    parameterzz: (OapiSchemaAny | OapiReference | OapiSchema)[],
+    wpism: Map<number, OapiSchemaAny | OapiReference | OapiSchema>,
+): OapiSchemaAny | OapiReference | OapiSchema {
     const schema = make(tf, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, parameterzz, wpism)
     if (tf.isArray) {
         return makeSchemaArray(schema)
@@ -37,11 +38,11 @@ function make(
     wiwczzm: Map<number, LB.WuChild[]>,
     wiwm: Map<number, LB.Wu>,
     wiwpzzm: Map<number, LB.WuParameter[]>,
-    parameterzz: (object | OapiReference | OapiSchema)[],
-    wpism: Map<number, object | OapiReference | OapiSchema>,
-): object | OapiReference | OapiSchema {
+    parameterzz: (OapiSchemaAny | OapiReference | OapiSchema)[],
+    wpism: Map<number, OapiSchemaAny | OapiReference | OapiSchema>,
+): OapiSchemaAny | OapiReference | OapiSchema {
     if (tf.type === OapiType.any) {
-        return {} as object
+        return {} as OapiSchemaAny
     }
 
     if (tf.type === OapiType.Enum) {

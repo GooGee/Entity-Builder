@@ -4,6 +4,7 @@ import {
     makeSchemaObject,
     OapiReference,
     OapiSchema,
+    OapiSchemaAny,
     OapiSchemaComposition,
     OapiType,
 } from "@/Model/Oapi"
@@ -20,7 +21,7 @@ export default function makeSchemaWuReference(
     wiwczzm: Map<number, LB.WuChild[]>,
     wiwm: Map<number, LB.Wu>,
     wiwpzzm: Map<number, LB.WuParameter[]>,
-    parameterzz: (object | OapiReference | OapiSchema)[],
+    parameterzz: (OapiSchemaAny | OapiReference | OapiSchema)[],
 ): OapiReference | OapiSchemaComposition {
     const wpzz = wiwpzzm.get(wu.id) ?? []
     if (parameterzz.length < wpzz.length) {
@@ -43,7 +44,9 @@ export default function makeSchemaWuReference(
             wpism,
         )
         return old
-    }, Object.create(null) as Record<string, object | OapiReference | OapiSchema>)
+    }, Object.create(
+        null,
+    ) as Record<string, OapiSchemaAny | OapiReference | OapiSchema>)
 
     const reference = makeReferenceOf(wu.name, ComponentKind.schemas)
     const wczz = (wiwczzm.get(wu.id) ?? []).filter((item) =>
