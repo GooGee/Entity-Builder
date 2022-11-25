@@ -1,8 +1,6 @@
-import makeColumn from "@/Database/Factory/makeColumn"
+import { makeColumnTypeFormat } from "@/Database/Factory/makeColumn"
 import { makeColumnCRUD } from "@/Database/makeCRUD"
-import { makeNameMap } from "@/Factory/makeMap"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
-import showSelect from "@/View/Dialog/showSelect"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect, useState } from "react"
@@ -43,19 +41,7 @@ export default function ColumnList(property: Property) {
             : 0
 
         makeColumnCRUD()
-            .create(makeColumn(property.schema.id, name, type, value, length))
-            .catch(sToastzzStore.showError)
-    }
-
-    function selectType(item: LB.Column) {
-        const typezz = getCollectionItemzz("DoctrineColumnType")
-        const map = makeNameMap(typezz)
-        showSelect("Select a type", item.type, map)
-            .then((response) => {
-                if (response.isConfirmed) {
-                    return makeColumnCRUD().update({ ...item, type: response.value })
-                }
-            })
+            .create(makeColumnTypeFormat(property.schema.id, name, type, value, length))
             .catch(sToastzzStore.showError)
     }
 
@@ -84,7 +70,7 @@ export default function ColumnList(property: Property) {
             </thead>
             <tbody>
                 {columnzz.map((item) => (
-                    <Column key={item.id} item={item} selectType={selectType}></Column>
+                    <Column key={item.id} item={item}></Column>
                 ))}
             </tbody>
             <tfoot>
@@ -94,10 +80,7 @@ export default function ColumnList(property: Property) {
                             isAdd
                             itemzz={namezz}
                             value={0}
-                            change={(selected) => {
-                                const found = namezz.find(
-                                    (item) => item.id === selected,
-                                )
+                            change={(selected, found) => {
                                 if (found) {
                                     add(found.name, found.tag, found.value)
                                 }
@@ -109,10 +92,7 @@ export default function ColumnList(property: Property) {
                             isAdd
                             itemzz={typezz}
                             value={0}
-                            change={(selected) => {
-                                const found = typezz.find(
-                                    (item) => item.id === selected,
-                                )
+                            change={(selected, found) => {
                                 if (found) {
                                     add(found.name, found.tag, found.value)
                                 }

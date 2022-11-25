@@ -1,6 +1,6 @@
 import { cloneFile } from "@/Database/Factory/makeFile"
 import makeRequest from "@/Database/Factory/makeRequest"
-import { makeActionWu } from "@/Database/Factory/makeWu"
+import { makeActionWu, makeWuName } from "@/Database/Factory/makeWu"
 import { makeRequestCRUD } from "@/Database/makeCRUD"
 import LayerEnum from "@/Model/LayerEnum"
 import { OapiType } from "@/Model/Oapi"
@@ -10,8 +10,7 @@ import useToastzzStore from "@/Store/useToastzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import { useState, useEffect } from "react"
 import FileButton from "../Button/FileButton"
-import SelectButton from "../Button/SelectButton"
-import TypeFormat from "../Reference/TypeFormat"
+import RequestDetail from "../Oapi/RequestDetail"
 import WuColumnList from "../Wu/WuColumnList"
 
 interface Property {
@@ -32,7 +31,8 @@ export default function ActionRequest(property: Property) {
     )
     const [wu, setWu] = useState<LB.Wu>()
 
-    const name = property.action + property.schema.name + LayerEnum.Request
+    const nameRequest = property.action + property.schema.name + LayerEnum.Request
+    const nameWu = makeWuName(property.action, property.schema, true)
     const file = makeFile()
 
     useEffect(() => {
@@ -52,14 +52,14 @@ export default function ActionRequest(property: Property) {
 
     function makeRequestWu() {
         return makeActionWu(property.action, property.schema, true, sWuzzStore)
-            .then((wu) => makeRequestCRUD().create(makeRequest(name, wu.id)))
+            .then((wu) => makeRequestCRUD().create(makeRequest(nameRequest, wu.id)))
             .then((response) =>
                 property.update({
                     ...property.item,
                     requestId: response.id,
                 }),
             )
-            .then(() => sToastzzStore.showSuccess(`${name} created`))
+            .then(() => sToastzzStore.showSuccess(`${nameRequest} created`))
             .catch(sToastzzStore.showError)
     }
 
@@ -88,11 +88,11 @@ export default function ActionRequest(property: Property) {
     }
 
     return (
-        <table className="table">
-            <caption>
+        <div>
+            <div>
                 <h3 className="inline me-3">Request</h3>
 
-                {sRequestzzStore.findByName(name) ? (
+                {sRequestzzStore.findByName(nameRequest) ? (
                     file === undefined ? (
                         <span className="text-danger">
                             File {LayerEnum.Request} not found
@@ -109,56 +109,19 @@ export default function ActionRequest(property: Property) {
                     )
                 ) : (
                     <span onClick={makeRequestWu} className="btn btn-outline-primary">
-                        + {name}
+                        + {nameRequest}
                     </span>
                 )}
-            </caption>
-            <thead>
-                <tr>
-                    <th>name</th>
-                    <th>content</th>
-                </tr>
-            </thead>
+            </div>
 
-            <tbody>
-                <tr>
-                    <td>
-                        <SelectButton
-                            className="wa"
-                            itemzz={sRequestzzStore.itemzz}
-                            value={property.item.requestId}
-                            change={function (requestId) {
-                                property.update({
-                                    ...property.item,
-                                    requestId,
-                                })
-                            }}
-                        ></SelectButton>
-                    </td>
-                    <td>
-                        {request === undefined ? null : (
-                            <TypeFormat
-                                id={0}
-                                item={request.tf}
-                                update={function (tf) {
-                                    update({ ...request, tf })
-                                }}
-                            ></TypeFormat>
-                        )}
-                    </td>
-                </tr>
-            </tbody>
+            {request === undefined ? null : (
+                <RequestDetail item={request} update={update}></RequestDetail>
+            )}
 
-            <tfoot>
-                <tr>
-                    <td colSpan={2}>
-                        <h3 className="my-3">{name}</h3>
-                        {wu === undefined ? null : (
-                            <WuColumnList item={wu} noCaption></WuColumnList>
-                        )}
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+            <h3 className="my-3">{nameWu}</h3>
+            {wu === undefined ? null : (
+                <WuColumnList item={wu} noCaption></WuColumnList>
+            )}
+        </div>
     )
 }

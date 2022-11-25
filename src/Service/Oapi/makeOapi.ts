@@ -128,18 +128,11 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
 
     db.tables.Wu.forEach((wu) => {
         const wpzz = wiwpzzm.get(wu.id) ?? []
-        builder.addSchema(
-            wu.name,
-            makeSchemaWu(
-                wu,
-                vivm,
-                wiczzm,
-                wiwczzm,
-                wiwm,
-                wiwpzzm,
-                wpzz.map((item) => makeReferenceEmpty()),
-            ) as any,
-        )
+        if (wpzz.length) {
+            return
+        }
+
+        builder.addSchema(wu.name, makeSchemaWu(wu, vivm, wiczzm, wiwczzm, wiwm) as any)
     })
 
     db.tables.Parameter.forEach((item) => {

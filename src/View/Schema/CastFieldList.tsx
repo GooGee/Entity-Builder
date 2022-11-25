@@ -30,7 +30,6 @@ export default function CastFieldList(property: Property) {
                 <tr>
                     <th>column</th>
                     <th>fillable</th>
-                    <th>hidden</th>
                     <th>type</th>
                     <th>cast</th>
                 </tr>

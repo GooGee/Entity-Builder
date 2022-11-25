@@ -59,7 +59,7 @@ export default function SideBar(property: Property) {
                 type="text"
             />
 
-            <ul className="list-group">
+            <ul className="list-group overflow-hidden">
                 {itemzz.map((item) => (
                     <li
                         onClick={() => store.setItem(item)}

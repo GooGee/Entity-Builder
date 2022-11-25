@@ -234,10 +234,12 @@ namespace LB {
         alias: string
     }
 
+    // TypeParameter
     interface WuParameter {
         id: number
         wuId: number
         name: string
         description: string
+        isWu: boolean
     }
 }

@@ -1,6 +1,5 @@
-import { makePath, PageEnum } from "@/menuzz"
+import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import { Formatzz, isReference, OapiType, OapiTypezz } from "@/Model/Oapi"
-import { useLocation } from "react-router-dom"
 import SelectStringButton from "../Button/SelectStringButton"
 import ReferenceButton from "./ReferenceButton"
 
@@ -12,10 +11,16 @@ interface Property {
 }
 
 export default function TypeFormat(property: Property) {
-    const location = useLocation()
+    if (property.wuId === undefined && property.item.type === OapiType.TypeParameter) {
+        return (
+            <span className="text-danger">
+                TypeParameter is only available in Wu page
+            </span>
+        )
+    }
 
     function getTypezz() {
-        if (location.pathname === makePath(PageEnum.Wu)) {
+        if (property.wuId) {
             return OapiTypezz
         }
 
@@ -60,52 +65,56 @@ export default function TypeFormat(property: Property) {
     }
 
     return (
-        <div className="inline d-flex">
-            <div className="form-check form-switch">
-                <input
-                    checked={property.item.isArray}
-                    onChange={(event) =>
-                        property.update({
-                            ...property.item,
-                            isArray: event.target.checked,
-                        })
-                    }
-                    className="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id={"isArraySwitchCheck" + property.id}
-                />
-                {property.item.isArray ? (
-                    <label
-                        className="form-check-label"
-                        htmlFor={"isArraySwitchCheck" + property.id}
-                    >
-                        array
-                    </label>
-                ) : null}
+        <div className="d-flex">
+            <div className="mt-2">
+                <div className="form-check form-switch">
+                    <input
+                        checked={property.item.isArray}
+                        onChange={(event) =>
+                            property.update({
+                                ...property.item,
+                                isArray: event.target.checked,
+                            })
+                        }
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id={"isArraySwitchCheck" + property.id}
+                    />
+                    {property.item.isArray ? (
+                        <label
+                            className="form-check-label"
+                            htmlFor={"isArraySwitchCheck" + property.id}
+                        >
+                            array
+                        </label>
+                    ) : null}
+                </div>
             </div>
-            <div className="form-check form-switch ms-2">
-                <input
-                    checked={property.item.nullable}
-                    onChange={(event) =>
-                        property.update({
-                            ...property.item,
-                            nullable: event.target.checked,
-                        })
-                    }
-                    className="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id={"nullableSwitchCheck" + property.id}
-                />
-                {property.item.nullable ? (
-                    <label
-                        className="form-check-label"
-                        htmlFor={"nullableSwitchCheck" + property.id}
-                    >
-                        nullable
-                    </label>
-                ) : null}
+            <div className="mt-2">
+                <div className="form-check form-switch ms-2">
+                    <input
+                        checked={property.item.nullable}
+                        onChange={(event) =>
+                            property.update({
+                                ...property.item,
+                                nullable: event.target.checked,
+                            })
+                        }
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id={"nullableSwitchCheck" + property.id}
+                    />
+                    {property.item.nullable ? (
+                        <label
+                            className="form-check-label"
+                            htmlFor={"nullableSwitchCheck" + property.id}
+                        >
+                            nullable
+                        </label>
+                    ) : null}
+                </div>
             </div>
 
             <div>
@@ -118,17 +127,7 @@ export default function TypeFormat(property: Property) {
                             return
                         }
 
-                        let argumentzz: LB.TypeFormat[] = []
-                        if (type === OapiType.Wu) {
-                            argumentzz = property.item.argumentzz
-                        }
-                        property.update({
-                            ...property.item,
-                            argumentzz,
-                            format: "",
-                            targetId: 0,
-                            type,
-                        })
+                        property.update(makeTypeFormat(type))
                     }}
                 ></SelectStringButton>
             </div>

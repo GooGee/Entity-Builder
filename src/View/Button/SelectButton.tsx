@@ -1,13 +1,13 @@
-interface Property {
+interface Property<T extends LB.IdNameItem> {
     className?: string
-    itemzz: LB.IdNameItem[]
+    itemzz: T[]
     isAdd?: boolean
     value: number
     verb?: string
-    change(id: number, item?: LB.IdNameItem): void
+    change(id: number, item?: T): void
 }
 
-export default function SelectButton(property: Property) {
+export default function SelectButton<T extends LB.IdNameItem>(property: Property<T>) {
     return (
         <select
             className={"form-select " + (property.className ?? "")}

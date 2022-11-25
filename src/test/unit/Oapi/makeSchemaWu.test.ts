@@ -1,64 +1,65 @@
-import { makeIdColumn } from "@/Database/Factory/makeColumn"
-import makeSchema from "@/Database/Factory/makeSchema"
-import makeWu from "@/Database/Factory/makeWu"
-import {
-    makeSchemaObject,
-    OapiReference,
-    OapiSchema,
-    OapiSchemaAny,
-} from "@/Model/Oapi"
-import { makeReferenceEmpty } from "@/Service/Oapi/makeReference"
+import makeWuChild from "@/Database/Factory/makeWuChild"
+import { CompositionKind, makeSchemaObject, OapiType } from "@/Model/Oapi"
 import makeSchemaTypeFormat from "@/Service/Oapi/makeSchemaTypeFormat"
 import makeSchemaWu from "@/Service/Oapi/makeSchemaWu"
+import makeData from "./makeData"
 
-const vivm: Map<number, LB.Variable> = new Map()
-const wiczzm: Map<number, LB.Column[]> = new Map()
-const wiwczzm: Map<number, LB.WuChild[]> = new Map()
-const wiwm: Map<number, LB.Wu> = new Map()
-const wiwpzzm: Map<number, LB.WuParameter[]> = new Map()
-const parameterzz: (OapiSchemaAny | OapiReference | OapiSchema)[] = []
-const wpism: Map<number, OapiSchemaAny | OapiReference | OapiSchema> = new Map()
+const { schema, wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, argumentzz, wpiam } =
+    makeData()
 
 test("makeSchemaWu", function () {
-    const empty = makeWu("Empty", 1) as LB.Wu
-    empty.id = 1
-
-    expect(
-        makeSchemaWu(empty, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, parameterzz),
-    ).toEqual(makeSchemaObject({}))
-
-    const wu = makeWu("User", 1) as LB.Wu
-    wu.id = 2
-    expect(makeSchemaWu(wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, parameterzz)).toEqual(
-        makeReferenceEmpty(),
+    expect(makeSchemaWu(wu.empty, vivm, wiczzm, wiwczzm, wiwm)).toEqual(
+        makeSchemaObject({}),
     )
 
-    // const schema = makeSchema("User") as LB.Schema
-    // schema.id = 1
-    // const column = makeIdColumn(schema.id, []) as LB.Column
-    // column.id = 1
-    // const wc: LB.WuColumn = {
-    //     id: 1,
-    //     columnId: column.id,
-    //     wuId: wu.id,
-    //     alias: "",
-    // }
-    // wiczzm.set(wu.id, [column])
-    // expect(makeSchemaWu(wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, parameterzz)).toEqual(
-    //     makeSchemaObject({
-    //         description: wu.description,
-    //         properties: {
-    //             [column.name]: makeSchemaTypeFormat(
-    //                 column.tf,
-    //                 vivm,
-    //                 wiczzm,
-    //                 wiwczzm,
-    //                 wiwm,
-    //                 wiwpzzm,
-    //                 parameterzz,
-    //                 wpism,
-    //             ),
-    //         },
-    //     }),
-    // )
+    const [column] = wiczzm.get(wu.user.id)!
+    const result = makeSchemaObject({
+        description: wu.user.description,
+        properties: {
+            [column.name]: makeSchemaTypeFormat(
+                column.tf,
+                vivm,
+                wiczzm,
+                wiwczzm,
+                wiwm,
+                wiwpzzm,
+                argumentzz,
+                wpiam,
+            ),
+        },
+    })
+    expect(makeSchemaWu(wu.user, vivm, wiczzm, wiwczzm, wiwm)).toEqual(result)
+
+    wu.user.isMap = true
+    result.additionalProperties = makeSchemaTypeFormat(
+        wu.user.tf,
+        vivm,
+        wiczzm,
+        wiwczzm,
+        wiwm,
+        wiwpzzm,
+        argumentzz,
+        wpiam,
+    )
+    expect(makeSchemaWu(wu.user, vivm, wiczzm, wiwczzm, wiwm)).toEqual(result)
+
+    const wc = makeWuChild(wu.user.id, OapiType.Wu, wu.empty.id) as LB.WuChild
+    wc.id = 1
+    wiwczzm.set(wu.user.id, [wc])
+
+    expect(makeSchemaWu(wu.user, vivm, wiczzm, wiwczzm, wiwm)).toEqual({
+        [CompositionKind.allOf]: [
+            makeSchemaTypeFormat(
+                wc.tf,
+                vivm,
+                wiczzm,
+                wiwczzm,
+                wiwm,
+                wiwpzzm,
+                argumentzz,
+                wpiam,
+            ),
+            result,
+        ],
+    })
 })

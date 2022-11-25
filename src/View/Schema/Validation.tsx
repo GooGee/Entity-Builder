@@ -43,35 +43,14 @@ export default function Validation(property: Property) {
             </caption>
             <thead>
                 <tr>
-                    <th className="w222">column / read only</th>
+                    <th className="w222">column</th>
                     <th>constraint</th>
                 </tr>
             </thead>
             <tbody>
                 {columnzz.map((item) => (
                     <tr key={item.id}>
-                        <td>
-                            {item.name}
-                            <div className="form-check form-switch inline wa ms-3">
-                                <input
-                                    checked={item.ro}
-                                    onChange={function (event) {
-                                        update({
-                                            ...item,
-                                            ro: event.target.checked,
-                                        })
-                                    }}
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    role="switch"
-                                    id={"roSwitchCheck" + item.id}
-                                />
-                                <label
-                                    className="form-check-label"
-                                    htmlFor={"roSwitchCheck" + item.id}
-                                ></label>
-                            </div>
-                        </td>
+                        <td>{item.name}</td>
                         <td>
                             <ConstraintList
                                 constraintzz={constraintzz}

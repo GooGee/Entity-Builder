@@ -2,7 +2,7 @@ import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import { ReactElement } from "react"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
 import SelectButton from "../Button/SelectButton"
-import TypeFormatText from "../Reference/TypeFormatText"
+import TypeFormat from "../Reference/TypeFormat"
 import ExampleList from "./ExampleList"
 
 interface Property {
@@ -55,7 +55,7 @@ export default function MediaType(property: Property) {
                 <tr>
                     <td>content</td>
                     <td>
-                        <TypeFormatText
+                        <TypeFormat
                             id={property.item.id}
                             item={property.item.tf}
                             update={function (tf) {
@@ -64,7 +64,7 @@ export default function MediaType(property: Property) {
                                     tf,
                                 })
                             }}
-                        ></TypeFormatText>
+                        ></TypeFormat>
                     </td>
                 </tr>
                 <tr>

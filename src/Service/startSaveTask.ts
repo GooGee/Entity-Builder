@@ -3,10 +3,11 @@ import { exportDB } from "@/Database/getDBC"
 import useOapiStore from "@/Store/useOapiStore"
 import useSettingStore from "@/Store/useSettingStore"
 
-const IntervalTime = 11222
-let amount = 0
+const SaveInterval = 1222
+const NewBackupAfter = 333
 
 export default function startSaveTask(data: string) {
+    let amount = 0
     setInterval(function () {
         exportDB().then(function (db) {
             const text = JSON.stringify({
@@ -19,7 +20,10 @@ export default function startSaveTask(data: string) {
             }
             data = text
             amount += 1
-            putSetting(data, amount % 11 === 0)
+            putSetting(data, amount === NewBackupAfter)
+            if (amount === NewBackupAfter) {
+                amount = 0
+            }
         })
-    }, IntervalTime)
+    }, SaveInterval)
 }

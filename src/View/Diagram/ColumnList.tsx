@@ -1,8 +1,8 @@
-import { makeStringColumn } from "@/Database/Factory/makeColumn"
 import { makeColumnCRUD, makeSchemaCRUD } from "@/Database/makeCRUD"
 import showNameInput from "@/View/Dialog/showNameInput"
 import useToastzzStore from "@/Store/useToastzzStore"
 import Column from "./Column"
+import { makeIntegerColumn } from "@/Database/Factory/makeColumn"
 
 interface Property {
     columnzz: LB.Column[]
@@ -21,7 +21,7 @@ function ColumnList(property: Property) {
                             .then((response) => {
                                 if (response.isConfirmed) {
                                     return makeColumnCRUD().create(
-                                        makeStringColumn(
+                                        makeIntegerColumn(
                                             property.item.id,
                                             response.value,
                                         ),

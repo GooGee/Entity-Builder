@@ -6,7 +6,7 @@ import ColorButtonGroup from "../Button/ColorButtonGroup"
 import SelectStringButton from "../Button/SelectStringButton"
 import WebLink from "../Button/WebLink"
 import showInput from "../Dialog/showInput"
-import TypeFormatText from "../Reference/TypeFormatText"
+import TypeFormat from "../Reference/TypeFormat"
 import ConstraintList from "../Schema/ConstraintList"
 
 interface Property {
@@ -93,7 +93,7 @@ export default function ParameterDetail(property: Property) {
                 <tr>
                     <td>type</td>
                     <td>
-                        <TypeFormatText
+                        <TypeFormat
                             id={property.item.id}
                             item={property.item.tf}
                             update={function (tf) {
@@ -102,7 +102,7 @@ export default function ParameterDetail(property: Property) {
                                     tf,
                                 })
                             }}
-                        ></TypeFormatText>
+                        ></TypeFormat>
                     </td>
                 </tr>
                 <tr>

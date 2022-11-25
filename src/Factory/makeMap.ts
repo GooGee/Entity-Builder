@@ -6,10 +6,7 @@ export function makeIdItemMap<T extends LB.IdItem>(
     return kv
 }
 
-export function makeIdNameMap(
-    itemzz: LB.IdNameItem[],
-    kv: Map<string, string> = new Map(),
-) {
+function makeIdNameMap(itemzz: LB.IdNameItem[], kv: Map<string, string> = new Map()) {
     itemzz.forEach((item) => kv.set(item.id.toString(), item.name))
     return kv
 }
@@ -18,7 +15,7 @@ interface NameType {
     name: string
 }
 
-export function makeNameItemMap<T extends NameType>(
+function makeNameItemMap<T extends NameType>(
     itemzz: T[],
     kv: Map<string, T> = new Map(),
 ) {
@@ -26,7 +23,7 @@ export function makeNameItemMap<T extends NameType>(
     return kv
 }
 
-export function makeNameMap(itemzz: NameType[], kv: Map<string, string> = new Map()) {
+function makeNameMap(itemzz: NameType[], kv: Map<string, string> = new Map()) {
     itemzz.forEach((item) => kv.set(item.name, item.name))
     return kv
 }

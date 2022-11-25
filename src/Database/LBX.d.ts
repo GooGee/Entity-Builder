@@ -196,7 +196,7 @@ namespace LB {
 
     interface Setting {}
 
-    interface SideBarItem extends WithId {
+    interface SideBarItem extends IdNameItem {
         id: number
         name: string
         color: string

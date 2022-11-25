@@ -1,4 +1,4 @@
-import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
+import { OapiType } from "@/Model/Oapi"
 import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
 import { useState, useEffect } from "react"
 import TypeFormat from "./TypeFormat"
@@ -10,7 +10,7 @@ interface Property {
     updateArgumentzz(argumentzz: LB.TypeFormat[]): void
 }
 
-export default function TypeFormatList(property: Property) {
+export default function ArgumentList(property: Property) {
     const sWuParameterzzStore = useWuParameterzzStore()
     const [parameterzz, setParameterzz] = useState<LB.WuParameter[]>([])
 
@@ -29,13 +29,29 @@ export default function TypeFormatList(property: Property) {
     return (
         <div>
             &lt;
-            {parameterzz.map((item, index) => (
-                <div key={item.id} className="d-flex mb-1">
-                    <div className="text-secondary mt-1 me-1">{item.name}</div>
-                    {property.itemzz[index] ? (
+            {parameterzz.map((item, index) => {
+                const tf = property.itemzz[index]
+
+                if (tf === undefined) {
+                    return (
+                        <span className="text-danger">
+                            argument {item.name} is missing
+                        </span>
+                    )
+                }
+
+                return (
+                    <div key={item.id} className="d-flex mt-1">
+                        <div className="text-secondary mt-2 me-1">
+                            {item.name}
+                            {item.isWu && tf.type !== OapiType.Wu ? (
+                                <span className="text-danger ms-1">must be Wu</span>
+                            ) : null}
+                        </div>
+
                         <TypeFormat
                             id={item.id}
-                            item={property.itemzz[index]}
+                            item={tf}
                             wuId={property.wuId}
                             update={function (data) {
                                 const argumentzz = [...property.itemzz]
@@ -43,23 +59,9 @@ export default function TypeFormatList(property: Property) {
                                 property.updateArgumentzz(argumentzz)
                             }}
                         ></TypeFormat>
-                    ) : null}
-                </div>
-            ))}
-            {property.itemzz.length < parameterzz.length ? (
-                <div>
-                    <button
-                        className="btn btn-outline-primary"
-                        type="button"
-                        onClick={function () {
-                            const argumentzz = [...property.itemzz, makeTypeFormat()]
-                            property.updateArgumentzz(argumentzz)
-                        }}
-                    >
-                        +
-                    </button>
-                </div>
-            ) : null}
+                    </div>
+                )
+            })}
             &gt;
         </div>
     )

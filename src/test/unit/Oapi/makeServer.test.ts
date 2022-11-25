@@ -12,5 +12,5 @@ test("makeServer", function () {
     const sivzzm = new Map([[data.id, [variable]]])
     const item = makeServer(data, sivzzm)
     expect(item.url).toBe(data.name)
-    expect(item.variables[variable.name].default).toBe("1")
+    expect(item.variables[variable.name].default).toBe(variable.default)
 })

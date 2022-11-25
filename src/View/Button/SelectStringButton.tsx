@@ -1,7 +1,10 @@
+import SelectMapButton from "./SelectMapButton"
+
 interface Property {
+    allowEmpty?: boolean
     className?: string
-    itemzz: string[]
     isAdd?: boolean
+    itemzz: string[]
     value: string
     verb?: string
     change(id: string): void
@@ -9,21 +12,14 @@ interface Property {
 
 export default function SelectStringButton(property: Property) {
     return (
-        <select
-            className={"form-select " + (property.className ?? "")}
+        <SelectMapButton
+            allowEmpty={property.allowEmpty}
+            className={property.className}
+            isAdd={property.isAdd}
+            itemzz={property.itemzz.map((item) => [item, item])}
             value={property.value}
-            onChange={function (event) {
-                property.change(event.target.value)
-            }}
-        >
-            <option disabled hidden value="">
-                -- {property.verb ?? (property.isAdd ? "add" : "select")} --
-            </option>
-            {property.itemzz.map((item) => (
-                <option key={item} value={item}>
-                    {item}
-                </option>
-            ))}
-        </select>
+            verb={property.verb}
+            change={property.change}
+        ></SelectMapButton>
     )
 }

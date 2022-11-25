@@ -38,10 +38,7 @@ export default function FileProperty() {
 
     function update(data: LB.File) {
         setFile(data)
-        makeFileCRUD()
-            .update(data!)
-            .then(setFile)
-            .catch(sToastzzStore.showError)
+        makeFileCRUD().update(data!).then(setFile).catch(sToastzzStore.showError)
     }
 
     return (
@@ -113,6 +110,7 @@ export default function FileProperty() {
                     <td>layer</td>
                     <td>
                         <SelectStringButton
+                            allowEmpty
                             className="wa"
                             itemzz={Layerzz}
                             value={file.layer}

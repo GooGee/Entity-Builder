@@ -126,6 +126,7 @@ export default function WuChildList(property: Property) {
                         <td>
                             <TypeParameterSelect
                                 add={(found) => add(OapiType.TypeParameter, found.id)}
+                                isWu
                                 wuId={property.item.id}
                             ></TypeParameterSelect>
                         </td>

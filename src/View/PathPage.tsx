@@ -1,6 +1,3 @@
-import makePath, { makePathFor } from "@/Database/Factory/makePath"
-import { makeParameterMapCRUD, makePathCRUD } from "@/Database/makeCRUD"
-import { makeNameMap } from "@/Factory/makeMap"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useModulezzStore from "@/Store/useModulezzStore"
 import usePathPageStore from "@/Store/usePathPageStore"
@@ -22,31 +19,6 @@ export default function PathPage() {
     const schema = sSchemazzStore.itemzz[0]
     const api = sFilezzStore.itemzz.find((item) => item.name === "api.php")
     const web = sFilezzStore.itemzz.find((item) => item.name === "web.php")
-
-    function makeItem(schema: string) {
-        if (module === undefined) {
-            return
-        }
-
-        const found = sSchemazzStore.findByName(schema)
-        if (found === undefined) {
-            return
-        }
-
-        const path = makePathFor(found, module, sPathzzStore.itemzz)
-        return makePathCRUD()
-            .create(path)
-            .then(function (response) {
-                if (path.name.includes("/{id}")) {
-                    return makeParameterMapCRUD().create({
-                        inPath: true,
-                        inResponse: false,
-                        parameterId: 1000,
-                        targetId: response.id,
-                    })
-                }
-            })
-    }
 
     function makeDetail() {
         if (sPathPageStore.item === undefined) {

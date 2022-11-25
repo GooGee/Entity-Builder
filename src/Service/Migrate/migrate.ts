@@ -7,6 +7,7 @@ import migrateV017 from "./migrateV017"
 import migrateV018 from "./migrateV018"
 import migrateV019 from "./migrateV019"
 import migrateV020 from "./migrateV020"
+import migrateV021 from "./migrateV021"
 
 const BreakingVersion = 15
 
@@ -27,6 +28,7 @@ export default function migrate(db: LB.DBData, text: string, preset: LB.AppInfoD
     migrateV018(db, preset)
     migrateV019(db, preset)
     migrateV020(db, preset)
+    migrateV021(db, preset)
 }
 
 function backup(db: LB.DBData, text: string) {

@@ -9,48 +9,9 @@ export default function makeColumn(
     type: string,
     value: string = "",
     length: number = 0,
+    rozz: LB.CollectionItem[] = [],
 ): OmitId<LB.Column> {
-    const cizz = getCollectionItemzz("DoctrineColumnType")
-    const rozz = getCollectionItemzz("ReadOnlyColumn")
-    function setTypeFormat(tf: LB.TypeFormat) {
-        const formatzz: string[] = [Format.date, Format.time]
-        if (formatzz.includes(type)) {
-            tf.format = type
-            return
-        }
-        if (type.includes(Format.date)) {
-            tf.format = Format["date-time"]
-            return
-        }
-
-        const found = cizz.find((item) => item.name === type)
-        if (found === undefined) {
-            return
-        }
-
-        const map: Map<string, OapiType> = new Map([
-            ["bool", OapiType.boolean],
-            ["float", OapiType.number],
-            ["int", OapiType.integer],
-            ["string", OapiType.string],
-        ])
-        const tt = map.get(found.tag)
-        if (tt) {
-            tf.type = tt
-            return
-        }
-        if (type === "resource") {
-            tf.format = Format.binary
-            return
-        }
-        if (type === "array") {
-            tf.isArray = true
-            return
-        }
-    }
-
     const tf = makeTypeFormat()
-    setTypeFormat(tf)
     return {
         schemaId,
         name,
@@ -75,19 +36,63 @@ export default function makeColumn(
     }
 }
 
+export function makeColumnTypeFormat(
+    schemaId: number,
+    name: string,
+    type: string,
+    value: string = "",
+    length: number = 0,
+) {
+    const rozz = getCollectionItemzz("ReadOnlyColumn")
+    const column = makeColumn(schemaId, name, type, value, length, rozz)
+    setColumnTypeFormat(column)
+    return column
+}
+
 export function makeIdColumn(schemaId: number) {
     return makeIntegerColumn(schemaId, "id")
 }
 
 export function makeIntegerColumn(schemaId: number, name: string, value: string = "") {
-    return makeColumn(schemaId, name, "integer", value)
+    return makeColumnTypeFormat(schemaId, name, OapiType.integer, value)
 }
 
-export function makeStringColumn(
-    schemaId: number,
-    name: string,
-    value: string = "",
-    length: number = 111,
+export function setColumnTypeFormat(
+    column: OmitId<LB.Column>,
+    cizz = getCollectionItemzz("DoctrineColumnType"),
 ) {
-    return makeColumn(schemaId, name, "string", value, length)
+    const formatzz: string[] = [Format.date, Format.time]
+    if (formatzz.includes(column.type)) {
+        column.tf.format = column.type
+        return
+    }
+    if (column.type.includes(Format.date)) {
+        column.tf.format = Format["date-time"]
+        return
+    }
+
+    const found = cizz.find((item) => item.name === column.type)
+    if (found === undefined) {
+        return
+    }
+
+    const map: Map<string, OapiType> = new Map([
+        ["bool", OapiType.boolean],
+        ["float", OapiType.number],
+        ["int", OapiType.integer],
+        ["string", OapiType.string],
+    ])
+    const tt = map.get(found.tag)
+    if (tt) {
+        column.tf.type = tt
+        return
+    }
+    if (column.type === "resource") {
+        column.tf.format = Format.binary
+        return
+    }
+    if (column.type === "array") {
+        column.tf.isArray = true
+        return
+    }
 }

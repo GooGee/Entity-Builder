@@ -1,15 +1,15 @@
 import { makeColumnCRUD } from "@/Database/makeCRUD"
-import { makeNameMap } from "@/Factory/makeMap"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
+import useListModalStore from "@/Store/useListModalStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useState } from "react"
-import showSelect from "../Dialog/showSelect"
 
 interface Property {
     item: LB.Column
 }
 
 export default function CastField(property: Property) {
+    const sListModalStore = useListModalStore()
     const sToastzzStore = useToastzzStore()
 
     const [item, setItem] = useState(property.item)
@@ -46,27 +46,6 @@ export default function CastField(property: Property) {
                     ></label>
                 </div>
             </td>
-            <td>
-                <div className="form-check form-switch inline wa ms-3">
-                    <input
-                        checked={property.item.wo}
-                        onChange={(event) =>
-                            update({
-                                ...property.item,
-                                wo: event.target.checked,
-                            })
-                        }
-                        className="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id={"woSwitchCheck" + property.item.id}
-                    />
-                    <label
-                        className="form-check-label"
-                        htmlFor={"woSwitchCheck" + property.item.id}
-                    ></label>
-                </div>
-            </td>
             <td>{item.type}</td>
             <td>
                 <div role="group" className="input-group">
@@ -74,21 +53,16 @@ export default function CastField(property: Property) {
                         <button
                             onClick={function () {
                                 const castzz = getCollectionItemzz("ModelFieldTypeCast")
-
-                                showSelect(
+                                sListModalStore.openCB(
                                     "Please select one item",
-                                    item.cast,
-                                    makeNameMap(castzz),
-                                ).then((response) => {
-                                    if (response.isConfirmed) {
-                                        if (response.value) {
-                                            return update({
-                                                ...item,
-                                                cast: response.value,
-                                            })
-                                        }
-                                    }
-                                })
+                                    castzz.map((item) => item.name),
+                                    function (text) {
+                                        return update({
+                                            ...item,
+                                            cast: text,
+                                        })
+                                    },
+                                )
                             }}
                             type="button"
                             className="btn btn-outline-primary"

@@ -12,7 +12,7 @@ import makeReference, {
     makeReferenceOf,
 } from "./makeReference"
 import { makeSchemaEnumName } from "./makeSchemaEnum"
-import makeSchemaWuReference from "./makeSchemaWuReference"
+import makeSchemaWuComputed from "./makeSchemaWuComputed"
 
 export default function makeSchemaTypeFormat(
     tf: LB.TypeFormat,
@@ -21,10 +21,10 @@ export default function makeSchemaTypeFormat(
     wiwczzm: Map<number, LB.WuChild[]>,
     wiwm: Map<number, LB.Wu>,
     wiwpzzm: Map<number, LB.WuParameter[]>,
-    parameterzz: (OapiSchemaAny | OapiReference | OapiSchema)[],
-    wpism: Map<number, OapiSchemaAny | OapiReference | OapiSchema>,
-): OapiSchemaAny | OapiReference | OapiSchema {
-    const schema = make(tf, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, parameterzz, wpism)
+    argumentzz: (OapiReference | OapiSchema)[],
+    wpiam: Map<number, OapiReference | OapiSchema>,
+): OapiReference | OapiSchema {
+    const schema = make(tf, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, argumentzz, wpiam)
     if (tf.isArray) {
         return makeSchemaArray(schema)
     }
@@ -38,9 +38,9 @@ function make(
     wiwczzm: Map<number, LB.WuChild[]>,
     wiwm: Map<number, LB.Wu>,
     wiwpzzm: Map<number, LB.WuParameter[]>,
-    parameterzz: (OapiSchemaAny | OapiReference | OapiSchema)[],
-    wpism: Map<number, OapiSchemaAny | OapiReference | OapiSchema>,
-): OapiSchemaAny | OapiReference | OapiSchema {
+    argumentzz: (OapiReference | OapiSchema)[],
+    wpiam: Map<number, OapiReference | OapiSchema>,
+) {
     if (tf.type === OapiType.any) {
         return {} as OapiSchemaAny
     }
@@ -56,7 +56,7 @@ function make(
     }
 
     if (tf.type === OapiType.TypeParameter) {
-        const found = wpism.get(tf.targetId)
+        const found = wpiam.get(tf.targetId)
         if (found) {
             return found
         }
@@ -78,11 +78,11 @@ function make(
                     wiwczzm,
                     wiwm,
                     wiwpzzm,
-                    parameterzz,
-                    wpism,
+                    argumentzz,
+                    wpiam,
                 ),
             )
-            return makeSchemaWuReference(wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, pzz)
+            return makeSchemaWuComputed(wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, pzz)
         }
 
         return makeReference(tf, wiwm)
@@ -90,7 +90,7 @@ function make(
 
     const data = {
         format: tf.format,
-        type: tf.type as OapiType.string,
+        type: tf.type,
     } as OapiSchemaColumn
     if (tf.nullable) {
         data.nullable = true

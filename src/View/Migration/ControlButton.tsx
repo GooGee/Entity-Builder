@@ -1,6 +1,7 @@
 import { createMigrationFile, createMigration } from "@/api"
 import { refreshDisk } from "@/Bridge/sendToJava"
 import useToastzzStore from "@/Store/useToastzzStore"
+import { useState } from "react"
 import CaretLeft from "../Button/CaretLeft"
 import SkipEnd from "../Button/SkipEnd"
 import SkipStart from "../Button/SkipStart"
@@ -14,20 +15,41 @@ interface Property {
 export default function ControlButton(property: Property) {
     const sToastzzStore = useToastzzStore()
 
+    const [waiting, setWaiting] = useState(false)
+
+    function migrate(step: number) {
+        if (waiting) {
+            return
+        }
+
+        setWaiting(true)
+        return createMigration(step)
+            .then((response) => sToastzzStore.showSuccess(response.data.data))
+            .then(property.read)
+            .catch(sToastzzStore.showError)
+            .then(() => setWaiting(false))
+    }
+
     return (
         <div>
             <div className="mb-3">
                 <button
-                    disabled={property.waiting}
-                    onClick={() =>
+                    disabled={waiting || property.waiting}
+                    onClick={function () {
+                        if (waiting) {
+                            return
+                        }
+
+                        setWaiting(true)
                         createMigrationFile()
                             .then((response) =>
                                 sToastzzStore.showSuccess(response.data.data),
                             )
-                            .then(() => refreshDisk())
-                            .then(() => property.read())
+                            .then(refreshDisk)
+                            .then(property.read)
                             .catch(sToastzzStore.showError)
-                    }
+                            .then(() => setWaiting(false))
+                    }}
                     className="btn btn-outline-success me-2"
                     type="button"
                 >
@@ -41,18 +63,12 @@ export default function ControlButton(property: Property) {
 
             <div>
                 <button
-                    disabled={property.waiting}
+                    disabled={waiting || property.waiting}
                     onClick={() =>
                         showConfirm()
                             .then((response) => {
                                 if (response.isConfirmed) {
-                                    return createMigration(0)
-                                        .then((response) =>
-                                            sToastzzStore.showSuccess(
-                                                response.data.data,
-                                            ),
-                                        )
-                                        .then(() => property.read())
+                                    return migrate(0)
                                 }
                             })
                             .catch(sToastzzStore.showError)
@@ -64,15 +80,8 @@ export default function ControlButton(property: Property) {
                 </button>
 
                 <button
-                    disabled={property.waiting}
-                    onClick={() =>
-                        createMigration(-1)
-                            .then((response) =>
-                                sToastzzStore.showSuccess(response.data.data),
-                            )
-                            .then(() => property.read())
-                            .catch(sToastzzStore.showError)
-                    }
+                    disabled={waiting || property.waiting}
+                    onClick={() => migrate(-1)}
                     className="btn btn-outline-warning me-3"
                     type="button"
                 >
@@ -80,15 +89,8 @@ export default function ControlButton(property: Property) {
                 </button>
 
                 {/* <button
-                    disabled={property.waiting}
-                    onClick={() =>
-                        createMigration(1)
-                            .then((response) =>
-                                sToastzzStore.showSuccess(response.data.data),
-                            )
-                            .then(() =>property. read())
-                            .catch(sToastzzStore.showError)
-                    }
+                    disabled={waiting || property.waiting}
+                    onClick={() => migrate(1)}
                     className="btn btn-outline-warning me-3"
                     type="button"
                 >
@@ -96,15 +98,8 @@ export default function ControlButton(property: Property) {
                 </button> */}
 
                 <button
-                    disabled={property.waiting}
-                    onClick={() =>
-                        createMigration(11)
-                            .then((response) =>
-                                sToastzzStore.showSuccess(response.data.data),
-                            )
-                            .then(() => property.read())
-                            .catch(sToastzzStore.showError)
-                    }
+                    disabled={waiting || property.waiting}
+                    onClick={() => migrate(11)}
                     className="btn btn-outline-warning me-2"
                     type="button"
                 >

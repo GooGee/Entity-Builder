@@ -2,7 +2,7 @@ import * as lf from "lovefield-ts"
 import { DatabaseConnection } from "lovefield-ts"
 import createSchema from "./createSchema"
 
-export const Version = 21
+export const Version = 22
 
 const builder = lf.schema.create("LB", Version)
 createSchema(builder)

@@ -1,15 +1,16 @@
 import makeWu from "@/Database/Factory/makeWu"
 import { makeWuCRUD } from "@/Database/makeCRUD"
-import { makeNameMap } from "@/Factory/makeMap"
+import useListModalStore from "@/Store/useListModalStore"
 import useSchemazzStore from "@/Store/useSchemazzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import useWuPageStore from "@/Store/useWuPageStore"
 import useWuzzStore from "@/Store/useWuzzStore"
-import showSelect from "./Dialog/showSelect"
+import ListModal from "./Modal/ListModal"
 import LeftRightPanel from "./Part/LeftRightPanel"
 import WuView from "./Wu/WuView"
 
 export default function WuPage() {
+    const sListModalStore = useListModalStore()
     const sSchemazzStore = useSchemazzStore()
     const sToastzzStore = useToastzzStore()
     const sWuzzStore = useWuzzStore()
@@ -19,24 +20,22 @@ export default function WuPage() {
             <LeftRightPanel
                 makeCRUD={makeWuCRUD as any}
                 onCreateClick={function () {
-                    showSelect(
+                    sListModalStore.openCB(
                         "Please select a Schema",
-                        "",
-                        makeNameMap(sSchemazzStore.itemzz),
-                    )
-                        .then((response) => {
-                            if (response.isConfirmed) {
-                                const found = sSchemazzStore.findByName(response.value)
-                                if (found) {
-                                    let name = found.name
-                                    if (sWuzzStore.findByName(name)) {
-                                        name += "-" + new Date().getTime()
-                                    }
-                                    return makeWuCRUD().create(makeWu(name, found.id))
+                        sSchemazzStore.itemzz.map((item) => item.name),
+                        function (text) {
+                            const found = sSchemazzStore.findByName(text)
+                            if (found) {
+                                let name = found.name
+                                if (sWuzzStore.findByName(name)) {
+                                    name += "-" + new Date().getTime()
                                 }
+                                return makeWuCRUD()
+                                    .create(makeWu(name, found.id))
+                                    .catch(sToastzzStore.showError)
                             }
-                        })
-                        .catch(sToastzzStore.showError)
+                        },
+                    )
                 }}
                 useItemPageStore={useWuPageStore}
                 useItemzzStore={useWuzzStore}
@@ -44,6 +43,8 @@ export default function WuPage() {
             >
                 <WuView></WuView>
             </LeftRightPanel>
+
+            <ListModal></ListModal>
         </div>
     )
 }

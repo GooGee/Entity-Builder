@@ -2787,7 +2787,6 @@
             ],
             "File": [
                 {
-                    "parentId": 60,
                     "name": "Entity",
                     "color": "#f00",
                     "layer": "Entity",
@@ -2798,7 +2797,6 @@
                     "directoryId": 60
                 },
                 {
-                    "parentId": 10,
                     "name": "Model",
                     "color": "#f00",
                     "layer": "Model",
@@ -2809,7 +2807,6 @@
                     "directoryId": 10
                 },
                 {
-                    "parentId": 10,
                     "name": "ModelBase",
                     "color": "#f00",
                     "layer": "Model",
@@ -2820,7 +2817,6 @@
                     "directoryId": 10
                 },
                 {
-                    "parentId": 60,
                     "name": "Factory",
                     "color": "#f00",
                     "layer": "Factory",
@@ -2831,7 +2827,6 @@
                     "directoryId": 60
                 },
                 {
-                    "parentId": 10,
                     "name": "Repository",
                     "color": "#f00",
                     "layer": "Repository",
@@ -2842,10 +2837,9 @@
                     "directoryId": 10
                 },
                 {
-                    "parentId": 10,
                     "name": "Warmup",
                     "color": "#f00",
-                    "layer": "Cache",
+                    "layer": "",
                     "nameSpacePattern": "Warmup",
                     "fileNamePattern": "Warmup${schema.name}.php",
                     "id": 141,
@@ -2853,10 +2847,9 @@
                     "directoryId": 10
                 },
                 {
-                    "parentId": 10,
                     "name": "Service",
-                    "color": "#f00",
-                    "layer": "Service",
+                    "color": "#fff",
+                    "layer": "",
                     "nameSpacePattern": "Service",
                     "fileNamePattern": "${schema.name}Service.php",
                     "id": 142,
@@ -2864,18 +2857,16 @@
                     "directoryId": 10
                 },
                 {
-                    "parentId": 13,
                     "name": "Command",
                     "color": "#fff",
-                    "layer": "Command",
-                    "nameSpacePattern": "",
-                    "fileNamePattern": "${action + schema.name}Command.php",
-                    "id": 211,
+                    "layer": "",
+                    "nameSpacePattern": "Console/Commands",
+                    "fileNamePattern": "${schema.name}Command.php",
+                    "id": 143,
                     "description": "",
-                    "directoryId": 13
+                    "directoryId": 10
                 },
                 {
-                    "parentId": 13,
                     "name": "Event",
                     "color": "#fff",
                     "layer": "Event",
@@ -2886,7 +2877,6 @@
                     "directoryId": 13
                 },
                 {
-                    "parentId": 13,
                     "name": "Listener",
                     "color": "#fff",
                     "layer": "Event",
@@ -2897,7 +2887,6 @@
                     "directoryId": 13
                 },
                 {
-                    "parentId": 13,
                     "name": "Request",
                     "color": "#fff",
                     "layer": "Request",
@@ -2908,7 +2897,6 @@
                     "directoryId": 13
                 },
                 {
-                    "parentId": 13,
                     "name": "Response",
                     "color": "#fff",
                     "layer": "Response",
@@ -2919,7 +2907,6 @@
                     "directoryId": 13
                 },
                 {
-                    "parentId": 13,
                     "name": "ServiceCrud",
                     "color": "#fff",
                     "layer": "Service",
@@ -2930,7 +2917,6 @@
                     "directoryId": 13
                 },
                 {
-                    "parentId": 21,
                     "name": "CreateOneItem",
                     "color": "#f80",
                     "layer": "Action",
@@ -2941,7 +2927,6 @@
                     "directoryId": 21
                 },
                 {
-                    "parentId": 21,
                     "name": "CreateOneItemController",
                     "color": "#f80",
                     "layer": "Controller",
@@ -2952,7 +2937,6 @@
                     "directoryId": 21
                 },
                 {
-                    "parentId": 23,
                     "name": "DeleteOneItem",
                     "color": "#0f0",
                     "layer": "Action",
@@ -2963,7 +2947,6 @@
                     "directoryId": 23
                 },
                 {
-                    "parentId": 23,
                     "name": "DeleteOneItemController",
                     "color": "#0f0",
                     "layer": "Controller",
@@ -2974,7 +2957,6 @@
                     "directoryId": 23
                 },
                 {
-                    "parentId": 25,
                     "name": "ReadOneItem",
                     "color": "#00f",
                     "layer": "Action",
@@ -2985,7 +2967,6 @@
                     "directoryId": 25
                 },
                 {
-                    "parentId": 25,
                     "name": "ReadOneItemController",
                     "color": "#00f",
                     "layer": "Controller",
@@ -2996,7 +2977,6 @@
                     "directoryId": 25
                 },
                 {
-                    "parentId": 27,
                     "name": "UpdateOneItem",
                     "color": "#80f",
                     "layer": "Action",
@@ -3007,7 +2987,6 @@
                     "directoryId": 27
                 },
                 {
-                    "parentId": 27,
                     "name": "UpdateOneItemController",
                     "color": "#80f",
                     "layer": "Controller",
@@ -3018,7 +2997,6 @@
                     "directoryId": 27
                 },
                 {
-                    "parentId": 24,
                     "name": "ReadManyItem",
                     "color": "#0ff",
                     "layer": "Action",
@@ -3029,7 +3007,6 @@
                     "directoryId": 24
                 },
                 {
-                    "parentId": 24,
                     "name": "ReadManyItemController",
                     "color": "#0ff",
                     "layer": "Controller",
@@ -3040,7 +3017,6 @@
                     "directoryId": 24
                 },
                 {
-                    "parentId": 40,
                     "name": "ItemCache",
                     "color": "#fff",
                     "layer": "Cache",
@@ -3051,7 +3027,6 @@
                     "directoryId": 40
                 },
                 {
-                    "parentId": 40,
                     "name": "ItemInGroupCache",
                     "color": "#fff",
                     "layer": "Cache",
@@ -3062,7 +3037,6 @@
                     "directoryId": 40
                 },
                 {
-                    "parentId": 40,
                     "name": "ItemOfUserCache",
                     "color": "#fff",
                     "layer": "Cache",
@@ -3073,7 +3047,6 @@
                     "directoryId": 40
                 },
                 {
-                    "parentId": 81,
                     "name": "AbstractApiTest.php",
                     "color": "#fff",
                     "layer": "Test",
@@ -3084,7 +3057,6 @@
                     "directoryId": 81
                 },
                 {
-                    "parentId": 81,
                     "name": "AbstractItemTest",
                     "color": "#f00",
                     "layer": "Test",
@@ -3095,7 +3067,6 @@
                     "directoryId": 81
                 },
                 {
-                    "parentId": 81,
                     "name": "CreateOneItemTest",
                     "color": "#f80",
                     "layer": "Test",
@@ -3106,7 +3077,6 @@
                     "directoryId": 81
                 },
                 {
-                    "parentId": 81,
                     "name": "DeleteOneItemTest",
                     "color": "#0f0",
                     "layer": "Test",
@@ -3117,7 +3087,6 @@
                     "directoryId": 81
                 },
                 {
-                    "parentId": 81,
                     "name": "ReadOneItemTest",
                     "color": "#00f",
                     "layer": "Test",
@@ -3128,7 +3097,6 @@
                     "directoryId": 81
                 },
                 {
-                    "parentId": 81,
                     "name": "UpdateOneItemTest",
                     "color": "#80f",
                     "layer": "Test",
@@ -3139,7 +3107,6 @@
                     "directoryId": 81
                 },
                 {
-                    "parentId": 81,
                     "name": "ReadManyItemTest",
                     "color": "#0ff",
                     "layer": "Test",
@@ -3150,7 +3117,6 @@
                     "directoryId": 81
                 },
                 {
-                    "parentId": 65,
                     "name": "api.php",
                     "color": "#fff",
                     "layer": "",
@@ -3161,7 +3127,6 @@
                     "directoryId": 65
                 },
                 {
-                    "parentId": 65,
                     "name": "channels.php",
                     "color": "#fff",
                     "layer": "",
@@ -3172,7 +3137,6 @@
                     "directoryId": 65
                 },
                 {
-                    "parentId": 65,
                     "name": "console.php",
                     "color": "#fff",
                     "layer": "",
@@ -3183,7 +3147,6 @@
                     "directoryId": 65
                 },
                 {
-                    "parentId": 65,
                     "name": "web.php",
                     "color": "#fff",
                     "layer": "",
@@ -3194,7 +3157,6 @@
                     "directoryId": 65
                 },
                 {
-                    "parentId": 1000,
                     "name": "AbstractItemCache.php",
                     "color": "#fff",
                     "layer": "",
@@ -3205,7 +3167,6 @@
                     "directoryId": 1000
                 },
                 {
-                    "parentId": 1000,
                     "name": "AbstractController.php",
                     "color": "#fff",
                     "layer": "",
@@ -3216,7 +3177,6 @@
                     "directoryId": 1000
                 },
                 {
-                    "parentId": 1000,
                     "name": "AbstractResponse.php",
                     "color": "#fff",
                     "layer": "",
@@ -3307,7 +3267,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3338,7 +3298,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3369,7 +3329,7 @@
                     "nullable": true,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3400,7 +3360,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3431,7 +3391,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3462,7 +3422,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3501,7 +3461,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3532,7 +3492,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3563,7 +3523,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3594,7 +3554,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3625,7 +3585,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3656,7 +3616,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3687,7 +3647,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3718,7 +3678,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3749,7 +3709,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3780,7 +3740,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3811,7 +3771,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3842,7 +3802,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3873,7 +3833,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -3904,7 +3864,7 @@
                     "nullable": false,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": false,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -4042,7 +4002,7 @@
                         "format": "date-time",
                         "targetId": 0,
                         "argumentzz": [],
-                        "nullable": false
+                        "nullable": true
                     },
                     "id": 1023
                 },
@@ -4299,7 +4259,7 @@
                 },
                 {
                     "schemaId": 1000,
-                    "name": "DTO_Api",
+                    "name": "Api",
                     "color": "#fff",
                     "type": "allOf",
                     "isRequest": false,
@@ -4339,7 +4299,7 @@
                 },
                 {
                     "schemaId": 1000,
-                    "name": "DTO_ApiError",
+                    "name": "ApiError",
                     "color": "#fff",
                     "type": "allOf",
                     "isRequest": false,
@@ -4359,7 +4319,7 @@
                 },
                 {
                     "schemaId": 1000,
-                    "name": "DTO_ApiItem",
+                    "name": "ApiItem",
                     "color": "#fff",
                     "type": "allOf",
                     "isRequest": false,
@@ -4379,7 +4339,7 @@
                 },
                 {
                     "schemaId": 1000,
-                    "name": "DTO_ApiList",
+                    "name": "ApiList",
                     "color": "#fff",
                     "type": "allOf",
                     "isRequest": false,
@@ -4419,7 +4379,7 @@
                 },
                 {
                     "schemaId": 1000,
-                    "name": "DTO_ApiPage",
+                    "name": "ApiPage",
                     "color": "#fff",
                     "type": "allOf",
                     "isRequest": false,
@@ -4439,7 +4399,7 @@
                 },
                 {
                     "schemaId": 1,
-                    "name": "DTO_ApiPaginator",
+                    "name": "ApiPaginator",
                     "color": "#fff",
                     "type": "allOf",
                     "isRequest": false,
@@ -4643,31 +4603,36 @@
                     "wuId": 1002,
                     "name": "ItemType",
                     "description": "",
-                    "id": 1002
+                    "id": 1002,
+                    "isWu": false
                 },
                 {
                     "wuId": 1003,
                     "name": "ItemType",
                     "description": "",
-                    "id": 1003
+                    "id": 1003,
+                    "isWu": false
                 },
                 {
                     "wuId": 1004,
                     "name": "ItemType",
                     "description": "",
-                    "id": 1004
+                    "id": 1004,
+                    "isWu": false
                 },
                 {
                     "wuId": 1005,
                     "name": "ItemType",
                     "description": "",
-                    "id": 1005
+                    "id": 1005,
+                    "isWu": false
                 },
                 {
                     "wuId": 1006,
                     "name": "ItemType",
                     "description": "",
-                    "id": 1006
+                    "id": 1006,
+                    "isWu": false
                 }
             ],
             "Path": [
@@ -4925,11 +4890,11 @@
                     "id": 1,
                     "tf": {
                         "isArray": false,
-                        "type": "string",
+                        "nullable": false,
+                        "type": "any",
                         "format": "",
                         "targetId": 0,
-                        "argumentzz": [],
-                        "nullable": false
+                        "argumentzz": []
                     }
                 }
             ],
@@ -4945,11 +4910,11 @@
                     "id": 1,
                     "tf": {
                         "isArray": false,
-                        "type": "string",
+                        "nullable": false,
+                        "type": "any",
                         "format": "",
                         "targetId": 0,
-                        "argumentzz": [],
-                        "nullable": false
+                        "argumentzz": []
                     }
                 },
                 {
@@ -5006,9 +4971,11 @@
                     "description": "",
                     "name": "http://localhost/{ApiVersion}",
                     "reserved": false,
-                    "id": 1000
+                    "id": 1000,
+                    "global": true
                 }
             ],
+            "ServerMap": [],
             "Variable": [
                 {
                     "color": "#fff",
@@ -5032,7 +4999,7 @@
             ],
             "PathMethod": []
         },
-        "version": 18
+        "version": 22
     },
     "oapi": {
         "openapi": "3.0.3",

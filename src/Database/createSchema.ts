@@ -170,12 +170,14 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Wu)
     makeForeignKey(tb, item, SchemaEnum.Column)
 
+    // TypeParameter
     item = SchemaEnum.WuParameter
     tb = builder
         .createTable(item)
         .addColumn("id", lf.Type.INTEGER)
         .addColumn("name", lf.Type.STRING)
         .addColumn("description", lf.Type.STRING)
+        .addColumn("isWu", lf.Type.BOOLEAN)
         .addPrimaryKey(["id"], true)
     makeForeignKey(tb, item, SchemaEnum.Wu)
     makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Wu), "name"])

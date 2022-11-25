@@ -1,4 +1,3 @@
-import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
 import { useState, useEffect } from "react"
 import TypeFormatText from "./TypeFormatText"
@@ -43,18 +42,6 @@ export default function TypeFormatTextList(property: Property) {
                     ></TypeFormatText>
                 </div>
             ))}
-            {property.itemzz.length < parameterzz.length ? (
-                <button
-                    className="btn btn-outline-primary"
-                    type="button"
-                    onClick={function () {
-                        const argumentzz = [...property.itemzz, makeTypeFormat()]
-                        property.updateArgumentzz(argumentzz)
-                    }}
-                >
-                    +
-                </button>
-            ) : null}
             &gt;
         </span>
     )

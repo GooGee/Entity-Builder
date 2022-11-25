@@ -48,6 +48,13 @@ export default function WuParameterList(property: Property) {
                     +
                 </span>
             </caption>
+            <thead>
+                <tr>
+                    <td>name</td>
+                    <td>isWu</td>
+                    <td>description</td>
+                </tr>
+            </thead>
             <tbody>
                 {parameterzz.map((item) => (
                     <WuParameter key={item.id} item={item}></WuParameter>

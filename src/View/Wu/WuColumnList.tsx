@@ -79,7 +79,7 @@ export default function WuColumnList(property: Property) {
     }
 
     return (
-        <table className="table WuColumn">
+        <table className="table">
             {makeCaption()}
 
             <thead>
@@ -106,6 +106,7 @@ export default function WuColumnList(property: Property) {
                     <Column
                         key={getKey(item)}
                         constraintzz={constraintzz}
+                        isRequest={property.item.isRequest}
                         item={item}
                         wc={wuColumnMap.get(item.id)}
                         wu={property.item}

@@ -8,5 +8,6 @@ export default function makeWuParameter(
         wuId,
         name,
         description: "",
+        isWu: false,
     }
 }

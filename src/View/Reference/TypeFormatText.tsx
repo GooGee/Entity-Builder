@@ -1,4 +1,4 @@
-import { isPrimary } from "@/Model/Oapi"
+import { isPrimary, OapiType } from "@/Model/Oapi"
 import makeTextTypeFormat, {
     clearError,
     errorTypeFormat,
@@ -11,6 +11,7 @@ import TypeFormat from "./TypeFormat"
 
 interface Property {
     id: number | string
+    isRoot?: boolean
     item: LB.TypeFormat
     wuId?: number
     update(item: LB.TypeFormat): void
@@ -22,7 +23,11 @@ export default function TypeFormatText(property: Property) {
     const sWuParameterzzStore = useWuParameterzzStore()
     const sWuzzStore = useWuzzStore()
 
-    if (isPrimary(property.item.type)) {
+    if (
+        isPrimary(property.item.type) ||
+        isRootTypeParameter() ||
+        property.item.type === OapiType.Enum
+    ) {
         return (
             <TypeFormat
                 id={property.id}
@@ -31,6 +36,10 @@ export default function TypeFormatText(property: Property) {
                 wuId={property.wuId}
             ></TypeFormat>
         )
+    }
+
+    function isRootTypeParameter() {
+        return property.isRoot && property.item.type === OapiType.TypeParameter
     }
 
     clearError()

@@ -19,7 +19,11 @@ export default function PathMethodList(property: Property) {
     const middlewarezz = getCollectionItemzz("Middleware").map((item) => item.name)
     const namezz = getCollectionItemzz("ModuleAction")
     const mazz = sModuleActionzz.itemzz
-        .filter((item) => item.schemaId === property.item.schemaId)
+        .filter(
+            (item) =>
+                item.schemaId === property.item.schemaId &&
+                item.moduleId === property.item.moduleId,
+        )
         .map((ma) => {
             const found = namezz.find((item) => item.id === ma.collectionItemId)
             const name = found?.name ?? `${ma.collectionItemId} not found`

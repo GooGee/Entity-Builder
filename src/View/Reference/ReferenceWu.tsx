@@ -1,6 +1,8 @@
+import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
+import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import SelectButton from "../Button/SelectButton"
-import TypeFormatList from "./TypeFormatList"
+import ArgumentList from "./ArgumentList"
 
 interface Property {
     className?: string
@@ -11,6 +13,7 @@ interface Property {
 
 export default function ReferenceWu(property: Property) {
     const sWuzzStore = useWuzzStore()
+    const sWuParameterzzStore = useWuParameterzzStore()
 
     return (
         <div className={property.className}>
@@ -19,14 +22,32 @@ export default function ReferenceWu(property: Property) {
                 itemzz={sWuzzStore.itemzz}
                 value={property.item.targetId}
                 change={function (targetId) {
+                    const pzz = sWuParameterzzStore.itemzz.filter(
+                        (item) => item.wuId === targetId,
+                    )
+                    const argumentzz = [...property.item.argumentzz]
+                    if (argumentzz.length < pzz.length) {
+                        for (
+                            let index = argumentzz.length;
+                            index < pzz.length;
+                            index++
+                        ) {
+                            argumentzz.push(makeTypeFormat())
+                        }
+                    } else {
+                        if (argumentzz.length > pzz.length) {
+                            argumentzz.splice(pzz.length)
+                        }
+                    }
                     property.update({
                         ...property.item,
                         targetId,
+                        argumentzz,
                     })
                 }}
             ></SelectButton>
 
-            <TypeFormatList
+            <ArgumentList
                 itemzz={property.item.argumentzz}
                 targetId={property.item.targetId}
                 wuId={property.wuId}
@@ -36,7 +57,7 @@ export default function ReferenceWu(property: Property) {
                         argumentzz,
                     })
                 }}
-            ></TypeFormatList>
+            ></ArgumentList>
         </div>
     )
 }

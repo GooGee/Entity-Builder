@@ -6,7 +6,7 @@ function CB(text: string) {}
 type ListModalStoreType = RightModalDataType & {
     namezz: string[]
     callback(text: string): void
-    openCB(title: string, namezz: string[], callback?: (text: string) => void): void
+    openCB(title: string, namezz: string[], callback: (text: string) => void): void
 }
 
 const useListModalStore = create<ListModalStoreType>(function (set) {
@@ -15,7 +15,7 @@ const useListModalStore = create<ListModalStoreType>(function (set) {
         ...data,
         namezz: [],
         callback: CB,
-        openCB(title: string, namezz: string[], callback = CB) {
+        openCB(title: string, namezz: string[], callback: (text: string) => void) {
             set({
                 isOpen: true,
                 namezz,

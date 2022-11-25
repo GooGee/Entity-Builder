@@ -1,14 +1,17 @@
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
-import { OapiReference, OapiSchema, OapiType } from "@/Model/Oapi"
+import makeVariable from "@/Database/Factory/makeVariable"
+import makeWuParameter from "@/Database/Factory/makeWuParameter"
+import { CompositionKind, OapiSchemaType, OapiType } from "@/Model/Oapi"
+import makeReference, {
+    makeReferenceOf,
+    ComponentKind,
+} from "@/Service/Oapi/makeReference"
+import { makeSchemaEnumName } from "@/Service/Oapi/makeSchemaEnum"
 import makeSchemaTypeFormat from "@/Service/Oapi/makeSchemaTypeFormat"
+import makeData, { makeFakeColumn } from "./makeData"
 
-const vivm: Map<number, LB.Variable> = new Map()
-const wiczzm: Map<number, LB.Column[]> = new Map()
-const wiwczzm: Map<number, LB.WuChild[]> = new Map()
-const wiwm: Map<number, LB.Wu> = new Map()
-const wiwpzzm: Map<number, LB.WuParameter[]> = new Map()
-const parameterzz: (object | OapiReference | OapiSchema)[] = []
-const wpism: Map<number, object | OapiReference | OapiSchema> = new Map()
+const { schema, wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, argumentzz, wpiam } =
+    makeData()
 
 test("makeSchemaTypeFormat", function () {
     expect(
@@ -19,22 +22,21 @@ test("makeSchemaTypeFormat", function () {
             wiwczzm,
             wiwm,
             wiwpzzm,
-            parameterzz,
-            wpism,
+            argumentzz,
+            wpiam,
         ),
     ).toEqual({})
 
-    const tfstring = makeTypeFormat(OapiType.string, 0)
     expect(
         makeSchemaTypeFormat(
-            tfstring,
+            makeTypeFormat(OapiType.string, 0),
             vivm,
             wiczzm,
             wiwczzm,
             wiwm,
             wiwpzzm,
-            parameterzz,
-            wpism,
+            argumentzz,
+            wpiam,
         ),
     ).toEqual({
         format: "",
@@ -51,14 +53,94 @@ test("makeSchemaTypeFormat", function () {
             wiwczzm,
             wiwm,
             wiwpzzm,
-            parameterzz,
-            wpism,
+            argumentzz,
+            wpiam,
         ),
     ).toEqual({
-        type: "array",
+        type: OapiSchemaType.array,
         items: {
             format: "",
             type: OapiType.string,
         },
+    })
+
+    const variable = makeVariable("version") as LB.Variable
+    variable.id = 1
+    variable.default = "1"
+    vivm.set(variable.id, variable)
+
+    expect(
+        makeSchemaTypeFormat(
+            makeTypeFormat(OapiType.Enum, variable.id),
+            vivm,
+            wiczzm,
+            wiwczzm,
+            wiwm,
+            wiwpzzm,
+            argumentzz,
+            wpiam,
+        ),
+    ).toEqual(makeReferenceOf(makeSchemaEnumName(variable.name), ComponentKind.schemas))
+
+    wiwm.set(wu.empty.id, wu.empty)
+    wiwm.set(wu.user.id, wu.user)
+    const wp = makeWuParameter(wu.user.id, "ItemType") as LB.WuParameter
+    wp.id = 3
+    wiwpzzm.set(wu.user.id, [wp])
+    const column = makeFakeColumn("data", OapiType.string, schema.User, wiczzm)
+    column.tf.type = OapiType.TypeParameter
+    column.tf.targetId = wp.id
+    const argument = makeSchemaTypeFormat(
+        makeTypeFormat(),
+        vivm,
+        wiczzm,
+        wiwczzm,
+        wiwm,
+        wiwpzzm,
+        argumentzz,
+        wpiam,
+    )
+    argumentzz.push(argument)
+    wpiam.set(wp.id, argument)
+    expect(
+        makeSchemaTypeFormat(
+            makeTypeFormat(OapiType.TypeParameter, wp.id),
+            vivm,
+            wiczzm,
+            wiwczzm,
+            wiwm,
+            wiwpzzm,
+            argumentzz,
+            wpiam,
+        ),
+    ).toEqual(argument)
+
+    const tfwu = makeTypeFormat(OapiType.Wu, wu.user.id)
+    const tfargument = makeTypeFormat(OapiType.number)
+    tfwu.argumentzz.push(tfargument)
+    expect(
+        makeSchemaTypeFormat(
+            tfwu,
+            vivm,
+            wiczzm,
+            wiwczzm,
+            wiwm,
+            wiwpzzm,
+            argumentzz,
+            wpiam,
+        ),
+    ).toEqual({
+        description: "",
+        properties: {
+            data: {
+                format: tfargument.format,
+                type: tfargument.type,
+            },
+            id: {
+                format: "",
+                type: OapiType.string,
+            },
+        },
+        type: OapiSchemaType.object,
     })
 })

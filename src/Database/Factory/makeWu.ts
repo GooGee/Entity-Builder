@@ -14,7 +14,7 @@ export function makeActionWu(
     isRequest: boolean,
     store: WuzzStore,
 ) {
-    const name = (isRequest ? "Form_" : "DTO_") + action + schema.name
+    const name = makeWuName(action, schema, isRequest)
 
     const found = store.findByName(name)
     if (found) {
@@ -41,4 +41,8 @@ export default function makeWu(
         isMap: false,
         tf: makeTypeFormat(),
     }
+}
+
+export function makeWuName(action: string, schema: LB.Schema, isRequest: boolean) {
+    return `${schema.name}_${action}_` + (isRequest ? "Form" : "DTO")
 }

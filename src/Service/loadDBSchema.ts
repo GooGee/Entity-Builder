@@ -1,4 +1,4 @@
-import makeColumn from "@/Database/Factory/makeColumn"
+import makeColumn, { setColumnTypeFormat } from "@/Database/Factory/makeColumn"
 import { connectSchemaBy } from "@/Database/Factory/makeRelation"
 import makeSchema from "@/Database/Factory/makeSchema"
 import { exportDB } from "@/Database/getDBC"
@@ -9,8 +9,14 @@ import {
     makeSchemaCRUD,
 } from "@/Database/makeCRUD"
 import RelationType from "@/Database/RelationType"
+import getCollectionItemzz from "./getCollectionItemzz"
 
-function createColumn(item: LB.DoctrineColumn, schema: LB.Schema) {
+function createColumn(
+    item: LB.DoctrineColumn,
+    schema: LB.Schema,
+    rozz: LB.CollectionItem[],
+    cizz: LB.CollectionItem[],
+) {
     // console.log(`createColumn ${item.name}`)
     let value = ""
     if (item.default === null) {
@@ -22,11 +28,12 @@ function createColumn(item: LB.DoctrineColumn, schema: LB.Schema) {
             value = item.default
         }
     }
-    const data = makeColumn(schema.id, item.name, item.type, value, item.length)
+    const data = makeColumn(schema.id, item.name, item.type, value, item.length, rozz)
     data.comment = item.comment
     data.nullable = item.nullable
     data.scale = item.scale
     data.unsigned = item.unsigned
+    setColumnTypeFormat(data, cizz)
     return makeColumnCRUD().create(data)
 }
 
@@ -58,6 +65,8 @@ function createTable(item: LB.DoctrineTable) {
 }
 
 export default async function loadDBSchema(schema: LB.DoctrineSchema) {
+    const cizz = getCollectionItemzz("DoctrineColumnType")
+    const rozz = getCollectionItemzz("ReadOnlyColumn")
     const tablezz = schema.tablezz.filter((item) => item.included)
 
     const tm: Map<string, LB.Schema> = new Map()
@@ -76,7 +85,7 @@ export default async function loadDBSchema(schema: LB.DoctrineSchema) {
                 found = []
                 tcm.set(table.name, found)
             }
-            await createColumn(item, tm.get(table.name)!).then((response) =>
+            await createColumn(item, tm.get(table.name)!, rozz, cizz).then((response) =>
                 found!.push(response),
             )
         }

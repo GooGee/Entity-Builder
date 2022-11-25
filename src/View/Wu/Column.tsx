@@ -5,6 +5,7 @@ import ConstraintList from "../Schema/ConstraintList"
 
 interface Property {
     constraintzz: LB.CollectionItem[]
+    isRequest: boolean
     item: LB.Column
     wc?: LB.WuColumn
     wu: LB.Wu
@@ -30,6 +31,44 @@ export default function Column(property: Property) {
 
     function update(data: LB.Column) {
         makeColumnCRUD().update(data).catch(sToastzzStore.showError)
+    }
+
+    function makeView() {
+        if (property.wc === undefined) {
+            return null
+        }
+
+        if (property.wu.isRequest) {
+            return (
+                <ConstraintList
+                    constraintzz={property.constraintzz}
+                    item={property.item}
+                    update={function (constraintzz) {
+                        update({
+                            ...property.item,
+                            constraintzz,
+                        })
+                    }}
+                ></ConstraintList>
+            )
+        }
+
+        return (
+            <TypeFormatText
+                id={property.item.id}
+                isRoot
+                item={property.item.tf}
+                wuId={property.wu.id}
+                update={function (tf) {
+                    makeColumnCRUD()
+                        .update({
+                            ...property.item,
+                            tf,
+                        })
+                        .catch(sToastzzStore.showError)
+                }}
+            ></TypeFormatText>
+        )
     }
 
     return (
@@ -68,36 +107,7 @@ export default function Column(property: Property) {
                     />
                 ) : null}
             </td>
-            <td>
-                {property.wc ? (
-                    property.wu.isRequest ? (
-                        <ConstraintList
-                            constraintzz={property.constraintzz}
-                            item={property.item}
-                            update={function (constraintzz) {
-                                update({
-                                    ...property.item,
-                                    constraintzz,
-                                })
-                            }}
-                        ></ConstraintList>
-                    ) : (
-                        <TypeFormatText
-                            id={property.item.id}
-                            item={property.item.tf}
-                            wuId={property.wu.id}
-                            update={function (tf) {
-                                makeColumnCRUD()
-                                    .update({
-                                        ...property.item,
-                                        tf,
-                                    })
-                                    .catch(sToastzzStore.showError)
-                            }}
-                        ></TypeFormatText>
-                    )
-                ) : null}
-            </td>
+            <td>{makeView()}</td>
         </tr>
     )
 }

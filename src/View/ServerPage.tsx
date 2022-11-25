@@ -42,12 +42,6 @@ export default function ServerPage() {
                         >
                             doc
                         </WebLink>
-
-                        <span className="ms-3">
-                            only global servers will be added to `servers` object of
-                            OpenApi document. non-global servers are for path /
-                            operation
-                        </span>
                     </caption>
                     <thead>
                         <tr>
@@ -60,6 +54,15 @@ export default function ServerPage() {
                             <ServerDetail item={item} key={item.id}></ServerDetail>
                         ))}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colSpan={2}>
+                                only global servers will be added to `servers` object of
+                                OpenApi document. non-global servers are for path /
+                                operation.
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

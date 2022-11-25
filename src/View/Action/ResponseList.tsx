@@ -2,7 +2,7 @@ import { cloneFile } from "@/Database/Factory/makeFile"
 import makeModuleActionResponse from "@/Database/Factory/makeModuleActionResponse"
 import makeResponse from "@/Database/Factory/makeResponse"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
-import { makeActionWu } from "@/Database/Factory/makeWu"
+import { makeActionWu, makeWuName } from "@/Database/Factory/makeWu"
 import { makeModuleActionResponseCRUD, makeResponseCRUD } from "@/Database/makeCRUD"
 import LayerEnum from "@/Model/LayerEnum"
 import { OapiType } from "@/Model/Oapi"
@@ -32,7 +32,8 @@ export default function ResponseList(property: Property) {
     const [itemzz, setItemzz] = useState<LB.ModuleActionResponse[]>([])
     const [wu, setWu] = useState<LB.Wu>()
 
-    const name = property.action + property.schema.name + LayerEnum.Response
+    const nameResponse = property.action + property.schema.name + LayerEnum.Response
+    const nameWu = makeWuName(property.action, property.schema, false)
     const file = makeFile()
 
     const statuszz = getCollectionItemzz("HttpStatus")
@@ -59,7 +60,7 @@ export default function ResponseList(property: Property) {
                 if (property.action === "ReadMany") {
                     wrapperId = 1003
                 }
-                const item = makeResponse(name, wrapperId)
+                const item = makeResponse(nameResponse, wrapperId)
                 item.tf.argumentzz.push(makeTypeFormat(OapiType.Wu, wu.id))
                 return makeResponseCRUD().create(item)
             })
@@ -76,7 +77,7 @@ export default function ResponseList(property: Property) {
                 })
             })
             .then(refresh)
-            .then(() => sToastzzStore.showSuccess(`${name} created`))
+            .then(() => sToastzzStore.showSuccess(`${nameResponse} created`))
             .catch(sToastzzStore.showError)
     }
 
@@ -89,8 +90,7 @@ export default function ResponseList(property: Property) {
                 )
                 setItemzz(itemzz)
 
-                const name = "DTO_" + property.action + property.schema.name
-                setWu(sWuzzStore.findByName(name))
+                setWu(sWuzzStore.findByName(nameWu))
             })
     }
 
@@ -100,7 +100,7 @@ export default function ResponseList(property: Property) {
                 <caption>
                     <h3 className="inline me-3">Response</h3>
 
-                    {sResponsezzStore.findByName(name) ? (
+                    {sResponsezzStore.findByName(nameResponse) ? (
                         file === undefined ? (
                             <span className="text-danger">
                                 File {LayerEnum.Response} not found
@@ -120,7 +120,7 @@ export default function ResponseList(property: Property) {
                             onClick={makeResponseWu}
                             className="btn btn-outline-primary"
                         >
-                            + {name}
+                            + {nameResponse}
                         </span>
                     )}
                 </caption>
@@ -166,7 +166,7 @@ export default function ResponseList(property: Property) {
                     </tr>
                     <tr>
                         <td colSpan={3}>
-                            <h3 className="my-3">{name}</h3>
+                            <h3 className="my-3">{nameWu}</h3>
                             {wu === undefined ? null : (
                                 <WuColumnList item={wu} noCaption></WuColumnList>
                             )}

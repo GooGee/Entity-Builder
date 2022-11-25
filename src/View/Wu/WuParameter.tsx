@@ -10,6 +10,10 @@ interface Property {
 export default function WuParameter(property: Property) {
     const sToastzzStore = useToastzzStore()
 
+    function update(data: LB.WuParameter) {
+        makeWuParameterCRUD().update(data).catch(sToastzzStore.showError)
+    }
+
     return (
         <tr>
             <td>
@@ -38,7 +42,7 @@ export default function WuParameter(property: Property) {
                             )
                                 .then((response) => {
                                     if (response.isConfirmed) {
-                                        return makeWuParameterCRUD().update({
+                                        return update({
                                             ...property.item,
                                             name: response.value,
                                         })
@@ -53,14 +57,33 @@ export default function WuParameter(property: Property) {
                 </div>
             </td>
             <td>
+                <div className="form-check form-switch">
+                    <input
+                        checked={property.item.isWu}
+                        onChange={(event) =>
+                            update({
+                                ...property.item,
+                                isWu: event.target.checked,
+                            })
+                        }
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id={"isWuSwitchCheck" + property.item.id}
+                    />
+                    <label
+                        className="form-check-label"
+                        htmlFor={"isWuSwitchCheck" + property.item.id}
+                    ></label>
+                </div>
+            </td>
+            <td>
                 <input
                     onChange={(event) =>
-                        makeWuParameterCRUD()
-                            .update({
-                                ...property.item,
-                                description: event.target.value,
-                            })
-                            .catch(sToastzzStore.showError)
+                        update({
+                            ...property.item,
+                            description: event.target.value,
+                        })
                     }
                     type="text"
                     placeholder="description"

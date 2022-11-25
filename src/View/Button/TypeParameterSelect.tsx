@@ -5,6 +5,7 @@ import SelectButton from "./SelectButton"
 
 interface Property {
     wuId: number
+    isWu?: boolean
     add(found: LB.WuParameter): void
 }
 
@@ -15,7 +16,15 @@ export default function TypeParameterSelect(property: Property) {
 
     useEffect(() => {
         setParameterzz(
-            sWuParameterzzStore.itemzz.filter((item) => item.wuId === property.wuId),
+            sWuParameterzzStore.itemzz.filter(function (item) {
+                if (item.wuId === property.wuId) {
+                    if (property.isWu) {
+                        return item.isWu
+                    }
+                    return true
+                }
+                return false
+            }),
         )
     }, [property.wuId, sWuParameterzzStore.itemzz])
 

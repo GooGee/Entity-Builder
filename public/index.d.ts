@@ -234,11 +234,13 @@ declare namespace LB {
         alias: string
     }
 
+    // TypeParameter
     interface WuParameter {
         id: number
         wuId: number
         name: string
         description: string
+        isWu: boolean
     }
 
     interface AbstractSchema {
@@ -438,7 +440,7 @@ declare namespace LB {
 
     interface Setting {}
 
-    interface SideBarItem extends WithId {
+    interface SideBarItem extends IdItem {
         id: number
         name: string
         color: string

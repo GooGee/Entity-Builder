@@ -4,23 +4,22 @@ import showNameInput from "@/View/Dialog/showNameInput"
 import useToastzzStore from "@/Store/useToastzzStore"
 import ColumnDetail from "./ColumnDetail"
 import { useState } from "react"
+import getCollectionItemzz from "@/Service/getCollectionItemzz"
+import useListModalStore from "@/Store/useListModalStore"
 
 interface Property {
     item: LB.Column
-    selectType(item: LB.Column): void
 }
 
 export default function Column(property: Property) {
+    const sListModalStore = useListModalStore()
     const sToastzzStore = useToastzzStore()
 
     const [item, setItem] = useState(property.item)
 
     function update(data: LB.Column) {
         setItem(data)
-        makeColumnCRUD()
-            .update(data)
-            .then(setItem)
-            .catch(sToastzzStore.showError)
+        makeColumnCRUD().update(data).then(setItem).catch(sToastzzStore.showError)
     }
 
     return (
@@ -83,7 +82,16 @@ export default function Column(property: Property) {
             </td>
             <td>
                 <button
-                    onClick={() => property.selectType(item)}
+                    onClick={() => {
+                        const typezz = getCollectionItemzz("DoctrineColumnType")
+                        sListModalStore.openCB(
+                            "Select a type",
+                            typezz.map((item) => item.name),
+                            function (text) {
+                                return update({ ...item, type: text })
+                            },
+                        )
+                    }}
                     className="btn btn-outline-primary"
                     type="button"
                 >

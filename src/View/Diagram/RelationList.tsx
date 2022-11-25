@@ -1,10 +1,9 @@
 import { connectSchema } from "@/Database/Factory/makeRelation"
 import RelationType, { getRelationMeaning } from "@/Database/RelationType"
-import { makeIdNameMap } from "@/Factory/makeMap"
+import useListModalStore from "@/Store/useListModalStore"
 import useRelationzzStore from "@/Store/useRelationzzStore"
 import useSchemazzStore from "@/Store/useSchemazzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
-import showSelect from "@/View/Dialog/showSelect"
 import { useEffect, useState } from "react"
 import Relation from "./Relation"
 
@@ -13,6 +12,7 @@ interface Property {
 }
 
 export default function RelationList(property: Property) {
+    const sListModalStore = useListModalStore()
     const relationzzStore = useRelationzzStore()
     const schemazzStore = useSchemazzStore()
     const sToastzzStore = useToastzzStore()
@@ -30,23 +30,19 @@ export default function RelationList(property: Property) {
     }, [relationzzStore.itemzz])
 
     function addRelation(type: RelationType) {
-        showSelect(
+        sListModalStore.openCB(
             `${property.schema.name} ${getRelationMeaning(type)}`,
-            "",
-            makeIdNameMap(schemazzStore.itemzz),
-        )
-            .then((response) => {
-                if (response.isConfirmed) {
-                    if (response.value) {
-                        const target = schemazzStore.find(parseInt(response.value))
-                        if (target === undefined) {
-                            throw new Error("Schema not found")
-                        }
-                        return connectSchema(type, property.schema, target)
-                    }
+            schemazzStore.itemzz.map((item) => item.name),
+            function (text) {
+                const target = schemazzStore.findByName(text)
+                if (target === undefined) {
+                    throw new Error("Schema not found")
                 }
-            })
-            .catch(sToastzzStore.showError)
+                return connectSchema(type, property.schema, target).catch(
+                    sToastzzStore.showError,
+                )
+            },
+        )
     }
 
     return (
