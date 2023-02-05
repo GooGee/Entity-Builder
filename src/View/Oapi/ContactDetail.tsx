@@ -5,7 +5,7 @@ export default function ContactDetail() {
     const sOapiStore = useOapiStore()
 
     return (
-        <table className="table table-text-right">
+        <table className="table td0-tar">
             <tbody>
                 <tr>
                     <td className="w222">email</td>

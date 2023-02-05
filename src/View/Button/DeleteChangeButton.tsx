@@ -1,9 +1,11 @@
 import useToastzzStore from "@/Store/useToastzzStore"
+import { ReactElement } from "react"
 import showConfirm from "../Dialog/showConfirm"
 
 interface Property {
     canChange?: boolean
     canDelete?: boolean
+    children?: ReactElement
     className?: string
     name: string
     onChange(): void
@@ -35,6 +37,8 @@ export default function DeleteChangeButton(property: Property) {
             >
                 {property.name}
             </button>
+
+            {property.children}
         </div>
     )
 }

@@ -1,17 +1,18 @@
 import makeWu from "@/Database/Factory/makeWu"
 import { makeWuCRUD } from "@/Database/makeCRUD"
 import useListModalStore from "@/Store/useListModalStore"
-import useSchemazzStore from "@/Store/useSchemazzStore"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import useWuPageStore from "@/Store/useWuPageStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import ListModal from "./Modal/ListModal"
 import LeftRightPanel from "./Part/LeftRightPanel"
 import WuView from "./Wu/WuView"
+import { PageEnum } from "@/menuzz"
 
 export default function WuPage() {
     const sListModalStore = useListModalStore()
-    const sSchemazzStore = useSchemazzStore()
+    const sEntityzzStore = useEntityzzStore()
     const sToastzzStore = useToastzzStore()
     const sWuzzStore = useWuzzStore()
 
@@ -21,10 +22,10 @@ export default function WuPage() {
                 makeCRUD={makeWuCRUD as any}
                 onCreateClick={function () {
                     sListModalStore.openCB(
-                        "Please select a Schema",
-                        sSchemazzStore.itemzz.map((item) => item.name),
+                        "Please select a Entity",
+                        sEntityzzStore.itemzz.map((item) => item.name),
                         function (text) {
-                            const found = sSchemazzStore.findByName(text)
+                            const found = sEntityzzStore.findByName(text)
                             if (found) {
                                 let name = found.name
                                 if (sWuzzStore.findByName(name)) {
@@ -37,9 +38,10 @@ export default function WuPage() {
                         },
                     )
                 }}
+                sorting={true}
                 useItemPageStore={useWuPageStore}
                 useItemzzStore={useWuzzStore}
-                title="Wu"
+                title={PageEnum.Wu}
             >
                 <WuView></WuView>
             </LeftRightPanel>

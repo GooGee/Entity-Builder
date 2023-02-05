@@ -7,7 +7,7 @@ import SelectStringButton from "../Button/SelectStringButton"
 import WebLink from "../Button/WebLink"
 import showInput from "../Dialog/showInput"
 import TypeFormat from "../Reference/TypeFormat"
-import ConstraintList from "../Schema/ConstraintList"
+import ConstraintList from "../Entity/ConstraintList"
 
 interface Property {
     constraintzz: LB.CollectionItem[]
@@ -28,7 +28,7 @@ export default function ParameterDetail(property: Property) {
     }
 
     return (
-        <table className="table table-text-right">
+        <table className="table td0-tar">
             <tbody>
                 <tr>
                     <td>color</td>

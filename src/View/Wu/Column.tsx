@@ -1,7 +1,7 @@
 import { makeColumnCRUD, makeWuColumnCRUD } from "@/Database/makeCRUD"
 import useToastzzStore from "@/Store/useToastzzStore"
 import TypeFormatText from "../Reference/TypeFormatText"
-import ConstraintList from "../Schema/ConstraintList"
+import ConstraintList from "../Entity/ConstraintList"
 
 interface Property {
     constraintzz: LB.CollectionItem[]

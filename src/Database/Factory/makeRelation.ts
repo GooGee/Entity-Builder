@@ -7,14 +7,14 @@ import { OmitId } from "../dbhelper"
 
 export function buildRelation(
     type: RelationType,
-    schema0Id: number,
-    schema1Id: number,
+    entity0Id: number,
+    entity1Id: number,
     name0: string,
     name1: string,
     fk: string,
 ) {
     return makeColumnCRUD()
-        .findChildzz(schema1Id, makeForeignKeyId(SchemaEnum.Schema))
+        .findChildzz(entity1Id, makeForeignKeyId(SchemaEnum.Entity))
         .then((response) => {
             const found = response.find((item) => item.name === fk)
             if (found) {
@@ -22,57 +22,57 @@ export function buildRelation(
             }
 
             return makeColumnCRUD()
-                .create(makeIntegerColumn(schema1Id, fk))
+                .create(makeIntegerColumn(entity1Id, fk))
                 .then((response) => create(response.id))
         })
 
     function create(column1Id: number) {
         return makeRelationCRUD().create(
-            makeRelation(type, schema0Id, schema1Id, name0, name1, column1Id),
+            makeRelation(type, entity0Id, entity1Id, name0, name1, column1Id),
         )
     }
 }
 
-export function connectSchema(
+export function connectEntity(
     type: RelationType,
-    schema0: LB.Schema,
-    schema1: LB.Schema,
+    entity0: LB.Entity,
+    entity1: LB.Entity,
 ) {
-    const name0 = makeVariableName(type, schema1)
-    const fk = type === RelationType.OneToMany ? makeForeignKeyId(schema0.name) : "id"
+    const name0 = makeVariableName(type, entity1)
+    const fk = type === RelationType.OneToMany ? makeForeignKeyId(entity0.name) : "id"
     return buildRelation(
         type,
-        schema0.id,
-        schema1.id,
+        entity0.id,
+        entity1.id,
         name0,
-        lodash.lowerFirst(schema0.name),
+        lodash.lowerFirst(entity0.name),
         fk,
     )
 }
 
-export function connectSchemaBy(
+export function connectEntityBy(
     type: RelationType,
-    schema0: LB.Schema,
-    schema1: LB.Schema,
+    entity0: LB.Entity,
+    entity1: LB.Entity,
     fki: number,
 ) {
-    const name0 = makeVariableName(type, schema1)
-    const name1 = lodash.lowerFirst(schema0.name)
+    const name0 = makeVariableName(type, entity1)
+    const name1 = lodash.lowerFirst(entity0.name)
     return makeRelationCRUD().create(
-        makeRelation(type, schema0.id, schema1.id, name0, name1, fki),
+        makeRelation(type, entity0.id, entity1.id, name0, name1, fki),
     )
 }
 
-export function makeVariableName(type: RelationType, schema1: LB.Schema) {
+export function makeVariableName(type: RelationType, entity1: LB.Entity) {
     return (
-        lodash.lowerFirst(schema1.name) + (type === RelationType.OneToMany ? "zz" : "")
+        lodash.lowerFirst(entity1.name) + (type === RelationType.OneToMany ? "zz" : "")
     )
 }
 
 export default function makeRelation(
     type: RelationType,
-    schema0Id: number,
-    schema1Id: number,
+    entity0Id: number,
+    entity1Id: number,
     name0: string,
     name1: string,
     column1Id: number,
@@ -81,8 +81,8 @@ export default function makeRelation(
         type,
         name0,
         name1,
-        schema0Id,
-        schema1Id,
+        entity0Id,
+        entity1Id,
         column1Id,
     }
 }

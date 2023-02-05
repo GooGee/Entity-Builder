@@ -4,7 +4,7 @@ import makeSchemaTypeFormat from "@/Service/Oapi/makeSchemaTypeFormat"
 import makeSchemaWu from "@/Service/Oapi/makeSchemaWu"
 import makeData from "./makeData"
 
-const { schema, wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, argumentzz, wpiam } =
+const { entity, wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, argumentzz, wpiam } =
     makeData()
 
 test("makeSchemaWu", function () {

@@ -11,7 +11,7 @@ interface Property {
     fullName?: boolean
     ma?: LB.ModuleAction
     module?: LB.Module
-    schema: LB.Schema
+    entity: LB.Entity
 }
 
 export default function FileButton(property: Property) {
@@ -21,12 +21,12 @@ export default function FileButton(property: Property) {
 
     const name = sDirectoryzzStore.treeHelper.getFileName(
         property.file,
-        property.schema,
+        property.entity,
         property.action,
     )
     const file = sDirectoryzzStore.treeHelper.getFileFullName(
         property.file,
-        property.schema,
+        property.entity,
         property.action,
     )
 
@@ -36,7 +36,7 @@ export default function FileButton(property: Property) {
                 onClick={() => {
                     writeFile(
                         property.file,
-                        property.schema,
+                        property.entity,
                         property.module,
                         property.ma,
                         property.action,

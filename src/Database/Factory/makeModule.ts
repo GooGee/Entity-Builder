@@ -5,6 +5,7 @@ export default function makeModule(name: string): OmitId<LB.Module> {
     return {
         ...makeSideBarItem(name),
         directoryId: 10,
+        fileId: 154,
         testDirectoryId: 10,
         prefix: "/" + name,
     }

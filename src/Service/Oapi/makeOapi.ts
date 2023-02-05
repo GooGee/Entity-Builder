@@ -239,7 +239,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
     })
 
     const tagSet: Set<string> = new Set()
-    const sism = new Map(db.tables.Schema.map((item) => [item.id, item]))
+    const sism = new Map(db.tables.Entity.map((item) => [item.id, item]))
 
     const sivzzm: Map<number, LB.Variable[]> = new Map()
     db.tables.ServerVariable.forEach((item) => {
@@ -265,7 +265,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
     const pathzz = [...db.tables.Path]
     pathzz.sort((aa, bb) => aa.name.localeCompare(bb.name))
     pathzz.forEach((item) => {
-        const found = sism.get(item.schemaId)
+        const found = sism.get(item.entityId)
         if (found) {
             if (tagSet.has(found.name)) {
                 // skip

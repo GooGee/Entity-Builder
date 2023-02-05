@@ -2,6 +2,7 @@ import useCollectionItemzzStore from "@/Store/useCollectionItemzzStore"
 import useCollectionzzStore from "@/Store/useCollectionzzStore"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 import useExamplezzStore from "@/Store/useExamplezzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useIndexzzStore from "@/Store/useIndexzzStore"
@@ -13,7 +14,6 @@ import usePathzzStore from "@/Store/usePathzzStore"
 import useRelationzzStore from "@/Store/useRelationzzStore"
 import useRequestzzStore from "@/Store/useRequestzzStore"
 import useResponsezzStore from "@/Store/useResponsezzStore"
-import useSchemazzStore from "@/Store/useSchemazzStore"
 import useServerzzStore from "@/Store/useServerzzStore"
 import useVariablezzStore from "@/Store/useVariablezzStore"
 import useWuChildzzStore from "@/Store/useWuChildzzStore"
@@ -31,7 +31,7 @@ export default function observe() {
     useColumnzzStore.getState().observe()
     useIndexzzStore.getState().observe()
     useRelationzzStore.getState().observe()
-    useSchemazzStore.getState().observe()
+    useEntityzzStore.getState().observe()
 
     useExamplezzStore.getState().observe()
     useModulezzStore.getState().observe()

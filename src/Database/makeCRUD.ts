@@ -26,6 +26,10 @@ export function makeDirectoryCRUD() {
     return new CRUD<LB.Directory>(getDBC, SchemaEnum.Directory)
 }
 
+export function makeEntityCRUD() {
+    return new CRUD<LB.Entity>(getDBC, SchemaEnum.Entity)
+}
+
 export function makeExampleCRUD() {
     return new CRUD<LB.Example>(getDBC, SchemaEnum.Example)
 }
@@ -88,10 +92,6 @@ export function makeRequestCRUD() {
 
 export function makeResponseCRUD() {
     return new CRUD<LB.Response>(getDBC, SchemaEnum.Response)
-}
-
-export function makeSchemaCRUD() {
-    return new CRUD<LB.Schema>(getDBC, SchemaEnum.Schema)
 }
 
 export function makeServerCRUD() {

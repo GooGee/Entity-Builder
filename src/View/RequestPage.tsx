@@ -1,4 +1,5 @@
 import { makeRequestCRUD } from "@/Database/makeCRUD"
+import { PageEnum } from "@/menuzz"
 import useRequestPageStore from "@/Store/useRequestPageStore"
 import useRequestzzStore from "@/Store/useRequestzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
@@ -8,8 +9,6 @@ import LeftRightPanel from "./Part/LeftRightPanel"
 export default function RequestPage() {
     const sRequestPageStore = useRequestPageStore()
     const sToastzzStore = useToastzzStore()
-
-    const title = "Request"
 
     function update(item: LB.Request) {
         sRequestPageStore.setItem(item)
@@ -25,7 +24,8 @@ export default function RequestPage() {
                 makeCRUD={makeRequestCRUD as any}
                 useItemPageStore={useRequestPageStore}
                 useItemzzStore={useRequestzzStore}
-                title={title}
+                sorting={true}
+                title={PageEnum.Request}
                 validateName={false}
             >
                 {sRequestPageStore.item ? (

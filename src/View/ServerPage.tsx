@@ -1,5 +1,6 @@
 import makeSideBarItem from "@/Database/Factory/makeSideBarItem"
 import { makeServerCRUD } from "@/Database/makeCRUD"
+import { PageEnum } from "@/menuzz"
 import useServerzzStore from "@/Store/useServerzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import WebLink from "./Button/WebLink"
@@ -15,7 +16,7 @@ export default function ServerPage() {
             <div className="col">
                 <table className="table">
                     <caption>
-                        <h1 className="inline me-3">Server</h1>
+                        <h1 className="inline me-3">{PageEnum.Server}</h1>
                         <button
                             onClick={function () {
                                 showInput("Please input server URI", "https://")
@@ -58,8 +59,9 @@ export default function ServerPage() {
                         <tr>
                             <td colSpan={2}>
                                 only global servers will be added to `servers` object of
-                                OpenApi document. non-global servers are for path /
-                                operation.
+                                OpenApi document.
+                                <br />
+                                non-global servers are for path / operation.
                             </td>
                         </tr>
                     </tfoot>

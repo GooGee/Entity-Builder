@@ -6,6 +6,7 @@ export enum SchemaEnum {
     CollectionItem = "CollectionItem",
     Column = "Column",
     Directory = "Directory",
+    Entity = "Entity",
     Example = "Example",
     ExampleMap = "ExampleMap",
     File = "File",
@@ -22,7 +23,6 @@ export enum SchemaEnum {
     Relation = "Relation",
     Request = "Request",
     Response = "Response",
-    Schema = "Schema",
     Server = "Server",
     ServerMap = "ServerMap",
     ServerVariable = "ServerVariable",
@@ -76,7 +76,7 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Directory)
     makeUniqueKey(tb, item, ["name"])
 
-    item = SchemaEnum.Schema
+    item = SchemaEnum.Entity
     tb = createForSideBarUniqueItem(builder, item)
         .addColumn("opened", lf.Type.BOOLEAN)
         .addColumn("openedColumn", lf.Type.BOOLEAN)
@@ -107,8 +107,8 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("inTable", lf.Type.BOOLEAN)
         .addColumn("tf", lf.Type.OBJECT)
         .addPrimaryKey(["id"], true)
-    makeForeignKey(tb, item, SchemaEnum.Schema)
-    makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Schema), "name"])
+    makeForeignKey(tb, item, SchemaEnum.Entity)
+    makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Entity), "name"])
 
     item = SchemaEnum.Relation
     tb = builder
@@ -118,10 +118,10 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("name0", lf.Type.STRING)
         .addColumn("name1", lf.Type.STRING)
         .addPrimaryKey(["id"], true)
-    makeForeignKey(tb, item, SchemaEnum.Schema, "schema0Id")
-    makeForeignKey(tb, item, SchemaEnum.Schema, "schema1Id")
+    makeForeignKey(tb, item, SchemaEnum.Entity, "entity0Id")
+    makeForeignKey(tb, item, SchemaEnum.Entity, "entity1Id")
     makeForeignKey(tb, item, SchemaEnum.Column, "column1Id")
-    makeUniqueKey(tb, item, ["schema1Id", "column1Id"])
+    makeUniqueKey(tb, item, ["entity1Id", "column1Id"])
 
     item = SchemaEnum.Index
     tb = builder
@@ -129,7 +129,7 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("id", lf.Type.INTEGER)
         .addColumn("type", lf.Type.STRING)
         .addPrimaryKey(["id"], true)
-    makeForeignKey(tb, item, SchemaEnum.Schema)
+    makeForeignKey(tb, item, SchemaEnum.Entity)
 
     item = SchemaEnum.IndexColumn
     tb = builder
@@ -151,7 +151,7 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("isRequest", lf.Type.BOOLEAN)
         .addColumn("isMap", lf.Type.BOOLEAN)
         .addColumn("tf", lf.Type.OBJECT)
-    makeForeignKey(tb, item, SchemaEnum.Schema)
+    makeForeignKey(tb, item, SchemaEnum.Entity)
 
     item = SchemaEnum.WuChild
     tb = builder
@@ -182,16 +182,18 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Wu)
     makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Wu), "name"])
 
+    item = SchemaEnum.Module
+    tb = createForSideBarUniqueItem(builder, item).addColumn("prefix", lf.Type.STRING)
+    makeForeignKey(tb, item, SchemaEnum.File)
+    makeForeignKey(tb, item, SchemaEnum.Directory)
+    makeForeignKey(tb, item, SchemaEnum.Directory, "testDirectoryId")
+    makeUniqueKey(tb, item, ["prefix"])
+
     item = SchemaEnum.Path
     tb = createForSideBarItem(builder, item).addColumn("summary", lf.Type.STRING)
     makeForeignKey(tb, item, SchemaEnum.Module)
-    makeForeignKey(tb, item, SchemaEnum.Schema)
+    makeForeignKey(tb, item, SchemaEnum.Entity)
     makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Module), "name"])
-
-    item = SchemaEnum.Module
-    tb = createForSideBarUniqueItem(builder, item).addColumn("prefix", lf.Type.STRING)
-    makeForeignKey(tb, item, SchemaEnum.Directory)
-    makeForeignKey(tb, item, SchemaEnum.Directory, "testDirectoryId")
 
     item = SchemaEnum.ModuleAction
     tb = builder
@@ -205,12 +207,12 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Directory)
     makeForeignKey(tb, item, SchemaEnum.Directory, "testDirectoryId")
     makeForeignKey(tb, item, SchemaEnum.Request)
-    makeForeignKey(tb, item, SchemaEnum.Schema)
+    makeForeignKey(tb, item, SchemaEnum.Entity)
     makeForeignKey(tb, item, SchemaEnum.CollectionItem)
     makeForeignKey(tb, item, SchemaEnum.Module)
     makeUniqueKey(tb, item, ["operationId"])
     makeUniqueKey(tb, item, [
-        makeForeignKeyId(SchemaEnum.Schema),
+        makeForeignKeyId(SchemaEnum.Entity),
         makeForeignKeyId(SchemaEnum.Module),
         makeForeignKeyId(SchemaEnum.CollectionItem),
     ])

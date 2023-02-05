@@ -1,4 +1,4 @@
-import { makeColumnCRUD, makeSchemaCRUD } from "@/Database/makeCRUD"
+import { makeColumnCRUD, makeEntityCRUD } from "@/Database/makeCRUD"
 import showNameInput from "@/View/Dialog/showNameInput"
 import useToastzzStore from "@/Store/useToastzzStore"
 import Column from "./Column"
@@ -6,7 +6,7 @@ import { makeIntegerColumn } from "@/Database/Factory/makeColumn"
 
 interface Property {
     columnzz: LB.Column[]
-    item: LB.Schema
+    item: LB.Entity
 }
 
 function ColumnList(property: Property) {
@@ -37,7 +37,7 @@ function ColumnList(property: Property) {
                 <span className="mx-1">{property.columnzz.length}</span>
                 <span
                     onClick={() =>
-                        makeSchemaCRUD()
+                        makeEntityCRUD()
                             .update({
                                 ...property.item,
                                 openedColumn: !property.item.openedColumn,
@@ -54,7 +54,7 @@ function ColumnList(property: Property) {
                     {property.columnzz.map((data) => (
                         <Column
                             item={data}
-                            schemaId={property.item.id}
+                            entityId={property.item.id}
                             key={data.name}
                         ></Column>
                     ))}

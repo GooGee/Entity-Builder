@@ -5,6 +5,7 @@ import LeftRightPanel from "./Part/LeftRightPanel"
 import makeCollection from "@/Database/Factory/makeCollection"
 import useCollectionPageStore from "@/Store/useCollectionPageStore"
 import ImportModal from "./Modal/ImportModal"
+import { PageEnum } from "@/menuzz"
 
 export default function CollectionPage() {
     return (
@@ -17,7 +18,7 @@ export default function CollectionPage() {
                 }}
                 useItemPageStore={useCollectionPageStore}
                 useItemzzStore={useCollectionzzStore}
-                title="Collection"
+                title={PageEnum.Collection}
             >
                 <CollectionDetail></CollectionDetail>
             </LeftRightPanel>

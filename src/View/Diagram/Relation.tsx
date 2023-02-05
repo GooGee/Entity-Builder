@@ -5,7 +5,7 @@ import useRelationModalStore from "@/Store/useRelationModalStore"
 import { getRelationMeaning } from "@/Database/RelationType"
 
 interface Property {
-    schemaId: number
+    entityId: number
     item: LB.Relation
 }
 
@@ -13,7 +13,7 @@ export default function Relation(property: Property) {
     const modalStore = useRelationModalStore()
     const sToastzzStore = useToastzzStore()
 
-    const reversed = property.schemaId !== property.item.schema0Id
+    const reversed = property.entityId !== property.item.entity0Id
 
     return (
         <tr>

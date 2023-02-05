@@ -1,4 +1,4 @@
-declare namespace LB {
+namespace LB {
     interface Collection extends SideBarItem {
         id: number
         name: string
@@ -17,7 +17,7 @@ declare namespace LB {
 
     interface Column {
         id: number
-        schemaId: number
+        entityId: number
         name: string
         type: string
         length: number
@@ -47,6 +47,15 @@ declare namespace LB {
         description: string
     }
 
+    interface Entity extends SideBarItem {
+        opened: boolean
+        openedColumn: boolean
+        name: string
+        description: string
+        x: number
+        y: number
+    }
+
     interface Example extends SideBarItem {
         summary: string
         value: string
@@ -73,7 +82,7 @@ declare namespace LB {
     interface Index {
         id: number
         type: string
-        schemaId: number
+        entityId: number
     }
 
     interface IndexColumn {
@@ -85,6 +94,7 @@ declare namespace LB {
 
     interface Module extends SideBarItem {
         directoryId: number
+        fileId: number
         testDirectoryId: number
         prefix: string
     }
@@ -93,7 +103,7 @@ declare namespace LB {
         id: number
         directoryId: number
         testDirectoryId: number
-        schemaId: number
+        entityId: number
         moduleId: number
         collectionItemId: number
         deprecated: boolean
@@ -143,7 +153,7 @@ declare namespace LB {
 
     interface Path extends SideBarItem {
         moduleId: number
-        schemaId: number
+        entityId: number
         name: string
         description: string
         summary: string
@@ -162,8 +172,8 @@ declare namespace LB {
         type: string
         name0: string
         name1: string
-        schema0Id: number
-        schema1Id: number
+        entity0Id: number
+        entity1Id: number
         column1Id: number
     }
 
@@ -176,15 +186,6 @@ declare namespace LB {
         example: string
         mediaType: string
         tf: TypeFormat
-    }
-
-    interface Schema extends SideBarItem {
-        opened: boolean
-        openedColumn: boolean
-        name: string
-        description: string
-        x: number
-        y: number
     }
 
     interface Server extends SideBarItem {
@@ -211,7 +212,7 @@ declare namespace LB {
     }
 
     interface Wu extends SideBarItem {
-        schemaId: number
+        entityId: number
         name: string
         type: string
         isRequest: boolean
@@ -242,15 +243,11 @@ declare namespace LB {
         description: string
         isWu: boolean
     }
-
-    interface AbstractSchema {
-        id: number
-    }
-
+}
+namespace LB {
     interface ApiErrorResponse {
-        detail?: string
         message: string
-        errorzz: Record<string, string[]>
+        errors: Record<string, string[]>
     }
 
     interface ApiResponse<T> {
@@ -300,6 +297,7 @@ declare namespace LB {
         CollectionItem: CollectionItem[]
         Column: Column[]
         Directory: Directory[]
+        Entity: Entity[]
         Example: Example[]
         ExampleMap: ExampleMap[]
         File: File[]
@@ -316,7 +314,6 @@ declare namespace LB {
         Relation: Relation[]
         Request: Request[]
         Response: Response[]
-        Schema: Schema[]
         Server: Server[]
         ServerMap: ServerMap[]
         ServerVariable: ServerVariable[]
@@ -331,33 +328,33 @@ declare namespace LB {
         action: string
         db: DBData
         dependencyzz: string[]
+        entity: Entity
         file: File
         fileMap: StringMap
         helper: any
         lodash: lodash
         ma?: ModuleAction
         module?: Module
-        schema: Schema
         tree: DataForScriptTreeHelper
         treeMap: Map<number, LinkedTreeNode<Directory>>
     }
 
     interface DataForScriptTreeHelper {
-        getClassName: (file: File, schema: Schema, action: string) => string
-        getClassFullName: (file: File, schema: Schema, action: string) => string
+        getClassName: (file: File, entity: Entity, action: string) => string
+        getClassFullName: (file: File, entity: Entity, action: string) => string
         getDirectoryFullName: (
             directory: Directory,
-            schema: Schema,
+            entity: Entity,
             action: string,
         ) => string
-        getFileName: (file: LB.File, schema: LB.Schema, action: string) => string
-        getFileFullName: (file: File, schema: Schema, action: string) => string
+        getFileName: (file: LB.File, entity: LB.Entity, action: string) => string
+        getFileFullName: (file: File, entity: Entity, action: string) => string
         getFullNameSpace: (
             directory: Directory,
-            schema: Schema,
+            entity: Entity,
             action: string,
         ) => string
-        getFullNameSpaceOfFile: (file: File, schema: Schema, action: string) => string
+        getFullNameSpaceOfFile: (file: File, entity: Entity, action: string) => string
         makeNameSpacezz: (directory: LB.Directory, namezz: string[]) => string[]
         replacePSR4: (name: string) => void
     }
@@ -440,7 +437,7 @@ declare namespace LB {
 
     interface Setting {}
 
-    interface SideBarItem extends IdItem {
+    interface SideBarItem extends IdNameItem {
         id: number
         name: string
         color: string

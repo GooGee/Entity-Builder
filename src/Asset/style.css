@@ -91,6 +91,14 @@
     width: 200px;
 }
 
+.c-dark {
+    color: var(--bs-dark);
+}
+
+.c-secondary {
+    color: var(--bs-secondary);
+}
+
 .dt {
     display: table;
 }
@@ -101,6 +109,10 @@
 
 .h100.h100-module {
     height: calc(100vh - 56px - 58px);
+}
+
+.hover-blue:hover {
+    color: var(--bs-blue);
 }
 
 .hover-group:hover .hover-item {
@@ -175,8 +187,13 @@ select.swal2-select {
     appearance: none;
 }
 
-.table-text-right tr td:first-child,
-.table-text-right tr th:first-child {
+.table.td0-tal tr td:first-child,
+.table.td0-tal tr th:first-child {
+    text-align: left;
+}
+
+.td0-tar tr td:first-child,
+.td0-tar tr th:first-child {
     text-align: right;
 }
 

@@ -4,7 +4,7 @@ import useColumnModalStore from "@/Store/useColumnModalStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 
 interface Property {
-    schemaId: number
+    entityId: number
     item: LB.Column
 }
 

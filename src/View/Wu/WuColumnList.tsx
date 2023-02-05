@@ -25,7 +25,7 @@ export default function WuColumnList(property: Property) {
     useEffect(() => {
         setColumnzz(
             sColumnzzStore.itemzz.filter(
-                (item) => item.schemaId === property.item.schemaId,
+                (item) => item.entityId === property.item.entityId,
             ),
         )
         const zz = sWuColumnzzStore.itemzz.filter(
@@ -79,7 +79,7 @@ export default function WuColumnList(property: Property) {
     }
 
     return (
-        <table className="table">
+        <table className="table td0-tal">
             {makeCaption()}
 
             <thead>

@@ -1,5 +1,6 @@
 import makeParameter from "@/Database/Factory/makeParameter"
 import { makeParameterCRUD } from "@/Database/makeCRUD"
+import { PageEnum } from "@/menuzz"
 import { ParameterLocation } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import useParameterPageStore from "@/Store/useParameterPageStore"
@@ -33,7 +34,7 @@ export default function ParameterPage(property: Property) {
                     }
                     return item.in !== ParameterLocation.header
                 })}
-                title={property.isHeader ? "Header" : "Parameter"}
+                title={property.isHeader ? PageEnum.Header : PageEnum.Parameter}
                 makeCRUD={makeParameterCRUD as any}
                 useItemPageStore={useParameterPageStore}
                 useItemzzStore={useParameterzzStore}

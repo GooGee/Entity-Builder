@@ -1,15 +1,13 @@
-import makeSchema from "@/Database/Factory/makeSchema"
-import { makeSchemaCRUD } from "@/Database/makeCRUD"
 import useFilezzStore from "@/Store/useFilezzStore"
-import useSchemaPageStore from "@/Store/useSchemaPageStore"
-import useSchemazzStore from "@/Store/useSchemazzStore"
-import useToastzzStore from "@/Store/useToastzzStore"
+import useEntityPageStore from "@/Store/useEntityPageStore"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 import MigrationView from "./Migration/MigrationView"
-import LeftRightPanel from "./Part/LeftRightPanel"
+import { PageEnum } from "@/menuzz"
+import SideBar from "./Part/SideBar"
 
 export default function MigrationPage() {
+    const sEntityzzStore = useEntityzzStore()
     const sFilezzStore = useFilezzStore()
-    const sToastzzStore = useToastzzStore()
 
     const file = sFilezzStore.find(1)
 
@@ -23,20 +21,15 @@ export default function MigrationPage() {
 
     return (
         <div className="row">
-            <LeftRightPanel
-                makeCRUD={makeSchemaCRUD as any}
-                useItemPageStore={useSchemaPageStore}
-                useItemzzStore={useSchemazzStore}
-                title="Schema"
-                validateName={false}
-                onCreate={function (name) {
-                    makeSchemaCRUD()
-                        .create(makeSchema(name))
-                        .catch(sToastzzStore.showError)
-                }}
-            >
+            <SideBar
+                title={PageEnum.Entity}
+                itemzz={sEntityzzStore.itemzz}
+                useStore={useEntityPageStore}
+            ></SideBar>
+
+            <div className="col-9 py-3 h100 overflow-auto">
                 <MigrationView file={file}></MigrationView>
-            </LeftRightPanel>
+            </div>
         </div>
     )
 }

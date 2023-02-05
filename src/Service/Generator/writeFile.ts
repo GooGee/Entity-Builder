@@ -16,7 +16,7 @@ import { callCode } from "./runCode"
 
 export default function writeFile(
     file: LB.File,
-    schema: LB.Schema,
+    entity: LB.Entity,
     module: LB.Module | undefined = undefined,
     ma: LB.ModuleAction | undefined = undefined,
     action: string,
@@ -30,7 +30,7 @@ export default function writeFile(
             const treeHelper = makeTreeHelper(treeMap, psr4)
             const data: LB.DataForScript = {
                 file,
-                schema,
+                entity,
                 module,
                 ma,
                 db: clone,
@@ -59,7 +59,7 @@ export default function writeFile(
                 nunjucks.configure({ autoescape: false })
                 const content = nunjucks.renderString(fileMap[tn], data)
 
-                const name = treeHelper.getFileFullName(file, schema, action)
+                const name = treeHelper.getFileFullName(file, entity, action)
                 return putFile(name, content).then((response) => {
                     refreshDisk()
                     return response

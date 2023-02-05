@@ -1,22 +1,22 @@
 import useColumnModalStore from "@/Store/useColumnModalStore"
 import useRelationModalStore from "@/Store/useRelationModalStore"
-import useSchemaModalStore from "@/Store/useSchemaModalStore"
+import useEntityModalStore from "@/Store/useEntityModalStore"
 import ColumnModal from "./ColumnModal"
+import EntityModal from "./EntityModal"
 import ListModal from "./ListModal"
 import RelationModal from "./RelationModal"
-import SchemaModal from "./SchemaModal"
 
 function ModalManager() {
     const columnModalStore = useColumnModalStore()
     const relationModalStore = useRelationModalStore()
-    const schemaModalStore = useSchemaModalStore()
+    const sEntityModalStore = useEntityModalStore()
 
     return (
         <>
             {columnModalStore.isOpen ? <ColumnModal></ColumnModal> : null}
             <ListModal></ListModal>
             {relationModalStore.isOpen ? <RelationModal></RelationModal> : null}
-            {schemaModalStore.isOpen ? <SchemaModal></SchemaModal> : null}
+            {sEntityModalStore.isOpen ? <EntityModal></EntityModal> : null}
         </>
     )
 }

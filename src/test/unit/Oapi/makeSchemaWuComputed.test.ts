@@ -12,7 +12,7 @@ import makeSchemaTypeFormat from "@/Service/Oapi/makeSchemaTypeFormat"
 import makeSchemaWuComputed from "@/Service/Oapi/makeSchemaWuComputed"
 import makeData, { makeFakeColumn } from "./makeData"
 
-const { schema, wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, argumentzz, wpiam } =
+const { entity, wu, vivm, wiczzm, wiwczzm, wiwm, wiwpzzm, argumentzz, wpiam } =
     makeData()
 
 test("makeSchemaWuComputed", function () {
@@ -25,7 +25,7 @@ test("makeSchemaWuComputed", function () {
     const wp = makeWuParameter(wu.user.id, "ItemType") as LB.WuParameter
     wp.id = 4
     wiwpzzm.set(wu.user.id, [wp])
-    const column = makeFakeColumn("data", OapiType.string, schema.User, wiczzm)
+    const column = makeFakeColumn("data", OapiType.string, entity.User, wiczzm)
     column.tf.type = OapiType.TypeParameter
     column.tf.targetId = wp.id
     const argument = makeSchemaTypeFormat(

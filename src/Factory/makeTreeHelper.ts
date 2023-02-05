@@ -5,12 +5,12 @@ export default function makeTreeHelper(
     treeMap: Map<number, LinkedTreeNode<LB.Directory>>,
     psr4: LB.StringMap,
 ) {
-    function getClassName(file: LB.File, schema: LB.Schema, action: string) {
-        return getFileName(file, schema, action).slice(0, -4)
+    function getClassName(file: LB.File, entity: LB.Entity, action: string) {
+        return getFileName(file, entity, action).slice(0, -4)
     }
 
-    function getClassFullName(file: LB.File, schema: LB.Schema, action: string) {
-        const data = { file, schema, action } as DataType
+    function getClassFullName(file: LB.File, entity: LB.Entity, action: string) {
+        const data = { file, entity, action } as DataType
         const namezz = [file.fileNamePattern]
         if (file.nameSpacePattern) {
             namezz.push(file.nameSpacePattern)
@@ -25,22 +25,22 @@ export default function makeTreeHelper(
 
     function getDirectoryFullName(
         directory: LB.Directory,
-        schema: LB.Schema,
+        entity: LB.Entity,
         action: string,
     ) {
-        const data = { schema, action } as DataType
+        const data = { entity, action } as DataType
         data.directory = directory
         const namezz = makeNameSpacezz(directory, [])
         const text = namezz.reverse().join("/")
         return replacePSR4(parseTemplate(text, data))
     }
 
-    function getFileName(file: LB.File, schema: LB.Schema, action: string) {
-        return parseTemplate(file.fileNamePattern, { schema, action })
+    function getFileName(file: LB.File, entity: LB.Entity, action: string) {
+        return parseTemplate(file.fileNamePattern, { entity, action })
     }
 
-    function getFileFullName(file: LB.File, schema: LB.Schema, action: string) {
-        const data = { file, schema, action } as DataType
+    function getFileFullName(file: LB.File, entity: LB.Entity, action: string) {
+        const data = { file, entity, action } as DataType
         const namezz = [file.fileNamePattern]
         if (file.nameSpacePattern) {
             namezz.push(file.nameSpacePattern)
@@ -55,18 +55,18 @@ export default function makeTreeHelper(
 
     function getFullNameSpace(
         directory: LB.Directory,
-        schema: LB.Schema,
+        entity: LB.Entity,
         action: string,
     ) {
-        const data = { schema, action } as DataType
+        const data = { entity, action } as DataType
         data.directory = directory
         const namezz = makeNameSpacezz(directory, [])
         const text = namezz.reverse().join("/")
         return parseTemplate(text, data).replaceAll("/", "\\")
     }
 
-    function getFullNameSpaceOfFile(file: LB.File, schema: LB.Schema, action: string) {
-        const text = getClassFullName(file, schema, action)
+    function getFullNameSpaceOfFile(file: LB.File, entity: LB.Entity, action: string) {
+        const text = getClassFullName(file, entity, action)
         return text.slice(0, text.lastIndexOf("\\"))
     }
 

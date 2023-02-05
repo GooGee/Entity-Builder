@@ -17,7 +17,7 @@ namespace LB {
 
     interface Column {
         id: number
-        schemaId: number
+        entityId: number
         name: string
         type: string
         length: number
@@ -47,6 +47,15 @@ namespace LB {
         description: string
     }
 
+    interface Entity extends SideBarItem {
+        opened: boolean
+        openedColumn: boolean
+        name: string
+        description: string
+        x: number
+        y: number
+    }
+
     interface Example extends SideBarItem {
         summary: string
         value: string
@@ -73,7 +82,7 @@ namespace LB {
     interface Index {
         id: number
         type: string
-        schemaId: number
+        entityId: number
     }
 
     interface IndexColumn {
@@ -85,6 +94,7 @@ namespace LB {
 
     interface Module extends SideBarItem {
         directoryId: number
+        fileId: number
         testDirectoryId: number
         prefix: string
     }
@@ -93,7 +103,7 @@ namespace LB {
         id: number
         directoryId: number
         testDirectoryId: number
-        schemaId: number
+        entityId: number
         moduleId: number
         collectionItemId: number
         deprecated: boolean
@@ -143,7 +153,7 @@ namespace LB {
 
     interface Path extends SideBarItem {
         moduleId: number
-        schemaId: number
+        entityId: number
         name: string
         description: string
         summary: string
@@ -162,8 +172,8 @@ namespace LB {
         type: string
         name0: string
         name1: string
-        schema0Id: number
-        schema1Id: number
+        entity0Id: number
+        entity1Id: number
         column1Id: number
     }
 
@@ -176,15 +186,6 @@ namespace LB {
         example: string
         mediaType: string
         tf: TypeFormat
-    }
-
-    interface Schema extends SideBarItem {
-        opened: boolean
-        openedColumn: boolean
-        name: string
-        description: string
-        x: number
-        y: number
     }
 
     interface Server extends SideBarItem {
@@ -211,7 +212,7 @@ namespace LB {
     }
 
     interface Wu extends SideBarItem {
-        schemaId: number
+        entityId: number
         name: string
         type: string
         isRequest: boolean

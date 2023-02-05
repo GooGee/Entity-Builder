@@ -1,3 +1,4 @@
+import { PageEnum } from "@/menuzz"
 import ColorEnum from "@/Model/ColorEnum"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
@@ -9,7 +10,7 @@ import DirectoryProperty from "./Tree/DirectoryProperty"
 import File from "./Tree/File"
 import FileView from "./Tree/FileView"
 
-function TreePage() {
+export default function TreePage() {
     const directoryzzStore = useDirectoryzzStore()
     const filezzStore = useFilezzStore()
     const store = useTreeStore()
@@ -63,7 +64,7 @@ function TreePage() {
         <div className="row">
             <div className="col-5 py-3 h100 overflow-auto">
                 <div className="d-flex align-items-center justify-content-center">
-                    <h1 className="inline">Tree</h1>
+                    <h1 className="inline">{PageEnum.Tree}</h1>
                     <ColorButtonDropdown
                         color={store.color}
                         setColor={store.setColor}
@@ -87,5 +88,3 @@ function TreePage() {
         </div>
     )
 }
-
-export default TreePage

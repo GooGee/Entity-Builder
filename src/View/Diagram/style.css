@@ -1,4 +1,4 @@
-.SchemaNode {
+.EntityNode {
     background-color: white;
     border: solid 1px #ccc;
     border-radius: 5px;
@@ -6,11 +6,11 @@
     padding: 11px;
 }
 
-.SchemaNode .table {
+.EntityNode .table {
     margin-bottom: 0;
 }
 
-.SchemaNode .table.table-sm.py0 td {
+.EntityNode .table.table-sm.py0 td {
     padding-top: 0;
     padding-bottom: 0;
 }

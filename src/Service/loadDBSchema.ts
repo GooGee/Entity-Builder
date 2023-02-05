@@ -1,19 +1,19 @@
 import makeColumn, { setColumnTypeFormat } from "@/Database/Factory/makeColumn"
-import { connectSchemaBy } from "@/Database/Factory/makeRelation"
-import makeSchema from "@/Database/Factory/makeSchema"
+import { connectEntityBy } from "@/Database/Factory/makeRelation"
+import makeEntity from "@/Database/Factory/makeEntity"
 import { exportDB } from "@/Database/getDBC"
 import {
     makeColumnCRUD,
     makeIndexColumnCRUD,
     makeIndexCRUD,
-    makeSchemaCRUD,
+    makeEntityCRUD,
 } from "@/Database/makeCRUD"
 import RelationType from "@/Database/RelationType"
 import getCollectionItemzz from "./getCollectionItemzz"
 
 function createColumn(
     item: LB.DoctrineColumn,
-    schema: LB.Schema,
+    entity: LB.Entity,
     rozz: LB.CollectionItem[],
     cizz: LB.CollectionItem[],
 ) {
@@ -28,7 +28,7 @@ function createColumn(
             value = item.default
         }
     }
-    const data = makeColumn(schema.id, item.name, item.type, value, item.length, rozz)
+    const data = makeColumn(entity.id, item.name, item.type, value, item.length, rozz)
     data.comment = item.comment
     data.nullable = item.nullable
     data.scale = item.scale
@@ -37,9 +37,9 @@ function createColumn(
     return makeColumnCRUD().create(data)
 }
 
-function createIndex(item: LB.DoctrineIndex, schema: LB.Schema, columnzz: LB.Column[]) {
+function createIndex(item: LB.DoctrineIndex, entity: LB.Entity, columnzz: LB.Column[]) {
     return makeIndexCRUD()
-        .create({ schemaId: schema.id, type: item.type })
+        .create({ entityId: entity.id, type: item.type })
         .then(function (response) {
             const zz = item.columnzz.map((name, index) => {
                 const found = columnzz.find((item) => item.name === name)!
@@ -53,25 +53,25 @@ function createIndex(item: LB.DoctrineIndex, schema: LB.Schema, columnzz: LB.Col
         })
 }
 
-function createRelation(schema0: LB.Schema, schema1: LB.Schema, fki: number) {
-    console.log(`createRelation ${schema0.name} - ${schema1.name}`)
-    return connectSchemaBy(RelationType.OneToMany, schema0, schema1, fki)
+function createRelation(entity0: LB.Entity, entity1: LB.Entity, fki: number) {
+    console.log(`createRelation ${entity0.name} - ${entity1.name}`)
+    return connectEntityBy(RelationType.OneToMany, entity0, entity1, fki)
 }
 
 function createTable(item: LB.DoctrineTable) {
     console.log(`createTable ${item.name}`)
-    const data = makeSchema(item.name, item.comment)
-    return makeSchemaCRUD().create(data)
+    const data = makeEntity(item.name, item.comment)
+    return makeEntityCRUD().create(data)
 }
 
-export default async function loadDBSchema(schema: LB.DoctrineSchema) {
+export default async function loadDBSchema(entity: LB.DoctrineSchema) {
     const cizz = getCollectionItemzz("DoctrineColumnType")
     const rozz = getCollectionItemzz("ReadOnlyColumn")
-    const tablezz = schema.tablezz.filter((item) => item.included)
+    const tablezz = entity.tablezz.filter((item) => item.included)
 
-    const tm: Map<string, LB.Schema> = new Map()
+    const tm: Map<string, LB.Entity> = new Map()
     await exportDB().then((response) =>
-        response.tables.Schema.forEach((item) => tm.set(item.name, item)),
+        response.tables.Entity.forEach((item) => tm.set(item.name, item)),
     )
     for (const table of tablezz) {
         await createTable(table).then((response) => tm.set(table.name, response))

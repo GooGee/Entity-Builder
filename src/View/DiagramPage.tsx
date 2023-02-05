@@ -8,28 +8,28 @@ import ReactFlow, {
     NodeChange,
     Position,
 } from "react-flow-renderer"
-import useSchemazzStore from "@/Store/useSchemazzStore"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 import showNameInput from "@/View/Dialog/showNameInput"
 import useToastzzStore from "@/Store/useToastzzStore"
-import { makeSchemaCRUD } from "@/Database/makeCRUD"
+import { makeEntityCRUD } from "@/Database/makeCRUD"
 import ModalManager from "./Modal/ModalManager"
 import NodeType from "./Diagram/NodeType"
 import "./Diagram/style.css"
 import useRelationzzStore from "@/Store/useRelationzzStore"
-import { makeSchemaWithId } from "@/Database/Factory/makeSchema"
+import { makeEntityWithId } from "@/Database/Factory/makeEntity"
 
-function DiagramPage() {
+export default function DiagramPage() {
     const relationzzStore = useRelationzzStore()
-    const schemazzStore = useSchemazzStore()
+    const entityzzStore = useEntityzzStore()
     const sToastzzStore = useToastzzStore()
 
     const [edgezz, setEdgezz] = useState<Edge[]>([])
-    const [nodezz, setNodezz] = useState<Node<LB.Schema>[]>([])
+    const [nodezz, setNodezz] = useState<Node<LB.Entity>[]>([])
     const nt = useMemo(() => NodeType, [])
 
     useEffect(() => {
         makeNodezz()
-    }, [schemazzStore.itemzz])
+    }, [entityzzStore.itemzz])
 
     useEffect(() => {
         makeEdgezz()
@@ -38,10 +38,10 @@ function DiagramPage() {
     function makeEdgezz() {
         try {
             const edgezz = relationzzStore.itemzz
-                .filter((item) => item.schema0Id !== item.schema1Id)
+                .filter((item) => item.entity0Id !== item.entity1Id)
                 .map((item) => {
-                    const source = schemazzStore.find(item.schema0Id)!
-                    const target = schemazzStore.find(item.schema1Id)!
+                    const source = entityzzStore.find(item.entity0Id)!
+                    const target = entityzzStore.find(item.entity1Id)!
                     let sourceHandle = "sourceLeft"
                     let targetHandle = "targetRight"
                     if (Math.abs(source.x - target.x) < 222) {
@@ -55,8 +55,8 @@ function DiagramPage() {
                         id: "relation" + item.id,
                         source: source.name,
                         target: target.name,
-                        sourceHandle: sourceHandle + item.schema0Id,
-                        targetHandle: targetHandle + item.schema1Id,
+                        sourceHandle: sourceHandle + item.entity0Id,
+                        targetHandle: targetHandle + item.entity1Id,
                     }
                 })
             setEdgezz(edgezz)
@@ -68,13 +68,13 @@ function DiagramPage() {
     }
 
     function makeNodezz() {
-        const nodezz = schemazzStore.itemzz.map((schema) => {
+        const nodezz = entityzzStore.itemzz.map((entity) => {
             return {
-                id: schema.name,
-                type: "SchemaNode",
-                position: { x: schema.x, y: schema.y },
+                id: entity.name,
+                type: "EntityNode",
+                position: { x: entity.x, y: entity.y },
                 targetPosition: Position.Top,
-                data: schema,
+                data: entity,
             }
         })
         setNodezz(nodezz)
@@ -91,7 +91,7 @@ function DiagramPage() {
 
     function onNodeDragStop(
         event: React.MouseEvent<Element, MouseEvent>,
-        node: Node<LB.Schema>,
+        node: Node<LB.Entity>,
     ) {
         // console.log(node.position)
         const data = {
@@ -99,9 +99,9 @@ function DiagramPage() {
             x: node.position.x,
             y: node.position.y,
         }
-        makeSchemaCRUD()
+        makeEntityCRUD()
             .update(data)
-            .then((response) => schemazzStore.setItem(response))
+            .then((response) => entityzzStore.setItem(response))
             .then(() => makeEdgezz())
             .catch(sToastzzStore.showError)
     }
@@ -117,10 +117,10 @@ function DiagramPage() {
             >
                 <button
                     onClick={() =>
-                        showNameInput("Please input the Schema name", "")
+                        showNameInput("Please input the Entity name", "")
                             .then((response) => {
                                 if (response.isConfirmed) {
-                                    return makeSchemaWithId(response.value)
+                                    return makeEntityWithId(response.value)
                                 }
                             })
                             .catch(sToastzzStore.showError)
@@ -145,5 +145,3 @@ function DiagramPage() {
         </div>
     )
 }
-
-export default DiagramPage

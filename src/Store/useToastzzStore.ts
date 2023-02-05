@@ -1,22 +1,28 @@
 import getAxiosErrorMessage from "@/Service/getAxiosErrorMessage"
 import create from "zustand"
 
-class Toast {
+export class Toast {
     private static index = 0
 
     readonly id
+    readonly date = new Date()
 
-    constructor(readonly text: string, readonly color: string) {
+    constructor(
+        readonly text: string,
+        readonly color: string,
+        readonly detail?: string,
+    ) {
         Toast.index += 1
         this.id = Toast.index
     }
 }
 
 type ToastzzStore = {
+    itemzz: Toast[]
     list: Toast[]
-    create(text: string, color?: string, ttl?: number): void
+    create(text: string, color?: string, ttl?: number, detail?: string): void
     dismiss(id: number): void
-    showDanger(text: string): void
+    showDanger(text: string, detail?: string): void
     showError(error: unknown): void
     showOK(): void
     showSuccess(text: string): void
@@ -25,12 +31,15 @@ type ToastzzStore = {
 
 const useToastzzStore = create<ToastzzStore>(function (set, get) {
     const data = {
+        itemzz: [] as Toast[],
         list: [] as Toast[],
-        create(text: string, color: string = "", ttl: number = 3222) {
-            const item = new Toast(text.slice(0, 333), color)
+        create(text: string, color: string = "", ttl: number = 3222, detail?: string) {
+            const item = new Toast(text.slice(0, 333), color, detail)
             set((state) => {
-                const list = state.list.concat(item)
-                return { list }
+                return {
+                    itemzz: state.itemzz.concat(item),
+                    list: state.list.concat(item),
+                }
             })
             if (ttl > 0) {
                 setTimeout(() => get().dismiss(item.id), ttl)
@@ -42,13 +51,14 @@ const useToastzzStore = create<ToastzzStore>(function (set, get) {
                 return { list }
             })
         },
-        showDanger(text: string) {
-            get().create(text, "text-danger", 0)
+        showDanger(text: string, detail?: string) {
+            get().create(text, "text-danger", 0, detail)
         },
         showError(error: unknown) {
-            console.log(error)
+            // console.log(error)
             const text = getAxiosErrorMessage(error)
-            get().showDanger(text)
+            const detail = typeof error === "string" ? undefined : JSON.stringify(error)
+            get().showDanger(text, detail)
         },
         showOK() {
             get().showSuccess("OK")

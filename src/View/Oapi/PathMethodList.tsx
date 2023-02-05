@@ -21,7 +21,7 @@ export default function PathMethodList(property: Property) {
     const mazz = sModuleActionzz.itemzz
         .filter(
             (item) =>
-                item.schemaId === property.item.schemaId &&
+                item.entityId === property.item.entityId &&
                 item.moduleId === property.item.moduleId,
         )
         .map((ma) => {

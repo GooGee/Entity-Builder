@@ -35,7 +35,7 @@ export default function DirectoryProperty() {
     }
 
     return (
-        <table className="table table-borderless table-text-right">
+        <table className="table table-borderless td0-tar">
             <tbody>
                 <tr>
                     <td style={{ width: "222px" }}>id</td>

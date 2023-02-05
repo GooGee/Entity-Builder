@@ -1,5 +1,6 @@
 import makeExample from "@/Database/Factory/makeExample"
 import { makeExampleCRUD } from "@/Database/makeCRUD"
+import { PageEnum } from "@/menuzz"
 import useExamplePageStore from "@/Store/useExamplePageStore"
 import useExamplezzStore from "@/Store/useExamplezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
@@ -16,7 +17,7 @@ export default function ExamplePage() {
                 makeCRUD={makeExampleCRUD as any}
                 useItemPageStore={useExamplePageStore}
                 useItemzzStore={useExamplezzStore}
-                title="Example"
+                title={PageEnum.Example}
                 validateName={false}
                 onCreate={function (name) {
                     makeExampleCRUD()

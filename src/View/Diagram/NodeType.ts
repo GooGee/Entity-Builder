@@ -1,5 +1,5 @@
-import SchemaNode from "./SchemaNode"
+import EntityNode from "./EntityNode"
 
-const NodeType = { SchemaNode }
+const NodeType = { EntityNode }
 
 export default NodeType

@@ -11,9 +11,6 @@ export default function getAxiosErrorMessage(error: unknown) {
                 if (error.response.data.message) {
                     return error.response.data.message
                 }
-                if (error.response.data.detail) {
-                    return error.response.data.detail
-                }
             }
         }
         return error.message

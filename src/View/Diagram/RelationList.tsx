@@ -1,20 +1,20 @@
-import { connectSchema } from "@/Database/Factory/makeRelation"
+import { connectEntity } from "@/Database/Factory/makeRelation"
 import RelationType, { getRelationMeaning } from "@/Database/RelationType"
 import useListModalStore from "@/Store/useListModalStore"
 import useRelationzzStore from "@/Store/useRelationzzStore"
-import useSchemazzStore from "@/Store/useSchemazzStore"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect, useState } from "react"
 import Relation from "./Relation"
 
 interface Property {
-    schema: LB.Schema
+    entity: LB.Entity
 }
 
 export default function RelationList(property: Property) {
     const sListModalStore = useListModalStore()
     const relationzzStore = useRelationzzStore()
-    const schemazzStore = useSchemazzStore()
+    const entityzzStore = useEntityzzStore()
     const sToastzzStore = useToastzzStore()
 
     const [relationzz, setRelationzz] = useState<LB.Relation[]>([])
@@ -23,22 +23,22 @@ export default function RelationList(property: Property) {
         setRelationzz(
             relationzzStore.itemzz.filter(
                 (item) =>
-                    item.schema0Id === property.schema.id ||
-                    item.schema1Id === property.schema.id,
+                    item.entity0Id === property.entity.id ||
+                    item.entity1Id === property.entity.id,
             ),
         )
     }, [relationzzStore.itemzz])
 
     function addRelation(type: RelationType) {
         sListModalStore.openCB(
-            `${property.schema.name} ${getRelationMeaning(type)}`,
-            schemazzStore.itemzz.map((item) => item.name),
+            `${property.entity.name} ${getRelationMeaning(type)}`,
+            entityzzStore.itemzz.map((item) => item.name),
             function (text) {
-                const target = schemazzStore.findByName(text)
+                const target = entityzzStore.findByName(text)
                 if (target === undefined) {
-                    throw new Error("Schema not found")
+                    throw new Error("Entity not found")
                 }
-                return connectSchema(type, property.schema, target).catch(
+                return connectEntity(type, property.entity, target).catch(
                     sToastzzStore.showError,
                 )
             },
@@ -68,7 +68,7 @@ export default function RelationList(property: Property) {
             <tbody>
                 {relationzz.map((item) => (
                     <Relation
-                        schemaId={property.schema.id}
+                        entityId={property.entity.id}
                         item={item}
                         key={item.id}
                     ></Relation>

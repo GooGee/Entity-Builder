@@ -1,4 +1,4 @@
-import useSchemaPageStore from "@/Store/useSchemaPageStore"
+import useEntityPageStore from "@/Store/useEntityPageStore"
 import { useState } from "react"
 import FileButton from "../Button/FileButton"
 import TabList from "../Part/TabList"
@@ -15,7 +15,7 @@ interface Property {
 }
 
 export default function MigrationView(property: Property) {
-    const sSchemaPageStore = useSchemaPageStore()
+    const sEntityPageStore = useEntityPageStore()
 
     const [tab, setTab] = useState<string>(TabEnum.Migration)
 
@@ -31,13 +31,13 @@ export default function MigrationView(property: Property) {
 
     return (
         <>
-            {sSchemaPageStore.item === undefined ? null : (
-                <div className="mb-5">
+            {sEntityPageStore.item === undefined ? null : (
+                <div className="mb-3">
                     <FileButton
                         action={""}
                         file={property.file}
                         fullName
-                        schema={sSchemaPageStore.item}
+                        entity={sEntityPageStore.item}
                     ></FileButton>
                 </div>
             )}

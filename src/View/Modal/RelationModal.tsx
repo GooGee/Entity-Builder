@@ -4,7 +4,7 @@ import showNameInput from "@/View/Dialog/showNameInput"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useRelationModalStore from "@/Store/useRelationModalStore"
 import useRelationzzStore from "@/Store/useRelationzzStore"
-import useSchemazzStore from "@/Store/useSchemazzStore"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useState, useEffect } from "react"
 import ReactModal from "react-modal"
@@ -13,13 +13,13 @@ import SelectButton from "../Button/SelectButton"
 function RelationModal() {
     const columnzzStore = useColumnzzStore()
     const relationzzStore = useRelationzzStore()
-    const schemazzStore = useSchemazzStore()
+    const sEntityzzStore = useEntityzzStore()
     const modalStore = useRelationModalStore()
     const sToastzzStore = useToastzzStore()
 
     const [store, setStore] = useState<LB.Relation>()
-    const [schema0, setSchema0] = useState("")
-    const [schema1, setSchema1] = useState("")
+    const [entity0, setEntity0] = useState("")
+    const [entity1, setEntity1] = useState("")
 
     useEffect(() => {
         if (modalStore.itemId === 0) {
@@ -32,8 +32,8 @@ function RelationModal() {
         }
 
         setStore(item)
-        setSchema0(schemazzStore.find(item.schema0Id)?.name ?? "")
-        setSchema1(schemazzStore.find(item.schema1Id)?.name ?? "")
+        setEntity0(sEntityzzStore.find(item.entity0Id)?.name ?? "")
+        setEntity1(sEntityzzStore.find(item.entity1Id)?.name ?? "")
     }, [modalStore.isOpen, modalStore.itemId])
 
     if (store === undefined) {
@@ -41,7 +41,7 @@ function RelationModal() {
     }
 
     const columnzz = columnzzStore.itemzz.filter(
-        (item) => item.schemaId === store.schema1Id,
+        (item) => item.entityId === store.entity1Id,
     )
 
     function showInput0() {
@@ -87,7 +87,7 @@ function RelationModal() {
             <table className="table">
                 <thead>
                     <tr>
-                        <td>Schema</td>
+                        <td>Entity</td>
                         <td>relation</td>
                         <td>name</td>
                         <td>foreign key</td>
@@ -95,7 +95,7 @@ function RelationModal() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{schema0}</td>
+                        <td>{entity0}</td>
                         <td className="text-secondary">
                             {getRelationMeaning(store.type)}
                         </td>
@@ -111,7 +111,7 @@ function RelationModal() {
                         <td></td>
                     </tr>
                     <tr>
-                        <td>{schema1}</td>
+                        <td>{entity1}</td>
                         <td className="text-secondary">
                             {getRelationMeaning(store.type, true)}
                         </td>

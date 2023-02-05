@@ -2,18 +2,15 @@ import { makePathCRUD } from "@/Database/makeCRUD"
 import usePathPageStore from "@/Store/usePathPageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { ReactElement } from "react"
-import ColorButtonGroup from "../Button/ColorButtonGroup"
-import DeleteChangeButton from "../Button/DeleteChangeButton"
-import showInput from "../Dialog/showInput"
 import ParameterList from "./ParameterList"
 import PathMethodList from "./PathMethodList"
 import ServerList from "./ServerList"
 
 interface Property {
     children?: ReactElement
+    entity: LB.Entity
     item: LB.Path
-    schema: LB.Schema
-    onDelete(): void
+    onDelete?(): void
 }
 
 export default function PathDetail(property: Property) {
@@ -29,60 +26,13 @@ export default function PathDetail(property: Property) {
     }
 
     return (
-        <table className="table table-text-right">
+        <table className="table td0-tar">
             {property.children === undefined ? null : (
                 <caption>{property.children}</caption>
             )}
             <tbody>
                 <tr>
-                    <td>name</td>
-                    <td colSpan={2}>
-                        <DeleteChangeButton
-                            name={property.item.name}
-                            onChange={function () {
-                                showInput("Please input the path", property.item.name)
-                                    .then((response) => {
-                                        if (response.isConfirmed) {
-                                            return update({
-                                                ...property.item,
-                                                name: response.value,
-                                            })
-                                        }
-                                    })
-                                    .catch(sToastzzStore.showError)
-                            }}
-                            onDelete={function (isConfirmed) {
-                                if (isConfirmed) {
-                                    makePathCRUD()
-                                        .delete(property.item.id)
-                                        .then(property.onDelete)
-                                        .catch(sToastzzStore.showError)
-                                }
-                            }}
-                        ></DeleteChangeButton>
-                    </td>
-                </tr>
-                <tr>
-                    <td>color</td>
-                    <td colSpan={2}>
-                        <ColorButtonGroup
-                            color={property.item.color}
-                            setColor={(color) =>
-                                update({
-                                    ...property.item,
-                                    color,
-                                })
-                            }
-                        ></ColorButtonGroup>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="w222">schema</td>
-                    <td>{property.schema.name}</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>parameter</td>
+                    <td className="w111">parameter</td>
                     <td>
                         <ParameterList
                             inPath={true}
@@ -132,6 +82,7 @@ export default function PathDetail(property: Property) {
                         ></textarea>
                     </td>
                 </tr>
+
                 <PathMethodList item={property.item}></PathMethodList>
             </tbody>
         </table>

@@ -1,19 +1,19 @@
 import { readDBSchema } from "@/api"
 import loadDBSchema from "@/Service/loadDBSchema"
-import useSchemazzStore from "@/Store/useSchemazzStore"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useState } from "react"
 import WaitingButton from "../Button/WaitingButton"
 
 export default function TableList() {
-    const sSchemazzStore = useSchemazzStore()
+    const sEntityzzStore = useEntityzzStore()
     const sToastzzStore = useToastzzStore()
 
     const [all, setAll] = useState(false)
     const [schema, setSchema] = useState<LB.DoctrineSchema>()
     const [waiting, setWaiting] = useState(false)
 
-    const nameSet = new Set(sSchemazzStore.itemzz.map((item) => item.name))
+    const nameSet = new Set(sEntityzzStore.itemzz.map((item) => item.name))
 
     function update(table: LB.DoctrineTable, included: boolean) {
         if (schema === undefined) {

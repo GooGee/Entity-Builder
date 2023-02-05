@@ -38,11 +38,13 @@ export function createMany<T extends LB.IdItem>(
     }
 
     const tt = dbc.getSchema().table(schema)
-    const maxId = getMaxId(tt)
-    // console.log(maxId)
-    const min = 1000
-    if (maxId < min) {
-        data.forEach((item, index) => (item.id = min + index))
+    if (import.meta.env.PROD) {
+        const maxId = getMaxId(tt)
+        // console.log(maxId)
+        const min = 1000
+        if (maxId < min) {
+            data.forEach((item, index) => (item.id = min + index))
+        }
     }
     const rowzz = data.map((item) => tt.createRow(item))
     return dbc.insert().into(tt).values(rowzz).exec() as Promise<T[]>

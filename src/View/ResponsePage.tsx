@@ -1,4 +1,5 @@
 import { makeResponseCRUD } from "@/Database/makeCRUD"
+import { PageEnum } from "@/menuzz"
 import useResponsePageStore from "@/Store/useResponsePageStore"
 import useResponsezzStore from "@/Store/useResponsezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
@@ -8,8 +9,6 @@ import LeftRightPanel from "./Part/LeftRightPanel"
 export default function ResponsePage() {
     const sResponsePageStore = useResponsePageStore()
     const sToastzzStore = useToastzzStore()
-
-    const title = "Response"
 
     function update(item: LB.Response) {
         sResponsePageStore.setItem(item)
@@ -25,7 +24,8 @@ export default function ResponsePage() {
                 makeCRUD={makeResponseCRUD as any}
                 useItemPageStore={useResponsePageStore}
                 useItemzzStore={useResponsezzStore}
-                title={title}
+                sorting={true}
+                title={PageEnum.Response}
                 validateName={false}
             >
                 {sResponsePageStore.item ? (

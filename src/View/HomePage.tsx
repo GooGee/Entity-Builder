@@ -8,7 +8,7 @@ import { useState } from "react"
 import WaitingButton from "./Button/WaitingButton"
 import WebLink from "./Button/WebLink"
 
-function HomePage() {
+export default function HomePage() {
     const [error, setError] = useState("")
     const [waiting, setWaiting] = useState(false)
     const store = useAppInfoStore()
@@ -104,5 +104,3 @@ function HomePage() {
         </div>
     )
 }
-
-export default HomePage

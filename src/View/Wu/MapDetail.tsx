@@ -23,7 +23,7 @@ export default function MapDetail(property: Property) {
     }
 
     return (
-        <table className="table table-text-right">
+        <table className="table td0-tar">
             <caption>
                 <h3 className="inline me-3">Map</h3>
                 <div className="form-check form-switch inline">

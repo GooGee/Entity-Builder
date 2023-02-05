@@ -5,6 +5,7 @@ import VariableDetail from "./Oapi/VariableDetail"
 import makeVariable from "@/Database/Factory/makeVariable"
 import LeftRightPanel from "./Part/LeftRightPanel"
 import useVariablePageStore from "@/Store/useVariablePageStore"
+import { PageEnum } from "@/menuzz"
 
 export default function VariablePage() {
     const sVariablePageStore = useVariablePageStore()
@@ -16,7 +17,7 @@ export default function VariablePage() {
                 makeCRUD={makeVariableCRUD as any}
                 useItemPageStore={useVariablePageStore}
                 useItemzzStore={useVariablezzStore}
-                title="Enum"
+                title={PageEnum.Enum}
                 validateName={false}
                 onCreate={function (name) {
                     makeVariableCRUD()

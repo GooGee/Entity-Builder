@@ -4,7 +4,7 @@ import { OmitId } from "../dbhelper"
 import makeTypeFormat from "./makeTypeFormat"
 
 export default function makeColumn(
-    schemaId: number,
+    entityId: number,
     name: string,
     type: string,
     value: string = "",
@@ -13,7 +13,7 @@ export default function makeColumn(
 ): OmitId<LB.Column> {
     const tf = makeTypeFormat()
     return {
-        schemaId,
+        entityId,
         name,
         type,
         length,
@@ -37,24 +37,24 @@ export default function makeColumn(
 }
 
 export function makeColumnTypeFormat(
-    schemaId: number,
+    entityId: number,
     name: string,
     type: string,
     value: string = "",
     length: number = 0,
 ) {
     const rozz = getCollectionItemzz("ReadOnlyColumn")
-    const column = makeColumn(schemaId, name, type, value, length, rozz)
+    const column = makeColumn(entityId, name, type, value, length, rozz)
     setColumnTypeFormat(column)
     return column
 }
 
-export function makeIdColumn(schemaId: number) {
-    return makeIntegerColumn(schemaId, "id")
+export function makeIdColumn(entityId: number) {
+    return makeIntegerColumn(entityId, "id")
 }
 
-export function makeIntegerColumn(schemaId: number, name: string, value: string = "") {
-    return makeColumnTypeFormat(schemaId, name, OapiType.integer, value)
+export function makeIntegerColumn(entityId: number, name: string, value: string = "") {
+    return makeColumnTypeFormat(entityId, name, OapiType.integer, value)
 }
 
 export function setColumnTypeFormat(

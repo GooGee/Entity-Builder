@@ -1,12 +1,7 @@
 namespace LB {
-    interface AbstractSchema {
-        id: number
-    }
-
     interface ApiErrorResponse {
-        detail?: string
         message: string
-        errorzz: Record<string, string[]>
+        errors: Record<string, string[]>
     }
 
     interface ApiResponse<T> {
@@ -56,6 +51,7 @@ namespace LB {
         CollectionItem: CollectionItem[]
         Column: Column[]
         Directory: Directory[]
+        Entity: Entity[]
         Example: Example[]
         ExampleMap: ExampleMap[]
         File: File[]
@@ -72,7 +68,6 @@ namespace LB {
         Relation: Relation[]
         Request: Request[]
         Response: Response[]
-        Schema: Schema[]
         Server: Server[]
         ServerMap: ServerMap[]
         ServerVariable: ServerVariable[]
@@ -87,33 +82,33 @@ namespace LB {
         action: string
         db: DBData
         dependencyzz: string[]
+        entity: Entity
         file: File
         fileMap: StringMap
         helper: any
         lodash: lodash
         ma?: ModuleAction
         module?: Module
-        schema: Schema
         tree: DataForScriptTreeHelper
         treeMap: Map<number, LinkedTreeNode<Directory>>
     }
 
     interface DataForScriptTreeHelper {
-        getClassName: (file: File, schema: Schema, action: string) => string
-        getClassFullName: (file: File, schema: Schema, action: string) => string
+        getClassName: (file: File, entity: Entity, action: string) => string
+        getClassFullName: (file: File, entity: Entity, action: string) => string
         getDirectoryFullName: (
             directory: Directory,
-            schema: Schema,
+            entity: Entity,
             action: string,
         ) => string
-        getFileName: (file: LB.File, schema: LB.Schema, action: string) => string
-        getFileFullName: (file: File, schema: Schema, action: string) => string
+        getFileName: (file: LB.File, entity: LB.Entity, action: string) => string
+        getFileFullName: (file: File, entity: Entity, action: string) => string
         getFullNameSpace: (
             directory: Directory,
-            schema: Schema,
+            entity: Entity,
             action: string,
         ) => string
-        getFullNameSpaceOfFile: (file: File, schema: Schema, action: string) => string
+        getFullNameSpaceOfFile: (file: File, entity: Entity, action: string) => string
         makeNameSpacezz: (directory: LB.Directory, namezz: string[]) => string[]
         replacePSR4: (name: string) => void
     }

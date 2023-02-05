@@ -18,7 +18,7 @@ export default function MediaType(property: Property) {
     const mti = itemzz.find((item) => item.name === property.item.mediaType)?.id ?? 0
 
     return (
-        <table className="table table-text-right">
+        <table className="table td0-tar">
             {property.caption}
             <tbody>
                 <tr>
