@@ -15,7 +15,7 @@ namespace LB {
         tag: string
     }
 
-    interface Column {
+    interface Column extends SideBarItem {
         id: number
         entityId: number
         name: string
@@ -34,9 +34,24 @@ namespace LB {
         fakeUnique: boolean
         fakeMethod: string
         fakeText: string
-        constraintzz: ColumnConstraint[]
         inTable: boolean
         tf: TypeFormat
+
+        // Parameter
+        allowReserved: boolean
+        deprecated: boolean
+        description: string
+        example: string
+        explode: boolean
+        required: boolean
+        style: string
+    }
+
+    interface ColumnConstraint {
+        id: number
+        columnId: number
+        name: string
+        parameter: string
     }
 
     interface Directory {
@@ -48,6 +63,7 @@ namespace LB {
     }
 
     interface Entity extends SideBarItem {
+        isTable: boolean
         opened: boolean
         openedColumn: boolean
         name: string
@@ -64,8 +80,8 @@ namespace LB {
     interface ExampleMap {
         id: number
         exampleId: number
-        isRequest: boolean
-        targetId: number
+        requestId: number | null
+        responseId: number | null
     }
 
     interface File {
@@ -128,27 +144,13 @@ namespace LB {
         status: string
     }
 
-    interface Parameter extends SideBarItem {
-        allowEmptyValue: boolean
-        allowReserved: boolean
-        deprecated: boolean
-        description: string
-        example: string
-        explode: boolean
-        in: string
-        name: string
-        name2: string
-        required: boolean
-        tf: TypeFormat
-        constraintzz: ColumnConstraint[]
-    }
-
     interface ParameterMap {
         id: number
-        inPath: boolean
-        inResponse: boolean
-        parameterId: number
-        targetId: number
+        alias: string
+        columnId: number
+        pathId: number | null
+        requestId: number | null
+        responseId: number | null
     }
 
     interface Path extends SideBarItem {
@@ -194,9 +196,9 @@ namespace LB {
 
     interface ServerMap {
         id: number
+        pathId: number | null
+        requestId: number | null
         serverId: number
-        targetId: number
-        forPath: boolean
     }
 
     interface ServerVariable {
@@ -235,6 +237,12 @@ namespace LB {
         alias: string
     }
 
+    interface WuColumnConstraint {
+        id: number
+        columnConstraintId: number
+        wuColumnId: number
+    }
+
     // TypeParameter
     interface WuParameter {
         id: number
@@ -268,11 +276,6 @@ namespace LB {
         setting: Setting
     }
 
-    interface ColumnConstraint {
-        name: string
-        parameter: string
-    }
-
     interface Composer {
         autoload: {
             "psr-4": StringMap
@@ -296,6 +299,7 @@ namespace LB {
         Collection: Collection[]
         CollectionItem: CollectionItem[]
         Column: Column[]
+        ColumnConstraint: ColumnConstraint[]
         Directory: Directory[]
         Entity: Entity[]
         Example: Example[]
@@ -307,7 +311,6 @@ namespace LB {
         ModuleAction: ModuleAction[]
         ModuleActionFile: ModuleActionFile[]
         ModuleActionResponse: ModuleActionResponse[]
-        Parameter: Parameter[]
         ParameterMap: ParameterMap[]
         Path: Path[]
         PathMethod: PathMethod[]
@@ -321,6 +324,7 @@ namespace LB {
         Wu: Wu[]
         WuChild: WuChild[]
         WuColumn: WuColumn[]
+        WuColumnConstraint: WuColumnConstraint[]
         WuParameter: WuParameter[]
     }
 

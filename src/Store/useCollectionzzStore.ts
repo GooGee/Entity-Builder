@@ -10,7 +10,10 @@ type CollectionzzStoreType = NamedItemzzStoreDataType<T>
 
 const useCollectionzzStore = create<CollectionzzStoreType>(function (set, get) {
     const data = makeNamedItemzzStoreData(set, get, makeCollectionCRUD())
-    return data
+    return {
+        ...data,
+        sorting: true,
+    }
 })
 
 export default useCollectionzzStore

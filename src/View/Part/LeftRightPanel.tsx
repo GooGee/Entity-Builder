@@ -13,7 +13,6 @@ interface Property {
     children?: ReactElement
     className?: string
     itemzz?: LB.SideBarItem[]
-    sorting?: boolean
     title: string
     validateName?: boolean
     makeCRUD(): CRUD<LB.SideBarItem>
@@ -82,7 +81,6 @@ export default function LeftRightPanel(property: Property) {
         <>
             <SideBar
                 className={property.className}
-                sorting={property.sorting}
                 title={property.title}
                 button={makeButton()}
                 itemzz={property.itemzz ?? sItemzzStore.itemzz}

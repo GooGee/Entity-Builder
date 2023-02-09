@@ -22,11 +22,6 @@ namespace LB {
         setting: Setting
     }
 
-    interface ColumnConstraint {
-        name: string
-        parameter: string
-    }
-
     interface Composer {
         autoload: {
             "psr-4": StringMap
@@ -50,6 +45,7 @@ namespace LB {
         Collection: Collection[]
         CollectionItem: CollectionItem[]
         Column: Column[]
+        ColumnConstraint: ColumnConstraint[]
         Directory: Directory[]
         Entity: Entity[]
         Example: Example[]
@@ -61,7 +57,6 @@ namespace LB {
         ModuleAction: ModuleAction[]
         ModuleActionFile: ModuleActionFile[]
         ModuleActionResponse: ModuleActionResponse[]
-        Parameter: Parameter[]
         ParameterMap: ParameterMap[]
         Path: Path[]
         PathMethod: PathMethod[]
@@ -75,6 +70,7 @@ namespace LB {
         Wu: Wu[]
         WuChild: WuChild[]
         WuColumn: WuColumn[]
+        WuColumnConstraint: WuColumnConstraint[]
         WuParameter: WuParameter[]
     }
 

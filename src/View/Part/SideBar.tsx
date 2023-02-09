@@ -1,5 +1,6 @@
 import { SideBarDataType } from "@/Factory/makeSideBarStoreData"
 import ColorEnum from "@/Model/ColorEnum"
+import makeKeywordRE from "@/Service/makeKeywordRE"
 import { useState, useEffect, ReactElement } from "react"
 import ColorButtonDropdown from "../Button/ColorButtonDropdown"
 
@@ -7,7 +8,6 @@ interface Property {
     button?: ReactElement
     className?: string
     itemzz: LB.SideBarItem[]
-    sorting?: boolean
     title: string
     useStore(): SideBarDataType
 }
@@ -18,25 +18,22 @@ export default function SideBar(property: Property) {
     const [itemzz, setItemzz] = useState<LB.SideBarItem[]>([])
 
     useEffect(() => {
-        const zz = filter()
-        if (property.sorting) {
-            zz.sort((aa, bb) => aa.name.localeCompare(bb.name))
-        }
-        setItemzz(zz)
+        setItemzz(filter())
     }, [store.color, store.keyword, property.itemzz])
 
     function filter() {
         if (store.color === ColorEnum.white && store.keyword === "") {
             return [...property.itemzz]
         }
+        const re = makeKeywordRE(store.keyword)
         if (store.color === ColorEnum.white) {
-            return property.itemzz.filter((item) => item.name.includes(store.keyword))
+            return property.itemzz.filter((item) => item.name.match(re))
         }
         if (store.keyword === "") {
             return property.itemzz.filter((item) => item.color === store.color)
         }
         return property.itemzz.filter(
-            (item) => item.color === store.color && item.name.includes(store.keyword),
+            (item) => item.color === store.color && item.name.match(re),
         )
     }
 

@@ -22,6 +22,10 @@ export function makeColumnCRUD() {
     return new CRUD<LB.Column>(getDBC, SchemaEnum.Column)
 }
 
+export function makeColumnConstraintCRUD() {
+    return new CRUD<LB.ColumnConstraint>(getDBC, SchemaEnum.ColumnConstraint)
+}
+
 export function makeDirectoryCRUD() {
     return new CRUD<LB.Directory>(getDBC, SchemaEnum.Directory)
 }
@@ -64,10 +68,6 @@ export function makeModuleActionFileCRUD() {
 
 export function makeModuleActionResponseCRUD() {
     return new CRUD<LB.ModuleActionResponse>(getDBC, SchemaEnum.ModuleActionResponse)
-}
-
-export function makeParameterCRUD() {
-    return new CRUD<LB.Parameter>(getDBC, SchemaEnum.Parameter)
 }
 
 export function makeParameterMapCRUD() {
@@ -120,6 +120,10 @@ export function makeWuChildCRUD() {
 
 export function makeWuColumnCRUD() {
     return new CRUD<LB.WuColumn>(getDBC, SchemaEnum.WuColumn)
+}
+
+export function makeWuColumnConstraintCRUD() {
+    return new CRUD<LB.WuColumnConstraint>(getDBC, SchemaEnum.WuColumnConstraint)
 }
 
 export function makeWuParameterCRUD() {

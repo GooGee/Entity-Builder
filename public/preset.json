@@ -2780,7 +2780,7 @@
                 {
                     "parentId": 80,
                     "description": "",
-                    "opened": true,
+                    "opened": false,
                     "name": "Admin",
                     "id": 82
                 }
@@ -3215,6 +3215,306 @@
                     "nameSpacePattern": "",
                     "fileNamePattern": "index.d.ts",
                     "id": 503
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AbstractAdminTest.php",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "AbstractAdminTest.php",
+                    "id": 505
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminAbstractItemTest",
+                    "color": "#f00",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "Abstract${entity.name}Test.php",
+                    "id": 506
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminCreateOneItemTest",
+                    "color": "#f80",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "CreateOne${entity.name}Test.php",
+                    "id": 507
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminDeleteOneItemTest",
+                    "color": "#0f0",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "DeleteOne${entity.name}Test.php",
+                    "id": 508
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminReadManyItemTest",
+                    "color": "#0ff",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "ReadMany${entity.name}Test.php",
+                    "id": 509
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminReadOneItemTest",
+                    "color": "#00f",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "ReadOne${entity.name}Test.php",
+                    "id": 510
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminUpdateOneItemTest",
+                    "color": "#80f",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "UpdateOne${entity.name}Test.php",
+                    "id": 511
+                },
+                {
+                    "directoryId": 31,
+                    "name": "AdminCreateOneItem",
+                    "color": "#f80",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "CreateOne${entity.name}.php",
+                    "id": 512
+                },
+                {
+                    "directoryId": 31,
+                    "name": "AdminCreateOneItemController",
+                    "color": "#f80",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "CreateOne${entity.name}Controller.php",
+                    "id": 513
+                },
+                {
+                    "directoryId": 33,
+                    "name": "AdminDeleteOneItem",
+                    "color": "#0f0",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "DeleteOne${entity.name}.php",
+                    "id": 514
+                },
+                {
+                    "directoryId": 33,
+                    "name": "AdminDeleteOneItemController",
+                    "color": "#0f0",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "DeleteOne${entity.name}Controller.php",
+                    "id": 515
+                },
+                {
+                    "directoryId": 34,
+                    "name": "AdminReadManyItem",
+                    "color": "#0ff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadMany${entity.name}.php",
+                    "id": 516
+                },
+                {
+                    "directoryId": 34,
+                    "name": "AdminReadManyItemController",
+                    "color": "#0ff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadMany${entity.name}Controller.php",
+                    "id": 517
+                },
+                {
+                    "directoryId": 35,
+                    "name": "AdminReadOneItem",
+                    "color": "#00f",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadOne${entity.name}.php",
+                    "id": 518
+                },
+                {
+                    "directoryId": 35,
+                    "name": "AdminReadOneItemController",
+                    "color": "#00f",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadOne${entity.name}Controller.php",
+                    "id": 519
+                },
+                {
+                    "directoryId": 37,
+                    "name": "AdminUpdateOneItem",
+                    "color": "#80f",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "UpdateOne${entity.name}.php",
+                    "id": 520
+                },
+                {
+                    "directoryId": 37,
+                    "name": "AdminUpdateOneItemController",
+                    "color": "#80f",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "UpdateOne${entity.name}Controller.php",
+                    "id": 521
+                },
+                {
+                    "directoryId": 14,
+                    "name": "AdminEvent",
+                    "color": "#fff",
+                    "layer": "Event",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "${action + entity.name}Event.php",
+                    "id": 523
+                },
+                {
+                    "directoryId": 14,
+                    "name": "AdminListener",
+                    "color": "#fff",
+                    "layer": "Event",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "${action + entity.name}Listener.php",
+                    "id": 524
+                },
+                {
+                    "directoryId": 14,
+                    "name": "AdminRequest",
+                    "color": "#fff",
+                    "layer": "Request",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "${action + entity.name}Request.php",
+                    "id": 525
+                },
+                {
+                    "directoryId": 14,
+                    "name": "AdminResponse",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "${action + entity.name}Response.php",
+                    "id": 526
+                },
+                {
+                    "directoryId": 32,
+                    "name": "AdminDeleteManyItem",
+                    "color": "#ff0",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "DeleteMany${entity.name}.php",
+                    "id": 527
+                },
+                {
+                    "directoryId": 32,
+                    "name": "AdminDeleteManyItemController",
+                    "color": "#ff0",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "DeleteMany${entity.name}Controller.php",
+                    "id": 528
+                },
+                {
+                    "directoryId": 36,
+                    "name": "AdminUpdateManyItem",
+                    "color": "#08f",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "UpdateMany${entity.name}.php",
+                    "id": 529
+                },
+                {
+                    "directoryId": 36,
+                    "name": "AdminUpdateManyItemController",
+                    "color": "#08f",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "UpdateMany${entity.name}Controller.php",
+                    "id": 530
+                },
+                {
+                    "directoryId": 30,
+                    "name": "AdminCreateManyItem",
+                    "color": "#f0f",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "CreateMany${entity.name}.php",
+                    "id": 531
+                },
+                {
+                    "directoryId": 30,
+                    "name": "AdminCreateManyItemController",
+                    "color": "#f0f",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "CreateMany${entity.name}Controller.php",
+                    "id": 532
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminCreateManyItemTest",
+                    "color": "#f0f",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "CreateMany${entity.name}Test.php",
+                    "id": 533
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminDeleteManyItemTest",
+                    "color": "#ff0",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "DeleteMany${entity.name}Test.php",
+                    "id": 534
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminUpdateManyItemTest",
+                    "color": "#08f",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "UpdateMany${entity.name}Test.php",
+                    "id": 535
                 }
             ],
             "Entity": [
@@ -3223,33 +3523,84 @@
                     "color": "#fff",
                     "description": "do not add column to this entity.",
                     "x": 11,
-                    "y": 66,
+                    "y": 55,
                     "opened": false,
                     "openedColumn": true,
                     "reserved": true,
-                    "id": 1
+                    "id": 1,
+                    "isTable": false
+                },
+                {
+                    "color": "#fff",
+                    "description": "OpenAPI Header",
+                    "name": "Header",
+                    "reserved": true,
+                    "x": 11,
+                    "y": 110,
+                    "isTable": false,
+                    "opened": false,
+                    "openedColumn": true,
+                    "id": 5
+                },
+                {
+                    "color": "#fff",
+                    "description": "OpenAPI Parameter",
+                    "name": "ParameterInCookie",
+                    "reserved": true,
+                    "x": 11,
+                    "y": 165,
+                    "isTable": false,
+                    "opened": false,
+                    "openedColumn": true,
+                    "id": 6
+                },
+                {
+                    "color": "#fff",
+                    "description": "OpenAPI Parameter",
+                    "name": "ParameterInPath",
+                    "reserved": true,
+                    "x": 11,
+                    "y": 220,
+                    "isTable": false,
+                    "opened": false,
+                    "openedColumn": true,
+                    "id": 7
+                },
+                {
+                    "color": "#fff",
+                    "description": "OpenAPI Parameter",
+                    "name": "ParameterInQuery",
+                    "reserved": true,
+                    "x": 11,
+                    "y": 275,
+                    "isTable": false,
+                    "opened": false,
+                    "openedColumn": true,
+                    "id": 8
                 },
                 {
                     "name": "ApiResponse",
                     "color": "#fff",
                     "description": "",
                     "x": 11,
-                    "y": 166,
+                    "y": 330,
                     "opened": false,
                     "openedColumn": true,
                     "reserved": false,
-                    "id": 2
+                    "id": 2,
+                    "isTable": false
                 },
                 {
                     "name": "Paginator",
                     "color": "#fff",
                     "description": "",
                     "x": 11,
-                    "y": 266,
+                    "y": 385,
                     "opened": false,
                     "openedColumn": true,
                     "reserved": false,
-                    "id": 3
+                    "id": 3,
+                    "isTable": false
                 },
                 {
                     "name": "User",
@@ -3260,7 +3611,8 @@
                     "opened": true,
                     "openedColumn": true,
                     "reserved": false,
-                    "id": 4
+                    "id": 4,
+                    "isTable": true
                 }
             ],
             "Column": [
@@ -3293,7 +3645,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 1
+                    "id": 1,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 2,
@@ -3324,7 +3685,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 2
+                    "id": 2,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 2,
@@ -3355,7 +3725,16 @@
                         "targetId": 1,
                         "argumentzz": []
                     },
-                    "id": 3
+                    "id": 3,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 2,
@@ -3386,7 +3765,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 4
+                    "id": 4,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 2,
@@ -3417,7 +3805,16 @@
                         "targetId": 2,
                         "argumentzz": []
                     },
-                    "id": 5
+                    "id": 5,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 2,
@@ -3448,7 +3845,16 @@
                         "targetId": 3,
                         "argumentzz": []
                     },
-                    "id": 6
+                    "id": 6,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 2,
@@ -3488,7 +3894,16 @@
                         ],
                         "nullable": false
                     },
-                    "id": 7
+                    "id": 7,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3519,7 +3934,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 8
+                    "id": 8,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3550,7 +3974,16 @@
                         "targetId": 4,
                         "argumentzz": []
                     },
-                    "id": 9
+                    "id": 9,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3581,7 +4014,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 10
+                    "id": 10,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3612,7 +4054,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 11
+                    "id": 11,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3643,7 +4094,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 12
+                    "id": 12,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3674,7 +4134,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 13
+                    "id": 13,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3705,7 +4174,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 14
+                    "id": 14,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3736,7 +4214,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 15
+                    "id": 15,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3767,7 +4254,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 16
+                    "id": 16,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3798,7 +4294,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 17
+                    "id": 17,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3829,7 +4334,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 18
+                    "id": 18,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3860,7 +4374,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 19
+                    "id": 19,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 3,
@@ -3891,7 +4414,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 20
+                    "id": 20,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -3922,7 +4454,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 21
+                    "id": 21,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -3953,7 +4494,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 22
+                    "id": 22,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -3984,7 +4534,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 23
+                    "id": 23,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -4015,7 +4574,16 @@
                         "argumentzz": [],
                         "nullable": true
                     },
-                    "id": 24
+                    "id": 24,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -4036,20 +4604,7 @@
                     "fakeUnique": false,
                     "fakeMethod": "firstName",
                     "fakeText": "",
-                    "constraintzz": [
-                        {
-                            "name": "string",
-                            "parameter": ""
-                        },
-                        {
-                            "name": "max",
-                            "parameter": "33"
-                        },
-                        {
-                            "name": "required",
-                            "parameter": ""
-                        }
-                    ],
+                    "constraintzz": [],
                     "inTable": true,
                     "tf": {
                         "isArray": false,
@@ -4059,7 +4614,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 25
+                    "id": 25,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -4080,28 +4644,7 @@
                     "fakeUnique": true,
                     "fakeMethod": "safeEmail",
                     "fakeText": "",
-                    "constraintzz": [
-                        {
-                            "name": "string",
-                            "parameter": ""
-                        },
-                        {
-                            "name": "max",
-                            "parameter": "111"
-                        },
-                        {
-                            "name": "email",
-                            "parameter": ""
-                        },
-                        {
-                            "name": "unique",
-                            "parameter": "User"
-                        },
-                        {
-                            "name": "required",
-                            "parameter": ""
-                        }
-                    ],
+                    "constraintzz": [],
                     "inTable": true,
                     "tf": {
                         "isArray": false,
@@ -4111,7 +4654,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 26
+                    "id": 26,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -4132,24 +4684,7 @@
                     "fakeUnique": false,
                     "fakeMethod": "password",
                     "fakeText": "8",
-                    "constraintzz": [
-                        {
-                            "name": "string",
-                            "parameter": ""
-                        },
-                        {
-                            "name": "max",
-                            "parameter": "111"
-                        },
-                        {
-                            "name": "min",
-                            "parameter": "8"
-                        },
-                        {
-                            "name": "required",
-                            "parameter": ""
-                        }
-                    ],
+                    "constraintzz": [],
                     "inTable": true,
                     "tf": {
                         "isArray": false,
@@ -4159,7 +4694,16 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 27
+                    "id": 27,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -4190,7 +4734,16 @@
                         "argumentzz": [],
                         "nullable": true
                     },
-                    "id": 28
+                    "id": 28,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
                 },
                 {
                     "entityId": 4,
@@ -4211,12 +4764,7 @@
                     "fakeUnique": false,
                     "fakeMethod": "",
                     "fakeText": "",
-                    "constraintzz": [
-                        {
-                            "name": "boolean",
-                            "parameter": ""
-                        }
-                    ],
+                    "constraintzz": [],
                     "inTable": false,
                     "tf": {
                         "isArray": false,
@@ -4226,7 +4774,450 @@
                         "argumentzz": [],
                         "nullable": false
                     },
-                    "id": 29
+                    "id": 29,
+                    "allowReserved": false,
+                    "color": "#fff",
+                    "deprecated": false,
+                    "description": "",
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "reserved": false,
+                    "style": ""
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "id",
+                    "reserved": false,
+                    "entityId": 5,
+                    "type": "integer",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": true,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "integer",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "style": "simple",
+                    "id": 30
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "id",
+                    "reserved": false,
+                    "entityId": 6,
+                    "type": "integer",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": true,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "integer",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "style": "form",
+                    "id": 31
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "id",
+                    "reserved": false,
+                    "entityId": 7,
+                    "type": "integer",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": true,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "integer",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "style": "simple",
+                    "id": 32
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "id",
+                    "reserved": false,
+                    "entityId": 8,
+                    "type": "integer",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": true,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "integer",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "style": "form",
+                    "id": 33
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "page",
+                    "reserved": false,
+                    "entityId": 8,
+                    "type": "string",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": false,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "integer",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "",
+                    "explode": false,
+                    "required": false,
+                    "style": "form",
+                    "id": 34
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "XSRF-TOKEN",
+                    "reserved": false,
+                    "entityId": 5,
+                    "type": "string",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": false,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "string",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "set-cookie:XSRF-TOKEN=abc",
+                    "explode": false,
+                    "required": false,
+                    "style": "simple",
+                    "id": 35
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "X-XSRF-TOKEN",
+                    "reserved": false,
+                    "entityId": 5,
+                    "type": "string",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": false,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "string",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "X-XSRF-TOKEN:abc",
+                    "explode": false,
+                    "required": true,
+                    "style": "simple",
+                    "id": 36
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "x-ratelimit-limit",
+                    "reserved": false,
+                    "entityId": 5,
+                    "type": "string",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": false,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "string",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "x-ratelimit-limit:111",
+                    "explode": false,
+                    "required": false,
+                    "style": "simple",
+                    "id": 37
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "x-ratelimit-remaining",
+                    "reserved": false,
+                    "entityId": 5,
+                    "type": "string",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "ro": false,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "tf": {
+                        "isArray": false,
+                        "nullable": false,
+                        "type": "string",
+                        "format": "",
+                        "targetId": 0,
+                        "argumentzz": []
+                    },
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "x-ratelimit-remaining:111",
+                    "explode": false,
+                    "required": false,
+                    "style": "simple",
+                    "id": 38
+                }
+            ],
+            "ColumnConstraint": [
+                {
+                    "id": 1,
+                    "columnId": 25,
+                    "name": "string",
+                    "parameter": ""
+                },
+                {
+                    "id": 2,
+                    "columnId": 25,
+                    "name": "max",
+                    "parameter": "33"
+                },
+                {
+                    "id": 3,
+                    "columnId": 25,
+                    "name": "required",
+                    "parameter": ""
+                },
+                {
+                    "id": 4,
+                    "columnId": 26,
+                    "name": "string",
+                    "parameter": ""
+                },
+                {
+                    "id": 5,
+                    "columnId": 26,
+                    "name": "max",
+                    "parameter": "111"
+                },
+                {
+                    "id": 6,
+                    "columnId": 26,
+                    "name": "email",
+                    "parameter": ""
+                },
+                {
+                    "id": 7,
+                    "columnId": 26,
+                    "name": "unique",
+                    "parameter": "User"
+                },
+                {
+                    "id": 8,
+                    "columnId": 26,
+                    "name": "required",
+                    "parameter": ""
+                },
+                {
+                    "id": 9,
+                    "columnId": 27,
+                    "name": "string",
+                    "parameter": ""
+                },
+                {
+                    "id": 10,
+                    "columnId": 27,
+                    "name": "max",
+                    "parameter": "111"
+                },
+                {
+                    "id": 11,
+                    "columnId": 27,
+                    "name": "min",
+                    "parameter": "8"
+                },
+                {
+                    "id": 12,
+                    "columnId": 27,
+                    "name": "required",
+                    "parameter": ""
+                },
+                {
+                    "id": 13,
+                    "columnId": 29,
+                    "name": "boolean",
+                    "parameter": ""
+                },
+                {
+                    "columnId": 34,
+                    "name": "sometimes",
+                    "parameter": "",
+                    "id": 14
+                },
+                {
+                    "columnId": 34,
+                    "name": "integer",
+                    "parameter": "",
+                    "id": 15
                 }
             ],
             "Relation": [],
@@ -4250,7 +5241,7 @@
                     "color": "#fff",
                     "description": "",
                     "name": "Empty",
-                    "reserved": false,
+                    "reserved": true,
                     "entityId": 1,
                     "type": "allOf",
                     "isRequest": false,
@@ -4578,6 +5569,7 @@
                     "id": 28
                 }
             ],
+            "WuColumnConstraint": [],
             "WuParameter": [
                 {
                     "wuId": 2,
@@ -4647,237 +5639,27 @@
                     "description": "",
                     "summary": "",
                     "parameterzz": [],
-                    "reserved": false,
+                    "reserved": true,
                     "id": 1,
                     "moduleId": 1
                 }
             ],
-            "ModuleAction": [],
-            "ModuleActionFile": [],
-            "Parameter": [
+            "ModuleAction": [
                 {
-                    "allowEmptyValue": false,
-                    "color": "#f0f",
                     "deprecated": false,
                     "description": "",
-                    "example": "1",
-                    "in": "path",
-                    "name": "id",
-                    "name2": "id",
-                    "required": true,
-                    "reserved": false,
-                    "tf": {
-                        "isArray": false,
-                        "type": "integer",
-                        "format": "int64",
-                        "targetId": 0,
-                        "argumentzz": [],
-                        "nullable": false
-                    },
-                    "id": 1,
-                    "allowReserved": false,
-                    "explode": false,
-                    "constraintzz": [
-                        {
-                            "name": "integer",
-                            "parameter": ""
-                        }
-                    ]
-                },
-                {
-                    "allowEmptyValue": false,
-                    "color": "#f0f",
-                    "deprecated": false,
-                    "description": "",
-                    "example": "1",
-                    "in": "path",
-                    "name": "page",
-                    "name2": "page",
-                    "required": true,
-                    "reserved": false,
-                    "tf": {
-                        "isArray": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "targetId": 0,
-                        "argumentzz": [],
-                        "nullable": false
-                    },
-                    "id": 2,
-                    "allowReserved": false,
-                    "explode": false,
-                    "constraintzz": [
-                        {
-                            "name": "integer",
-                            "parameter": ""
-                        }
-                    ]
-                },
-                {
-                    "color": "#f80",
-                    "description": "",
-                    "name": "start-",
-                    "reserved": false,
-                    "allowEmptyValue": false,
-                    "allowReserved": false,
-                    "deprecated": false,
-                    "example": "",
-                    "explode": false,
-                    "in": "query",
-                    "name2": "start",
-                    "required": false,
-                    "tf": {
-                        "isArray": false,
-                        "nullable": false,
-                        "type": "integer",
-                        "format": "",
-                        "targetId": 0,
-                        "argumentzz": []
-                    },
-                    "constraintzz": [
-                        {
-                            "name": "integer",
-                            "parameter": ""
-                        }
-                    ],
-                    "id": 3
-                },
-                {
-                    "color": "#f80",
-                    "description": "",
-                    "name": "end-",
-                    "reserved": false,
-                    "allowEmptyValue": false,
-                    "allowReserved": false,
-                    "deprecated": false,
-                    "example": "",
-                    "explode": false,
-                    "in": "query",
-                    "name2": "end",
-                    "required": false,
-                    "tf": {
-                        "isArray": false,
-                        "nullable": false,
-                        "type": "integer",
-                        "format": "",
-                        "targetId": 0,
-                        "argumentzz": []
-                    },
-                    "constraintzz": [
-                        {
-                            "name": "integer",
-                            "parameter": ""
-                        }
-                    ],
-                    "id": 4
-                },
-                {
-                    "allowEmptyValue": false,
-                    "color": "#fff",
-                    "deprecated": false,
-                    "description": "",
-                    "example": "set-cookie:XSRF-TOKEN=abc",
-                    "in": "header",
-                    "name": "XSRF-TOKEN",
-                    "name2": "",
-                    "required": false,
-                    "reserved": false,
-                    "tf": {
-                        "isArray": false,
-                        "type": "string",
-                        "format": "",
-                        "targetId": 0,
-                        "argumentzz": [],
-                        "nullable": false
-                    },
-                    "id": 5,
-                    "allowReserved": false,
-                    "explode": false,
-                    "constraintzz": []
-                },
-                {
-                    "allowEmptyValue": false,
-                    "color": "#fff",
-                    "deprecated": false,
-                    "description": "",
-                    "example": "X-XSRF-TOKEN:abc",
-                    "in": "header",
-                    "name": "X-XSRF-TOKEN",
-                    "name2": "",
-                    "required": true,
-                    "reserved": false,
-                    "tf": {
-                        "isArray": false,
-                        "type": "string",
-                        "format": "",
-                        "targetId": 0,
-                        "argumentzz": [],
-                        "nullable": false
-                    },
-                    "id": 6,
-                    "allowReserved": false,
-                    "explode": false,
-                    "constraintzz": []
-                },
-                {
-                    "allowEmptyValue": false,
-                    "color": "#fff",
-                    "deprecated": false,
-                    "description": "",
-                    "example": "x-ratelimit-limit:111",
-                    "in": "header",
-                    "name": "x-ratelimit-limit",
-                    "name2": "",
-                    "required": false,
-                    "reserved": false,
-                    "tf": {
-                        "isArray": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "targetId": 0,
-                        "argumentzz": [],
-                        "nullable": false
-                    },
-                    "id": 7,
-                    "allowReserved": false,
-                    "explode": false,
-                    "constraintzz": [
-                        {
-                            "name": "integer",
-                            "parameter": ""
-                        }
-                    ]
-                },
-                {
-                    "allowEmptyValue": false,
-                    "color": "#fff",
-                    "deprecated": false,
-                    "description": "",
-                    "example": "x-ratelimit-remaining:111",
-                    "in": "header",
-                    "name": "x-ratelimit-remaining",
-                    "name2": "",
-                    "required": false,
-                    "reserved": false,
-                    "tf": {
-                        "isArray": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "targetId": 0,
-                        "argumentzz": [],
-                        "nullable": false
-                    },
-                    "id": 8,
-                    "allowReserved": false,
-                    "explode": false,
-                    "constraintzz": [
-                        {
-                            "name": "integer",
-                            "parameter": ""
-                        }
-                    ]
+                    "summary": "Do not delete",
+                    "operationId": "Admin_CacheEmptyEntity",
+                    "directoryId": 40,
+                    "testDirectoryId": 82,
+                    "entityId": 1,
+                    "moduleId": 1,
+                    "collectionItemId": 394,
+                    "requestId": 1,
+                    "id": 1
                 }
             ],
+            "ModuleActionFile": [],
             "ParameterMap": [],
             "Request": [
                 {
@@ -5010,7 +5792,7 @@
             ],
             "PathMethod": []
         },
-        "version": 25
+        "version": 31
     },
     "oapi": {
         "openapi": "3.0.3",

@@ -1,5 +1,6 @@
 import { HttpMethod } from "@/Model/Oapi"
 import { OperationObject, PathItemObject, ReferenceObject } from "openapi3-ts"
+import { makeParameterReference } from "./makeParameter"
 import { ComponentKind, makeReferenceOf } from "./makeReference"
 import makeServer from "./makeServer"
 
@@ -9,9 +10,10 @@ export type ModuleActionWithMethod = LB.ModuleAction & { method: string }
 
 export default function makePath(
     item: LB.Path,
+    eiem: Map<number, LB.Entity>,
     marzzm: Map<number, ModuleActionResponseWithName[]>,
-    maipzzm: Map<number, LB.Parameter[]>,
-    pipzzm: Map<number, LB.Parameter[]>,
+    maipzzm: Map<number, LB.Column[]>,
+    pipzzm: Map<number, LB.Column[]>,
     pimazzm: Map<number, ModuleActionWithMethod[]>,
     rbirbm: Map<number, LB.Request>,
     smzz: LB.ServerMap[],
@@ -22,12 +24,12 @@ export default function makePath(
     const path: PathItemObject = {
         description: item.description,
         parameters: (pipzzm.get(item.id) ?? []).map((item) =>
-            makeReferenceOf(item.name2, ComponentKind.parameters),
+            makeParameterReference(item, eiem),
         ),
         summary: item.summary,
     }
 
-    const serverzz = makeServerzz(item, smzz, sism, sivzzm, true)
+    const serverzz = makeServerzz(1, item.id)
     if (serverzz.length) {
         path.servers = serverzz
     }
@@ -43,7 +45,7 @@ export default function makePath(
             deprecated: item.deprecated,
             description: item.description,
             parameters: (maipzzm.get(item.id) ?? []).map((item) =>
-                makeReferenceOf(item.name, ComponentKind.parameters),
+                makeParameterReference(item, eiem),
             ),
             responses,
             operationId: item.operationId,
@@ -51,7 +53,7 @@ export default function makePath(
             tags: [tag],
         }
 
-        const serverzz = makeServerzz(item, smzz, sism, sivzzm, false)
+        const serverzz = makeServerzz(item.requestId, 1)
         if (serverzz.length) {
             data.servers = serverzz
         }
@@ -72,17 +74,11 @@ export default function makePath(
         return old
     }, path)
     return data
-}
 
-function makeServerzz(
-    item: LB.IdItem,
-    smzz: LB.ServerMap[],
-    sism: Map<number, LB.Server>,
-    sivzzm: Map<number, LB.Variable[]>,
-    forPath: boolean,
-) {
-    const serverzz = smzz
-        .filter((sm) => sm.forPath === forPath && sm.targetId === item.id)
-        .map((item) => sism.get(item.serverId)!)
-    return serverzz.map((item) => makeServer(item, sivzzm))
+    function makeServerzz(requestId: number, pathId: number) {
+        const serverzz = smzz
+            .filter((item) => item.requestId === requestId && item.pathId === pathId)
+            .map((item) => sism.get(item.serverId)!)
+        return serverzz.map((item) => makeServer(item, sivzzm))
+    }
 }

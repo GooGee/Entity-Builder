@@ -71,8 +71,8 @@ export default function MediaType(property: Property) {
                     <td>examples</td>
                     <td>
                         <ExampleList
-                            isRequest={property.isRequest}
-                            targetId={property.item.id}
+                            requestId={property.isRequest ? property.item.id : null}
+                            responseId={property.isRequest ? null : property.item.id}
                         ></ExampleList>
                     </td>
                 </tr>

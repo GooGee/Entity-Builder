@@ -66,6 +66,7 @@ export default function FileList(property: Property) {
                             {file === null ? (
                                 <button
                                     className="btn btn-outline-primary"
+                                    type="button"
                                     onClick={function () {
                                         makeModuleActionFileCRUD()
                                             .create({
@@ -80,7 +81,7 @@ export default function FileList(property: Property) {
                                 </button>
                             ) : (
                                 <div>
-                                    <span
+                                    <button
                                         onClick={function () {
                                             const found = fimafim.get(item.id)
                                             if (found) {
@@ -89,10 +90,11 @@ export default function FileList(property: Property) {
                                                     .catch(sToastzzStore.showError)
                                             }
                                         }}
-                                        className="btn btn-outline-primary danger"
+                                        className="btn btn-outline-danger"
+                                        type="button"
                                     >
                                         -
-                                    </span>
+                                    </button>
                                     <FileButton
                                         action={property.action}
                                         className="ms-3"

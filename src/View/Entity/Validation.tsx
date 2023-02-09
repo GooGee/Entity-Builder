@@ -1,4 +1,4 @@
-import { makeColumnCRUD } from "@/Database/makeCRUD"
+import { makeColumnConstraintCRUD, makeColumnCRUD } from "@/Database/makeCRUD"
 import Constant from "@/Model/Constant"
 import { getFileFullNameInCode, ValidationCodeFileName } from "@/Model/FileManager"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
@@ -30,12 +30,8 @@ export default function Validation(property: Property) {
         )
     }, [property.entity, columnzzStore.itemzz])
 
-    function update(data: LB.Column) {
-        makeColumnCRUD().update(data).catch(sToastzzStore.showError)
-    }
-
     return (
-        <table className="table td0-tar">
+        <table className="table">
             <caption>
                 <h3 className="inline me-3">Validation</h3>
                 <span className="me-3">request constraint</span>
@@ -43,24 +39,40 @@ export default function Validation(property: Property) {
             </caption>
             <thead>
                 <tr>
-                    <th className="w222">column</th>
+                    <th className="w111">read only</th>
                     <th>constraint</th>
                 </tr>
             </thead>
             <tbody>
                 {columnzz.map((item) => (
                     <tr key={item.id}>
-                        <td>{item.name}</td>
+                        <td>
+                            <div className="form-check form-switch">
+                                <input
+                                    checked={item.ro}
+                                    onChange={(event) =>
+                                        makeColumnCRUD().update({
+                                            ...item,
+                                            ro: event.target.checked,
+                                        })
+                                    }
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id={"roSwitchCheck" + item.id}
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor={"roSwitchCheck" + item.id}
+                                >
+                                    {item.name}
+                                </label>
+                            </div>
+                        </td>
                         <td>
                             <ConstraintList
                                 constraintzz={constraintzz}
-                                item={item}
-                                update={function (constraintzz) {
-                                    update({
-                                        ...item,
-                                        constraintzz,
-                                    })
-                                }}
+                                column={item}
                             ></ConstraintList>
                         </td>
                     </tr>
@@ -80,8 +92,8 @@ export default function Validation(property: Property) {
                                     setWaiting(true)
                                     runCodeFile(ValidationCodeFileName, property.entity)
                                         .then((response) =>
-                                            makeColumnCRUD().updateMany(
-                                                response.result as LB.Column[],
+                                            makeColumnConstraintCRUD().updateMany(
+                                                response.result as LB.ColumnConstraint[],
                                             ),
                                         )
                                         .then(() => {
@@ -98,7 +110,7 @@ export default function Validation(property: Property) {
                             </WaitingButton>
                         </div>
                     </td>
-                    <td>set constraint (select other Entity to see changes)</td>
+                    <td>set constraint</td>
                 </tr>
             </tfoot>
         </table>

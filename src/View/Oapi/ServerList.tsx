@@ -5,8 +5,8 @@ import { useState, useEffect } from "react"
 import ItemList from "../Part/ItemList"
 
 interface Property {
-    forPath: boolean
-    targetId: number
+    pathId: number | null
+    requestId: number | null
 }
 
 export default function ServerList(property: Property) {
@@ -17,7 +17,7 @@ export default function ServerList(property: Property) {
 
     useEffect(() => {
         refresh()
-    }, [property.forPath, property.targetId])
+    }, [property.requestId, property.pathId])
 
     function refresh() {
         makeServerMapCRUD()
@@ -25,13 +25,10 @@ export default function ServerList(property: Property) {
             .then((response) =>
                 setItemzz(
                     response.filter(function (item) {
-                        if (item.forPath === property.forPath) {
-                            // ok
-                        } else {
-                            return false
-                        }
-
-                        return item.targetId === property.targetId
+                        return (
+                            item.requestId === property.requestId &&
+                            item.pathId === property.pathId
+                        )
                     }),
                 ),
             )
@@ -47,8 +44,8 @@ export default function ServerList(property: Property) {
                 return makeServerMapCRUD()
                     .create({
                         serverId,
-                        forPath: property.forPath,
-                        targetId: property.targetId,
+                        pathId: property.pathId,
+                        requestId: property.requestId,
                     })
                     .then(refresh)
             }}

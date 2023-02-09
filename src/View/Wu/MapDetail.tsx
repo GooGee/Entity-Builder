@@ -99,6 +99,7 @@ export default function MapDetail(property: Property) {
                                 })
                             }
                             className="form-control"
+                            rows={3}
                         ></textarea>
                     </td>
                 </tr>

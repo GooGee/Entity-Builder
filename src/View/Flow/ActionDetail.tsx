@@ -57,8 +57,8 @@ export default function ActionDetail(property: Property) {
                     <td>server</td>
                     <td>
                         <ServerList
-                            forPath={false}
-                            targetId={property.ma.id}
+                            requestId={property.ma.requestId}
+                            pathId={null}
                         ></ServerList>
                     </td>
                     <td></td>

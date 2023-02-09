@@ -3,7 +3,7 @@ import useToastzzStore from "@/Store/useToastzzStore"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
 
 interface Property {
-    entity: LB.Entity
+    item: LB.Entity
 }
 
 export default function Detail(property: Property) {
@@ -20,16 +20,42 @@ export default function Detail(property: Property) {
                     <td>color</td>
                     <td>
                         <ColorButtonGroup
-                            color={property.entity.color}
+                            color={property.item.color}
                             setColor={(color) =>
                                 makeEntityCRUD()
                                     .update({
-                                        ...property.entity,
+                                        ...property.item,
                                         color,
                                     })
                                     .catch(sToastzzStore.showError)
                             }
                         ></ColorButtonGroup>
+                    </td>
+                </tr>
+                <tr>
+                    <td>isTable</td>
+                    <td>
+                        <div className="form-check form-switch">
+                            <input
+                                checked={property.item.isTable}
+                                onChange={(event) =>
+                                    makeEntityCRUD()
+                                        .update({
+                                            ...property.item,
+                                            isTable: event.target.checked,
+                                        })
+                                        .catch(sToastzzStore.showError)
+                                }
+                                className="form-check-input"
+                                type="checkbox"
+                                role="switch"
+                                id={"isTableSwitchCheck" + property.item.id}
+                            />
+                            <label
+                                className="form-check-label"
+                                htmlFor={"isTableSwitchCheck" + property.item.id}
+                            ></label>
+                        </div>
                     </td>
                 </tr>
             </tbody>

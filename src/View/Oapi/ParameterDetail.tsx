@@ -1,27 +1,24 @@
-import { makeParameterCRUD } from "@/Database/makeCRUD"
-import { ParameterLocationzz } from "@/Model/Oapi"
+import { makeColumnCRUD } from "@/Database/makeCRUD"
+import { ParameterStylezz } from "@/Model/Oapi"
 import useParameterPageStore from "@/Store/useParameterPageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
-import ColorButtonGroup from "../Button/ColorButtonGroup"
 import SelectStringButton from "../Button/SelectStringButton"
 import WebLink from "../Button/WebLink"
-import showInput from "../Dialog/showInput"
-import TypeFormat from "../Reference/TypeFormat"
 import ConstraintList from "../Entity/ConstraintList"
+import TypeFormat from "../Reference/TypeFormat"
 
 interface Property {
     constraintzz: LB.CollectionItem[]
-    isHeader: boolean
-    item: LB.Parameter
+    item: LB.Column
 }
 
 export default function ParameterDetail(property: Property) {
     const sParameterPageStore = useParameterPageStore()
     const sToastzzStore = useToastzzStore()
 
-    function update(data: LB.Parameter) {
+    function update(data: LB.Column) {
         sParameterPageStore.setItem(data)
-        makeParameterCRUD()
+        makeColumnCRUD()
             .update(data)
             .then(sParameterPageStore.setItem)
             .catch(sToastzzStore.showError)
@@ -31,67 +28,7 @@ export default function ParameterDetail(property: Property) {
         <table className="table td0-tar">
             <tbody>
                 <tr>
-                    <td>color</td>
-                    <td>
-                        <ColorButtonGroup
-                            color={property.item.color}
-                            setColor={(color) =>
-                                update({
-                                    ...property.item!,
-                                    color,
-                                })
-                            }
-                        ></ColorButtonGroup>
-                    </td>
-                </tr>
-                {property.isHeader ? null : (
-                    <tr>
-                        <td>name2</td>
-                        <td>
-                            <button
-                                onClick={function () {
-                                    showInput(
-                                        "Please input the Parameter name",
-                                        property.item!.name2,
-                                    )
-                                        .then((response) => {
-                                            if (response.isConfirmed) {
-                                                update({
-                                                    ...property.item!,
-                                                    name2: response.value,
-                                                })
-                                            }
-                                        })
-                                        .catch(sToastzzStore.showError)
-                                }}
-                                className="btn btn-outline-primary"
-                                type="button"
-                            >
-                                {property.item.name2}
-                            </button>
-                        </td>
-                    </tr>
-                )}
-                {property.isHeader ? null : (
-                    <tr>
-                        <td>in</td>
-                        <td>
-                            <SelectStringButton
-                                className="wa"
-                                itemzz={ParameterLocationzz}
-                                value={property.item.in}
-                                change={function (value) {
-                                    update({
-                                        ...property.item!,
-                                        in: value,
-                                    })
-                                }}
-                            ></SelectStringButton>
-                        </td>
-                    </tr>
-                )}
-                <tr>
-                    <td>type</td>
+                    <td className="w111">type</td>
                     <td>
                         <TypeFormat
                             id={property.item.id}
@@ -103,32 +40,6 @@ export default function ParameterDetail(property: Property) {
                                 })
                             }}
                         ></TypeFormat>
-                    </td>
-                </tr>
-                <tr>
-                    <td>allowEmptyValue</td>
-                    <td>
-                        <div className="form-check form-switch">
-                            <input
-                                checked={property.item.allowEmptyValue}
-                                onChange={(event) =>
-                                    update({
-                                        ...property.item!,
-                                        allowEmptyValue: event.target.checked,
-                                    })
-                                }
-                                className="form-check-input"
-                                type="checkbox"
-                                role="switch"
-                                id={"allowEmptyValueSwitchCheck" + property.item.id}
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor={
-                                    "allowEmptyValueSwitchCheck" + property.item.id
-                                }
-                            ></label>
-                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -228,6 +139,22 @@ export default function ParameterDetail(property: Property) {
                     </td>
                 </tr>
                 <tr>
+                    <td>style</td>
+                    <td>
+                        <SelectStringButton
+                            className="wa"
+                            itemzz={ParameterStylezz}
+                            value={property.item.style}
+                            change={function (id) {
+                                update({
+                                    ...property.item,
+                                    style: id,
+                                })
+                            }}
+                        ></SelectStringButton>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <span>constraint</span>
                         <br />
@@ -237,14 +164,8 @@ export default function ParameterDetail(property: Property) {
                     </td>
                     <td>
                         <ConstraintList
+                            column={property.item}
                             constraintzz={property.constraintzz}
-                            item={property.item}
-                            update={function (constraintzz) {
-                                update({
-                                    ...property.item,
-                                    constraintzz,
-                                })
-                            }}
                         ></ConstraintList>
                     </td>
                 </tr>

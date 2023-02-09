@@ -1,8 +1,11 @@
+import { cloneFile } from "@/Database/Factory/makeFile"
+import LayerEnum from "@/Model/LayerEnum"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useModuleActionFilezzStore from "@/Store/useModuleActionFilezzStore"
 import { useState } from "react"
+import FileButton from "../Button/FileButton"
 import FileList from "../Entity/FileList"
 import TabList from "../Part/TabList"
 import FileView from "./FileView"
@@ -36,9 +39,27 @@ export default function FileTabList(property: Property) {
     if (property.step === Step) {
         // ok
     } else {
-        const filezz = sModuleActionFilezzStore.itemzz.filter(
-            (item) => item.moduleActionId === property.ma.id,
+        const set = new Set(
+            sModuleActionFilezzStore.itemzz
+                .filter((item) => item.moduleActionId === property.ma.id)
+                .map((item) => item.fileId),
         )
+        const filezz = sFilezzStore.itemzz
+            .filter((item) => set.has(item.id))
+            .map((item) =>
+                cloneFile(
+                    item,
+                    item.layer === LayerEnum.Test
+                        ? property.ma.testDirectoryId
+                        : property.ma.directoryId,
+                ),
+            )
+            .sort((aa, bb) => {
+                if (aa.layer === bb.layer) {
+                    return aa.name.localeCompare(bb.name)
+                }
+                return aa.layer.localeCompare(bb.layer)
+            })
         return (
             <table className="table">
                 <caption>
@@ -52,7 +73,15 @@ export default function FileTabList(property: Property) {
                 <tbody>
                     {filezz.map((item) => (
                         <tr key={item.id}>
-                            <td>{getName(item)}</td>
+                            <td>
+                                <FileButton
+                                    action={property.action}
+                                    file={item}
+                                    fullName
+                                    ma={property.ma}
+                                    entity={property.entity}
+                                ></FileButton>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

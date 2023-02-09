@@ -77,6 +77,18 @@ export const ParameterLocationzz = [
     ParameterLocation.query,
 ]
 
+export enum ParameterStyle {
+    deepObject = "deepObject",
+    form = "form",
+    label = "label",
+    matrix = "matrix",
+    pipeDelimited = "pipeDelimited",
+    simple = "simple",
+    spaceDelimited = "spaceDelimited",
+}
+
+export const ParameterStylezz = Object.keys(ParameterStyle) as ParameterStyle[]
+
 export interface OapiReference {
     $ref: string
 }

@@ -88,7 +88,9 @@ export default function Factory(property: Property) {
                                         )
                                         .then(() => {
                                             setWaiting(false)
-                                            sToastzzStore.showOK()
+                                            sToastzzStore.showSuccess(
+                                                "Select other Entity to see changes",
+                                            )
                                         })
                                         .catch((error) => {
                                             setWaiting(false)

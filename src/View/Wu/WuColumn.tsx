@@ -1,17 +1,16 @@
 import { makeColumnCRUD, makeWuColumnCRUD } from "@/Database/makeCRUD"
 import useToastzzStore from "@/Store/useToastzzStore"
 import TypeFormatText from "../Reference/TypeFormatText"
-import ConstraintList from "../Entity/ConstraintList"
+import ConstraintList from "./ConstraintList"
 
 interface Property {
-    constraintzz: LB.CollectionItem[]
     isRequest: boolean
     item: LB.Column
     wc?: LB.WuColumn
     wu: LB.Wu
 }
 
-export default function Column(property: Property) {
+export default function WuColumn(property: Property) {
     const sToastzzStore = useToastzzStore()
 
     function add() {
@@ -29,28 +28,13 @@ export default function Column(property: Property) {
             .catch(sToastzzStore.showError)
     }
 
-    function update(data: LB.Column) {
-        makeColumnCRUD().update(data).catch(sToastzzStore.showError)
-    }
-
     function makeView() {
         if (property.wc === undefined) {
             return null
         }
 
         if (property.wu.isRequest) {
-            return (
-                <ConstraintList
-                    constraintzz={property.constraintzz}
-                    item={property.item}
-                    update={function (constraintzz) {
-                        update({
-                            ...property.item,
-                            constraintzz,
-                        })
-                    }}
-                ></ConstraintList>
-            )
+            return <ConstraintList wc={property.wc}></ConstraintList>
         }
 
         return (

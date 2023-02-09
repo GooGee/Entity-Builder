@@ -19,11 +19,7 @@ export default function ResponseDetail(property: Property) {
             <tr>
                 <td>header</td>
                 <td>
-                    <ParameterList
-                        inPath={false}
-                        inResponse={true}
-                        targetId={property.item.id}
-                    ></ParameterList>
+                    <ParameterList responseId={property.item.id}></ParameterList>
                 </td>
             </tr>
         </MediaType>

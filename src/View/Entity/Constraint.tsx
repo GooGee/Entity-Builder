@@ -1,16 +1,23 @@
+import { makeColumnConstraintCRUD } from "@/Database/makeCRUD"
+import useToastzzStore from "@/Store/useToastzzStore"
+
 interface Property {
     item: LB.ColumnConstraint
-    remove(item: LB.ColumnConstraint): void
-    update(item: LB.ColumnConstraint): void
 }
 
 export default function Constraint(property: Property) {
+    const sToastzzStore = useToastzzStore()
+
     return (
         <tr>
             <td>
                 <div className="btn-group">
                     <button
-                        onClick={() => property.remove(property.item)}
+                        onClick={() =>
+                            makeColumnConstraintCRUD()
+                                .delete(property.item.id)
+                                .catch(sToastzzStore.showError)
+                        }
                         className="btn btn-outline-primary danger"
                         type="button"
                     >
@@ -25,10 +32,12 @@ export default function Constraint(property: Property) {
                 <input
                     value={property.item.parameter}
                     onChange={(event) =>
-                        property.update({
-                            ...property.item,
-                            parameter: event.target.value,
-                        })
+                        makeColumnConstraintCRUD()
+                            .update({
+                                ...property.item,
+                                parameter: event.target.value,
+                            })
+                            .catch(sToastzzStore.showError)
                     }
                     type="text"
                     className="form-control"

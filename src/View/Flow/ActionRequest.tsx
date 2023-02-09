@@ -5,10 +5,12 @@ import { makeModuleActionCRUD, makeRequestCRUD } from "@/Database/makeCRUD"
 import LayerEnum from "@/Model/LayerEnum"
 import { OapiType } from "@/Model/Oapi"
 import { makeRequestName, makeWuName } from "@/Service/makeName"
+import useColumnzzStore from "@/Store/useColumnzzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useRequestzzStore from "@/Store/useRequestzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
+import useWuColumnzzStore from "@/Store/useWuColumnzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import { useState, useEffect } from "react"
 import FileButton from "../Button/FileButton"
@@ -25,10 +27,12 @@ interface Property {
 }
 
 export default function ActionRequest(property: Property) {
+    const sColumnzzStore = useColumnzzStore()
     const sFilezzStore = useFilezzStore()
     const sFlowPageStore = useFlowPageStore()
     const sRequestzzStore = useRequestzzStore()
     const sToastzzStore = useToastzzStore()
+    const sWuColumnzzStore = useWuColumnzzStore()
     const sWuzzStore = useWuzzStore()
 
     const [wu, setWu] = useState<LB.Wu>()
@@ -39,22 +43,53 @@ export default function ActionRequest(property: Property) {
 
     useEffect(() => {
         const request = sRequestzzStore.find(property.ma.requestId)
-        updateWu(request)
+        if (request === undefined) {
+            setWu(undefined)
+            return
+        }
+
+        if (request.tf.type === OapiType.Wu) {
+            setWu(sWuzzStore.find(request.tf.targetId))
+        } else {
+            setWu(undefined)
+        }
     }, [property.ma.requestId])
 
     if (property.step === Step) {
         // ok
     } else {
+        function makeList() {
+            if (wu === undefined) {
+                return null
+            }
+
+            const cicm = new Map(
+                sColumnzzStore.itemzz
+                    .filter((item) => item.entityId === wu.entityId)
+                    .map((item) => [item.id, item]),
+            )
+            return sWuColumnzzStore.itemzz
+                .filter((item) => item.wuId === wu.id)
+                .map((item) => (
+                    <tr key={item.id}>
+                        <td className="w111">{cicm.get(item.columnId)?.name}</td>
+                        <td>{cicm.get(item.columnId)?.type}</td>
+                    </tr>
+                ))
+        }
         return (
-            <div>
-                <h3
-                    className="pointer hover-blue c-secondary"
-                    onClick={() => sFlowPageStore.setStep(Step)}
-                >
-                    {Step}
-                </h3>
-                {makeButton()}
-            </div>
+            <table className="table table-borderless table-sm">
+                <caption>
+                    <h3
+                        className="pointer hover-blue"
+                        onClick={() => sFlowPageStore.setStep(Step)}
+                    >
+                        {Step}
+                    </h3>
+                    {makeButton()}
+                </caption>
+                <tbody>{makeList()}</tbody>
+            </table>
         )
     }
 
@@ -71,7 +106,6 @@ export default function ActionRequest(property: Property) {
             return (
                 <FileButton
                     action={property.action}
-                    className="me-3"
                     file={file}
                     fullName
                     ma={property.ma}
@@ -112,19 +146,6 @@ export default function ActionRequest(property: Property) {
             .catch(sToastzzStore.showError)
     }
 
-    function updateWu(request: LB.Request | undefined) {
-        if (request === undefined) {
-            setWu(undefined)
-            return
-        }
-
-        if (request.tf.type === OapiType.Wu) {
-            setWu(sWuzzStore.find(request.tf.targetId))
-        } else {
-            setWu(undefined)
-        }
-    }
-
     return (
         <div>
             <h3>{Step}</h3>
@@ -136,11 +157,7 @@ export default function ActionRequest(property: Property) {
             )}
 
             <h3>Parameter</h3>
-            <ParameterList
-                inPath={false}
-                inResponse={false}
-                targetId={property.ma.id}
-            ></ParameterList>
+            <ParameterList requestId={property.ma.requestId}></ParameterList>
         </div>
     )
 }

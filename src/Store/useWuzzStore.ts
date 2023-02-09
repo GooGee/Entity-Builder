@@ -14,6 +14,7 @@ const useWuzzStore = create<WuzzStoreType>(function (set, get) {
     const data = makeNamedItemzzStoreData(set, get, makeWuCRUD())
     return {
         ...data,
+        sorting: true,
         add(item: T) {
             set((state) => {
                 const itemzz = [...state.itemzz, item]

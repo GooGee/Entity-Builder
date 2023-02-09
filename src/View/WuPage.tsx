@@ -38,7 +38,6 @@ export default function WuPage() {
                         },
                     )
                 }}
-                sorting={true}
                 useItemPageStore={useWuPageStore}
                 useItemzzStore={useWuzzStore}
                 title={PageEnum.Wu}

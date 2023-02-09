@@ -1,6 +1,7 @@
 import { Format, OapiType } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import { OmitId } from "../dbhelper"
+import makeSideBarItem from "./makeSideBarItem"
 import makeTypeFormat from "./makeTypeFormat"
 
 export default function makeColumn(
@@ -13,6 +14,7 @@ export default function makeColumn(
 ): OmitId<LB.Column> {
     const tf = makeTypeFormat()
     return {
+        ...makeSideBarItem(name),
         entityId,
         name,
         type,
@@ -30,9 +32,16 @@ export default function makeColumn(
         fakeUnique: false,
         fakeMethod: "",
         fakeText: "",
-        constraintzz: [],
         inTable: true,
         tf,
+
+        allowReserved: false,
+        deprecated: false,
+        description: "",
+        example: "",
+        explode: false,
+        required: true,
+        style: "",
     }
 }
 

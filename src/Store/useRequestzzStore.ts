@@ -10,7 +10,10 @@ type RequestzzStoreType = NamedItemzzStoreDataType<T>
 
 const useRequestzzStore = create<RequestzzStoreType>(function (set, get) {
     const data = makeNamedItemzzStoreData(set, get, makeRequestCRUD())
-    return data
+    return {
+        ...data,
+        sorting: true,
+    }
 })
 
 export default useRequestzzStore

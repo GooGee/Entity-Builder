@@ -23,20 +23,15 @@ export default function FileView(property: Property) {
 
     const directory = sDirectoryzzStore.find(property.directoryId)
 
-    const excludezz = new Set([
-        "",
-        LayerEnum.Entity,
-        LayerEnum.Factory,
-        LayerEnum.Model,
-        LayerEnum.Repository,
-        LayerEnum.Test,
-    ])
     const itemzz = sFilezzStore.itemzz
         .filter((item) => {
             if (property.isTest) {
-                return item.layer === LayerEnum.Test
+                return item.directoryId === property.module.testDirectoryId
             }
-            return !excludezz.has(item.layer)
+            return (
+                item.directoryId === property.ma.directoryId ||
+                item.directoryId === property.module.directoryId
+            )
         })
         .sort((aa, bb) => {
             if (aa.directoryId === bb.directoryId) {

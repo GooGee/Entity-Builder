@@ -10,7 +10,10 @@ type ResponsezzStoreType = NamedItemzzStoreDataType<T>
 
 const useResponsezzStore = create<ResponsezzStoreType>(function (set, get) {
     const data = makeNamedItemzzStoreData(set, get, makeResponseCRUD())
-    return data
+    return {
+        ...data,
+        sorting: true,
+    }
 })
 
 export default useResponsezzStore

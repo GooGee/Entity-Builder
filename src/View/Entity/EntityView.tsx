@@ -41,7 +41,7 @@ export default function EntityView() {
             return <ColumnList entity={sEntityPageStore.item}></ColumnList>
         }
         if (sEntityPageStore.tab === TabEnum.Detail) {
-            return <Detail entity={sEntityPageStore.item}></Detail>
+            return <Detail item={sEntityPageStore.item}></Detail>
         }
         if (sEntityPageStore.tab === TabEnum.Factory) {
             return <Factory entity={sEntityPageStore.item}></Factory>

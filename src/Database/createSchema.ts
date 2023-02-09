@@ -5,6 +5,7 @@ export enum SchemaEnum {
     Collection = "Collection",
     CollectionItem = "CollectionItem",
     Column = "Column",
+    ColumnConstraint = "ColumnConstraint",
     Directory = "Directory",
     Entity = "Entity",
     Example = "Example",
@@ -16,7 +17,6 @@ export enum SchemaEnum {
     ModuleAction = "ModuleAction",
     ModuleActionFile = "ModuleActionFile",
     ModuleActionResponse = "ModuleActionResponse",
-    Parameter = "Parameter",
     ParameterMap = "ParameterMap",
     Path = "Path",
     PathMethod = "PathMethod",
@@ -30,6 +30,7 @@ export enum SchemaEnum {
     Wu = "Wu",
     WuChild = "WuChild",
     WuColumn = "WuColumn",
+    WuColumnConstraint = "WuColumnConstraint",
     WuParameter = "WuParameter",
 }
 
@@ -78,6 +79,7 @@ export default function createSchema(builder: lf.Builder) {
 
     item = SchemaEnum.Entity
     tb = createForSideBarUniqueItem(builder, item)
+        .addColumn("isTable", lf.Type.BOOLEAN)
         .addColumn("opened", lf.Type.BOOLEAN)
         .addColumn("openedColumn", lf.Type.BOOLEAN)
         .addColumn("x", lf.Type.INTEGER)
@@ -103,12 +105,28 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("fakeUnique", lf.Type.BOOLEAN)
         .addColumn("fakeMethod", lf.Type.STRING)
         .addColumn("fakeText", lf.Type.STRING)
-        .addColumn("constraintzz", lf.Type.OBJECT)
         .addColumn("inTable", lf.Type.BOOLEAN)
         .addColumn("tf", lf.Type.OBJECT)
         .addPrimaryKey(["id"], true)
+        .addColumn("allowReserved", lf.Type.BOOLEAN)
+        .addColumn("color", lf.Type.STRING)
+        .addColumn("deprecated", lf.Type.BOOLEAN)
+        .addColumn("description", lf.Type.BOOLEAN)
+        .addColumn("example", lf.Type.STRING)
+        .addColumn("explode", lf.Type.BOOLEAN)
+        .addColumn("required", lf.Type.BOOLEAN)
+        .addColumn("style", lf.Type.STRING)
     makeForeignKey(tb, item, SchemaEnum.Entity)
     makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Entity), "name"])
+
+    item = SchemaEnum.ColumnConstraint
+    tb = builder
+        .createTable(item)
+        .addColumn("id", lf.Type.INTEGER)
+        .addColumn("name", lf.Type.STRING)
+        .addColumn("parameter", lf.Type.STRING)
+        .addPrimaryKey(["id"], true)
+    makeForeignKey(tb, item, SchemaEnum.Column)
 
     item = SchemaEnum.Relation
     tb = builder
@@ -170,6 +188,14 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Wu)
     makeForeignKey(tb, item, SchemaEnum.Column)
 
+    item = SchemaEnum.WuColumnConstraint
+    tb = builder
+        .createTable(item)
+        .addColumn("id", lf.Type.INTEGER)
+        .addPrimaryKey(["id"], true)
+    makeForeignKey(tb, item, SchemaEnum.ColumnConstraint)
+    makeForeignKey(tb, item, SchemaEnum.WuColumn)
+
     // TypeParameter
     item = SchemaEnum.WuParameter
     tb = builder
@@ -230,34 +256,25 @@ export default function createSchema(builder: lf.Builder) {
         makeForeignKeyId(SchemaEnum.File),
     ])
 
-    item = SchemaEnum.Parameter
-    tb = createForSideBarItem(builder, item)
-        .addColumn("allowEmptyValue", lf.Type.BOOLEAN)
-        .addColumn("allowReserved", lf.Type.BOOLEAN)
-        .addColumn("deprecated", lf.Type.BOOLEAN)
-        .addColumn("example", lf.Type.STRING)
-        .addColumn("explode", lf.Type.BOOLEAN)
-        .addColumn("in", lf.Type.STRING)
-        .addColumn("name2", lf.Type.STRING)
-        .addColumn("required", lf.Type.BOOLEAN)
-        .addColumn("tf", lf.Type.OBJECT)
-        .addColumn("constraintzz", lf.Type.OBJECT)
-    makeUniqueKey(tb, item, ["name", "in"])
-
     item = SchemaEnum.ParameterMap
     tb = builder
         .createTable(item)
-        .addColumn("inPath", lf.Type.BOOLEAN)
-        .addColumn("inResponse", lf.Type.BOOLEAN)
-        .addColumn("targetId", lf.Type.INTEGER)
         .addColumn("id", lf.Type.INTEGER)
+        .addColumn("alias", lf.Type.STRING)
         .addPrimaryKey(["id"], true)
-    makeForeignKey(tb, item, SchemaEnum.Parameter)
+    makeForeignKey(tb, item, SchemaEnum.Column)
+    makeForeignKey(tb, item, SchemaEnum.Path)
+    makeForeignKey(tb, item, SchemaEnum.Request)
+    makeForeignKey(tb, item, SchemaEnum.Response)
     makeUniqueKey(tb, item, [
-        makeForeignKeyId(SchemaEnum.Parameter),
-        "inPath",
-        "inResponse",
-        "targetId",
+        makeForeignKeyId(SchemaEnum.Column),
+        makeForeignKeyId(SchemaEnum.Path),
+        makeForeignKeyId(SchemaEnum.Request),
+        makeForeignKeyId(SchemaEnum.Response),
+    ]).addNullable([
+        makeForeignKeyId(SchemaEnum.Path),
+        makeForeignKeyId(SchemaEnum.Request),
+        makeForeignKeyId(SchemaEnum.Response),
     ])
 
     item = SchemaEnum.Request
@@ -292,15 +309,18 @@ export default function createSchema(builder: lf.Builder) {
     item = SchemaEnum.ExampleMap
     tb = builder
         .createTable(item)
-        .addColumn("isRequest", lf.Type.BOOLEAN)
-        .addColumn("targetId", lf.Type.INTEGER)
         .addColumn("id", lf.Type.INTEGER)
         .addPrimaryKey(["id"], true)
     makeForeignKey(tb, item, SchemaEnum.Example)
+    makeForeignKey(tb, item, SchemaEnum.Request)
+    makeForeignKey(tb, item, SchemaEnum.Response)
     makeUniqueKey(tb, item, [
         makeForeignKeyId(SchemaEnum.Example),
-        "isRequest",
-        "targetId",
+        makeForeignKeyId(SchemaEnum.Request),
+        makeForeignKeyId(SchemaEnum.Response),
+    ]).addNullable([
+        makeForeignKeyId(SchemaEnum.Request),
+        makeForeignKeyId(SchemaEnum.Response),
     ])
 
     item = SchemaEnum.Server
@@ -309,15 +329,18 @@ export default function createSchema(builder: lf.Builder) {
     item = SchemaEnum.ServerMap
     tb = builder
         .createTable(item)
-        .addColumn("forPath", lf.Type.BOOLEAN)
-        .addColumn("targetId", lf.Type.INTEGER)
         .addColumn("id", lf.Type.INTEGER)
         .addPrimaryKey(["id"], true)
+    makeForeignKey(tb, item, SchemaEnum.Path)
+    makeForeignKey(tb, item, SchemaEnum.Request)
     makeForeignKey(tb, item, SchemaEnum.Server)
     makeUniqueKey(tb, item, [
+        makeForeignKeyId(SchemaEnum.Path),
+        makeForeignKeyId(SchemaEnum.Request),
         makeForeignKeyId(SchemaEnum.Server),
-        "targetId",
-        "forPath",
+    ]).addNullable([
+        makeForeignKeyId(SchemaEnum.Path),
+        makeForeignKeyId(SchemaEnum.Request),
     ])
 
     item = SchemaEnum.Variable
@@ -387,5 +410,5 @@ export function makeForeignKeyId(target: string) {
 }
 
 function makeUniqueKey(tb: lf.TableBuilder, schema: SchemaEnum, column: string[]) {
-    tb.addUnique(`uk_${schema}_${column.join("_")}`, column)
+    return tb.addUnique(`uk_${schema}_${column.join("_")}`, column)
 }

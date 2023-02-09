@@ -49,7 +49,7 @@ export default function ResponseList(property: Property) {
         // ok
     } else {
         return (
-            <table className="table">
+            <table className="table table-borderless table-sm">
                 <caption>
                     <h3
                         className="pointer hover-blue"
@@ -84,7 +84,6 @@ export default function ResponseList(property: Property) {
             return (
                 <FileButton
                     action={property.action}
-                    className="me-3"
                     file={file}
                     fullName
                     ma={property.ma}

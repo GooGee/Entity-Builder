@@ -1,19 +1,14 @@
-import {
-    HeaderObject,
-    OpenApiBuilder,
-    OpenAPIObject,
-    ReferenceObject,
-    ServerVariableObject,
-} from "openapi3-ts"
+import { OpenApiBuilder, OpenAPIObject, ReferenceObject } from "openapi3-ts"
 import makeMediaType from "./makeMediaType"
+import makeParameter from "./makeParameter"
 import makePath, {
     ModuleActionResponseWithName,
     ModuleActionWithMethod,
 } from "./makePath"
-import { ComponentKind, makeReferenceEmpty, makeReferenceOf } from "./makeReference"
-import makeSchemaWu from "./makeSchemaWu"
-import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
+import { makeReferenceOf, ComponentKind } from "./makeReference"
 import makeSchemaEnum, { makeSchemaEnumName } from "./makeSchemaEnum"
+import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
+import makeSchemaWu from "./makeSchemaWu"
 import makeServer from "./makeServer"
 
 export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
@@ -32,6 +27,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         })
     })
 
+    const entityMap = new Map(db.tables.Entity.map((item) => [item.id, item]))
     const cicm = new Map(db.tables.Column.map((item) => [item.id, item]))
     const mimm = new Map(db.tables.Module.map((item) => [item.id, item]))
     const vivm = new Map(db.tables.Variable.map((item) => [item.id, item]))
@@ -79,33 +75,38 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         found.push(item)
     })
 
-    const pipm = new Map(db.tables.Parameter.map((item) => [item.id, item]))
-
     // for path
-    const pipzzm: Map<number, LB.Parameter[]> = new Map()
+    const pipzzm: Map<number, LB.Column[]> = new Map()
     // for response
-    const ripzzm: Map<number, LB.Parameter[]> = new Map()
-    // for action
-    const maipzzm: Map<number, LB.Parameter[]> = new Map()
+    const ripzzm: Map<number, LB.Column[]> = new Map()
+    // for request
+    const maipzzm: Map<number, LB.Column[]> = new Map()
     db.tables.ParameterMap.forEach((item) => {
-        if (item.inPath) {
-            add(pipzzm, item)
+        if (item.pathId) {
+            add(pipzzm, item, item.pathId)
             return
         }
-        if (item.inResponse) {
-            add(ripzzm, item)
+        if (item.requestId) {
+            add(maipzzm, item, item.requestId)
             return
         }
-        add(maipzzm, item)
+        if (item.responseId) {
+            add(ripzzm, item, item.responseId)
+            return
+        }
     })
 
-    function add(map: Map<number, LB.Parameter[]>, item: LB.ParameterMap) {
-        let found = map.get(item.targetId)
+    function add(
+        map: Map<number, LB.Column[]>,
+        item: LB.ParameterMap,
+        targetId: number,
+    ) {
+        let found = map.get(targetId)
         if (found === undefined) {
             found = []
-            map.set(item.targetId, found)
+            map.set(targetId, found)
         }
-        const parameter = pipm.get(item.parameterId)
+        const parameter = cicm.get(item.columnId)
         if (parameter) {
             found.push(parameter)
         }
@@ -113,7 +114,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
 
     const riezzm: Map<string, LB.Example[]> = new Map()
     db.tables.ExampleMap.forEach((item) => {
-        const key = (item.isRequest ? "rb" : "r") + item.targetId
+        const key = item.requestId ? "rb" + item.requestId : "r" + item.responseId
         let found = riezzm.get(key)
         if (found === undefined) {
             found = []
@@ -135,17 +136,19 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         builder.addSchema(wu.name, makeSchemaWu(wu, vivm, wiczzm, wiwczzm, wiwm) as any)
     })
 
-    db.tables.Parameter.forEach((item) => {
-        const data: HeaderObject = {
-            allowEmptyValue: item.allowEmptyValue,
-            allowReserved: item.allowReserved,
-            deprecated: item.deprecated,
-            description: item.description,
-            example: item.example,
-            explode: item.explode,
-            required: item.required,
-            schema: makeSchemaTypeFormat(
-                item.tf,
+    db.tables.ParameterMap.forEach((item) => {
+        const column = cicm.get(item.columnId)
+        if (column === undefined) {
+            return
+        }
+
+        makeParameter(
+            item,
+            column,
+            entityMap,
+            builder,
+            makeSchemaTypeFormat(
+                column.tf,
                 vivm,
                 wiczzm,
                 wiwczzm,
@@ -154,17 +157,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
                 [],
                 new Map(),
             ) as any,
-        }
-        if (item.in === "header") {
-            builder.addHeader(item.name, data)
-            return
-        }
-
-        builder.addParameter(item.name, {
-            ...data,
-            name: item.name2,
-            in: item.in as "path",
-        })
+        )
     })
 
     db.tables.Request.forEach((item) => {
@@ -200,7 +193,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
             },
             description: item.description,
             headers: (ripzzm.get(item.id) ?? []).reduce(function (old, item) {
-                old[item.name2] = makeReferenceOf(item.name, ComponentKind.headers)
+                old[item.name] = makeReferenceOf(item.name, ComponentKind.headers)
                 return old
             }, Object.create(null) as Record<string, ReferenceObject>),
         })
@@ -239,7 +232,6 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
     })
 
     const tagSet: Set<string> = new Set()
-    const sism = new Map(db.tables.Entity.map((item) => [item.id, item]))
 
     const sivzzm: Map<number, LB.Variable[]> = new Map()
     db.tables.ServerVariable.forEach((item) => {
@@ -254,9 +246,9 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         }
     })
 
-    const serverMap: Map<number, LB.Server> = new Map()
+    const sism: Map<number, LB.Server> = new Map()
     db.tables.Server.forEach((item) => {
-        serverMap.set(item.id, item)
+        sism.set(item.id, item)
         if (item.global) {
             builder.addServer(makeServer(item, sivzzm))
         }
@@ -265,7 +257,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
     const pathzz = [...db.tables.Path]
     pathzz.sort((aa, bb) => aa.name.localeCompare(bb.name))
     pathzz.forEach((item) => {
-        const found = sism.get(item.entityId)
+        const found = entityMap.get(item.entityId)
         if (found) {
             if (tagSet.has(found.name)) {
                 // skip
@@ -276,13 +268,14 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         }
         const data = makePath(
             item,
+            entityMap,
             marzzm,
             maipzzm,
             pipzzm,
             pimazzm,
             rbirbm,
             db.tables.ServerMap,
-            serverMap,
+            sism,
             sivzzm,
             found?.name ?? "not found",
         )

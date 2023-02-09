@@ -24,7 +24,6 @@ export default function ResponsePage() {
                 makeCRUD={makeResponseCRUD as any}
                 useItemPageStore={useResponsePageStore}
                 useItemzzStore={useResponsezzStore}
-                sorting={true}
                 title={PageEnum.Response}
                 validateName={false}
             >

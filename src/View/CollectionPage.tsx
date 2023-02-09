@@ -11,7 +11,6 @@ export default function CollectionPage() {
     return (
         <div className="row">
             <LeftRightPanel
-                sorting={true}
                 makeCRUD={makeCollectionCRUD as any}
                 onCreate={function (name) {
                     makeCollectionCRUD().create(makeCollection(name))

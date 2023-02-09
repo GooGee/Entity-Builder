@@ -1,61 +1,107 @@
-import makeParameter from "@/Database/Factory/makeParameter"
-import { makeParameterCRUD } from "@/Database/makeCRUD"
+import { makeColumnTypeFormat } from "@/Database/Factory/makeColumn"
+import { makeColumnCRUD } from "@/Database/makeCRUD"
 import { PageEnum } from "@/menuzz"
-import { ParameterLocation } from "@/Model/Oapi"
+import { OapiType } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
+import useColumnzzStore from "@/Store/useColumnzzStore"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 import useParameterPageStore from "@/Store/useParameterPageStore"
-import useParameterzzStore from "@/Store/useParameterzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import showInput from "./Dialog/showInput"
 import ParameterDetail from "./Oapi/ParameterDetail"
-import LeftRightPanel from "./Part/LeftRightPanel"
+import RightTop from "./Part/RightTop"
+import SideBar from "./Part/SideBar"
 
 interface Property {
-    isHeader: boolean
+    page: PageEnum
 }
 
 export default function ParameterPage(property: Property) {
+    const sColumnzzStore = useColumnzzStore()
+    const sEntityzzStore = useEntityzzStore()
     const sParameterPageStore = useParameterPageStore()
-    const sParameterzzStore = useParameterzzStore()
     const sToastzzStore = useToastzzStore()
 
+    const [itemzz, setItemzz] = useState<LB.Column[]>([])
+
     const constraintzz = getCollectionItemzz("ValidationRule")
+    const entity = sEntityzzStore.findByName(property.page)
+    if (entity === undefined) {
+        return null
+    }
+
+    const message = "Please input the name"
 
     useEffect(() => {
         sParameterPageStore.setItem()
-    }, [property.isHeader])
+    }, [property.page])
+
+    useEffect(() => {
+        setItemzz(sColumnzzStore.itemzz.filter((item) => item.entityId === entity.id))
+    }, [property.page, sColumnzzStore.itemzz])
+
+    function make(name: string) {
+        if (entity === undefined) {
+            return null
+        }
+
+        const data = makeColumnTypeFormat(entity.id, name, OapiType.string)
+        data.style = "form"
+        if ([PageEnum.Header, PageEnum.ParameterInPath].includes(entity.name as any)) {
+            data.style = "simple"
+        }
+        return makeColumnCRUD().create(data).catch(sToastzzStore.showError)
+    }
 
     return (
         <div className="row">
-            <LeftRightPanel
-                itemzz={sParameterzzStore.itemzz.filter((item) => {
-                    if (property.isHeader) {
-                        return item.in === ParameterLocation.header
-                    }
-                    return item.in !== ParameterLocation.header
-                })}
-                title={property.isHeader ? PageEnum.Header : PageEnum.Parameter}
-                makeCRUD={makeParameterCRUD as any}
-                useItemPageStore={useParameterPageStore}
-                useItemzzStore={useParameterzzStore}
-                validateName={false}
-                onCreate={function (name) {
-                    const location = property.isHeader
-                        ? ParameterLocation.header
-                        : ParameterLocation.path
-                    makeParameterCRUD()
-                        .create(makeParameter(location, name))
-                        .catch(sToastzzStore.showError)
-                }}
-            >
-                {sParameterPageStore.item === undefined ? undefined : (
-                    <ParameterDetail
-                        constraintzz={constraintzz}
-                        isHeader={property.isHeader}
-                        item={sParameterPageStore.item}
-                    ></ParameterDetail>
+            <SideBar
+                title={
+                    property.page.includes("ParameterIn")
+                        ? property.page.replace("ParameterIn", "")
+                        : property.page
+                }
+                button={
+                    <button
+                        onClick={function () {
+                            showInput(message, "")
+                                .then((response) => {
+                                    if (response.isConfirmed) {
+                                        if (response.value) {
+                                            return make(response.value)
+                                        }
+                                    }
+                                })
+                                .catch(sToastzzStore.showError)
+                        }}
+                        className="btn btn-outline-primary"
+                        type="button"
+                    >
+                        +
+                    </button>
+                }
+                itemzz={itemzz}
+                useStore={useParameterPageStore}
+            ></SideBar>
+
+            <div className="col-9 py-3 h100 overflow-auto">
+                {sParameterPageStore.item === undefined ? null : (
+                    <>
+                        <RightTop
+                            item={sParameterPageStore.item}
+                            makeCRUD={makeColumnCRUD}
+                            message={message}
+                            showDialog={showInput}
+                            useItemPageStore={useParameterPageStore}
+                        ></RightTop>
+                        <ParameterDetail
+                            constraintzz={constraintzz}
+                            item={sParameterPageStore.item}
+                        ></ParameterDetail>
+                    </>
                 )}
-            </LeftRightPanel>
+            </div>
         </div>
     )
 }

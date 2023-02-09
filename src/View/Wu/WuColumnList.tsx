@@ -1,11 +1,10 @@
 import { makeWuCRUD } from "@/Database/makeCRUD"
-import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import useWuColumnzzStore from "@/Store/useWuColumnzzStore"
 import { useEffect, useState } from "react"
 import WebLink from "../Button/WebLink"
-import Column from "./Column"
+import WuColumn from "./WuColumn"
 
 interface Property {
     item: LB.Wu
@@ -19,8 +18,6 @@ export default function WuColumnList(property: Property) {
 
     const [columnzz, setColumnzz] = useState<LB.Column[]>([])
     const [wuColumnMap, setWuColumnMap] = useState<Map<number, LB.WuColumn>>(new Map())
-
-    const constraintzz = getCollectionItemzz("ValidationRule")
 
     useEffect(() => {
         setColumnzz(
@@ -87,7 +84,7 @@ export default function WuColumnList(property: Property) {
                     <th className="w333">include / alias (can be empty)</th>
                     <th>
                         {property.item.isRequest
-                            ? "constraint"
+                            ? "include constraint"
                             : "isArray / nullable / type / format"}
 
                         {property.item.isRequest ? null : (
@@ -103,14 +100,13 @@ export default function WuColumnList(property: Property) {
             </thead>
             <tbody>
                 {columnzz.map((item) => (
-                    <Column
+                    <WuColumn
                         key={getKey(item)}
-                        constraintzz={constraintzz}
                         isRequest={property.item.isRequest}
                         item={item}
                         wc={wuColumnMap.get(item.id)}
                         wu={property.item}
-                    ></Column>
+                    ></WuColumn>
                 ))}
             </tbody>
         </table>

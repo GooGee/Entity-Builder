@@ -1,5 +1,6 @@
 import useCollectionItemzzStore from "@/Store/useCollectionItemzzStore"
 import useCollectionzzStore from "@/Store/useCollectionzzStore"
+import useColumnConstraintzzStore from "@/Store/useColumnConstraintzzStore"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useEntityzzStore from "@/Store/useEntityzzStore"
@@ -9,7 +10,6 @@ import useIndexzzStore from "@/Store/useIndexzzStore"
 import useModuleActionFilezzStore from "@/Store/useModuleActionFilezzStore"
 import useModuleActionzzStore from "@/Store/useModuleActionzzStore"
 import useModulezzStore from "@/Store/useModulezzStore"
-import useParameterzzStore from "@/Store/useParameterzzStore"
 import usePathzzStore from "@/Store/usePathzzStore"
 import useRelationzzStore from "@/Store/useRelationzzStore"
 import useRequestzzStore from "@/Store/useRequestzzStore"
@@ -29,6 +29,7 @@ export default function observe() {
     useFilezzStore.getState().observe()
 
     useColumnzzStore.getState().observe()
+    useColumnConstraintzzStore.getState().observe()
     useIndexzzStore.getState().observe()
     useRelationzzStore.getState().observe()
     useEntityzzStore.getState().observe()
@@ -37,7 +38,6 @@ export default function observe() {
     useModulezzStore.getState().observe()
     useModuleActionzzStore.getState().observe()
     useModuleActionFilezzStore.getState().observe()
-    useParameterzzStore.getState().observe()
     usePathzzStore.getState().observe()
     useRequestzzStore.getState().observe()
     useResponsezzStore.getState().observe()

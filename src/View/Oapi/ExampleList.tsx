@@ -5,8 +5,8 @@ import { useEffect, useState } from "react"
 import ItemList from "../Part/ItemList"
 
 interface Property {
-    isRequest: boolean
-    targetId: number
+    requestId: number | null
+    responseId: number | null
 }
 
 export default function ExampleList(property: Property) {
@@ -17,7 +17,7 @@ export default function ExampleList(property: Property) {
 
     useEffect(() => {
         refresh()
-    }, [property.isRequest, property.targetId])
+    }, [property.requestId, property.responseId])
 
     function refresh() {
         makeExampleMapCRUD()
@@ -26,8 +26,8 @@ export default function ExampleList(property: Property) {
                 setItemzz(
                     response.filter(
                         (item) =>
-                            item.isRequest === property.isRequest &&
-                            item.targetId === property.targetId,
+                            item.requestId === property.requestId &&
+                            item.responseId === property.responseId,
                     ),
                 ),
             )
@@ -43,8 +43,8 @@ export default function ExampleList(property: Property) {
                 return makeExampleMapCRUD()
                     .create({
                         exampleId,
-                        isRequest: property.isRequest,
-                        targetId: property.targetId,
+                        requestId: property.requestId,
+                        responseId: property.responseId,
                     })
                     .then(() => refresh())
             }}

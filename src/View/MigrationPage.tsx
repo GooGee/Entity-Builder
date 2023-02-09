@@ -4,8 +4,10 @@ import useEntityzzStore from "@/Store/useEntityzzStore"
 import MigrationView from "./Migration/MigrationView"
 import { PageEnum } from "@/menuzz"
 import SideBar from "./Part/SideBar"
+import { useEffect } from "react"
 
 export default function MigrationPage() {
+    const sEntityPageStore = useEntityPageStore()
     const sEntityzzStore = useEntityzzStore()
     const sFilezzStore = useFilezzStore()
 
@@ -19,11 +21,15 @@ export default function MigrationPage() {
         )
     }
 
+    useEffect(() => {
+        sEntityPageStore.setItem()
+    }, [])
+
     return (
         <div className="row">
             <SideBar
                 title={PageEnum.Entity}
-                itemzz={sEntityzzStore.itemzz}
+                itemzz={sEntityzzStore.itemzz.filter((item) => item.isTable)}
                 useStore={useEntityPageStore}
             ></SideBar>
 

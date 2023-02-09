@@ -24,7 +24,6 @@ export default function RequestPage() {
                 makeCRUD={makeRequestCRUD as any}
                 useItemPageStore={useRequestPageStore}
                 useItemzzStore={useRequestzzStore}
-                sorting={true}
                 title={PageEnum.Request}
                 validateName={false}
             >

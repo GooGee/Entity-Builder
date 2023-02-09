@@ -34,11 +34,7 @@ export default function PathDetail(property: Property) {
                 <tr>
                     <td className="w111">parameter</td>
                     <td>
-                        <ParameterList
-                            inPath={true}
-                            inResponse={false}
-                            targetId={property.item.id}
-                        ></ParameterList>
+                        <ParameterList pathId={property.item.id}></ParameterList>
                     </td>
                     <td></td>
                 </tr>
@@ -46,8 +42,8 @@ export default function PathDetail(property: Property) {
                     <td>server</td>
                     <td colSpan={2}>
                         <ServerList
-                            forPath={true}
-                            targetId={property.item.id}
+                            requestId={null}
+                            pathId={property.item.id}
                         ></ServerList>
                     </td>
                 </tr>

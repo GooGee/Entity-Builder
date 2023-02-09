@@ -1,13 +1,15 @@
 import { makeColumnCRUD } from "@/Database/makeCRUD"
-import makeItemzzStoreData, { ItemzzStoreDataType } from "@/Factory/makeItemzzStoreData"
+import makeNamedItemzzStoreData, {
+    NamedItemzzStoreDataType,
+} from "@/Factory/makeNamedItemzzStoreData"
 import create from "zustand"
 
 type T = LB.Column
 
-type ColumnzzStoreType = ItemzzStoreDataType<T>
+type ColumnzzStoreType = NamedItemzzStoreDataType<T>
 
 const useColumnzzStore = create<ColumnzzStoreType>(function (set, get) {
-    const data = makeItemzzStoreData(set, get, makeColumnCRUD())
+    const data = makeNamedItemzzStoreData(set, get, makeColumnCRUD())
     return data
 })
 

@@ -12,6 +12,7 @@ export default function makeEntity(
         description,
         x: 222 + Math.floor(Math.random() * 111),
         y: 11,
+        isTable: true,
         opened: true,
         openedColumn: true,
     }

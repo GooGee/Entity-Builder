@@ -1,7 +1,7 @@
 import makeSideBarStoreData, { SideBarDataType } from "@/Factory/makeSideBarStoreData"
 import create from "zustand"
 
-type T = LB.Parameter
+type T = LB.Column
 
 interface ParameterPageStoreType extends SideBarDataType<T> {}
 

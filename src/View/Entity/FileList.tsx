@@ -1,13 +1,15 @@
 import Constant from "@/Model/Constant"
 import {
-    getCodeFileName,
     getFileFullNameInCode,
+    getCodeFileName,
     ScriptExtention,
     TemplateExtention,
 } from "@/Model/FileManager"
+import makeKeywordRE from "@/Service/makeKeywordRE"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
-import useFilezzStore from "@/Store/useFilezzStore"
 import useEntityPageStore from "@/Store/useEntityPageStore"
+import useFilezzStore from "@/Store/useFilezzStore"
+import useFlowPageStore from "@/Store/useFlowPageStore"
 import { useState, useEffect } from "react"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
 import EditButton from "../Button/EditButton"
@@ -19,7 +21,8 @@ interface Property {
 
 export default function FileList(property: Property) {
     const sDirectoryzzStore = useDirectoryzzStore()
-    const filezzStore = useFilezzStore()
+    const sFlowPageStore = useFlowPageStore()
+    const sFilezzStore = useFilezzStore()
     const sEntityPageStore = useEntityPageStore()
 
     const [filezz, setFilezz] = useState<LB.File[]>([])
@@ -27,9 +30,10 @@ export default function FileList(property: Property) {
 
     useEffect(() => {
         if (text.length) {
+            const re = makeKeywordRE(text)
             setFilezz(
-                filezzStore.itemzz
-                    .filter((item) => item.name.includes(text))
+                sFilezzStore.itemzz
+                    .filter((item) => item.name.match(re))
                     .sort((aa, bb) => {
                         if (aa.directoryId === bb.directoryId) {
                             return aa.name.localeCompare(bb.name)
@@ -40,11 +44,11 @@ export default function FileList(property: Property) {
             return
         }
         if (sEntityPageStore.fileColor === "#fff") {
-            setFilezz(filezzStore.itemzz)
+            setFilezz(sFilezzStore.itemzz)
             return
         }
         setFilezz(
-            filezzStore.itemzz
+            sFilezzStore.itemzz
                 .filter((item) => item.color === sEntityPageStore.fileColor)
                 .sort((aa, bb) => {
                     if (aa.directoryId === bb.directoryId) {
@@ -120,6 +124,7 @@ export default function FileList(property: Property) {
                                 action=""
                                 file={item}
                                 entity={property.entity}
+                                module={sFlowPageStore.module}
                             ></FileButton>
                         </td>
                     </tr>

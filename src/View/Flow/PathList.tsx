@@ -1,5 +1,6 @@
 import { makePathFor } from "@/Database/Factory/makePath"
 import { makePathCRUD, makeParameterMapCRUD } from "@/Database/makeCRUD"
+import { getParameterInPath } from "@/Service/getParameter"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import usePathzzStore from "@/Store/usePathzzStore"
@@ -112,16 +113,21 @@ export default function PathList(property: Property) {
                                 )
                                 return makePathCRUD()
                                     .create(path)
-                                    .then(function (response) {
+                                    .then(function (item) {
                                         if (sFlowPageStore.path === undefined) {
-                                            sFlowPageStore.setPath(response)
+                                            sFlowPageStore.setPath(item)
                                         }
                                         if (path.name.includes("/{id}")) {
+                                            const column = getParameterInPath("id")
+                                            if (column === undefined) {
+                                                return
+                                            }
                                             return makeParameterMapCRUD().create({
-                                                inPath: true,
-                                                inResponse: false,
-                                                parameterId: 1,
-                                                targetId: response.id,
+                                                alias: "",
+                                                columnId: column.id,
+                                                pathId: item.id,
+                                                requestId: null,
+                                                responseId: null,
                                             })
                                         }
                                     })

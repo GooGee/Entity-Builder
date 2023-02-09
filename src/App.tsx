@@ -53,9 +53,10 @@ function App() {
             case PageEnum.OpenApi:
                 return <OapiPage></OapiPage>
             case PageEnum.Header:
-                return <ParameterPage isHeader={true}></ParameterPage>
-            case PageEnum.Parameter:
-                return <ParameterPage isHeader={false}></ParameterPage>
+            case PageEnum.ParameterInCookie:
+            case PageEnum.ParameterInPath:
+            case PageEnum.ParameterInQuery:
+                return <ParameterPage page={name}></ParameterPage>
             case PageEnum.Request:
                 return <RequestPage></RequestPage>
             case PageEnum.Response:
