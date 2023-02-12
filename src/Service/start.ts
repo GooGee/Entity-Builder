@@ -1,14 +1,14 @@
 import { putFile } from "@/api"
 import makeJavaBridge from "@/Bridge/makeJavaBridge"
-import importDB from "@/Database/importDB"
-import checkVersion from "./checkVersion"
-import startSaveTask from "./startSaveTask"
-import migrate from "./Migrate/migrate"
-import { getDirectoryName } from "@/Model/FileManager"
 import { refreshDisk } from "@/Bridge/sendToJava"
+import importDB from "@/Database/importDB"
+import { getDirectoryName } from "@/Model/FileManager"
 import useOapiStore from "@/Store/useOapiStore"
-import observe from "./observe"
 import usePsr4Store from "@/Store/usePsr4Store"
+import checkVersion from "./checkVersion"
+import migrate from "./Migrate/migrate"
+import observe from "./observe"
+import startSaveTask from "./startSaveTask"
 import validateData from "./validateData"
 
 async function load(data: LB.AppInfoData | null, text: string | null) {
@@ -19,10 +19,10 @@ async function load(data: LB.AppInfoData | null, text: string | null) {
         data = preset
     } else {
         validateData(data)
-        useOapiStore.getState().setOAPI(data.oapi)
     }
+    useOapiStore.getState().setOAPI(data.oapi)
     migrate(data.db, text!, preset)
-    return importDB(data.db).then(() => observe())
+    return importDB(data.db).then(observe)
 }
 
 function saveDTS() {

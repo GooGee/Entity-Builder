@@ -58,14 +58,9 @@ export default function ColumnDetail(property: Property) {
                         checked={property.item.nullable}
                         onChange={function (event) {
                             const nullable = event.target.checked
-                            const tf = {
-                                ...property.item.tf,
-                                nullable,
-                            }
                             property.update({
                                 ...property.item,
                                 nullable,
-                                tf,
                             })
                         }}
                         className="form-check-input"

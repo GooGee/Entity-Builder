@@ -50,6 +50,18 @@ export function createMany<T extends LB.IdItem>(
     return dbc.insert().into(tt).values(rowzz).exec() as Promise<T[]>
 }
 
+export function deleteChildzz(
+    dbc: DatabaseConnection,
+    schema: SchemaEnum,
+    parentId: number,
+    column: string,
+) {
+    const tt = dbc.getSchema().table(schema)
+    return dbc.delete().from(tt).where(tt.col(column).eq(parentId)).exec() as Promise<
+        number[]
+    >
+}
+
 export function deleteMany(
     dbc: DatabaseConnection,
     schema: SchemaEnum,
@@ -57,7 +69,9 @@ export function deleteMany(
     column: idOrName = "id",
 ) {
     const tt = dbc.getSchema().table(schema)
-    return dbc.delete().from(tt).where(tt.col(column).in(idzz)).exec()
+    return dbc.delete().from(tt).where(tt.col(column).in(idzz)).exec() as Promise<
+        number[]
+    >
 }
 
 export function findAll<T>(dbc: DatabaseConnection, schema: SchemaEnum) {
@@ -85,16 +99,6 @@ export function findChildzz<T>(
     return dbc.select().from(tt).where(tt.col(column).eq(parentId)).exec() as Promise<
         T[]
     >
-}
-
-export function findMany<T>(
-    dbc: DatabaseConnection,
-    schema: SchemaEnum,
-    idzz: number[] | string[],
-    column: idOrName = "id",
-) {
-    const tt = dbc.getSchema().table(schema)
-    return dbc.select().from(tt).where(tt.col(column).in(idzz)).exec() as Promise<T[]>
 }
 
 export function findOne<T>(

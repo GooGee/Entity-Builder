@@ -1,4 +1,6 @@
+import { makeChildzzMap, makeIdItemMap } from "@/Factory/makeMap"
 import { OpenApiBuilder, OpenAPIObject, ReferenceObject } from "openapi3-ts"
+import getTypeFormatOrThrow from "../getTypeFormatOrThrow"
 import makeMediaType from "./makeMediaType"
 import makeParameter from "./makeParameter"
 import makePath, {
@@ -27,10 +29,16 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         })
     })
 
-    const entityMap = new Map(db.tables.Entity.map((item) => [item.id, item]))
-    const cicm = new Map(db.tables.Column.map((item) => [item.id, item]))
-    const mimm = new Map(db.tables.Module.map((item) => [item.id, item]))
-    const vivm = new Map(db.tables.Variable.map((item) => [item.id, item]))
+    const entityMap = makeIdItemMap(db.tables.Entity)
+    const cicm = makeIdItemMap(db.tables.Column)
+    const mimm = makeIdItemMap(db.tables.Module)
+    const vivm = makeIdItemMap(db.tables.Variable)
+
+    const tfzz = db.tables.TypeFormat
+    const tfzzm: Map<number, LB.TypeFormat[]> = makeChildzzMap(
+        db.tables.TypeFormat,
+        "ownerId",
+    )
 
     db.tables.Variable.forEach((item) =>
         builder.addSchema(makeSchemaEnumName(item.name), makeSchemaEnum(item) as any),
@@ -52,28 +60,16 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         found.push({ ...column, name })
     })
 
-    const wiwm = new Map(db.tables.Wu.map((item) => [item.id, item]))
+    const wiwm = makeIdItemMap(db.tables.Wu)
 
-    const wiwczzm: Map<number, LB.WuChild[]> = new Map()
-    db.tables.WuChild.forEach((item) => {
-        let found = wiwczzm.get(item.wuId)
-        if (found === undefined) {
-            found = []
-            wiwczzm.set(item.wuId, found)
-        }
-        found.push(item)
-    })
-
-    const wiwpzzm: Map<number, LB.WuParameter[]> = new Map()
-    db.tables.WuParameter.forEach((item) => {
-        let found = wiwpzzm.get(item.wuId)
-        if (found === undefined) {
-            found = []
-            wiwpzzm.set(item.wuId, found)
-        }
-
-        found.push(item)
-    })
+    const wiwkzzm: Map<number, LB.TypeFormat[]> = makeChildzzMap(
+        db.tables.TypeFormat,
+        "ownerWuChildId",
+    )
+    const wiwpzzm: Map<number, LB.WuParameter[]> = makeChildzzMap(
+        db.tables.WuParameter,
+        "wuId",
+    )
 
     // for path
     const pipzzm: Map<number, LB.Column[]> = new Map()
@@ -133,7 +129,10 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
             return
         }
 
-        builder.addSchema(wu.name, makeSchemaWu(wu, vivm, wiczzm, wiwczzm, wiwm) as any)
+        builder.addSchema(
+            wu.name,
+            makeSchemaWu(wu, tfzz, tfzzm, vivm, wiczzm, wiwkzzm, wiwm) as any,
+        )
     })
 
     db.tables.ParameterMap.forEach((item) => {
@@ -142,16 +141,20 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
             return
         }
 
+        const tf = getTypeFormatOrThrow(column.id, "ownerColumnId", tfzz)
+
         makeParameter(
             item,
             column,
             entityMap,
             builder,
             makeSchemaTypeFormat(
-                column.tf,
+                tf,
+                tfzz,
+                tfzzm,
                 vivm,
                 wiczzm,
-                wiwczzm,
+                wiwkzzm,
                 wiwm,
                 wiwpzzm,
                 [],
@@ -165,10 +168,12 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
             content: {
                 [item.mediaType]: makeMediaType(
                     item,
+                    tfzz,
+                    tfzzm,
                     vivm,
                     riezzm,
                     wiczzm,
-                    wiwczzm,
+                    wiwkzzm,
                     wiwm,
                     wiwpzzm,
                 ),
@@ -183,10 +188,12 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
             content: {
                 [item.mediaType]: makeMediaType(
                     item,
+                    tfzz,
+                    tfzzm,
                     vivm,
                     riezzm,
                     wiczzm,
-                    wiwczzm,
+                    wiwkzzm,
                     wiwm,
                     wiwpzzm,
                 ),
@@ -199,9 +206,9 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         })
     })
 
-    const rbirbm = new Map(db.tables.Request.map((item) => [item.id, item]))
+    const rbirbm = makeIdItemMap(db.tables.Request)
 
-    const rirm = new Map(db.tables.Response.map((item) => [item.id, item]))
+    const rirm = makeIdItemMap(db.tables.Response)
 
     const marzzm: Map<number, ModuleActionResponseWithName[]> = new Map()
     db.tables.ModuleActionResponse.forEach((item) => {
@@ -216,7 +223,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         }
     })
 
-    const maimam = new Map(db.tables.ModuleAction.map((item) => [item.id, item]))
+    const maimam = makeIdItemMap(db.tables.ModuleAction)
 
     const pimazzm: Map<number, ModuleActionWithMethod[]> = new Map()
     db.tables.PathMethod.forEach((item) => {

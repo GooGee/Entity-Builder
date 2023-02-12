@@ -23,11 +23,11 @@ export default function ReferenceParameter(property: Property) {
         <SelectButton
             className="wa inline"
             itemzz={tpzz}
-            value={property.item.targetId}
-            change={function (targetId) {
+            value={property.item.wuParameterId ?? 0}
+            change={function (wuParameterId) {
                 property.update({
                     ...property.item,
-                    targetId,
+                    wuParameterId,
                 })
             }}
         ></SelectButton>

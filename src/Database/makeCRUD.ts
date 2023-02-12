@@ -106,16 +106,16 @@ export function makeServerVariableCRUD() {
     return new CRUD<LB.ServerVariable>(getDBC, SchemaEnum.ServerVariable)
 }
 
+export function makeTypeFormatCRUD() {
+    return new CRUD<LB.TypeFormat>(getDBC, SchemaEnum.TypeFormat)
+}
+
 export function makeVariableCRUD() {
     return new CRUD<LB.Variable>(getDBC, SchemaEnum.Variable)
 }
 
 export function makeWuCRUD() {
     return new CRUD<LB.Wu>(getDBC, SchemaEnum.Wu)
-}
-
-export function makeWuChildCRUD() {
-    return new CRUD<LB.WuChild>(getDBC, SchemaEnum.WuChild)
 }
 
 export function makeWuColumnCRUD() {

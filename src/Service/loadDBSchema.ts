@@ -1,14 +1,17 @@
-import makeColumn, { setColumnTypeFormat } from "@/Database/Factory/makeColumn"
-import { connectEntityBy } from "@/Database/Factory/makeRelation"
+import makeColumn from "@/Database/Factory/makeColumn"
 import makeEntity from "@/Database/Factory/makeEntity"
+import { connectEntityBy } from "@/Database/Factory/makeRelation"
+import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import { exportDB } from "@/Database/getDBC"
 import {
     makeColumnCRUD,
-    makeIndexColumnCRUD,
     makeIndexCRUD,
+    makeIndexColumnCRUD,
     makeEntityCRUD,
+    makeTypeFormatCRUD,
 } from "@/Database/makeCRUD"
 import RelationType from "@/Database/RelationType"
+import { DoctrineOapiMap } from "@/Model/Oapi"
 import getCollectionItemzz from "./getCollectionItemzz"
 
 function createColumn(
@@ -28,13 +31,25 @@ function createColumn(
             value = item.default
         }
     }
+
     const data = makeColumn(entity.id, item.name, item.type, value, item.length, rozz)
     data.comment = item.comment
     data.nullable = item.nullable
     data.scale = item.scale
     data.unsigned = item.unsigned
-    setColumnTypeFormat(data, cizz)
-    return makeColumnCRUD().create(data)
+    return makeColumnCRUD()
+        .create(data)
+        .then((item) => {
+            const data = makeTypeFormat(
+                DoctrineOapiMap.get(
+                    cizz.find((ci) => ci.name === item.type)?.tag ?? "",
+                ),
+            )
+            data.ownerColumnId = item.id
+            return makeTypeFormatCRUD()
+                .create(data)
+                .then(() => item)
+        })
 }
 
 function createIndex(item: LB.DoctrineIndex, entity: LB.Entity, columnzz: LB.Column[]) {

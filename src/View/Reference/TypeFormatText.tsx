@@ -1,12 +1,9 @@
-import { isPrimary, OapiType } from "@/Model/Oapi"
-import makeTextTypeFormat, {
-    clearError,
-    errorTypeFormat,
-} from "@/Service/Oapi/makeTextTypeFormat"
-import useTypeFormatModalStore from "@/Store/useTypeFormatModalStore"
+import makeTextTypeFormat, { clearError } from "@/Service/Oapi/makeTextTypeFormat"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import useVariablezzStore from "@/Store/useVariablezzStore"
 import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
+import { useState } from "react"
 import TypeFormat from "./TypeFormat"
 
 interface Property {
@@ -14,37 +11,41 @@ interface Property {
     isRoot?: boolean
     item: LB.TypeFormat
     wuId?: number
-    update(item: LB.TypeFormat): void
 }
 
 export default function TypeFormatText(property: Property) {
-    const sTypeFormatModalStore = useTypeFormatModalStore()
+    const sTypeFormatzzStore = useTypeFormatzzStore()
     const sVariablezzStore = useVariablezzStore()
     const sWuParameterzzStore = useWuParameterzzStore()
     const sWuzzStore = useWuzzStore()
 
-    if (
-        isPrimary(property.item.type) ||
-        isRootTypeParameter() ||
-        property.item.type === OapiType.Enum
-    ) {
-        return (
-            <TypeFormat
-                id={property.id}
-                item={property.item}
-                update={property.update}
-                wuId={property.wuId}
-            ></TypeFormat>
-        )
-    }
+    const [visible, setVisible] = useState(false)
 
-    function isRootTypeParameter() {
-        return property.isRoot && property.item.type === OapiType.TypeParameter
+    if (visible) {
+        return (
+            <div>
+                <div>
+                    <button
+                        className="btn btn-outline-primary"
+                        type="button"
+                        onClick={() => setVisible(false)}
+                    >
+                        OK
+                    </button>
+                </div>
+                <TypeFormat
+                    id={property.id}
+                    item={property.item}
+                    wuId={property.wuId}
+                ></TypeFormat>
+            </div>
+        )
     }
 
     clearError()
     const text = makeTextTypeFormat(
         property.item,
+        sTypeFormatzzStore,
         sVariablezzStore,
         sWuParameterzzStore,
         sWuzzStore,
@@ -54,22 +55,11 @@ export default function TypeFormatText(property: Property) {
         index = text.length
     }
     return (
-        <span>
-            <button
-                className={
-                    "btn btn-outline-" + (errorTypeFormat ? "danger" : "primary")
-                }
-                type="button"
-                onClick={function () {
-                    sTypeFormatModalStore.show(
-                        property.item,
-                        property.update,
-                        property.wuId,
-                    )
-                }}
-            >
-                {text.slice(0, index)}
-            </button>
+        <span
+            className={property.isRoot ? "pointer" : ""}
+            onClick={() => (property.isRoot ? setVisible(true) : null)}
+        >
+            {text.slice(0, index)}
             {text.slice(index)}
         </span>
     )

@@ -1,7 +1,7 @@
 import ColorEnum from "@/Model/ColorEnum"
 import { makeWuName } from "@/Service/makeName"
 import { OmitId } from "../dbhelper"
-import { makeWuCRUD } from "../makeCRUD"
+import { makeTypeFormatCRUD, makeWuCRUD } from "../makeCRUD"
 import makeSideBarItem from "./makeSideBarItem"
 import makeTypeFormat from "./makeTypeFormat"
 
@@ -22,7 +22,15 @@ export function findOrMakeWu(
 
     const wu = makeWu(name, entity.id, isRequest)
     wu.color = isRequest ? ColorEnum.pink : ColorEnum.orange
-    return makeWuCRUD().create(wu)
+    return makeWuCRUD()
+        .create(wu)
+        .then((wu) => {
+            const data = makeTypeFormat()
+            data.ownerWuId = wu.id
+            return makeTypeFormatCRUD()
+                .create(data)
+                .then(() => wu)
+        })
 }
 
 export function makeActionWu(
@@ -48,6 +56,5 @@ export default function makeWu(
         description: "",
         example: "",
         isMap: false,
-        tf: makeTypeFormat(),
     }
 }

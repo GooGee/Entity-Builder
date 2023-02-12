@@ -58,6 +58,23 @@ export default function Detail(property: Property) {
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td>table</td>
+                    <td>
+                        <input
+                            placeholder={property.item.name}
+                            value={property.item.table}
+                            onChange={function (event) {
+                                makeEntityCRUD().update({
+                                    ...property.item,
+                                    table: event.target.value,
+                                })
+                            }}
+                            type="text"
+                            className="form-control wa"
+                        />
+                    </td>
+                </tr>
             </tbody>
         </table>
     )

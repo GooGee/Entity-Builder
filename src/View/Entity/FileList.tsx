@@ -1,27 +1,17 @@
-import Constant from "@/Model/Constant"
-import {
-    getFileFullNameInCode,
-    getCodeFileName,
-    ScriptExtention,
-    TemplateExtention,
-} from "@/Model/FileManager"
 import makeKeywordRE from "@/Service/makeKeywordRE"
-import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useEntityPageStore from "@/Store/useEntityPageStore"
 import useFilezzStore from "@/Store/useFilezzStore"
-import useFlowPageStore from "@/Store/useFlowPageStore"
 import { useState, useEffect } from "react"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
-import EditButton from "../Button/EditButton"
-import FileButton from "../Button/FileButton"
+import FileItem from "./FileItem"
 
 interface Property {
     entity: LB.Entity
+    ma?: LB.ModuleAction
+    module?: LB.Module
 }
 
 export default function FileList(property: Property) {
-    const sDirectoryzzStore = useDirectoryzzStore()
-    const sFlowPageStore = useFlowPageStore()
     const sFilezzStore = useFilezzStore()
     const sEntityPageStore = useEntityPageStore()
 
@@ -59,20 +49,6 @@ export default function FileList(property: Property) {
         )
     }, [sEntityPageStore.fileColor, text])
 
-    function getName(item: LB.File) {
-        const name = sDirectoryzzStore.treeHelper.getFileFullName(
-            item,
-            property.entity,
-            "",
-        )
-        const index = name.lastIndexOf("/")
-        if (index === -1) {
-            return "/"
-        }
-
-        return name.slice(0, index)
-    }
-
     return (
         <table className="table table-sm">
             <caption>
@@ -100,34 +76,13 @@ export default function FileList(property: Property) {
 
             <tbody>
                 {filezz.map((item) => (
-                    <tr key={item.id}>
-                        <td>
-                            <div className="btn-group me-2">
-                                <EditButton
-                                    file={getFileFullNameInCode(
-                                        getCodeFileName(item, ScriptExtention),
-                                    )}
-                                    content={Constant.ScriptCode}
-                                ></EditButton>
-                                <EditButton
-                                    file={getFileFullNameInCode(
-                                        getCodeFileName(item, TemplateExtention),
-                                    )}
-                                    content=""
-                                ></EditButton>
-                            </div>
-                            {item.name}
-                        </td>
-                        <td>
-                            <div>{getName(item)}</div>
-                            <FileButton
-                                action=""
-                                file={item}
-                                entity={property.entity}
-                                module={sFlowPageStore.module}
-                            ></FileButton>
-                        </td>
-                    </tr>
+                    <FileItem
+                        entity={property.entity}
+                        item={item}
+                        key={item.id}
+                        ma={property.ma}
+                        module={property.module}
+                    ></FileItem>
                 ))}
             </tbody>
         </table>

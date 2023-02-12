@@ -12,7 +12,7 @@ export default function WuView() {
         return null
     }
 
-    const tabzz = ["Column", "Composition", "Map", "TypeParameter"]
+    const tabzz = ["Column", "Composition", "Map", "WuParameter"]
 
     return (
         <>

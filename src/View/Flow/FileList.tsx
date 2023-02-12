@@ -98,10 +98,10 @@ export default function FileList(property: Property) {
                                     <FileButton
                                         action={property.action}
                                         className="ms-3"
+                                        entity={property.entity}
                                         file={file}
                                         ma={property.ma}
                                         module={property.module}
-                                        entity={property.entity}
                                     ></FileButton>
                                 </div>
                             )}

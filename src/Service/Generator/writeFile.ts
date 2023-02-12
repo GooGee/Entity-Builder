@@ -2,6 +2,7 @@ import { putFile, readFilezzInFolder } from "@/api"
 import { refreshDisk } from "@/Bridge/sendToJava"
 import { exportDB } from "@/Database/getDBC"
 import makeLinkedTreeMap from "@/Factory/makeLinkedTreeMap"
+import { makeChildzzMap, makeIdItemMap, makeIdNameMap } from "@/Factory/makeMap"
 import makeTreeHelper from "@/Factory/makeTreeHelper"
 import {
     getDirectoryName,
@@ -12,6 +13,8 @@ import {
 } from "@/Model/FileManager"
 import lodash, { cloneDeep } from "lodash"
 import nunjucks from "nunjucks"
+import getResponseContentColumnzz from "../getResponseContentColumnzz"
+import getTypeFormatColumnzz from "../getTypeFormatColumnzz"
 import { callCode } from "./runCode"
 
 export default function writeFile(
@@ -36,7 +39,12 @@ export default function writeFile(
                 db: clone,
                 dependencyzz: [],
                 fileMap,
+                getResponseContentColumnzz,
+                getTypeFormatColumnzz,
                 lodash,
+                makeChildzzMap,
+                makeIdItemMap,
+                makeIdNameMap,
                 tree: treeHelper,
                 treeMap,
                 action,

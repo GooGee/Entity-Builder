@@ -10,7 +10,7 @@ import FlowPage from "./View/FlowPage"
 import HomePage from "./View/HomePage"
 import InfoPage from "./View/InfoPage"
 import MigrationPage from "./View/MigrationPage"
-import TypeFormatModal from "./View/Modal/TypeFormatModal"
+import ModulePage from "./View/ModulePage"
 import OapiPage from "./View/OapiPage"
 import ParameterPage from "./View/ParameterPage"
 import Bar from "./View/Part/Bar"
@@ -50,9 +50,11 @@ function App() {
                 return <InfoPage></InfoPage>
             case PageEnum.Migration:
                 return <MigrationPage></MigrationPage>
+            case PageEnum.Module:
+                return <ModulePage></ModulePage>
             case PageEnum.OpenApi:
                 return <OapiPage></OapiPage>
-            case PageEnum.Header:
+            case PageEnum.ParameterInHeader:
             case PageEnum.ParameterInCookie:
             case PageEnum.ParameterInPath:
             case PageEnum.ParameterInQuery:
@@ -90,7 +92,7 @@ function App() {
                             />
                         ))}
                 </Routes>
-                <TypeFormatModal></TypeFormatModal>
+
                 <ToastGroup></ToastGroup>
             </div>
         </>

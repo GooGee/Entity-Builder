@@ -1,33 +1,21 @@
-import { makeEntityWithId } from "@/Database/Factory/makeEntity"
-import { makeEntityCRUD } from "@/Database/makeCRUD"
 import { PageEnum } from "@/menuzz"
 import useEntityPageStore from "@/Store/useEntityPageStore"
 import useEntityzzStore from "@/Store/useEntityzzStore"
-import useToastzzStore from "@/Store/useToastzzStore"
 import FlowView from "./Flow/FlowView"
-import DirectoryModal from "./Modal/DirectoryModal"
-import ListModal from "./Modal/ListModal"
-import LeftRightPanel from "./Part/LeftRightPanel"
+import SideBar from "./Part/SideBar"
 
 export default function FlowPage() {
-    const sToastzzStore = useToastzzStore()
-
     return (
         <div className="row">
-            <LeftRightPanel
-                makeCRUD={makeEntityCRUD as any}
-                onCreate={function (name) {
-                    makeEntityWithId(name).catch(sToastzzStore.showError)
-                }}
-                useItemPageStore={useEntityPageStore}
-                useItemzzStore={useEntityzzStore}
+            <SideBar
                 title={PageEnum.Entity}
-            >
-                <FlowView></FlowView>
-            </LeftRightPanel>
+                itemzz={useEntityzzStore.getState().itemzz}
+                useStore={useEntityPageStore}
+            ></SideBar>
 
-            <DirectoryModal></DirectoryModal>
-            <ListModal></ListModal>
+            <div className="col-9 h100 overflow-auto">
+                <FlowView></FlowView>
+            </div>
         </div>
     )
 }

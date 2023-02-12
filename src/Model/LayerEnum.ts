@@ -12,6 +12,7 @@ enum LayerEnum {
     Response = "Response",
     Service = "Service",
     Test = "Test",
+    View = "View",
 }
 
 export default LayerEnum

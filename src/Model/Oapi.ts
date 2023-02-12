@@ -6,11 +6,18 @@ export enum OapiType {
     string = "string",
 
     Enum = "Enum",
-    TypeParameter = "TypeParameter",
+    WuParameter = "WuParameter",
     Wu = "Wu",
 }
 
 export const OapiTypezz = Object.keys(OapiType) as Array<keyof typeof OapiType>
+
+export const DoctrineOapiMap = new Map([
+    ["bool", OapiType.boolean],
+    ["float", OapiType.number],
+    ["int", OapiType.integer],
+    ["string", OapiType.string],
+])
 
 export enum OapiSchemaType {
     array = "array",
@@ -19,7 +26,7 @@ export enum OapiSchemaType {
 
 export type SchemaColumnType = Exclude<
     OapiType,
-    OapiType.Enum | OapiType.TypeParameter | OapiType.Wu
+    OapiType.Enum | OapiType.WuParameter | OapiType.Wu
 >
 
 export enum CompositionKind {
@@ -151,7 +158,7 @@ export function isPrimary(type: OapiType) {
 }
 
 export function isReference(type: OapiType) {
-    return [OapiType.Enum, OapiType.TypeParameter, OapiType.Wu].includes(type)
+    return [OapiType.Enum, OapiType.WuParameter, OapiType.Wu].includes(type)
 }
 
 export function isSchema(item: OapiReference | OapiSchema): item is OapiSchema {

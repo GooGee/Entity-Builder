@@ -2,11 +2,12 @@ import { makeWuCRUD } from "@/Database/makeCRUD"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import useWuColumnzzStore from "@/Store/useWuColumnzzStore"
-import { useEffect, useState } from "react"
+import { ReactElement, useEffect, useState } from "react"
 import WebLink from "../Button/WebLink"
 import WuColumn from "./WuColumn"
 
 interface Property {
+    caption?: ReactElement
     item: LB.Wu
     noCaption?: boolean
 }
@@ -39,6 +40,10 @@ export default function WuColumnList(property: Property) {
     function makeCaption() {
         if (property.noCaption) {
             return null
+        }
+
+        if (property.caption) {
+            return property.caption
         }
 
         return (

@@ -1,7 +1,7 @@
 import makeModuleAction from "@/Database/Factory/makeModuleAction"
 import { makeModuleActionCRUD, makePathMethodCRUD } from "@/Database/makeCRUD"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
-import getItemName from "@/Service/getItemName"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useModuleActionzzStore from "@/Store/useModuleActionzzStore"
@@ -151,9 +151,13 @@ export default function ActionList(property: Property) {
     function makeView() {
         const ma = sFlowPageStore.ma
         if (ma) {
-            const name = getItemName(tab)
+            if (tab === undefined) {
+                return (
+                    <div>{makeNotFoundText("ModuleAction", sFlowPageStore.action)}</div>
+                )
+            }
             return (
-                <ActionDetail action={name} entity={property.entity} ma={ma}>
+                <ActionDetail action={tab.name} entity={property.entity} ma={ma}>
                     <button
                         onClick={() => {
                             showConfirm()
@@ -169,7 +173,7 @@ export default function ActionList(property: Property) {
                         className="btn btn-outline-danger"
                         type="button"
                     >
-                        - {name}
+                        - {tab.name}
                     </button>
                 </ActionDetail>
             )
@@ -187,14 +191,7 @@ export default function ActionList(property: Property) {
                 {Step}
             </h3>
 
-            <ul
-                className={
-                    "nav nav-tabs" +
-                    (sFlowPageStore.step === Step ? " mb-3" : " border-0")
-                }
-            >
-                {tabzz.map(makeTab)}
-            </ul>
+            <ul className={"nav nav-tabs"}>{tabzz.map(makeTab)}</ul>
 
             {sFlowPageStore.step === Step ? makeView() : null}
         </div>

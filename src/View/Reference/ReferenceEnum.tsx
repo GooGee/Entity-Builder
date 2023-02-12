@@ -13,11 +13,11 @@ export default function ReferenceEnum(property: Property) {
         <SelectButton
             className="wa inline"
             itemzz={sVariablezzStore.itemzz}
-            value={property.item.targetId}
-            change={function (targetId) {
+            value={property.item.variableId ?? 0}
+            change={function (variableId) {
                 property.update({
                     ...property.item,
-                    targetId,
+                    variableId,
                 })
             }}
         ></SelectButton>

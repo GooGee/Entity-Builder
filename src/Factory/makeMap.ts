@@ -1,14 +1,34 @@
-export function makeIdItemMap<T extends LB.IdItem>(
+export function makeChildzzMap<T extends LB.IdItem>(
     itemzz: T[],
-    kv: Map<number, T> = new Map(),
+    column: keyof T,
+    map: Map<number, T[]> = new Map(),
 ) {
-    itemzz.forEach((item) => kv.set(item.id, item))
-    return kv
+    itemzz.forEach(function (item) {
+        const key = item[column] as unknown as number
+        let found = map.get(key)
+        if (found === undefined) {
+            found = []
+            map.set(key, found)
+        }
+        found.push(item)
+    })
+    return map
 }
 
-function makeIdNameMap(itemzz: LB.IdNameItem[], kv: Map<string, string> = new Map()) {
-    itemzz.forEach((item) => kv.set(item.id.toString(), item.name))
-    return kv
+export function makeIdItemMap<T extends LB.IdItem>(
+    itemzz: T[],
+    map: Map<number, T> = new Map(),
+) {
+    itemzz.forEach((item) => map.set(item.id, item))
+    return map
+}
+
+export function makeIdNameMap(
+    itemzz: LB.IdNameItem[],
+    map: Map<number, string> = new Map(),
+) {
+    itemzz.forEach((item) => map.set(item.id, item.name))
+    return map
 }
 
 interface NameType {
@@ -17,13 +37,13 @@ interface NameType {
 
 function makeNameItemMap<T extends NameType>(
     itemzz: T[],
-    kv: Map<string, T> = new Map(),
+    map: Map<string, T> = new Map(),
 ) {
-    itemzz.forEach((item) => kv.set(item.name, item))
-    return kv
+    itemzz.forEach((item) => map.set(item.name, item))
+    return map
 }
 
-function makeNameMap(itemzz: NameType[], kv: Map<string, string> = new Map()) {
-    itemzz.forEach((item) => kv.set(item.name, item.name))
-    return kv
+function makeNameMap(itemzz: NameType[], map: Map<string, string> = new Map()) {
+    itemzz.forEach((item) => map.set(item.name, item.name))
+    return map
 }

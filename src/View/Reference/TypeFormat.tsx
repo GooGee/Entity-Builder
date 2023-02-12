@@ -1,20 +1,25 @@
-import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
+import { makeTypeFormatCRUD } from "@/Database/makeCRUD"
 import { Formatzz, isReference, OapiType, OapiTypezz } from "@/Model/Oapi"
+import deleteTypeFormatArgument from "@/Service/deleteTypeFormatArgument"
+import useToastzzStore from "@/Store/useToastzzStore"
+import { ReactElement } from "react"
 import SelectStringButton from "../Button/SelectStringButton"
 import ReferenceButton from "./ReferenceButton"
 
 interface Property {
+    children?: ReactElement
     id: number | string // used for HTML Label (switch)
     item: LB.TypeFormat
     wuId?: number
-    update(item: LB.TypeFormat): void
 }
 
 export default function TypeFormat(property: Property) {
-    if (property.wuId === undefined && property.item.type === OapiType.TypeParameter) {
+    const sToastzzStore = useToastzzStore()
+
+    if (property.wuId === undefined && property.item.type === OapiType.WuParameter) {
         return (
             <span className="text-danger">
-                TypeParameter is only available in Wu page
+                WuParameter is only available in Wu page
             </span>
         )
     }
@@ -24,10 +29,7 @@ export default function TypeFormat(property: Property) {
             return OapiTypezz
         }
 
-        const typezz = [...OapiTypezz]
-        const index = typezz.indexOf(OapiType.TypeParameter)
-        typezz.splice(index, 1)
-        return typezz
+        return OapiTypezz.filter((item) => item !== OapiType.WuParameter)
     }
 
     function makeFormat() {
@@ -40,9 +42,7 @@ export default function TypeFormat(property: Property) {
                 <ReferenceButton
                     item={property.item}
                     wuId={property.wuId}
-                    update={function (tf) {
-                        property.update(tf)
-                    }}
+                    update={update}
                 ></ReferenceButton>
             )
         }
@@ -54,7 +54,7 @@ export default function TypeFormat(property: Property) {
                     itemzz={Formatzz}
                     value={property.item.format}
                     change={(format) =>
-                        property.update({
+                        update({
                             ...property.item,
                             format,
                         })
@@ -64,75 +64,108 @@ export default function TypeFormat(property: Property) {
         )
     }
 
+    function update(data: LB.TypeFormat) {
+        return makeTypeFormatCRUD().update(data).catch(sToastzzStore.showError)
+    }
+
+    function updateType(type: OapiType) {
+        if (type === property.item.type) {
+            return
+        }
+
+        const data = {
+            ...property.item,
+            type,
+        }
+        const old = property.item.type
+        if (old === OapiType.Wu) {
+            data.wuId = 1
+        }
+        if (old === OapiType.WuParameter) {
+            data.wuParameterId = null
+        }
+        if (old === OapiType.Enum) {
+            data.variableId = null
+        }
+        return update(data)
+            .then(function () {
+                if (old === OapiType.Wu) {
+                    return deleteTypeFormatArgument(property.item.id)
+                }
+            })
+            .catch(sToastzzStore.showError)
+    }
+
     return (
-        <div className="d-flex">
-            <div className="mt-2">
-                <div className="form-check form-switch">
-                    <input
-                        checked={property.item.isArray}
-                        onChange={(event) =>
-                            property.update({
-                                ...property.item,
-                                isArray: event.target.checked,
-                            })
-                        }
-                        className="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id={"isArraySwitchCheck" + property.id}
-                    />
-                    {property.item.isArray ? (
-                        <label
-                            className="form-check-label"
-                            htmlFor={"isArraySwitchCheck" + property.id}
-                        >
-                            array
-                        </label>
-                    ) : null}
+        <div>
+            <div className="d-flex mt-2">
+                <div>{property.children}</div>
+
+                <div>
+                    <div className="form-check form-switch">
+                        <input
+                            checked={property.item.isArray}
+                            onChange={(event) =>
+                                update({
+                                    ...property.item,
+                                    isArray: event.target.checked,
+                                })
+                            }
+                            className="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id={"isArraySwitchCheck" + property.id}
+                        />
+                        {property.item.isArray ? (
+                            <label
+                                className="form-check-label"
+                                htmlFor={"isArraySwitchCheck" + property.id}
+                            >
+                                array
+                            </label>
+                        ) : null}
+                    </div>
+                </div>
+
+                <div>
+                    <div className="form-check form-switch ms-2">
+                        <input
+                            checked={property.item.nullable}
+                            onChange={(event) =>
+                                update({
+                                    ...property.item,
+                                    nullable: event.target.checked,
+                                })
+                            }
+                            className="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id={"nullableSwitchCheck" + property.id}
+                        />
+                        {property.item.nullable ? (
+                            <label
+                                className="form-check-label"
+                                htmlFor={"nullableSwitchCheck" + property.id}
+                            >
+                                nullable
+                            </label>
+                        ) : null}
+                    </div>
                 </div>
             </div>
-            <div className="mt-2">
-                <div className="form-check form-switch ms-2">
-                    <input
-                        checked={property.item.nullable}
-                        onChange={(event) =>
-                            property.update({
-                                ...property.item,
-                                nullable: event.target.checked,
-                            })
-                        }
-                        className="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id={"nullableSwitchCheck" + property.id}
-                    />
-                    {property.item.nullable ? (
-                        <label
-                            className="form-check-label"
-                            htmlFor={"nullableSwitchCheck" + property.id}
-                        >
-                            nullable
-                        </label>
-                    ) : null}
+
+            <div className="d-flex mt-2">
+                <div>
+                    <SelectStringButton
+                        className="wa me-1"
+                        itemzz={getTypezz()}
+                        value={property.item.type}
+                        change={updateType}
+                    ></SelectStringButton>
                 </div>
+
+                <div>{makeFormat()}</div>
             </div>
-
-            <div>
-                <SelectStringButton
-                    className="wa ms-2 me-1"
-                    itemzz={getTypezz()}
-                    value={property.item.type}
-                    change={function (type: OapiType) {
-                        if (type === property.item.type) {
-                            return
-                        }
-
-                        property.update(makeTypeFormat(type))
-                    }}
-                ></SelectStringButton>
-            </div>
-
-            {makeFormat()}
         </div>
     )
 }

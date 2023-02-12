@@ -6,7 +6,7 @@ import ReferenceWu from "./ReferenceWu"
 interface Property {
     item: LB.TypeFormat
     wuId?: number
-    update(item: LB.TypeFormat): void
+    update(item: LB.TypeFormat): Promise<any>
 }
 
 export default function ReferenceButton(property: Property) {
@@ -19,7 +19,7 @@ export default function ReferenceButton(property: Property) {
         )
     }
 
-    if (property.item.type === OapiType.TypeParameter) {
+    if (property.item.type === OapiType.WuParameter) {
         if (property.wuId === undefined) {
             return <span className="text-danger">only available in Wu page</span>
         }

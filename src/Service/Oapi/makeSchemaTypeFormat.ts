@@ -6,6 +6,7 @@ import {
     OapiSchemaColumn,
     OapiType,
 } from "@/Model/Oapi"
+import makeNotFoundText from "../../Factory/makeNotFoundText"
 import makeReference, {
     ComponentKind,
     makeReferenceEmpty,
@@ -16,9 +17,11 @@ import makeSchemaWuComputed from "./makeSchemaWuComputed"
 
 export default function makeSchemaTypeFormat(
     tf: LB.TypeFormat,
+    tfzz: LB.TypeFormat[],
+    tfzzm: Map<number, LB.TypeFormat[]>,
     vivm: Map<number, LB.Variable>,
     wiczzm: Map<number, LB.Column[]>,
-    wiwczzm: Map<number, LB.WuChild[]>,
+    wiwkzzm: Map<number, LB.TypeFormat[]>,
     wiwm: Map<number, LB.Wu>,
     wiwpzzm: Map<number, LB.WuParameter[]>,
     argumentzz: (OapiReference | OapiSchema)[],
@@ -36,17 +39,17 @@ export default function makeSchemaTypeFormat(
         }
 
         if (tf.type === OapiType.Enum) {
-            const item = vivm.get(tf.targetId)
+            const item = vivm.get(tf.variableId ?? 0)
             if (item === undefined) {
-                throw new Error(`Enum ${tf.targetId} not found`)
+                throw new Error(makeNotFoundText("Enum", tf.variableId ?? ""))
             }
 
             const name = makeSchemaEnumName(item.name)
             return makeReferenceOf(name, ComponentKind.schemas)
         }
 
-        if (tf.type === OapiType.TypeParameter) {
-            const found = wpiam.get(tf.targetId)
+        if (tf.type === OapiType.WuParameter) {
+            const found = wpiam.get(tf.wuParameterId ?? 0)
             if (found) {
                 return found
             }
@@ -54,18 +57,21 @@ export default function makeSchemaTypeFormat(
         }
 
         if (tf.type === OapiType.Wu) {
-            if (tf.argumentzz.length) {
-                const wu = wiwm.get(tf.targetId)
+            const zz = tfzzm.get(tf.id) ?? []
+            if (zz.length) {
+                const wu = wiwm.get(tf.wuId)
                 if (wu === undefined) {
-                    throw new Error(`Wu ${tf.targetId} not found`)
+                    throw new Error(makeNotFoundText("Wu", tf.wuId))
                 }
 
-                const pzz = tf.argumentzz.map((item) =>
+                const pzz = zz.map((item) =>
                     makeSchemaTypeFormat(
                         item,
+                        tfzz,
+                        tfzzm,
                         vivm,
                         wiczzm,
-                        wiwczzm,
+                        wiwkzzm,
                         wiwm,
                         wiwpzzm,
                         argumentzz,
@@ -74,9 +80,11 @@ export default function makeSchemaTypeFormat(
                 )
                 return makeSchemaWuComputed(
                     wu,
+                    tfzz,
+                    tfzzm,
                     vivm,
                     wiczzm,
-                    wiwczzm,
+                    wiwkzzm,
                     wiwm,
                     wiwpzzm,
                     pzz,

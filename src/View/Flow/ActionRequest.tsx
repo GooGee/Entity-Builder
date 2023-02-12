@@ -1,21 +1,28 @@
 import { cloneFile } from "@/Database/Factory/makeFile"
 import makeRequest from "@/Database/Factory/makeRequest"
 import { makeActionWu } from "@/Database/Factory/makeWu"
-import { makeModuleActionCRUD, makeRequestCRUD } from "@/Database/makeCRUD"
+import {
+    makeModuleActionCRUD,
+    makeRequestCRUD,
+    makeTypeFormatCRUD,
+} from "@/Database/makeCRUD"
 import LayerEnum from "@/Model/LayerEnum"
 import { OapiType } from "@/Model/Oapi"
 import { makeRequestName, makeWuName } from "@/Service/makeName"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useRequestzzStore from "@/Store/useRequestzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import useWuColumnzzStore from "@/Store/useWuColumnzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import { useState, useEffect } from "react"
 import FileButton from "../Button/FileButton"
 import ParameterList from "../Oapi/ParameterList"
 import WuColumnList from "../Wu/WuColumnList"
+import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 
 const Step = StepEnum.Request
 
@@ -23,6 +30,7 @@ interface Property {
     action: string
     entity: LB.Entity
     ma: LB.ModuleAction
+    module: LB.Module
     step: string
 }
 
@@ -32,6 +40,7 @@ export default function ActionRequest(property: Property) {
     const sFlowPageStore = useFlowPageStore()
     const sRequestzzStore = useRequestzzStore()
     const sToastzzStore = useToastzzStore()
+    const sTypeFormatzzStore = useTypeFormatzzStore()
     const sWuColumnzzStore = useWuColumnzzStore()
     const sWuzzStore = useWuzzStore()
 
@@ -48,8 +57,15 @@ export default function ActionRequest(property: Property) {
             return
         }
 
-        if (request.tf.type === OapiType.Wu) {
-            setWu(sWuzzStore.find(request.tf.targetId))
+        const tf = sTypeFormatzzStore.itemzz.find(
+            (item) => item.ownerRequestId === request.id,
+        )
+        if (tf === undefined) {
+            return
+        }
+
+        if (tf.type === OapiType.Wu) {
+            setWu(sWuzzStore.find(tf.wuId))
         } else {
             setWu(undefined)
         }
@@ -68,17 +84,29 @@ export default function ActionRequest(property: Property) {
                     .filter((item) => item.entityId === wu.entityId)
                     .map((item) => [item.id, item]),
             )
-            return sWuColumnzzStore.itemzz
-                .filter((item) => item.wuId === wu.id)
-                .map((item) => (
-                    <tr key={item.id}>
-                        <td className="w111">{cicm.get(item.columnId)?.name}</td>
-                        <td>{cicm.get(item.columnId)?.type}</td>
+            const wczz = sWuColumnzzStore.itemzz.filter((item) => item.wuId === wu.id)
+            if (wczz.length === 0) {
+                return (
+                    <tr>
+                        <td colSpan={2}>
+                            <div className="text-danger">no column in Request</div>
+                        </td>
                     </tr>
-                ))
+                )
+            }
+            return wczz.map((item) => (
+                <tr key={item.id}>
+                    <td className="w111">{cicm.get(item.columnId)?.name}</td>
+                    <td>{cicm.get(item.columnId)?.type}</td>
+                </tr>
+            ))
         }
+
         return (
-            <table className="table table-borderless table-sm">
+            <table
+                className="table table-borderless table-sm"
+                style={{ borderBottomStyle: "solid", borderBottomWidth: "1px" }}
+            >
                 <caption>
                     <h3
                         className="pointer hover-blue"
@@ -86,7 +114,6 @@ export default function ActionRequest(property: Property) {
                     >
                         {Step}
                     </h3>
-                    {makeButton()}
                 </caption>
                 <tbody>{makeList()}</tbody>
             </table>
@@ -122,7 +149,11 @@ export default function ActionRequest(property: Property) {
     }
 
     function makeFile() {
-        const file = sFilezzStore.itemzz.find((item) => item.name === LayerEnum.Request)
+        const file = sFilezzStore.itemzz.find(
+            (item) =>
+                item.directoryId === property.module.directoryId &&
+                item.layer === LayerEnum.Request,
+        )
         if (file === undefined) {
             return undefined
         }
@@ -134,21 +165,29 @@ export default function ActionRequest(property: Property) {
         return makeActionWu(property.action, property.entity, true, sWuzzStore)
             .then((wu) => {
                 setWu(wu)
-                return makeRequestCRUD().create(makeRequest(nameRequest, wu.id))
+                sToastzzStore.showSuccess(`Wu ${wu.name} created`)
+                return makeRequestCRUD()
+                    .create(makeRequest(nameRequest))
+                    .then((request) => {
+                        sToastzzStore.showSuccess(`Request ${request.name} created`)
+                        const data = makeTypeFormat(OapiType.Wu, wu.id)
+                        data.ownerRequestId = request.id
+                        return makeTypeFormatCRUD()
+                            .create(data)
+                            .then(() => {
+                                return makeModuleActionCRUD().update({
+                                    ...property.ma,
+                                    requestId: request.id,
+                                })
+                            })
+                    })
             })
-            .then((response) => {
-                return makeModuleActionCRUD().update({
-                    ...property.ma,
-                    requestId: response.id,
-                })
-            })
-            .then(() => sToastzzStore.showSuccess(`${nameRequest} created`))
             .catch(sToastzzStore.showError)
     }
 
     return (
         <div>
-            <h3>{Step}</h3>
+            <h3 className="my-3">{Step}</h3>
             <div>{makeButton()}</div>
 
             <h3 className="my-3">{nameWu}</h3>

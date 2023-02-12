@@ -1,6 +1,8 @@
-import { makeModuleActionResponseCRUD, makeResponseCRUD } from "@/Database/makeCRUD"
+import { makeModuleActionResponseCRUD } from "@/Database/makeCRUD"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 import useResponsezzStore from "@/Store/useResponsezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import SelectButton from "../Button/SelectButton"
 import showConfirm from "../Dialog/showConfirm"
 import TypeFormatText from "../Reference/TypeFormatText"
@@ -14,8 +16,28 @@ interface Property {
 export default function ActionResponse(property: Property) {
     const sResponsezzStore = useResponsezzStore()
     const sToastzzStore = useToastzzStore()
+    const sTypeFormatzzStore = useTypeFormatzzStore()
 
     const response = sResponsezzStore.find(property.item.responseId)
+
+    function makeView() {
+        if (response === undefined) {
+            return (
+                <span className="text-danger">
+                    {makeNotFoundText("", property.item.responseId)}
+                </span>
+            )
+        }
+
+        const tf = sTypeFormatzzStore.itemzz.find(
+            (item) => item.ownerResponseId === response.id,
+        )
+        if (tf === undefined) {
+            return <div>{makeNotFoundText("TypeFormat", "")}</div>
+        }
+
+        return <TypeFormatText id={property.item.id} item={tf}></TypeFormatText>
+    }
 
     function update(item: LB.ModuleActionResponse) {
         return makeModuleActionResponseCRUD()
@@ -74,22 +96,7 @@ export default function ActionResponse(property: Property) {
                     }}
                 ></SelectButton>
             </td>
-            <td>
-                {response === undefined ? (
-                    <span className="text-danger">not found</span>
-                ) : (
-                    <TypeFormatText
-                        id={property.item.id}
-                        item={response.tf}
-                        update={function (tf) {
-                            makeResponseCRUD()
-                                .update({ ...response, tf })
-                                .then(property.refresh)
-                                .catch(sToastzzStore.showError)
-                        }}
-                    ></TypeFormatText>
-                )}
-            </td>
+            <td>{makeView()}</td>
         </tr>
     )
 }

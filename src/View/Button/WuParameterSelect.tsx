@@ -9,7 +9,7 @@ interface Property {
     add(found: LB.WuParameter): void
 }
 
-export default function TypeParameterSelect(property: Property) {
+export default function WuParameterSelect(property: Property) {
     const sWuParameterzzStore = useWuParameterzzStore()
 
     const [parameterzz, setParameterzz] = useState<LB.WuParameter[]>([])
@@ -33,7 +33,7 @@ export default function TypeParameterSelect(property: Property) {
             className="inline wa"
             itemzz={parameterzz}
             value={0}
-            verb={OapiType.TypeParameter}
+            verb={OapiType.WuParameter}
             change={(value) => {
                 const found = sWuParameterzzStore.find(value)
                 if (found === undefined) {

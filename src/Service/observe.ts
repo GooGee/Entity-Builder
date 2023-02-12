@@ -15,8 +15,8 @@ import useRelationzzStore from "@/Store/useRelationzzStore"
 import useRequestzzStore from "@/Store/useRequestzzStore"
 import useResponsezzStore from "@/Store/useResponsezzStore"
 import useServerzzStore from "@/Store/useServerzzStore"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import useVariablezzStore from "@/Store/useVariablezzStore"
-import useWuChildzzStore from "@/Store/useWuChildzzStore"
 import useWuColumnzzStore from "@/Store/useWuColumnzzStore"
 import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
@@ -28,6 +28,7 @@ export default function observe() {
     useDirectoryzzStore.getState().observe()
     useFilezzStore.getState().observe()
 
+    useTypeFormatzzStore.getState().observe()
     useColumnzzStore.getState().observe()
     useColumnConstraintzzStore.getState().observe()
     useIndexzzStore.getState().observe()
@@ -44,7 +45,6 @@ export default function observe() {
     useServerzzStore.getState().observe()
     useVariablezzStore.getState().observe()
 
-    useWuChildzzStore.getState().observe()
     useWuColumnzzStore.getState().observe()
     useWuParameterzzStore.getState().observe()
     useWuzzStore.getState().observe()

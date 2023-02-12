@@ -1,17 +1,13 @@
 import { OapiReference, OapiType } from "@/Model/Oapi"
 
 export default function makeReference(tf: LB.TypeFormat, wiwm: Map<number, LB.Wu>) {
-    if (tf.type === OapiType.TypeParameter) {
+    if (tf.type === OapiType.WuParameter) {
         return makeReferenceEmpty()
     }
 
-    const wu = wiwm.get(tf.targetId)
+    const wu = wiwm.get(tf.wuId)
     if (wu === undefined) {
         return makeReferenceEmpty()
-    }
-
-    if (tf.argumentzz.length) {
-        //
     }
 
     return makeReferenceOf(wu.name, ComponentKind.schemas)

@@ -1,63 +1,44 @@
-import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
-import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
+import deleteTypeFormatArgument from "@/Service/deleteTypeFormatArgument"
 import useWuzzStore from "@/Store/useWuzzStore"
 import SelectButton from "../Button/SelectButton"
 import ArgumentList from "./ArgumentList"
+import createTypeFormatArgumentzz from "@/Factory/createTypeFormatArgumentzz"
 
 interface Property {
     className?: string
     item: LB.TypeFormat
     wuId?: number
-    update(item: LB.TypeFormat): void
+    update(item: LB.TypeFormat): Promise<any>
 }
 
 export default function ReferenceWu(property: Property) {
     const sWuzzStore = useWuzzStore()
-    const sWuParameterzzStore = useWuParameterzzStore()
 
     return (
         <div className={property.className}>
             <SelectButton
                 className="wa inline"
                 itemzz={sWuzzStore.itemzz}
-                value={property.item.targetId}
-                change={function (targetId) {
-                    const pzz = sWuParameterzzStore.itemzz.filter(
-                        (item) => item.wuId === targetId,
-                    )
-                    const argumentzz = [...property.item.argumentzz]
-                    if (argumentzz.length < pzz.length) {
-                        for (
-                            let index = argumentzz.length;
-                            index < pzz.length;
-                            index++
-                        ) {
-                            argumentzz.push(makeTypeFormat())
-                        }
-                    } else {
-                        if (argumentzz.length > pzz.length) {
-                            argumentzz.splice(pzz.length)
-                        }
+                value={property.item.wuId}
+                change={function (wuId) {
+                    if (wuId === property.item.wuId) {
+                        return
                     }
-                    property.update({
-                        ...property.item,
-                        targetId,
-                        argumentzz,
-                    })
+
+                    const old = property.item
+                    property
+                        .update({
+                            ...property.item,
+                            wuId,
+                        })
+                        .then(() => deleteTypeFormatArgument(old.id))
+                        .then(function () {
+                            return createTypeFormatArgumentzz(wuId, old.id)
+                        })
                 }}
             ></SelectButton>
 
-            <ArgumentList
-                itemzz={property.item.argumentzz}
-                targetId={property.item.targetId}
-                wuId={property.wuId}
-                updateArgumentzz={function (argumentzz) {
-                    property.update({
-                        ...property.item,
-                        argumentzz,
-                    })
-                }}
-            ></ArgumentList>
+            <ArgumentList item={property.item} wuId={property.wuId}></ArgumentList>
         </div>
     )
 }

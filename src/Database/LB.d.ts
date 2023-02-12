@@ -35,7 +35,8 @@ namespace LB {
         fakeMethod: string
         fakeText: string
         inTable: boolean
-        tf: TypeFormat
+        // tf: TypeFormat
+        // typeFormatId: number
 
         // Parameter
         allowReserved: boolean
@@ -67,6 +68,7 @@ namespace LB {
         opened: boolean
         openedColumn: boolean
         name: string
+        table: string
         description: string
         x: number
         y: number
@@ -187,7 +189,8 @@ namespace LB {
         description: string
         example: string
         mediaType: string
-        tf: TypeFormat
+        // tf: TypeFormat
+        // typeFormatId: number
     }
 
     interface Server extends SideBarItem {
@@ -207,6 +210,26 @@ namespace LB {
         variableId: number
     }
 
+    interface TypeFormat {
+        id: number
+        isArray: boolean
+        nullable: boolean
+        type: OapiType
+        format: string
+        // targetId: number
+        // argumentzz: TypeFormat[]
+        forWuParameterId: number | null
+        ownerId: number | null
+        variableId: number | null
+        wuId: number
+        wuParameterId: number | null
+        ownerColumnId: number | null
+        ownerRequestId: number | null
+        ownerResponseId: number | null
+        ownerWuId: number | null
+        ownerWuChildId: number | null
+    }
+
     interface Variable extends SideBarItem {
         default: string
         enum: string[]
@@ -221,13 +244,8 @@ namespace LB {
         description: string
         example: string
         isMap: boolean
-        tf: TypeFormat
-    }
-
-    interface WuChild {
-        id: number
-        wuId: number
-        tf: TypeFormat
+        // typeFormatId: number
+        // tf: TypeFormat
     }
 
     interface WuColumn {
@@ -243,7 +261,6 @@ namespace LB {
         wuColumnId: number
     }
 
-    // TypeParameter
     interface WuParameter {
         id: number
         wuId: number

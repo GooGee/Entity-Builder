@@ -1,5 +1,7 @@
-import { makeColumnCRUD, makeWuColumnCRUD } from "@/Database/makeCRUD"
+import { makeWuColumnCRUD } from "@/Database/makeCRUD"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 import useToastzzStore from "@/Store/useToastzzStore"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import TypeFormatText from "../Reference/TypeFormatText"
 import ConstraintList from "./ConstraintList"
 
@@ -12,6 +14,7 @@ interface Property {
 
 export default function WuColumn(property: Property) {
     const sToastzzStore = useToastzzStore()
+    const sTypeFormatzzStore = useTypeFormatzzStore()
 
     function add() {
         if (property.wc) {
@@ -37,20 +40,19 @@ export default function WuColumn(property: Property) {
             return <ConstraintList wc={property.wc}></ConstraintList>
         }
 
+        const tf = sTypeFormatzzStore.itemzz.find(
+            (item) => item.ownerColumnId === property.item.id,
+        )
+        if (tf === undefined) {
+            return <div>{makeNotFoundText("TypeFormat", "")}</div>
+        }
+
         return (
             <TypeFormatText
                 id={property.item.id}
                 isRoot
-                item={property.item.tf}
+                item={tf}
                 wuId={property.wu.id}
-                update={function (tf) {
-                    makeColumnCRUD()
-                        .update({
-                            ...property.item,
-                            tf,
-                        })
-                        .catch(sToastzzStore.showError)
-                }}
             ></TypeFormatText>
         )
     }

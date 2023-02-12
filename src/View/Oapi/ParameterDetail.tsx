@@ -1,7 +1,9 @@
 import { makeColumnCRUD } from "@/Database/makeCRUD"
 import { ParameterStylezz } from "@/Model/Oapi"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 import useParameterPageStore from "@/Store/useParameterPageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import SelectStringButton from "../Button/SelectStringButton"
 import WebLink from "../Button/WebLink"
 import ConstraintList from "../Entity/ConstraintList"
@@ -15,6 +17,14 @@ interface Property {
 export default function ParameterDetail(property: Property) {
     const sParameterPageStore = useParameterPageStore()
     const sToastzzStore = useToastzzStore()
+    const sTypeFormatzzStore = useTypeFormatzzStore()
+
+    const tf = sTypeFormatzzStore.itemzz.find(
+        (item) => item.ownerColumnId === property.item.id,
+    )
+    if (tf === undefined) {
+        return <div>{makeNotFoundText("TypeFormat", "")}</div>
+    }
 
     function update(data: LB.Column) {
         sParameterPageStore.setItem(data)
@@ -30,16 +40,7 @@ export default function ParameterDetail(property: Property) {
                 <tr>
                     <td className="w111">type</td>
                     <td>
-                        <TypeFormat
-                            id={property.item.id}
-                            item={property.item.tf}
-                            update={function (tf) {
-                                update({
-                                    ...property.item!,
-                                    tf,
-                                })
-                            }}
-                        ></TypeFormat>
+                        <TypeFormat id={property.item.id} item={tf}></TypeFormat>
                     </td>
                 </tr>
                 <tr>

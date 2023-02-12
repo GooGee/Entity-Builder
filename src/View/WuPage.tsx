@@ -1,14 +1,15 @@
+import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import makeWu from "@/Database/Factory/makeWu"
-import { makeWuCRUD } from "@/Database/makeCRUD"
-import useListModalStore from "@/Store/useListModalStore"
+import { makeTypeFormatCRUD, makeWuCRUD } from "@/Database/makeCRUD"
+import { PageEnum } from "@/menuzz"
 import useEntityzzStore from "@/Store/useEntityzzStore"
+import useListModalStore from "@/Store/useListModalStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import useWuPageStore from "@/Store/useWuPageStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import ListModal from "./Modal/ListModal"
 import LeftRightPanel from "./Part/LeftRightPanel"
 import WuView from "./Wu/WuView"
-import { PageEnum } from "@/menuzz"
 
 export default function WuPage() {
     const sListModalStore = useListModalStore()
@@ -33,6 +34,11 @@ export default function WuPage() {
                                 }
                                 return makeWuCRUD()
                                     .create(makeWu(name, found.id))
+                                    .then((item) => {
+                                        const data = makeTypeFormat()
+                                        data.ownerWuId = item.id
+                                        return makeTypeFormatCRUD().create(data)
+                                    })
                                     .catch(sToastzzStore.showError)
                             }
                         },

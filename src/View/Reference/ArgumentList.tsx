@@ -1,26 +1,33 @@
 import { OapiType } from "@/Model/Oapi"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
 import { useState, useEffect } from "react"
 import TypeFormat from "./TypeFormat"
 
 interface Property {
-    itemzz: LB.TypeFormat[]
-    targetId: number
+    item: LB.TypeFormat
     wuId?: number
-    updateArgumentzz(argumentzz: LB.TypeFormat[]): void
 }
 
 export default function ArgumentList(property: Property) {
+    const sTypeFormatzzStore = useTypeFormatzzStore()
     const sWuParameterzzStore = useWuParameterzzStore()
+
     const [parameterzz, setParameterzz] = useState<LB.WuParameter[]>([])
+    const [tfzz, setTfzz] = useState<LB.TypeFormat[]>([])
 
     useEffect(() => {
         setParameterzz(
             sWuParameterzzStore.itemzz.filter(
-                (item) => item.wuId === property.targetId,
+                (item) => item.wuId === property.item.wuId,
             ),
         )
-    }, [property.targetId])
+        setTfzz(
+            sTypeFormatzzStore.itemzz.filter(
+                (item) => item.ownerId === property.item.id,
+            ),
+        )
+    }, [property.item, sTypeFormatzzStore.itemzz])
 
     if (parameterzz.length === 0) {
         return null
@@ -30,35 +37,26 @@ export default function ArgumentList(property: Property) {
         <div>
             &lt;
             {parameterzz.map((item, index) => {
-                const tf = property.itemzz[index]
+                const tf = tfzz[index]
 
                 if (tf === undefined) {
                     return (
-                        <span className="text-danger">
+                        <span key={item.id} className="text-danger">
                             argument {item.name} is missing
                         </span>
                     )
                 }
 
                 return (
-                    <div key={item.id} className="d-flex mt-1">
-                        <div className="text-secondary mt-2 me-1">
-                            {item.name}
-                            {item.isWu && tf.type !== OapiType.Wu ? (
-                                <span className="text-danger ms-1">must be Wu</span>
-                            ) : null}
-                        </div>
-
-                        <TypeFormat
-                            id={item.id}
-                            item={tf}
-                            wuId={property.wuId}
-                            update={function (data) {
-                                const argumentzz = [...property.itemzz]
-                                argumentzz[index] = data
-                                property.updateArgumentzz(argumentzz)
-                            }}
-                        ></TypeFormat>
+                    <div key={item.id} className="mt-1">
+                        <TypeFormat id={item.id} item={tf} wuId={property.wuId}>
+                            <div className="text-secondary me-2">
+                                {item.name}
+                                {item.isWu && tf.type !== OapiType.Wu ? (
+                                    <span className="text-danger ms-1">must be Wu</span>
+                                ) : null}
+                            </div>
+                        </TypeFormat>
                     </div>
                 )
             })}

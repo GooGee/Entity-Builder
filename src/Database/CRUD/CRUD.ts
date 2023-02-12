@@ -2,13 +2,12 @@ import { SchemaEnum } from "../createSchema"
 import {
     create,
     createMany,
+    deleteChildzz,
     deleteMany,
     findAll,
     findAllBelongTo,
     findChildzz,
-    findMany,
     findOne,
-    idOrName,
     OmitId,
     update,
     updateMany,
@@ -30,6 +29,12 @@ export default class CRUD<T extends LB.IdItem> {
         return this.deleteMany([id])
     }
 
+    deleteChildzz(parentId: number, column: string) {
+        return this.dbcf().then((dbc) =>
+            deleteChildzz(dbc, this.schema, parentId, column),
+        )
+    }
+
     deleteMany(idzz: number[]) {
         return this.dbcf().then((dbc) => deleteMany(dbc, this.schema, idzz))
     }
@@ -48,10 +53,6 @@ export default class CRUD<T extends LB.IdItem> {
         return this.dbcf().then((dbc) =>
             findChildzz<T>(dbc, this.schema, parentId, column),
         )
-    }
-
-    findMany(idzz: number[] | string[], column: idOrName = "id") {
-        return this.dbcf().then((dbc) => findMany<T>(dbc, this.schema, idzz, column))
     }
 
     observeAll(handler: (itemzz: T[]) => void) {

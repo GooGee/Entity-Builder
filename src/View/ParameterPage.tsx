@@ -1,5 +1,6 @@
 import { makeColumnTypeFormat } from "@/Database/Factory/makeColumn"
-import { makeColumnCRUD } from "@/Database/makeCRUD"
+import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
+import { makeColumnCRUD, makeTypeFormatCRUD } from "@/Database/makeCRUD"
 import { PageEnum } from "@/menuzz"
 import { OapiType } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
@@ -48,10 +49,21 @@ export default function ParameterPage(property: Property) {
 
         const data = makeColumnTypeFormat(entity.id, name, OapiType.string)
         data.style = "form"
-        if ([PageEnum.Header, PageEnum.ParameterInPath].includes(entity.name as any)) {
+        if (
+            [PageEnum.ParameterInHeader, PageEnum.ParameterInPath].includes(
+                entity.name as any,
+            )
+        ) {
             data.style = "simple"
         }
-        return makeColumnCRUD().create(data).catch(sToastzzStore.showError)
+        return makeColumnCRUD()
+            .create(data)
+            .then((item) => {
+                const data = makeTypeFormat(OapiType.integer)
+                data.ownerColumnId = item.id
+                return makeTypeFormatCRUD().create(data)
+            })
+            .catch(sToastzzStore.showError)
     }
 
     return (

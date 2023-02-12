@@ -1,17 +1,18 @@
-import makeWuChild from "@/Database/Factory/makeWuChild"
-import { makeWuChildCRUD, makeWuCRUD } from "@/Database/makeCRUD"
-import { makeIdItemMap } from "@/Factory/makeMap"
+import { makeTypeFormatCRUD, makeWuCRUD } from "@/Database/makeCRUD"
 import { CompositionKindzz, OapiType } from "@/Model/Oapi"
 import useToastzzStore from "@/Store/useToastzzStore"
-import useWuChildzzStore from "@/Store/useWuChildzzStore"
 import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import { useEffect, useState } from "react"
 import SelectButton from "../Button/SelectButton"
 import SelectStringButton from "../Button/SelectStringButton"
-import TypeParameterSelect from "../Button/TypeParameterSelect"
+import WuParameterSelect from "../Button/WuParameterSelect"
 import WebLink from "../Button/WebLink"
 import WuChild from "./WuChild"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
+import createTypeFormatArgumentzz from "@/Factory/createTypeFormatArgumentzz"
+import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 
 interface Property {
     item: LB.Wu
@@ -19,24 +20,80 @@ interface Property {
 
 export default function WuChildList(property: Property) {
     const sToastzzStore = useToastzzStore()
-    const sWuChildzzStore = useWuChildzzStore()
+    const sTypeFormatzzStore = useTypeFormatzzStore()
     const sWuParameterzzStore = useWuParameterzzStore()
     const sWuzzStore = useWuzzStore()
 
-    const [childzz, setChildzz] = useState<LB.WuChild[]>([])
-
-    const wumap = makeIdItemMap(sWuzzStore.itemzz)
+    const [childzz, setChildzz] = useState<LB.TypeFormat[]>([])
 
     useEffect(() => {
         setChildzz(
-            sWuChildzzStore.itemzz.filter((item) => item.wuId === property.item.id),
+            sTypeFormatzzStore.itemzz.filter(
+                (item) => item.ownerWuChildId === property.item.id,
+            ),
         )
-    }, [property.item, sWuChildzzStore.itemzz])
+    }, [property.item, sTypeFormatzzStore.itemzz])
 
-    function add(kind: OapiType, targetId: number) {
-        return makeWuChildCRUD()
-            .create(makeWuChild(property.item.id, kind, targetId))
+    function add(
+        kind: OapiType,
+        wuId: number = 1,
+        wuParameterId: number | null = null,
+    ) {
+        const data = makeTypeFormat(kind, wuId, wuParameterId)
+        data.ownerWuChildId = property.item.id
+        return makeTypeFormatCRUD()
+            .create(data)
+            .then(function (tf) {
+                if (kind === OapiType.Wu) {
+                    return createTypeFormatArgumentzz(wuId, tf.id)
+                }
+            })
             .catch(sToastzzStore.showError)
+    }
+
+    function makeView() {
+        return childzz.map((item) => {
+            if (item.type === OapiType.Wu) {
+                const wu = sWuzzStore.find(item.wuId!)
+                if (wu === undefined) {
+                    return (
+                        <tr>
+                            <td colSpan={3}>{makeNotFoundText("Wu", item.wuId)}</td>
+                        </tr>
+                    )
+                }
+
+                return <WuChild key={item.id} tf={item} wu={wu}></WuChild>
+            }
+
+            const wp = sWuParameterzzStore.find(item.wuParameterId ?? 0)
+            if (wp === undefined) {
+                return (
+                    <tr>
+                        <td colSpan={3}>{makeNotFoundText("WuParameter", "")}</td>
+                    </tr>
+                )
+            }
+            return (
+                <tr key={item.id}>
+                    <td>
+                        <button
+                            className="btn btn-outline-danger"
+                            type="button"
+                            onClick={function () {
+                                makeTypeFormatCRUD()
+                                    .delete(item.id)
+                                    .catch(sToastzzStore.showError)
+                            }}
+                        >
+                            - {wp.name}
+                        </button>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            )
+        })
     }
 
     return (
@@ -73,44 +130,13 @@ export default function WuChildList(property: Property) {
                     </tr>
                 </thead>
 
-                <tbody>
-                    {childzz.map((item) =>
-                        item.tf.type === OapiType.Wu ? (
-                            <WuChild
-                                key={item.id}
-                                item={item}
-                                wu={wumap.get(item.tf.targetId)}
-                            ></WuChild>
-                        ) : (
-                            <tr key={item.id}>
-                                <td>
-                                    <button
-                                        className="btn btn-outline-primary danger"
-                                        type="button"
-                                        onClick={function () {
-                                            makeWuChildCRUD()
-                                                .delete(item.id)
-                                                .catch(sToastzzStore.showError)
-                                        }}
-                                    >
-                                        -{" "}
-                                        {sWuParameterzzStore.find(item.tf.targetId)
-                                            ?.name ??
-                                            `TypeParameter ${item.tf.targetId} not found`}
-                                    </button>
-                                </td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        ),
-                    )}
-                </tbody>
+                <tbody>{makeView()}</tbody>
 
                 <tfoot>
                     <tr>
                         <td>
                             <SelectButton
-                                className="form-select inline wa"
+                                className="form-select"
                                 itemzz={sWuzzStore.itemzz}
                                 value={0}
                                 verb="Wu"
@@ -119,18 +145,31 @@ export default function WuChildList(property: Property) {
                                     if (found === undefined) {
                                         return
                                     }
+                                    if (found.id === property.item.id) {
+                                        sToastzzStore.showDanger(
+                                            "Including self will cause circular reference error",
+                                        )
+                                        return
+                                    }
                                     add(OapiType.Wu, found.id)
                                 }}
                             ></SelectButton>
                         </td>
                         <td>
-                            <TypeParameterSelect
-                                add={(found) => add(OapiType.TypeParameter, found.id)}
+                            <WuParameterSelect
+                                add={(found) => add(OapiType.WuParameter, 1, found.id)}
                                 isWu
                                 wuId={property.item.id}
-                            ></TypeParameterSelect>
+                            ></WuParameterSelect>
                         </td>
                         <td></td>
+                    </tr>
+                    <tr>
+                        <td colSpan={3}>
+                            <span className="text-danger">
+                                Be careful of circular reference
+                            </span>
+                        </td>
                     </tr>
                 </tfoot>
             </table>

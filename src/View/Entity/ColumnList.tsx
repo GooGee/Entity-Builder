@@ -1,13 +1,15 @@
 import { makeColumnTypeFormat } from "@/Database/Factory/makeColumn"
-import { makeColumnCRUD } from "@/Database/makeCRUD"
+import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
+import { makeColumnCRUD, makeTypeFormatCRUD } from "@/Database/makeCRUD"
+import { DoctrineOapiMap } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import useColumnzzStore from "@/Store/useColumnzzStore"
-import useToastzzStore from "@/Store/useToastzzStore"
-import { useEffect, useState } from "react"
-import Column from "./Column"
 import useFilezzStore from "@/Store/useFilezzStore"
-import SelectButton from "../Button/SelectButton"
+import useToastzzStore from "@/Store/useToastzzStore"
+import { useState, useEffect } from "react"
 import FileButton from "../Button/FileButton"
+import SelectButton from "../Button/SelectButton"
+import Column from "./Column"
 
 interface Property {
     entity: LB.Entity
@@ -20,6 +22,7 @@ export default function ColumnList(property: Property) {
 
     const [columnzz, setColumnzz] = useState<LB.Column[]>([])
 
+    const cizz = getCollectionItemzz("DoctrineColumnType")
     const namezz = getCollectionItemzz("CommonColumnName")
     const typezz = getCollectionItemzz("CommonColumnType")
 
@@ -40,8 +43,17 @@ export default function ColumnList(property: Property) {
                 : 111
             : 0
 
-        makeColumnCRUD()
+        return makeColumnCRUD()
             .create(makeColumnTypeFormat(property.entity.id, name, type, value, length))
+            .then((item) => {
+                const data = makeTypeFormat(
+                    DoctrineOapiMap.get(
+                        cizz.find((item) => item.name === type)?.tag ?? "",
+                    ),
+                )
+                data.ownerColumnId = item.id
+                return makeTypeFormatCRUD().create(data)
+            })
             .catch(sToastzzStore.showError)
     }
 

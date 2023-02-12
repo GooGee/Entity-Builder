@@ -1,5 +1,4 @@
 import { makeModuleActionCRUD } from "@/Database/makeCRUD"
-import LayerEnum from "@/Model/LayerEnum"
 import useDirectoryModalStore from "@/Store/useDirectoryModalStore"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
@@ -9,10 +8,10 @@ import FileList from "./FileList"
 interface Property {
     action: string
     directoryId: number
+    entity: LB.Entity
     isTest: boolean
     ma: LB.ModuleAction
     module: LB.Module
-    entity: LB.Entity
 }
 
 export default function FileView(property: Property) {
@@ -83,10 +82,10 @@ export default function FileView(property: Property) {
             <FileList
                 action={property.action}
                 directoryId={property.directoryId}
+                entity={property.entity}
                 isTest={property.isTest}
                 ma={property.ma}
                 module={property.module}
-                entity={property.entity}
                 source={itemzz}
             ></FileList>
         </table>

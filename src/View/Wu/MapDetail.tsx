@@ -1,5 +1,7 @@
 import { makeWuCRUD } from "@/Database/makeCRUD"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 import useToastzzStore from "@/Store/useToastzzStore"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import useWuPageStore from "@/Store/useWuPageStore"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
 import WebLink from "../Button/WebLink"
@@ -11,8 +13,15 @@ interface Property {
 
 export default function MapDetail(property: Property) {
     const sToastzzStore = useToastzzStore()
-
+    const sTypeFormatzzStore = useTypeFormatzzStore()
     const sWuPageStore = useWuPageStore()
+
+    const tf = sTypeFormatzzStore.itemzz.find(
+        (item) => item.ownerWuId === property.item.id,
+    )
+    if (tf === undefined) {
+        return <div>{makeNotFoundText("TypeFormat", "")}</div>
+    }
 
     function update(item: LB.Wu) {
         sWuPageStore.setItem(item)
@@ -76,14 +85,8 @@ export default function MapDetail(property: Property) {
                     <td>
                         <TypeFormat
                             id={property.item.id}
-                            item={property.item.tf}
+                            item={tf}
                             wuId={property.item.id}
-                            update={function (tf) {
-                                update({
-                                    ...property.item,
-                                    tf,
-                                })
-                            }}
                         ></TypeFormat>
                     </td>
                 </tr>

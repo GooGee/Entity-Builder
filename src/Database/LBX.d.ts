@@ -22,6 +22,11 @@ namespace LB {
         setting: Setting
     }
 
+    interface ColumnWithAlias extends Column {
+        alias: string
+        wuColumnId: number
+    }
+
     interface Composer {
         autoload: {
             "psr-4": StringMap
@@ -66,9 +71,9 @@ namespace LB {
         Server: Server[]
         ServerMap: ServerMap[]
         ServerVariable: ServerVariable[]
+        TypeFormat: TypeFormat[]
         Variable: Variable[]
         Wu: Wu[]
-        WuChild: WuChild[]
         WuColumn: WuColumn[]
         WuColumnConstraint: WuColumnConstraint[]
         WuParameter: WuParameter[]
@@ -82,7 +87,26 @@ namespace LB {
         file: File
         fileMap: StringMap
         helper: any
+        getResponseContentColumnzz(responseId: number, db: DBData): ColumnWithAlias[]
+        getTypeFormatColumnzz(
+            tf: TypeFormat,
+            argumentzz: TypeFormatWithArgumentzz[],
+            db: DBData,
+        ): ColumnWithAlias[]
         lodash: lodash
+        makeChildzzMap: <T extends IdItem>(
+            itemzz: T[],
+            column: keyof T,
+            map?: Map<number, T[]>,
+        ) => Map<number, T[]>
+        makeIdItemMap: <T extends IdItem>(
+            itemzz: T[],
+            map?: Map<number, T>,
+        ) => Map<number, T>
+        makeIdNameMap: (
+            itemzz: IdNameItem[],
+            map?: Map<number, string>,
+        ) => Map<number, string>
         ma?: ModuleAction
         module?: Module
         tree: DataForScriptTreeHelper
@@ -97,7 +121,7 @@ namespace LB {
             entity: Entity,
             action: string,
         ) => string
-        getFileName: (file: LB.File, entity: LB.Entity, action: string) => string
+        getFileName: (file: File, entity: Entity, action: string) => string
         getFileFullName: (file: File, entity: Entity, action: string) => string
         getFullNameSpace: (
             directory: Directory,
@@ -105,7 +129,7 @@ namespace LB {
             action: string,
         ) => string
         getFullNameSpaceOfFile: (file: File, entity: Entity, action: string) => string
-        makeNameSpacezz: (directory: LB.Directory, namezz: string[]) => string[]
+        makeNameSpacezz: (directory: Directory, namezz: string[]) => string[]
         replacePSR4: (name: string) => void
     }
 
@@ -181,7 +205,7 @@ namespace LB {
         number = "number",
         string = "string",
         Enum = "Enum",
-        TypeParameter = "TypeParameter",
+        WuParameter = "WuParameter",
         Wu = "Wu",
     }
 
@@ -199,13 +223,4 @@ namespace LB {
 
     type TableKey = keyof DBTable
     type TableEnum = Record<TableKey, TableKey>
-
-    interface TypeFormat {
-        isArray: boolean
-        nullable: boolean
-        type: OapiType
-        format: string
-        targetId: number
-        argumentzz: TypeFormat[]
-    }
 }

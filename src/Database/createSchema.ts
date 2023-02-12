@@ -26,9 +26,9 @@ export enum SchemaEnum {
     Server = "Server",
     ServerMap = "ServerMap",
     ServerVariable = "ServerVariable",
+    TypeFormat = "TypeFormat",
     Variable = "Variable",
     Wu = "Wu",
-    WuChild = "WuChild",
     WuColumn = "WuColumn",
     WuColumnConstraint = "WuColumnConstraint",
     WuParameter = "WuParameter",
@@ -80,10 +80,36 @@ export default function createSchema(builder: lf.Builder) {
     item = SchemaEnum.Entity
     tb = createForSideBarUniqueItem(builder, item)
         .addColumn("isTable", lf.Type.BOOLEAN)
+        .addColumn("table", lf.Type.STRING)
         .addColumn("opened", lf.Type.BOOLEAN)
         .addColumn("openedColumn", lf.Type.BOOLEAN)
         .addColumn("x", lf.Type.INTEGER)
         .addColumn("y", lf.Type.INTEGER)
+
+    item = SchemaEnum.TypeFormat
+    tb = builder
+        .createTable(item)
+        .addColumn("id", lf.Type.INTEGER)
+        .addPrimaryKey(["id"], true)
+        .addColumn("type", lf.Type.STRING)
+        .addColumn("format", lf.Type.STRING)
+        .addColumn("isArray", lf.Type.BOOLEAN)
+        .addColumn("nullable", lf.Type.BOOLEAN)
+        .addColumn("ownerId", lf.Type.INTEGER) // TypeFormat id
+        .addNullable(["ownerId"])
+    makeForeignKey(tb, item, SchemaEnum.Variable)
+    makeForeignKey(tb, item, SchemaEnum.Wu)
+    makeForeignKey(tb, item, SchemaEnum.WuParameter) // for WuParameter
+    makeForeignKey(tb, item, SchemaEnum.WuParameter, "forWuParameterId", true) // for argument
+    makeForeignKey(tb, item, SchemaEnum.Column, "ownerColumnId", true)
+    makeForeignKey(tb, item, SchemaEnum.Request, "ownerRequestId", true)
+    makeForeignKey(tb, item, SchemaEnum.Response, "ownerResponseId", true)
+    makeForeignKey(tb, item, SchemaEnum.Wu, "ownerWuId", true) // Wu map
+    makeForeignKey(tb, item, SchemaEnum.Wu, "ownerWuChildId", true) // Wu id
+    tb.addNullable([
+        makeForeignKeyId(SchemaEnum.Variable),
+        makeForeignKeyId(SchemaEnum.WuParameter),
+    ])
 
     item = SchemaEnum.Column
     tb = builder
@@ -106,7 +132,6 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("fakeMethod", lf.Type.STRING)
         .addColumn("fakeText", lf.Type.STRING)
         .addColumn("inTable", lf.Type.BOOLEAN)
-        .addColumn("tf", lf.Type.OBJECT)
         .addPrimaryKey(["id"], true)
         .addColumn("allowReserved", lf.Type.BOOLEAN)
         .addColumn("color", lf.Type.STRING)
@@ -168,16 +193,7 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("example", lf.Type.STRING)
         .addColumn("isRequest", lf.Type.BOOLEAN)
         .addColumn("isMap", lf.Type.BOOLEAN)
-        .addColumn("tf", lf.Type.OBJECT)
     makeForeignKey(tb, item, SchemaEnum.Entity)
-
-    item = SchemaEnum.WuChild
-    tb = builder
-        .createTable(item)
-        .addColumn("id", lf.Type.INTEGER)
-        .addColumn("tf", lf.Type.OBJECT)
-        .addPrimaryKey(["id"], true)
-    makeForeignKey(tb, item, SchemaEnum.Wu)
 
     item = SchemaEnum.WuColumn
     tb = builder
@@ -196,7 +212,6 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.ColumnConstraint)
     makeForeignKey(tb, item, SchemaEnum.WuColumn)
 
-    // TypeParameter
     item = SchemaEnum.WuParameter
     tb = builder
         .createTable(item)
@@ -282,13 +297,11 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("example", lf.Type.STRING)
         .addColumn("mediaType", lf.Type.STRING)
         .addColumn("required", lf.Type.BOOLEAN)
-        .addColumn("tf", lf.Type.OBJECT)
 
     item = SchemaEnum.Response
     tb = createForSideBarUniqueItem(builder, item)
         .addColumn("example", lf.Type.STRING)
         .addColumn("mediaType", lf.Type.STRING)
-        .addColumn("tf", lf.Type.OBJECT)
 
     item = SchemaEnum.ModuleActionResponse
     tb = builder
@@ -396,13 +409,19 @@ function makeForeignKey(
     schema: SchemaEnum,
     target: SchemaEnum,
     column?: string,
+    nullable = false,
 ) {
     const name = column ?? makeForeignKeyId(target)
-    return tb.addColumn(name, lf.Type.INTEGER).addForeignKey(`fk_${schema}_${name}`, {
+    tb.addColumn(name, lf.Type.INTEGER).addForeignKey(`fk_${schema}_${name}`, {
         action: lf.ConstraintAction.CASCADE,
         local: name,
         ref: target + ".id",
     })
+
+    if (nullable) {
+        return tb.addNullable([name])
+    }
+    return tb
 }
 
 export function makeForeignKeyId(target: string) {

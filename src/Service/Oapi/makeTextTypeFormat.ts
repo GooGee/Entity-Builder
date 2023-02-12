@@ -1,4 +1,5 @@
 import { OapiType } from "@/Model/Oapi"
+import makeNotFoundText from "../../Factory/makeNotFoundText"
 
 export let errorTypeFormat = false
 
@@ -8,6 +9,7 @@ export function clearError() {
 
 export default function makeTextTypeFormat(
     tf: LB.TypeFormat,
+    sTypeFormatzzStore: LB.Finder<LB.TypeFormat>,
     sVariablezzStore: LB.Finder<LB.Variable>,
     sWuParameterzzStore: LB.Finder<LB.WuParameter>,
     sWuzzStore: LB.Finder<LB.Wu>,
@@ -20,19 +22,19 @@ export default function makeTextTypeFormat(
 
     function make(): string {
         if (tf.type === OapiType.Enum) {
-            const found = sVariablezzStore.find(tf.targetId)
+            const found = sVariablezzStore.find(tf.variableId ?? 0)
             if (found === undefined) {
                 errorTypeFormat = true
-                return `Enum ${tf.targetId} not found`
+                return makeNotFoundText("Enum", tf.variableId ?? "")
             }
             return `Enum ${found.name}`
         }
 
-        if (tf.type === OapiType.TypeParameter) {
-            const found = sWuParameterzzStore.find(tf.targetId)
+        if (tf.type === OapiType.WuParameter) {
+            const found = sWuParameterzzStore.find(tf.wuParameterId ?? 0)
             if (found === undefined) {
                 errorTypeFormat = true
-                return `TypeParameter ${tf.targetId} not found`
+                return makeNotFoundText("WuParameter", tf.wuParameterId ?? "")
             }
             return found.name
         }
@@ -45,18 +47,27 @@ export default function makeTextTypeFormat(
     }
 
     function makeWuText(): string {
-        const found = sWuzzStore.find(tf.targetId)
+        const found = sWuzzStore.find(tf.wuId)
         if (found === undefined) {
             errorTypeFormat = true
-            return `Wu ${tf.targetId} not found`
+            return makeNotFoundText("Wu", tf.wuId)
         }
 
-        if (tf.argumentzz.length === 0) {
+        const argumentzz = sTypeFormatzzStore.itemzz.filter(
+            (item) => item.ownerId === tf.id,
+        )
+        if (argumentzz.length === 0) {
             return found.name
         }
 
-        const zz = tf.argumentzz.map((item) =>
-            makeTextTypeFormat(item, sVariablezzStore, sWuParameterzzStore, sWuzzStore),
+        const zz = argumentzz.map((item) =>
+            makeTextTypeFormat(
+                item,
+                sTypeFormatzzStore,
+                sVariablezzStore,
+                sWuParameterzzStore,
+                sWuzzStore,
+            ),
         )
         return `${found.name}<${zz.join(", ")}>`
     }

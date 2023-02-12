@@ -1,4 +1,6 @@
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import { ReactElement } from "react"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
 import SelectButton from "../Button/SelectButton"
@@ -14,8 +16,19 @@ interface Property {
 }
 
 export default function MediaType(property: Property) {
+    const sTypeFormatzzStore = useTypeFormatzzStore()
+
     const itemzz = getCollectionItemzz("MediaType")
     const mti = itemzz.find((item) => item.name === property.item.mediaType)?.id ?? 0
+
+    const tf = sTypeFormatzzStore.itemzz.find(
+        (item) =>
+            (property.isRequest ? item.ownerRequestId : item.ownerResponseId) ===
+            property.item.id,
+    )
+    if (tf === undefined) {
+        return <div>{makeNotFoundText("TypeFormat", "")}</div>
+    }
 
     return (
         <table className="table td0-tar">
@@ -55,16 +68,7 @@ export default function MediaType(property: Property) {
                 <tr>
                     <td>content</td>
                     <td>
-                        <TypeFormat
-                            id={property.item.id}
-                            item={property.item.tf}
-                            update={function (tf) {
-                                property.update({
-                                    ...property.item,
-                                    tf,
-                                })
-                            }}
-                        ></TypeFormat>
+                        <TypeFormat id={property.item.id} item={tf}></TypeFormat>
                     </td>
                 </tr>
                 <tr>

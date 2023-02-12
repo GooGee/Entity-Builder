@@ -1,29 +1,25 @@
-import { makeWuChildCRUD } from "@/Database/makeCRUD"
+import { makeTypeFormatCRUD } from "@/Database/makeCRUD"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
 import useWuColumnzzStore from "@/Store/useWuColumnzzStore"
-import useWuPageStore from "@/Store/useWuPageStore"
-import showConfirm from "../Dialog/showConfirm"
-import TypeFormatTextList from "../Reference/TypeFormatTextList"
+import ArgumentList from "../Reference/ArgumentList"
 
 interface Property {
-    item: LB.WuChild
-    wu?: LB.Wu
+    tf: LB.TypeFormat
+    wu: LB.Wu
 }
 
 export default function WuChild(property: Property) {
     const sColumnzzStore = useColumnzzStore()
     const sToastzzStore = useToastzzStore()
+    const sTypeFormatzzStore = useTypeFormatzzStore()
     const sWuColumnzzStore = useWuColumnzzStore()
-    const sWuPageStore = useWuPageStore()
-
-    if (property.wu === undefined) {
-        return <div>-- Wu {property.item.tf.targetId} not found --</div>
-    }
 
     const set: Set<number> = new Set()
     sWuColumnzzStore.itemzz.forEach((item) =>
-        item.wuId === property.item.tf.targetId ? set.add(item.columnId) : null,
+        item.wuId === property.tf.wuId ? set.add(item.columnId) : null,
     )
 
     const columnzz = sColumnzzStore.itemzz.filter((item) => set.has(item.id))
@@ -35,42 +31,40 @@ export default function WuChild(property: Property) {
         )
     }
 
+    function makeType(column: LB.Column) {
+        const tf = sTypeFormatzzStore.itemzz.find(
+            (item) => item.ownerColumnId === column.id,
+        )
+        if (tf === undefined) {
+            return <div>{makeNotFoundText("TypeFormat", "")}</div>
+        }
+
+        return (
+            <span>
+                {tf.type}
+                {tf.isArray ? "[]" : ""}
+            </span>
+        )
+    }
+
     function makeView() {
         return (
             <>
                 <div>
                     <button
-                        className="btn btn-outline-primary danger"
+                        className="btn btn-outline-danger"
                         type="button"
                         onClick={function () {
-                            showConfirm()
-                                .then((response) => {
-                                    if (response.isConfirmed) {
-                                        return makeWuChildCRUD().delete(
-                                            property.item.id,
-                                        )
-                                    }
-                                })
+                            makeTypeFormatCRUD()
+                                .delete(property.tf.id)
                                 .catch(sToastzzStore.showError)
                         }}
                     >
-                        - {property.wu!.name}
+                        - {property.wu.name}
                     </button>
                 </div>
-                <TypeFormatTextList
-                    itemzz={property.item.tf.argumentzz}
-                    targetId={property.item.tf.targetId}
-                    wuId={sWuPageStore.item!.id}
-                    updateArgumentzz={function (argumentzz) {
-                        makeWuChildCRUD().update({
-                            ...property.item,
-                            tf: {
-                                ...property.item.tf,
-                                argumentzz,
-                            },
-                        })
-                    }}
-                ></TypeFormatTextList>
+
+                <ArgumentList item={property.tf} wuId={property.wu.id}></ArgumentList>
             </>
         )
     }
@@ -83,10 +77,7 @@ export default function WuChild(property: Property) {
                         <td rowSpan={columnzz.length}>{makeView()}</td>
                     ) : null}
                     <td>{item.name}</td>
-                    <td>
-                        {item.tf.type}
-                        {item.tf.isArray ? "[]" : ""}
-                    </td>
+                    <td>{makeType(item)}</td>
                 </tr>
             ))}
         </>

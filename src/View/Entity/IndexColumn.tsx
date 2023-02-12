@@ -1,5 +1,5 @@
 import { makeIndexColumnCRUD } from "@/Database/makeCRUD"
-import getItemName from "@/Service/getItemName"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 import useToastzzStore from "@/Store/useToastzzStore"
 
 interface Property {
@@ -25,7 +25,8 @@ export default function IndexColumn(property: Property) {
             >
                 -
             </button>
-            {getItemName(property.cicm.get(property.item.columnId))}
+            {property.cicm.get(property.item.columnId)?.name ??
+                makeNotFoundText("Column", property.item.columnId)}
         </>
     )
 }

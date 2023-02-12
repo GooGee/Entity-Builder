@@ -1,6 +1,5 @@
 import { cloneFile } from "@/Database/Factory/makeFile"
 import LayerEnum from "@/Model/LayerEnum"
-import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useModuleActionFilezzStore from "@/Store/useModuleActionFilezzStore"
@@ -9,6 +8,7 @@ import FileButton from "../Button/FileButton"
 import FileList from "../Entity/FileList"
 import TabList from "../Part/TabList"
 import FileView from "./FileView"
+import ViewFileList from "./ViewFileList"
 
 const Step = StepEnum.File
 
@@ -24,10 +24,10 @@ enum TabEnum {
     All = "All",
     Crud = "Crud",
     Test = "Test",
+    View = "View",
 }
 
 export default function FileTabList(property: Property) {
-    const sDirectoryzzStore = useDirectoryzzStore()
     const sFilezzStore = useFilezzStore()
     const sFlowPageStore = useFlowPageStore()
     const sModuleActionFilezzStore = useModuleActionFilezzStore()
@@ -89,19 +89,6 @@ export default function FileTabList(property: Property) {
         )
     }
 
-    function getName(item: LB.ModuleActionFile) {
-        const file = sFilezzStore.find(item.fileId)
-        if (file === undefined) {
-            return `-- file ${item.fileId} not found --`
-        }
-
-        return sDirectoryzzStore.treeHelper.getFileName(
-            file,
-            property.entity,
-            property.action,
-        )
-    }
-
     return (
         <div>
             <h3>{Step}</h3>
@@ -109,17 +96,21 @@ export default function FileTabList(property: Property) {
             <TabList tab={tab} tabzz={tabzz} setTab={setTab}></TabList>
 
             {tab === TabEnum.All ? (
-                <FileList entity={property.entity}></FileList>
+                <FileList
+                    entity={property.entity}
+                    ma={property.ma}
+                    module={property.module}
+                ></FileList>
             ) : null}
 
             {tab === TabEnum.Crud ? (
                 <FileView
                     action={property.action}
                     directoryId={property.ma.directoryId}
+                    entity={property.entity}
                     isTest={false}
                     ma={property.ma}
                     module={property.module}
-                    entity={property.entity}
                 ></FileView>
             ) : null}
 
@@ -127,11 +118,19 @@ export default function FileTabList(property: Property) {
                 <FileView
                     action={property.action}
                     directoryId={property.ma.testDirectoryId}
+                    entity={property.entity}
                     isTest={true}
                     ma={property.ma}
                     module={property.module}
-                    entity={property.entity}
                 ></FileView>
+            ) : null}
+
+            {tab === TabEnum.View ? (
+                <ViewFileList
+                    entity={property.entity}
+                    ma={property.ma}
+                    module={property.module}
+                ></ViewFileList>
             ) : null}
         </div>
     )

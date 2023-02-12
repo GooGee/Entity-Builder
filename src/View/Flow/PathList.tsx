@@ -95,7 +95,6 @@ export default function PathList(property: Property) {
                 {Step}
             </h3>
             <TabItemList
-                empty={sFlowPageStore.step !== Step}
                 tab={sFlowPageStore.path}
                 tabzz={routezz}
                 setTab={(item) => sFlowPageStore.setPath(item)}

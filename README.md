@@ -1,10 +1,12 @@
 # Laravel Builder
 
+Intuitive productivity tool for Laravel. [demo](https://googee.github.io/laravel-builder/build002)
+
 You no longer need to write migrations, Doctrine will do it for you.
 
-Doctrine compares files in `database/Entity` with the database schemas, and generate a migration file of their difference.
+[PhpStorm plugin Laravel Generator](https://plugins.jetbrains.com/plugin/15276)
 
-[demo](https://googee.github.io/laravel-builder/build002)
+[PhpStorm plugin Laravel Builder](https://plugins.jetbrains.com/plugin/20064)
 
 
 ## features
@@ -49,6 +51,8 @@ php artisan setupLaravelBuilder
 - click `diff` button to generate a migration file
 - click `►|` button to run `php artisan migrate`
 - to ignore a table, add its name to the file `config/laravelbuilder.php`
+
+Doctrine compares files in `database/Entity` with the database schemas, and generate a migration file of their difference.
 
 
 ## how to generate CRUD files?

@@ -2,7 +2,7 @@ import { makeModuleCRUD } from "@/Database/makeCRUD"
 import useDirectoryModalStore from "@/Store/useDirectoryModalStore"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
-import useFlowPageStore from "@/Store/useFlowPageStore"
+import useModulePageStore from "@/Store/useModulePageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { ReactElement } from "react"
 import SelectButton from "../Button/SelectButton"
@@ -18,7 +18,7 @@ export default function ModuleDetail(property: Property) {
     const sDirectoryModal = useDirectoryModalStore()
     const sDirectoryzzStore = useDirectoryzzStore()
     const sFilezzStore = useFilezzStore()
-    const sFlowPageStore = useFlowPageStore()
+    const sModulePageStore = useModulePageStore()
     const sToastzzStore = useToastzzStore()
 
     const directory = sDirectoryzzStore.find(property.item.directoryId)
@@ -41,7 +41,7 @@ export default function ModuleDetail(property: Property) {
     function update(item: LB.Module) {
         makeModuleCRUD()
             .update(item)
-            .then((item) => sFlowPageStore.setModule(item))
+            .then((item) => sModulePageStore.setItem(item))
             .catch(sToastzzStore.showError)
     }
 

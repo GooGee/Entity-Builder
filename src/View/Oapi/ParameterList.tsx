@@ -41,12 +41,12 @@ export default function ParameterList(property: Property) {
 
     function getItemzz() {
         if (property.responseId) {
-            return getParameterzz(PageEnum.Header)
+            return getParameterzz(PageEnum.ParameterInHeader)
         }
 
         return [
             ...getParameterzz(PageEnum.ParameterInCookie),
-            ...getParameterzz(PageEnum.Header),
+            ...getParameterzz(PageEnum.ParameterInHeader),
             ...getParameterzz(PageEnum.ParameterInPath),
             ...getParameterzz(PageEnum.ParameterInQuery),
         ]
@@ -108,7 +108,7 @@ export default function ParameterList(property: Property) {
                         -- add --
                     </option>
 
-                    {makeOptionzz(PageEnum.Header)}
+                    {makeOptionzz(PageEnum.ParameterInHeader)}
 
                     {property.responseId ? null : (
                         <>

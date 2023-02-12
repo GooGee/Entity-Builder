@@ -33,7 +33,7 @@ export default function makeParameter(
         return
     }
 
-    if (entity.name === PageEnum.Header) {
+    if (entity.name === PageEnum.ParameterInHeader) {
         builder.addHeader(column.name, data)
         return
     }
@@ -59,7 +59,7 @@ export function makeParameterReference(
         return makeReferenceOf(column.name, ComponentKind.parameters)
     }
 
-    if (entity.name === PageEnum.Header) {
+    if (entity.name === PageEnum.ParameterInHeader) {
         return makeReferenceOf(column.name, ComponentKind.headers)
     }
 
