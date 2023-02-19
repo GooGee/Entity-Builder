@@ -1,6 +1,6 @@
 import { SchemaEnum } from "./createSchema"
-import CRUD from "./CRUD/CRUD"
-import RelationCRUD from "./CRUD/RelationCRUD"
+import CRUD from "./CRUD"
+import RelationCRUD from "./RelationCRUD"
 import getDBC, { DBCFactory } from "./getDBC"
 
 export default function makeCRUD<T extends LB.IdItem>(
@@ -28,6 +28,10 @@ export function makeColumnConstraintCRUD() {
 
 export function makeDirectoryCRUD() {
     return new CRUD<LB.Directory>(getDBC, SchemaEnum.Directory)
+}
+
+export function makeDoctrineColumnTypeCRUD() {
+    return new CRUD<LB.DoctrineColumnType>(getDBC, SchemaEnum.DoctrineColumnType)
 }
 
 export function makeEntityCRUD() {

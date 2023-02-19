@@ -12,13 +12,6 @@ export enum OapiType {
 
 export const OapiTypezz = Object.keys(OapiType) as Array<keyof typeof OapiType>
 
-export const DoctrineOapiMap = new Map([
-    ["bool", OapiType.boolean],
-    ["float", OapiType.number],
-    ["int", OapiType.integer],
-    ["string", OapiType.string],
-])
-
 export enum OapiSchemaType {
     array = "array",
     object = "object",

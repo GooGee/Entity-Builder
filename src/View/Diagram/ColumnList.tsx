@@ -1,11 +1,9 @@
-import { makeIntegerColumn } from "@/Database/Factory/makeColumn"
-import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
-import { makeColumnCRUD, makeTypeFormatCRUD, makeEntityCRUD } from "@/Database/makeCRUD"
+import { makeTypeFormatCRUD, makeEntityCRUD } from "@/Database/makeCRUD"
+import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
 import { OapiType } from "@/Model/Oapi"
 import useToastzzStore from "@/Store/useToastzzStore"
 import showNameInput from "../Dialog/showNameInput"
 import Column from "./Column"
-
 
 interface Property {
     columnzz: LB.Column[]
@@ -23,20 +21,13 @@ function ColumnList(property: Property) {
                         showNameInput("Please input the column name", "")
                             .then((response) => {
                                 if (response.isConfirmed) {
-                                    return makeColumnCRUD()
-                                        .create(
-                                            makeIntegerColumn(
-                                                property.item.id,
-                                                response.value,
-                                            ),
-                                        )
-                                        .then((item) => {
-                                            const data = makeTypeFormat(
-                                                OapiType.integer,
-                                            )
-                                            data.ownerColumnId = item.id
-                                            return makeTypeFormatCRUD().create(data)
-                                        })
+                                    return createColumnTypeFormat(
+                                        property.item.id,
+                                        response.value,
+                                        OapiType.integer,
+                                    ).then(([column, tf]) =>
+                                        makeTypeFormatCRUD().create(tf),
+                                    )
                                 }
                             })
                             .catch(sToastzzStore.showError)

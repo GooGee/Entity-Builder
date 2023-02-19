@@ -11,14 +11,14 @@ import {
     makeTypeFormatCRUD,
 } from "@/Database/makeCRUD"
 import RelationType from "@/Database/RelationType"
-import { DoctrineOapiMap } from "@/Model/Oapi"
+import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
 import getCollectionItemzz from "./getCollectionItemzz"
 
 function createColumn(
     item: LB.DoctrineColumn,
     entity: LB.Entity,
     rozz: LB.CollectionItem[],
-    cizz: LB.CollectionItem[],
+    dct?: LB.DoctrineColumnType,
 ) {
     // console.log(`createColumn ${item.name}`)
     let value = ""
@@ -32,7 +32,15 @@ function createColumn(
         }
     }
 
-    const data = makeColumn(entity.id, item.name, item.type, value, item.length, rozz)
+    const data = makeColumn(
+        entity.id,
+        item.name,
+        item.type,
+        value,
+        item.length,
+        rozz,
+        dct,
+    )
     data.comment = item.comment
     data.nullable = item.nullable
     data.scale = item.scale
@@ -40,11 +48,7 @@ function createColumn(
     return makeColumnCRUD()
         .create(data)
         .then((item) => {
-            const data = makeTypeFormat(
-                DoctrineOapiMap.get(
-                    cizz.find((ci) => ci.name === item.type)?.tag ?? "",
-                ),
-            )
+            const data = makeTypeFormat(dct?.oapiType as any)
             data.ownerColumnId = item.id
             return makeTypeFormatCRUD()
                 .create(data)
@@ -80,7 +84,7 @@ function createTable(item: LB.DoctrineTable) {
 }
 
 export default async function loadDBSchema(entity: LB.DoctrineSchema) {
-    const cizz = getCollectionItemzz("DoctrineColumnType")
+    const store = useDoctrineColumnTypezzStore.getState()
     const rozz = getCollectionItemzz("ReadOnlyColumn")
     const tablezz = entity.tablezz.filter((item) => item.included)
 
@@ -100,9 +104,12 @@ export default async function loadDBSchema(entity: LB.DoctrineSchema) {
                 found = []
                 tcm.set(table.name, found)
             }
-            await createColumn(item, tm.get(table.name)!, rozz, cizz).then((response) =>
-                found!.push(response),
-            )
+            await createColumn(
+                item,
+                tm.get(table.name)!,
+                rozz,
+                store.findByName(item.type),
+            ).then((response) => found!.push(response))
         }
     }
 

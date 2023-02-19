@@ -33,13 +33,15 @@ export default function FlowView() {
         return <h3 className="pointer hover-blue c-secondary">{title}</h3>
     }
 
+    let backgroundColor = "white"
+    if (sModulePageStore.item) {
+        backgroundColor = sModulePageStore.item.color + 2
+    }
+
     return (
         <div>
-            <div
-                className="position-fixed bg-white w-100"
-                style={{ zIndex: 111 }}
-            >
-                <div className="bg-primary bg-opacity-10 pt-3 ps-3">
+            <div className="position-fixed bg-white w-100" style={{ zIndex: 111 }}>
+                <div className="pt-3 ps-3" style={{ backgroundColor }}>
                     <TabList
                         tab={sFlowPageStore.step}
                         tabzz={stepzz}

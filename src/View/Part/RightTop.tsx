@@ -1,4 +1,4 @@
-import CRUD from "@/Database/CRUD/CRUD"
+import CRUD from "@/Database/CRUD"
 import { SideBarDataType } from "@/Factory/makeSideBarStoreData"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { SweetAlertResult } from "sweetalert2"
@@ -9,7 +9,8 @@ interface Property {
     message: string
     validateName?: boolean
     makeCRUD(): CRUD<LB.SideBarItem>
-    showDialog: (text: string, inputValue: string) => Promise<SweetAlertResult<any>>
+    onDeleteBefore?(): Promise<any>
+    showDialog(text: string, inputValue: string): Promise<SweetAlertResult<any>>
     useItemPageStore(): SideBarDataType<LB.SideBarItem>
 }
 
@@ -37,10 +38,18 @@ export default function RightTop(property: Property) {
                             showConfirm()
                                 .then(function (response) {
                                     if (response.isConfirmed) {
-                                        property
-                                            .makeCRUD()
-                                            .delete(property.item.id)
-                                            .catch(sToastzzStore.showError)
+                                        const promis =
+                                            property.onDeleteBefore ??
+                                            function () {
+                                                return Promise.resolve()
+                                            }
+
+                                        promis().then(() =>
+                                            property
+                                                .makeCRUD()
+                                                .delete(property.item.id)
+                                                .catch(sToastzzStore.showError),
+                                        )
                                     }
                                 })
                                 .catch(sToastzzStore.showError)

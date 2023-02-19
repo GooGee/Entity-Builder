@@ -22,15 +22,6 @@
                     "color": "#fff"
                 },
                 {
-                    "name": "DoctrineColumnType",
-                    "description": "https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/types.html#mapping-matrix",
-                    "valueDescription": "",
-                    "tagDescription": "PHP type",
-                    "reserved": true,
-                    "id": 1,
-                    "color": "#fff"
-                },
-                {
                     "name": "FakeForColumnName",
                     "color": "#fff",
                     "description": "set column fake value when column name found in this collection",
@@ -38,15 +29,6 @@
                     "tagDescription": "Faker method",
                     "reserved": true,
                     "id": 11
-                },
-                {
-                    "name": "FakeForColumnType",
-                    "color": "#fff",
-                    "description": "set column fake value when column type found in this collection",
-                    "valueDescription": "PHP expression",
-                    "tagDescription": "Faker method",
-                    "reserved": true,
-                    "id": 12
                 },
                 {
                     "name": "FakerMethod",
@@ -89,7 +71,7 @@
                     "color": "#fff",
                     "description": "",
                     "valueDescription": "REST method",
-                    "tagDescription": "directoryId",
+                    "tagDescription": "",
                     "reserved": true,
                     "id": 10
                 },
@@ -119,1094 +101,18 @@
                     "tagDescription": "",
                     "reserved": true,
                     "id": 16
+                },
+                {
+                    "color": "#fff",
+                    "description": "React-Admin Component https://marmelab.com/react-admin/documentation.html",
+                    "name": "RAC",
+                    "reserved": true,
+                    "valueDescription": "",
+                    "tagDescription": "",
+                    "id": 17
                 }
             ],
             "CollectionItem": [
-                {
-                    "collectionId": 1,
-                    "name": "smallint",
-                    "value": "",
-                    "tag": "int",
-                    "id": 1
-                },
-                {
-                    "collectionId": 1,
-                    "name": "integer",
-                    "value": "",
-                    "tag": "int",
-                    "id": 2
-                },
-                {
-                    "collectionId": 1,
-                    "name": "bigint",
-                    "value": "",
-                    "tag": "int",
-                    "id": 3
-                },
-                {
-                    "collectionId": 1,
-                    "name": "decimal",
-                    "value": "",
-                    "tag": "float",
-                    "id": 4
-                },
-                {
-                    "collectionId": 1,
-                    "name": "float",
-                    "value": "",
-                    "tag": "float",
-                    "id": 5
-                },
-                {
-                    "collectionId": 1,
-                    "name": "string",
-                    "value": "",
-                    "tag": "string",
-                    "id": 6
-                },
-                {
-                    "collectionId": 1,
-                    "name": "text",
-                    "value": "",
-                    "tag": "string",
-                    "id": 7
-                },
-                {
-                    "collectionId": 1,
-                    "name": "guid",
-                    "value": "",
-                    "tag": "string",
-                    "id": 8
-                },
-                {
-                    "collectionId": 1,
-                    "name": "binary",
-                    "value": "",
-                    "tag": "resource",
-                    "id": 9
-                },
-                {
-                    "collectionId": 1,
-                    "name": "blob",
-                    "value": "",
-                    "tag": "resource",
-                    "id": 10
-                },
-                {
-                    "collectionId": 1,
-                    "name": "boolean",
-                    "value": "",
-                    "tag": "bool",
-                    "id": 11
-                },
-                {
-                    "collectionId": 1,
-                    "name": "date",
-                    "value": "",
-                    "tag": "\\DateTime",
-                    "id": 12
-                },
-                {
-                    "collectionId": 1,
-                    "name": "datetime",
-                    "value": "",
-                    "tag": "\\DateTime",
-                    "id": 13
-                },
-                {
-                    "collectionId": 1,
-                    "name": "datetimetz",
-                    "value": "",
-                    "tag": "\\DateTime",
-                    "id": 14
-                },
-                {
-                    "collectionId": 1,
-                    "name": "time",
-                    "value": "",
-                    "tag": "\\DateTime",
-                    "id": 15
-                },
-                {
-                    "collectionId": 1,
-                    "name": "array",
-                    "value": "",
-                    "tag": "array",
-                    "id": 16
-                },
-                {
-                    "collectionId": 1,
-                    "name": "json",
-                    "value": "",
-                    "tag": "array",
-                    "id": 17
-                },
-                {
-                    "collectionId": 1,
-                    "name": "object",
-                    "value": "",
-                    "tag": "array",
-                    "id": 18
-                },
-                {
-                    "collectionId": 3,
-                    "name": "citySuffix",
-                    "value": "",
-                    "tag": "",
-                    "id": 28
-                },
-                {
-                    "collectionId": 3,
-                    "name": "streetSuffix",
-                    "value": "",
-                    "tag": "",
-                    "id": 29
-                },
-                {
-                    "collectionId": 3,
-                    "name": "buildingNumber",
-                    "value": "",
-                    "tag": "",
-                    "id": 30
-                },
-                {
-                    "collectionId": 3,
-                    "name": "city",
-                    "value": "",
-                    "tag": "",
-                    "id": 31
-                },
-                {
-                    "collectionId": 3,
-                    "name": "streetName",
-                    "value": "",
-                    "tag": "",
-                    "id": 32
-                },
-                {
-                    "collectionId": 3,
-                    "name": "streetAddress",
-                    "value": "",
-                    "tag": "",
-                    "id": 33
-                },
-                {
-                    "collectionId": 3,
-                    "name": "postcode",
-                    "value": "",
-                    "tag": "",
-                    "id": 34
-                },
-                {
-                    "collectionId": 3,
-                    "name": "address",
-                    "value": "",
-                    "tag": "",
-                    "id": 35
-                },
-                {
-                    "collectionId": 3,
-                    "name": "country",
-                    "value": "",
-                    "tag": "",
-                    "id": 36
-                },
-                {
-                    "collectionId": 3,
-                    "name": "latitude",
-                    "value": "",
-                    "tag": "",
-                    "id": 37
-                },
-                {
-                    "collectionId": 3,
-                    "name": "longitude",
-                    "value": "",
-                    "tag": "",
-                    "id": 38
-                },
-                {
-                    "collectionId": 3,
-                    "name": "localCoordinates",
-                    "value": "",
-                    "tag": "",
-                    "id": 39
-                },
-                {
-                    "collectionId": 3,
-                    "name": "randomDigitNotNull",
-                    "value": "",
-                    "tag": "",
-                    "id": 40
-                },
-                {
-                    "collectionId": 3,
-                    "name": "passthrough",
-                    "value": "",
-                    "tag": "",
-                    "id": 41
-                },
-                {
-                    "collectionId": 3,
-                    "name": "randomLetter",
-                    "value": "",
-                    "tag": "",
-                    "id": 42
-                },
-                {
-                    "collectionId": 3,
-                    "name": "randomAscii",
-                    "value": "",
-                    "tag": "",
-                    "id": 43
-                },
-                {
-                    "collectionId": 3,
-                    "name": "randomElements",
-                    "value": "",
-                    "tag": "",
-                    "id": 44
-                },
-                {
-                    "collectionId": 3,
-                    "name": "randomElement",
-                    "value": "",
-                    "tag": "",
-                    "id": 45
-                },
-                {
-                    "collectionId": 3,
-                    "name": "randomKey",
-                    "value": "",
-                    "tag": "",
-                    "id": 46
-                },
-                {
-                    "collectionId": 3,
-                    "name": "shuffle",
-                    "value": "",
-                    "tag": "",
-                    "id": 47
-                },
-                {
-                    "collectionId": 3,
-                    "name": "shuffleArray",
-                    "value": "",
-                    "tag": "",
-                    "id": 48
-                },
-                {
-                    "collectionId": 3,
-                    "name": "shuffleString",
-                    "value": "",
-                    "tag": "",
-                    "id": 49
-                },
-                {
-                    "collectionId": 3,
-                    "name": "numerify",
-                    "value": "",
-                    "tag": "",
-                    "id": 50
-                },
-                {
-                    "collectionId": 3,
-                    "name": "lexify",
-                    "value": "",
-                    "tag": "",
-                    "id": 51
-                },
-                {
-                    "collectionId": 3,
-                    "name": "bothify",
-                    "value": "",
-                    "tag": "",
-                    "id": 52
-                },
-                {
-                    "collectionId": 3,
-                    "name": "asciify",
-                    "value": "",
-                    "tag": "",
-                    "id": 53
-                },
-                {
-                    "collectionId": 3,
-                    "name": "regexify",
-                    "value": "",
-                    "tag": "",
-                    "id": 54
-                },
-                {
-                    "collectionId": 3,
-                    "name": "toLower",
-                    "value": "",
-                    "tag": "",
-                    "id": 55
-                },
-                {
-                    "collectionId": 3,
-                    "name": "toUpper",
-                    "value": "",
-                    "tag": "",
-                    "id": 56
-                },
-                {
-                    "collectionId": 3,
-                    "name": "biasedNumberBetween",
-                    "value": "",
-                    "tag": "",
-                    "id": 57
-                },
-                {
-                    "collectionId": 3,
-                    "name": "hexColor",
-                    "value": "",
-                    "tag": "",
-                    "id": 58
-                },
-                {
-                    "collectionId": 3,
-                    "name": "safeHexColor",
-                    "value": "",
-                    "tag": "",
-                    "id": 59
-                },
-                {
-                    "collectionId": 3,
-                    "name": "rgbColorAsArray",
-                    "value": "",
-                    "tag": "",
-                    "id": 60
-                },
-                {
-                    "collectionId": 3,
-                    "name": "rgbColor",
-                    "value": "",
-                    "tag": "",
-                    "id": 61
-                },
-                {
-                    "collectionId": 3,
-                    "name": "rgbCssColor",
-                    "value": "",
-                    "tag": "",
-                    "id": 62
-                },
-                {
-                    "collectionId": 3,
-                    "name": "rgbaCssColor",
-                    "value": "",
-                    "tag": "",
-                    "id": 63
-                },
-                {
-                    "collectionId": 3,
-                    "name": "safeColorName",
-                    "value": "",
-                    "tag": "",
-                    "id": 64
-                },
-                {
-                    "collectionId": 3,
-                    "name": "colorName",
-                    "value": "",
-                    "tag": "",
-                    "id": 65
-                },
-                {
-                    "collectionId": 3,
-                    "name": "hslColor",
-                    "value": "",
-                    "tag": "",
-                    "id": 66
-                },
-                {
-                    "collectionId": 3,
-                    "name": "hslColorAsArray",
-                    "value": "",
-                    "tag": "",
-                    "id": 67
-                },
-                {
-                    "collectionId": 3,
-                    "name": "company",
-                    "value": "",
-                    "tag": "",
-                    "id": 68
-                },
-                {
-                    "collectionId": 3,
-                    "name": "companySuffix",
-                    "value": "",
-                    "tag": "",
-                    "id": 69
-                },
-                {
-                    "collectionId": 3,
-                    "name": "jobTitle",
-                    "value": "",
-                    "tag": "",
-                    "id": 70
-                },
-                {
-                    "collectionId": 3,
-                    "name": "unixTime",
-                    "value": "",
-                    "tag": "",
-                    "id": 71
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dateTime",
-                    "value": "",
-                    "tag": "",
-                    "id": 72
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dateTimeAD",
-                    "value": "",
-                    "tag": "",
-                    "id": 73
-                },
-                {
-                    "collectionId": 3,
-                    "name": "iso8601",
-                    "value": "",
-                    "tag": "",
-                    "id": 74
-                },
-                {
-                    "collectionId": 3,
-                    "name": "date",
-                    "value": "",
-                    "tag": "",
-                    "id": 75
-                },
-                {
-                    "collectionId": 3,
-                    "name": "time",
-                    "value": "",
-                    "tag": "",
-                    "id": 76
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dateTimeBetween",
-                    "value": "",
-                    "tag": "",
-                    "id": 77
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dateTimeInInterval",
-                    "value": "",
-                    "tag": "",
-                    "id": 78
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dateTimeThisCentury",
-                    "value": "",
-                    "tag": "",
-                    "id": 79
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dateTimeThisDecade",
-                    "value": "",
-                    "tag": "",
-                    "id": 80
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dateTimeThisYear",
-                    "value": "",
-                    "tag": "",
-                    "id": 81
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dateTimeThisMonth",
-                    "value": "",
-                    "tag": "",
-                    "id": 82
-                },
-                {
-                    "collectionId": 3,
-                    "name": "amPm",
-                    "value": "",
-                    "tag": "",
-                    "id": 83
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dayOfMonth",
-                    "value": "",
-                    "tag": "",
-                    "id": 84
-                },
-                {
-                    "collectionId": 3,
-                    "name": "dayOfWeek",
-                    "value": "",
-                    "tag": "",
-                    "id": 85
-                },
-                {
-                    "collectionId": 3,
-                    "name": "month",
-                    "value": "",
-                    "tag": "",
-                    "id": 86
-                },
-                {
-                    "collectionId": 3,
-                    "name": "monthName",
-                    "value": "",
-                    "tag": "",
-                    "id": 87
-                },
-                {
-                    "collectionId": 3,
-                    "name": "year",
-                    "value": "",
-                    "tag": "",
-                    "id": 88
-                },
-                {
-                    "collectionId": 3,
-                    "name": "century",
-                    "value": "",
-                    "tag": "",
-                    "id": 89
-                },
-                {
-                    "collectionId": 3,
-                    "name": "timezone",
-                    "value": "",
-                    "tag": "",
-                    "id": 90
-                },
-                {
-                    "collectionId": 3,
-                    "name": "setDefaultTimezone",
-                    "value": "",
-                    "tag": "",
-                    "id": 91
-                },
-                {
-                    "collectionId": 3,
-                    "name": "getDefaultTimezone",
-                    "value": "",
-                    "tag": "",
-                    "id": 92
-                },
-                {
-                    "collectionId": 3,
-                    "name": "file",
-                    "value": "",
-                    "tag": "",
-                    "id": 93
-                },
-                {
-                    "collectionId": 3,
-                    "name": "randomHtml",
-                    "value": "",
-                    "tag": "",
-                    "id": 94
-                },
-                {
-                    "collectionId": 3,
-                    "name": "imageUrl",
-                    "value": "",
-                    "tag": "",
-                    "id": 95
-                },
-                {
-                    "collectionId": 3,
-                    "name": "image",
-                    "value": "",
-                    "tag": "",
-                    "id": 96
-                },
-                {
-                    "collectionId": 3,
-                    "name": "email",
-                    "value": "",
-                    "tag": "",
-                    "id": 97
-                },
-                {
-                    "collectionId": 3,
-                    "name": "safeEmail",
-                    "value": "",
-                    "tag": "",
-                    "id": 98
-                },
-                {
-                    "collectionId": 3,
-                    "name": "freeEmail",
-                    "value": "",
-                    "tag": "",
-                    "id": 99
-                },
-                {
-                    "collectionId": 3,
-                    "name": "companyEmail",
-                    "value": "",
-                    "tag": "",
-                    "id": 100
-                },
-                {
-                    "collectionId": 3,
-                    "name": "freeEmailDomain",
-                    "value": "",
-                    "tag": "",
-                    "id": 101
-                },
-                {
-                    "collectionId": 3,
-                    "name": "safeEmailDomain",
-                    "value": "",
-                    "tag": "",
-                    "id": 102
-                },
-                {
-                    "collectionId": 3,
-                    "name": "userName",
-                    "value": "",
-                    "tag": "",
-                    "id": 103
-                },
-                {
-                    "collectionId": 3,
-                    "name": "password",
-                    "value": "",
-                    "tag": "",
-                    "id": 104
-                },
-                {
-                    "collectionId": 3,
-                    "name": "domainName",
-                    "value": "",
-                    "tag": "",
-                    "id": 105
-                },
-                {
-                    "collectionId": 3,
-                    "name": "domainWord",
-                    "value": "",
-                    "tag": "",
-                    "id": 106
-                },
-                {
-                    "collectionId": 3,
-                    "name": "tld",
-                    "value": "",
-                    "tag": "",
-                    "id": 107
-                },
-                {
-                    "collectionId": 3,
-                    "name": "url",
-                    "value": "",
-                    "tag": "",
-                    "id": 108
-                },
-                {
-                    "collectionId": 3,
-                    "name": "slug",
-                    "value": "",
-                    "tag": "",
-                    "id": 109
-                },
-                {
-                    "collectionId": 3,
-                    "name": "ipv4",
-                    "value": "",
-                    "tag": "",
-                    "id": 110
-                },
-                {
-                    "collectionId": 3,
-                    "name": "ipv6",
-                    "value": "",
-                    "tag": "",
-                    "id": 111
-                },
-                {
-                    "collectionId": 3,
-                    "name": "localIpv4",
-                    "value": "",
-                    "tag": "",
-                    "id": 112
-                },
-                {
-                    "collectionId": 3,
-                    "name": "macAddress",
-                    "value": "",
-                    "tag": "",
-                    "id": 113
-                },
-                {
-                    "collectionId": 3,
-                    "name": "word",
-                    "value": "",
-                    "tag": "",
-                    "id": 114
-                },
-                {
-                    "collectionId": 3,
-                    "name": "words",
-                    "value": "",
-                    "tag": "",
-                    "id": 115
-                },
-                {
-                    "collectionId": 3,
-                    "name": "sentence",
-                    "value": "",
-                    "tag": "",
-                    "id": 116
-                },
-                {
-                    "collectionId": 3,
-                    "name": "sentences",
-                    "value": "",
-                    "tag": "",
-                    "id": 117
-                },
-                {
-                    "collectionId": 3,
-                    "name": "paragraph",
-                    "value": "",
-                    "tag": "",
-                    "id": 118
-                },
-                {
-                    "collectionId": 3,
-                    "name": "paragraphs",
-                    "value": "",
-                    "tag": "",
-                    "id": 119
-                },
-                {
-                    "collectionId": 3,
-                    "name": "text",
-                    "value": "",
-                    "tag": "",
-                    "id": 120
-                },
-                {
-                    "collectionId": 3,
-                    "name": "boolean",
-                    "value": "",
-                    "tag": "",
-                    "id": 121
-                },
-                {
-                    "collectionId": 3,
-                    "name": "md5",
-                    "value": "",
-                    "tag": "",
-                    "id": 122
-                },
-                {
-                    "collectionId": 3,
-                    "name": "sha1",
-                    "value": "",
-                    "tag": "",
-                    "id": 123
-                },
-                {
-                    "collectionId": 3,
-                    "name": "sha256",
-                    "value": "",
-                    "tag": "",
-                    "id": 124
-                },
-                {
-                    "collectionId": 3,
-                    "name": "locale",
-                    "value": "",
-                    "tag": "",
-                    "id": 125
-                },
-                {
-                    "collectionId": 3,
-                    "name": "countryCode",
-                    "value": "",
-                    "tag": "",
-                    "id": 126
-                },
-                {
-                    "collectionId": 3,
-                    "name": "countryISOAlpha3",
-                    "value": "",
-                    "tag": "",
-                    "id": 127
-                },
-                {
-                    "collectionId": 3,
-                    "name": "languageCode",
-                    "value": "",
-                    "tag": "",
-                    "id": 128
-                },
-                {
-                    "collectionId": 3,
-                    "name": "currencyCode",
-                    "value": "",
-                    "tag": "",
-                    "id": 129
-                },
-                {
-                    "collectionId": 3,
-                    "name": "emoji",
-                    "value": "",
-                    "tag": "",
-                    "id": 130
-                },
-                {
-                    "collectionId": 3,
-                    "name": "creditCardType",
-                    "value": "",
-                    "tag": "",
-                    "id": 131
-                },
-                {
-                    "collectionId": 3,
-                    "name": "creditCardNumber",
-                    "value": "",
-                    "tag": "",
-                    "id": 132
-                },
-                {
-                    "collectionId": 3,
-                    "name": "creditCardExpirationDate",
-                    "value": "",
-                    "tag": "",
-                    "id": 133
-                },
-                {
-                    "collectionId": 3,
-                    "name": "creditCardExpirationDateString",
-                    "value": "",
-                    "tag": "",
-                    "id": 134
-                },
-                {
-                    "collectionId": 3,
-                    "name": "creditCardDetails",
-                    "value": "",
-                    "tag": "",
-                    "id": 135
-                },
-                {
-                    "collectionId": 3,
-                    "name": "iban",
-                    "value": "",
-                    "tag": "",
-                    "id": 136
-                },
-                {
-                    "collectionId": 3,
-                    "name": "swiftBicNumber",
-                    "value": "",
-                    "tag": "",
-                    "id": 137
-                },
-                {
-                    "collectionId": 3,
-                    "name": "name",
-                    "value": "",
-                    "tag": "",
-                    "id": 138
-                },
-                {
-                    "collectionId": 3,
-                    "name": "firstName",
-                    "value": "",
-                    "tag": "",
-                    "id": 139
-                },
-                {
-                    "collectionId": 3,
-                    "name": "firstNameMale",
-                    "value": "",
-                    "tag": "",
-                    "id": 140
-                },
-                {
-                    "collectionId": 3,
-                    "name": "firstNameFemale",
-                    "value": "",
-                    "tag": "",
-                    "id": 141
-                },
-                {
-                    "collectionId": 3,
-                    "name": "lastName",
-                    "value": "",
-                    "tag": "",
-                    "id": 142
-                },
-                {
-                    "collectionId": 3,
-                    "name": "title",
-                    "value": "",
-                    "tag": "",
-                    "id": 143
-                },
-                {
-                    "collectionId": 3,
-                    "name": "titleMale",
-                    "value": "",
-                    "tag": "",
-                    "id": 144
-                },
-                {
-                    "collectionId": 3,
-                    "name": "titleFemale",
-                    "value": "",
-                    "tag": "",
-                    "id": 145
-                },
-                {
-                    "collectionId": 3,
-                    "name": "phoneNumber",
-                    "value": "",
-                    "tag": "",
-                    "id": 146
-                },
-                {
-                    "collectionId": 3,
-                    "name": "e164PhoneNumber",
-                    "value": "",
-                    "tag": "",
-                    "id": 147
-                },
-                {
-                    "collectionId": 3,
-                    "name": "imei",
-                    "value": "",
-                    "tag": "",
-                    "id": 148
-                },
-                {
-                    "collectionId": 3,
-                    "name": "realText",
-                    "value": "",
-                    "tag": "",
-                    "id": 149
-                },
-                {
-                    "collectionId": 3,
-                    "name": "realTextBetween",
-                    "value": "",
-                    "tag": "",
-                    "id": 150
-                },
-                {
-                    "collectionId": 3,
-                    "name": "macProcessor",
-                    "value": "",
-                    "tag": "",
-                    "id": 151
-                },
-                {
-                    "collectionId": 3,
-                    "name": "linuxProcessor",
-                    "value": "",
-                    "tag": "",
-                    "id": 152
-                },
-                {
-                    "collectionId": 3,
-                    "name": "userAgent",
-                    "value": "",
-                    "tag": "",
-                    "id": 153
-                },
-                {
-                    "collectionId": 3,
-                    "name": "chrome",
-                    "value": "",
-                    "tag": "",
-                    "id": 154
-                },
-                {
-                    "collectionId": 3,
-                    "name": "msedge",
-                    "value": "",
-                    "tag": "",
-                    "id": 155
-                },
-                {
-                    "collectionId": 3,
-                    "name": "firefox",
-                    "value": "",
-                    "tag": "",
-                    "id": 156
-                },
-                {
-                    "collectionId": 3,
-                    "name": "safari",
-                    "value": "",
-                    "tag": "",
-                    "id": 157
-                },
-                {
-                    "collectionId": 3,
-                    "name": "opera",
-                    "value": "",
-                    "tag": "",
-                    "id": 158
-                },
-                {
-                    "collectionId": 3,
-                    "name": "internetExplorer",
-                    "value": "",
-                    "tag": "",
-                    "id": 159
-                },
-                {
-                    "collectionId": 3,
-                    "name": "windowsPlatformToken",
-                    "value": "",
-                    "tag": "",
-                    "id": 160
-                },
-                {
-                    "collectionId": 3,
-                    "name": "macPlatformToken",
-                    "value": "",
-                    "tag": "",
-                    "id": 161
-                },
-                {
-                    "collectionId": 3,
-                    "name": "iosMobileToken",
-                    "value": "",
-                    "tag": "",
-                    "id": 162
-                },
-                {
-                    "collectionId": 3,
-                    "name": "linuxPlatformToken",
-                    "value": "",
-                    "tag": "",
-                    "id": 163
-                },
-                {
-                    "collectionId": 3,
-                    "name": "uuid",
-                    "value": "",
-                    "tag": "",
-                    "id": 164
-                },
                 {
                     "collectionId": 5,
                     "name": "dtCreate",
@@ -2274,65 +1180,72 @@
                 {
                     "collectionId": 10,
                     "name": "Cache",
-                    "tag": "40",
+                    "tag": "",
                     "value": "",
                     "id": 394
                 },
                 {
                     "collectionId": 10,
                     "name": "CreateMany",
-                    "tag": "20",
+                    "tag": "",
                     "value": "post",
                     "id": 384
                 },
                 {
                     "collectionId": 10,
-                    "name": "CreateOne",
-                    "tag": "21",
-                    "value": "post",
-                    "id": 385
-                },
-                {
-                    "collectionId": 10,
                     "name": "DeleteMany",
-                    "tag": "22",
+                    "tag": "",
                     "value": "delete",
                     "id": 386
                 },
                 {
                     "collectionId": 10,
-                    "name": "DeleteOne",
-                    "tag": "23",
-                    "value": "delete",
-                    "id": 387
-                },
-                {
-                    "collectionId": 10,
                     "name": "ReadMany",
-                    "tag": "24",
+                    "tag": "",
                     "value": "get",
                     "id": 388
                 },
                 {
                     "collectionId": 10,
-                    "name": "ReadOne",
-                    "tag": "25",
-                    "value": "get",
-                    "id": 389
-                },
-                {
-                    "collectionId": 10,
                     "name": "UpdateMany",
-                    "tag": "26",
+                    "tag": "",
                     "value": "put",
                     "id": 390
                 },
                 {
                     "collectionId": 10,
+                    "name": "CreateOne",
+                    "tag": "",
+                    "value": "post",
+                    "id": 385
+                },
+                {
+                    "collectionId": 10,
+                    "name": "DeleteOne",
+                    "tag": "",
+                    "value": "delete",
+                    "id": 387
+                },
+                {
+                    "collectionId": 10,
+                    "name": "ReadOne",
+                    "tag": "",
+                    "value": "get",
+                    "id": 389
+                },
+                {
+                    "collectionId": 10,
                     "name": "UpdateOne",
-                    "tag": "27",
+                    "tag": "",
                     "value": "put",
                     "id": 391
+                },
+                {
+                    "collectionId": 10,
+                    "name": "ReadPage",
+                    "value": "get",
+                    "tag": "",
+                    "id": 430
                 },
                 {
                     "collectionId": 5,
@@ -2354,76 +1267,6 @@
                     "value": "",
                     "tag": "dateTime",
                     "id": 396
-                },
-                {
-                    "collectionId": 12,
-                    "name": "boolean",
-                    "value": "false",
-                    "tag": "",
-                    "id": 397
-                },
-                {
-                    "collectionId": 12,
-                    "name": "smallint",
-                    "value": "0",
-                    "tag": "",
-                    "id": 398
-                },
-                {
-                    "collectionId": 12,
-                    "name": "integer",
-                    "value": "0",
-                    "tag": "",
-                    "id": 399
-                },
-                {
-                    "collectionId": 12,
-                    "name": "bigint",
-                    "value": "0",
-                    "tag": "",
-                    "id": 400
-                },
-                {
-                    "collectionId": 12,
-                    "name": "decimal",
-                    "value": "0",
-                    "tag": "",
-                    "id": 401
-                },
-                {
-                    "collectionId": 12,
-                    "name": "float",
-                    "value": "0",
-                    "tag": "",
-                    "id": 402
-                },
-                {
-                    "collectionId": 12,
-                    "name": "date",
-                    "value": "null",
-                    "tag": "",
-                    "id": 403
-                },
-                {
-                    "collectionId": 12,
-                    "name": "datetime",
-                    "value": "null",
-                    "tag": "",
-                    "id": 404
-                },
-                {
-                    "collectionId": 12,
-                    "name": "datetimetz",
-                    "value": "null",
-                    "tag": "",
-                    "id": 405
-                },
-                {
-                    "collectionId": 12,
-                    "name": "time",
-                    "value": "null",
-                    "tag": "",
-                    "id": 406
                 },
                 {
                     "collectionId": 14,
@@ -2571,6 +1414,1399 @@
                     "value": "",
                     "tag": "",
                     "id": 429
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ArrayField",
+                    "value": "",
+                    "tag": "",
+                    "id": 431
+                },
+                {
+                    "collectionId": 17,
+                    "name": "BooleanField",
+                    "value": "",
+                    "tag": "",
+                    "id": 432
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ChipField",
+                    "value": "",
+                    "tag": "",
+                    "id": 433
+                },
+                {
+                    "collectionId": 17,
+                    "name": "DateField",
+                    "value": "",
+                    "tag": "",
+                    "id": 434
+                },
+                {
+                    "collectionId": 17,
+                    "name": "EmailField",
+                    "value": "",
+                    "tag": "",
+                    "id": 435
+                },
+                {
+                    "collectionId": 17,
+                    "name": "FileField",
+                    "value": "",
+                    "tag": "",
+                    "id": 436
+                },
+                {
+                    "collectionId": 17,
+                    "name": "FunctionField",
+                    "value": "",
+                    "tag": "",
+                    "id": 437
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ImageField",
+                    "value": "",
+                    "tag": "",
+                    "id": 438
+                },
+                {
+                    "collectionId": 17,
+                    "name": "MarkdownField",
+                    "value": "",
+                    "tag": "",
+                    "id": 439
+                },
+                {
+                    "collectionId": 17,
+                    "name": "NumberField",
+                    "value": "",
+                    "tag": "",
+                    "id": 440
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceField",
+                    "value": "",
+                    "tag": "",
+                    "id": 441
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceArrayField",
+                    "value": "",
+                    "tag": "",
+                    "id": 442
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceManyField",
+                    "value": "",
+                    "tag": "",
+                    "id": 443
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceManyCount",
+                    "value": "",
+                    "tag": "",
+                    "id": 444
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceManyToManyField",
+                    "value": "",
+                    "tag": "",
+                    "id": 445
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceOneField",
+                    "value": "",
+                    "tag": "",
+                    "id": 446
+                },
+                {
+                    "collectionId": 17,
+                    "name": "RichTextField",
+                    "value": "",
+                    "tag": "",
+                    "id": 447
+                },
+                {
+                    "collectionId": 17,
+                    "name": "SelectField",
+                    "value": "",
+                    "tag": "",
+                    "id": 448
+                },
+                {
+                    "collectionId": 17,
+                    "name": "TextField",
+                    "value": "",
+                    "tag": "",
+                    "id": 449
+                },
+                {
+                    "collectionId": 17,
+                    "name": "TranslatableFields",
+                    "value": "",
+                    "tag": "",
+                    "id": 450
+                },
+                {
+                    "collectionId": 17,
+                    "name": "UrlField",
+                    "value": "",
+                    "tag": "",
+                    "id": 451
+                },
+                {
+                    "collectionId": 17,
+                    "name": "WrapperField",
+                    "value": "",
+                    "tag": "",
+                    "id": 452
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ArrayInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 453
+                },
+                {
+                    "collectionId": 17,
+                    "name": "AutocompleteInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 454
+                },
+                {
+                    "collectionId": 17,
+                    "name": "AutocompleteArrayInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 455
+                },
+                {
+                    "collectionId": 17,
+                    "name": "BooleanInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 456
+                },
+                {
+                    "collectionId": 17,
+                    "name": "CheckboxGroupInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 457
+                },
+                {
+                    "collectionId": 17,
+                    "name": "DateInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 458
+                },
+                {
+                    "collectionId": 17,
+                    "name": "DateTimeInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 459
+                },
+                {
+                    "collectionId": 17,
+                    "name": "DualListInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 460
+                },
+                {
+                    "collectionId": 17,
+                    "name": "FileInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 461
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ImageInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 462
+                },
+                {
+                    "collectionId": 17,
+                    "name": "MarkdownInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 463
+                },
+                {
+                    "collectionId": 17,
+                    "name": "NullableBooleanInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 464
+                },
+                {
+                    "collectionId": 17,
+                    "name": "NumberInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 465
+                },
+                {
+                    "collectionId": 17,
+                    "name": "PasswordInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 466
+                },
+                {
+                    "collectionId": 17,
+                    "name": "RadioButtonGroupInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 467
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 468
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceArrayInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 469
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceManyInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 470
+                },
+                {
+                    "collectionId": 17,
+                    "name": "ReferenceManyToManyInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 471
+                },
+                {
+                    "collectionId": 17,
+                    "name": "RichTextInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 472
+                },
+                {
+                    "collectionId": 17,
+                    "name": "SelectInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 473
+                },
+                {
+                    "collectionId": 17,
+                    "name": "SelectArrayInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 474
+                },
+                {
+                    "collectionId": 17,
+                    "name": "SimpleFormIterator",
+                    "value": "",
+                    "tag": "",
+                    "id": 475
+                },
+                {
+                    "collectionId": 17,
+                    "name": "TextInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 476
+                },
+                {
+                    "collectionId": 17,
+                    "name": "TimeInput",
+                    "value": "",
+                    "tag": "",
+                    "id": 477
+                },
+                {
+                    "collectionId": 17,
+                    "name": "TranslatableInputs",
+                    "value": "",
+                    "tag": "",
+                    "id": 478
+                },
+                {
+                    "collectionId": 3,
+                    "name": "address",
+                    "value": "",
+                    "tag": "",
+                    "id": 35
+                },
+                {
+                    "collectionId": 3,
+                    "name": "amPm",
+                    "value": "",
+                    "tag": "",
+                    "id": 83
+                },
+                {
+                    "collectionId": 3,
+                    "name": "asciify",
+                    "value": "",
+                    "tag": "",
+                    "id": 53
+                },
+                {
+                    "collectionId": 3,
+                    "name": "biasedNumberBetween",
+                    "value": "",
+                    "tag": "",
+                    "id": 57
+                },
+                {
+                    "collectionId": 3,
+                    "name": "bloodGroup",
+                    "value": "",
+                    "tag": "",
+                    "id": 483
+                },
+                {
+                    "collectionId": 3,
+                    "name": "bloodRh",
+                    "value": "",
+                    "tag": "",
+                    "id": 482
+                },
+                {
+                    "collectionId": 3,
+                    "name": "bloodType",
+                    "value": "",
+                    "tag": "",
+                    "id": 481
+                },
+                {
+                    "collectionId": 3,
+                    "name": "boolean",
+                    "value": "",
+                    "tag": "",
+                    "id": 121
+                },
+                {
+                    "collectionId": 3,
+                    "name": "bothify",
+                    "value": "",
+                    "tag": "",
+                    "id": 52
+                },
+                {
+                    "collectionId": 3,
+                    "name": "buildingNumber",
+                    "value": "",
+                    "tag": "",
+                    "id": 30
+                },
+                {
+                    "collectionId": 3,
+                    "name": "century",
+                    "value": "",
+                    "tag": "",
+                    "id": 89
+                },
+                {
+                    "collectionId": 3,
+                    "name": "chrome",
+                    "value": "",
+                    "tag": "",
+                    "id": 154
+                },
+                {
+                    "collectionId": 3,
+                    "name": "city",
+                    "value": "",
+                    "tag": "",
+                    "id": 31
+                },
+                {
+                    "collectionId": 3,
+                    "name": "citySuffix",
+                    "value": "",
+                    "tag": "",
+                    "id": 28
+                },
+                {
+                    "collectionId": 3,
+                    "name": "colorName",
+                    "value": "",
+                    "tag": "",
+                    "id": 65
+                },
+                {
+                    "collectionId": 3,
+                    "name": "company",
+                    "value": "",
+                    "tag": "",
+                    "id": 68
+                },
+                {
+                    "collectionId": 3,
+                    "name": "companyEmail",
+                    "value": "",
+                    "tag": "",
+                    "id": 100
+                },
+                {
+                    "collectionId": 3,
+                    "name": "companySuffix",
+                    "value": "",
+                    "tag": "",
+                    "id": 69
+                },
+                {
+                    "collectionId": 3,
+                    "name": "country",
+                    "value": "",
+                    "tag": "",
+                    "id": 36
+                },
+                {
+                    "collectionId": 3,
+                    "name": "countryCode",
+                    "value": "",
+                    "tag": "",
+                    "id": 126
+                },
+                {
+                    "collectionId": 3,
+                    "name": "countryISOAlpha3",
+                    "value": "",
+                    "tag": "",
+                    "id": 127
+                },
+                {
+                    "collectionId": 3,
+                    "name": "creditCardDetails",
+                    "value": "",
+                    "tag": "",
+                    "id": 135
+                },
+                {
+                    "collectionId": 3,
+                    "name": "creditCardExpirationDate",
+                    "value": "",
+                    "tag": "",
+                    "id": 133
+                },
+                {
+                    "collectionId": 3,
+                    "name": "creditCardExpirationDateString",
+                    "value": "",
+                    "tag": "",
+                    "id": 134
+                },
+                {
+                    "collectionId": 3,
+                    "name": "creditCardNumber",
+                    "value": "",
+                    "tag": "",
+                    "id": 132
+                },
+                {
+                    "collectionId": 3,
+                    "name": "creditCardType",
+                    "value": "",
+                    "tag": "",
+                    "id": 131
+                },
+                {
+                    "collectionId": 3,
+                    "name": "currencyCode",
+                    "value": "",
+                    "tag": "",
+                    "id": 129
+                },
+                {
+                    "collectionId": 3,
+                    "name": "date",
+                    "value": "",
+                    "tag": "",
+                    "id": 75
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dateTime",
+                    "value": "",
+                    "tag": "",
+                    "id": 72
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dateTimeAD",
+                    "value": "",
+                    "tag": "",
+                    "id": 73
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dateTimeBetween",
+                    "value": "",
+                    "tag": "",
+                    "id": 77
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dateTimeInInterval",
+                    "value": "",
+                    "tag": "",
+                    "id": 78
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dateTimeThisCentury",
+                    "value": "",
+                    "tag": "",
+                    "id": 79
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dateTimeThisDecade",
+                    "value": "",
+                    "tag": "",
+                    "id": 80
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dateTimeThisMonth",
+                    "value": "",
+                    "tag": "",
+                    "id": 82
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dateTimeThisYear",
+                    "value": "",
+                    "tag": "",
+                    "id": 81
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dayOfMonth",
+                    "value": "",
+                    "tag": "",
+                    "id": 84
+                },
+                {
+                    "collectionId": 3,
+                    "name": "dayOfWeek",
+                    "value": "",
+                    "tag": "",
+                    "id": 85
+                },
+                {
+                    "collectionId": 3,
+                    "name": "domainName",
+                    "value": "",
+                    "tag": "",
+                    "id": 105
+                },
+                {
+                    "collectionId": 3,
+                    "name": "domainWord",
+                    "value": "",
+                    "tag": "",
+                    "id": 106
+                },
+                {
+                    "collectionId": 3,
+                    "name": "e164PhoneNumber",
+                    "value": "",
+                    "tag": "",
+                    "id": 147
+                },
+                {
+                    "collectionId": 3,
+                    "name": "ean13",
+                    "value": "",
+                    "tag": "",
+                    "id": 484
+                },
+                {
+                    "collectionId": 3,
+                    "name": "ean8",
+                    "value": "",
+                    "tag": "",
+                    "id": 485
+                },
+                {
+                    "collectionId": 3,
+                    "name": "email",
+                    "value": "",
+                    "tag": "",
+                    "id": 97
+                },
+                {
+                    "collectionId": 3,
+                    "name": "emoji",
+                    "value": "",
+                    "tag": "",
+                    "id": 130
+                },
+                {
+                    "collectionId": 3,
+                    "name": "file",
+                    "value": "",
+                    "tag": "",
+                    "id": 93
+                },
+                {
+                    "collectionId": 3,
+                    "name": "fileExtension",
+                    "value": "",
+                    "tag": "",
+                    "id": 480
+                },
+                {
+                    "collectionId": 3,
+                    "name": "firefox",
+                    "value": "",
+                    "tag": "",
+                    "id": 156
+                },
+                {
+                    "collectionId": 3,
+                    "name": "firstName",
+                    "value": "",
+                    "tag": "",
+                    "id": 139
+                },
+                {
+                    "collectionId": 3,
+                    "name": "firstNameFemale",
+                    "value": "",
+                    "tag": "",
+                    "id": 141
+                },
+                {
+                    "collectionId": 3,
+                    "name": "firstNameMale",
+                    "value": "",
+                    "tag": "",
+                    "id": 140
+                },
+                {
+                    "collectionId": 3,
+                    "name": "freeEmail",
+                    "value": "",
+                    "tag": "",
+                    "id": 99
+                },
+                {
+                    "collectionId": 3,
+                    "name": "freeEmailDomain",
+                    "value": "",
+                    "tag": "",
+                    "id": 101
+                },
+                {
+                    "collectionId": 3,
+                    "name": "hexColor",
+                    "value": "",
+                    "tag": "",
+                    "id": 58
+                },
+                {
+                    "collectionId": 3,
+                    "name": "hslColor",
+                    "value": "",
+                    "tag": "",
+                    "id": 66
+                },
+                {
+                    "collectionId": 3,
+                    "name": "hslColorAsArray",
+                    "value": "",
+                    "tag": "",
+                    "id": 67
+                },
+                {
+                    "collectionId": 3,
+                    "name": "iban",
+                    "value": "",
+                    "tag": "",
+                    "id": 136
+                },
+                {
+                    "collectionId": 3,
+                    "name": "image",
+                    "value": "",
+                    "tag": "",
+                    "id": 96
+                },
+                {
+                    "collectionId": 3,
+                    "name": "imageUrl",
+                    "value": "",
+                    "tag": "",
+                    "id": 95
+                },
+                {
+                    "collectionId": 3,
+                    "name": "imei",
+                    "value": "",
+                    "tag": "",
+                    "id": 148
+                },
+                {
+                    "collectionId": 3,
+                    "name": "internetExplorer",
+                    "value": "",
+                    "tag": "",
+                    "id": 159
+                },
+                {
+                    "collectionId": 3,
+                    "name": "iosMobileToken",
+                    "value": "",
+                    "tag": "",
+                    "id": 162
+                },
+                {
+                    "collectionId": 3,
+                    "name": "ipv4",
+                    "value": "",
+                    "tag": "",
+                    "id": 110
+                },
+                {
+                    "collectionId": 3,
+                    "name": "ipv6",
+                    "value": "",
+                    "tag": "",
+                    "id": 111
+                },
+                {
+                    "collectionId": 3,
+                    "name": "isbn10",
+                    "value": "",
+                    "tag": "",
+                    "id": 486
+                },
+                {
+                    "collectionId": 3,
+                    "name": "isbn13",
+                    "value": "",
+                    "tag": "",
+                    "id": 487
+                },
+                {
+                    "collectionId": 3,
+                    "name": "iso8601",
+                    "value": "",
+                    "tag": "",
+                    "id": 74
+                },
+                {
+                    "collectionId": 3,
+                    "name": "jobTitle",
+                    "value": "",
+                    "tag": "",
+                    "id": 70
+                },
+                {
+                    "collectionId": 3,
+                    "name": "languageCode",
+                    "value": "",
+                    "tag": "",
+                    "id": 128
+                },
+                {
+                    "collectionId": 3,
+                    "name": "lastName",
+                    "value": "",
+                    "tag": "",
+                    "id": 142
+                },
+                {
+                    "collectionId": 3,
+                    "name": "latitude",
+                    "value": "",
+                    "tag": "",
+                    "id": 37
+                },
+                {
+                    "collectionId": 3,
+                    "name": "lexify",
+                    "value": "",
+                    "tag": "",
+                    "id": 51
+                },
+                {
+                    "collectionId": 3,
+                    "name": "linuxPlatformToken",
+                    "value": "",
+                    "tag": "",
+                    "id": 163
+                },
+                {
+                    "collectionId": 3,
+                    "name": "linuxProcessor",
+                    "value": "",
+                    "tag": "",
+                    "id": 152
+                },
+                {
+                    "collectionId": 3,
+                    "name": "localCoordinates",
+                    "value": "",
+                    "tag": "",
+                    "id": 39
+                },
+                {
+                    "collectionId": 3,
+                    "name": "locale",
+                    "value": "",
+                    "tag": "",
+                    "id": 125
+                },
+                {
+                    "collectionId": 3,
+                    "name": "localIpv4",
+                    "value": "",
+                    "tag": "",
+                    "id": 112
+                },
+                {
+                    "collectionId": 3,
+                    "name": "longitude",
+                    "value": "",
+                    "tag": "",
+                    "id": 38
+                },
+                {
+                    "collectionId": 3,
+                    "name": "macAddress",
+                    "value": "",
+                    "tag": "",
+                    "id": 113
+                },
+                {
+                    "collectionId": 3,
+                    "name": "macPlatformToken",
+                    "value": "",
+                    "tag": "",
+                    "id": 161
+                },
+                {
+                    "collectionId": 3,
+                    "name": "macProcessor",
+                    "value": "",
+                    "tag": "",
+                    "id": 151
+                },
+                {
+                    "collectionId": 3,
+                    "name": "md5",
+                    "value": "",
+                    "tag": "",
+                    "id": 122
+                },
+                {
+                    "collectionId": 3,
+                    "name": "mimeType",
+                    "value": "",
+                    "tag": "",
+                    "id": 479
+                },
+                {
+                    "collectionId": 3,
+                    "name": "month",
+                    "value": "",
+                    "tag": "",
+                    "id": 86
+                },
+                {
+                    "collectionId": 3,
+                    "name": "monthName",
+                    "value": "",
+                    "tag": "",
+                    "id": 87
+                },
+                {
+                    "collectionId": 3,
+                    "name": "msedge",
+                    "value": "",
+                    "tag": "",
+                    "id": 155
+                },
+                {
+                    "collectionId": 3,
+                    "name": "name",
+                    "value": "",
+                    "tag": "",
+                    "id": 138
+                },
+                {
+                    "collectionId": 3,
+                    "name": "numberBetween",
+                    "value": "",
+                    "tag": "",
+                    "id": 488
+                },
+                {
+                    "collectionId": 3,
+                    "name": "numerify",
+                    "value": "",
+                    "tag": "",
+                    "id": 50
+                },
+                {
+                    "collectionId": 3,
+                    "name": "opera",
+                    "value": "",
+                    "tag": "",
+                    "id": 158
+                },
+                {
+                    "collectionId": 3,
+                    "name": "paragraph",
+                    "value": "",
+                    "tag": "",
+                    "id": 118
+                },
+                {
+                    "collectionId": 3,
+                    "name": "paragraphs",
+                    "value": "",
+                    "tag": "",
+                    "id": 119
+                },
+                {
+                    "collectionId": 3,
+                    "name": "passthrough",
+                    "value": "",
+                    "tag": "",
+                    "id": 41
+                },
+                {
+                    "collectionId": 3,
+                    "name": "password",
+                    "value": "",
+                    "tag": "",
+                    "id": 104
+                },
+                {
+                    "collectionId": 3,
+                    "name": "phoneNumber",
+                    "value": "",
+                    "tag": "",
+                    "id": 146
+                },
+                {
+                    "collectionId": 3,
+                    "name": "postcode",
+                    "value": "",
+                    "tag": "",
+                    "id": 34
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomAscii",
+                    "value": "",
+                    "tag": "",
+                    "id": 43
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomDigit",
+                    "value": "",
+                    "tag": "",
+                    "id": 489
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomDigitNot",
+                    "value": "",
+                    "tag": "",
+                    "id": 490
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomDigitNotNull",
+                    "value": "",
+                    "tag": "",
+                    "id": 40
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomDigitNotZero",
+                    "value": "",
+                    "tag": "",
+                    "id": 491
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomElement",
+                    "value": "",
+                    "tag": "",
+                    "id": 45
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomElements",
+                    "value": "",
+                    "tag": "",
+                    "id": 44
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomFloat",
+                    "value": "",
+                    "tag": "",
+                    "id": 492
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomHtml",
+                    "value": "",
+                    "tag": "",
+                    "id": 94
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomKey",
+                    "value": "",
+                    "tag": "",
+                    "id": 46
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomLetter",
+                    "value": "",
+                    "tag": "",
+                    "id": 42
+                },
+                {
+                    "collectionId": 3,
+                    "name": "randomNumber",
+                    "value": "",
+                    "tag": "",
+                    "id": 493
+                },
+                {
+                    "collectionId": 3,
+                    "name": "realText",
+                    "value": "",
+                    "tag": "",
+                    "id": 149
+                },
+                {
+                    "collectionId": 3,
+                    "name": "realTextBetween",
+                    "value": "",
+                    "tag": "",
+                    "id": 150
+                },
+                {
+                    "collectionId": 3,
+                    "name": "regexify",
+                    "value": "",
+                    "tag": "",
+                    "id": 54
+                },
+                {
+                    "collectionId": 3,
+                    "name": "rgbaCssColor",
+                    "value": "",
+                    "tag": "",
+                    "id": 63
+                },
+                {
+                    "collectionId": 3,
+                    "name": "rgbColor",
+                    "value": "",
+                    "tag": "",
+                    "id": 61
+                },
+                {
+                    "collectionId": 3,
+                    "name": "rgbColorAsArray",
+                    "value": "",
+                    "tag": "",
+                    "id": 60
+                },
+                {
+                    "collectionId": 3,
+                    "name": "rgbCssColor",
+                    "value": "",
+                    "tag": "",
+                    "id": 62
+                },
+                {
+                    "collectionId": 3,
+                    "name": "safari",
+                    "value": "",
+                    "tag": "",
+                    "id": 157
+                },
+                {
+                    "collectionId": 3,
+                    "name": "safeColorName",
+                    "value": "",
+                    "tag": "",
+                    "id": 64
+                },
+                {
+                    "collectionId": 3,
+                    "name": "safeEmail",
+                    "value": "",
+                    "tag": "",
+                    "id": 98
+                },
+                {
+                    "collectionId": 3,
+                    "name": "safeEmailDomain",
+                    "value": "",
+                    "tag": "",
+                    "id": 102
+                },
+                {
+                    "collectionId": 3,
+                    "name": "safeHexColor",
+                    "value": "",
+                    "tag": "",
+                    "id": 59
+                },
+                {
+                    "collectionId": 3,
+                    "name": "semver",
+                    "value": "",
+                    "tag": "",
+                    "id": 494
+                },
+                {
+                    "collectionId": 3,
+                    "name": "sentence",
+                    "value": "",
+                    "tag": "",
+                    "id": 116
+                },
+                {
+                    "collectionId": 3,
+                    "name": "sentences",
+                    "value": "",
+                    "tag": "",
+                    "id": 117
+                },
+                {
+                    "collectionId": 3,
+                    "name": "sha1",
+                    "value": "",
+                    "tag": "",
+                    "id": 123
+                },
+                {
+                    "collectionId": 3,
+                    "name": "sha256",
+                    "value": "",
+                    "tag": "",
+                    "id": 124
+                },
+                {
+                    "collectionId": 3,
+                    "name": "shuffle",
+                    "value": "",
+                    "tag": "",
+                    "id": 47
+                },
+                {
+                    "collectionId": 3,
+                    "name": "shuffleArray",
+                    "value": "",
+                    "tag": "",
+                    "id": 48
+                },
+                {
+                    "collectionId": 3,
+                    "name": "shuffleString",
+                    "value": "",
+                    "tag": "",
+                    "id": 49
+                },
+                {
+                    "collectionId": 3,
+                    "name": "slug",
+                    "value": "",
+                    "tag": "",
+                    "id": 109
+                },
+                {
+                    "collectionId": 3,
+                    "name": "streetAddress",
+                    "value": "",
+                    "tag": "",
+                    "id": 33
+                },
+                {
+                    "collectionId": 3,
+                    "name": "streetName",
+                    "value": "",
+                    "tag": "",
+                    "id": 32
+                },
+                {
+                    "collectionId": 3,
+                    "name": "streetSuffix",
+                    "value": "",
+                    "tag": "",
+                    "id": 29
+                },
+                {
+                    "collectionId": 3,
+                    "name": "swiftBicNumber",
+                    "value": "",
+                    "tag": "",
+                    "id": 137
+                },
+                {
+                    "collectionId": 3,
+                    "name": "text",
+                    "value": "",
+                    "tag": "",
+                    "id": 120
+                },
+                {
+                    "collectionId": 3,
+                    "name": "time",
+                    "value": "",
+                    "tag": "",
+                    "id": 76
+                },
+                {
+                    "collectionId": 3,
+                    "name": "timezone",
+                    "value": "",
+                    "tag": "",
+                    "id": 90
+                },
+                {
+                    "collectionId": 3,
+                    "name": "title",
+                    "value": "",
+                    "tag": "",
+                    "id": 143
+                },
+                {
+                    "collectionId": 3,
+                    "name": "titleFemale",
+                    "value": "",
+                    "tag": "",
+                    "id": 145
+                },
+                {
+                    "collectionId": 3,
+                    "name": "titleMale",
+                    "value": "",
+                    "tag": "",
+                    "id": 144
+                },
+                {
+                    "collectionId": 3,
+                    "name": "tld",
+                    "value": "",
+                    "tag": "",
+                    "id": 107
+                },
+                {
+                    "collectionId": 3,
+                    "name": "toLower",
+                    "value": "",
+                    "tag": "",
+                    "id": 55
+                },
+                {
+                    "collectionId": 3,
+                    "name": "toUpper",
+                    "value": "",
+                    "tag": "",
+                    "id": 56
+                },
+                {
+                    "collectionId": 3,
+                    "name": "unixTime",
+                    "value": "",
+                    "tag": "",
+                    "id": 71
+                },
+                {
+                    "collectionId": 3,
+                    "name": "url",
+                    "value": "",
+                    "tag": "",
+                    "id": 108
+                },
+                {
+                    "collectionId": 3,
+                    "name": "userAgent",
+                    "value": "",
+                    "tag": "",
+                    "id": 153
+                },
+                {
+                    "collectionId": 3,
+                    "name": "userName",
+                    "value": "",
+                    "tag": "",
+                    "id": 103
+                },
+                {
+                    "collectionId": 3,
+                    "name": "uuid",
+                    "value": "",
+                    "tag": "",
+                    "id": 164
+                },
+                {
+                    "collectionId": 3,
+                    "name": "windowsPlatformToken",
+                    "value": "",
+                    "tag": "",
+                    "id": 160
+                },
+                {
+                    "collectionId": 3,
+                    "name": "word",
+                    "value": "",
+                    "tag": "",
+                    "id": 114
+                },
+                {
+                    "collectionId": 3,
+                    "name": "words",
+                    "value": "",
+                    "tag": "",
+                    "id": 115
+                },
+                {
+                    "collectionId": 3,
+                    "name": "year",
+                    "value": "",
+                    "tag": "",
+                    "id": 88
                 }
             ],
             "Directory": [
@@ -2605,7 +2841,7 @@
                 {
                     "parentId": 11,
                     "description": "",
-                    "opened": false,
+                    "opened": true,
                     "name": "${entity.name}",
                     "id": 14
                 },
@@ -2664,6 +2900,13 @@
                     "opened": true,
                     "name": "UpdateOne",
                     "id": 37
+                },
+                {
+                    "parentId": 14,
+                    "name": "ReadPage",
+                    "opened": true,
+                    "description": "",
+                    "id": 38
                 },
                 {
                     "parentId": 10,
@@ -2737,6 +2980,13 @@
                 },
                 {
                     "parentId": 13,
+                    "name": "ReadPage",
+                    "opened": true,
+                    "description": "",
+                    "id": 28
+                },
+                {
+                    "parentId": 13,
                     "description": "",
                     "opened": true,
                     "name": "Cache",
@@ -2780,13 +3030,13 @@
                 {
                     "parentId": 80,
                     "description": "",
-                    "opened": false,
+                    "opened": true,
                     "name": "Admin",
                     "id": 82
                 },
                 {
                     "parentId": 1,
-                    "name": "../react-admin",
+                    "name": "react-admin",
                     "opened": true,
                     "description": "",
                     "id": 101
@@ -2818,6 +3068,332 @@
                     "opened": true,
                     "description": "",
                     "id": 105
+                }
+            ],
+            "DoctrineColumnType": [
+                {
+                    "id": 1,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "smallint",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "randomNumber",
+                    "fakeText": "111, 333",
+                    "nullable": false,
+                    "oapiFormat": "int16",
+                    "oapiType": "integer",
+                    "phpType": "int",
+                    "raField": "NumberField",
+                    "raInput": "NumberInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 2,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "integer",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "randomNumber",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "int32",
+                    "oapiType": "integer",
+                    "phpType": "int",
+                    "raField": "NumberField",
+                    "raInput": "NumberInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 3,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "bigint",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "randomNumber",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "int64",
+                    "oapiType": "integer",
+                    "phpType": "int",
+                    "raField": "NumberField",
+                    "raInput": "NumberInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 4,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "decimal",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "randomFloat",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "double",
+                    "oapiType": "number",
+                    "phpType": "float",
+                    "raField": "NumberField",
+                    "raInput": "NumberInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 5,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "float",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "randomFloat",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "float",
+                    "oapiType": "number",
+                    "phpType": "float",
+                    "raField": "NumberField",
+                    "raInput": "NumberInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 6,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "string",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "firstName",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "",
+                    "oapiType": "string",
+                    "phpType": "string",
+                    "raField": "TextField",
+                    "raInput": "TextInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 7,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "text",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "paragraph",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "",
+                    "oapiType": "string",
+                    "phpType": "string",
+                    "raField": "RichTextField",
+                    "raInput": "RichTextInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 8,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "guid",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "uuid",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "",
+                    "oapiType": "string",
+                    "phpType": "string",
+                    "raField": "TextField",
+                    "raInput": "TextInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 9,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "binary",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "binary",
+                    "oapiType": "string",
+                    "phpType": "resource",
+                    "raField": "TextField",
+                    "raInput": "TextField",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 10,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "blob",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "binary",
+                    "oapiType": "string",
+                    "phpType": "resource",
+                    "raField": "TextField",
+                    "raInput": "TextField",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 11,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "boolean",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "boolean",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "",
+                    "oapiType": "boolean",
+                    "phpType": "bool",
+                    "raField": "BooleanField",
+                    "raInput": "BooleanInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 12,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "date",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "date",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "date",
+                    "oapiType": "string",
+                    "phpType": "\\DateTime",
+                    "raField": "DateField",
+                    "raInput": "DateInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 13,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "datetime",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "dateTime",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "date-time",
+                    "oapiType": "string",
+                    "phpType": "\\DateTime",
+                    "raField": "DateField",
+                    "raInput": "DateTimeInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 14,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "datetimetz",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "dateTime",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "date-time",
+                    "oapiType": "string",
+                    "phpType": "\\DateTime",
+                    "raField": "DateField",
+                    "raInput": "DateTimeInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 15,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "time",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "time",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "time",
+                    "oapiType": "string",
+                    "phpType": "\\DateTime",
+                    "raField": "TextField",
+                    "raInput": "TimeInput",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 16,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "array",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "",
+                    "fakeText": "[]",
+                    "nullable": false,
+                    "oapiFormat": "",
+                    "oapiType": "string",
+                    "phpType": "array",
+                    "raField": "TextField",
+                    "raInput": "TextField",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 17,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "json",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "",
+                    "oapiType": "any",
+                    "phpType": "array",
+                    "raField": "TextField",
+                    "raInput": "TextField",
+                    "ro": false,
+                    "wo": false
+                },
+                {
+                    "id": 18,
+                    "color": "#fff",
+                    "description": "",
+                    "name": "object",
+                    "reserved": false,
+                    "default": "",
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "nullable": false,
+                    "oapiFormat": "",
+                    "oapiType": "any",
+                    "phpType": "array",
+                    "raField": "TextField",
+                    "raInput": "TextField",
+                    "ro": false,
+                    "wo": false
                 }
             ],
             "File": [
@@ -2873,7 +3449,7 @@
                 },
                 {
                     "name": "Command",
-                    "color": "#fff",
+                    "color": "#f00",
                     "layer": "",
                     "nameSpacePattern": "Console/Commands",
                     "fileNamePattern": "${entity.name}Command.php",
@@ -2883,21 +3459,11 @@
                 },
                 {
                     "name": "Service",
-                    "color": "#fff",
+                    "color": "#f00",
                     "layer": "",
                     "nameSpacePattern": "Service",
                     "fileNamePattern": "${entity.name}Service.php",
                     "id": 16,
-                    "description": "",
-                    "directoryId": 10
-                },
-                {
-                    "name": "Warmup",
-                    "color": "#f00",
-                    "layer": "",
-                    "nameSpacePattern": "Warmup",
-                    "fileNamePattern": "Warmup${entity.name}.php",
-                    "id": 17,
                     "description": "",
                     "directoryId": 10
                 },
@@ -2958,7 +3524,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "AbstractRequest.php.php",
+                    "fileNamePattern": "AbstractRequest.php",
                     "id": 37
                 },
                 {
@@ -3004,7 +3570,7 @@
                 {
                     "directoryId": 70,
                     "name": "TypeScriptDeclaration",
-                    "color": "#fff",
+                    "color": "#f00",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
@@ -3024,7 +3590,7 @@
                 {
                     "directoryId": 82,
                     "name": "AdminAbstractItemTest",
-                    "color": "#f00",
+                    "color": "#fff",
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
@@ -3043,16 +3609,6 @@
                 },
                 {
                     "directoryId": 82,
-                    "name": "AdminCreateOneItemTest",
-                    "color": "#f80",
-                    "layer": "Test",
-                    "description": "",
-                    "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "CreateOne${entity.name}Test.php",
-                    "id": 81
-                },
-                {
-                    "directoryId": 82,
                     "name": "AdminDeleteManyItemTest",
                     "color": "#ff0",
                     "layer": "Test",
@@ -3060,16 +3616,6 @@
                     "nameSpacePattern": "${entity.name}",
                     "fileNamePattern": "DeleteMany${entity.name}Test.php",
                     "id": 82
-                },
-                {
-                    "directoryId": 82,
-                    "name": "AdminDeleteOneItemTest",
-                    "color": "#0f0",
-                    "layer": "Test",
-                    "description": "",
-                    "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "DeleteOne${entity.name}Test.php",
-                    "id": 83
                 },
                 {
                     "directoryId": 82,
@@ -3083,16 +3629,6 @@
                 },
                 {
                     "directoryId": 82,
-                    "name": "AdminReadOneItemTest",
-                    "color": "#00f",
-                    "layer": "Test",
-                    "description": "",
-                    "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadOne${entity.name}Test.php",
-                    "id": 85
-                },
-                {
-                    "directoryId": 82,
                     "name": "AdminUpdateManyItemTest",
                     "color": "#08f",
                     "layer": "Test",
@@ -3103,6 +3639,36 @@
                 },
                 {
                     "directoryId": 82,
+                    "name": "AdminCreateOneItemTest",
+                    "color": "#f80",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "CreateOne${entity.name}Test.php",
+                    "id": 81
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminDeleteOneItemTest",
+                    "color": "#0f0",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "DeleteOne${entity.name}Test.php",
+                    "id": 83
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminReadOneItemTest",
+                    "color": "#00f",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "ReadOne${entity.name}Test.php",
+                    "id": 85
+                },
+                {
+                    "directoryId": 82,
                     "name": "AdminUpdateOneItemTest",
                     "color": "#80f",
                     "layer": "Test",
@@ -3110,6 +3676,16 @@
                     "nameSpacePattern": "${entity.name}",
                     "fileNamePattern": "UpdateOne${entity.name}Test.php",
                     "id": 87
+                },
+                {
+                    "directoryId": 82,
+                    "name": "AdminReadPageItemTest",
+                    "color": "#0ff",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "ReadPage${entity.name}Test.php",
+                    "id": 88
                 },
                 {
                     "directoryId": 30,
@@ -3130,6 +3706,16 @@
                     "nameSpacePattern": "",
                     "fileNamePattern": "CreateMany${entity.name}Controller.php",
                     "id": 101
+                },
+                {
+                    "directoryId": 30,
+                    "name": "AdminCreateManyItemRequest",
+                    "color": "#f0f",
+                    "layer": "Request",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "CreateMany${entity.name}Request.php",
+                    "id": 105
                 },
                 {
                     "directoryId": 31,
@@ -3252,6 +3838,16 @@
                     "id": 161
                 },
                 {
+                    "directoryId": 36,
+                    "name": "AdminUpdateManyItemRequest",
+                    "color": "#08f",
+                    "layer": "Request",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "UpdateMany${entity.name}Request.php",
+                    "id": 165
+                },
+                {
                     "directoryId": 37,
                     "name": "AdminUpdateOneItem",
                     "color": "#80f",
@@ -3270,6 +3866,36 @@
                     "nameSpacePattern": "",
                     "fileNamePattern": "UpdateOne${entity.name}Controller.php",
                     "id": 171
+                },
+                {
+                    "directoryId": 38,
+                    "name": "AdminReadPageItem",
+                    "color": "#0ff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadPage${entity.name}.php",
+                    "id": 180
+                },
+                {
+                    "directoryId": 38,
+                    "name": "AdminReadPageItemController",
+                    "color": "#0ff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadPage${entity.name}Controller.php",
+                    "id": 181
+                },
+                {
+                    "directoryId": 38,
+                    "name": "AdminReadPageItemRequest",
+                    "color": "#0ff",
+                    "layer": "Request",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadPage${entity.name}Request.php",
+                    "id": 185
                 },
                 {
                     "directoryId": 14,
@@ -3373,7 +3999,7 @@
                 },
                 {
                     "name": "AbstractItemTest",
-                    "color": "#f00",
+                    "color": "#fff",
                     "layer": "Test",
                     "nameSpacePattern": "${entity.name}",
                     "fileNamePattern": "Abstract${entity.name}Test.php",
@@ -3392,16 +4018,6 @@
                     "id": 380
                 },
                 {
-                    "name": "CreateOneItemTest",
-                    "color": "#f80",
-                    "layer": "Test",
-                    "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "CreateOne${entity.name}Test.php",
-                    "id": 381,
-                    "description": "",
-                    "directoryId": 81
-                },
-                {
                     "directoryId": 81,
                     "name": "DeleteManyItemTest",
                     "color": "#ff0",
@@ -3412,32 +4028,12 @@
                     "id": 382
                 },
                 {
-                    "name": "DeleteOneItemTest",
-                    "color": "#0f0",
-                    "layer": "Test",
-                    "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "DeleteOne${entity.name}Test.php",
-                    "id": 383,
-                    "description": "",
-                    "directoryId": 81
-                },
-                {
                     "name": "ReadManyItemTest",
                     "color": "#0ff",
                     "layer": "Test",
                     "nameSpacePattern": "${entity.name}",
                     "fileNamePattern": "ReadMany${entity.name}Test.php",
                     "id": 384,
-                    "description": "",
-                    "directoryId": 81
-                },
-                {
-                    "name": "ReadOneItemTest",
-                    "color": "#00f",
-                    "layer": "Test",
-                    "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadOne${entity.name}Test.php",
-                    "id": 385,
                     "description": "",
                     "directoryId": 81
                 },
@@ -3452,6 +4048,36 @@
                     "id": 386
                 },
                 {
+                    "name": "CreateOneItemTest",
+                    "color": "#f80",
+                    "layer": "Test",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "CreateOne${entity.name}Test.php",
+                    "id": 381,
+                    "description": "",
+                    "directoryId": 81
+                },
+                {
+                    "name": "DeleteOneItemTest",
+                    "color": "#0f0",
+                    "layer": "Test",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "DeleteOne${entity.name}Test.php",
+                    "id": 383,
+                    "description": "",
+                    "directoryId": 81
+                },
+                {
+                    "name": "ReadOneItemTest",
+                    "color": "#00f",
+                    "layer": "Test",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "ReadOne${entity.name}Test.php",
+                    "id": 385,
+                    "description": "",
+                    "directoryId": 81
+                },
+                {
                     "name": "UpdateOneItemTest",
                     "color": "#80f",
                     "layer": "Test",
@@ -3460,6 +4086,16 @@
                     "id": 387,
                     "description": "",
                     "directoryId": 81
+                },
+                {
+                    "directoryId": 81,
+                    "name": "ReadPageItemTest",
+                    "color": "#0ff",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "ReadPage${entity.name}Test.php",
+                    "id": 388
                 },
                 {
                     "directoryId": 20,
@@ -3480,6 +4116,16 @@
                     "nameSpacePattern": "",
                     "fileNamePattern": "CreateMany${entity.name}Controller.php",
                     "id": 401
+                },
+                {
+                    "directoryId": 20,
+                    "name": "CreateManyItemRequest",
+                    "color": "#f0f",
+                    "layer": "Request",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "CreateMany${entity.name}Request.php",
+                    "id": 405
                 },
                 {
                     "name": "CreateOneItem",
@@ -3602,6 +4248,16 @@
                     "id": 461
                 },
                 {
+                    "directoryId": 26,
+                    "name": "UpdateManyItemRequest",
+                    "color": "#08f",
+                    "layer": "Request",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "UpdateMany${entity.name}Request.php",
+                    "id": 465
+                },
+                {
                     "name": "UpdateOneItem",
                     "color": "#80f",
                     "layer": "Action",
@@ -3620,6 +4276,36 @@
                     "id": 471,
                     "description": "",
                     "directoryId": 27
+                },
+                {
+                    "directoryId": 28,
+                    "name": "ReadPageItem",
+                    "color": "#0ff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadPage${entity.name}.php",
+                    "id": 480
+                },
+                {
+                    "directoryId": 28,
+                    "name": "ReadPageItemController",
+                    "color": "#0ff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadPage${entity.name}Controller.php",
+                    "id": 481
+                },
+                {
+                    "directoryId": 28,
+                    "name": "ReadPageItemRequest",
+                    "color": "#0ff",
+                    "layer": "Request",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadPage${entity.name}Request.php",
+                    "id": 485
                 },
                 {
                     "name": "Event",
@@ -3733,12 +4419,12 @@
                 },
                 {
                     "directoryId": 104,
-                    "name": "ItemResource",
+                    "name": "makeItemResource",
                     "color": "#fff",
                     "layer": "View",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "${entity.name}Resource.tsx",
+                    "fileNamePattern": "make${entity.name}Resource.tsx",
                     "id": 705
                 },
                 {
@@ -4765,7 +5451,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 2,
@@ -4797,7 +5485,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 2,
@@ -4829,7 +5519,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 2,
@@ -4861,7 +5553,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 2,
@@ -4893,11 +5587,13 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 2,
-                    "name": "list",
+                    "name": "itemzz",
                     "type": "string",
                     "length": 0,
                     "scale": 0,
@@ -4925,7 +5621,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 2,
@@ -4957,7 +5655,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -4989,7 +5689,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5021,7 +5723,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5053,7 +5757,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5085,7 +5791,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5117,7 +5825,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5149,7 +5859,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5181,7 +5893,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5213,7 +5927,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5245,7 +5961,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5277,7 +5995,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5309,7 +6029,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5341,7 +6063,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 3,
@@ -5373,7 +6097,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5405,7 +6131,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5437,7 +6165,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5469,7 +6199,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5501,7 +6233,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5533,7 +6267,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5565,7 +6301,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5597,7 +6335,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5629,7 +6369,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "entityId": 4,
@@ -5661,7 +6403,9 @@
                     "explode": false,
                     "required": true,
                     "reserved": false,
-                    "style": ""
+                    "style": "",
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5691,7 +6435,9 @@
                     "explode": false,
                     "required": true,
                     "style": "simple",
-                    "id": 30
+                    "id": 30,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5721,7 +6467,9 @@
                     "explode": false,
                     "required": true,
                     "style": "form",
-                    "id": 31
+                    "id": 31,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5751,7 +6499,9 @@
                     "explode": false,
                     "required": true,
                     "style": "simple",
-                    "id": 32
+                    "id": 32,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5781,7 +6531,9 @@
                     "explode": false,
                     "required": true,
                     "style": "form",
-                    "id": 33
+                    "id": 33,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5811,7 +6563,9 @@
                     "explode": false,
                     "required": false,
                     "style": "form",
-                    "id": 34
+                    "id": 34,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5841,7 +6595,9 @@
                     "explode": false,
                     "required": false,
                     "style": "simple",
-                    "id": 35
+                    "id": 35,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5871,7 +6627,9 @@
                     "explode": false,
                     "required": true,
                     "style": "simple",
-                    "id": 36
+                    "id": 36,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5901,7 +6659,9 @@
                     "explode": false,
                     "required": false,
                     "style": "simple",
-                    "id": 37
+                    "id": 37,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 },
                 {
                     "color": "#fff",
@@ -5931,7 +6691,9 @@
                     "explode": false,
                     "required": false,
                     "style": "simple",
-                    "id": 38
+                    "id": 38,
+                    "raField": "TextField",
+                    "raInput": "TextField"
                 }
             ],
             "ColumnConstraint": [
@@ -6106,7 +6868,7 @@
                 {
                     "color": "#fff",
                     "description": "",
-                    "name": "ApiList",
+                    "name": "ApiItemzz",
                     "reserved": false,
                     "entityId": 2,
                     "type": "allOf",
@@ -6350,7 +7112,7 @@
             ],
             "Module": [
                 {
-                    "color": "#fff",
+                    "color": "#f00",
                     "description": "",
                     "name": "Admin",
                     "reserved": false,
@@ -6361,7 +7123,7 @@
                     "fileId": 53
                 },
                 {
-                    "color": "#fff",
+                    "color": "#0f0",
                     "description": "",
                     "name": "Api",
                     "reserved": false,
@@ -6492,7 +7254,7 @@
             ],
             "PathMethod": []
         },
-        "version": 35
+        "version": 37
     },
     "oapi": {
         "openapi": "3.0.3",

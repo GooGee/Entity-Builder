@@ -2,6 +2,8 @@ import { putFile } from "@/api"
 import { Version } from "@/Database/getDBC"
 import { getDirectoryName } from "@/Model/FileManager"
 import migrateV034 from "./migrateV034"
+import migrateV035 from "./migrateV035"
+import migrateV036 from "./migrateV036"
 
 const BreakingVersion = 35
 
@@ -17,6 +19,8 @@ export default function migrate(db: LB.DBData, text: string, preset: LB.AppInfoD
     }
 
     migrateV034(db, preset)
+    migrateV035(db, preset)
+    migrateV036(db, preset)
 }
 
 function backup(db: LB.DBData, text: string) {

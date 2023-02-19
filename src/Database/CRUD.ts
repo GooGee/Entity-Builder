@@ -1,4 +1,4 @@
-import { SchemaEnum } from "../createSchema"
+import { SchemaEnum } from "./createSchema"
 import {
     create,
     createMany,
@@ -11,8 +11,9 @@ import {
     OmitId,
     update,
     updateMany,
-} from "../dbhelper"
-import { DBCFactory } from "../getDBC"
+    updateManyColumn,
+} from "./dbhelper"
+import { DBCFactory } from "./getDBC"
 
 export default class CRUD<T extends LB.IdItem> {
     constructor(readonly dbcf: DBCFactory, readonly schema: SchemaEnum) {}
@@ -77,5 +78,11 @@ export default class CRUD<T extends LB.IdItem> {
 
     updateMany(data: T[]) {
         return this.dbcf().then((dbc) => updateMany<T>(dbc, this.schema, data))
+    }
+
+    updateManyColumn(column: string, value: string | number, where: string | number) {
+        return this.dbcf().then((dbc) =>
+            updateManyColumn<T>(dbc, this.schema, column, value, where),
+        )
     }
 }

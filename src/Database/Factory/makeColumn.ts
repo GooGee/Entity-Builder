@@ -1,5 +1,3 @@
-import { OapiType } from "@/Model/Oapi"
-import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import { OmitId } from "../dbhelper"
 import makeSideBarItem from "./makeSideBarItem"
 
@@ -9,7 +7,9 @@ export default function makeColumn(
     type: string,
     value: string = "",
     length: number = 0,
-    rozz: LB.CollectionItem[] = [],
+    rozz: LB.CollectionItem[],
+    dct?: LB.DoctrineColumnType,
+    style: string = "",
 ): OmitId<LB.Column> {
     return {
         ...makeSideBarItem(name),
@@ -22,37 +22,26 @@ export default function makeColumn(
         comment: "",
         unsigned: false,
         nullable: false,
+
         cast: "",
         fillable: false,
-        ro: rozz.findIndex((item) => item.name === name) >= 0,
+        ro: rozz.findIndex((item) => item.name === name) > -1,
         wo: false,
         fakeRaw: true,
         fakeUnique: false,
-        fakeMethod: "",
-        fakeText: "",
-        inTable: true,
+        fakeMethod: dct?.fakeMethod ?? "",
+        fakeText: dct?.fakeText ?? "",
 
+        inTable: true,
         allowReserved: false,
         deprecated: false,
         description: "",
         example: "",
         explode: false,
         required: true,
-        style: "",
+        style,
+
+        raField: dct?.raField ?? "TextField",
+        raInput: dct?.raInput ?? "TextField",
     }
-}
-
-export function makeColumnTypeFormat(
-    entityId: number,
-    name: string,
-    type: string,
-    value: string = "",
-    length: number = 0,
-) {
-    const rozz = getCollectionItemzz("ReadOnlyColumn")
-    return makeColumn(entityId, name, type, value, length, rozz)
-}
-
-export function makeIntegerColumn(entityId: number, name: string, value: string = "") {
-    return makeColumnTypeFormat(entityId, name, OapiType.integer, value)
 }

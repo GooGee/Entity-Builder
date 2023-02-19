@@ -1,8 +1,8 @@
 import { makeColumnCRUD } from "@/Database/makeCRUD"
 import makeNumberInputHandler from "@/Factory/makeNumberInputHandler"
-import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import useColumnModalStore from "@/Store/useColumnModalStore"
 import useColumnzzStore from "@/Store/useColumnzzStore"
+import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import showNameInput from "@/View/Dialog/showNameInput"
 import { useState, useEffect } from "react"
@@ -11,6 +11,7 @@ import SelectStringButton from "../Button/SelectStringButton"
 
 function ColumnModal() {
     const columnzzStore = useColumnzzStore()
+    const sDoctrineColumnTypezzStore = useDoctrineColumnTypezzStore()
     const modalStore = useColumnModalStore()
     const sToastzzStore = useToastzzStore()
 
@@ -28,7 +29,7 @@ function ColumnModal() {
         return null
     }
 
-    const typezz = getCollectionItemzz("DoctrineColumnType").map((item) => item.name)
+    const typezz = sDoctrineColumnTypezzStore.itemzz.map((item) => item.name)
 
     function showInput() {
         showNameInput("Please input the column name", item!.name)
@@ -45,10 +46,7 @@ function ColumnModal() {
 
     function update(data: LB.Column) {
         setItem(data)
-        makeColumnCRUD()
-            .update(data)
-            .then(setItem)
-            .catch(sToastzzStore.showError)
+        makeColumnCRUD().update(data).then(setItem).catch(sToastzzStore.showError)
     }
 
     return (

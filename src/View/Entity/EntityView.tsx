@@ -6,6 +6,7 @@ import Detail from "./Detail"
 import Factory from "./Factory"
 import FileList from "./FileList"
 import IndexList from "./IndexList"
+import RAC from "./RAC"
 import RelationList from "./RelationList"
 import Validation from "./Validation"
 
@@ -18,6 +19,7 @@ enum TabEnum {
     Index = "Index",
     Relation = "Relation",
     Validation = "Validation",
+    RAC = "RAC",
 }
 
 export default function EntityView() {
@@ -57,6 +59,9 @@ export default function EntityView() {
         }
         if (sEntityPageStore.tab === TabEnum.Validation) {
             return <Validation entity={sEntityPageStore.item}></Validation>
+        }
+        if (sEntityPageStore.tab === TabEnum.RAC) {
+            return <RAC entity={sEntityPageStore.item}></RAC>
         }
         return null
     }

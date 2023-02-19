@@ -1,4 +1,4 @@
-import CRUD from "@/Database/CRUD/CRUD"
+import CRUD from "@/Database/CRUD"
 import { NamedItemzzStoreDataType } from "@/Factory/makeNamedItemzzStoreData"
 import { SideBarDataType } from "@/Factory/makeSideBarStoreData"
 import useToastzzStore from "@/Store/useToastzzStore"

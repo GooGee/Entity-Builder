@@ -3,6 +3,7 @@ import useCollectionzzStore from "@/Store/useCollectionzzStore"
 import useColumnConstraintzzStore from "@/Store/useColumnConstraintzzStore"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
+import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
 import useEntityzzStore from "@/Store/useEntityzzStore"
 import useExamplezzStore from "@/Store/useExamplezzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
@@ -28,6 +29,7 @@ export default function observe() {
     useDirectoryzzStore.getState().observe()
     useFilezzStore.getState().observe()
 
+    useDoctrineColumnTypezzStore.getState().observe()
     useTypeFormatzzStore.getState().observe()
     useColumnzzStore.getState().observe()
     useColumnConstraintzzStore.getState().observe()

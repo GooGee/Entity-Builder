@@ -4,9 +4,9 @@ Intuitive productivity tool for Laravel. [demo](https://googee.github.io/laravel
 
 You no longer need to write migrations, Doctrine will do it for you.
 
-[PhpStorm plugin Laravel Generator](https://plugins.jetbrains.com/plugin/15276)
-
 [PhpStorm plugin Laravel Builder](https://plugins.jetbrains.com/plugin/20064)
+
+[PhpStorm plugin Laravel Generator](https://plugins.jetbrains.com/plugin/15276)
 
 
 ## features
@@ -28,18 +28,6 @@ php artisan vendor:publish --provider="GooGee\LaravelBuilder\LaravelBuilderServi
 
 php artisan setupLaravelBuilder
 ```
-
-
-## pages
-
-- Collection
-- Diagram
-- Entity: including database talbes and some classes in project
-- Flow
-- Migration
-- OpenApi
-- Toast: message list
-- Tree: not the real files in disk
 
 
 ## how to generate migrations?

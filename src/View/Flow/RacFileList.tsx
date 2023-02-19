@@ -9,7 +9,7 @@ interface Property {
     module: LB.Module
 }
 
-export default function ViewFileList(property: Property) {
+export default function RacFileList(property: Property) {
     const sFilezzStore = useFilezzStore()
 
     const [filezz, setFilezz] = useState<LB.File[]>([])

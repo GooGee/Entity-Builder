@@ -1,9 +1,8 @@
-import { makeColumnTypeFormat } from "@/Database/Factory/makeColumn"
-import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
-import { makeColumnCRUD, makeTypeFormatCRUD } from "@/Database/makeCRUD"
-import { DoctrineOapiMap } from "@/Model/Oapi"
+import { makeTypeFormatCRUD } from "@/Database/makeCRUD"
+import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import useColumnzzStore from "@/Store/useColumnzzStore"
+import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useState, useEffect } from "react"
@@ -17,12 +16,12 @@ interface Property {
 
 export default function ColumnList(property: Property) {
     const sColumnzzStore = useColumnzzStore()
+    const sDoctrineColumnTypezzStore = useDoctrineColumnTypezzStore()
     const sFilezzStore = useFilezzStore()
     const sToastzzStore = useToastzzStore()
 
     const [columnzz, setColumnzz] = useState<LB.Column[]>([])
 
-    const cizz = getCollectionItemzz("DoctrineColumnType")
     const namezz = getCollectionItemzz("CommonColumnName")
     const typezz = getCollectionItemzz("CommonColumnType")
 
@@ -42,18 +41,8 @@ export default function ColumnList(property: Property) {
                 ? 11
                 : 111
             : 0
-
-        return makeColumnCRUD()
-            .create(makeColumnTypeFormat(property.entity.id, name, type, value, length))
-            .then((item) => {
-                const data = makeTypeFormat(
-                    DoctrineOapiMap.get(
-                        cizz.find((item) => item.name === type)?.tag ?? "",
-                    ),
-                )
-                data.ownerColumnId = item.id
-                return makeTypeFormatCRUD().create(data)
-            })
+        return createColumnTypeFormat(property.entity.id, name, type, value, length)
+            .then(([column, tf]) => makeTypeFormatCRUD().create(tf))
             .catch(sToastzzStore.showError)
     }
 

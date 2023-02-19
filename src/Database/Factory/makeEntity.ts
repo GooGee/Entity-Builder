@@ -1,9 +1,8 @@
+import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
 import { OapiType } from "@/Model/Oapi"
 import { OmitId } from "../dbhelper"
-import { makeColumnCRUD, makeEntityCRUD, makeTypeFormatCRUD } from "../makeCRUD"
-import { makeIntegerColumn } from "./makeColumn"
+import { makeEntityCRUD, makeTypeFormatCRUD } from "../makeCRUD"
 import makeSideBarItem from "./makeSideBarItem"
-import makeTypeFormat from "./makeTypeFormat"
 
 export default function makeEntity(
     name: string,
@@ -25,12 +24,8 @@ export function makeEntityWithId(name: string) {
     return makeEntityCRUD()
         .create(makeEntity(name))
         .then((response) =>
-            makeColumnCRUD()
-                .create(makeIntegerColumn(response.id, "id"))
-                .then((item) => {
-                    const data = makeTypeFormat(OapiType.integer)
-                    data.ownerColumnId = item.id
-                    return makeTypeFormatCRUD().create(data)
-                }),
+            createColumnTypeFormat(response.id, "id", OapiType.integer).then(
+                ([column, tf]) => makeTypeFormatCRUD().create(tf),
+            ),
         )
 }

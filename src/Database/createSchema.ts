@@ -7,6 +7,7 @@ export enum SchemaEnum {
     Column = "Column",
     ColumnConstraint = "ColumnConstraint",
     Directory = "Directory",
+    DoctrineColumnType = "DoctrineColumnType",
     Entity = "Entity",
     Example = "Example",
     ExampleMap = "ExampleMap",
@@ -63,6 +64,16 @@ export default function createSchema(builder: lf.Builder) {
         .addNullable(["parentId"])
     makeUniqueKey(tb, item, ["parentId", "name"])
 
+    item = SchemaEnum.DoctrineColumnType
+    tb = createForSideBarUniqueItem(builder, item)
+        .addColumn("fakeMethod", lf.Type.STRING)
+        .addColumn("fakeText", lf.Type.STRING)
+        .addColumn("oapiFormat", lf.Type.STRING)
+        .addColumn("oapiType", lf.Type.STRING)
+        .addColumn("phpType", lf.Type.STRING)
+        .addColumn("raField", lf.Type.STRING)
+        .addColumn("raInput", lf.Type.STRING)
+
     item = SchemaEnum.File
     tb = builder
         .createTable(item)
@@ -115,6 +126,7 @@ export default function createSchema(builder: lf.Builder) {
     tb = builder
         .createTable(item)
         .addColumn("id", lf.Type.INTEGER)
+        .addPrimaryKey(["id"], true)
         .addColumn("name", lf.Type.STRING)
         .addColumn("type", lf.Type.STRING)
         .addColumn("length", lf.Type.INTEGER)
@@ -123,16 +135,18 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("nullable", lf.Type.BOOLEAN)
         .addColumn("comment", lf.Type.STRING)
         .addColumn("default", lf.Type.STRING)
+        // for Laravel Eloquent
         .addColumn("fillable", lf.Type.BOOLEAN)
         .addColumn("ro", lf.Type.BOOLEAN)
         .addColumn("wo", lf.Type.BOOLEAN)
         .addColumn("cast", lf.Type.STRING)
+        // for PHP Faker
         .addColumn("fakeRaw", lf.Type.BOOLEAN)
         .addColumn("fakeUnique", lf.Type.BOOLEAN)
         .addColumn("fakeMethod", lf.Type.STRING)
         .addColumn("fakeText", lf.Type.STRING)
+        // for OpenApi parameter
         .addColumn("inTable", lf.Type.BOOLEAN)
-        .addPrimaryKey(["id"], true)
         .addColumn("allowReserved", lf.Type.BOOLEAN)
         .addColumn("color", lf.Type.STRING)
         .addColumn("deprecated", lf.Type.BOOLEAN)
@@ -141,6 +155,10 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("explode", lf.Type.BOOLEAN)
         .addColumn("required", lf.Type.BOOLEAN)
         .addColumn("style", lf.Type.STRING)
+        // for React-Admin
+        .addColumn("raField", lf.Type.STRING)
+        .addColumn("raInput", lf.Type.STRING)
+
     makeForeignKey(tb, item, SchemaEnum.Entity)
     makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Entity), "name"])
 

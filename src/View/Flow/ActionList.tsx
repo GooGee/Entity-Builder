@@ -84,27 +84,22 @@ export default function ActionList(property: Property) {
         return (
             <span
                 onClick={function () {
-                    let directoryId = parseInt(tab.tag)
-                    if (isNaN(directoryId)) {
-                        sToastzzStore.showDanger(
-                            `ModuleAction ${tab.name} tag is not a valid directoryId`,
-                        )
-                        return
-                    }
-
                     const found = sDirectoryzzStore.itemzz.find(
                         (item) =>
                             item.parentId === property.module.directoryId &&
                             item.name === tab.name,
                     )
-                    if (found) {
-                        directoryId = found.id
+                    if (found === undefined) {
+                        sToastzzStore.showDanger(
+                            `Directory ${tab.name} not found in ${property.module.name}`,
+                        )
+                        return
                     }
 
                     makeModuleActionCRUD()
                         .create(
                             makeModuleAction(
-                                directoryId,
+                                found.id,
                                 property.module.testDirectoryId,
                                 property.entity,
                                 property.module,

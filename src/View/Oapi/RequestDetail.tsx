@@ -1,13 +1,26 @@
+import { makeRequestCRUD } from "@/Database/makeCRUD"
+import useRequestPageStore from "@/Store/useRequestPageStore"
+import useToastzzStore from "@/Store/useToastzzStore"
 import MediaType from "./MediaType"
 
 interface Property {
     item: LB.Request
-    update(item: LB.Request): void
 }
 
 export default function RequestDetail(property: Property) {
+    const sRequestPageStore = useRequestPageStore()
+    const sToastzzStore = useToastzzStore()
+
+    function update(item: LB.Request) {
+        sRequestPageStore.setItem(item)
+        makeRequestCRUD()
+            .update(item)
+            .then((response) => sRequestPageStore.setItem(response))
+            .catch(sToastzzStore.showError)
+    }
+
     return (
-        <MediaType item={property.item} isRequest={true} update={property.update}>
+        <MediaType item={property.item} isRequest={true} update={update}>
             <tr>
                 <td>required</td>
                 <td>
@@ -15,7 +28,7 @@ export default function RequestDetail(property: Property) {
                         <input
                             checked={property.item.required}
                             onChange={(event) =>
-                                property.update({
+                                update({
                                     ...property.item,
                                     required: event.target.checked,
                                 })

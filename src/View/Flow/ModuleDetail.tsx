@@ -5,6 +5,7 @@ import useFilezzStore from "@/Store/useFilezzStore"
 import useModulePageStore from "@/Store/useModulePageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { ReactElement } from "react"
+import ColorButtonGroup from "../Button/ColorButtonGroup"
 import SelectButton from "../Button/SelectButton"
 import showInput from "../Dialog/showInput"
 
@@ -50,7 +51,21 @@ export default function ModuleDetail(property: Property) {
             <caption>{property.children}</caption>
             <tbody>
                 <tr>
-                    <td className="w111">URI prefix</td>
+                    <td className="w111">color</td>
+                    <td>
+                        <ColorButtonGroup
+                            color={property.item.color}
+                            setColor={(color) =>
+                                update({
+                                    ...property.item,
+                                    color,
+                                })
+                            }
+                        ></ColorButtonGroup>
+                    </td>
+                </tr>
+                <tr>
+                    <td>URI prefix</td>
                     <td>
                         <button
                             className="btn btn-outline-primary"

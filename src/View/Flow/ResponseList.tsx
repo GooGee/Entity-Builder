@@ -1,4 +1,3 @@
-import { cloneFile } from "@/Database/Factory/makeFile"
 import makeModuleActionResponse from "@/Database/Factory/makeModuleActionResponse"
 import makeResponse from "@/Database/Factory/makeResponse"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
@@ -9,20 +8,19 @@ import {
     makeModuleActionResponseCRUD,
 } from "@/Database/makeCRUD"
 import createTypeFormatArgumentzz from "@/Factory/createTypeFormatArgumentzz"
-import LayerEnum from "@/Model/LayerEnum"
 import { OapiType } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import { makeResponseName } from "@/Service/makeName"
-import useFilezzStore from "@/Store/useFilezzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useResponsezzStore from "@/Store/useResponsezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
+import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
+import useWuColumnzzStore from "@/Store/useWuColumnzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import { useState, useEffect } from "react"
-import FileButton from "../Button/FileButton"
 import SelectButton from "../Button/SelectButton"
+import WuColumnList from "../Wu/WuColumnList"
 import ActionResponse from "./ActionResponse"
-import ResponseColumnList from "./ResponseColumnList"
 
 const Step = StepEnum.Response
 
@@ -35,20 +33,23 @@ interface Property {
 }
 
 export default function ResponseList(property: Property) {
-    const sFilezzStore = useFilezzStore()
     const sFlowPageStore = useFlowPageStore()
     const sResponsezzStore = useResponsezzStore()
     const sToastzzStore = useToastzzStore()
+    const sTypeFormatzzStore = useTypeFormatzzStore()
+    const sWuColumnzzStore = useWuColumnzzStore()
     const sWuzzStore = useWuzzStore()
 
     const [itemzz, setItemzz] = useState<LB.ModuleActionResponse[]>([])
 
     const nameResponse = makeResponseName(property.action, property.entity)
-    const file = makeFile()
 
     const statuszz = getCollectionItemzz("HttpStatus")
 
     let unmounted = false
+
+    const r200 = itemzz.find((item) => item.status === "200")
+    const wu = getWu()
 
     useEffect(() => {
         refresh().catch(sToastzzStore.showError)
@@ -57,12 +58,24 @@ export default function ResponseList(property: Property) {
         }
     }, [property.ma, property.entity])
 
-    const r200 = itemzz.find((item) => item.status === "200")
-    const wu = sWuzzStore.findByName(property.entity.name)
-
     if (property.step === Step) {
         // ok
     } else {
+        function makeWuFieldCount() {
+            if (wu === undefined) {
+                return null
+            }
+
+            const wczz = sWuColumnzzStore.itemzz.filter((item) => item.wuId === wu?.id)
+            return wczz.length === 0 ? (
+                <span className="text-danger">({wu.name} 0 fields)</span>
+            ) : (
+                <span className="text-secondary">
+                    ({wu.name} {wczz.length} fields)
+                </span>
+            )
+        }
+
         return (
             <>
                 <table className="table table-borderless table-sm">
@@ -88,59 +101,35 @@ export default function ResponseList(property: Property) {
                         {itemzz.map((item) => (
                             <tr key={item.status}>
                                 <td className="w111">{item.status}</td>
-                                <td>{sResponsezzStore.find(item.responseId)?.name}</td>
+                                <td>
+                                    {sResponsezzStore.find(item.responseId)?.name}{" "}
+                                    {item.id === r200?.id ? makeWuFieldCount() : null}
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-
-                <ResponseColumnList
-                    empty={r200 === undefined}
-                    wu={wu}
-                ></ResponseColumnList>
             </>
         )
     }
 
-    function makeButton() {
-        if (sResponsezzStore.findByName(nameResponse)) {
-            if (file === undefined) {
-                return (
-                    <span className="text-danger">
-                        File {LayerEnum.Response} not found
-                    </span>
-                )
-            }
-
-            return (
-                <FileButton
-                    action={property.action}
-                    file={file}
-                    fullName
-                    ma={property.ma}
-                    entity={property.entity}
-                ></FileButton>
-            )
-        }
-
-        return (
-            <span onClick={makeResponseWu} className="btn btn-outline-primary">
-                + {nameResponse}
-            </span>
-        )
-    }
-
-    function makeFile() {
-        const file = sFilezzStore.itemzz.find(
-            (item) =>
-                item.directoryId === property.module.directoryId &&
-                item.layer === LayerEnum.Response,
-        )
-        if (file === undefined) {
+    function getWu() {
+        if (r200 === undefined) {
             return undefined
         }
 
-        return cloneFile(file, property.ma.directoryId)
+        const tf = sTypeFormatzzStore.itemzz.find(
+            (item) => item.ownerResponseId === r200?.responseId,
+        )
+        if (tf && tf.type === OapiType.Wu) {
+            const child = sTypeFormatzzStore.itemzz.find(
+                (item) => item.ownerId === tf.id,
+            )
+            if (child && child.type === OapiType.Wu) {
+                return sWuzzStore.find(child.wuId)
+            }
+        }
+        return undefined
     }
 
     function makeResponseWu() {
@@ -148,10 +137,14 @@ export default function ResponseList(property: Property) {
             .create(makeResponse(nameResponse))
             .then((lbr) => {
                 sToastzzStore.showSuccess(`Response ${lbr.name} created`)
+                const map = new Map([
+                    ["ReadMany", sWuzzStore.findByName("ApiItemzz")?.id],
+                    ["ReadPage", sWuzzStore.findByName("ApiPage")?.id],
+                ])
                 const wrapperId =
-                    (property.action === "ReadMany"
-                        ? sWuzzStore.findByName("ApiList")?.id
-                        : sWuzzStore.findByName("ApiItem")?.id) ?? 1
+                    map.get(property.action) ??
+                    sWuzzStore.findByName("ApiItem")?.id ??
+                    1
                 const data = makeTypeFormat(OapiType.Wu, wrapperId)
                 data.ownerResponseId = lbr.id
                 return makeTypeFormatCRUD()
@@ -184,14 +177,24 @@ export default function ResponseList(property: Property) {
                     })
                     .then(function () {
                         if (r200 === undefined) {
-                            return makeModuleActionResponseCRUD().create(
-                                makeModuleActionResponse("200", property.ma.id, lbr.id),
-                            )
+                            return makeModuleActionResponseCRUD()
+                                .create(
+                                    makeModuleActionResponse(
+                                        "200",
+                                        property.ma.id,
+                                        lbr.id,
+                                    ),
+                                )
+                                .then(function () {
+                                    sToastzzStore.showSuccess("Response 200 created")
+                                })
                         }
-                        return makeModuleActionResponseCRUD().update({
-                            ...r200,
-                            responseId: lbr.id,
-                        })
+                        return makeModuleActionResponseCRUD()
+                            .update({
+                                ...r200,
+                                responseId: lbr.id,
+                            })
+                            .then(function () {})
                     })
             })
             .then(refresh)
@@ -217,7 +220,17 @@ export default function ResponseList(property: Property) {
             <table className="table td0-tal">
                 <caption>
                     <h3 className="c-dark">{Step}</h3>
-                    {makeButton()}
+
+                    <div>
+                        {sResponsezzStore.findByName(nameResponse) ? null : (
+                            <span
+                                onClick={makeResponseWu}
+                                className="btn btn-outline-primary"
+                            >
+                                + {nameResponse}
+                            </span>
+                        )}
+                    </div>
                 </caption>
                 <thead>
                     <tr>
@@ -262,7 +275,16 @@ export default function ResponseList(property: Property) {
                 </tfoot>
             </table>
 
-            <ResponseColumnList empty={r200 === undefined} wu={wu}></ResponseColumnList>
+            {r200 && wu ? (
+                <WuColumnList
+                    item={wu}
+                    caption={
+                        <caption>
+                            <h3 className="text-dark">Wu {wu.name}</h3>
+                        </caption>
+                    }
+                ></WuColumnList>
+            ) : null}
         </>
     )
 }

@@ -52,6 +52,7 @@ namespace LB {
         Column: Column[]
         ColumnConstraint: ColumnConstraint[]
         Directory: Directory[]
+        DoctrineColumnType: DoctrineColumnType[]
         Entity: Entity[]
         Example: Example[]
         ExampleMap: ExampleMap[]

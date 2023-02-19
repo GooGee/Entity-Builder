@@ -1,15 +1,14 @@
 import { makeForeignKeyId, SchemaEnum } from "@/Database/createSchema"
-import { makeIntegerColumn } from "@/Database/Factory/makeColumn"
 import {
     makeColumnCRUD,
     makeRelationCRUD,
     makeTypeFormatCRUD,
 } from "@/Database/makeCRUD"
 import RelationType from "@/Database/RelationType"
+import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
 import { OapiType } from "@/Model/Oapi"
 import lodash from "lodash"
 import { OmitId } from "../dbhelper"
-import makeTypeFormat from "./makeTypeFormat"
 
 export function buildRelation(
     type: RelationType,
@@ -27,15 +26,12 @@ export function buildRelation(
                 return create(found.id)
             }
 
-            return makeColumnCRUD()
-                .create(makeIntegerColumn(entity1Id, fk))
-                .then((item) => {
-                    const data = makeTypeFormat(OapiType.integer)
-                    data.ownerColumnId = item.id
-                    return makeTypeFormatCRUD()
-                        .create(data)
-                        .then(() => create(item.id))
-                })
+            return createColumnTypeFormat(entity1Id, fk, OapiType.integer).then(
+                ([column, tf]) =>
+                    makeTypeFormatCRUD()
+                        .create(tf)
+                        .then(() => create(column.id)),
+            )
         })
 
     function create(column1Id: number) {

@@ -8,7 +8,7 @@ import FileButton from "../Button/FileButton"
 import FileList from "../Entity/FileList"
 import TabList from "../Part/TabList"
 import FileView from "./FileView"
-import ViewFileList from "./ViewFileList"
+import RacFileList from "./RacFileList"
 
 const Step = StepEnum.File
 
@@ -91,7 +91,7 @@ export default function FileTabList(property: Property) {
 
     return (
         <div>
-            <h3>{Step}</h3>
+            <h3 className="mt-3">{Step}</h3>
 
             <TabList tab={tab} tabzz={tabzz} setTab={setTab}></TabList>
 
@@ -126,11 +126,11 @@ export default function FileTabList(property: Property) {
             ) : null}
 
             {tab === TabEnum.View ? (
-                <ViewFileList
+                <RacFileList
                     entity={property.entity}
                     ma={property.ma}
                     module={property.module}
-                ></ViewFileList>
+                ></RacFileList>
             ) : null}
         </div>
     )

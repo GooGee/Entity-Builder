@@ -1,17 +1,18 @@
 import { makeColumnCRUD } from "@/Database/makeCRUD"
-import showConfirm from "@/View/Dialog/showConfirm"
-import showNameInput from "@/View/Dialog/showNameInput"
-import useToastzzStore from "@/Store/useToastzzStore"
-import ColumnDetail from "./ColumnDetail"
-import { useState } from "react"
-import getCollectionItemzz from "@/Service/getCollectionItemzz"
+import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
 import useListModalStore from "@/Store/useListModalStore"
+import useToastzzStore from "@/Store/useToastzzStore"
+import { useState } from "react"
+import showConfirm from "../Dialog/showConfirm"
+import showNameInput from "../Dialog/showNameInput"
+import ColumnDetail from "./ColumnDetail"
 
 interface Property {
     item: LB.Column
 }
 
 export default function Column(property: Property) {
+    const sDoctrineColumnTypezzStore = useDoctrineColumnTypezzStore()
     const sListModalStore = useListModalStore()
     const sToastzzStore = useToastzzStore()
 
@@ -83,10 +84,12 @@ export default function Column(property: Property) {
             <td>
                 <button
                     onClick={() => {
-                        const typezz = getCollectionItemzz("DoctrineColumnType")
+                        const typezz = sDoctrineColumnTypezzStore.itemzz.map(
+                            (item) => item.name,
+                        )
                         sListModalStore.openCB(
                             "Select a type",
-                            typezz.map((item) => item.name),
+                            typezz,
                             function (text) {
                                 return update({ ...item, type: text })
                             },

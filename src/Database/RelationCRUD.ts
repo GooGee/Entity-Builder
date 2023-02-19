@@ -1,8 +1,8 @@
 import * as lf from "lovefield-ts"
-import { SchemaEnum } from "../createSchema"
-import { OmitId } from "../dbhelper"
-import { DBCFactory } from "../getDBC"
-import makeCRUD from "../makeCRUD"
+import { SchemaEnum } from "./createSchema"
+import { OmitId } from "./dbhelper"
+import { DBCFactory } from "./getDBC"
+import makeCRUD from "./makeCRUD"
 
 const entity = SchemaEnum.Relation
 type T = LB.Relation

@@ -7,7 +7,7 @@ import PathMethodList from "./PathMethodList"
 import ServerList from "./ServerList"
 
 interface Property {
-    children?: ReactElement
+    children: ReactElement
     entity: LB.Entity
     item: LB.Path
     onDelete?(): void
@@ -27,9 +27,12 @@ export default function PathDetail(property: Property) {
 
     return (
         <table className="table td0-tar">
-            {property.children === undefined ? null : (
-                <caption>{property.children}</caption>
-            )}
+            <caption>
+                {property.children}
+                <span className="ms-3">
+                    if Controller exists, then the path will be add to the route file
+                </span>
+            </caption>
             <tbody>
                 <tr>
                     <td className="w111">parameter</td>

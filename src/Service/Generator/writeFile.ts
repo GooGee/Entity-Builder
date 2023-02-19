@@ -31,7 +31,7 @@ export default function writeFile(
             const fileMap = response.data.data
             const treeMap = makeLinkedTreeMap(db.tables.Directory)
             const treeHelper = makeTreeHelper(treeMap, psr4)
-            const data: LB.DataForScript = {
+            const ddd: LB.DataForScript = {
                 file,
                 entity,
                 module,
@@ -52,20 +52,27 @@ export default function writeFile(
             }
 
             if (HelperCodeFileName in fileMap) {
-                callCode(fileMap[HelperCodeFileName], data)
+                callCode(fileMap[HelperCodeFileName], ddd)
             }
 
             const jsn = getCodeFileName(file, ScriptExtention)
             if (jsn in fileMap) {
-                callCode(fileMap[jsn], data)
+                callCode(fileMap[jsn], ddd)
             } else {
-                console.warn(jsn + " not exist")
+                console.warn(jsn + " does not exist")
             }
 
             const tn = getCodeFileName(file, TemplateExtention)
             if (tn in fileMap) {
                 nunjucks.configure({ autoescape: false })
-                const content = nunjucks.renderString(fileMap[tn], data)
+                // render first time to set dependencyzz
+                nunjucks.renderString(fileMap[tn], ddd)
+                const set = new Set(ddd.dependencyzz)
+                set.delete(treeHelper.getClassFullName(file, entity, action))
+                ddd.dependencyzz = Array.from(set).sort((aa, bb) =>
+                    aa.localeCompare(bb),
+                )
+                const content = nunjucks.renderString(fileMap[tn], ddd)
 
                 const name = treeHelper.getFileFullName(file, entity, action)
                 return putFile(name, content).then((response) => {

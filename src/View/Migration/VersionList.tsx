@@ -13,8 +13,13 @@ export default function VersionList() {
     const [state, setState] = useState<LB.MigrationStatus>(makeState())
     const [waiting, setWaiting] = useState(false)
 
+    let unmounted = false
+
     useEffect(() => {
         read().catch(sToastzzStore.showError)
+        return function () {
+            unmounted = true
+        }
     }, [])
 
     function makeState() {
@@ -33,13 +38,12 @@ export default function VersionList() {
         setWaiting(true)
         return readMigration()
             .then((response) => {
+                if (unmounted) {
+                    return
+                }
                 setState(response.data.data)
-                setWaiting(false)
             })
-            .catch((error) => {
-                setWaiting(false)
-                throw error
-            })
+            .finally(() => setWaiting(false))
     }
 
     const versionMap: Map<string, LB.Migration> = new Map()

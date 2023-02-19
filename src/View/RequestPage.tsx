@@ -1,39 +1,48 @@
-import { makeRequestCRUD } from "@/Database/makeCRUD"
+import { makeForeignKeyId, SchemaEnum } from "@/Database/createSchema"
+import { makeModuleActionCRUD, makeRequestCRUD } from "@/Database/makeCRUD"
 import { PageEnum } from "@/menuzz"
 import useRequestPageStore from "@/Store/useRequestPageStore"
 import useRequestzzStore from "@/Store/useRequestzzStore"
-import useToastzzStore from "@/Store/useToastzzStore"
+import showInput from "./Dialog/showInput"
 import RequestDetail from "./Oapi/RequestDetail"
-import LeftRightPanel from "./Part/LeftRightPanel"
+import RightTop from "./Part/RightTop"
+import SideBar from "./Part/SideBar"
 
 export default function RequestPage() {
     const sRequestPageStore = useRequestPageStore()
-    const sToastzzStore = useToastzzStore()
-
-    function update(item: LB.Request) {
-        sRequestPageStore.setItem(item)
-        makeRequestCRUD()
-            .update(item)
-            .then((response) => sRequestPageStore.setItem(response))
-            .catch(sToastzzStore.showError)
-    }
+    const sRequestzzStore = useRequestzzStore()
 
     return (
         <div className="row">
-            <LeftRightPanel
-                makeCRUD={makeRequestCRUD as any}
-                useItemPageStore={useRequestPageStore}
-                useItemzzStore={useRequestzzStore}
+            <SideBar
                 title={PageEnum.Request}
-                validateName={false}
-            >
+                itemzz={sRequestzzStore.itemzz}
+                useStore={useRequestPageStore}
+            ></SideBar>
+
+            <div className="col-9 py-3 h100 overflow-auto">
                 {sRequestPageStore.item ? (
-                    <RequestDetail
-                        item={sRequestPageStore.item}
-                        update={update}
-                    ></RequestDetail>
+                    <>
+                        <RightTop
+                            item={sRequestPageStore.item}
+                            makeCRUD={makeRequestCRUD}
+                            message={`Please input the ${PageEnum.Request} name`}
+                            showDialog={showInput}
+                            useItemPageStore={useRequestPageStore}
+                            validateName={false}
+                            onDeleteBefore={function () {
+                                return makeModuleActionCRUD().updateManyColumn(
+                                    makeForeignKeyId(SchemaEnum.Request),
+                                    1,
+                                    sRequestPageStore.item!.id,
+                                )
+                            }}
+                        ></RightTop>
+
+                        <RequestDetail item={sRequestPageStore.item}></RequestDetail>
+                    </>
                 ) : undefined}
-            </LeftRightPanel>
+            </div>
         </div>
     )
 }

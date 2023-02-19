@@ -140,3 +140,18 @@ export function updateMany<T extends LB.IdItem>(
     data.forEach((item) => rowzz.push(tt.createRow(item)))
     return dbc.insertOrReplace().into(tt).values(rowzz).exec() as Promise<T[]>
 }
+
+export function updateManyColumn<T extends LB.IdItem>(
+    dbc: DatabaseConnection,
+    schema: SchemaEnum,
+    column: string,
+    value: string | number,
+    where: string | number,
+) {
+    const tt = dbc.getSchema().table(schema)
+    return dbc
+        .update(tt)
+        .set(tt.col(column), value)
+        .where(tt.col(column).eq(where))
+        .exec() as Promise<T[]>
+}

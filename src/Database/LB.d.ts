@@ -26,6 +26,7 @@ namespace LB {
         unsigned: boolean
         nullable: boolean
         comment: string
+
         fillable: boolean
         ro: boolean
         wo: boolean
@@ -34,11 +35,10 @@ namespace LB {
         fakeUnique: boolean
         fakeMethod: string
         fakeText: string
-        inTable: boolean
         // tf: TypeFormat
         // typeFormatId: number
 
-        // Parameter
+        inTable: boolean
         allowReserved: boolean
         deprecated: boolean
         description: string
@@ -46,6 +46,9 @@ namespace LB {
         explode: boolean
         required: boolean
         style: string
+
+        raField: string
+        raInput: string
     }
 
     interface ColumnConstraint {
@@ -61,6 +64,16 @@ namespace LB {
         parentId: number | null
         name: string
         description: string
+    }
+
+    interface DoctrineColumnType extends SideBarItem {
+        fakeMethod: string
+        fakeText: string
+        oapiFormat: string
+        oapiType: string
+        phpType: string
+        raField: string
+        raInput: string
     }
 
     interface Entity extends SideBarItem {

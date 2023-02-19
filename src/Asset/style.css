@@ -112,7 +112,7 @@
 }
 
 .hover-blue:hover {
-    color: var(--bs-blue);
+    color: var(--bs-blue) !important;
 }
 
 .hover-group:hover .hover-item {

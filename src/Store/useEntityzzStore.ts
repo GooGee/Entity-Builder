@@ -14,6 +14,7 @@ const useEntityzzStore = create<EntityzzStoreType>(function (set, get) {
     const data = makeNamedItemzzStoreData(set, get, makeEntityCRUD())
     return {
         ...data,
+        sorting: true,
         add(item: T) {
             set((state) => {
                 const itemzz = [...state.itemzz, item]
