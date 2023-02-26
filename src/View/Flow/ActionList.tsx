@@ -112,7 +112,7 @@ export default function ActionList(property: Property) {
                                 return makePathMethodCRUD().create({
                                     pathId: sFlowPageStore.path.id,
                                     moduleActionId: item.id,
-                                    method: tab.value,
+                                    method: tab.tag,
                                     middlewarezz: [],
                                 })
                             }

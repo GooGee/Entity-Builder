@@ -26,7 +26,7 @@ export default function RAC(property: Property) {
     return (
         <table className="table">
             <caption>
-                <h3 className="inline me-3">React-Admin</h3>
+                <h3 className="inline me-3">React-Admin Component</h3>
                 <WebLink href="https://marmelab.com/react-admin/documentation.html">
                     doc
                 </WebLink>

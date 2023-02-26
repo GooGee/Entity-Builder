@@ -13,7 +13,9 @@ export default function TableList() {
     const [schema, setSchema] = useState<LB.DoctrineSchema>()
     const [waiting, setWaiting] = useState(false)
 
-    const nameSet = new Set(sEntityzzStore.itemzz.map((item) => item.name))
+    const nameSet = new Set(
+        sEntityzzStore.itemzz.map((item) => (item.table ? item.table : item.name)),
+    )
 
     function update(table: LB.DoctrineTable, included: boolean) {
         if (schema === undefined) {

@@ -1,3 +1,4 @@
+import makeKeywordRE from "@/Service/makeKeywordRE"
 import useListModalStore from "@/Store/useListModalStore"
 import { useState } from "react"
 import ReactModal from "react-modal"
@@ -6,6 +7,8 @@ export default function ListModal() {
     const sListModalStore = useListModalStore()
 
     const [text, setText] = useState("")
+
+    const re = makeKeywordRE(text)
 
     return (
         <ReactModal
@@ -28,7 +31,7 @@ export default function ListModal() {
             </div>
             <ul className="list-group">
                 {sListModalStore.namezz
-                    .filter((item) => item.includes(text))
+                    .filter((item) => item.match(re))
                     .map((item) => (
                         <li
                             onClick={function () {

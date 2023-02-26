@@ -7,11 +7,12 @@ import makeSideBarItem from "./makeSideBarItem"
 export default function makeEntity(
     name: string,
     description: string = "",
+    table: string = "",
 ): OmitId<LB.Entity> {
     return {
         ...makeSideBarItem(name),
         description,
-        table: "",
+        table,
         x: 222 + Math.floor(Math.random() * 111),
         y: 11,
         isTable: true,

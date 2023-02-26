@@ -12,6 +12,7 @@ import {
 } from "@/Database/makeCRUD"
 import RelationType from "@/Database/RelationType"
 import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
+import lodash from "lodash"
 import getCollectionItemzz from "./getCollectionItemzz"
 
 function createColumn(
@@ -79,18 +80,22 @@ function createRelation(entity0: LB.Entity, entity1: LB.Entity, fki: number) {
 
 function createTable(item: LB.DoctrineTable) {
     console.log(`createTable ${item.name}`)
-    const data = makeEntity(item.name, item.comment)
+    const name = lodash.startCase(item.name).replaceAll(" ", "")
+    const table = name === item.name ? "" : item.name
+    const data = makeEntity(name, item.comment, table)
     return makeEntityCRUD().create(data)
 }
 
-export default async function loadDBSchema(entity: LB.DoctrineSchema) {
+export default async function loadDBSchema(ds: LB.DoctrineSchema) {
     const store = useDoctrineColumnTypezzStore.getState()
     const rozz = getCollectionItemzz("ReadOnlyColumn")
-    const tablezz = entity.tablezz.filter((item) => item.included)
+    const tablezz = ds.tablezz.filter((item) => item.included)
 
     const tm: Map<string, LB.Entity> = new Map()
     await exportDB().then((response) =>
-        response.tables.Entity.forEach((item) => tm.set(item.name, item)),
+        response.tables.Entity.forEach((item) =>
+            tm.set(item.table ? item.table : item.name, item),
+        ),
     )
     for (const table of tablezz) {
         await createTable(table).then((response) => tm.set(table.name, response))
