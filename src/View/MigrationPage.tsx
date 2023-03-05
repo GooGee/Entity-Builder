@@ -1,13 +1,12 @@
-import useFilezzStore from "@/Store/useFilezzStore"
+import { PageEnum } from "@/menuzz"
 import useEntityPageStore from "@/Store/useEntityPageStore"
 import useEntityzzStore from "@/Store/useEntityzzStore"
+import useFilezzStore from "@/Store/useFilezzStore"
 import MigrationView from "./Migration/MigrationView"
-import { PageEnum } from "@/menuzz"
 import SideBar from "./Part/SideBar"
-import { useEffect } from "react"
+
 
 export default function MigrationPage() {
-    const sEntityPageStore = useEntityPageStore()
     const sEntityzzStore = useEntityzzStore()
     const sFilezzStore = useFilezzStore()
 
@@ -20,10 +19,6 @@ export default function MigrationPage() {
             </div>
         )
     }
-
-    useEffect(() => {
-        sEntityPageStore.setItem()
-    }, [])
 
     return (
         <div className="row">

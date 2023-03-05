@@ -41,7 +41,14 @@ export default function FlowView() {
     return (
         <div>
             <div className="position-fixed bg-white w-100" style={{ zIndex: 111 }}>
-                <div className="pt-3 ps-3" style={{ backgroundColor }}>
+                <div
+                    className="pt-3 ps-3 d-flex align-items-baseline"
+                    style={{ backgroundColor }}
+                >
+                    <div className="me-3">
+                        Module {sModulePageStore.item?.name ?? null}
+                    </div>
+
                     <TabList
                         tab={sFlowPageStore.step}
                         tabzz={stepzz}

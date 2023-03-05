@@ -3568,7 +3568,7 @@
                     "directoryId": 65
                 },
                 {
-                    "directoryId": 70,
+                    "directoryId": 610,
                     "name": "TypeScriptDeclaration",
                     "color": "#f00",
                     "layer": "",
@@ -3578,7 +3578,7 @@
                     "id": 60
                 },
                 {
-                    "directoryId": 70,
+                    "directoryId": 610,
                     "name": "TypeScriptEnum.ts",
                     "color": "#f00",
                     "layer": "",

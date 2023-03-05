@@ -3,6 +3,7 @@ import makeJavaBridge from "@/Bridge/makeJavaBridge"
 import { refreshDisk } from "@/Bridge/sendToJava"
 import importDB from "@/Database/importDB"
 import { getDirectoryName } from "@/Model/FileManager"
+import useModulePageStore from "@/Store/useModulePageStore"
 import useOapiStore from "@/Store/useOapiStore"
 import usePsr4Store from "@/Store/usePsr4Store"
 import checkVersion from "./checkVersion"
@@ -22,7 +23,9 @@ async function load(data: LB.AppInfoData | null, text: string | null) {
     }
     useOapiStore.getState().setOAPI(data.oapi)
     migrate(data.db, text!, preset)
-    return importDB(data.db).then(observe)
+    return importDB(data.db)
+        .then(() => useModulePageStore.setState({ item: data?.db.tables.Module[0] }))
+        .then(observe)
 }
 
 function saveDTS() {
