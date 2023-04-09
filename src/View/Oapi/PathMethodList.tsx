@@ -8,6 +8,7 @@ import PathMethod from "./PathMethod"
 
 interface Property {
     item: LB.Path
+    module: LB.Module
 }
 
 export default function PathMethodList(property: Property) {
@@ -17,18 +18,12 @@ export default function PathMethodList(property: Property) {
     const [itemzz, setItemzz] = useState<LB.PathMethod[]>([])
 
     const middlewarezz = getCollectionItemzz("Middleware").map((item) => item.name)
-    const namezz = getCollectionItemzz("ModuleAction")
     const mazz = sModuleActionzz.itemzz
         .filter(
             (item) =>
                 item.entityId === property.item.entityId &&
                 item.moduleId === property.item.moduleId,
         )
-        .map((ma) => {
-            const found = namezz.find((item) => item.id === ma.collectionItemId)
-            const name = found?.name ?? `${ma.collectionItemId} not found`
-            return { ...ma, name }
-        })
         .sort((aa, bb) => aa.name.localeCompare(bb.name))
 
     useEffect(() => {

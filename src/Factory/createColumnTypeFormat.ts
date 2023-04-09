@@ -12,11 +12,14 @@ export default function createColumnTypeFormat(
     value: string = "",
     length: number = 0,
     style: string = "",
+    comment: string = "",
 ): Promise<[LB.Column, OmitId<LB.TypeFormat>]> {
     const rozz = getCollectionItemzz("ReadOnlyColumn")
     const dct = useDoctrineColumnTypezzStore.getState().findByName(type)
     return makeColumnCRUD()
-        .create(makeColumn(entityId, name, type, value, length, rozz, dct, style))
+        .create(
+            makeColumn(entityId, name, type, value, length, rozz, dct, style, comment),
+        )
         .then((item) => [
             item,
             makeTypeFormat(

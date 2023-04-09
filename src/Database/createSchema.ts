@@ -16,7 +16,6 @@ export enum SchemaEnum {
     IndexColumn = "IndexColumn",
     Module = "Module",
     ModuleAction = "ModuleAction",
-    ModuleActionFile = "ModuleActionFile",
     ModuleActionResponse = "ModuleActionResponse",
     ParameterMap = "ParameterMap",
     Path = "Path",
@@ -260,33 +259,20 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("id", lf.Type.INTEGER)
         .addColumn("deprecated", lf.Type.BOOLEAN)
         .addColumn("description", lf.Type.STRING)
-        .addColumn("summary", lf.Type.STRING)
+        .addColumn("filezz", lf.Type.OBJECT)
+        .addColumn("name", lf.Type.STRING)
         .addColumn("operationId", lf.Type.STRING)
+        .addColumn("summary", lf.Type.STRING)
         .addPrimaryKey(["id"], true)
     makeForeignKey(tb, item, SchemaEnum.Directory)
-    makeForeignKey(tb, item, SchemaEnum.Directory, "testDirectoryId")
     makeForeignKey(tb, item, SchemaEnum.Request)
     makeForeignKey(tb, item, SchemaEnum.Entity)
-    makeForeignKey(tb, item, SchemaEnum.CollectionItem)
     makeForeignKey(tb, item, SchemaEnum.Module)
     makeUniqueKey(tb, item, ["operationId"])
     makeUniqueKey(tb, item, [
         makeForeignKeyId(SchemaEnum.Entity),
         makeForeignKeyId(SchemaEnum.Module),
-        makeForeignKeyId(SchemaEnum.CollectionItem),
-    ])
-
-    item = SchemaEnum.ModuleActionFile
-    tb = builder
-        .createTable(item)
-        .addColumn("id", lf.Type.INTEGER)
-        .addPrimaryKey(["id"], true)
-    makeForeignKey(tb, item, SchemaEnum.ModuleAction)
-    makeForeignKey(tb, item, SchemaEnum.File)
-    makeForeignKey(tb, item, SchemaEnum.Directory)
-    makeUniqueKey(tb, item, [
-        makeForeignKeyId(SchemaEnum.ModuleAction),
-        makeForeignKeyId(SchemaEnum.File),
+        "name",
     ])
 
     item = SchemaEnum.ParameterMap

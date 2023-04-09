@@ -14,11 +14,14 @@ export default function makeTextTypeFormat(
     sWuParameterzzStore: LB.Finder<LB.WuParameter>,
     sWuzzStore: LB.Finder<LB.Wu>,
 ): string {
-    const text = make()
+    const textzz = [make()]
     if (tf.isArray) {
-        return text + "[]"
+        textzz.push("[]")
     }
-    return text
+    if (tf.nullable) {
+        textzz.push(" | null")
+    }
+    return textzz.join("")
 
     function make(): string {
         if (tf.type === OapiType.Enum) {

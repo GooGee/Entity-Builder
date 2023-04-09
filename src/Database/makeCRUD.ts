@@ -66,10 +66,6 @@ export function makeModuleActionCRUD() {
     return new CRUD<LB.ModuleAction>(getDBC, SchemaEnum.ModuleAction)
 }
 
-export function makeModuleActionFileCRUD() {
-    return new CRUD<LB.ModuleActionFile>(getDBC, SchemaEnum.ModuleActionFile)
-}
-
 export function makeModuleActionResponseCRUD() {
     return new CRUD<LB.ModuleActionResponse>(getDBC, SchemaEnum.ModuleActionResponse)
 }

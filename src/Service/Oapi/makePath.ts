@@ -35,8 +35,17 @@ export default function makePath(
     }
 
     const mazz = pimazzm.get(item.id) ?? []
-    const data = mazz.reduce(function (old, item) {
+    const ozz = mazz.filter((item) => (marzzm.get(item.id) ?? []).length)
+    if (ozz.length === 0) {
+        return null
+    }
+
+    const data = ozz.reduce(function (old, item) {
         const rzz = marzzm.get(item.id) ?? []
+        if (rzz.length === 0) {
+            return old
+        }
+
         const responses = rzz.reduce(function (old, item) {
             old[item.status] = makeReferenceOf(item.name, ComponentKind.responses)
             return old
@@ -44,7 +53,7 @@ export default function makePath(
         const data: OperationObject = {
             deprecated: item.deprecated,
             description: item.description,
-            parameters: (maipzzm.get(item.id) ?? []).map((item) =>
+            parameters: (maipzzm.get(item.requestId) ?? []).map((item) =>
                 makeParameterReference(item, eiem),
             ),
             responses,

@@ -85,8 +85,11 @@ export default function CollectionDetail() {
                                 sImportModalStore.openCB(
                                     pageStore.item!.id,
                                     "import CollectionItem",
-                                    "paste JSON array here",
+                                    undefined,
                                     function (text) {
+                                        if (text === "") {
+                                            return
+                                        }
                                         try {
                                             const zz = JSON.parse(text)
                                             if (Array.isArray(zz) === false) {

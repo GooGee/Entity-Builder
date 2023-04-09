@@ -8,7 +8,6 @@ import useEntityzzStore from "@/Store/useEntityzzStore"
 import useExamplezzStore from "@/Store/useExamplezzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useIndexzzStore from "@/Store/useIndexzzStore"
-import useModuleActionFilezzStore from "@/Store/useModuleActionFilezzStore"
 import useModuleActionzzStore from "@/Store/useModuleActionzzStore"
 import useModulezzStore from "@/Store/useModulezzStore"
 import usePathzzStore from "@/Store/usePathzzStore"
@@ -40,7 +39,6 @@ export default function observe() {
     useExamplezzStore.getState().observe()
     useModulezzStore.getState().observe()
     useModuleActionzzStore.getState().observe()
-    useModuleActionFilezzStore.getState().observe()
     usePathzzStore.getState().observe()
     useRequestzzStore.getState().observe()
     useResponsezzStore.getState().observe()

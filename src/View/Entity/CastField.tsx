@@ -26,7 +26,7 @@ export default function CastField(property: Property) {
         <tr>
             <td>{item.name}</td>
             <td>
-                <div className="form-check form-switch">
+                <div className="form-check form-switch inline">
                     <input
                         checked={item.fillable}
                         onChange={(event) =>
@@ -43,6 +43,44 @@ export default function CastField(property: Property) {
                     <label
                         className="form-check-label"
                         htmlFor={"fillableSwitchCheck" + item.id}
+                    ></label>
+                </div>
+                <div className="form-check form-switch inline ms-3">
+                    <input
+                        checked={item.ro}
+                        onChange={(event) =>
+                            update({
+                                ...item,
+                                ro: event.target.checked,
+                            })
+                        }
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id={"roSwitchCheck" + item.id}
+                    />
+                    <label
+                        className="form-check-label"
+                        htmlFor={"roSwitchCheck" + item.id}
+                    ></label>
+                </div>
+                <div className="form-check form-switch inline ms-3">
+                    <input
+                        checked={item.wo}
+                        onChange={(event) =>
+                            update({
+                                ...item,
+                                wo: event.target.checked,
+                            })
+                        }
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id={"woSwitchCheck" + item.id}
+                    />
+                    <label
+                        className="form-check-label"
+                        htmlFor={"woSwitchCheck" + item.id}
                     ></label>
                 </div>
             </td>

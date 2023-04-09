@@ -133,22 +133,15 @@ namespace LB {
     interface ModuleAction {
         id: number
         directoryId: number
-        testDirectoryId: number
         entityId: number
+        filezz: ModuleActionFile[]
         moduleId: number
-        collectionItemId: number
         deprecated: boolean
+        name: string
         description: string
         summary: string
         operationId: string
         requestId: number
-    }
-
-    interface ModuleActionFile {
-        id: number
-        moduleActionId: number
-        fileId: number
-        directoryId: number
     }
 
     interface ModuleActionResponse {

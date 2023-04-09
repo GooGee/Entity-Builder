@@ -1,5 +1,5 @@
-import { cloneFile } from "@/Database/Factory/makeFile"
-import { makeModuleActionFileCRUD } from "@/Database/makeCRUD"
+import { makeModuleActionCRUD } from "@/Database/makeCRUD"
+import { makeIdItemMap } from "@/Factory/makeMap"
 import Constant from "@/Model/Constant"
 import {
     getFileFullNameInCode,
@@ -7,10 +7,13 @@ import {
     ScriptExtention,
     TemplateExtention,
 } from "@/Model/FileManager"
-import useModuleActionFilezzStore from "@/Store/useModuleActionFilezzStore"
+import useFilezzStore from "@/Store/useFilezzStore"
+import useFlowPageStore from "@/Store/useFlowPageStore"
+import useListModalStore from "@/Store/useListModalStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import EditButton from "../Button/EditButton"
 import FileButton from "../Button/FileButton"
+import showInput from "../Dialog/showInput"
 
 interface Property {
     action: string
@@ -23,26 +26,90 @@ interface Property {
 }
 
 export default function FileList(property: Property) {
-    const sModuleActionFilezzStore = useModuleActionFilezzStore()
+    const sFilezzStore = useFilezzStore()
+    const sFlowPageStore = useFlowPageStore()
+    const sListModalStore = useListModalStore()
     const sToastzzStore = useToastzzStore()
 
-    const fimafim = new Map(
-        sModuleActionFilezzStore.itemzz
-            .filter(
-                (item) =>
-                    item.moduleActionId === property.ma.id &&
-                    item.directoryId === property.directoryId,
-            )
-            .map((item) => [item.fileId, item.id]),
+    const map = makeIdItemMap(property.ma.filezz)
+
+    const xFilezz = property.ma.filezz.filter(
+        (item) => item.isExtra && item.directoryId === property.directoryId,
     )
+
+    function makeButton(item: LB.ModuleActionFile) {
+        return (
+            <>
+                <button
+                    onClick={function () {
+                        makeModuleActionCRUD()
+                            .update({
+                                ...property.ma,
+                                filezz: property.ma.filezz.filter(
+                                    (one) => one.id !== item.id,
+                                ),
+                            })
+                            .then((item) => sFlowPageStore.setAction(item.name, item))
+                            .catch(sToastzzStore.showError)
+                    }}
+                    className="btn btn-outline-danger"
+                    type="button"
+                >
+                    -
+                </button>
+                <FileButton
+                    action={property.action}
+                    className="ms-3"
+                    entity={property.entity}
+                    file={item}
+                    ma={property.ma}
+                    module={property.module}
+                ></FileButton>
+            </>
+        )
+    }
+
+    function selectFile() {
+        const namezz = sFilezzStore.itemzz.map((item) => item.name)
+        sListModalStore.openCB("select a file", namezz, function (name) {
+            const item = sFilezzStore.findByName(name)
+            if (item === undefined) {
+                return
+            }
+            showInput("please input the fileNamePattern", item.fileNamePattern)
+                .then(function (result) {
+                    if (result.isConfirmed) {
+                        if (result.value) {
+                            const file = {
+                                ...item,
+                                directoryId: property.directoryId,
+                                isExtra: true,
+                                fileNamePattern: result.value,
+                            } as LB.ModuleActionFile
+                            if (property.isTest) {
+                                file.nameSpacePattern = property.entity.name
+                            } else {
+                                file.nameSpacePattern = property.ma.name
+                            }
+                            return makeModuleActionCRUD()
+                                .update({
+                                    ...property.ma,
+                                    filezz: [...property.ma.filezz, file],
+                                })
+                                .then((item) =>
+                                    sFlowPageStore.setAction(item.name, item),
+                                )
+                        }
+                    }
+                })
+                .catch(sToastzzStore.showError)
+        })
+    }
 
     return (
         <tbody>
             {property.source.map((item) => {
-                let file = null
-                if (fimafim.has(item.id)) {
-                    file = cloneFile(item, property.directoryId)
-                }
+                const file = map.get(item.id)
                 return (
                     <tr key={item.id}>
                         <td>
@@ -63,52 +130,64 @@ export default function FileList(property: Property) {
                             {item.name}
                         </td>
                         <td>
-                            {file === null ? (
+                            {file === undefined ? (
                                 <button
                                     className="btn btn-outline-primary"
                                     type="button"
                                     onClick={function () {
-                                        makeModuleActionFileCRUD()
-                                            .create({
-                                                fileId: item.id,
-                                                moduleActionId: property.ma.id,
-                                                directoryId: property.directoryId,
+                                        const file = {
+                                            ...item,
+                                            isExtra: false,
+                                            directoryId: property.directoryId,
+                                        } as LB.ModuleActionFile
+                                        if (property.isTest === false) {
+                                            file.nameSpacePattern = property.ma.name
+                                        }
+                                        makeModuleActionCRUD()
+                                            .update({
+                                                ...property.ma,
+                                                filezz: [...property.ma.filezz, file],
                                             })
+                                            .then((item) =>
+                                                sFlowPageStore.setAction(
+                                                    item.name,
+                                                    item,
+                                                ),
+                                            )
                                             .catch(sToastzzStore.showError)
                                     }}
                                 >
                                     +
                                 </button>
                             ) : (
-                                <div>
-                                    <button
-                                        onClick={function () {
-                                            const found = fimafim.get(item.id)
-                                            if (found) {
-                                                return makeModuleActionFileCRUD()
-                                                    .delete(found)
-                                                    .catch(sToastzzStore.showError)
-                                            }
-                                        }}
-                                        className="btn btn-outline-danger"
-                                        type="button"
-                                    >
-                                        -
-                                    </button>
-                                    <FileButton
-                                        action={property.action}
-                                        className="ms-3"
-                                        entity={property.entity}
-                                        file={file}
-                                        ma={property.ma}
-                                        module={property.module}
-                                    ></FileButton>
-                                </div>
+                                makeButton(file)
                             )}
                         </td>
                     </tr>
                 )
             })}
+
+            {xFilezz.map(function (item) {
+                return (
+                    <tr key={item.id}>
+                        <td></td>
+                        <td>{makeButton(item)}</td>
+                    </tr>
+                )
+            })}
+
+            <tr>
+                <td></td>
+                <td>
+                    <button
+                        className="btn btn-outline-success"
+                        type="button"
+                        onClick={selectFile}
+                    >
+                        +
+                    </button>
+                </td>
+            </tr>
         </tbody>
     )
 }

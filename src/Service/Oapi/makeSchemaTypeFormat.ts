@@ -1,4 +1,6 @@
 import {
+    isSchemaComposition,
+    isSchemaReference,
     makeSchemaArray,
     OapiReference,
     OapiSchema,
@@ -27,9 +29,18 @@ export default function makeSchemaTypeFormat(
     argumentzz: (OapiReference | OapiSchema)[],
     wpiam: Map<number, OapiReference | OapiSchema>,
 ): OapiReference | OapiSchema {
-    const schema = make()
+    let schema = make()
     if (tf.isArray) {
-        return makeSchemaArray(schema)
+        schema = makeSchemaArray(schema)
+    }
+    if (tf.nullable) {
+        if (isSchemaComposition(schema)) {
+            return schema
+        }
+        if (isSchemaReference(schema)) {
+            return schema
+        }
+        schema.nullable = tf.nullable
     }
     return schema
 

@@ -1,4 +1,5 @@
 import { makeParameterMapCRUD } from "@/Database/makeCRUD"
+import { makeIdNameMap } from "@/Factory/makeMap"
 import { PageEnum } from "@/menuzz"
 import { getLocation, getParameterzz } from "@/Service/getParameter"
 import useToastzzStore from "@/Store/useToastzzStore"
@@ -22,22 +23,11 @@ export default function ParameterList(property: Property) {
     }
 
     const columnzz = getItemzz()
+    const nameMap = makeIdNameMap(columnzz)
 
     useEffect(() => {
         refresh()
     }, [property.pathId, property.requestId, property.responseId])
-
-    function getAlias(item: LB.ParameterMap) {
-        if (item.alias) {
-            return item.alias
-        }
-
-        const column = columnzz.find((column) => column.id === item.columnId)
-        if (column) {
-            return column.name
-        }
-        return ""
-    }
 
     function getItemzz() {
         if (property.responseId) {
@@ -85,73 +75,89 @@ export default function ParameterList(property: Property) {
     }
 
     return (
-        <ul className="list-unstyled">
-            <li className="mb-1">
-                <select
-                    className="form-select wa"
-                    value={0}
-                    onChange={function (event) {
-                        const columnId = parseInt(event.target.value)
-                        makeParameterMapCRUD()
-                            .create({
-                                alias: "",
-                                columnId,
-                                pathId: data.pathId,
-                                requestId: data.requestId,
-                                responseId: data.responseId,
-                            })
-                            .then(refresh)
-                            .catch(sToastzzStore.showError)
-                    }}
-                >
-                    <option value={0} disabled hidden>
-                        -- add --
-                    </option>
-
-                    {makeOptionzz(PageEnum.ParameterInHeader)}
-
-                    {property.responseId ? null : (
-                        <>
-                            {makeOptionzz(PageEnum.ParameterInCookie)}
-                            {makeOptionzz(PageEnum.ParameterInPath)}
-                            {makeOptionzz(PageEnum.ParameterInQuery)}
-                        </>
-                    )}
-                </select>
-            </li>
-            {itemzz.map((item) => (
-                <li key={item.id} className="mb-1">
-                    <div className="input-group">
-                        <button
-                            className="btn btn-outline-danger"
-                            type="button"
-                            onClick={function () {
-                                makeParameterMapCRUD()
-                                    .delete(item.id)
-                                    .then(refresh)
-                                    .catch(sToastzzStore.showError)
-                            }}
-                        >
-                            -
-                        </button>
-                        <input
-                            className="form-control"
-                            placeholder={getAlias(item)}
-                            type="text"
-                            value={item.alias}
+        <table className="table">
+            <thead>
+                <tr>
+                    <th>
+                        <select
+                            className="form-select wa"
+                            value={0}
                             onChange={function (event) {
+                                const columnId = parseInt(event.target.value)
                                 makeParameterMapCRUD()
-                                    .update({
-                                        ...item,
-                                        alias: event.target.value,
+                                    .create({
+                                        alias: "",
+                                        columnId,
+                                        pathId: data.pathId,
+                                        requestId: data.requestId,
+                                        responseId: data.responseId,
                                     })
                                     .then(refresh)
                                     .catch(sToastzzStore.showError)
                             }}
-                        />
-                    </div>
-                </li>
-            ))}
-        </ul>
+                        >
+                            <option value={0} disabled hidden>
+                                -- add --
+                            </option>
+
+                            {makeOptionzz(PageEnum.ParameterInHeader)}
+
+                            {property.responseId ? null : (
+                                <>
+                                    {makeOptionzz(PageEnum.ParameterInCookie)}
+                                    {makeOptionzz(PageEnum.ParameterInPath)}
+                                    {makeOptionzz(PageEnum.ParameterInQuery)}
+                                </>
+                            )}
+                        </select>
+                    </th>
+                    <th className="align-middle">alias</th>
+                </tr>
+            </thead>
+            <tbody>
+                {itemzz.map((item) => (
+                    <tr key={item.id} className="mb-1">
+                        <td>
+                            <div className="input-group">
+                                <button
+                                    className="btn btn-outline-danger"
+                                    type="button"
+                                    onClick={function () {
+                                        makeParameterMapCRUD()
+                                            .delete(item.id)
+                                            .then(refresh)
+                                            .catch(sToastzzStore.showError)
+                                    }}
+                                >
+                                    -
+                                </button>
+                                <button
+                                    className="btn btn-outline-secondary"
+                                    type="button"
+                                >
+                                    {nameMap.get(item.columnId) ?? "-- not found --"}
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            <input
+                                className="form-control"
+                                type="text"
+                                value={item.alias}
+                                onChange={function (event) {
+                                    makeParameterMapCRUD()
+                                        .update({
+                                            ...item,
+                                            alias: event.target.value,
+                                        })
+                                        .then(refresh)
+                                        .catch(sToastzzStore.showError)
+                                }}
+                            />
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     )
 }

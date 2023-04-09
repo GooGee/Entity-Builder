@@ -1,8 +1,5 @@
-import { makeModuleActionCRUD } from "@/Database/makeCRUD"
-import useDirectoryModalStore from "@/Store/useDirectoryModalStore"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
-import useToastzzStore from "@/Store/useToastzzStore"
 import FileList from "./FileList"
 
 interface Property {
@@ -15,10 +12,8 @@ interface Property {
 }
 
 export default function FileView(property: Property) {
-    const sDirectoryModal = useDirectoryModalStore()
     const sDirectoryzzStore = useDirectoryzzStore()
     const sFilezzStore = useFilezzStore()
-    const sToastzzStore = useToastzzStore()
 
     const directory = sDirectoryzzStore.find(property.directoryId)
 
@@ -43,35 +38,14 @@ export default function FileView(property: Property) {
         <table className="table">
             <caption>
                 <span className="me-3">Directory:</span>
-                <span
-                    className={"btn btn-outline-" + (directory ? "primary" : "danger")}
-                    onClick={function () {
-                        sDirectoryModal.openCB(
-                            "Please select a Directory",
-                            function (directoryId) {
-                                const data = {
-                                    ...property.ma,
-                                }
-                                if (property.isTest) {
-                                    data.testDirectoryId = directoryId
-                                } else {
-                                    data.directoryId = directoryId
-                                }
-                                makeModuleActionCRUD()
-                                    .update(data)
-                                    .catch(sToastzzStore.showError)
-                            },
-                        )
-                    }}
-                >
-                    {directory
-                        ? sDirectoryzzStore.treeHelper.getDirectoryFullName(
-                              directory,
-                              property.entity,
-                              property.action,
-                          )
-                        : `Directory ${property.directoryId} not found`}
-                </span>
+                {directory
+                    ? sDirectoryzzStore.treeHelper.getDirectoryFullName(
+                          directory,
+                          property.entity,
+                          property.action,
+                      )
+                    : `Directory ${property.directoryId} not found`}
+                {property.isTest ? "/" + property.entity.name : ""}
             </caption>
             <thead>
                 <tr>

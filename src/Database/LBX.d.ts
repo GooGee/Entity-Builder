@@ -61,7 +61,6 @@ namespace LB {
         IndexColumn: IndexColumn[]
         Module: Module[]
         ModuleAction: ModuleAction[]
-        ModuleActionFile: ModuleActionFile[]
         ModuleActionResponse: ModuleActionResponse[]
         ParameterMap: ParameterMap[]
         Path: Path[]
@@ -197,6 +196,10 @@ namespace LB {
         dbexist: boolean
         filezz: string[]
         migrationzz: Migration[]
+    }
+
+    interface ModuleActionFile extends File {
+        isExtra: boolean
     }
 
     enum OapiType {

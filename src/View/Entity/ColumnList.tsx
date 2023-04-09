@@ -4,6 +4,7 @@ import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
+import useImportModalStore from "@/Store/useImportModalStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useState, useEffect } from "react"
 import FileButton from "../Button/FileButton"
@@ -18,6 +19,7 @@ export default function ColumnList(property: Property) {
     const sColumnzzStore = useColumnzzStore()
     const sDoctrineColumnTypezzStore = useDoctrineColumnTypezzStore()
     const sFilezzStore = useFilezzStore()
+    const sImportModalStore = useImportModalStore()
     const sToastzzStore = useToastzzStore()
 
     const [columnzz, setColumnzz] = useState<LB.Column[]>([])
@@ -35,13 +37,16 @@ export default function ColumnList(property: Property) {
         )
     }, [property.entity, sColumnzzStore.itemzz])
 
-    function add(name: string, type: string, value: string) {
-        const length = ["binary", "decimal", "string"].includes(type)
-            ? "decimal" === type
-                ? 11
-                : 111
-            : 0
-        return createColumnTypeFormat(property.entity.id, name, type, value, length)
+    function add(name: string, type: string, value: string, comment: string = "") {
+        return createColumnTypeFormat(
+            property.entity.id,
+            name,
+            type,
+            value,
+            "decimal" === type ? 11 : 0,
+            "",
+            comment,
+        )
             .then(([column, tf]) => makeTypeFormatCRUD().create(tf))
             .catch(sToastzzStore.showError)
     }
@@ -100,7 +105,47 @@ export default function ColumnList(property: Property) {
                             }}
                         ></SelectButton>
                     </td>
-                    <td></td>
+                    <td>
+                        <span
+                            onClick={function () {
+                                sImportModalStore.openCB(
+                                    property.entity.id,
+                                    "import column",
+                                    undefined,
+                                    function (text) {
+                                        if (text === "") {
+                                            return
+                                        }
+                                        try {
+                                            const zz = JSON.parse(text)
+                                            if (Array.isArray(zz) === false) {
+                                                sToastzzStore.showDanger(
+                                                    "text is not JSON array",
+                                                )
+                                                return
+                                            }
+                                            zz.forEach((item: any) => {
+                                                if (typeof item === "string") {
+                                                    item = { name: item }
+                                                }
+                                                add(
+                                                    item["name"] ?? "",
+                                                    item["type"] ?? "",
+                                                    "",
+                                                    item["comment"] ?? "",
+                                                )
+                                            })
+                                        } catch (error) {
+                                            sToastzzStore.showError(error)
+                                        }
+                                    },
+                                )
+                            }}
+                            className="btn btn-outline-primary"
+                        >
+                            import
+                        </span>
+                    </td>
                     <td></td>
                 </tr>
             </tfoot>

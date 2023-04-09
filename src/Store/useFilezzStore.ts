@@ -1,13 +1,15 @@
 import { makeFileCRUD } from "@/Database/makeCRUD"
-import makeItemzzStoreData, { ItemzzStoreDataType } from "@/Factory/makeItemzzStoreData"
+import makeNamedItemzzStoreData, {
+    NamedItemzzStoreDataType,
+} from "@/Factory/makeNamedItemzzStoreData"
 import create from "zustand"
 
 type T = LB.File
 
-type FilezzStoreType = ItemzzStoreDataType<T>
+type FilezzStoreType = NamedItemzzStoreDataType<T>
 
 const useFilezzStore = create<FilezzStoreType>(function (set, get) {
-    const data = makeItemzzStoreData(set, get, makeFileCRUD())
+    const data = makeNamedItemzzStoreData(set, get, makeFileCRUD())
     return data
 })
 

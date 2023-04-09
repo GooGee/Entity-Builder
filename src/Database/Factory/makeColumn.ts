@@ -7,9 +7,10 @@ export default function makeColumn(
     type: string,
     value: string = "",
     length: number = 0,
-    rozz: LB.CollectionItem[],
+    rozz: LB.CollectionItem[] = [],
     dct?: LB.DoctrineColumnType,
     style: string = "",
+    comment: string = "",
 ): OmitId<LB.Column> {
     return {
         ...makeSideBarItem(name),
@@ -19,7 +20,7 @@ export default function makeColumn(
         length,
         scale: 0,
         default: value,
-        comment: "",
+        comment,
         unsigned: false,
         nullable: false,
 

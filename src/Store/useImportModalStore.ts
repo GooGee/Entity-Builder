@@ -21,7 +21,7 @@ const useImportModalStore = create<ImportModalStoreType>(function (set) {
         openCB(
             itemId: number,
             title: string = "",
-            message: string = "",
+            message: string = "paste JSON array here",
             callback = CB,
         ) {
             set({

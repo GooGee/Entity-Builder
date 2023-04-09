@@ -56,7 +56,7 @@ export default function PathList(property: Property) {
         }
 
         return (
-            <PathDetail entity={property.entity} item={path}>
+            <PathDetail entity={property.entity} item={path} module={property.module}>
                 <DeleteChangeButton
                     name={path.name}
                     onChange={function () {

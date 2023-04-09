@@ -64,6 +64,12 @@ export enum HttpMethod {
 
 export const HttpMethodzz = Object.keys(HttpMethod) as Array<keyof typeof HttpMethod>
 
+export const ActionMethodMap = new Map([
+    ["Create", HttpMethod.post],
+    ["Delete", HttpMethod.delete],
+    ["Update", HttpMethod.put],
+])
+
 export enum ParameterLocation {
     cookie = "cookie",
     header = "header",
@@ -105,16 +111,14 @@ export interface OapiSchemaAny {
     nullable?: boolean
 }
 
-export interface OapiSchemaArray {
+export interface OapiSchemaArray extends OapiSchemaAny {
     items: OapiReference | OapiSchema
     type: OapiSchemaType.array
 }
 
-export interface OapiSchemaColumn {
-    description?: string
+export interface OapiSchemaColumn extends OapiSchemaAny {
     enum?: string[]
     format?: string
-    nullable?: boolean
     readOnly?: boolean
     type: SchemaColumnType
     writeOnly?: boolean
@@ -137,9 +141,8 @@ interface OapiSchemaCompositionOneOf {
     [CompositionKind.oneOf]: (OapiReference | OapiSchema)[]
 }
 
-export interface OapiSchemaObject {
+export interface OapiSchemaObject extends OapiSchemaAny {
     additionalProperties?: OapiReference | OapiSchema
-    description?: string
     example?: string
     properties?: Record<string, OapiReference | OapiSchema>
     required?: string[]
@@ -187,7 +190,7 @@ export function isSchemaColumn(
     return "type" in item
 }
 
-function isSchemaComposition(
+export function isSchemaComposition(
     item: OapiReference | OapiSchema,
 ): item is OapiSchemaComposition {
     if (CompositionKindzz.find((key) => key in item)) {

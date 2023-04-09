@@ -238,8 +238,6 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         }
     })
 
-    const tagSet: Set<string> = new Set()
-
     const sivzzm: Map<number, LB.Variable[]> = new Map()
     db.tables.ServerVariable.forEach((item) => {
         let found = sivzzm.get(item.serverId)
@@ -261,18 +259,12 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         }
     })
 
+    const tagSet: Set<string> = new Set()
+
     const pathzz = [...db.tables.Path]
     pathzz.sort((aa, bb) => aa.name.localeCompare(bb.name))
     pathzz.forEach((item) => {
         const found = entityMap.get(item.entityId)
-        if (found) {
-            if (tagSet.has(found.name)) {
-                // skip
-            } else {
-                tagSet.add(found.name)
-                builder.addTag({ name: found.name })
-            }
-        }
         const data = makePath(
             item,
             entityMap,
@@ -286,7 +278,13 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
             sivzzm,
             found?.name ?? "not found",
         )
+        if (data === null) {
+            return
+        }
 
+        if (found) {
+            tagSet.add(found.name)
+        }
         let name = item.name
         const module = mimm.get(item.moduleId)
         if (module) {
@@ -294,6 +292,10 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         }
         builder.addPath(name, data)
     })
+
+    Array.from(tagSet)
+        .sort((aa, bb) => aa.localeCompare(bb))
+        .forEach((name) => builder.addTag({ name }))
 
     return builder
 }

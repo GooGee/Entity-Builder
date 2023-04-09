@@ -6,7 +6,6 @@ import useModulePageStore from "@/Store/useModulePageStore"
 import useModulezzStore from "@/Store/useModulezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import ModuleDetail from "./Flow/ModuleDetail"
-import DirectoryModal from "./Modal/DirectoryModal"
 import LeftRightPanel from "./Part/LeftRightPanel"
 
 export default function ModulePage() {
@@ -35,8 +34,6 @@ export default function ModulePage() {
                     ></ModuleDetail>
                 ) : undefined}
             </LeftRightPanel>
-
-            <DirectoryModal></DirectoryModal>
         </div>
     )
 }

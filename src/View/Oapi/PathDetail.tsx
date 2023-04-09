@@ -10,6 +10,7 @@ interface Property {
     children: ReactElement
     entity: LB.Entity
     item: LB.Path
+    module: LB.Module
     onDelete?(): void
 }
 
@@ -82,7 +83,10 @@ export default function PathDetail(property: Property) {
                     </td>
                 </tr>
 
-                <PathMethodList item={property.item}></PathMethodList>
+                <PathMethodList
+                    item={property.item}
+                    module={property.module}
+                ></PathMethodList>
             </tbody>
         </table>
     )

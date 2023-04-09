@@ -1,8 +1,5 @@
-import { cloneFile } from "@/Database/Factory/makeFile"
-import LayerEnum from "@/Model/LayerEnum"
-import useFilezzStore from "@/Store/useFilezzStore"
+import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
-import useModuleActionFilezzStore from "@/Store/useModuleActionFilezzStore"
 import { useState } from "react"
 import FileButton from "../Button/FileButton"
 import FileList from "../Entity/FileList"
@@ -28,9 +25,8 @@ enum TabEnum {
 }
 
 export default function FileTabList(property: Property) {
-    const sFilezzStore = useFilezzStore()
+    const sDirectoryzzStore = useDirectoryzzStore()
     const sFlowPageStore = useFlowPageStore()
-    const sModuleActionFilezzStore = useModuleActionFilezzStore()
 
     const [tab, setTab] = useState<string>(TabEnum.Crud)
 
@@ -39,27 +35,6 @@ export default function FileTabList(property: Property) {
     if (property.step === Step) {
         // ok
     } else {
-        const set = new Set(
-            sModuleActionFilezzStore.itemzz
-                .filter((item) => item.moduleActionId === property.ma.id)
-                .map((item) => item.fileId),
-        )
-        const filezz = sFilezzStore.itemzz
-            .filter((item) => set.has(item.id))
-            .map((item) =>
-                cloneFile(
-                    item,
-                    item.layer === LayerEnum.Test
-                        ? property.ma.testDirectoryId
-                        : property.ma.directoryId,
-                ),
-            )
-            .sort((aa, bb) => {
-                if (aa.layer === bb.layer) {
-                    return aa.name.localeCompare(bb.name)
-                }
-                return aa.layer.localeCompare(bb.layer)
-            })
         return (
             <table className="table">
                 <caption>
@@ -71,19 +46,36 @@ export default function FileTabList(property: Property) {
                     </h3>
                 </caption>
                 <tbody>
-                    {filezz.map((item) => (
-                        <tr key={item.id}>
-                            <td>
-                                <FileButton
-                                    action={property.action}
-                                    file={item}
-                                    fullName
-                                    ma={property.ma}
-                                    entity={property.entity}
-                                ></FileButton>
-                            </td>
-                        </tr>
-                    ))}
+                    {property.ma.filezz
+                        .sort((aa, bb) => {
+                            if (aa.directoryId === bb.directoryId) {
+                                const namea = sDirectoryzzStore.treeHelper.getFileName(
+                                    aa,
+                                    property.entity,
+                                    property.action,
+                                )
+                                const nameb = sDirectoryzzStore.treeHelper.getFileName(
+                                    bb,
+                                    property.entity,
+                                    property.action,
+                                )
+                                return namea.localeCompare(nameb)
+                            }
+                            return aa.directoryId - bb.directoryId
+                        })
+                        .map((item) => (
+                            <tr key={item.id}>
+                                <td>
+                                    <FileButton
+                                        action={property.action}
+                                        file={item}
+                                        fullName
+                                        ma={property.ma}
+                                        entity={property.entity}
+                                    ></FileButton>
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
         )
@@ -106,7 +98,7 @@ export default function FileTabList(property: Property) {
             {tab === TabEnum.Crud ? (
                 <FileView
                     action={property.action}
-                    directoryId={property.ma.directoryId}
+                    directoryId={property.module.directoryId}
                     entity={property.entity}
                     isTest={false}
                     ma={property.ma}
@@ -117,7 +109,7 @@ export default function FileTabList(property: Property) {
             {tab === TabEnum.Test ? (
                 <FileView
                     action={property.action}
-                    directoryId={property.ma.testDirectoryId}
+                    directoryId={property.module.testDirectoryId}
                     entity={property.entity}
                     isTest={true}
                     ma={property.ma}

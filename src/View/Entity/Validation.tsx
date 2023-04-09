@@ -1,4 +1,4 @@
-import { makeColumnConstraintCRUD, makeColumnCRUD } from "@/Database/makeCRUD"
+import { makeColumnConstraintCRUD } from "@/Database/makeCRUD"
 import Constant from "@/Model/Constant"
 import { getFileFullNameInCode, ValidationCodeFileName } from "@/Model/FileManager"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
@@ -39,36 +39,14 @@ export default function Validation(property: Property) {
             </caption>
             <thead>
                 <tr>
-                    <th className="w111">read only</th>
+                    <th className="w111">name</th>
                     <th>constraint</th>
                 </tr>
             </thead>
             <tbody>
                 {columnzz.map((item) => (
                     <tr key={item.id}>
-                        <td>
-                            <div className="form-check form-switch">
-                                <input
-                                    checked={item.ro}
-                                    onChange={(event) =>
-                                        makeColumnCRUD().update({
-                                            ...item,
-                                            ro: event.target.checked,
-                                        })
-                                    }
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    role="switch"
-                                    id={"roSwitchCheck" + item.id}
-                                />
-                                <label
-                                    className="form-check-label"
-                                    htmlFor={"roSwitchCheck" + item.id}
-                                >
-                                    {item.name}
-                                </label>
-                            </div>
-                        </td>
+                        <td>{item.name}</td>
                         <td>
                             <ConstraintList
                                 constraintzz={constraintzz}

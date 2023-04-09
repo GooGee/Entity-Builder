@@ -1,13 +1,13 @@
 import makeModuleAction from "@/Database/Factory/makeModuleAction"
 import { makeModuleActionCRUD, makePathMethodCRUD } from "@/Database/makeCRUD"
-import makeNotFoundText from "@/Factory/makeNotFoundText"
-import getCollectionItemzz from "@/Service/getCollectionItemzz"
+import { ActionMethodMap } from "@/Model/Oapi"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useModuleActionzzStore from "@/Store/useModuleActionzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect } from "react"
 import showConfirm from "../Dialog/showConfirm"
+import showNameInput from "../Dialog/showNameInput"
 import ActionDetail from "./ActionDetail"
 
 const Step = StepEnum.Action
@@ -23,8 +23,16 @@ export default function ActionList(property: Property) {
     const sModuleActionzzStore = useModuleActionzzStore()
     const sToastzzStore = useToastzzStore()
 
-    const tabzz = getCollectionItemzz("ModuleAction")
+    const tabzz =
+        sDirectoryzzStore.treeMap
+            .get(property.module.directoryId)
+            ?.childzz?.slice()
+            .sort((aa, bb) => aa.name.localeCompare(bb.name)) ?? []
     const tab = tabzz.find((item) => sFlowPageStore.action === item.name)
+
+    const xActionzz = sModuleActionzzStore.itemzz.filter(
+        (item) => item.directoryId === property.module.directoryId,
+    )
 
     useEffect(() => {
         if (
@@ -41,19 +49,19 @@ export default function ActionList(property: Property) {
         }
     }, [property.entity, property.module])
 
-    function find(ci: LB.CollectionItem) {
+    function find(mad: LB.Directory) {
         return sModuleActionzzStore.itemzz.find(
             (item) =>
                 item.entityId === property.entity.id &&
                 item.moduleId === property.module.id &&
-                item.collectionItemId === ci.id,
+                item.directoryId === mad.id,
         )
     }
 
-    function getCN(ci: LB.CollectionItem, ma?: LB.ModuleAction) {
+    function getCN(mad: LB.Directory, ma?: LB.ModuleAction) {
         let cn = "nav-link"
         if (tab) {
-            if (ci.id === tab.id) {
+            if (mad.id === tab.id) {
                 cn += " active"
                 if (ma === undefined) {
                     cn += " bg-white text-secondary border-primary"
@@ -68,12 +76,34 @@ export default function ActionList(property: Property) {
         return cn
     }
 
-    function makeButton(ci: LB.CollectionItem, ma?: LB.ModuleAction) {
+    function makeAction() {
+        showNameInput("please input the action name", "").then(function (result) {
+            if (result.isConfirmed) {
+                if (result.value) {
+                    const md = sDirectoryzzStore.find(property.module.directoryId)
+                    if (md) {
+                        const folder = { ...md, name: result.value }
+                        makeModuleActionCRUD()
+                            .create(
+                                makeModuleAction(
+                                    folder,
+                                    property.entity,
+                                    property.module,
+                                ),
+                            )
+                            .catch(sToastzzStore.showError)
+                    }
+                }
+            }
+        })
+    }
+
+    function makeButton(mad: LB.Directory, ma?: LB.ModuleAction) {
         if (tab === undefined) {
             return null
         }
 
-        if (tab.id !== ci.id) {
+        if (tab.id !== mad.id) {
             return null
         }
 
@@ -84,35 +114,17 @@ export default function ActionList(property: Property) {
         return (
             <span
                 onClick={function () {
-                    const found = sDirectoryzzStore.itemzz.find(
-                        (item) =>
-                            item.parentId === property.module.directoryId &&
-                            item.name === tab.name,
-                    )
-                    if (found === undefined) {
-                        sToastzzStore.showDanger(
-                            `Directory ${tab.name} not found in ${property.module.name}`,
-                        )
-                        return
-                    }
-
                     makeModuleActionCRUD()
-                        .create(
-                            makeModuleAction(
-                                found.id,
-                                property.module.testDirectoryId,
-                                property.entity,
-                                property.module,
-                                tab,
-                            ),
-                        )
+                        .create(makeModuleAction(tab, property.entity, property.module))
                         .then(function (item) {
                             sFlowPageStore.setAction(sFlowPageStore.action, item)
                             if (sFlowPageStore.path) {
+                                const method =
+                                    ActionMethodMap.get(tab.name.slice(0, 6)) ?? "get"
                                 return makePathMethodCRUD().create({
                                     pathId: sFlowPageStore.path.id,
                                     moduleActionId: item.id,
-                                    method: tab.tag,
+                                    method,
                                     middlewarezz: [],
                                 })
                             }
@@ -126,18 +138,18 @@ export default function ActionList(property: Property) {
         )
     }
 
-    function makeTab(ci: LB.CollectionItem) {
-        const ma = find(ci)
+    function makeTab(mad: LB.Directory) {
+        const ma = find(mad)
         return (
             <li
-                key={ci.id}
+                key={mad.id}
                 onClick={function () {
-                    sFlowPageStore.setAction(ci.name, ma)
+                    sFlowPageStore.setAction(mad.name, ma)
                 }}
                 className="nav-item nav-item-fill"
             >
-                <span className={getCN(ci, ma)}>
-                    {ci.name} {makeButton(ci, ma)}
+                <span className={getCN(mad, ma)}>
+                    {mad.name} {makeButton(mad, ma)}
                 </span>
             </li>
         )
@@ -145,36 +157,31 @@ export default function ActionList(property: Property) {
 
     function makeView() {
         const ma = sFlowPageStore.ma
-        if (ma) {
-            if (tab === undefined) {
-                return (
-                    <div>{makeNotFoundText("ModuleAction", sFlowPageStore.action)}</div>
-                )
-            }
-            return (
-                <ActionDetail action={tab.name} entity={property.entity} ma={ma}>
-                    <button
-                        onClick={() => {
-                            showConfirm()
-                                .then((response) => {
-                                    if (response.isConfirmed) {
-                                        return makeModuleActionCRUD()
-                                            .delete(ma.id)
-                                            .then(() => sFlowPageStore.setAction(""))
-                                    }
-                                })
-                                .catch(sToastzzStore.showError)
-                        }}
-                        className="btn btn-outline-danger"
-                        type="button"
-                    >
-                        - {tab.name}
-                    </button>
-                </ActionDetail>
-            )
+        if (ma === undefined) {
+            return null
         }
 
-        return null
+        return (
+            <ActionDetail action={ma.name} entity={property.entity} ma={ma}>
+                <button
+                    onClick={() => {
+                        showConfirm()
+                            .then((response) => {
+                                if (response.isConfirmed) {
+                                    return makeModuleActionCRUD()
+                                        .delete(ma.id)
+                                        .then(() => sFlowPageStore.setAction(""))
+                                }
+                            })
+                            .catch(sToastzzStore.showError)
+                    }}
+                    className="btn btn-outline-danger"
+                    type="button"
+                >
+                    - {ma.name}
+                </button>
+            </ActionDetail>
+        )
     }
 
     return (
@@ -186,7 +193,42 @@ export default function ActionList(property: Property) {
                 {Step}
             </h3>
 
-            <ul className={"nav nav-tabs"}>{tabzz.map(makeTab)}</ul>
+            <ul className={"nav nav-tabs"}>
+                {tabzz.map(makeTab)}
+
+                {xActionzz.map(function (item) {
+                    return (
+                        <li
+                            key={"ma" + item.id}
+                            className="nav-item nav-item-fill"
+                            onClick={function () {
+                                sFlowPageStore.setAction(item.name, item)
+                            }}
+                        >
+                            <span
+                                className={
+                                    "nav-link " +
+                                    (sFlowPageStore.action === item.name
+                                        ? "active border-primary"
+                                        : "text-primary")
+                                }
+                            >
+                                {item.name}
+                            </span>
+                        </li>
+                    )
+                })}
+
+                <li>
+                    <button
+                        className="btn btn-outline-primary ms-3"
+                        type="button"
+                        onClick={makeAction}
+                    >
+                        +
+                    </button>
+                </li>
+            </ul>
 
             {sFlowPageStore.step === Step ? makeView() : null}
         </div>
