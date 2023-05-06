@@ -2,7 +2,7 @@ import * as lf from "lovefield-ts"
 import { DatabaseConnection } from "lovefield-ts"
 import createSchema from "./createSchema"
 
-export const Version = 40
+export const Version = 41
 
 const builder = lf.schema.create("LB", Version)
 createSchema(builder)
@@ -28,6 +28,10 @@ export function exportDB() {
     return getDBC()
         .then((dbc) => dbc.export())
         .then((response) => response as LB.DBData)
+}
+
+export function importDB(data: LB.DBData) {
+    return getDBC().then((dbc) => dbc.import(data))
 }
 
 class ServiceId<T> {

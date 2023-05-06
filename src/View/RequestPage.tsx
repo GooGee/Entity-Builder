@@ -31,6 +31,8 @@ export default function RequestPage() {
                             useItemPageStore={useRequestPageStore}
                             validateName={false}
                             onDeleteBefore={function () {
+                                sRequestPageStore.setItem(undefined)
+                                // delete Request, but keep ModuleAction
                                 return makeModuleActionCRUD().updateManyColumn(
                                     makeForeignKeyId(SchemaEnum.Request),
                                     1,

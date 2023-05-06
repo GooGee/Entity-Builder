@@ -1,6 +1,7 @@
 import { makeTypeFormatCRUD } from "@/Database/makeCRUD"
-import { Formatzz, isReference, OapiType, OapiTypezz } from "@/Model/Oapi"
+import { isReference, OapiType, OapiTypezz } from "@/Model/Oapi"
 import deleteTypeFormatArgument from "@/Service/deleteTypeFormatArgument"
+import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { ReactElement } from "react"
 import SelectStringButton from "../Button/SelectStringButton"
@@ -47,11 +48,14 @@ export default function TypeFormat(property: Property) {
             )
         }
 
+        const formatzz = getCollectionItemzz("TypeFormat").map((item) => item.name)
+
         return (
             <div>
                 <SelectStringButton
+                    allowEmpty
                     className="wa"
-                    itemzz={Formatzz}
+                    itemzz={formatzz}
                     value={property.item.format}
                     change={(format) =>
                         update({

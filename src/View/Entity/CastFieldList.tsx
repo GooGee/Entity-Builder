@@ -29,7 +29,7 @@ export default function CastFieldList(property: Property) {
             <thead>
                 <tr>
                     <th>column</th>
-                    <th>fillable / read only / write only</th>
+                    <th>fillable / hidden / read only / write only</th>
                     <th>type</th>
                     <th>cast</th>
                 </tr>

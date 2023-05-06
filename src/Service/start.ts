@@ -1,7 +1,7 @@
 import { putFile } from "@/api"
 import makeJavaBridge from "@/Bridge/makeJavaBridge"
 import { refreshDisk } from "@/Bridge/sendToJava"
-import importDB from "@/Database/importDB"
+import { importDB } from "@/Database/getDBC"
 import { getDirectoryName } from "@/Model/FileManager"
 import useModulePageStore from "@/Store/useModulePageStore"
 import useOapiStore from "@/Store/useOapiStore"
@@ -22,7 +22,7 @@ async function load(data: LB.AppInfoData | null, text: string | null) {
         validateData(data)
     }
     useOapiStore.getState().setOAPI(data.oapi)
-    migrate(data.db, text!, preset)
+    migrate(data.db, text, preset)
     return importDB(data.db)
         .then(() => useModulePageStore.setState({ item: data?.db.tables.Module[0] }))
         .then(observe)

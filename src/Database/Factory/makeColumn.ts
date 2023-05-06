@@ -26,6 +26,7 @@ export default function makeColumn(
 
         cast: "",
         fillable: false,
+        hidden: false,
         ro: rozz.findIndex((item) => item.name === name) > -1,
         wo: false,
         fakeRaw: true,

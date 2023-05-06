@@ -136,6 +136,7 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("default", lf.Type.STRING)
         // for Laravel Eloquent
         .addColumn("fillable", lf.Type.BOOLEAN)
+        .addColumn("hidden", lf.Type.BOOLEAN)
         .addColumn("ro", lf.Type.BOOLEAN)
         .addColumn("wo", lf.Type.BOOLEAN)
         .addColumn("cast", lf.Type.STRING)

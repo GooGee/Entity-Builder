@@ -31,7 +31,9 @@ export default function ActionList(property: Property) {
     const tab = tabzz.find((item) => sFlowPageStore.action === item.name)
 
     const xActionzz = sModuleActionzzStore.itemzz.filter(
-        (item) => item.directoryId === property.module.directoryId,
+        (item) =>
+            item.directoryId === property.module.directoryId &&
+            item.entityId === property.entity.id,
     )
 
     useEffect(() => {

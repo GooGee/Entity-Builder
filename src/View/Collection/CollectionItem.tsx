@@ -1,8 +1,8 @@
 import { makeCollectionItemCRUD } from "@/Database/makeCRUD"
 import showConfirm from "@/View/Dialog/showConfirm"
-import showNameInput from "@/View/Dialog/showNameInput"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useState } from "react"
+import showInput from "../Dialog/showInput"
 
 interface Property {
     item: LB.CollectionItem
@@ -41,7 +41,7 @@ export default function CollectionItem(property: Property) {
                     </span>
                     <span
                         onClick={() =>
-                            showNameInput("Please input the name", item.name)
+                            showInput("Please input the name", item.name)
                                 .then((response) => {
                                     if (response.isConfirmed) {
                                         return update({

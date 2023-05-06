@@ -34,23 +34,6 @@ export const CompositionKindzz = Object.keys(CompositionKind) as Array<
 
 export const EnumTypezz = [OapiType.integer, OapiType.number, OapiType.string]
 
-export enum Format {
-    byte = "byte",
-    binary = "binary",
-
-    double = "double",
-    float = "float",
-    int32 = "int32",
-    int64 = "int64",
-
-    email = "email",
-    date = "date",
-    "date-time" = "date-time",
-    time = "time",
-}
-
-export const Formatzz = Object.keys(Format) as Array<keyof typeof Format>
-
 export enum HttpMethod {
     delete = "delete",
     get = "get",

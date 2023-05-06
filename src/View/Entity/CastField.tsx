@@ -45,6 +45,25 @@ export default function CastField(property: Property) {
                         htmlFor={"fillableSwitchCheck" + item.id}
                     ></label>
                 </div>
+                <div className="form-check form-switch inline">
+                    <input
+                        checked={item.hidden}
+                        onChange={(event) =>
+                            update({
+                                ...item,
+                                hidden: event.target.checked,
+                            })
+                        }
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id={"hiddenSwitchCheck" + item.id}
+                    />
+                    <label
+                        className="form-check-label"
+                        htmlFor={"hiddenSwitchCheck" + item.id}
+                    ></label>
+                </div>
                 <div className="form-check form-switch inline ms-3">
                     <input
                         checked={item.ro}

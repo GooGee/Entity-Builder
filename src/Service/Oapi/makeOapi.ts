@@ -285,12 +285,8 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         if (found) {
             tagSet.add(found.name)
         }
-        let name = item.name
-        const module = mimm.get(item.moduleId)
-        if (module) {
-            name = module.prefix + name
-        }
-        builder.addPath(name, data)
+
+        builder.addPath(item.name, data)
     })
 
     Array.from(tagSet)

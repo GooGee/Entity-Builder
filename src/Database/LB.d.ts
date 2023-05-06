@@ -28,6 +28,7 @@ namespace LB {
         comment: string
 
         fillable: boolean
+        hidden: boolean
         ro: boolean
         wo: boolean
         cast: string
