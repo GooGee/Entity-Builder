@@ -11,7 +11,7 @@ import createTypeFormatArgumentzz from "@/Factory/createTypeFormatArgumentzz"
 import { OapiType } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import { makeResponseName } from "@/Service/makeName"
-import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
+import { StepEnum } from "@/Store/useFlowPageStore"
 import useResponsezzStore from "@/Store/useResponsezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
@@ -33,7 +33,6 @@ interface Property {
 }
 
 export default function ResponseList(property: Property) {
-    const sFlowPageStore = useFlowPageStore()
     const sResponsezzStore = useResponsezzStore()
     const sToastzzStore = useToastzzStore()
     const sTypeFormatzzStore = useTypeFormatzzStore()
@@ -79,14 +78,6 @@ export default function ResponseList(property: Property) {
         return (
             <>
                 <table className="table table-borderless table-sm">
-                    <caption>
-                        <h3
-                            className="pointer hover-blue"
-                            onClick={() => sFlowPageStore.setStep(Step)}
-                        >
-                            {Step}
-                        </h3>
-                    </caption>
                     <tbody>
                         {r200 === undefined ? (
                             <tr>
@@ -219,8 +210,6 @@ export default function ResponseList(property: Property) {
         <>
             <table className="table td0-tal">
                 <caption>
-                    <h3 className="c-dark">{Step}</h3>
-
                     <div>
                         {sResponsezzStore.findByName(nameResponse) ? null : (
                             <span

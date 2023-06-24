@@ -50,7 +50,7 @@ export default function FileList(property: Property) {
     }, [sEntityPageStore.fileColor, text])
 
     return (
-        <table className="table table-sm">
+        <table className="table table-sm table-striped">
             <caption>
                 <h3 className="inline me-3">File</h3>
                 <span>generate files</span>
@@ -69,7 +69,7 @@ export default function FileList(property: Property) {
             </caption>
             <thead>
                 <tr>
-                    <td className="w333">edit script / template</td>
+                    <td>edit script / template</td>
                     <td>file</td>
                 </tr>
             </thead>

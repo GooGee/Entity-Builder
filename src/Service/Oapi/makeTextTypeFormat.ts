@@ -9,10 +9,10 @@ export function clearError() {
 
 export default function makeTextTypeFormat(
     tf: LB.TypeFormat,
-    sTypeFormatzzStore: LB.Finder<LB.TypeFormat>,
-    sVariablezzStore: LB.Finder<LB.Variable>,
-    sWuParameterzzStore: LB.Finder<LB.WuParameter>,
-    sWuzzStore: LB.Finder<LB.Wu>,
+    tfzz: LB.TypeFormat[],
+    variablezz: LB.Variable[],
+    wpzz: LB.WuParameter[],
+    wuzz: LB.Wu[],
 ): string {
     const textzz = [make()]
     if (tf.isArray) {
@@ -25,7 +25,7 @@ export default function makeTextTypeFormat(
 
     function make(): string {
         if (tf.type === OapiType.Enum) {
-            const found = sVariablezzStore.find(tf.variableId ?? 0)
+            const found = variablezz.find((item) => (tf.variableId ?? 0) === item.id)
             if (found === undefined) {
                 errorTypeFormat = true
                 return makeNotFoundText("Enum", tf.variableId ?? "")
@@ -34,7 +34,7 @@ export default function makeTextTypeFormat(
         }
 
         if (tf.type === OapiType.WuParameter) {
-            const found = sWuParameterzzStore.find(tf.wuParameterId ?? 0)
+            const found = wpzz.find((item) => (tf.wuParameterId ?? 0) === item.id)
             if (found === undefined) {
                 errorTypeFormat = true
                 return makeNotFoundText("WuParameter", tf.wuParameterId ?? "")
@@ -50,27 +50,19 @@ export default function makeTextTypeFormat(
     }
 
     function makeWuText(): string {
-        const found = sWuzzStore.find(tf.wuId)
+        const found = wuzz.find((item) => tf.wuId === item.id)
         if (found === undefined) {
             errorTypeFormat = true
             return makeNotFoundText("Wu", tf.wuId)
         }
 
-        const argumentzz = sTypeFormatzzStore.itemzz.filter(
-            (item) => item.ownerId === tf.id,
-        )
+        const argumentzz = tfzz.filter((item) => item.ownerId === tf.id)
         if (argumentzz.length === 0) {
             return found.name
         }
 
         const zz = argumentzz.map((item) =>
-            makeTextTypeFormat(
-                item,
-                sTypeFormatzzStore,
-                sVariablezzStore,
-                sWuParameterzzStore,
-                sWuzzStore,
-            ),
+            makeTextTypeFormat(item, tfzz, variablezz, wpzz, wuzz),
         )
         return `${found.name}<${zz.join(", ")}>`
     }

@@ -1,3 +1,4 @@
+import makeEntity from "@/Database/Factory/makeEntity"
 import { makeModuleCRUD } from "@/Database/makeCRUD"
 import useDirectoryModalStore from "@/Store/useDirectoryModalStore"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
@@ -6,13 +7,13 @@ import useModulePageStore from "@/Store/useModulePageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { ReactElement } from "react"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
+import DeleteChangeButton from "../Button/DeleteChangeButton"
 import SelectButton from "../Button/SelectButton"
 import showInput from "../Dialog/showInput"
 
 interface Property {
     children?: ReactElement
     item: LB.Module
-    entity: LB.Entity // required for parsing directory name
 }
 
 export default function ModuleDetail(property: Property) {
@@ -21,6 +22,8 @@ export default function ModuleDetail(property: Property) {
     const sFilezzStore = useFilezzStore()
     const sModulePageStore = useModulePageStore()
     const sToastzzStore = useToastzzStore()
+
+    const entity = makeEntity("") as LB.Entity
 
     const directory = sDirectoryzzStore.find(property.item.directoryId)
     const testDirectory = sDirectoryzzStore.find(property.item.testDirectoryId)
@@ -48,7 +51,34 @@ export default function ModuleDetail(property: Property) {
 
     return (
         <table className="table td0-tar">
-            <caption>{property.children}</caption>
+            <caption>
+                {property.children}
+                <DeleteChangeButton
+                    name={property.item.name}
+                    onChange={function () {
+                        showInput("Please input the path", property.item.name)
+                            .then((response) => {
+                                if (response.isConfirmed) {
+                                    return makeModuleCRUD()
+                                        .update({
+                                            ...property.item,
+                                            name: response.value,
+                                        })
+                                        .then(sModulePageStore.setItem)
+                                }
+                            })
+                            .catch(sToastzzStore.showError)
+                    }}
+                    onDelete={function (isConfirmed) {
+                        if (isConfirmed) {
+                            makeModuleCRUD()
+                                .delete(property.item.id)
+                                .then(() => sModulePageStore.setItem())
+                                .catch(sToastzzStore.showError)
+                        }
+                    }}
+                ></DeleteChangeButton>
+            </caption>
             <tbody>
                 <tr>
                     <td className="w111">color</td>
@@ -105,7 +135,7 @@ export default function ModuleDetail(property: Property) {
                             {directory
                                 ? sDirectoryzzStore.treeHelper.getDirectoryFullName(
                                       directory,
-                                      property.entity,
+                                      entity,
                                       "",
                                   )
                                 : `Directory ${property.item.directoryId} not found`}
@@ -128,7 +158,7 @@ export default function ModuleDetail(property: Property) {
                             {testDirectory
                                 ? sDirectoryzzStore.treeHelper.getDirectoryFullName(
                                       testDirectory,
-                                      property.entity,
+                                      entity,
                                       "",
                                   )
                                 : `Directory ${property.item.testDirectoryId} not found`}

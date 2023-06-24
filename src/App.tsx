@@ -11,7 +11,6 @@ import FlowPage from "./View/FlowPage"
 import HomePage from "./View/HomePage"
 import InfoPage from "./View/InfoPage"
 import MigrationPage from "./View/MigrationPage"
-import ModulePage from "./View/ModulePage"
 import OapiPage from "./View/OapiPage"
 import ParameterPage from "./View/ParameterPage"
 import Bar from "./View/Part/Bar"
@@ -53,8 +52,6 @@ function App() {
                 return <InfoPage></InfoPage>
             case PageEnum.Migration:
                 return <MigrationPage></MigrationPage>
-            case PageEnum.Module:
-                return <ModulePage></ModulePage>
             case PageEnum.OpenApi:
                 return <OapiPage></OapiPage>
             case PageEnum.ParameterInHeader:

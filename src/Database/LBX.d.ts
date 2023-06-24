@@ -168,11 +168,6 @@ namespace LB {
         relationzz: DoctrineRelation[]
     }
 
-    interface Finder<T extends IdItem> {
-        find(id: number): T | undefined
-        itemzz: T[]
-    }
-
     interface IdItem {
         id: number
     }

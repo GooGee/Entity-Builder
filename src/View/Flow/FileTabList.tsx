@@ -83,8 +83,6 @@ export default function FileTabList(property: Property) {
 
     return (
         <div>
-            <h3 className="mt-3">{Step}</h3>
-
             <TabList tab={tab} tabzz={tabzz} setTab={setTab}></TabList>
 
             {tab === TabEnum.All ? (

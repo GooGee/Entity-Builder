@@ -10,7 +10,6 @@ export enum PageEnum {
     ParameterInHeader = "ParameterInHeader",
     Info = "Info",
     Migration = "Migration",
-    Module = "Module",
     OpenApi = "OpenApi",
     ParameterInCookie = "ParameterInCookie",
     ParameterInPath = "ParameterInPath",
@@ -48,7 +47,6 @@ export const treezz = [
     new Menu(PageEnum.Entity, makePath(PageEnum.Entity)),
     new Menu(PageEnum.Flow, makePath(PageEnum.Flow)),
     new Menu(PageEnum.Migration, makePath(PageEnum.Migration)),
-    new Menu(PageEnum.Module, makePath(PageEnum.Module)),
     new Menu(PageEnum.OpenApi, makePath(PageEnum.OpenApi), true, [
         new Menu(PageEnum.Info, makePath(PageEnum.Info)),
         new Menu(PageEnum.Enum, makePath(PageEnum.Enum)),

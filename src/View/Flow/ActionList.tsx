@@ -6,9 +6,7 @@ import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useModuleActionzzStore from "@/Store/useModuleActionzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect } from "react"
-import showConfirm from "../Dialog/showConfirm"
 import showNameInput from "../Dialog/showNameInput"
-import ActionDetail from "./ActionDetail"
 
 const Step = StepEnum.Action
 
@@ -157,43 +155,21 @@ export default function ActionList(property: Property) {
         )
     }
 
-    function makeView() {
-        const ma = sFlowPageStore.ma
-        if (ma === undefined) {
-            return null
-        }
-
-        return (
-            <ActionDetail action={ma.name} entity={property.entity} ma={ma}>
-                <button
-                    onClick={() => {
-                        showConfirm()
-                            .then((response) => {
-                                if (response.isConfirmed) {
-                                    return makeModuleActionCRUD()
-                                        .delete(ma.id)
-                                        .then(() => sFlowPageStore.setAction(""))
-                                }
-                            })
-                            .catch(sToastzzStore.showError)
-                    }}
-                    className="btn btn-outline-danger"
-                    type="button"
-                >
-                    - {ma.name}
-                </button>
-            </ActionDetail>
-        )
-    }
-
     return (
         <div>
-            <h3
-                className="pointer hover-blue c-secondary"
-                onClick={() => sFlowPageStore.setStep(Step)}
-            >
-                {Step}
-            </h3>
+            <div className="d-flex">
+                <h3>{Step}</h3>
+
+                <div>
+                    <button
+                        className="btn btn-outline-primary ms-3"
+                        type="button"
+                        onClick={makeAction}
+                    >
+                        +
+                    </button>
+                </div>
+            </div>
 
             <ul className={"nav nav-tabs"}>
                 {tabzz.map(makeTab)}
@@ -220,19 +196,7 @@ export default function ActionList(property: Property) {
                         </li>
                     )
                 })}
-
-                <li>
-                    <button
-                        className="btn btn-outline-primary ms-3"
-                        type="button"
-                        onClick={makeAction}
-                    >
-                        +
-                    </button>
-                </li>
             </ul>
-
-            {sFlowPageStore.step === Step ? makeView() : null}
         </div>
     )
 }

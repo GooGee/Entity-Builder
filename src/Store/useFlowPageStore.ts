@@ -1,8 +1,8 @@
 import create from "zustand"
 
 export enum StepEnum {
-    None = "None",
-    // Module = "Module",
+    // None = "None",
+    Module = "Module",
     Path = "Path",
     Action = "Action",
     Request = "Request",
@@ -25,7 +25,7 @@ const useFlowPageStore = create<FlowPageStoreType>(function (set) {
         action: "",
         ma: undefined,
         path: undefined,
-        step: StepEnum.None,
+        step: StepEnum.File,
         setAction(action: string, ma?: LB.ModuleAction) {
             set({ action, ma })
         },

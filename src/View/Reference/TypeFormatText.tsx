@@ -45,10 +45,10 @@ export default function TypeFormatText(property: Property) {
     clearError()
     const text = makeTextTypeFormat(
         property.item,
-        sTypeFormatzzStore,
-        sVariablezzStore,
-        sWuParameterzzStore,
-        sWuzzStore,
+        sTypeFormatzzStore.itemzz,
+        sVariablezzStore.itemzz,
+        sWuParameterzzStore.itemzz,
+        sWuzzStore.itemzz,
     )
     let index = text.indexOf("<")
     if (index === -1) {

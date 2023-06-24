@@ -123,8 +123,7 @@ export default function ActionRequest(property: Property) {
 
     return (
         <div>
-            <h3 className="my-3">{Step}</h3>
-            <div className="mb-3">
+            <div className="my-2">
                 {sRequestzzStore.findByName(nameRequest) ? null : (
                     <span onClick={makeRequestWu} className="btn btn-outline-primary">
                         + {nameRequest}
