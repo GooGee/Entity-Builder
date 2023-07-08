@@ -182,7 +182,7 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Entity, "entity0Id")
     makeForeignKey(tb, item, SchemaEnum.Entity, "entity1Id")
     makeForeignKey(tb, item, SchemaEnum.Column, "column1Id")
-    makeUniqueKey(tb, item, ["entity1Id", "column1Id"])
+    // makeUniqueKey(tb, item, ["entity1Id", "column1Id"])
 
     item = SchemaEnum.Index
     tb = builder
@@ -264,6 +264,7 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("name", lf.Type.STRING)
         .addColumn("operationId", lf.Type.STRING)
         .addColumn("summary", lf.Type.STRING)
+        .addColumn("routeName", lf.Type.STRING)
         .addPrimaryKey(["id"], true)
     makeForeignKey(tb, item, SchemaEnum.Directory)
     makeForeignKey(tb, item, SchemaEnum.Request)

@@ -85,7 +85,7 @@ export default function FileList(property: Property) {
                                 directoryId: property.directoryId,
                                 isExtra: true,
                                 fileNamePattern: result.value,
-                                id: -1 * item.id,
+                                id: item.id,
                             } as LB.ModuleActionFile
                             if (property.isTest) {
                                 file.nameSpacePattern = property.entity.name

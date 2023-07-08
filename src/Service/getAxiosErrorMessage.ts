@@ -4,7 +4,11 @@ function isAxiosError(error: unknown): error is AxiosError<LB.ApiErrorResponse> 
     return axios.isAxiosError(error)
 }
 
-export default function getAxiosErrorMessage(error: unknown) {
+export default function getAxiosErrorMessage(error: unknown): string {
+    if (typeof error === "string") {
+        return error
+    }
+
     if (isAxiosError(error)) {
         if (error.response) {
             if (error.response.data) {
@@ -20,13 +24,9 @@ export default function getAxiosErrorMessage(error: unknown) {
         return error.message
     }
 
-    if (typeof error === "string") {
-        return error
-    }
-
     if (error instanceof Object) {
         if ("message" in error) {
-            return error["message"]
+            return getAxiosErrorMessage(error["message"])
         }
     }
 

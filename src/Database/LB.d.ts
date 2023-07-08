@@ -141,6 +141,7 @@ namespace LB {
         name: string
         description: string
         summary: string
+        routeName: string
         operationId: string
         requestId: number
     }

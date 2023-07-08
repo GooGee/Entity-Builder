@@ -28,6 +28,7 @@ namespace LB {
         comment: string
 
         fillable: boolean
+        hidden: boolean
         ro: boolean
         wo: boolean
         cast: string
@@ -133,22 +134,16 @@ namespace LB {
     interface ModuleAction {
         id: number
         directoryId: number
-        testDirectoryId: number
         entityId: number
+        filezz: ModuleActionFile[]
         moduleId: number
-        collectionItemId: number
         deprecated: boolean
+        name: string
         description: string
         summary: string
+        routeName: string
         operationId: string
         requestId: number
-    }
-
-    interface ModuleActionFile {
-        id: number
-        moduleActionId: number
-        fileId: number
-        directoryId: number
     }
 
     interface ModuleActionResponse {
@@ -281,8 +276,7 @@ namespace LB {
         description: string
         isWu: boolean
     }
-}
-namespace LB {
+
     interface ApiErrorResponse {
         message: string
         errors: Record<string, string[]>
@@ -345,7 +339,6 @@ namespace LB {
         IndexColumn: IndexColumn[]
         Module: Module[]
         ModuleAction: ModuleAction[]
-        ModuleActionFile: ModuleActionFile[]
         ModuleActionResponse: ModuleActionResponse[]
         ParameterMap: ParameterMap[]
         Path: Path[]
@@ -392,6 +385,14 @@ namespace LB {
             itemzz: IdNameItem[],
             map?: Map<number, string>,
         ) => Map<number, string>
+        makeTypeFormatText: (
+            tf: LB.TypeFormat,
+            tfzz: LB.TypeFormat[],
+            variablezz: LB.Variable[],
+            wpzz: LB.WuParameter[],
+            wuzz: LB.Wu[],
+            prefix: string,
+        ) => string
         ma?: ModuleAction
         module?: Module
         tree: DataForScriptTreeHelper
@@ -453,11 +454,6 @@ namespace LB {
         relationzz: DoctrineRelation[]
     }
 
-    interface Finder<T extends IdItem> {
-        find(id: number): T | undefined
-        itemzz: T[]
-    }
-
     interface IdItem {
         id: number
     }
@@ -481,6 +477,10 @@ namespace LB {
         dbexist: boolean
         filezz: string[]
         migrationzz: Migration[]
+    }
+
+    interface ModuleActionFile extends File {
+        isExtra: boolean
     }
 
     enum OapiType {

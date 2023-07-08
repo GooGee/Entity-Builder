@@ -80,6 +80,22 @@ export default function ActionDetail(property: Property) {
                     </td>
                 </tr>
                 <tr>
+                    <td>routeName</td>
+                    <td>
+                        <input
+                            value={item.routeName}
+                            onChange={(event) =>
+                                update({
+                                    ...item,
+                                    routeName: event.target.value,
+                                })
+                            }
+                            type="text"
+                            className="form-control"
+                        />
+                    </td>
+                </tr>
+                <tr>
                     <td>operationId</td>
                     <td>
                         <button

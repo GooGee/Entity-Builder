@@ -1,4 +1,4 @@
-import { Version } from "@/Database/getDBC"
+import { Version } from "./Migrate/migrate"
 
 export default function validateData(data: LB.AppInfoData) {
     let valid = ["db", "oapi", "setting"].every((item) => item in data)

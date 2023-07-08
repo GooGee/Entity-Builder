@@ -51,7 +51,7 @@
                 {
                     "name": "MediaType",
                     "color": "#fff",
-                    "description": "https://swagger.io/specification/#media-type-object",
+                    "description": "https://spec.openapis.org/oas/v3.0.3#media-type-object",
                     "valueDescription": "",
                     "tagDescription": "",
                     "reserved": true,
@@ -65,15 +65,6 @@
                     "tagDescription": "",
                     "reserved": true,
                     "id": 9
-                },
-                {
-                    "name": "ModuleAction",
-                    "color": "#fff",
-                    "description": "",
-                    "valueDescription": "",
-                    "tagDescription": "REST method",
-                    "reserved": true,
-                    "id": 10
                 },
                 {
                     "name": "ReadOnlyColumn",
@@ -110,6 +101,15 @@
                     "valueDescription": "",
                     "tagDescription": "",
                     "id": 17
+                },
+                {
+                    "color": "#fff",
+                    "description": "https://spec.openapis.org/oas/v3.0.3#data-types",
+                    "name": "TypeFormat",
+                    "reserved": true,
+                    "valueDescription": "",
+                    "tagDescription": "",
+                    "id": 18
                 }
             ],
             "CollectionItem": [
@@ -1176,76 +1176,6 @@
                     "value": "integer",
                     "tag": "",
                     "id": 377
-                },
-                {
-                    "collectionId": 10,
-                    "name": "Cache",
-                    "tag": "",
-                    "value": "",
-                    "id": 394
-                },
-                {
-                    "collectionId": 10,
-                    "name": "CreateMany",
-                    "tag": "post",
-                    "value": "",
-                    "id": 384
-                },
-                {
-                    "collectionId": 10,
-                    "name": "DeleteMany",
-                    "tag": "delete",
-                    "value": "",
-                    "id": 386
-                },
-                {
-                    "collectionId": 10,
-                    "name": "ReadMany",
-                    "tag": "get",
-                    "value": "get list of item by idzz",
-                    "id": 388
-                },
-                {
-                    "collectionId": 10,
-                    "name": "UpdateMany",
-                    "tag": "put",
-                    "value": "",
-                    "id": 390
-                },
-                {
-                    "collectionId": 10,
-                    "name": "CreateOne",
-                    "tag": "post",
-                    "value": "",
-                    "id": 385
-                },
-                {
-                    "collectionId": 10,
-                    "name": "DeleteOne",
-                    "tag": "delete",
-                    "value": "",
-                    "id": 387
-                },
-                {
-                    "collectionId": 10,
-                    "name": "ReadOne",
-                    "tag": "get",
-                    "value": "",
-                    "id": 389
-                },
-                {
-                    "collectionId": 10,
-                    "name": "UpdateOne",
-                    "tag": "put",
-                    "value": "",
-                    "id": 391
-                },
-                {
-                    "collectionId": 10,
-                    "name": "ReadPage",
-                    "value": "get Paginator",
-                    "tag": "get",
-                    "id": 430
                 },
                 {
                     "collectionId": 5,
@@ -2807,6 +2737,90 @@
                     "value": "",
                     "tag": "",
                     "id": 88
+                },
+                {
+                    "collectionId": 18,
+                    "name": "byte",
+                    "value": "",
+                    "tag": "string",
+                    "id": 496
+                },
+                {
+                    "collectionId": 18,
+                    "name": "binary",
+                    "value": "",
+                    "tag": "string",
+                    "id": 497
+                },
+                {
+                    "collectionId": 18,
+                    "name": "double",
+                    "value": "",
+                    "tag": "number",
+                    "id": 498
+                },
+                {
+                    "collectionId": 18,
+                    "name": "float",
+                    "value": "",
+                    "tag": "number",
+                    "id": 499
+                },
+                {
+                    "collectionId": 18,
+                    "name": "int32",
+                    "value": "",
+                    "tag": "integer",
+                    "id": 500
+                },
+                {
+                    "collectionId": 18,
+                    "name": "int64",
+                    "value": "",
+                    "tag": "integer",
+                    "id": 501
+                },
+                {
+                    "collectionId": 18,
+                    "name": "email",
+                    "value": "",
+                    "tag": "string",
+                    "id": 502
+                },
+                {
+                    "collectionId": 18,
+                    "name": "date",
+                    "value": "",
+                    "tag": "string",
+                    "id": 503
+                },
+                {
+                    "collectionId": 18,
+                    "name": "date-time",
+                    "value": "",
+                    "tag": "string",
+                    "id": 504
+                },
+                {
+                    "collectionId": 18,
+                    "name": "time",
+                    "value": "",
+                    "tag": "string",
+                    "id": 505
+                },
+                {
+                    "collectionId": 18,
+                    "name": "password",
+                    "value": "",
+                    "tag": "string",
+                    "id": 506
+                },
+                {
+                    "collectionId": 18,
+                    "name": "uuid",
+                    "value": "",
+                    "tag": "string",
+                    "id": 507
                 }
             ],
             "Directory": [
@@ -2828,7 +2842,7 @@
                     "parentId": 2,
                     "description": "",
                     "opened": true,
-                    "name": "AbstractBase",
+                    "name": "Base",
                     "id": 30
                 },
                 {
@@ -2987,6 +3001,13 @@
                 },
                 {
                     "parentId": 41,
+                    "name": "ReadHome",
+                    "opened": true,
+                    "description": "",
+                    "id": 490
+                },
+                {
+                    "parentId": 41,
                     "description": "",
                     "opened": true,
                     "name": "Cache",
@@ -3033,6 +3054,13 @@
                     "opened": true,
                     "name": "Admin",
                     "id": 81
+                },
+                {
+                    "parentId": 80,
+                    "name": "Feature",
+                    "opened": true,
+                    "description": "",
+                    "id": 88
                 },
                 {
                     "parentId": 1,
@@ -3469,6 +3497,16 @@
                 },
                 {
                     "directoryId": 2,
+                    "name": "ApiEvent",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "Providers",
+                    "fileNamePattern": "ApiEvent.php",
+                    "id": 20
+                },
+                {
+                    "directoryId": 2,
                     "name": "AbstractModel",
                     "color": "#fff",
                     "layer": "Model",
@@ -3528,6 +3566,56 @@
                     "id": 37
                 },
                 {
+                    "directoryId": 30,
+                    "name": "AbstractReadPage",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "AbstractReadPage.php",
+                    "id": 38
+                },
+                {
+                    "directoryId": 30,
+                    "name": "PageParameter",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "PageParameter.php",
+                    "id": 39
+                },
+                {
+                    "directoryId": 30,
+                    "name": "ReadManyRequest",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadManyRequest.php",
+                    "id": 40
+                },
+                {
+                    "directoryId": 30,
+                    "name": "ReadPageQueryBuilder",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadPageQueryBuilder.php",
+                    "id": 41
+                },
+                {
+                    "directoryId": 30,
+                    "name": "ReadPageRequest",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadPageRequest.php",
+                    "id": 42
+                },
+                {
                     "name": "api.php",
                     "color": "#fff",
                     "layer": "",
@@ -3568,7 +3656,7 @@
                     "directoryId": 65
                 },
                 {
-                    "directoryId": 610,
+                    "directoryId": 70,
                     "name": "TypeScriptDeclaration",
                     "color": "#f00",
                     "layer": "",
@@ -3578,7 +3666,7 @@
                     "id": 60
                 },
                 {
-                    "directoryId": 610,
+                    "directoryId": 70,
                     "name": "TypeScriptEnum.ts",
                     "color": "#f00",
                     "layer": "",
@@ -3699,12 +3787,12 @@
                 },
                 {
                     "directoryId": 81,
-                    "name": "AdminReadPageItemTest",
+                    "name": "AdminReadItemPageTest",
                     "color": "#0ff",
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadPage${entity.name}Test.php",
+                    "fileNamePattern": "Read${entity.name}PageTest.php",
                     "id": 88
                 },
                 {
@@ -3889,32 +3977,32 @@
                 },
                 {
                     "directoryId": 180,
-                    "name": "AdminReadPageItem",
+                    "name": "AdminReadItemPage",
                     "color": "#0ff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}.php",
+                    "fileNamePattern": "Read${entity.name}Page.php",
                     "id": 180
                 },
                 {
                     "directoryId": 180,
-                    "name": "AdminReadPageItemController",
+                    "name": "AdminReadItemPageController",
                     "color": "#0ff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}Controller.php",
+                    "fileNamePattern": "Read${entity.name}PageController.php",
                     "id": 181
                 },
                 {
                     "directoryId": 180,
-                    "name": "AdminReadPageItemRequest",
+                    "name": "AdminReadItemPageRequest",
                     "color": "#0ff",
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}Request.php",
+                    "fileNamePattern": "Read${entity.name}PageRequest.php",
                     "id": 185
                 },
                 {
@@ -4109,13 +4197,23 @@
                 },
                 {
                     "directoryId": 84,
-                    "name": "ReadPageItemTest",
+                    "name": "ReadItemPageTest",
                     "color": "#0ff",
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadPage${entity.name}Test.php",
+                    "fileNamePattern": "Read${entity.name}PageTest.php",
                     "id": 388
+                },
+                {
+                    "directoryId": 84,
+                    "name": "ReadItemHomeTest",
+                    "color": "#00f",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "Read${entity.name}HomeTest.php",
+                    "id": 389
                 },
                 {
                     "directoryId": 400,
@@ -4299,33 +4397,43 @@
                 },
                 {
                     "directoryId": 480,
-                    "name": "ReadPageItem",
+                    "name": "ReadItemPage",
                     "color": "#0ff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}.php",
+                    "fileNamePattern": "Read${entity.name}Page.php",
                     "id": 480
                 },
                 {
                     "directoryId": 480,
-                    "name": "ReadPageItemController",
+                    "name": "ReadItemPageController",
                     "color": "#0ff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}Controller.php",
+                    "fileNamePattern": "Read${entity.name}PageController.php",
                     "id": 481
                 },
                 {
                     "directoryId": 480,
-                    "name": "ReadPageItemRequest",
+                    "name": "ReadItemPageRequest",
                     "color": "#0ff",
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}Request.php",
+                    "fileNamePattern": "Read${entity.name}PageRequest.php",
                     "id": 485
+                },
+                {
+                    "directoryId": 88,
+                    "name": "AbstractFeatureTest",
+                    "color": "#fff",
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "AbstractFeatureTest.php",
+                    "id": 570
                 },
                 {
                     "name": "Event",
@@ -4516,6 +4624,26 @@
                     "nameSpacePattern": "",
                     "fileNamePattern": "CanAccess.tsx",
                     "id": 712
+                },
+                {
+                    "directoryId": 490,
+                    "name": "ReadItemHome",
+                    "color": "#00f",
+                    "layer": "Action",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "Read${entity.name}Home.php",
+                    "id": 490
+                },
+                {
+                    "directoryId": 490,
+                    "name": "ReadItemHomeController",
+                    "color": "#00f",
+                    "layer": "Controller",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "Read${entity.name}HomeController.php",
+                    "id": 491
                 }
             ],
             "Entity": [
@@ -4659,7 +4787,7 @@
                 },
                 {
                     "isArray": false,
-                    "nullable": false,
+                    "nullable": true,
                     "type": "WuParameter",
                     "format": "",
                     "ownerId": null,
@@ -5493,7 +5621,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 2,
@@ -5527,7 +5656,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 2,
@@ -5561,7 +5691,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 2,
@@ -5595,7 +5726,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 2,
@@ -5629,7 +5761,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 2,
@@ -5663,7 +5796,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 2,
@@ -5697,7 +5831,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -5731,7 +5866,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -5765,7 +5901,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -5799,7 +5936,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -5833,7 +5971,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -5867,7 +6006,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -5901,7 +6041,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -5935,7 +6076,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -5969,7 +6111,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -6003,7 +6146,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -6037,7 +6181,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -6071,7 +6216,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -6105,7 +6251,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 3,
@@ -6139,7 +6286,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 4,
@@ -6173,7 +6321,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 4,
@@ -6207,7 +6356,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "DateField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 4,
@@ -6241,7 +6391,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "DateField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 4,
@@ -6275,7 +6426,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "DateField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "entityId": 4,
@@ -6309,7 +6461,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextInput"
+                    "raInput": "TextInput",
+                    "hidden": false
                 },
                 {
                     "entityId": 4,
@@ -6343,7 +6496,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextInput"
+                    "raInput": "TextInput",
+                    "hidden": false
                 },
                 {
                     "entityId": 4,
@@ -6377,7 +6531,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "PasswordInput"
+                    "raInput": "PasswordInput",
+                    "hidden": true
                 },
                 {
                     "entityId": 4,
@@ -6392,7 +6547,7 @@
                     "nullable": true,
                     "cast": "",
                     "fillable": false,
-                    "ro": true,
+                    "ro": false,
                     "wo": true,
                     "fakeRaw": true,
                     "fakeUnique": false,
@@ -6411,7 +6566,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": true
                 },
                 {
                     "entityId": 4,
@@ -6445,7 +6601,8 @@
                     "reserved": false,
                     "style": "",
                     "raField": "TextField",
-                    "raInput": "BooleanInput"
+                    "raInput": "BooleanInput",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6471,13 +6628,14 @@
                     "inTable": false,
                     "allowReserved": false,
                     "deprecated": false,
-                    "example": "",
+                    "example": "1",
                     "explode": false,
                     "required": true,
                     "style": "simple",
                     "id": 30,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6503,13 +6661,14 @@
                     "inTable": false,
                     "allowReserved": false,
                     "deprecated": false,
-                    "example": "",
+                    "example": "1",
                     "explode": false,
                     "required": true,
                     "style": "form",
                     "id": 31,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6535,13 +6694,14 @@
                     "inTable": false,
                     "allowReserved": false,
                     "deprecated": false,
-                    "example": "",
+                    "example": "1",
                     "explode": false,
                     "required": true,
                     "style": "simple",
                     "id": 32,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6567,13 +6727,14 @@
                     "inTable": false,
                     "allowReserved": false,
                     "deprecated": false,
-                    "example": "",
+                    "example": "1",
                     "explode": false,
                     "required": true,
                     "style": "form",
                     "id": 33,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6599,13 +6760,14 @@
                     "inTable": false,
                     "allowReserved": false,
                     "deprecated": false,
-                    "example": "",
+                    "example": "1",
                     "explode": false,
                     "required": false,
                     "style": "form",
                     "id": 34,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6637,7 +6799,8 @@
                     "style": "simple",
                     "id": 35,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6669,7 +6832,8 @@
                     "style": "simple",
                     "id": 36,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6701,7 +6865,8 @@
                     "style": "simple",
                     "id": 37,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 },
                 {
                     "color": "#fff",
@@ -6733,7 +6898,8 @@
                     "style": "simple",
                     "id": 38,
                     "raField": "TextField",
-                    "raInput": "TextField"
+                    "raInput": "TextField",
+                    "hidden": false
                 }
             ],
             "ColumnConstraint": [
@@ -7188,7 +7354,6 @@
                 }
             ],
             "ModuleAction": [],
-            "ModuleActionFile": [],
             "ParameterMap": [],
             "Request": [
                 {
@@ -7280,7 +7445,7 @@
             ],
             "PathMethod": []
         },
-        "version": 38
+        "version": 41
     },
     "oapi": {
         "openapi": "3.0.3",

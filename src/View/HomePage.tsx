@@ -93,7 +93,7 @@ export default function HomePage() {
                     <>
                         <p className="text-danger">{error}</p>
                         <p>
-                            make sure server {location.origin} is running,
+                            make sure Laravel server {location.origin} is running,
                             <br />
                             and PHP package {Constant.PackageName} is installed.
                         </p>

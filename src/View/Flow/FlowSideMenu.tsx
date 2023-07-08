@@ -35,7 +35,7 @@ export default function FlowSideMenu() {
     }
 
     return (
-        <div className="d-flex flex-column" style={{ gap: "2rem" }}>
+        <div className="d-flex flex-column py-3" style={{ gap: "2rem" }}>
             <div>
                 <h3>Entity</h3>
                 <div>
@@ -44,7 +44,7 @@ export default function FlowSideMenu() {
                         className="btn btn-outline-primary"
                         type="button"
                     >
-                        {sEntityPageStore.item?.name ?? "----"}
+                        {sEntityPageStore.item?.name ?? "-- select an Entity --"}
                     </button>
                 </div>
             </div>

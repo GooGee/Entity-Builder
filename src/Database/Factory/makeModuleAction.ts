@@ -10,6 +10,7 @@ export default function makeModuleAction(
         deprecated: false,
         name: directory.name,
         description: "",
+        routeName: "",
         filezz: [],
         summary:
             module.name + " " + lodash.lowerCase(directory.name) + " " + entity.name,

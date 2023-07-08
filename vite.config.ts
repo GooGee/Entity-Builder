@@ -28,7 +28,7 @@ export default defineConfig({
     server: {
         proxy: {
             "^/laravel-builder": {
-                target: "http://bb.lh",
+                target: "http://127.0.0.1",
                 changeOrigin: true,
                 cookieDomainRewrite: "",
             },
