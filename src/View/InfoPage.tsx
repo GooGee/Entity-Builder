@@ -4,9 +4,11 @@ import ContactDetail from "./Oapi/ContactDetail"
 import InfoDetail from "./Oapi/InfoDetail"
 import LicenseDetail from "./Oapi/LicenseDetail"
 import TabList from "./Part/TabList"
+import ExternalDetail from "./Oapi/ExternalDetail"
 
 enum Tab {
     contact = "contact",
+    external = "external",
     info = "info",
     license = "license",
 }
@@ -19,6 +21,10 @@ export default function InfoPage() {
     function makeView() {
         if (tab === Tab.contact) {
             return <ContactDetail></ContactDetail>
+        }
+
+        if (tab === Tab.external) {
+            return <ExternalDetail></ExternalDetail>
         }
 
         if (tab === Tab.info) {

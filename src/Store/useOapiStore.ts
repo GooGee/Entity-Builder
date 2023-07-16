@@ -2,11 +2,16 @@ import produce from "immer"
 import * as oapi from "openapi3-ts"
 import create from "zustand"
 
-type OapiStoreType = oapi.OpenAPIObject & {
+type OapiType = oapi.OpenAPIObject & {
+    externalDocs: oapi.ExternalDocumentationObject
+}
+
+type OapiStoreType = OapiType & {
     setContact(data: oapi.ContactObject): void
+    setExternal(data: oapi.ExternalDocumentationObject): void
     setInfo(info: oapi.InfoObject): void
     setLicense(data: oapi.LicenseObject): void
-    setOAPI(data: oapi.OpenAPIObject): void
+    setOAPI(data: OapiType): void
 }
 
 const useOapiStore = create<OapiStoreType>(function (set) {
@@ -28,6 +33,10 @@ const useOapiStore = create<OapiStoreType>(function (set) {
             title: "title",
             version: "0.1.0",
         },
+        externalDocs: {
+            description: "",
+            url: "",
+        },
     }
 
     return {
@@ -37,6 +46,13 @@ const useOapiStore = create<OapiStoreType>(function (set) {
             set(
                 produce(function (item: OapiStoreType) {
                     item.info.contact = data
+                }),
+            )
+        },
+        setExternal(data: oapi.ExternalDocumentationObject) {
+            set(
+                produce(function (item: OapiStoreType) {
+                    item.externalDocs = data
                 }),
             )
         },
@@ -54,7 +70,7 @@ const useOapiStore = create<OapiStoreType>(function (set) {
                 }),
             )
         },
-        setOAPI(data: oapi.OpenAPIObject) {
+        setOAPI(data: OapiType) {
             set(data)
         },
     }

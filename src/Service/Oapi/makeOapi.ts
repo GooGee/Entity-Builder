@@ -17,6 +17,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
     const builder = OpenApiBuilder.create({
         ...OpenApiBuilder.create().getSpec(),
         info: data.info,
+        externalDocs: data.externalDocs,
     })
 
     const eiem: Map<number, LB.Example> = new Map()

@@ -58,6 +58,7 @@ export default function VersionList() {
         }
         migrationzz.push({ batch: 0, migration })
     })
+    migrationzz.reverse()
 
     function makeView(item: LB.Migration) {
         if (item.migration.endsWith(".php")) {
