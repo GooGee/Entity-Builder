@@ -2,7 +2,6 @@ import { makeTypeFormatCRUD } from "@/Database/makeCRUD"
 import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import useColumnzzStore from "@/Store/useColumnzzStore"
-import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useImportModalStore from "@/Store/useImportModalStore"
 import useToastzzStore from "@/Store/useToastzzStore"
@@ -17,7 +16,6 @@ interface Property {
 
 export default function ColumnList(property: Property) {
     const sColumnzzStore = useColumnzzStore()
-    const sDoctrineColumnTypezzStore = useDoctrineColumnTypezzStore()
     const sFilezzStore = useFilezzStore()
     const sImportModalStore = useImportModalStore()
     const sToastzzStore = useToastzzStore()

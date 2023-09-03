@@ -2,14 +2,9 @@ import useEntityPageStore from "@/Store/useEntityPageStore"
 import useEntityzzStore from "@/Store/useEntityzzStore"
 import useListModalStore from "@/Store/useListModalStore"
 import useModulePageStore from "@/Store/useModulePageStore"
-import useModulezzStore from "@/Store/useModulezzStore"
-import useToastzzStore from "@/Store/useToastzzStore"
-import SelectButton from "@/View/Button/SelectButton"
 import PathList from "./PathList"
 import ActionList from "./ActionList"
-import showInput from "../Dialog/showInput"
-import { makeModuleCRUD } from "@/Database/makeCRUD"
-import makeModule from "@/Database/Factory/makeModule"
+import ModuleList from "./ModuleList"
 
 export default function FlowSideMenu() {
     const sEntityPageStore = useEntityPageStore()
@@ -18,9 +13,6 @@ export default function FlowSideMenu() {
     const sListModalStore = useListModalStore()
 
     const sModulePageStore = useModulePageStore()
-    const sModulezzStore = useModulezzStore()
-
-    const sToastzzStore = useToastzzStore()
 
     function showEntityList() {
         const namezz = sEntityzzStore.itemzz.map((item) => item.name)
@@ -49,43 +41,7 @@ export default function FlowSideMenu() {
                 </div>
             </div>
 
-            <div>
-                <div className="d-flex">
-                    <h3>Module</h3>
-
-                    <div>
-                        <button
-                            className="btn btn-outline-primary ms-3"
-                            type="button"
-                            onClick={function () {
-                                showInput("please input the module name", "").then(
-                                    function (sar) {
-                                        if (sar.isConfirmed) {
-                                            if (sar.value) {
-                                                makeModuleCRUD()
-                                                    .create(makeModule(sar.value))
-                                                    .catch(sToastzzStore.showError)
-                                            }
-                                        }
-                                    },
-                                )
-                            }}
-                        >
-                            +
-                        </button>
-                    </div>
-                </div>
-
-                <div>
-                    <SelectButton
-                        itemzz={sModulezzStore.itemzz}
-                        value={sModulePageStore.item?.id ?? 0}
-                        change={function (id, item) {
-                            sModulePageStore.setItem(item)
-                        }}
-                    ></SelectButton>
-                </div>
-            </div>
+            <ModuleList></ModuleList>
 
             {sEntityPageStore.item === undefined ||
             sModulePageStore.item === undefined ? null : (

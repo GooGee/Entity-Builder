@@ -178,6 +178,21 @@ export default function ModuleDetail(property: Property) {
                         ></SelectButton>
                     </td>
                 </tr>
+                <tr>
+                    <td>description</td>
+                    <td>
+                        <textarea
+                            value={property.item.description}
+                            onChange={(event) =>
+                                update({
+                                    ...property.item,
+                                    description: event.target.value,
+                                })
+                            }
+                            className="form-control"
+                        ></textarea>
+                    </td>
+                </tr>
             </tbody>
         </table>
     )

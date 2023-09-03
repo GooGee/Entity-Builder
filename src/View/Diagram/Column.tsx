@@ -9,7 +9,7 @@ interface Property {
 }
 
 function Column(property: Property) {
-    const modalStore = useColumnModalStore()
+    const sColumnModalStore = useColumnModalStore()
     const sToastzzStore = useToastzzStore()
 
     function removeColumn() {
@@ -32,7 +32,9 @@ function Column(property: Property) {
             </td>
             <td>
                 <span
-                    onClick={() => modalStore.open(property.item.id)}
+                    onClick={function () {
+                        sColumnModalStore.open(property.item.id)
+                    }}
                     className="button"
                 >
                     {property.item.name}

@@ -1,6 +1,7 @@
 import { makeEntityCRUD } from "@/Database/makeCRUD"
 import useToastzzStore from "@/Store/useToastzzStore"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
+import showInput from "../Dialog/showInput"
 
 interface Property {
     item: LB.Entity
@@ -61,18 +62,33 @@ export default function Detail(property: Property) {
                 <tr>
                     <td>table</td>
                     <td>
-                        <input
-                            placeholder={property.item.name}
-                            value={property.item.table}
-                            onChange={function (event) {
-                                makeEntityCRUD().update({
-                                    ...property.item,
-                                    table: event.target.value,
-                                })
-                            }}
-                            type="text"
-                            className="form-control wa"
-                        />
+                        <button
+                            onClick={() =>
+                                showInput(
+                                    "Please input the table name",
+                                    property.item.table,
+                                )
+                                    .then((response) => {
+                                        if (response.isConfirmed) {
+                                            return makeEntityCRUD().update({
+                                                ...property.item,
+                                                table: response.value,
+                                            })
+                                        }
+                                    })
+                                    .catch(sToastzzStore.showError)
+                            }
+                            className="btn btn-outline-primary"
+                            type="button"
+                        >
+                            {property.item.table
+                                ? property.item.table
+                                : property.item.name}
+                        </button>
+
+                        <span className="ms-2">
+                            leave it empty to use the Entity name as table name
+                        </span>
                     </td>
                 </tr>
             </tbody>

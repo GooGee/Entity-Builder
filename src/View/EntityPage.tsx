@@ -5,11 +5,11 @@ import useEntityPageStore from "@/Store/useEntityPageStore"
 import useEntityzzStore from "@/Store/useEntityzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import EntityView from "./Entity/EntityView"
+import ColumnModal from "./Modal/ColumnModal"
 import DirectoryModal from "./Modal/DirectoryModal"
 import ImportModal from "./Modal/ImportModal"
 import ListModal from "./Modal/ListModal"
 import LeftRightPanel from "./Part/LeftRightPanel"
-
 
 export default function EntityPage() {
     const sToastzzStore = useToastzzStore()
@@ -28,6 +28,7 @@ export default function EntityPage() {
                 <EntityView></EntityView>
             </LeftRightPanel>
 
+            <ColumnModal></ColumnModal>
             <DirectoryModal></DirectoryModal>
             <ImportModal></ImportModal>
             <ListModal></ListModal>

@@ -259,6 +259,8 @@ export default function createSchema(builder: lf.Builder) {
         .createTable(item)
         .addColumn("id", lf.Type.INTEGER)
         .addColumn("deprecated", lf.Type.BOOLEAN)
+        .addColumn("inOapi", lf.Type.BOOLEAN)
+        .addColumn("inRoute", lf.Type.BOOLEAN)
         .addColumn("description", lf.Type.STRING)
         .addColumn("filezz", lf.Type.OBJECT)
         .addColumn("name", lf.Type.STRING)

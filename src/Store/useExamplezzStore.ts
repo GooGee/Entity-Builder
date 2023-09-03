@@ -10,7 +10,10 @@ type ExamplezzStoreType = NamedItemzzStoreDataType<T>
 
 const useExamplezzStore = create<ExamplezzStoreType>(function (set, get) {
     const data = makeNamedItemzzStoreData(set, get, makeExampleCRUD())
-    return data
+    return {
+        ...data,
+        sorting: true,
+    }
 })
 
 export default useExamplezzStore

@@ -2,21 +2,27 @@ import { makeColumnCRUD } from "@/Database/makeCRUD"
 import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
 import useListModalStore from "@/Store/useListModalStore"
 import useToastzzStore from "@/Store/useToastzzStore"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import showConfirm from "../Dialog/showConfirm"
 import showNameInput from "../Dialog/showNameInput"
-import ColumnDetail from "./ColumnDetail"
+import ColumnText from "./ColumnText"
+import useColumnModalStore from "@/Store/useColumnModalStore"
 
 interface Property {
     item: LB.Column
 }
 
 export default function Column(property: Property) {
+    const sColumnModalStore = useColumnModalStore()
     const sDoctrineColumnTypezzStore = useDoctrineColumnTypezzStore()
     const sListModalStore = useListModalStore()
     const sToastzzStore = useToastzzStore()
 
     const [item, setItem] = useState(property.item)
+
+    useEffect(() => {
+        setItem(property.item)
+    }, [property.item])
 
     function update(data: LB.Column) {
         setItem(data)
@@ -114,8 +120,12 @@ export default function Column(property: Property) {
                     className="form-control"
                 />
             </td>
-            <td>
-                <ColumnDetail item={item} update={update}></ColumnDetail>
+            <td
+                onClick={function () {
+                    sColumnModalStore.open(item.id)
+                }}
+            >
+                <ColumnText item={item}></ColumnText>
             </td>
         </tr>
     )

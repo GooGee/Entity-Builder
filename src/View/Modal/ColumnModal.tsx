@@ -1,5 +1,4 @@
 import { makeColumnCRUD } from "@/Database/makeCRUD"
-import makeNumberInputHandler from "@/Factory/makeNumberInputHandler"
 import useColumnModalStore from "@/Store/useColumnModalStore"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import useDoctrineColumnTypezzStore from "@/Store/useDoctrineColumnTypezzStore"
@@ -8,22 +7,23 @@ import showNameInput from "@/View/Dialog/showNameInput"
 import { useState, useEffect } from "react"
 import ReactModal from "react-modal"
 import SelectStringButton from "../Button/SelectStringButton"
+import ColumnForm from "../Entity/ColumnForm"
 
 function ColumnModal() {
     const columnzzStore = useColumnzzStore()
     const sDoctrineColumnTypezzStore = useDoctrineColumnTypezzStore()
-    const modalStore = useColumnModalStore()
+    const sColumnModalStore = useColumnModalStore()
     const sToastzzStore = useToastzzStore()
 
     const [item, setItem] = useState<LB.Column>()
 
     useEffect(() => {
-        if (modalStore.itemId === 0) {
+        if (sColumnModalStore.itemId === 0) {
             return
         }
 
-        setItem(columnzzStore.find(modalStore.itemId))
-    }, [modalStore.isOpen, modalStore.itemId])
+        setItem(columnzzStore.find(sColumnModalStore.itemId))
+    }, [sColumnModalStore.isOpen, sColumnModalStore.itemId])
 
     if (item === undefined) {
         return null
@@ -51,8 +51,8 @@ function ColumnModal() {
 
     return (
         <ReactModal
-            isOpen={modalStore.isOpen}
-            onRequestClose={modalStore.close}
+            isOpen={sColumnModalStore.isOpen}
+            onRequestClose={sColumnModalStore.close}
             shouldCloseOnEsc={true}
             shouldCloseOnOverlayClick={true}
         >
@@ -84,89 +84,28 @@ function ColumnModal() {
                     </label>
                 </div>
             </div>
-            <div className="mb-3">
-                <div className="form-check form-switch">
-                    <input
-                        checked={item.nullable}
-                        onChange={(event) =>
-                            update({ ...item, nullable: event.target.checked })
-                        }
-                        className="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id="nullableSwitchCheck"
-                    />
-                    <label className="form-check-label" htmlFor="nullableSwitchCheck">
-                        nullable
-                    </label>
+
+            <ColumnForm item={item} update={update}>
+                <div className="mb-3">
+                    <label className="form-label">type</label>
+                    <SelectStringButton
+                        itemzz={typezz}
+                        value={item.type}
+                        change={(type) => update({ ...item, type })}
+                    ></SelectStringButton>
                 </div>
-            </div>
-            <div className="mb-3">
-                <div className="form-check form-switch">
+                <div className="mb-3">
+                    <label className="form-label">default</label>
                     <input
-                        checked={item.unsigned}
+                        value={item.default}
                         onChange={(event) =>
-                            update({ ...item, unsigned: event.target.checked })
+                            update({ ...item, default: event.target.value })
                         }
-                        className="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id="unsignedSwitchCheck"
+                        type="text"
+                        className="form-control"
                     />
-                    <label className="form-check-label" htmlFor="unsignedSwitchCheck">
-                        unsigned
-                    </label>
                 </div>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">type</label>
-                <SelectStringButton
-                    itemzz={typezz}
-                    value={item.type}
-                    change={(type) => update({ ...item, type })}
-                ></SelectStringButton>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">length</label>
-                <input
-                    value={item.length}
-                    onChange={makeNumberInputHandler("length", item, update)}
-                    type="number"
-                    min={0}
-                    className="form-control"
-                />
-            </div>
-            <div className="mb-3">
-                <label className="form-label">scale</label>
-                <input
-                    value={item.scale}
-                    onChange={makeNumberInputHandler("scale", item, update)}
-                    type="number"
-                    min={0}
-                    className="form-control"
-                />
-            </div>
-            <div className="mb-3">
-                <label className="form-label">default</label>
-                <input
-                    value={item.default}
-                    onChange={(event) =>
-                        update({ ...item, default: event.target.value })
-                    }
-                    type="text"
-                    className="form-control"
-                />
-            </div>
-            <div className="mb-3">
-                <label className="form-label">comment</label>
-                <textarea
-                    value={item.comment}
-                    onChange={(event) =>
-                        update({ ...item, comment: event.target.value })
-                    }
-                    className="form-control"
-                ></textarea>
-            </div>
+            </ColumnForm>
         </ReactModal>
     )
 }

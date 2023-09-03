@@ -234,7 +234,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
             pimazzm.set(item.pathId, found)
         }
         const ma = maimam.get(item.moduleActionId)
-        if (ma) {
+        if (ma && ma.inOapi) {
             found.push({ ...ma, method: item.method })
         }
     })

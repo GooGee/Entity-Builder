@@ -8,6 +8,8 @@ export default function makeModuleAction(
 ): OmitId<LB.ModuleAction> {
     return {
         deprecated: false,
+        inOapi: true,
+        inRoute: true,
         name: directory.name,
         description: "",
         routeName: "",

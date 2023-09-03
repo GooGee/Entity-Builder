@@ -24,7 +24,9 @@ function EntityNode(property: Property) {
 
     useEffect(() => {
         setColumnzz(
-            sColumnzzStore.itemzz.filter((item) => item.entityId === property.data.id),
+            sColumnzzStore.itemzz.filter(
+                (item) => item.entityId === property.data.id && item.inTable,
+            ),
         )
     }, [sColumnzzStore.itemzz])
 

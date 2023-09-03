@@ -38,7 +38,11 @@ export default function ParameterPage(property: Property) {
     }, [property.page])
 
     useEffect(() => {
-        setItemzz(sColumnzzStore.itemzz.filter((item) => item.entityId === entity.id))
+        setItemzz(
+            sColumnzzStore.itemzz
+                .filter((item) => item.entityId === entity.id)
+                .sort((aa, bb) => aa.name.localeCompare(bb.name)),
+        )
     }, [property.page, sColumnzzStore.itemzz])
 
     function make(name: string) {

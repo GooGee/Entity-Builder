@@ -21,11 +21,14 @@ export default function makeParameter(
         allowReserved: column.allowReserved,
         deprecated: column.deprecated,
         description: column.description,
-        example: column.example,
         explode: column.explode,
         required: column.required,
         schema,
         style: column.style as ParameterStyle,
+    }
+
+    if (column.example) {
+        data.example = column.example
     }
 
     const entity = eiem.get(column.entityId)

@@ -138,6 +138,8 @@ namespace LB {
         filezz: ModuleActionFile[]
         moduleId: number
         deprecated: boolean
+        inOapi: boolean
+        inRoute: boolean
         name: string
         description: string
         summary: string
@@ -276,7 +278,8 @@ namespace LB {
         description: string
         isWu: boolean
     }
-
+}
+namespace LB {
     interface ApiErrorResponse {
         message: string
         errors: Record<string, string[]>

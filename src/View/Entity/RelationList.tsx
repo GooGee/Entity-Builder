@@ -34,10 +34,9 @@ export default function RelationList(property: Property) {
         )
     }, [property.entity, sRelationzzStore.itemzz])
 
-    function add(type: RelationType, entity1Id: number) {
-        const found = sEntityzzStore.find(entity1Id)
-        if (found) {
-            connectEntity(type, property.entity, found).catch(sToastzzStore.showError)
+    function add(type: RelationType, entity0?: LB.Entity, entity1?: LB.Entity) {
+        if (entity0 && entity1) {
+            connectEntity(type, entity0, entity1).catch(sToastzzStore.showError)
         }
     }
 
@@ -65,27 +64,92 @@ export default function RelationList(property: Property) {
             </tbody>
             <tfoot>
                 <tr>
-                    <td>
-                        <SelectButton
-                            itemzz={sEntityzzStore.itemzz}
-                            value={0}
-                            verb="has many"
-                            change={(value) => {
-                                add(RelationType.OneToMany, value)
-                            }}
-                        ></SelectButton>
+                    <td className="p-3" colSpan={3}></td>
+                </tr>
+                <tr>
+                    <td colSpan={3}>
+                        <div className="d-flex align-items-center">
+                            <div>{property.entity.name} has many</div>
+                            <div className="ms-2">
+                                <SelectButton
+                                    isAdd={true}
+                                    itemzz={sEntityzzStore.itemzz}
+                                    value={0}
+                                    change={(value) =>
+                                        add(
+                                            RelationType.OneToMany,
+                                            property.entity,
+                                            sEntityzzStore.find(value),
+                                        )
+                                    }
+                                ></SelectButton>
+                            </div>
+                        </div>
                     </td>
-                    <td>
-                        <SelectButton
-                            itemzz={sEntityzzStore.itemzz}
-                            value={0}
-                            verb="has one"
-                            change={(value) => {
-                                add(RelationType.OneToOne, value)
-                            }}
-                        ></SelectButton>
+                </tr>
+                <tr>
+                    <td colSpan={3}>
+                        <div className="d-flex align-items-center">
+                            <div>{property.entity.name} has one</div>
+                            <div className="ms-2">
+                                <SelectButton
+                                    isAdd={true}
+                                    itemzz={sEntityzzStore.itemzz}
+                                    value={0}
+                                    change={(value) =>
+                                        add(
+                                            RelationType.OneToOne,
+                                            property.entity,
+                                            sEntityzzStore.find(value),
+                                        )
+                                    }
+                                ></SelectButton>
+                            </div>
+                        </div>
                     </td>
-                    <td></td>
+                </tr>
+
+                <tr>
+                    <td colSpan={3}>
+                        <div className="d-flex align-items-center">
+                            <div>
+                                <SelectButton
+                                    isAdd={true}
+                                    itemzz={sEntityzzStore.itemzz}
+                                    value={0}
+                                    change={(value) =>
+                                        add(
+                                            RelationType.OneToMany,
+                                            sEntityzzStore.find(value),
+                                            property.entity,
+                                        )
+                                    }
+                                ></SelectButton>
+                            </div>
+                            <div className="ms-2">has many {property.entity.name}</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan={3}>
+                        <div className="d-flex align-items-center">
+                            <div>
+                                <SelectButton
+                                    isAdd={true}
+                                    itemzz={sEntityzzStore.itemzz}
+                                    value={0}
+                                    change={(value) =>
+                                        add(
+                                            RelationType.OneToOne,
+                                            sEntityzzStore.find(value),
+                                            property.entity,
+                                        )
+                                    }
+                                ></SelectButton>
+                            </div>
+                            <div className="ms-2">has one {property.entity.name}</div>
+                        </div>
+                    </td>
                 </tr>
             </tfoot>
         </table>

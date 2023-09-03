@@ -1,6 +1,4 @@
-import makeRightModalData, {
-    RightModalDataType,
-} from "@/Factory/makeRightModalData"
+import makeRightModalData, { RightModalDataType } from "@/Factory/makeRightModalData"
 import create from "zustand"
 
 type ColumnModalStoreType = RightModalDataType
