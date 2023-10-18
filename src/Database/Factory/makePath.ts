@@ -24,6 +24,9 @@ export function makePathFor(entity: LB.Entity, module: LB.Module, itemzz: LB.Pat
         name = "/".concat(entity.name).concat("_Page")
     }
     if (itemzz.find((item) => item.moduleId === module.id && item.name === name)) {
+        name = "/".concat(entity.name).concat("_My")
+    }
+    if (itemzz.find((item) => item.moduleId === module.id && item.name === name)) {
         name = "/".concat(entity.name).concat("/") + new Date().getTime()
     }
     return makePath(name, entity.id, module.id)
