@@ -29,6 +29,14 @@ php artisan vendor:publish --provider="GooGee\LaravelBuilder\LaravelBuilderServi
 php artisan setupLaravelBuilder
 ```
 
+```php
+        'user' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/user.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+```
+
 
 ## how to generate migrations?
 

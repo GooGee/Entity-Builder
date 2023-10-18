@@ -3491,7 +3491,7 @@
                 {
                     "directoryId": 2,
                     "name": "ApiEvent",
-                    "color": "#fff",
+                    "color": "#f00",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "Providers",
