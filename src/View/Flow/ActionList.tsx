@@ -1,12 +1,17 @@
 import makeModuleAction from "@/Database/Factory/makeModuleAction"
-import { makeModuleActionCRUD, makePathMethodCRUD } from "@/Database/makeCRUD"
-import { ActionMethodMap } from "@/Model/Oapi"
+import { makeModuleActionCRUD } from "@/Database/makeCRUD"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useModuleActionzzStore from "@/Store/useModuleActionzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect } from "react"
 import showNameInput from "../Dialog/showNameInput"
+import usePathzzStore from "@/Store/usePathzzStore"
+import {
+    makePathMethod,
+    makePathOf,
+    makePathParameter,
+} from "@/Database/Factory/makePath"
 
 const Step = StepEnum.Action
 
@@ -19,7 +24,6 @@ export default function ActionList(property: Property) {
     const sDirectoryzzStore = useDirectoryzzStore()
     const sFlowPageStore = useFlowPageStore()
     const sModuleActionzzStore = useModuleActionzzStore()
-    const sToastzzStore = useToastzzStore()
 
     const tabzz =
         sDirectoryzzStore.treeMap
@@ -83,15 +87,7 @@ export default function ActionList(property: Property) {
                     const md = sDirectoryzzStore.find(property.module.directoryId)
                     if (md) {
                         const folder = { ...md, name: result.value }
-                        makeModuleActionCRUD()
-                            .create(
-                                makeModuleAction(
-                                    folder,
-                                    property.entity,
-                                    property.module,
-                                ),
-                            )
-                            .catch(sToastzzStore.showError)
+                        makeModuleActionAll(folder)
                     }
                 }
             }
@@ -114,28 +110,32 @@ export default function ActionList(property: Property) {
         return (
             <span
                 onClick={function () {
-                    makeModuleActionCRUD()
-                        .create(makeModuleAction(tab, property.entity, property.module))
-                        .then(function (item) {
-                            sFlowPageStore.setAction(sFlowPageStore.action, item)
-                            if (sFlowPageStore.path) {
-                                const method =
-                                    ActionMethodMap.get(tab.name.slice(0, 6)) ?? "get"
-                                return makePathMethodCRUD().create({
-                                    pathId: sFlowPageStore.path.id,
-                                    moduleActionId: item.id,
-                                    method,
-                                    middlewarezz: [],
-                                })
-                            }
-                        })
-                        .catch(sToastzzStore.showError)
+                    makeModuleActionAll(tab)
                 }}
                 className="badge bg-success rounded-pill"
             >
                 +
             </span>
         )
+    }
+
+    function makeModuleActionAll(tab: LB.Directory) {
+        makeModuleActionCRUD()
+            .create(makeModuleAction(tab, property.entity, property.module))
+            .then(function (item) {
+                sFlowPageStore.setAction(sFlowPageStore.action, item)
+                return makePathOf(
+                    item,
+                    property.entity,
+                    property.module,
+                    usePathzzStore.getState().itemzz,
+                ).then(function (path) {
+                    sFlowPageStore.setPath(path)
+                    makePathMethod(path, item)
+                    return makePathParameter(path)
+                })
+            })
+            .catch(useToastzzStore.getState().showError)
     }
 
     function makeTab(mad: LB.Directory) {
