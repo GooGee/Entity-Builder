@@ -7,7 +7,9 @@ interface Property {
 
 export default function ConstraintGroup(property: Property) {
     const set: Set<string> = new Set()
-    property.constraintzz.forEach((item) => set.add(item.tag))
+    const constraintzz = [...property.constraintzz]
+    constraintzz.sort((aa, bb) => aa.name.localeCompare(bb.name))
+    constraintzz.forEach((item) => set.add(item.tag))
     const groupzz = Array.from(set)
     groupzz.sort((aa, bb) => aa.localeCompare(bb))
 
@@ -33,7 +35,7 @@ export default function ConstraintGroup(property: Property) {
             </ul>
 
             <div className="ms-3">
-                {property.constraintzz
+                {constraintzz
                     .filter((item) => item.tag === group)
                     .map((item) => (
                         <div key={item.id}>
