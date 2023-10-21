@@ -1,10 +1,6 @@
-import { makePathFor, makePathParameter } from "@/Database/Factory/makePath"
-import { makePathCRUD, makeParameterMapCRUD } from "@/Database/makeCRUD"
-import { getParameterInPath } from "@/Service/getParameter"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import usePathzzStore from "@/Store/usePathzzStore"
-import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect } from "react"
 import FileButton from "../Button/FileButton"
 import ListGroup from "../Part/ListGroup"
@@ -20,7 +16,6 @@ export default function PathList(property: Property) {
     const sFilezzStore = useFilezzStore()
     const sFlowPageStore = useFlowPageStore()
     const sPathzzStore = usePathzzStore()
-    const sToastzzStore = useToastzzStore()
 
     useEffect(() => {
         if (
@@ -50,31 +45,6 @@ export default function PathList(property: Property) {
         <div>
             <div className="d-flex">
                 <h3>{Step}</h3>
-
-                <div>
-                    <button
-                        className="btn btn-outline-primary ms-3"
-                        type="button"
-                        onClick={function () {
-                            const path = makePathFor(
-                                property.entity,
-                                property.module,
-                                sPathzzStore.itemzz,
-                            )
-                            return makePathCRUD()
-                                .create(path)
-                                .then(function (item) {
-                                    if (sFlowPageStore.path === undefined) {
-                                        sFlowPageStore.setPath(item)
-                                    }
-                                    return makePathParameter(item)
-                                })
-                                .catch(sToastzzStore.showError)
-                        }}
-                    >
-                        +
-                    </button>
-                </div>
 
                 <div>
                     {file === undefined ? (
