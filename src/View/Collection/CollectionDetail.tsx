@@ -11,14 +11,12 @@ import makeCollectionItem from "@/Database/Factory/makeCollectionItem"
 const exampleText = `[
     {
         name: "dtCreate",
-        value: "",
         tag: "datetime",
     },
     {
         name: "dtUpdate",
-        value: "",
         tag: "datetime",
-    },
+    }
 ]`
 
 export default function CollectionDetail() {

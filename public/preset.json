@@ -2821,6 +2821,104 @@
                     "value": "",
                     "tag": "string",
                     "id": 507
+                },
+                {
+                    "collectionId": 8,
+                    "name": "decimal",
+                    "value": "",
+                    "tag": "Type",
+                    "id": 508
+                },
+                {
+                    "collectionId": 8,
+                    "name": "doesnt_end_with",
+                    "value": "",
+                    "tag": "Content",
+                    "id": 509
+                },
+                {
+                    "collectionId": 8,
+                    "name": "doesnt_start_with",
+                    "value": "",
+                    "tag": "Content",
+                    "id": 510
+                },
+                {
+                    "collectionId": 8,
+                    "name": "lowercase",
+                    "value": "",
+                    "tag": "Content",
+                    "id": 511
+                },
+                {
+                    "collectionId": 8,
+                    "name": "max_digits",
+                    "value": "",
+                    "tag": "Size",
+                    "id": 512
+                },
+                {
+                    "collectionId": 8,
+                    "name": "min_digits",
+                    "value": "",
+                    "tag": "Size",
+                    "id": 513
+                },
+                {
+                    "collectionId": 8,
+                    "name": "missing",
+                    "value": "",
+                    "tag": "Other",
+                    "id": 514
+                },
+                {
+                    "collectionId": 8,
+                    "name": "missing_if",
+                    "value": "",
+                    "tag": "Require",
+                    "id": 515
+                },
+                {
+                    "collectionId": 8,
+                    "name": "missing_unless",
+                    "value": "",
+                    "tag": "Require",
+                    "id": 516
+                },
+                {
+                    "collectionId": 8,
+                    "name": "missing_with",
+                    "value": "",
+                    "tag": "Require",
+                    "id": 517
+                },
+                {
+                    "collectionId": 8,
+                    "name": "missing_with_all",
+                    "value": "",
+                    "tag": "Require",
+                    "id": 518
+                },
+                {
+                    "collectionId": 8,
+                    "name": "required_if_accepted",
+                    "value": "",
+                    "tag": "Require",
+                    "id": 519
+                },
+                {
+                    "collectionId": 8,
+                    "name": "ulid",
+                    "value": "",
+                    "tag": "WWW",
+                    "id": 520
+                },
+                {
+                    "collectionId": 8,
+                    "name": "uppercase",
+                    "value": "",
+                    "tag": "Content",
+                    "id": 521
                 }
             ],
             "Directory": [
