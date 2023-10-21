@@ -5,8 +5,6 @@ import { useEffect, useState } from "react"
 import Constraint from "./Constraint"
 import ConstraintGroup from "./ConstraintGroup"
 
-const RawTag = "Raw"
-
 interface Property {
     constraintzz: LB.CollectionItem[]
     column: LB.Column
@@ -19,10 +17,6 @@ export default function ConstraintList(property: Property) {
     const [constraintzz, setConstraintzz] = useState<LB.ColumnConstraint[]>([])
     const [editing, setEditing] = useState(false)
 
-    const nameTagMap = new Map<string, string>(
-        property.constraintzz.map((item) => [item.name, item.tag] as [string, string]),
-    )
-
     useEffect(() => {
         setConstraintzz(
             sColumnConstraintzzStore.itemzz.filter(
@@ -32,7 +26,7 @@ export default function ConstraintList(property: Property) {
     }, [property.column, sColumnConstraintzzStore.itemzz])
 
     function ruleText(item: LB.ColumnConstraint) {
-        if (nameTagMap.get(item.name) === RawTag) {
+        if (item.parameter.startsWith("Rule::")) {
             return item.parameter
         }
 
