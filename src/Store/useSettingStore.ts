@@ -1,9 +1,13 @@
 import create from "zustand"
 
-type SettingStoreType = LB.Setting & {}
+type SettingStoreType = LB.Setting & {
+    note: string
+}
 
 const useSettingStore = create<SettingStoreType>(function (set) {
-    return {}
+    return {
+        note: "",
+    }
 })
 
 export default useSettingStore

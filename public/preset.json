@@ -7694,5 +7694,7 @@
         "security": [],
         "tags": []
     },
-    "setting": {}
+    "setting": {
+        "note": ""
+    }
 }
