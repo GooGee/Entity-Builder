@@ -36,6 +36,13 @@ export default function ImportModal() {
                     className="form-control"
                 ></textarea>
             </div>
+
+            <div>
+                {sImportModalStore.example ? <div>example</div> : null}
+                <pre className="bg-light border border-secondary">
+                    {sImportModalStore.example}
+                </pre>
+            </div>
         </ReactModal>
     )
 }

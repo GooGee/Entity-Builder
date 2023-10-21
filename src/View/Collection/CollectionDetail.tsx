@@ -8,8 +8,20 @@ import showInput from "../Dialog/showInput"
 import useImportModalStore from "@/Store/useImportModalStore"
 import makeCollectionItem from "@/Database/Factory/makeCollectionItem"
 
+const exampleText = `[
+    {
+        name: "dtCreate",
+        value: "",
+        tag: "datetime",
+    },
+    {
+        name: "dtUpdate",
+        value: "",
+        tag: "datetime",
+    },
+]`
+
 export default function CollectionDetail() {
-    const sImportModalStore = useImportModalStore()
     const pageStore = useCollectionPageStore()
     const store = useCollectionItemzzStore()
     const sToastzzStore = useToastzzStore()
@@ -82,7 +94,7 @@ export default function CollectionDetail() {
                     <td>
                         <span
                             onClick={function () {
-                                sImportModalStore.openCB(
+                                useImportModalStore.getState().openCB(
                                     pageStore.item!.id,
                                     "import CollectionItem",
                                     undefined,
@@ -116,6 +128,7 @@ export default function CollectionDetail() {
                                             sToastzzStore.showError(error)
                                         }
                                     },
+                                    exampleText,
                                 )
                             }}
                             className="btn btn-outline-primary"
