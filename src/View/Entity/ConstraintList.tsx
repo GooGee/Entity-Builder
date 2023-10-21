@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 import Constraint from "./Constraint"
 import ConstraintGroup from "./ConstraintGroup"
 
+const RawTag = "Raw"
+
 interface Property {
     constraintzz: LB.CollectionItem[]
     column: LB.Column
@@ -17,6 +19,10 @@ export default function ConstraintList(property: Property) {
     const [constraintzz, setConstraintzz] = useState<LB.ColumnConstraint[]>([])
     const [editing, setEditing] = useState(false)
 
+    const nameTagMap = new Map<string, string>(
+        property.constraintzz.map((item) => [item.name, item.tag] as [string, string]),
+    )
+
     useEffect(() => {
         setConstraintzz(
             sColumnConstraintzzStore.itemzz.filter(
@@ -24,6 +30,18 @@ export default function ConstraintList(property: Property) {
             ),
         )
     }, [property.column, sColumnConstraintzzStore.itemzz])
+
+    function ruleText(item: LB.ColumnConstraint) {
+        if (nameTagMap.get(item.name) === RawTag) {
+            return item.parameter
+        }
+
+        if (item.parameter) {
+            return `${item.name}:${item.parameter}`
+        }
+
+        return item.name
+    }
 
     return (
         <>
@@ -61,10 +79,7 @@ export default function ConstraintList(property: Property) {
                 <ul onClick={() => setEditing(true)} className="pointer">
                     {constraintzz.length === 0 ? <li>----</li> : null}
                     {constraintzz.map((item) => (
-                        <li key={item.id}>
-                            {item.name}
-                            {item.parameter ? <span>:{item.parameter}</span> : null}
-                        </li>
+                        <li key={item.id}>{ruleText(item)}</li>
                     ))}
                 </ul>
             )}
