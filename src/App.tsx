@@ -97,7 +97,10 @@ function App() {
                 <ToastGroup></ToastGroup>
             </div>
 
-            <div className="fixed-bottom m-3">
+            <div
+                className="position-fixed bottom-0 bg-white m-3"
+                style={{ zIndex: 1222 }}
+            >
                 <button className="btn btn-outline-primary" onClick={showNote}>
                     note
                 </button>

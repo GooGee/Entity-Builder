@@ -497,7 +497,9 @@ namespace LB {
         Wu = "Wu",
     }
 
-    interface Setting {}
+    interface Setting {
+        note: string
+    }
 
     interface SideBarItem extends IdNameItem {
         id: number
