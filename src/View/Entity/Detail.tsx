@@ -91,6 +91,22 @@ export default function Detail(property: Property) {
                         </span>
                     </td>
                 </tr>
+                <tr>
+                    <td>description</td>
+                    <td>
+                        <textarea
+                            rows={3}
+                            value={property.item.description}
+                            onChange={(event) =>
+                                makeEntityCRUD().update({
+                                    ...property.item!,
+                                    description: event.target.value,
+                                })
+                            }
+                            className="form-control"
+                        ></textarea>
+                    </td>
+                </tr>
             </tbody>
         </table>
     )
