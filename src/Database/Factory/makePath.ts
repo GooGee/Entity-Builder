@@ -1,7 +1,8 @@
 import { getParameterInPath } from "@/Service/getParameter"
 import { OmitId } from "../dbhelper"
-import { makeParameterMapCRUD, makePathCRUD } from "../makeCRUD"
+import { makeParameterMapCRUD, makePathCRUD, makePathMethodCRUD } from "../makeCRUD"
 import makeSideBarItem from "./makeSideBarItem"
+import { ActionMethodMap } from "@/Model/Oapi"
 
 export default function makePath(
     name: string,
@@ -32,6 +33,24 @@ export function makePathFor(entity: LB.Entity, module: LB.Module, itemzz: LB.Pat
         name = "/".concat(entity.name).concat("/") + new Date().getTime()
     }
     return makePath(name, entity.id, module.id)
+}
+
+export function makePathMethod(item: LB.Path, ma: LB.ModuleAction) {
+    const method = ActionMethodMap.get(ma.name.slice(0, 6)) ?? "get"
+    return makePathMethodCRUD().create({
+        pathId: item.id,
+        moduleActionId: ma.id,
+        method,
+        middlewarezz: [],
+    })
+}
+
+function makePathName(entity: LB.Entity, ma: LB.ModuleAction) {
+    const pathName = `/${entity.name}/${ma.name}`
+    if (ma.name.includes("One")) {
+        return pathName + "/{id}"
+    }
+    return pathName
 }
 
 export function makePathOf(
@@ -68,12 +87,4 @@ export function makePathParameter(item: LB.Path) {
     }
 
     return Promise.resolve(null)
-}
-
-function makePathName(entity: LB.Entity, ma: LB.ModuleAction) {
-    const pathName = `/${entity.name}/${ma.name}`
-    if (ma.name.includes("One")) {
-        return pathName + "/{id}"
-    }
-    return pathName
 }
