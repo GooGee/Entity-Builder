@@ -43,6 +43,33 @@ export default function CollectionDetail() {
         return null
     }
 
+    function importJson(text: string) {
+        if (text === "") {
+            return
+        }
+        try {
+            const zz = JSON.parse(text)
+            if (Array.isArray(zz) === false) {
+                sToastzzStore.showDanger("text is not JSON array")
+                return
+            }
+            const data = zz.map((item: any) => {
+                if (typeof item === "string") {
+                    item = { name: item }
+                }
+                return makeCollectionItem(
+                    pageStore.item!.id,
+                    item["name"] ?? "",
+                    item["value"] ?? "",
+                    item["tag"] ?? "",
+                )
+            })
+            makeCollectionItemCRUD().createMany(data).catch(sToastzzStore.showError)
+        } catch (error) {
+            sToastzzStore.showError(error)
+        }
+    }
+
     return (
         <table className="table">
             <thead>
@@ -94,42 +121,15 @@ export default function CollectionDetail() {
                     <td>
                         <span
                             onClick={function () {
-                                useImportModalStore.getState().openCB(
-                                    pageStore.item!.id,
-                                    "import CollectionItem",
-                                    undefined,
-                                    function (text) {
-                                        if (text === "") {
-                                            return
-                                        }
-                                        try {
-                                            const zz = JSON.parse(text)
-                                            if (Array.isArray(zz) === false) {
-                                                sToastzzStore.showDanger(
-                                                    "text is not JSON array",
-                                                )
-                                                return
-                                            }
-                                            const data = zz.map((item: any) => {
-                                                if (typeof item === "string") {
-                                                    item = { name: item }
-                                                }
-                                                return makeCollectionItem(
-                                                    pageStore.item!.id,
-                                                    item["name"] ?? "",
-                                                    item["value"] ?? "",
-                                                    item["tag"] ?? "",
-                                                )
-                                            })
-                                            makeCollectionItemCRUD()
-                                                .createMany(data)
-                                                .catch(sToastzzStore.showError)
-                                        } catch (error) {
-                                            sToastzzStore.showError(error)
-                                        }
-                                    },
-                                    exampleText,
-                                )
+                                useImportModalStore
+                                    .getState()
+                                    .openCB(
+                                        pageStore.item!.id,
+                                        "import CollectionItem",
+                                        undefined,
+                                        importJson,
+                                        exampleText,
+                                    )
                             }}
                             className="btn btn-outline-primary"
                         >
