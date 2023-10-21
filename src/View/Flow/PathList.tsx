@@ -1,4 +1,4 @@
-import { makePathFor } from "@/Database/Factory/makePath"
+import { makePathFor, makePathParameter } from "@/Database/Factory/makePath"
 import { makePathCRUD, makeParameterMapCRUD } from "@/Database/makeCRUD"
 import { getParameterInPath } from "@/Service/getParameter"
 import useFilezzStore from "@/Store/useFilezzStore"
@@ -67,19 +67,7 @@ export default function PathList(property: Property) {
                                     if (sFlowPageStore.path === undefined) {
                                         sFlowPageStore.setPath(item)
                                     }
-                                    if (path.name.includes("/{id}")) {
-                                        const column = getParameterInPath("id")
-                                        if (column === undefined) {
-                                            return
-                                        }
-                                        return makeParameterMapCRUD().create({
-                                            alias: "",
-                                            columnId: column.id,
-                                            pathId: item.id,
-                                            requestId: null,
-                                            responseId: null,
-                                        })
-                                    }
+                                    return makePathParameter(item)
                                 })
                                 .catch(sToastzzStore.showError)
                         }}
