@@ -14,4 +14,8 @@ export default function validateData(data: LB.AppInfoData) {
     if (valid === false) {
         throw new Error("Cannot load corrupted data")
     }
+
+    if (data.setting.note === undefined) {
+        data.setting.note = ""
+    }
 }

@@ -22,6 +22,7 @@ import ToastPage from "./View/ToastPage"
 import TreePage from "./View/TreePage"
 import VariablePage from "./View/VariablePage"
 import WuPage from "./View/WuPage"
+import showNote from "./View/Dialog/showNote"
 
 function App() {
     const store = useAppInfoStore()
@@ -94,6 +95,12 @@ function App() {
                 </Routes>
 
                 <ToastGroup></ToastGroup>
+            </div>
+
+            <div className="fixed-bottom m-3">
+                <button className="btn btn-outline-primary" onClick={showNote}>
+                    note
+                </button>
             </div>
         </>
     )
