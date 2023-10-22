@@ -3868,12 +3868,12 @@
                 },
                 {
                     "directoryId": 81,
-                    "name": "AdminReadItemPageTest",
+                    "name": "AdminReadPageItemTest",
                     "color": "#0ff",
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "Read${entity.name}PageTest.php",
+                    "fileNamePattern": "ReadPage${entity.name}Test.php",
                     "id": 88
                 },
                 {
@@ -4058,32 +4058,32 @@
                 },
                 {
                     "directoryId": 180,
-                    "name": "AdminReadItemPage",
+                    "name": "AdminReadPageItem",
                     "color": "#0ff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "Read${entity.name}Page.php",
+                    "fileNamePattern": "ReadPage${entity.name}.php",
                     "id": 180
                 },
                 {
                     "directoryId": 180,
-                    "name": "AdminReadItemPageController",
+                    "name": "AdminReadPageItemController",
                     "color": "#0ff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "Read${entity.name}PageController.php",
+                    "fileNamePattern": "ReadPage${entity.name}Controller.php",
                     "id": 181
                 },
                 {
                     "directoryId": 180,
-                    "name": "AdminReadItemPageRequest",
+                    "name": "AdminReadPageItemRequest",
                     "color": "#0ff",
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "Read${entity.name}PageRequest.php",
+                    "fileNamePattern": "ReadPage${entity.name}Request.php",
                     "id": 185
                 },
                 {
@@ -4278,12 +4278,12 @@
                 },
                 {
                     "directoryId": 84,
-                    "name": "ReadItemPageTest",
+                    "name": "ReadPageItemTest",
                     "color": "#0ff",
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "Read${entity.name}PageTest.php",
+                    "fileNamePattern": "ReadPage${entity.name}Test.php",
                     "id": 388
                 },
                 {
@@ -4468,32 +4468,32 @@
                 },
                 {
                     "directoryId": 480,
-                    "name": "ReadItemPage",
+                    "name": "ReadPageItem",
                     "color": "#0ff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "Read${entity.name}Page.php",
+                    "fileNamePattern": "ReadPage${entity.name}.php",
                     "id": 480
                 },
                 {
                     "directoryId": 480,
-                    "name": "ReadItemPageController",
+                    "name": "ReadPageItemController",
                     "color": "#0ff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "Read${entity.name}PageController.php",
+                    "fileNamePattern": "ReadPage${entity.name}Controller.php",
                     "id": 481
                 },
                 {
                     "directoryId": 480,
-                    "name": "ReadItemPageRequest",
+                    "name": "ReadPageItemRequest",
                     "color": "#0ff",
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "Read${entity.name}PageRequest.php",
+                    "fileNamePattern": "ReadPage${entity.name}Request.php",
                     "id": 485
                 },
                 {
