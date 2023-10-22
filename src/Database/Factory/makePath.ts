@@ -2,7 +2,15 @@ import { getParameterInPath } from "@/Service/getParameter"
 import { OmitId } from "../dbhelper"
 import { makeParameterMapCRUD, makePathCRUD, makePathMethodCRUD } from "../makeCRUD"
 import makeSideBarItem from "./makeSideBarItem"
-import { ActionMethodMap } from "@/Model/Oapi"
+import { ActionMethodMap, HttpMethod } from "@/Model/Oapi"
+
+function getMethod(name: string) {
+    if (name.startsWith("Read")) {
+        return HttpMethod.get
+    }
+
+    return ActionMethodMap.get(name.slice(0, 6)) ?? HttpMethod.put
+}
 
 export default function makePath(
     name: string,
@@ -36,12 +44,11 @@ export function makePathFor(entity: LB.Entity, module: LB.Module, itemzz: LB.Pat
 }
 
 export function makePathMethod(item: LB.Path, ma: LB.ModuleAction) {
-    const method = ActionMethodMap.get(ma.name.slice(0, 6)) ?? "get"
     return makePathMethodCRUD().create({
         pathId: item.id,
         moduleActionId: ma.id,
-        method,
-        middlewarezz: [],
+        method: getMethod(ma.name),
+        middlewarezz: ['auth'],
     })
 }
 

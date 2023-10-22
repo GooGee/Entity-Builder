@@ -50,6 +50,7 @@ export const HttpMethodzz = Object.keys(HttpMethod) as Array<keyof typeof HttpMe
 export const ActionMethodMap = new Map([
     ["Create", HttpMethod.post],
     ["Delete", HttpMethod.delete],
+    ["Read", HttpMethod.get],
     ["Update", HttpMethod.put],
 ])
 
