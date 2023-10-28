@@ -3099,6 +3099,13 @@
                 },
                 {
                     "parentId": 41,
+                    "name": "ReadHome",
+                    "opened": true,
+                    "description": "",
+                    "id": 490
+                },
+                {
+                    "parentId": 41,
                     "description": "",
                     "opened": true,
                     "name": "Cache",
@@ -4287,6 +4294,16 @@
                     "id": 388
                 },
                 {
+                    "directoryId": 84,
+                    "name": "ReadHomeItemTest",
+                    "color": "#fff",
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "ReadHome${entity.name}Test.php",
+                    "id": 389
+                },
+                {
                     "directoryId": 400,
                     "name": "CreateManyItem",
                     "color": "#f0f",
@@ -4470,7 +4487,7 @@
                     "directoryId": 480,
                     "name": "ReadPageItem",
                     "color": "#0ff",
-                    "layer": "",
+                    "layer": "Action",
                     "description": "",
                     "nameSpacePattern": "",
                     "fileNamePattern": "ReadPage${entity.name}.php",
@@ -4480,7 +4497,7 @@
                     "directoryId": 480,
                     "name": "ReadPageItemController",
                     "color": "#0ff",
-                    "layer": "",
+                    "layer": "Controller",
                     "description": "",
                     "nameSpacePattern": "",
                     "fileNamePattern": "ReadPage${entity.name}Controller.php",
@@ -4495,6 +4512,26 @@
                     "nameSpacePattern": "",
                     "fileNamePattern": "ReadPage${entity.name}Request.php",
                     "id": 485
+                },
+                {
+                    "directoryId": 490,
+                    "name": "ReadHomeItem",
+                    "color": "#fff",
+                    "layer": "Action",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadHome${entity.name}.php",
+                    "id": 490
+                },
+                {
+                    "directoryId": 490,
+                    "name": "ReadHomeItemController",
+                    "color": "#fff",
+                    "layer": "Controller",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ReadHome${entity.name}Controller.php",
+                    "id": 491
                 },
                 {
                     "directoryId": 88,
