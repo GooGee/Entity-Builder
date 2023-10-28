@@ -76,7 +76,8 @@ export default function makeSchemaWu(
         schema.example = wu.example
     }
     if (wu.isRequest) {
-        schema.required = czz.map((item) => item.name)
+        // todo
+        // schema.required = czz.map((item) => item.name)
     }
 
     if (wu.isMap) {
