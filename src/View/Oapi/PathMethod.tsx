@@ -67,7 +67,7 @@ export default function PathMethod(property: Property) {
             <td>{property.method}</td>
             <td>
                 <button
-                    className="btn btn-outline-primary danger me-1"
+                    className="btn btn-outline-danger me-1"
                     type="button"
                     onClick={function () {
                         makePathMethodCRUD()

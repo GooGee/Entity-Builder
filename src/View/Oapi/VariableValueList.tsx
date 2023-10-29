@@ -49,7 +49,7 @@ export default function VariableValueList(property: Property) {
             {property.item.enum.map((item) => (
                 <li key={item} className="mb-1">
                     <button
-                        className="btn btn-outline-primary danger"
+                        className="btn btn-outline-danger"
                         type="button"
                         onClick={function () {
                             const zz = [...property.item.enum]

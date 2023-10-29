@@ -55,7 +55,7 @@ export default function Relation(property: Property) {
                                     })
                                     .catch(sToastzzStore.showError)
                             }}
-                            className="btn btn-outline-primary danger"
+                            className="btn btn-outline-danger"
                             type="button"
                         >
                             -

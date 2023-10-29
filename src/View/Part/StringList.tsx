@@ -27,7 +27,7 @@ export default function StringList(property: Property) {
             {property.itemzz.map((item) => (
                 <li key={item} className="mb-1">
                     <button
-                        className="btn btn-outline-primary danger"
+                        className="btn btn-outline-danger"
                         type="button"
                         onClick={function () {
                             property.delete(item)

@@ -18,7 +18,7 @@ export default function Constraint(property: Property) {
                                 .delete(property.item.id)
                                 .catch(sToastzzStore.showError)
                         }
-                        className="btn btn-outline-primary danger"
+                        className="btn btn-outline-danger"
                         type="button"
                     >
                         -
