@@ -98,7 +98,7 @@ function App() {
             </div>
 
             <div
-                className="position-fixed bottom-0 bg-white m-3"
+                className="position-fixed bottom-0 end-0 bg-white m-3"
                 style={{ zIndex: 1222 }}
             >
                 <button className="btn btn-outline-primary" onClick={showNote}>
