@@ -9,7 +9,7 @@ function getMethod(name: string) {
         return HttpMethod.get
     }
 
-    return ActionMethodMap.get(name.slice(0, 6)) ?? HttpMethod.put
+    return ActionMethodMap.get(name.slice(0, 6)) ?? HttpMethod.patch
 }
 
 export default function makePath(

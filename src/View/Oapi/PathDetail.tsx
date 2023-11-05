@@ -30,9 +30,6 @@ export default function PathDetail(property: Property) {
         <table className="table td0-tar">
             <caption>
                 {property.children}
-                <span className="ms-3">
-                    if Controller exists, then the path will be add to the route file
-                </span>
             </caption>
             <tbody>
                 <tr>

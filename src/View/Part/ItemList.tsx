@@ -54,7 +54,7 @@ export default function ItemList(property: Property) {
                                 .delete(item.id)
                                 .catch(sToastzzStore.showError)
                         }}
-                        className="btn btn-outline-primary danger"
+                        className="btn btn-outline-danger"
                         type="button"
                     >
                         {"- "}
