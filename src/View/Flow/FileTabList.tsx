@@ -6,6 +6,7 @@ import FileList from "../Entity/FileList"
 import TabList from "../Part/TabList"
 import FileView from "./FileView"
 import RacFileList from "./RacFileList"
+import { makeIdItemMap, makeIdNameMap } from "@/Factory/makeMap"
 
 const Step = StepEnum.File
 
@@ -30,6 +31,7 @@ export default function FileTabList(property: Property) {
 
     const [tab, setTab] = useState<string>(TabEnum.Crud)
 
+    const directoryMap = makeIdItemMap(sDirectoryzzStore.itemzz)
     const tabzz = Object.keys(TabEnum) as TabEnum[]
 
     if (property.step === Step) {
@@ -101,6 +103,7 @@ export default function FileTabList(property: Property) {
                     isTest={false}
                     ma={property.ma}
                     module={property.module}
+                    directoryMap={directoryMap}
                 ></FileView>
             ) : null}
 
@@ -112,6 +115,7 @@ export default function FileTabList(property: Property) {
                     isTest={true}
                     ma={property.ma}
                     module={property.module}
+                    directoryMap={directoryMap}
                 ></FileView>
             ) : null}
 

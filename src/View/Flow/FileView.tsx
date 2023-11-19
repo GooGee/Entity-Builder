@@ -9,6 +9,7 @@ interface Property {
     isTest: boolean
     ma: LB.ModuleAction
     module: LB.Module
+    directoryMap: Map<number, LB.Directory>
 }
 
 export default function FileView(property: Property) {
@@ -24,6 +25,7 @@ export default function FileView(property: Property) {
             }
             return (
                 item.directoryId === property.ma.directoryId ||
+                findSimilarAction(property.ma.name, item.directoryId) ||
                 item.directoryId === property.module.directoryId
             )
         })
@@ -33,6 +35,35 @@ export default function FileView(property: Property) {
             }
             return aa.directoryId - bb.directoryId
         })
+
+    function findSimilarAction(name: string, directoryId: number) {
+        const directory = property.directoryMap.get(directoryId)
+        if (directory === undefined) {
+            return false
+        }
+
+        const similar = name.startsWith(directory.name)
+        if (similar) {
+            return inModule(directory.parentId)
+        }
+
+        return false
+
+        function inModule(directoryId: number | null): boolean {
+            if (directoryId === null) {
+                return false
+            }
+            if (directoryId === property.module.directoryId) {
+                return true
+            }
+
+            const directory = property.directoryMap.get(directoryId)
+            if (directory === undefined) {
+                return false
+            }
+            return inModule(directory.parentId)
+        }
+    }
 
     return (
         <table className="table">
