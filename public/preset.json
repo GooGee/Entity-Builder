@@ -136,6 +136,20 @@
                 },
                 {
                     "collectionId": 5,
+                    "name": "dtPublish",
+                    "value": "",
+                    "tag": "datetime",
+                    "id": 522
+                },
+                {
+                    "collectionId": 5,
+                    "name": "dtArchive",
+                    "value": "",
+                    "tag": "datetime",
+                    "id": 523
+                },
+                {
+                    "collectionId": 5,
                     "name": "amount",
                     "value": "",
                     "tag": "integer",

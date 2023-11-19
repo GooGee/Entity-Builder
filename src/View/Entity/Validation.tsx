@@ -76,7 +76,7 @@ export default function Validation(property: Property) {
                                         )
                                         .then(() => {
                                             setWaiting(false)
-                                            sToastzzStore.showOK()
+                                            sToastzzStore.showSuccess('Validation rules added')
                                         })
                                         .catch((error) => {
                                             setWaiting(false)
