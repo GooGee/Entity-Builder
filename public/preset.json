@@ -3814,7 +3814,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "CreateMany${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 80
                 },
                 {
@@ -3824,7 +3824,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "DeleteMany${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 82
                 },
                 {
@@ -3834,7 +3834,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadMany${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 84
                 },
                 {
@@ -3844,7 +3844,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "UpdateMany${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 86
                 },
                 {
@@ -3854,7 +3854,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "CreateOne${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 81
                 },
                 {
@@ -3864,7 +3864,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "DeleteOne${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 83
                 },
                 {
@@ -3874,7 +3874,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadOne${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 85
                 },
                 {
@@ -3884,7 +3884,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "UpdateOne${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 87
                 },
                 {
@@ -3894,7 +3894,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadPage${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 88
                 },
                 {
@@ -3904,7 +3904,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateMany${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 100
                 },
                 {
@@ -3914,7 +3914,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateMany${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 101
                 },
                 {
@@ -3924,7 +3924,7 @@
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateMany${entity.name}Request.php",
+                    "fileNamePattern": "${action + entity.name}Request.php",
                     "id": 105
                 },
                 {
@@ -3934,7 +3934,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateOne${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 110
                 },
                 {
@@ -3944,7 +3944,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateOne${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 111
                 },
                 {
@@ -3954,7 +3954,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "DeleteMany${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 120
                 },
                 {
@@ -3964,7 +3964,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "DeleteMany${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 121
                 },
                 {
@@ -3974,7 +3974,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "DeleteOne${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 130
                 },
                 {
@@ -3984,7 +3984,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "DeleteOne${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 131
                 },
                 {
@@ -3994,7 +3994,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadMany${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 140
                 },
                 {
@@ -4004,7 +4004,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadMany${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 141
                 },
                 {
@@ -4014,7 +4014,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadOne${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 150
                 },
                 {
@@ -4024,7 +4024,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadOne${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 151
                 },
                 {
@@ -4034,7 +4034,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateMany${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 160
                 },
                 {
@@ -4044,7 +4044,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateMany${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 161
                 },
                 {
@@ -4054,7 +4054,7 @@
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateMany${entity.name}Request.php",
+                    "fileNamePattern": "${action + entity.name}Request.php",
                     "id": 165
                 },
                 {
@@ -4064,7 +4064,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateOne${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 170
                 },
                 {
@@ -4074,7 +4074,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateOne${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 171
                 },
                 {
@@ -4084,7 +4084,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 180
                 },
                 {
@@ -4094,7 +4094,7 @@
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 181
                 },
                 {
@@ -4104,7 +4104,7 @@
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}Request.php",
+                    "fileNamePattern": "${action + entity.name}Request.php",
                     "id": 185
                 },
                 {
@@ -4224,7 +4224,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "CreateMany${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 380
                 },
                 {
@@ -4234,7 +4234,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "DeleteMany${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 382
                 },
                 {
@@ -4242,7 +4242,7 @@
                     "color": "#0ff",
                     "layer": "Test",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadMany${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 384,
                     "description": "",
                     "directoryId": 84
@@ -4254,7 +4254,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "UpdateMany${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 386
                 },
                 {
@@ -4262,7 +4262,7 @@
                     "color": "#f80",
                     "layer": "Test",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "CreateOne${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 381,
                     "description": "",
                     "directoryId": 84
@@ -4272,7 +4272,7 @@
                     "color": "#0f0",
                     "layer": "Test",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "DeleteOne${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 383,
                     "description": "",
                     "directoryId": 84
@@ -4282,7 +4282,7 @@
                     "color": "#00f",
                     "layer": "Test",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadOne${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 385,
                     "description": "",
                     "directoryId": 84
@@ -4292,7 +4292,7 @@
                     "color": "#80f",
                     "layer": "Test",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "UpdateOne${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 387,
                     "description": "",
                     "directoryId": 84
@@ -4304,7 +4304,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadPage${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 388
                 },
                 {
@@ -4314,7 +4314,7 @@
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "ReadHome${entity.name}Test.php",
+                    "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 389
                 },
                 {
@@ -4324,7 +4324,7 @@
                     "layer": "Action",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateMany${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 400
                 },
                 {
@@ -4334,7 +4334,7 @@
                     "layer": "Controller",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateMany${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 401
                 },
                 {
@@ -4344,7 +4344,7 @@
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateMany${entity.name}Request.php",
+                    "fileNamePattern": "${action + entity.name}Request.php",
                     "id": 405
                 },
                 {
@@ -4352,7 +4352,7 @@
                     "color": "#f80",
                     "layer": "Action",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateOne${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 410,
                     "description": "",
                     "directoryId": 410
@@ -4362,7 +4362,7 @@
                     "color": "#f80",
                     "layer": "Controller",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "CreateOne${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 411,
                     "description": "",
                     "directoryId": 410
@@ -4374,7 +4374,7 @@
                     "layer": "Action",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "DeleteMany${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 420
                 },
                 {
@@ -4384,7 +4384,7 @@
                     "layer": "Controller",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "DeleteMany${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 421
                 },
                 {
@@ -4392,7 +4392,7 @@
                     "color": "#0f0",
                     "layer": "Action",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "DeleteOne${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 430,
                     "description": "",
                     "directoryId": 430
@@ -4402,7 +4402,7 @@
                     "color": "#0f0",
                     "layer": "Controller",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "DeleteOne${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 431,
                     "description": "",
                     "directoryId": 430
@@ -4412,7 +4412,7 @@
                     "color": "#0ff",
                     "layer": "Action",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadMany${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 440,
                     "description": "",
                     "directoryId": 440
@@ -4422,7 +4422,7 @@
                     "color": "#0ff",
                     "layer": "Controller",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadMany${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 441,
                     "description": "",
                     "directoryId": 440
@@ -4432,7 +4432,7 @@
                     "color": "#00f",
                     "layer": "Action",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadOne${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 450,
                     "description": "",
                     "directoryId": 450
@@ -4442,7 +4442,7 @@
                     "color": "#00f",
                     "layer": "Controller",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadOne${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 451,
                     "description": "",
                     "directoryId": 450
@@ -4454,7 +4454,7 @@
                     "layer": "Action",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateMany${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 460
                 },
                 {
@@ -4464,7 +4464,7 @@
                     "layer": "Controller",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateMany${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 461
                 },
                 {
@@ -4474,7 +4474,7 @@
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateMany${entity.name}Request.php",
+                    "fileNamePattern": "${action + entity.name}Request.php",
                     "id": 465
                 },
                 {
@@ -4482,7 +4482,7 @@
                     "color": "#80f",
                     "layer": "Action",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateOne${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 470,
                     "description": "",
                     "directoryId": 470
@@ -4492,7 +4492,7 @@
                     "color": "#80f",
                     "layer": "Controller",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "UpdateOne${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 471,
                     "description": "",
                     "directoryId": 470
@@ -4504,7 +4504,7 @@
                     "layer": "Action",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 480
                 },
                 {
@@ -4514,7 +4514,7 @@
                     "layer": "Controller",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 481
                 },
                 {
@@ -4524,7 +4524,7 @@
                     "layer": "Request",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadPage${entity.name}Request.php",
+                    "fileNamePattern": "${action + entity.name}Request.php",
                     "id": 485
                 },
                 {
@@ -4534,7 +4534,7 @@
                     "layer": "Action",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadHome${entity.name}.php",
+                    "fileNamePattern": "${action + entity.name}.php",
                     "id": 490
                 },
                 {
@@ -4544,7 +4544,7 @@
                     "layer": "Controller",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "ReadHome${entity.name}Controller.php",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
                     "id": 491
                 },
                 {
