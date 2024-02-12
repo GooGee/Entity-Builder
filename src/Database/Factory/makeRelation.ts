@@ -7,7 +7,6 @@ import {
 import RelationType from "@/Database/RelationType"
 import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
 import { OapiType } from "@/Model/Oapi"
-import lodash from "lodash"
 import { OmitId } from "../dbhelper"
 import Constant from "@/Model/Constant"
 import CaseEnum from "@/Model/CaseEnum"
@@ -21,7 +20,7 @@ export function buildRelation(
     fk: string,
 ) {
     return makeColumnCRUD()
-        .findChildzz(entity1Id, makeForeignKeyId(SchemaEnum.Entity, CaseEnum.CosineCase))
+        .findChildzz(entity1Id, makeForeignKeyId(SchemaEnum.Entity))
         .then((response) => {
             const found = response.find((item) => item.name === fk)
             if (found) {
@@ -55,7 +54,7 @@ export function connectEntity(
         entity0.id,
         entity1.id,
         name0,
-        lodash.lowerFirst(entity0.name),
+        (entity0.name),
         fk,
     )
 }
@@ -67,7 +66,7 @@ export function connectEntityBy(
     fki: number,
 ) {
     const name0 = makeVariableName(type, entity1)
-    const name1 = lodash.lowerFirst(entity0.name)
+    const name1 = (entity0.name)
     return makeRelationCRUD().create(
         makeRelation(type, entity0.id, entity1.id, name0, name1, fki),
     )
@@ -75,7 +74,7 @@ export function connectEntityBy(
 
 export function makeVariableName(type: RelationType, entity1: LB.Entity) {
     return (
-        lodash.lowerFirst(entity1.name) + (type === RelationType.OneToMany ? Constant.Zz : "")
+        (entity1.name) + (type === RelationType.OneToMany ? Constant.Zz : "")
     )
 }
 
