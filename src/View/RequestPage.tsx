@@ -7,6 +7,7 @@ import showInput from "./Dialog/showInput"
 import RequestDetail from "./Oapi/RequestDetail"
 import RightTop from "./Part/RightTop"
 import SideBar from "./Part/SideBar"
+import CaseEnum from "@/Model/CaseEnum"
 
 export default function RequestPage() {
     const sRequestPageStore = useRequestPageStore()
@@ -34,7 +35,7 @@ export default function RequestPage() {
                                 sRequestPageStore.setItem(undefined)
                                 // delete Request, but keep ModuleAction
                                 return makeModuleActionCRUD().updateManyColumn(
-                                    makeForeignKeyId(SchemaEnum.Request),
+                                    makeForeignKeyId(SchemaEnum.Request, CaseEnum.CosineCase),
                                     1,
                                     sRequestPageStore.item!.id,
                                 )

@@ -1,3 +1,5 @@
+import CaseEnum from "@/Model/CaseEnum"
+import Constant from "@/Model/Constant"
 import lodash from "lodash"
 import * as lf from "lovefield-ts"
 
@@ -432,8 +434,15 @@ function makeForeignKey(
     return tb
 }
 
-export function makeForeignKeyId(target: string) {
-    return lodash.lowerFirst(target) + "Id"
+export function makeForeignKeyId(target: string, ce: CaseEnum = CaseEnum.SineCase) {
+    const name = target + Constant.Id
+    switch (ce) {
+        case CaseEnum.SineCase:
+            return lodash.lowerFirst(name)
+        case CaseEnum.SnakeCase:
+            return lodash.snakeCase(name)
+    }
+    return name
 }
 
 function makeUniqueKey(tb: lf.TableBuilder, schema: SchemaEnum, column: string[]) {

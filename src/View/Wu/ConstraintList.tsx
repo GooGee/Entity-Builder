@@ -1,5 +1,6 @@
 import { makeForeignKeyId, SchemaEnum } from "@/Database/createSchema"
 import { makeWuColumnConstraintCRUD } from "@/Database/makeCRUD"
+import CaseEnum from "@/Model/CaseEnum"
 import useColumnConstraintzzStore from "@/Store/useColumnConstraintzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { useState, useEffect } from "react"
@@ -26,7 +27,7 @@ export default function ConstraintList(property: Property) {
 
     function refresh() {
         makeWuColumnConstraintCRUD()
-            .findAllBelongTo([property.wc.id], makeForeignKeyId(SchemaEnum.WuColumn))
+            .findAllBelongTo([property.wc.id], makeForeignKeyId(SchemaEnum.WuColumn, CaseEnum.CosineCase))
             .then((response) => setWcczz(response))
             .catch(sToastzzStore.showError)
     }
