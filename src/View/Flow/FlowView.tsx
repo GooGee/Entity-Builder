@@ -59,12 +59,10 @@ export default function FlowView() {
             ) : null}
 
             {sModulePageStore.item &&
-            sFlowPageStore.path &&
             sFlowPageStore.step === StepEnum.Path ? (
                 <PathView
                     entity={sEntityPageStore.item}
                     module={sModulePageStore.item}
-                    path={sFlowPageStore.path}
                 ></PathView>
             ) : null}
 
