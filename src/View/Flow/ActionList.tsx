@@ -7,11 +7,7 @@ import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect } from "react"
 import showNameInput from "../Dialog/showNameInput"
 import usePathzzStore from "@/Store/usePathzzStore"
-import {
-    makePathMethod,
-    makePathOf,
-    makePathParameter,
-} from "@/Database/Factory/makePath"
+import { makePathMethod, makePathOf } from "@/Database/Factory/makePath"
 
 const Step = StepEnum.Action
 
@@ -131,8 +127,7 @@ export default function ActionList(property: Property) {
                     usePathzzStore.getState().itemzz,
                 ).then(function (path) {
                     sFlowPageStore.setPath(path)
-                    makePathMethod(path, item)
-                    return makePathParameter(path)
+                    return makePathMethod(path, item)
                 })
             })
             .catch(useToastzzStore.getState().showError)

@@ -6,7 +6,7 @@ import FileList from "../Entity/FileList"
 import TabList from "../Part/TabList"
 import FileView from "./FileView"
 import RacFileList from "./RacFileList"
-import { makeIdItemMap, makeIdNameMap } from "@/Factory/makeMap"
+import { makeIdItemMap } from "@/Factory/makeMap"
 
 const Step = StepEnum.File
 

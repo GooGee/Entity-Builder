@@ -1,6 +1,5 @@
-import { getParameterInPath } from "@/Service/getParameter"
 import { OmitId } from "../dbhelper"
-import { makeParameterMapCRUD, makePathCRUD, makePathMethodCRUD } from "../makeCRUD"
+import { makePathCRUD, makePathMethodCRUD } from "../makeCRUD"
 import makeSideBarItem from "./makeSideBarItem"
 import { ActionMethodMap, HttpMethod } from "@/Model/Oapi"
 import Constant from "@/Model/Constant"
@@ -80,23 +79,4 @@ export function makePathOf(
     }
 
     return makePathCRUD().create(makePath(name, entity.id, module.id))
-}
-
-export function makePathParameter(item: LB.Path) {
-    if (item.name.includes("/{id}")) {
-        const column = getParameterInPath(Constant.Id)
-        if (column === undefined) {
-            return Promise.resolve(null)
-        }
-
-        return makeParameterMapCRUD().create({
-            alias: "",
-            columnId: column.id,
-            pathId: item.id,
-            requestId: null,
-            responseId: null,
-        })
-    }
-
-    return Promise.resolve(null)
 }
