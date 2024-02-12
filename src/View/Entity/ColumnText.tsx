@@ -1,10 +1,12 @@
+import Constant from "@/Model/Constant"
+
 interface Property {
     item: LB.Column
 }
 
 export default function ColumnText(property: Property) {
     const textzz: string[] = []
-    if (property.item.name === "id") {
+    if (property.item.name === Constant.Id) {
         textzz.push("primary key")
     }
     if (property.item.nullable) {

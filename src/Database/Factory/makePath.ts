@@ -3,6 +3,7 @@ import { OmitId } from "../dbhelper"
 import { makeParameterMapCRUD, makePathCRUD, makePathMethodCRUD } from "../makeCRUD"
 import makeSideBarItem from "./makeSideBarItem"
 import { ActionMethodMap, HttpMethod } from "@/Model/Oapi"
+import Constant from "@/Model/Constant"
 
 function getMethod(name: string) {
     if (name.startsWith("Read")) {
@@ -79,7 +80,7 @@ export function makePathOf(
 
 export function makePathParameter(item: LB.Path) {
     if (item.name.includes("/{id}")) {
-        const column = getParameterInPath("id")
+        const column = getParameterInPath(Constant.Id)
         if (column === undefined) {
             return Promise.resolve(null)
         }

@@ -3,6 +3,7 @@ import { OapiType } from "@/Model/Oapi"
 import { OmitId } from "../dbhelper"
 import { makeEntityCRUD, makeTypeFormatCRUD } from "../makeCRUD"
 import makeSideBarItem from "./makeSideBarItem"
+import Constant from "@/Model/Constant"
 
 export default function makeEntity(
     name: string,
@@ -25,7 +26,7 @@ export function makeEntityWithId(name: string) {
     return makeEntityCRUD()
         .create(makeEntity(name))
         .then((response) =>
-            createColumnTypeFormat(response.id, "id", OapiType.integer).then(
+            createColumnTypeFormat(response.id, Constant.Id, OapiType.integer).then(
                 ([column, tf]) => makeTypeFormatCRUD().create(tf),
             ),
         )
