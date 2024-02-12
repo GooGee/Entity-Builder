@@ -55,14 +55,14 @@ export default function ColumnList(property: Property) {
                 <h3 className="inline me-3">Column</h3>
                 {model === undefined ? (
                     <span className="text-danger">File ModelBase not found</span>
-                ) : (
+                ) : property.entity.isTable ? (
                     <FileButton
                         action={""}
                         file={model}
                         fullName
                         entity={property.entity}
                     ></FileButton>
-                )}
+                ) : null}
             </caption>
             <thead>
                 <tr>
