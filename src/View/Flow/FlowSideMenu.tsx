@@ -2,7 +2,6 @@ import useEntityPageStore from "@/Store/useEntityPageStore"
 import useEntityzzStore from "@/Store/useEntityzzStore"
 import useListModalStore from "@/Store/useListModalStore"
 import useModulePageStore from "@/Store/useModulePageStore"
-import PathList from "./PathList"
 import ActionList from "./ActionList"
 import ModuleList from "./ModuleList"
 
@@ -42,14 +41,6 @@ export default function FlowSideMenu() {
             </div>
 
             <ModuleList></ModuleList>
-
-            {sEntityPageStore.item === undefined ||
-            sModulePageStore.item === undefined ? null : (
-                <PathList
-                    entity={sEntityPageStore.item}
-                    module={sModulePageStore.item}
-                ></PathList>
-            )}
 
             {sEntityPageStore.item === undefined ||
             sModulePageStore.item === undefined ? null : (
