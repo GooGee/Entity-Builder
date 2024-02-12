@@ -13,6 +13,10 @@ function getMethod(name: string) {
     return ActionMethodMap.get(name.slice(0, 6)) ?? HttpMethod.patch
 }
 
+function makePathParameterString(name: string = Constant.Id) {
+    return `/{${name}}`
+}
+
 export default function makePath(
     name: string,
     entityId: number,
@@ -30,7 +34,7 @@ export default function makePath(
 export function makePathFor(entity: LB.Entity, module: LB.Module, itemzz: LB.Path[]) {
     let name = "/".concat(entity.name)
     if (itemzz.find((item) => item.moduleId === module.id && item.name === name)) {
-        name += "/{id}"
+        name += makePathParameterString()
     }
     if (itemzz.find((item) => item.moduleId === module.id && item.name === name)) {
         name = "/".concat(entity.name).concat("_Page")
@@ -56,7 +60,7 @@ export function makePathMethod(item: LB.Path, ma: LB.ModuleAction) {
 function makePathName(entity: LB.Entity, ma: LB.ModuleAction) {
     const pathName = `/${entity.name}/${ma.name}`
     if (ma.name.includes("One")) {
-        return pathName + "/{id}"
+        return pathName + makePathParameterString()
     }
     return pathName
 }
