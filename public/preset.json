@@ -6689,7 +6689,7 @@
                 },
                 {
                     "entityId": 4,
-                    "name": "Remember_token",
+                    "name": "RememberToken",
                     "type": "string",
                     "length": 111,
                     "scale": 0,
