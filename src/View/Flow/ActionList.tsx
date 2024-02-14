@@ -24,6 +24,7 @@ export default function ActionList(property: Property) {
     const sDirectoryzzStore = useDirectoryzzStore()
     const sFlowPageStore = useFlowPageStore()
     const sModuleActionzzStore = useModuleActionzzStore()
+    const sPathzzStore = usePathzzStore()
 
     const tabzz =
         sDirectoryzzStore.treeMap
@@ -45,7 +46,13 @@ export default function ActionList(property: Property) {
         ) {
             return
         }
-        sFlowPageStore.setPath(undefined)
+        const path = sPathzzStore.itemzz.find(
+            (item) =>
+                item.entityId === property.entity.id &&
+                item.moduleId === property.module.id,
+        )
+        sFlowPageStore.setPath(path)
+
         if (tab) {
             sFlowPageStore.setAction(tab.name, find(tab))
         } else {
