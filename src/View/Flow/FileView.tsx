@@ -42,7 +42,7 @@ export default function FileView(property: Property) {
             return false
         }
 
-        const similar = name.startsWith(directory.name)
+        const similar = name.includes(directory.name)
         if (similar) {
             return inModule(directory.parentId)
         }
