@@ -51,11 +51,7 @@ export default function ParameterPage(property: Property) {
         }
 
         let style = "form"
-        if (
-            [PageEnum.ParameterInHeader, PageEnum.ParameterInPath].includes(
-                entity.name as any,
-            )
-        ) {
+        if ([PageEnum.ParameterInHeader, PageEnum.ParameterInPath].includes(entity.name as any)) {
             style = "simple"
         }
         return createColumnTypeFormat(entity.id, name, OapiType.string, "", 333, style).catch(sToastzzStore.showError)
@@ -64,11 +60,7 @@ export default function ParameterPage(property: Property) {
     return (
         <div className="row">
             <SideBar
-                title={
-                    property.page.includes("ParameterIn")
-                        ? property.page.replace("ParameterIn", "")
-                        : property.page
-                }
+                title={property.page.includes("ParameterIn") ? property.page.replace("ParameterIn", "") : property.page}
                 button={
                     <button
                         onClick={function () {
@@ -102,10 +94,7 @@ export default function ParameterPage(property: Property) {
                             showDialog={showInput}
                             useItemPageStore={useParameterPageStore}
                         ></RightTop>
-                        <ParameterDetail
-                            constraintzz={constraintzz}
-                            item={sParameterPageStore.item}
-                        ></ParameterDetail>
+                        <ParameterDetail constraintzz={constraintzz} item={sParameterPageStore.item}></ParameterDetail>
                     </>
                 )}
             </div>

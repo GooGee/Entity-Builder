@@ -28,11 +28,7 @@ export default function ColumnList(property: Property) {
     const model = sFilezzStore.itemzz.find((item) => item.name === "ModelBase")
 
     useEffect(() => {
-        setColumnzz(
-            sColumnzzStore.itemzz.filter(
-                (item) => item.entityId === property.entity.id,
-            ),
-        )
+        setColumnzz(sColumnzzStore.itemzz.filter((item) => item.entityId === property.entity.id))
     }, [property.entity, sColumnzzStore.itemzz])
 
     function add(name: string, type: string, value: string, comment: string = "") {
@@ -54,12 +50,7 @@ export default function ColumnList(property: Property) {
                 {model === undefined ? (
                     <span className="text-danger">File ModelBase not found</span>
                 ) : property.entity.isTable ? (
-                    <FileButton
-                        action={""}
-                        file={model}
-                        fullName
-                        entity={property.entity}
-                    ></FileButton>
+                    <FileButton action={""} file={model} fullName entity={property.entity}></FileButton>
                 ) : null}
             </caption>
             <thead>
@@ -104,38 +95,26 @@ export default function ColumnList(property: Property) {
                     <td>
                         <span
                             onClick={function () {
-                                sImportModalStore.openCB(
-                                    property.entity.id,
-                                    "import column",
-                                    undefined,
-                                    function (text) {
-                                        if (text === "") {
+                                sImportModalStore.openCB(property.entity.id, "import column", undefined, function (text) {
+                                    if (text === "") {
+                                        return
+                                    }
+                                    try {
+                                        const zz = JSON.parse(text)
+                                        if (Array.isArray(zz) === false) {
+                                            sToastzzStore.showDanger("text is not JSON array")
                                             return
                                         }
-                                        try {
-                                            const zz = JSON.parse(text)
-                                            if (Array.isArray(zz) === false) {
-                                                sToastzzStore.showDanger(
-                                                    "text is not JSON array",
-                                                )
-                                                return
+                                        zz.forEach((item: any) => {
+                                            if (typeof item === "string") {
+                                                item = { name: item }
                                             }
-                                            zz.forEach((item: any) => {
-                                                if (typeof item === "string") {
-                                                    item = { name: item }
-                                                }
-                                                add(
-                                                    item["name"] ?? "",
-                                                    item["type"] ?? "",
-                                                    "",
-                                                    item["comment"] ?? "",
-                                                )
-                                            })
-                                        } catch (error) {
-                                            sToastzzStore.showError(error)
-                                        }
-                                    },
-                                )
+                                            add(item["name"] ?? "", item["type"] ?? "", "", item["comment"] ?? "")
+                                        })
+                                    } catch (error) {
+                                        sToastzzStore.showError(error)
+                                    }
+                                })
                             }}
                             className="btn btn-outline-primary"
                         >

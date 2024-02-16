@@ -48,11 +48,7 @@ function ColumnList(property: Property) {
             {property.item.openedColumn ? (
                 <tbody>
                     {property.columnzz.map((data) => (
-                        <Column
-                            item={data}
-                            entityId={property.item.id}
-                            key={data.name}
-                        ></Column>
+                        <Column item={data} entityId={property.item.id} key={data.name}></Column>
                     ))}
                 </tbody>
             ) : null}
