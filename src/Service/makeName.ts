@@ -1,13 +1,17 @@
 import LayerEnum from "@/Model/LayerEnum"
 
+export function makeParameterName(action: string, entity: LB.Entity, name: string) {
+    return `${entity.name}_${action}_${name}`
+}
+
 export function makeRequestName(action: string, entity: LB.Entity) {
-    return `${entity.name}_${action}_${LayerEnum.Request}`
+    return makeParameterName(action, entity, LayerEnum.Request)
 }
 
 export function makeResponseName(action: string, entity: LB.Entity) {
-    return `${entity.name}_${action}_${LayerEnum.Response}`
+    return makeParameterName(action, entity, LayerEnum.Response)
 }
 
 export function makeWuName(action: string, entity: LB.Entity, isRequest: boolean) {
-    return `${entity.name}_${action}_` + (isRequest ? "Form" : "DTO")
+    return makeParameterName(action, entity, isRequest ? "Form" : "DTO")
 }
