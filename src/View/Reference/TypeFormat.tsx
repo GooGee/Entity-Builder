@@ -46,7 +46,7 @@ export default function TypeFormat(property2: Property) {
         }
 
         if (isReference(property.item.type)) {
-            return <ReferenceButton item={property.item} wuId={property.wuId} update={update}></ReferenceButton>
+            return <ReferenceButton item={property.item} wuId={property.wuId} update={updateTypeFormat}></ReferenceButton>
         }
 
         const formatzz = getCollectionItemzz("TypeFormat").map((item) => item.name)
@@ -59,7 +59,7 @@ export default function TypeFormat(property2: Property) {
                     itemzz={formatzz}
                     value={property.item.format}
                     change={(format) =>
-                        update({
+                        updateTypeFormat({
                             ...property.item,
                             format,
                         })
@@ -69,7 +69,7 @@ export default function TypeFormat(property2: Property) {
         )
     }
 
-    function update(data: LB.TypeFormat) {
+    function updateTypeFormat(data: LB.TypeFormat) {
         return makeTypeFormatCRUD().update(data).catch(sToastzzStore.showError)
     }
 
@@ -92,7 +92,7 @@ export default function TypeFormat(property2: Property) {
         if (old === OapiType.Enum) {
             data.variableId = null
         }
-        return update(data)
+        return updateTypeFormat(data)
             .then(function () {
                 if (old === OapiType.Wu) {
                     return deleteTypeFormatArgument(property.item.id)
@@ -111,7 +111,7 @@ export default function TypeFormat(property2: Property) {
                         <input
                             checked={property.item.isArray}
                             onChange={(event) =>
-                                update({
+                                updateTypeFormat({
                                     ...property.item,
                                     isArray: event.target.checked,
                                 })
@@ -134,7 +134,7 @@ export default function TypeFormat(property2: Property) {
                         <input
                             checked={property.item.nullable}
                             onChange={(event) =>
-                                update({
+                                updateTypeFormat({
                                     ...property.item,
                                     nullable: event.target.checked,
                                 })
