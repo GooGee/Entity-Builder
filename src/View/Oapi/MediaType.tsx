@@ -15,12 +15,14 @@ interface Property {
 }
 
 export default function MediaType(property: Property) {
+    const sTypeFormatzzStore = useTypeFormatzzStore()
+
     const itemzz = getCollectionItemzz("MediaType")
     const mti = itemzz.find((item) => item.name === property.item.mediaType)?.id ?? 0
 
-    const tf = useTypeFormatzzStore
-        .getState()
-        .itemzz.find((item) => (property.isRequest ? item.ownerRequestId : item.ownerResponseId) === property.item.id)
+    const tf = sTypeFormatzzStore.itemzz.find(
+        (item) => (property.isRequest ? item.ownerRequestId : item.ownerResponseId) === property.item.id,
+    )
 
     return (
         <table className="table td0-tar">
