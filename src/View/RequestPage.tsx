@@ -7,7 +7,6 @@ import showInput from "./Dialog/showInput"
 import RequestDetail from "./Oapi/RequestDetail"
 import RightTop from "./Part/RightTop"
 import SideBar from "./Part/SideBar"
-import CaseEnum from "@/Model/CaseEnum"
 
 export default function RequestPage() {
     const sRequestPageStore = useRequestPageStore()
@@ -15,11 +14,7 @@ export default function RequestPage() {
 
     return (
         <div className="row">
-            <SideBar
-                title={PageEnum.Request}
-                itemzz={sRequestzzStore.itemzz}
-                useStore={useRequestPageStore}
-            ></SideBar>
+            <SideBar title={PageEnum.Request} itemzz={sRequestzzStore.itemzz} useStore={useRequestPageStore}></SideBar>
 
             <div className="col-9 py-3 h100 overflow-auto">
                 {sRequestPageStore.item ? (
@@ -35,7 +30,7 @@ export default function RequestPage() {
                                 sRequestPageStore.setItem(undefined)
                                 // delete Request, but keep ModuleAction
                                 return makeModuleActionCRUD().updateManyColumn(
-                                    makeForeignKeyId(SchemaEnum.Request, CaseEnum.CosineCase),
+                                    makeForeignKeyId(SchemaEnum.Request),
                                     1,
                                     sRequestPageStore.item!.id,
                                 )

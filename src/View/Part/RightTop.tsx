@@ -38,17 +38,10 @@ export default function RightTop(property: Property) {
                             showConfirm()
                                 .then(function (response) {
                                     if (response.isConfirmed) {
-                                        const promis =
-                                            property.onDeleteBefore ??
-                                            function () {
-                                                return Promise.resolve()
-                                            }
+                                        const promis = property.onDeleteBefore ?? Promise.resolve
 
-                                        promis().then(() =>
-                                            property
-                                                .makeCRUD()
-                                                .delete(property.item.id)
-                                                .catch(sToastzzStore.showError),
+                                        return promis().then(() =>
+                                            property.makeCRUD().delete(property.item.id).catch(sToastzzStore.showError),
                                         )
                                     }
                                 })
