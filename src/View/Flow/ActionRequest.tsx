@@ -3,7 +3,7 @@ import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import { makeActionWu } from "@/Database/Factory/makeWu"
 import { makeRequestCRUD, makeTypeFormatCRUD, makeModuleActionCRUD } from "@/Database/makeCRUD"
 import { OapiType } from "@/Model/Oapi"
-import { makeRequestName } from "@/Service/makeName"
+import { makeParameterName, makeRequestName } from "@/Service/makeName"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useRequestzzStore from "@/Store/useRequestzzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
@@ -14,6 +14,9 @@ import { useState, useEffect } from "react"
 import SelectButton from "../Button/SelectButton"
 import ParameterList from "../Oapi/ParameterList"
 import WuColumnList from "../Wu/WuColumnList"
+import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
+import useEntityzzStore from "@/Store/useEntityzzStore"
+import { PageEnum } from "@/menuzz"
 
 const Step = StepEnum.Request
 
@@ -81,6 +84,15 @@ export default function ActionRequest(property: Property) {
         )
     }
 
+    function makeParameterFilter() {
+        const name = makeParameterName(property.action, property.entity, "Filter")
+        const qp = useEntityzzStore.getState().findByName(PageEnum.ParameterInQuery)
+        if (qp === undefined) {
+            return
+        }
+        createColumnTypeFormat(qp.id, name, "object", "", 0, "form", "", false).catch(sToastzzStore.showError)
+    }
+
     function makeRequestWu() {
         return makeActionWu(property.action, property.entity, true, sWuzzStore)
             .then((wu) => {
@@ -139,7 +151,12 @@ export default function ActionRequest(property: Property) {
                 </>
             )}
 
-            <h3>Parameter</h3>
+            <div>
+                <h3 className="inline me-3">Parameter</h3>
+                <button onClick={makeParameterFilter} className="btn btn-outline-primary" type="button">
+                    make filter
+                </button>
+            </div>
             <ParameterList requestId={property.ma.requestId}></ParameterList>
         </div>
     )
