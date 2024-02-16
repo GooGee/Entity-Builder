@@ -3,7 +3,6 @@ import useRelationModalStore from "@/Store/useRelationModalStore"
 import useEntityModalStore from "@/Store/useEntityModalStore"
 import ColumnModal from "./ColumnModal"
 import EntityModal from "./EntityModal"
-import ListModal from "./ListModal"
 import RelationModal from "./RelationModal"
 
 function ModalManager() {
@@ -14,7 +13,6 @@ function ModalManager() {
     return (
         <>
             {columnModalStore.isOpen ? <ColumnModal></ColumnModal> : null}
-            <ListModal></ListModal>
             {relationModalStore.isOpen ? <RelationModal></RelationModal> : null}
             {sEntityModalStore.isOpen ? <EntityModal></EntityModal> : null}
         </>

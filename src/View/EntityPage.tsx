@@ -8,7 +8,6 @@ import EntityView from "./Entity/EntityView"
 import ColumnModal from "./Modal/ColumnModal"
 import DirectoryModal from "./Modal/DirectoryModal"
 import ImportModal from "./Modal/ImportModal"
-import ListModal from "./Modal/ListModal"
 import LeftRightPanel from "./Part/LeftRightPanel"
 
 export default function EntityPage() {
@@ -31,7 +30,6 @@ export default function EntityPage() {
             <ColumnModal></ColumnModal>
             <DirectoryModal></DirectoryModal>
             <ImportModal></ImportModal>
-            <ListModal></ListModal>
         </div>
     )
 }

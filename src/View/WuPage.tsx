@@ -7,7 +7,6 @@ import useListModalStore from "@/Store/useListModalStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import useWuPageStore from "@/Store/useWuPageStore"
 import useWuzzStore from "@/Store/useWuzzStore"
-import ListModal from "./Modal/ListModal"
 import LeftRightPanel from "./Part/LeftRightPanel"
 import WuView from "./Wu/WuView"
 
@@ -50,8 +49,6 @@ export default function WuPage() {
             >
                 <WuView></WuView>
             </LeftRightPanel>
-
-            <ListModal></ListModal>
         </div>
     )
 }

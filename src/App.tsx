@@ -23,6 +23,7 @@ import TreePage from "./View/TreePage"
 import VariablePage from "./View/VariablePage"
 import WuPage from "./View/WuPage"
 import showNote from "./View/Dialog/showNote"
+import ListModal from "./View/Modal/ListModal"
 
 function App() {
     const store = useAppInfoStore()
@@ -86,21 +87,16 @@ function App() {
                     {menuzz
                         .filter((item) => item.visible)
                         .map((item) => (
-                            <Route
-                                key={item.path}
-                                path={item.path}
-                                element={getPage(item.name)}
-                            />
+                            <Route key={item.path} path={item.path} element={getPage(item.name)} />
                         ))}
                 </Routes>
 
                 <ToastGroup></ToastGroup>
             </div>
 
-            <div
-                className="position-fixed bottom-0 end-0 bg-white m-3"
-                style={{ zIndex: 1222 }}
-            >
+            <ListModal></ListModal>
+
+            <div className="position-fixed bottom-0 end-0 bg-white m-3" style={{ zIndex: 1222 }}>
                 <button className="btn btn-outline-primary" onClick={showNote}>
                     note
                 </button>

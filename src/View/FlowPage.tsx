@@ -1,7 +1,6 @@
 import FlowSideMenu from "./Flow/FlowSideMenu"
 import FlowView from "./Flow/FlowView"
 import DirectoryModal from "./Modal/DirectoryModal"
-import ListModal from "./Modal/ListModal"
 
 export default function FlowPage() {
     return (
@@ -15,7 +14,6 @@ export default function FlowPage() {
             </div>
 
             <DirectoryModal></DirectoryModal>
-            <ListModal></ListModal>
         </div>
     )
 }
