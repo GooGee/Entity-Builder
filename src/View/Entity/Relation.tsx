@@ -1,9 +1,10 @@
-import { makeRelationCRUD } from "@/Database/makeCRUD"
+import { makeRelationCRUD, makeTypeFormatCRUD } from "@/Database/makeCRUD"
 import RelationType, { getRelationMeaning } from "@/Database/RelationType"
 import useToastzzStore from "@/Store/useToastzzStore"
 import SelectButton from "../Button/SelectButton"
 import showConfirm from "../Dialog/showConfirm"
 import showNameInput from "../Dialog/showNameInput"
+import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
 
 interface Property {
     columnzz: LB.Column[]
@@ -43,29 +44,39 @@ export default function Relation(property: Property) {
             <td className="text-secondary">
                 <div className="d-flex">
                     <div className="me-1">
-                        <button
-                            onClick={function () {
-                                showConfirm()
-                                    .then((response) => {
-                                        if (response.isConfirmed) {
-                                            return makeRelationCRUD().delete(
-                                                property.item.id,
-                                            )
-                                        }
-                                    })
-                                    .catch(sToastzzStore.showError)
-                            }}
-                            className="btn btn-outline-danger"
-                            type="button"
-                        >
-                            -
-                        </button>
+                        <div className="btn-group">
+                            <button
+                                onClick={function () {
+                                    showConfirm()
+                                        .then((response) => {
+                                            if (response.isConfirmed) {
+                                                return makeRelationCRUD().delete(property.item.id)
+                                            }
+                                        })
+                                        .catch(sToastzzStore.showError)
+                                }}
+                                className="btn btn-outline-danger"
+                                type="button"
+                            >
+                                -
+                            </button>
+                            <button
+                                onClick={function () {
+                                    createColumnTypeFormat(property.entity.id, name, "object", "", 0, "", "", false)
+                                        .then(([column, tf]) => makeTypeFormatCRUD().create(tf))
+                                        .then(() => sToastzzStore.showSuccess(`column ${name} added`))
+                                        .catch(sToastzzStore.showError)
+                                }}
+                                className="btn btn-outline-primary"
+                                type="button"
+                            >
+                                + Column
+                            </button>
+                        </div>
                     </div>
 
                     <div>
-                        <div className="mt-1">
-                            {getRelationMeaning(property.item.type, reversed)}
-                        </div>
+                        <div className="mt-1">{getRelationMeaning(property.item.type, reversed)}</div>
 
                         {self && property.item.type === RelationType.OneToMany ? (
                             <div className="mt-4">has many</div>

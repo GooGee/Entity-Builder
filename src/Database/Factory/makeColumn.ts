@@ -11,6 +11,7 @@ export default function makeColumn(
     dct?: LB.DoctrineColumnType,
     style: string = "",
     comment: string = "",
+    inTable = true,
 ): OmitId<LB.Column> {
     return {
         ...makeSideBarItem(name),
@@ -34,7 +35,7 @@ export default function makeColumn(
         fakeMethod: dct?.fakeMethod ?? "",
         fakeText: dct?.fakeText ?? "",
 
-        inTable: true,
+        inTable,
         allowReserved: false,
         deprecated: false,
         description: "",
