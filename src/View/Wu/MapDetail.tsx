@@ -19,9 +19,6 @@ export default function MapDetail(property: Property) {
     const tf = sTypeFormatzzStore.itemzz.find(
         (item) => item.ownerWuId === property.item.id,
     )
-    if (tf === undefined) {
-        return <div>{makeNotFoundText("TypeFormat", "")}</div>
-    }
 
     function update(item: LB.Wu) {
         sWuPageStore.setItem(item)

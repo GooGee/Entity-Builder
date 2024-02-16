@@ -5,11 +5,12 @@ import useWuParameterzzStore from "@/Store/useWuParameterzzStore"
 import useWuzzStore from "@/Store/useWuzzStore"
 import { useState } from "react"
 import TypeFormat from "./TypeFormat"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 
 interface Property {
     id: number | string
     isRoot?: boolean
-    item: LB.TypeFormat
+    item?: LB.TypeFormat
     wuId?: number
 }
 
@@ -43,17 +44,23 @@ export default function TypeFormatText(property: Property) {
     }
 
     clearError()
-    const text = makeTextTypeFormat(
-        property.item,
-        sTypeFormatzzStore.itemzz,
-        sVariablezzStore.itemzz,
-        sWuParameterzzStore.itemzz,
-        sWuzzStore.itemzz,
-    )
-    let index = text.indexOf("<")
-    if (index === -1) {
-        index = text.length
+
+    let text = makeNotFoundText("TypeFormat", "")
+    let index = text.length
+    if (property.item) {
+        text = makeTextTypeFormat(
+            property.item,
+            sTypeFormatzzStore.itemzz,
+            sVariablezzStore.itemzz,
+            sWuParameterzzStore.itemzz,
+            sWuzzStore.itemzz,
+        )
+        index = text.indexOf("<")
+        if (index === -1) {
+            index = text.length
+        }
     }
+
     return (
         <span
             className={property.isRoot ? "pointer" : ""}

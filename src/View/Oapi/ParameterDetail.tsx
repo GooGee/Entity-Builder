@@ -22,9 +22,6 @@ export default function ParameterDetail(property: Property) {
     const tf = sTypeFormatzzStore.itemzz.find(
         (item) => item.ownerColumnId === property.item.id,
     )
-    if (tf === undefined) {
-        return <div>{makeNotFoundText("TypeFormat", "")}</div>
-    }
 
     function update(data: LB.Column) {
         sParameterPageStore.setItem(data)

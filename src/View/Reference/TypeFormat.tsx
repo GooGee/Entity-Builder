@@ -6,23 +6,30 @@ import useToastzzStore from "@/Store/useToastzzStore"
 import { ReactElement } from "react"
 import SelectStringButton from "../Button/SelectStringButton"
 import ReferenceButton from "./ReferenceButton"
+import makeNotFoundText from "@/Factory/makeNotFoundText"
 
 interface Property {
     children?: ReactElement
     id: number | string // used for HTML Label (switch)
-    item: LB.TypeFormat
+    item?: LB.TypeFormat
     wuId?: number
 }
 
-export default function TypeFormat(property: Property) {
+interface Property2 extends Property {
+    item: LB.TypeFormat
+}
+
+export default function TypeFormat(property2: Property) {
     const sToastzzStore = useToastzzStore()
 
+    if (property2.item === undefined) {
+        return <span className="text-danger">{makeNotFoundText("TypeFormat", "")}</span>
+    }
+
+    const property = property2 as Property2
+
     if (property.wuId === undefined && property.item.type === OapiType.WuParameter) {
-        return (
-            <span className="text-danger">
-                WuParameter is only available in Wu page
-            </span>
-        )
+        return <span className="text-danger">WuParameter is only available in Wu page</span>
     }
 
     function getTypezz() {
@@ -39,13 +46,7 @@ export default function TypeFormat(property: Property) {
         }
 
         if (isReference(property.item.type)) {
-            return (
-                <ReferenceButton
-                    item={property.item}
-                    wuId={property.wuId}
-                    update={update}
-                ></ReferenceButton>
-            )
+            return <ReferenceButton item={property.item} wuId={property.wuId} update={update}></ReferenceButton>
         }
 
         const formatzz = getCollectionItemzz("TypeFormat").map((item) => item.name)
@@ -121,10 +122,7 @@ export default function TypeFormat(property: Property) {
                             id={"isArraySwitchCheck" + property.id}
                         />
                         {property.item.isArray ? (
-                            <label
-                                className="form-check-label"
-                                htmlFor={"isArraySwitchCheck" + property.id}
-                            >
+                            <label className="form-check-label" htmlFor={"isArraySwitchCheck" + property.id}>
                                 array
                             </label>
                         ) : null}
@@ -147,10 +145,7 @@ export default function TypeFormat(property: Property) {
                             id={"nullableSwitchCheck" + property.id}
                         />
                         {property.item.nullable ? (
-                            <label
-                                className="form-check-label"
-                                htmlFor={"nullableSwitchCheck" + property.id}
-                            >
+                            <label className="form-check-label" htmlFor={"nullableSwitchCheck" + property.id}>
                                 nullable
                             </label>
                         ) : null}

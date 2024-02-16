@@ -32,9 +32,6 @@ export default function ActionResponse(property: Property) {
         const tf = sTypeFormatzzStore.itemzz.find(
             (item) => item.ownerResponseId === response.id,
         )
-        if (tf === undefined) {
-            return <div>{makeNotFoundText("TypeFormat", "")}</div>
-        }
 
         return <TypeFormatText id={property.item.id} item={tf}></TypeFormatText>
     }

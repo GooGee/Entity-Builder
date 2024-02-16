@@ -36,7 +36,7 @@ export default function WuChild(property: Property) {
             (item) => item.ownerColumnId === column.id,
         )
         if (tf === undefined) {
-            return <div>{makeNotFoundText("TypeFormat", "")}</div>
+            return <span>{makeNotFoundText("TypeFormat", "")}</span>
         }
 
         return (
