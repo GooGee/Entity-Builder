@@ -1,11 +1,7 @@
 import makeRequest from "@/Database/Factory/makeRequest"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import { makeActionWu } from "@/Database/Factory/makeWu"
-import {
-    makeRequestCRUD,
-    makeTypeFormatCRUD,
-    makeModuleActionCRUD,
-} from "@/Database/makeCRUD"
+import { makeRequestCRUD, makeTypeFormatCRUD, makeModuleActionCRUD } from "@/Database/makeCRUD"
 import { OapiType } from "@/Model/Oapi"
 import { makeRequestName } from "@/Service/makeName"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
@@ -48,9 +44,7 @@ export default function ActionRequest(property: Property) {
             return
         }
 
-        const tf = sTypeFormatzzStore.itemzz.find(
-            (item) => item.ownerRequestId === request.id,
-        )
+        const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerRequestId === request.id)
         if (tf === undefined) {
             return
         }
@@ -69,23 +63,17 @@ export default function ActionRequest(property: Property) {
 
         return (
             <div className="my-3">
-                <h3
-                    className="pointer hover-blue text-secondary"
-                    onClick={() => sFlowPageStore.setStep(Step)}
-                >
+                <h3 className="pointer hover-blue text-secondary" onClick={() => sFlowPageStore.setStep(Step)}>
                     {Step}
                 </h3>
 
                 {request === undefined ? null : (
                     <div className="mt-3">
                         {request.name}{" "}
-                        {wu === undefined || request.id === 1 ? null : wczz.length ===
-                          0 ? (
+                        {wu === undefined || request.id === 1 ? null : wczz.length === 0 ? (
                             <span className="text-danger">(0 fields)</span>
                         ) : (
-                            <span className="text-secondary">
-                                ({wczz.length} fields)
-                            </span>
+                            <span className="text-secondary">({wczz.length} fields)</span>
                         )}
                     </div>
                 )}
@@ -112,9 +100,7 @@ export default function ActionRequest(property: Property) {
                                         ...property.ma,
                                         requestId: request.id,
                                     })
-                                    .then((ma) =>
-                                        sFlowPageStore.setAction(property.action, ma),
-                                    )
+                                    .then((ma) => sFlowPageStore.setAction(property.action, ma))
                             })
                     })
             })
@@ -133,7 +119,9 @@ export default function ActionRequest(property: Property) {
             <div>
                 <SelectButton
                     className="wa"
-                    itemzz={sRequestzzStore.itemzz}
+                    itemzz={sRequestzzStore.itemzz.filter(
+                        (item) => item.id === 1 || item.name.startsWith(property.entity.name + "_"),
+                    )}
                     value={property.ma.requestId}
                     change={function (requestId) {
                         makeModuleActionCRUD()

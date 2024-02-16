@@ -8,6 +8,7 @@ import showConfirm from "../Dialog/showConfirm"
 import TypeFormatText from "../Reference/TypeFormatText"
 
 interface Property {
+    entity: LB.Entity
     item: LB.ModuleActionResponse
     refresh(): void
     statuszz: LB.CollectionItem[]
@@ -22,25 +23,16 @@ export default function ActionResponse(property: Property) {
 
     function makeView() {
         if (response === undefined) {
-            return (
-                <span className="text-danger">
-                    {makeNotFoundText("", property.item.responseId)}
-                </span>
-            )
+            return <span className="text-danger">{makeNotFoundText("", property.item.responseId)}</span>
         }
 
-        const tf = sTypeFormatzzStore.itemzz.find(
-            (item) => item.ownerResponseId === response.id,
-        )
+        const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerResponseId === response.id)
 
         return <TypeFormatText id={property.item.id} item={tf}></TypeFormatText>
     }
 
     function update(item: LB.ModuleActionResponse) {
-        return makeModuleActionResponseCRUD()
-            .update(item)
-            .then(property.refresh)
-            .catch(sToastzzStore.showError)
+        return makeModuleActionResponseCRUD().update(item).then(property.refresh).catch(sToastzzStore.showError)
     }
 
     return (
@@ -66,11 +58,7 @@ export default function ActionResponse(property: Property) {
                     </button>
                     <SelectButton
                         itemzz={property.statuszz}
-                        value={
-                            property.statuszz.find(
-                                (item) => item.name === property.item.status,
-                            )?.id ?? 0
-                        }
+                        value={property.statuszz.find((item) => item.name === property.item.status)?.id ?? 0}
                         change={function (id, item) {
                             update({
                                 ...property.item,
@@ -83,7 +71,9 @@ export default function ActionResponse(property: Property) {
             <td>
                 <SelectButton
                     className="wa"
-                    itemzz={sResponsezzStore.itemzz}
+                    itemzz={sResponsezzStore.itemzz.filter(
+                        (item) => item.id === 1 || item.name.startsWith(property.entity.name + "_"),
+                    )}
                     value={property.item.responseId}
                     change={function (id) {
                         update({

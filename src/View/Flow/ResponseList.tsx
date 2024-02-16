@@ -2,11 +2,7 @@ import makeModuleActionResponse from "@/Database/Factory/makeModuleActionRespons
 import makeResponse from "@/Database/Factory/makeResponse"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import { findOrMakeWu } from "@/Database/Factory/makeWu"
-import {
-    makeResponseCRUD,
-    makeTypeFormatCRUD,
-    makeModuleActionResponseCRUD,
-} from "@/Database/makeCRUD"
+import { makeResponseCRUD, makeTypeFormatCRUD, makeModuleActionResponseCRUD } from "@/Database/makeCRUD"
 import createTypeFormatArgumentzz from "@/Factory/createTypeFormatArgumentzz"
 import { OapiType } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
@@ -82,9 +78,7 @@ export default function ResponseList(property: Property) {
                         {r200 === undefined ? (
                             <tr>
                                 <td colSpan={2}>
-                                    <div className="text-danger">
-                                        Response 200 is missing
-                                    </div>
+                                    <div className="text-danger">Response 200 is missing</div>
                                 </td>
                             </tr>
                         ) : null}
@@ -109,13 +103,9 @@ export default function ResponseList(property: Property) {
             return undefined
         }
 
-        const tf = sTypeFormatzzStore.itemzz.find(
-            (item) => item.ownerResponseId === r200?.responseId,
-        )
+        const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerResponseId === r200?.responseId)
         if (tf && tf.type === OapiType.Wu) {
-            const child = sTypeFormatzzStore.itemzz.find(
-                (item) => item.ownerId === tf.id,
-            )
+            const child = sTypeFormatzzStore.itemzz.find((item) => item.ownerId === tf.id)
             if (child && child.type === OapiType.Wu) {
                 return sWuzzStore.find(child.wuId)
             }
@@ -132,50 +122,30 @@ export default function ResponseList(property: Property) {
                     ["ReadMany", sWuzzStore.findByName("ApiItemzz")?.id],
                     ["ReadPage", sWuzzStore.findByName("ApiPage")?.id],
                 ])
-                const wrapperId =
-                    map.get(property.action) ??
-                    sWuzzStore.findByName("ApiItem")?.id ??
-                    1
+                const wrapperId = map.get(property.action) ?? sWuzzStore.findByName("ApiItem")?.id ?? 1
                 const data = makeTypeFormat(OapiType.Wu, wrapperId)
                 data.ownerResponseId = lbr.id
                 return makeTypeFormatCRUD()
                     .create(data)
                     .then(function (tf) {
-                        return createTypeFormatArgumentzz(wrapperId, tf.id).then(
-                            function (tfzz) {
-                                if (tfzz.length === 0) {
-                                    return
-                                }
-                                return findOrMakeWu(
-                                    property.entity.name,
-                                    property.entity,
-                                    false,
-                                    sWuzzStore,
+                        return createTypeFormatArgumentzz(wrapperId, tf.id).then(function (tfzz) {
+                            if (tfzz.length === 0) {
+                                return
+                            }
+                            return findOrMakeWu(property.entity.name, property.entity, false, sWuzzStore)
+                                .then((wu) =>
+                                    makeTypeFormatCRUD().update({
+                                        ...tfzz[0],
+                                        wuId: wu.id,
+                                    }),
                                 )
-                                    .then((wu) =>
-                                        makeTypeFormatCRUD().update({
-                                            ...tfzz[0],
-                                            wuId: wu.id,
-                                        }),
-                                    )
-                                    .then(() =>
-                                        sToastzzStore.showSuccess(
-                                            `Wu ${property.entity.name} created`,
-                                        ),
-                                    )
-                            },
-                        )
+                                .then(() => sToastzzStore.showSuccess(`Wu ${property.entity.name} created`))
+                        })
                     })
                     .then(function () {
                         if (r200 === undefined) {
                             return makeModuleActionResponseCRUD()
-                                .create(
-                                    makeModuleActionResponse(
-                                        "200",
-                                        property.ma.id,
-                                        lbr.id,
-                                    ),
-                                )
+                                .create(makeModuleActionResponse("200", property.ma.id, lbr.id))
                                 .then(function () {
                                     sToastzzStore.showSuccess("Response 200 created")
                                 })
@@ -199,9 +169,7 @@ export default function ResponseList(property: Property) {
                 if (unmounted) {
                     return
                 }
-                const itemzz = response.filter(
-                    (item) => item.moduleActionId === property.ma.id,
-                )
+                const itemzz = response.filter((item) => item.moduleActionId === property.ma.id)
                 setItemzz(itemzz)
             })
     }
@@ -212,10 +180,7 @@ export default function ResponseList(property: Property) {
                 <caption>
                     <div>
                         {sResponsezzStore.findByName(nameResponse) ? null : (
-                            <span
-                                onClick={makeResponseWu}
-                                className="btn btn-outline-primary"
-                            >
+                            <span onClick={makeResponseWu} className="btn btn-outline-primary">
                                 + {nameResponse}
                             </span>
                         )}
@@ -232,6 +197,7 @@ export default function ResponseList(property: Property) {
                     {itemzz.map((item) => (
                         <ActionResponse
                             key={item.status}
+                            entity={property.entity}
                             item={item}
                             refresh={refresh}
                             statuszz={statuszz}
@@ -247,12 +213,7 @@ export default function ResponseList(property: Property) {
                                 value={0}
                                 change={function (id, item) {
                                     makeModuleActionResponseCRUD()
-                                        .create(
-                                            makeModuleActionResponse(
-                                                item?.name ?? "",
-                                                property.ma.id,
-                                            ),
-                                        )
+                                        .create(makeModuleActionResponse(item?.name ?? "", property.ma.id))
                                         .then(refresh)
                                         .catch(sToastzzStore.showError)
                                 }}
