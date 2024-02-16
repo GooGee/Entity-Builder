@@ -26,8 +26,6 @@ export function makeEntityWithId(name: string) {
     return makeEntityCRUD()
         .create(makeEntity(name))
         .then((response) =>
-            createColumnTypeFormat(response.id, Constant.Id, OapiType.integer).then(
-                ([column, tf]) => makeTypeFormatCRUD().create(tf),
-            ),
+            createColumnTypeFormat(response.id, Constant.Id, OapiType.integer)
         )
 }

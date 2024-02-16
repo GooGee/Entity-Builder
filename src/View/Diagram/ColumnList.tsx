@@ -21,13 +21,7 @@ function ColumnList(property: Property) {
                         showNameInput("Please input the column name", "")
                             .then((response) => {
                                 if (response.isConfirmed) {
-                                    return createColumnTypeFormat(
-                                        property.item.id,
-                                        response.value,
-                                        OapiType.integer,
-                                    ).then(([column, tf]) =>
-                                        makeTypeFormatCRUD().create(tf),
-                                    )
+                                    return createColumnTypeFormat(property.item.id, response.value, OapiType.integer)
                                 }
                             })
                             .catch(sToastzzStore.showError)

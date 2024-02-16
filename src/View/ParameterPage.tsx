@@ -58,9 +58,7 @@ export default function ParameterPage(property: Property) {
         ) {
             style = "simple"
         }
-        return createColumnTypeFormat(entity.id, name, OapiType.string, "", 333, style)
-            .then(([column, tf]) => makeTypeFormatCRUD().create(tf))
-            .catch(sToastzzStore.showError)
+        return createColumnTypeFormat(entity.id, name, OapiType.string, "", 333, style).catch(sToastzzStore.showError)
     }
 
     return (

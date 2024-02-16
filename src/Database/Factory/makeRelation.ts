@@ -28,10 +28,7 @@ export function buildRelation(
             }
 
             return createColumnTypeFormat(entity1Id, fk, OapiType.integer).then(
-                ([column, tf]) =>
-                    makeTypeFormatCRUD()
-                        .create(tf)
-                        .then(() => create(column.id)),
+                (column) => create(column.id),
             )
         })
 

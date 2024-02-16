@@ -61,7 +61,6 @@ export default function Relation(property: Property) {
                     <button
                         onClick={function () {
                             createColumnTypeFormat(property.entity.id, name, "object", "", 0, "", "", false)
-                                .then(([column, tf]) => makeTypeFormatCRUD().create(tf))
                                 .then(() => sToastzzStore.showSuccess(`column ${name} added`))
                                 .catch(sToastzzStore.showError)
                         }}

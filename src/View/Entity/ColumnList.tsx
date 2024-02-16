@@ -44,9 +44,7 @@ export default function ColumnList(property: Property) {
             "decimal" === type ? 11 : 0,
             "",
             comment,
-        )
-            .then(([column, tf]) => makeTypeFormatCRUD().create(tf))
-            .catch(sToastzzStore.showError)
+        ).catch(sToastzzStore.showError)
     }
 
     return (
