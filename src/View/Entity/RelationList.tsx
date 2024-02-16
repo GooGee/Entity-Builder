@@ -20,16 +20,12 @@ export default function RelationList(property: Property) {
 
     const [relationzz, setRelationzz] = useState<LB.Relation[]>([])
 
-    const columnzz = sColumnzzStore.itemzz.filter(
-        (item) => item.inTable && item.entityId === property.entity.id,
-    )
+    const columnzz = sColumnzzStore.itemzz.filter((item) => item.inTable && item.entityId === property.entity.id)
 
     useEffect(() => {
         setRelationzz(
             sRelationzzStore.itemzz.filter(
-                (item) =>
-                    item.entity0Id === property.entity.id ||
-                    item.entity1Id === property.entity.id,
+                (item) => item.entity0Id === property.entity.id || item.entity1Id === property.entity.id,
             ),
         )
     }, [property.entity, sRelationzzStore.itemzz])
@@ -47,26 +43,23 @@ export default function RelationList(property: Property) {
             </caption>
             <thead>
                 <tr>
-                    <th></th>
+                    <th className="w222"></th>
+                    <th className="w111"></th>
                     <th>name</th>
                     <th>foreign key</th>
                 </tr>
             </thead>
             <tbody>
                 {relationzz.map((item) => (
-                    <Relation
-                        key={item.id}
-                        columnzz={columnzz}
-                        item={item}
-                        entity={property.entity}
-                    ></Relation>
+                    <Relation key={item.id} columnzz={columnzz} item={item} entity={property.entity}></Relation>
                 ))}
             </tbody>
             <tfoot>
                 <tr>
-                    <td className="p-3" colSpan={3}></td>
+                    <td className="p-3" colSpan={4}></td>
                 </tr>
                 <tr>
+                    <td></td>
                     <td colSpan={3}>
                         <div className="d-flex align-items-center">
                             <div>{property.entity.name} has many</div>
@@ -76,11 +69,7 @@ export default function RelationList(property: Property) {
                                     itemzz={sEntityzzStore.itemzz}
                                     value={0}
                                     change={(value) =>
-                                        add(
-                                            RelationType.OneToMany,
-                                            property.entity,
-                                            sEntityzzStore.find(value),
-                                        )
+                                        add(RelationType.OneToMany, property.entity, sEntityzzStore.find(value))
                                     }
                                 ></SelectButton>
                             </div>
@@ -88,6 +77,7 @@ export default function RelationList(property: Property) {
                     </td>
                 </tr>
                 <tr>
+                    <td></td>
                     <td colSpan={3}>
                         <div className="d-flex align-items-center">
                             <div>{property.entity.name} has one</div>
@@ -97,11 +87,7 @@ export default function RelationList(property: Property) {
                                     itemzz={sEntityzzStore.itemzz}
                                     value={0}
                                     change={(value) =>
-                                        add(
-                                            RelationType.OneToOne,
-                                            property.entity,
-                                            sEntityzzStore.find(value),
-                                        )
+                                        add(RelationType.OneToOne, property.entity, sEntityzzStore.find(value))
                                     }
                                 ></SelectButton>
                             </div>
@@ -110,6 +96,7 @@ export default function RelationList(property: Property) {
                 </tr>
 
                 <tr>
+                    <td></td>
                     <td colSpan={3}>
                         <div className="d-flex align-items-center">
                             <div>
@@ -118,11 +105,7 @@ export default function RelationList(property: Property) {
                                     itemzz={sEntityzzStore.itemzz}
                                     value={0}
                                     change={(value) =>
-                                        add(
-                                            RelationType.OneToMany,
-                                            sEntityzzStore.find(value),
-                                            property.entity,
-                                        )
+                                        add(RelationType.OneToMany, sEntityzzStore.find(value), property.entity)
                                     }
                                 ></SelectButton>
                             </div>
@@ -131,6 +114,7 @@ export default function RelationList(property: Property) {
                     </td>
                 </tr>
                 <tr>
+                    <td></td>
                     <td colSpan={3}>
                         <div className="d-flex align-items-center">
                             <div>
@@ -139,11 +123,7 @@ export default function RelationList(property: Property) {
                                     itemzz={sEntityzzStore.itemzz}
                                     value={0}
                                     change={(value) =>
-                                        add(
-                                            RelationType.OneToOne,
-                                            sEntityzzStore.find(value),
-                                            property.entity,
-                                        )
+                                        add(RelationType.OneToOne, sEntityzzStore.find(value), property.entity)
                                     }
                                 ></SelectButton>
                             </div>
