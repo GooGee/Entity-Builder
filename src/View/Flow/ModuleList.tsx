@@ -7,6 +7,8 @@ import showInput from "../Dialog/showInput"
 import ListGroup from "../Part/ListGroup"
 
 export default function ModuleList() {
+    const sModulezzStore = useModulezzStore()
+
     return (
         <div>
             <div className="d-flex">
@@ -17,20 +19,15 @@ export default function ModuleList() {
                         className="btn btn-outline-primary ms-3"
                         type="button"
                         onClick={function () {
-                            showInput("please input the module name", "").then(
-                                function (sar) {
-                                    if (sar.isConfirmed) {
-                                        if (sar.value) {
-                                            makeModuleCRUD()
-                                                .create(makeModule(sar.value))
-                                                .catch(
-                                                    useToastzzStore.getState()
-                                                        .showError,
-                                                )
-                                        }
+                            showInput("please input the module name", "").then(function (sar) {
+                                if (sar.isConfirmed) {
+                                    if (sar.value) {
+                                        makeModuleCRUD()
+                                            .create(makeModule(sar.value))
+                                            .catch(useToastzzStore.getState().showError)
                                     }
-                                },
-                            )
+                                }
+                            })
                         }}
                     >
                         +
@@ -40,10 +37,8 @@ export default function ModuleList() {
 
             <ListGroup
                 item={useModulePageStore.getState().item}
-                itemzz={useModulezzStore.getState().itemzz}
-                select={(item: LB.Module) =>
-                    useModulePageStore.getState().setItem(item)
-                }
+                itemzz={sModulezzStore.itemzz}
+                select={(item: LB.Module) => useModulePageStore.getState().setItem(item)}
             ></ListGroup>
         </div>
     )
