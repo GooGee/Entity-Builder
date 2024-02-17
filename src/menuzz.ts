@@ -9,6 +9,7 @@ export enum PageEnum {
     Flow = "Flow",
     ParameterInHeader = "ParameterInHeader",
     Info = "Info",
+    Install = "Install",
     Migration = "Migration",
     OpenApi = "OpenApi",
     ParameterInCookie = "ParameterInCookie",
@@ -28,7 +29,7 @@ export class Menu {
         readonly path: string,
         readonly visible: boolean = true,
         readonly childzz: Menu[] = [],
-    ) {}
+    ) { }
 }
 
 const URI = "/"
@@ -46,6 +47,7 @@ export const treezz = [
     new Menu(PageEnum.Doctrine, makePath(PageEnum.Doctrine)),
     new Menu(PageEnum.Entity, makePath(PageEnum.Entity)),
     new Menu(PageEnum.Flow, makePath(PageEnum.Flow)),
+    new Menu(PageEnum.Install, makePath(PageEnum.Install)),
     new Menu(PageEnum.Migration, makePath(PageEnum.Migration)),
     new Menu(PageEnum.OpenApi, makePath(PageEnum.OpenApi), true, [
         new Menu(PageEnum.Info, makePath(PageEnum.Info)),

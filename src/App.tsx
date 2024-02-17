@@ -24,6 +24,7 @@ import VariablePage from "./View/VariablePage"
 import WuPage from "./View/WuPage"
 import showNote from "./View/Dialog/showNote"
 import ListModal from "./View/Modal/ListModal"
+import InstallPage from "./View/InstallPage"
 
 function App() {
     const store = useAppInfoStore()
@@ -52,6 +53,8 @@ function App() {
                 return <FlowPage></FlowPage>
             case PageEnum.Info:
                 return <InfoPage></InfoPage>
+            case PageEnum.Install:
+                return <InstallPage></InstallPage>
             case PageEnum.Migration:
                 return <MigrationPage></MigrationPage>
             case PageEnum.OpenApi:
