@@ -24,10 +24,17 @@ export default function writeFile(
     ma: LB.ModuleAction | undefined = undefined,
     action: string,
     psr4: LB.StringMap,
+    dbCopy: LB.DBData | undefined = undefined,
 ) {
-    return readFilezzInFolder(getDirectoryName("code")).then((response) =>
-        exportDB().then((db) => {
-            const clone = cloneDeep(db)
+    let cloneDB
+    if (dbCopy === undefined) {
+        cloneDB = exportDB().then(db => cloneDeep(db))
+    } else {
+        cloneDB = Promise.resolve(dbCopy)
+    }
+
+    return cloneDB.then(function (db) {
+        return readFilezzInFolder(getDirectoryName("code")).then(function (response) {
             const fileMap = response.data.data
             const treeMap = makeLinkedTreeMap(db.tables.Directory)
             const treeHelper = makeTreeHelper(treeMap, psr4)
@@ -36,7 +43,7 @@ export default function writeFile(
                 entity,
                 module,
                 ma,
-                db: clone,
+                db,
                 dependencyzz: [],
                 fileMap,
                 getResponseContentColumnzz,
@@ -82,6 +89,6 @@ export default function writeFile(
             }
 
             throw new Error(tn + " not exist")
-        }),
-    )
+        })
+    })
 }
