@@ -153,9 +153,11 @@ export default function ActionRequest(property: Property) {
 
             <div>
                 <h3 className="inline me-3">Parameter</h3>
-                <button onClick={makeParameterFilter} className="btn btn-outline-primary" type="button">
-                    make filter
-                </button>
+                {property.ma.name.includes("ReadPage") ? (
+                    <button onClick={makeParameterFilter} className="btn btn-outline-primary" type="button">
+                        make filter
+                    </button>
+                ) : null}
             </div>
             <ParameterList requestId={property.ma.requestId}></ParameterList>
         </div>
