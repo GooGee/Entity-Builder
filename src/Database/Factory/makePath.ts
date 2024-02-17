@@ -4,12 +4,13 @@ import makeSideBarItem from "./makeSideBarItem"
 import { ActionMethodMap, HttpMethod } from "@/Model/Oapi"
 import Constant from "@/Model/Constant"
 
-function getMethod(name: string) {
-    if (name.startsWith("Read")) {
-        return HttpMethod.get
+function getMethod(name: string): HttpMethod {
+    for (const [key, value] of ActionMethodMap.entries()) {
+        if (name.includes(key)) {
+            return value
+        }
     }
-
-    return ActionMethodMap.get(name.slice(0, 6)) ?? HttpMethod.patch
+    return HttpMethod.patch
 }
 
 function makePathParameterString(name: string = Constant.Id) {
