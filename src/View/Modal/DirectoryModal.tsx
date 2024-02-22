@@ -30,13 +30,7 @@ export default function DirectoryModal() {
                 OK
             </button>
 
-            <div>
-                {root === undefined ? (
-                    "no root"
-                ) : (
-                    <DirectoryDetail item={root}></DirectoryDetail>
-                )}
-            </div>
+            <div>{root === undefined ? "no root" : <DirectoryDetail item={root}></DirectoryDetail>}</div>
         </ReactModal>
     )
 }

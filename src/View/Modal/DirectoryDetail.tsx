@@ -19,10 +19,7 @@ export default function DirectoryDetail(property: Property) {
                 onClick={function () {
                     sDirectoryModal.setItemId(property.item.id)
                 }}
-                className={
-                    (property.item.id === sDirectoryModal.itemId ? "active " : "") +
-                    "button yellow"
-                }
+                className={(property.item.id === sDirectoryModal.itemId ? "active " : "") + "button yellow"}
             >
                 {property.item.name}
             </div>

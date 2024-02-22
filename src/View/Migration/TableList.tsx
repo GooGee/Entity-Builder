@@ -13,9 +13,7 @@ export default function TableList() {
     const [schema, setSchema] = useState<LB.DoctrineSchema>()
     const [waiting, setWaiting] = useState(false)
 
-    const nameSet = new Set(
-        sEntityzzStore.itemzz.map((item) => (item.table ? item.table : item.name)),
-    )
+    const nameSet = new Set(sEntityzzStore.itemzz.map((item) => (item.table ? item.table : item.name)))
 
     function update(table: LB.DoctrineTable, included: boolean) {
         if (schema === undefined) {
@@ -45,9 +43,7 @@ export default function TableList() {
                         readDBSchema()
                             .then((response) => {
                                 setWaiting(false)
-                                response.data.data.tablezz.forEach(
-                                    (item) => (item.included = false),
-                                )
+                                response.data.data.tablezz.forEach((item) => (item.included = false))
                                 setSchema(response.data.data)
                             })
                             .catch((error) => {
@@ -72,23 +68,16 @@ export default function TableList() {
                                   <div className="form-check form-switch">
                                       <input
                                           checked={item.included}
-                                          onChange={(event) =>
-                                              update(item, event.target.checked)
-                                          }
+                                          onChange={(event) => update(item, event.target.checked)}
                                           className="form-check-input"
                                           type="checkbox"
                                           role="switch"
                                           id={"nameSwitchCheck" + item.name}
                                       />
-                                      <label
-                                          className="form-check-label"
-                                          htmlFor={"nameSwitchCheck" + item.name}
-                                      >
+                                      <label className="form-check-label" htmlFor={"nameSwitchCheck" + item.name}>
                                           {item.name}
                                           {nameSet.has(item.name) ? (
-                                              <span className="text-danger ms-1">
-                                                  exists
-                                              </span>
+                                              <span className="text-danger ms-1">exists</span>
                                           ) : null}
                                       </label>
                                   </div>
@@ -120,10 +109,7 @@ export default function TableList() {
                                 role="switch"
                                 id="allSwitchCheck"
                             />
-                            <label
-                                className="form-check-label"
-                                htmlFor="allSwitchCheck"
-                            >
+                            <label className="form-check-label" htmlFor="allSwitchCheck">
                                 all
                             </label>
                         </div>
@@ -142,9 +128,7 @@ export default function TableList() {
                                 loadDBSchema(schema)
                                     .then((amount) => {
                                         setWaiting(false)
-                                        sToastzzStore.showSuccess(
-                                            `created ${amount} schemas`,
-                                        )
+                                        sToastzzStore.showSuccess(`created ${amount} schemas`)
                                     })
                                     .catch((error) => {
                                         setWaiting(false)
@@ -161,13 +145,10 @@ export default function TableList() {
                         <ul>
                             <li>table names and column names are case sensitive.</li>
                             <li>cannot import existed tables.</li>
+                            <li>if related tables not exist when importing a table, it will fail.</li>
                             <li>
-                                if related tables not exist when importing a table, it
+                                if a table and a schema with the same name, but have different columns(foreign keys), it
                                 will fail.
-                            </li>
-                            <li>
-                                if a table and a schema with the same name, but have
-                                different columns(foreign keys), it will fail.
                             </li>
                         </ul>
                     </td>

@@ -19,16 +19,8 @@ export default function FileButton(property: Property) {
     const sPsr4Store = usePsr4Store()
     const sToastzzStore = useToastzzStore()
 
-    const name = sDirectoryzzStore.treeHelper.getFileName(
-        property.file,
-        property.entity,
-        property.action,
-    )
-    const file = sDirectoryzzStore.treeHelper.getFileFullName(
-        property.file,
-        property.entity,
-        property.action,
-    )
+    const name = sDirectoryzzStore.treeHelper.getFileName(property.file, property.entity, property.action)
+    const file = sDirectoryzzStore.treeHelper.getFileFullName(property.file, property.entity, property.action)
 
     return (
         <div className={"btn-group " + property.className}>
@@ -42,9 +34,7 @@ export default function FileButton(property: Property) {
                         property.action,
                         sPsr4Store.psr4,
                     )
-                        .then((response) =>
-                            sToastzzStore.showSuccess(response.data.data),
-                        )
+                        .then((response) => sToastzzStore.showSuccess(response.data.data))
                         .catch(sToastzzStore.showError)
                 }}
                 type="button"
@@ -52,11 +42,7 @@ export default function FileButton(property: Property) {
             >
                 ▼
             </button>
-            <EditButton
-                content=""
-                file={file}
-                text={property.fullName ? file : name}
-            ></EditButton>
+            <EditButton content="" file={file} text={property.fullName ? file : name}></EditButton>
         </div>
     )
 }

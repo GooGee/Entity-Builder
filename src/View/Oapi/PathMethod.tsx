@@ -55,9 +55,7 @@ export default function PathMethod(property: Property) {
         return (
             <tr>
                 <td colSpan={3}>
-                    <span className="text-danger">
-                        ModuleAction {found.moduleActionId} not found
-                    </span>
+                    <span className="text-danger">ModuleAction {found.moduleActionId} not found</span>
                 </td>
             </tr>
         )

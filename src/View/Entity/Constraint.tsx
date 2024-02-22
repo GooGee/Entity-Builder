@@ -13,11 +13,7 @@ export default function Constraint(property: Property) {
             <td>
                 <div className="btn-group">
                     <button
-                        onClick={() =>
-                            makeColumnConstraintCRUD()
-                                .delete(property.item.id)
-                                .catch(sToastzzStore.showError)
-                        }
+                        onClick={() => makeColumnConstraintCRUD().delete(property.item.id).catch(sToastzzStore.showError)}
                         className="btn btn-outline-danger"
                         type="button"
                     >

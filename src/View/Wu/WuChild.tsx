@@ -18,9 +18,7 @@ export default function WuChild(property: Property) {
     const sWuColumnzzStore = useWuColumnzzStore()
 
     const set: Set<number> = new Set()
-    sWuColumnzzStore.itemzz.forEach((item) =>
-        item.wuId === property.tf.wuId ? set.add(item.columnId) : null,
-    )
+    sWuColumnzzStore.itemzz.forEach((item) => (item.wuId === property.tf.wuId ? set.add(item.columnId) : null))
 
     const columnzz = sColumnzzStore.itemzz.filter((item) => set.has(item.id))
     if (columnzz.length === 0) {
@@ -32,9 +30,7 @@ export default function WuChild(property: Property) {
     }
 
     function makeType(column: LB.Column) {
-        const tf = sTypeFormatzzStore.itemzz.find(
-            (item) => item.ownerColumnId === column.id,
-        )
+        const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerColumnId === column.id)
         if (tf === undefined) {
             return <span>{makeNotFoundText("TypeFormat", "")}</span>
         }
@@ -55,9 +51,7 @@ export default function WuChild(property: Property) {
                         className="btn btn-outline-danger"
                         type="button"
                         onClick={function () {
-                            makeTypeFormatCRUD()
-                                .delete(property.tf.id)
-                                .catch(sToastzzStore.showError)
+                            makeTypeFormatCRUD().delete(property.tf.id).catch(sToastzzStore.showError)
                         }}
                     >
                         - {property.wu.name}
@@ -73,9 +67,7 @@ export default function WuChild(property: Property) {
         <>
             {columnzz.map((item, index) => (
                 <tr key={item.id}>
-                    {index === 0 ? (
-                        <td rowSpan={columnzz.length}>{makeView()}</td>
-                    ) : null}
+                    {index === 0 ? <td rowSpan={columnzz.length}>{makeView()}</td> : null}
                     <td>{item.name}</td>
                     <td>{makeType(item)}</td>
                 </tr>

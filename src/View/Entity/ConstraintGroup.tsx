@@ -24,10 +24,7 @@ export default function ConstraintGroup(property: Property) {
                         onClick={function () {
                             setGroup(item)
                         }}
-                        className={
-                            (group === item ? "active " : "") +
-                            "list-group-item list-group-item-action pointer"
-                        }
+                        className={(group === item ? "active " : "") + "list-group-item list-group-item-action pointer"}
                     >
                         {item}
                     </li>

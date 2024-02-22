@@ -26,10 +26,7 @@ export default function FactoryColumn(property: Property) {
 
     function update(data: LB.Column) {
         setItem(data)
-        return makeColumnCRUD()
-            .update(data)
-            .then(setItem)
-            .catch(sToastzzStore.showError)
+        return makeColumnCRUD().update(data).then(setItem).catch(sToastzzStore.showError)
     }
 
     return (
@@ -50,10 +47,7 @@ export default function FactoryColumn(property: Property) {
                         role="switch"
                         id={"fakeRowSwitchCheck" + item.id}
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor={"fakeRowSwitchCheck" + item.id}
-                    ></label>
+                    <label className="form-check-label" htmlFor={"fakeRowSwitchCheck" + item.id}></label>
                 </div>
                 {item.fakeRaw ? null : (
                     <>
@@ -71,17 +65,11 @@ export default function FactoryColumn(property: Property) {
                                 role="switch"
                                 id={"fakeUniqueSwitchCheck" + item.id}
                             />
-                            <label
-                                className="form-check-label"
-                                htmlFor={"fakeUniqueSwitchCheck" + item.id}
-                            >
+                            <label className="form-check-label" htmlFor={"fakeUniqueSwitchCheck" + item.id}>
                                 unique
                             </label>
                         </div>
-                        <button
-                            onClick={select}
-                            className="btn btn-outline-primary ms-1"
-                        >
+                        <button onClick={select} className="btn btn-outline-primary ms-1">
                             {item.fakeMethod === "" ? "+" : item.fakeMethod}
                         </button>
                     </>

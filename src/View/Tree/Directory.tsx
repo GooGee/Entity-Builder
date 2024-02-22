@@ -90,23 +90,14 @@ function Directory(property: Property) {
                                 .catch(sToastzzStore.showError)
                         }
                     }}
-                    className={
-                        "button yellow" +
-                        (property.item.id === treeStore.directoryId ? " active" : "")
-                    }
+                    className={"button yellow" + (property.item.id === treeStore.directoryId ? " active" : "")}
                     type="button"
                 >
                     {property.item.name}
                 </button>
-                <span className="text-secondary mx-1">
-                    {directoryzz.length + filezz.length}
-                </span>
+                <span className="text-secondary mx-1">{directoryzz.length + filezz.length}</span>
                 <span className="hover-item">
-                    <button
-                        onClick={addDirectory}
-                        className="button yellow mx-1"
-                        type="button"
-                    >
+                    <button onClick={addDirectory} className="button yellow mx-1" type="button">
                         +
                     </button>
                     <button onClick={addFile} className="button" type="button">
@@ -116,10 +107,7 @@ function Directory(property: Property) {
             </div>
             {property.item.opened ? (
                 <div className="ms-4">
-                    <DirectoryList
-                        parentId={property.item.id}
-                        itemzz={directoryzz}
-                    ></DirectoryList>
+                    <DirectoryList parentId={property.item.id} itemzz={directoryzz}></DirectoryList>
                     <FileList directoryId={property.item.id} itemzz={filezz}></FileList>
                 </div>
             ) : null}

@@ -68,11 +68,7 @@ export default function EntityView() {
 
     return (
         <div>
-            <TabList
-                tab={sEntityPageStore.tab}
-                tabzz={tabzz}
-                setTab={sEntityPageStore.setTab}
-            ></TabList>
+            <TabList tab={sEntityPageStore.tab} tabzz={tabzz} setTab={sEntityPageStore.setTab}></TabList>
 
             {makeView()}
         </div>

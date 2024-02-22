@@ -10,12 +10,7 @@ interface Property {
 
 export default function ResponseDetail(property: Property) {
     return (
-        <MediaType
-            caption={property.caption}
-            item={property.item}
-            isRequest={false}
-            update={property.update}
-        >
+        <MediaType caption={property.caption} item={property.item} isRequest={false} update={property.update}>
             <tr>
                 <td>header</td>
                 <td>

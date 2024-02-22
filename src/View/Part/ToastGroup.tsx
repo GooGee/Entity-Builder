@@ -5,10 +5,7 @@ function ToastGroup() {
     return (
         <div className="toast-container position-fixed bottom-0 mb-3 pb-3 end-0 me-3">
             {store.list.map((item) => (
-                <div
-                    key={item.id}
-                    className={item.color + " toast show align-items-center"}
-                >
+                <div key={item.id} className={item.color + " toast show align-items-center"}>
                     <div className="d-flex">
                         <div className="toast-body">{item.text}</div>
                         <button

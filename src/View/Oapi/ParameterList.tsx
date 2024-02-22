@@ -131,10 +131,7 @@ export default function ParameterList(property: Property) {
                                 >
                                     -
                                 </button>
-                                <button
-                                    className="btn btn-outline-secondary"
-                                    type="button"
-                                >
+                                <button className="btn btn-outline-secondary" type="button">
                                     {nameMap.get(item.columnId) ?? "-- not found --"}
                                 </button>
                             </div>

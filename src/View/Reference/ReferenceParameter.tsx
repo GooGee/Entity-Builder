@@ -14,9 +14,7 @@ export default function ReferenceParameter(property: Property) {
     const [tpzz, setTpzz] = useState<LB.WuParameter[]>([])
 
     useEffect(() => {
-        setTpzz(
-            sWuParameterzzStore.itemzz.filter((item) => item.wuId === property.wuId),
-        )
+        setTpzz(sWuParameterzzStore.itemzz.filter((item) => item.wuId === property.wuId))
     }, [property.wuId])
 
     return (

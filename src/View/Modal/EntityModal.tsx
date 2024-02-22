@@ -52,29 +52,19 @@ export default function EntityModal() {
             shouldCloseOnOverlayClick={true}
         >
             <div className="mb-3">
-                <button
-                    disabled={item.reserved}
-                    onClick={showInput}
-                    className="btn btn-outline-primary"
-                    type="button"
-                >
+                <button disabled={item.reserved} onClick={showInput} className="btn btn-outline-primary" type="button">
                     {item.name}
                 </button>
             </div>
             <div className="mb-3">
                 <label className="form-label">color</label>
-                <ColorButtonGroup
-                    color={item.color}
-                    setColor={(color) => update({ ...item, color })}
-                ></ColorButtonGroup>
+                <ColorButtonGroup color={item.color} setColor={(color) => update({ ...item, color })}></ColorButtonGroup>
             </div>
             <div className="mb-3">
                 <label className="form-label">description</label>
                 <textarea
                     value={item.description}
-                    onChange={(event) =>
-                        update({ ...item, description: event.target.value })
-                    }
+                    onChange={(event) => update({ ...item, description: event.target.value })}
                     rows={3}
                     className="form-control"
                 ></textarea>

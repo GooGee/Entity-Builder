@@ -38,10 +38,7 @@ export default function FlowView() {
     return (
         <div>
             <div className="position-fixed bg-white w-100" style={{ zIndex: 111 }}>
-                <div
-                    className="pt-3 ps-3 d-flex align-items-baseline"
-                    style={{ backgroundColor }}
-                >
+                <div className="pt-3 ps-3 d-flex align-items-baseline" style={{ backgroundColor }}>
                     <TabList
                         tab={sFlowPageStore.step}
                         tabzz={stepzz}
@@ -59,15 +56,10 @@ export default function FlowView() {
             ) : null}
 
             {sModulePageStore.item && sFlowPageStore.step === StepEnum.Path ? (
-                <PathView
-                    entity={sEntityPageStore.item}
-                    module={sModulePageStore.item}
-                ></PathView>
+                <PathView entity={sEntityPageStore.item} module={sModulePageStore.item}></PathView>
             ) : null}
 
-            {sModulePageStore.item &&
-            sFlowPageStore.ma &&
-            sFlowPageStore.step === StepEnum.Action ? (
+            {sModulePageStore.item && sFlowPageStore.ma && sFlowPageStore.step === StepEnum.Action ? (
                 <ActionView
                     entity={sEntityPageStore.item}
                     ma={sFlowPageStore.ma}
@@ -75,9 +67,7 @@ export default function FlowView() {
                 ></ActionView>
             ) : null}
 
-            {sFlowPageStore.ma &&
-            sModulePageStore.item &&
-            sFlowPageStore.step === StepEnum.Request ? (
+            {sFlowPageStore.ma && sModulePageStore.item && sFlowPageStore.step === StepEnum.Request ? (
                 <ActionRequest
                     action={sFlowPageStore.action}
                     entity={sEntityPageStore.item}
@@ -87,9 +77,7 @@ export default function FlowView() {
                 ></ActionRequest>
             ) : null}
 
-            {sFlowPageStore.ma &&
-            sModulePageStore.item &&
-            sFlowPageStore.step === StepEnum.Response ? (
+            {sFlowPageStore.ma && sModulePageStore.item && sFlowPageStore.step === StepEnum.Response ? (
                 <ResponseList
                     action={sFlowPageStore.action}
                     entity={sEntityPageStore.item}
@@ -99,9 +87,7 @@ export default function FlowView() {
                 ></ResponseList>
             ) : null}
 
-            {sFlowPageStore.ma &&
-            sModulePageStore.item &&
-            sFlowPageStore.step === StepEnum.File ? (
+            {sFlowPageStore.ma && sModulePageStore.item && sFlowPageStore.step === StepEnum.File ? (
                 <FileTabList
                     action={sFlowPageStore.action}
                     entity={sEntityPageStore.item}

@@ -15,13 +15,7 @@ export default function TabList(property: Property) {
                     }}
                     className="nav-item nav-item-fill"
                 >
-                    <span
-                        className={
-                            item === property.tab ? "nav-link active" : "nav-link"
-                        }
-                    >
-                        {item}
-                    </span>
+                    <span className={item === property.tab ? "nav-link active" : "nav-link"}>{item}</span>
                 </li>
             ))}
         </ul>

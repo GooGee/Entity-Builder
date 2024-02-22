@@ -55,11 +55,7 @@ export default function ColumnForm(property: Property) {
                 <label className="form-label">length</label>
                 <input
                     value={property.item.length}
-                    onChange={makeNumberInputHandler(
-                        "length",
-                        property.item,
-                        property.update,
-                    )}
+                    onChange={makeNumberInputHandler("length", property.item, property.update)}
                     type="number"
                     min={0}
                     className="form-control"
@@ -69,11 +65,7 @@ export default function ColumnForm(property: Property) {
                 <label className="form-label">scale</label>
                 <input
                     value={property.item.scale}
-                    onChange={makeNumberInputHandler(
-                        "scale",
-                        property.item,
-                        property.update,
-                    )}
+                    onChange={makeNumberInputHandler("scale", property.item, property.update)}
                     type="number"
                     min={0}
                     className="form-control"

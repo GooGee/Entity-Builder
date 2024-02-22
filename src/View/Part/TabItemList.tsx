@@ -23,15 +23,7 @@ export default function TabItemList<T extends LB.IdNameItem>(property: Property<
                     }}
                     className="nav-item nav-item-fill"
                 >
-                    <span
-                        className={
-                            item.id === property.tab?.id
-                                ? "nav-link active"
-                                : "nav-link"
-                        }
-                    >
-                        {item.name}
-                    </span>
+                    <span className={item.id === property.tab?.id ? "nav-link active" : "nav-link"}>{item.name}</span>
                 </li>
             ))}
 

@@ -24,17 +24,11 @@ export default function IndexList(property: Property) {
     const cicm = makeIdItemMap(columnzz)
 
     useEffect(() => {
-        setColumnzz(
-            sColumnzzStore.itemzz.filter(
-                (item) => item.entityId === property.entity.id,
-            ),
-        )
+        setColumnzz(sColumnzzStore.itemzz.filter((item) => item.entityId === property.entity.id))
     }, [property.entity, sColumnzzStore.itemzz])
 
     useEffect(() => {
-        setIndexzz(
-            sIndexzzStore.itemzz.filter((item) => item.entityId === property.entity.id),
-        )
+        setIndexzz(sIndexzzStore.itemzz.filter((item) => item.entityId === property.entity.id))
     }, [property.entity, sIndexzzStore.itemzz])
 
     function update(data: LB.Index) {
@@ -62,9 +56,7 @@ export default function IndexList(property: Property) {
                                         showConfirm()
                                             .then((response) => {
                                                 if (response.isConfirmed) {
-                                                    return makeIndexCRUD().delete(
-                                                        item.id,
-                                                    )
+                                                    return makeIndexCRUD().delete(item.id)
                                                 }
                                             })
                                             .catch(sToastzzStore.showError)
@@ -84,11 +76,7 @@ export default function IndexList(property: Property) {
                             </div>
                         </td>
                         <td>
-                            <IndexColumnList
-                                cicm={cicm}
-                                columnzz={columnzz}
-                                indexId={item.id}
-                            ></IndexColumnList>
+                            <IndexColumnList cicm={cicm} columnzz={columnzz} indexId={item.id}></IndexColumnList>
                         </td>
                     </tr>
                 ))}

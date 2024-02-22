@@ -74,9 +74,7 @@ export default function VersionList() {
                         showConfirm()
                             .then((response) => {
                                 if (response.isConfirmed) {
-                                    return deleteMigrationFile(item.migration)
-                                        .then(refreshDisk)
-                                        .then(read)
+                                    return deleteMigrationFile(item.migration).then(refreshDisk).then(read)
                                 }
                             })
                             .catch(sToastzzStore.showError)
@@ -87,11 +85,7 @@ export default function VersionList() {
                 >
                     -
                 </button>
-                <EditButton
-                    content=""
-                    file={"database/migrations/" + item.migration}
-                    text={item.migration}
-                ></EditButton>
+                <EditButton content="" file={"database/migrations/" + item.migration} text={item.migration}></EditButton>
             </div>
         )
     }

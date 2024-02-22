@@ -28,10 +28,7 @@ export default function ResponsePage() {
                 validateName={false}
             >
                 {sResponsePageStore.item ? (
-                    <ResponseDetail
-                        item={sResponsePageStore.item}
-                        update={update}
-                    ></ResponseDetail>
+                    <ResponseDetail item={sResponsePageStore.item} update={update}></ResponseDetail>
                 ) : undefined}
             </LeftRightPanel>
         </div>

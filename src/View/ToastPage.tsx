@@ -40,11 +40,7 @@ function Detail(property: Property) {
                 {visible ? (
                     <div>
                         <div>
-                            <button
-                                className="btn btn-outline-primary"
-                                type="button"
-                                onClick={() => setVisible(false)}
-                            >
+                            <button className="btn btn-outline-primary" type="button" onClick={() => setVisible(false)}>
                                 hide
                             </button>
                         </div>

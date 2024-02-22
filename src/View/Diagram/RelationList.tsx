@@ -22,9 +22,7 @@ export default function RelationList(property: Property) {
     useEffect(() => {
         setRelationzz(
             relationzzStore.itemzz.filter(
-                (item) =>
-                    item.entity0Id === property.entity.id ||
-                    item.entity1Id === property.entity.id,
+                (item) => item.entity0Id === property.entity.id || item.entity1Id === property.entity.id,
             ),
         )
     }, [relationzzStore.itemzz])
@@ -38,9 +36,7 @@ export default function RelationList(property: Property) {
                 if (target === undefined) {
                     throw new Error("Entity not found")
                 }
-                return connectEntity(type, property.entity, target).catch(
-                    sToastzzStore.showError,
-                )
+                return connectEntity(type, property.entity, target).catch(sToastzzStore.showError)
             },
         )
     }
@@ -67,11 +63,7 @@ export default function RelationList(property: Property) {
             </caption>
             <tbody>
                 {relationzz.map((item) => (
-                    <Relation
-                        entityId={property.entity.id}
-                        item={item}
-                        key={item.id}
-                    ></Relation>
+                    <Relation entityId={property.entity.id} item={item} key={item.id}></Relation>
                 ))}
             </tbody>
         </table>

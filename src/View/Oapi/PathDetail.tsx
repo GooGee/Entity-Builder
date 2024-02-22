@@ -28,9 +28,7 @@ export default function PathDetail(property: Property) {
 
     return (
         <table className="table td0-tar">
-            <caption>
-                {property.children}
-            </caption>
+            <caption>{property.children}</caption>
             <tbody>
                 <tr>
                     <td className="w111">parameter</td>
@@ -42,10 +40,7 @@ export default function PathDetail(property: Property) {
                 <tr>
                     <td>server</td>
                     <td colSpan={2}>
-                        <ServerList
-                            requestId={null}
-                            pathId={property.item.id}
-                        ></ServerList>
+                        <ServerList requestId={null} pathId={property.item.id}></ServerList>
                     </td>
                 </tr>
                 <tr>
@@ -80,10 +75,7 @@ export default function PathDetail(property: Property) {
                     </td>
                 </tr>
 
-                <PathMethodList
-                    item={property.item}
-                    module={property.module}
-                ></PathMethodList>
+                <PathMethodList item={property.item} module={property.module}></PathMethodList>
             </tbody>
         </table>
     )

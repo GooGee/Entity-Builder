@@ -28,10 +28,7 @@ export default function DirectoryProperty() {
 
     function update(data: LB.Directory) {
         setDirectory(data)
-        makeDirectoryCRUD()
-            .update(data)
-            .then(setDirectory)
-            .catch(sToastzzStore.showError)
+        makeDirectoryCRUD().update(data).then(setDirectory).catch(sToastzzStore.showError)
     }
 
     return (
@@ -48,22 +45,17 @@ export default function DirectoryProperty() {
                             {directory.parentId === null ? null : (
                                 <button
                                     onClick={() =>
-                                        showConfirm(
-                                            "Delete all included directories and files. Continue?",
-                                        )
+                                        showConfirm("Delete all included directories and files. Continue?")
                                             .then((response) => {
                                                 if (response.isConfirmed) {
                                                     treeStore.hide()
-                                                    const idzz = findChindzz(
-                                                        store.itemzz,
-                                                        directory!.id,
-                                                    ).map((item) => item.id)
+                                                    const idzz = findChindzz(store.itemzz, directory!.id).map(
+                                                        (item) => item.id,
+                                                    )
                                                     idzz.push(directory!.id)
                                                     return makeDirectoryCRUD()
                                                         .deleteMany(idzz)
-                                                        .then(() =>
-                                                            sToastzzStore.showOK(),
-                                                        )
+                                                        .then(() => sToastzzStore.showOK())
                                                 }
                                             })
                                             .catch(sToastzzStore.showError)
@@ -76,10 +68,7 @@ export default function DirectoryProperty() {
                             )}
                             <button
                                 onClick={() =>
-                                    showInput(
-                                        "Please input the directory name",
-                                        directory!.name,
-                                    ).then((response) => {
+                                    showInput("Please input the directory name", directory!.name).then((response) => {
                                         if (response.isConfirmed) {
                                             update({
                                                 ...directory!,

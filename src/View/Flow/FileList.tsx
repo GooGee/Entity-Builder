@@ -1,12 +1,7 @@
 import { makeModuleActionCRUD } from "@/Database/makeCRUD"
 import { makeIdItemMap } from "@/Factory/makeMap"
 import Constant from "@/Model/Constant"
-import {
-    getFileFullNameInCode,
-    getCodeFileName,
-    ScriptExtention,
-    TemplateExtention,
-} from "@/Model/FileManager"
+import { getFileFullNameInCode, getCodeFileName, ScriptExtention, TemplateExtention } from "@/Model/FileManager"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useFlowPageStore from "@/Store/useFlowPageStore"
 import useListModalStore from "@/Store/useListModalStore"
@@ -33,9 +28,7 @@ export default function FileList(property: Property) {
 
     const map = makeIdItemMap(property.ma.filezz)
 
-    const xFilezz = property.ma.filezz.filter(
-        (item) => item.isExtra && item.directoryId === property.directoryId,
-    )
+    const xFilezz = property.ma.filezz.filter((item) => item.isExtra && item.directoryId === property.directoryId)
 
     function makeButton(item: LB.ModuleActionFile) {
         return (
@@ -45,9 +38,7 @@ export default function FileList(property: Property) {
                         makeModuleActionCRUD()
                             .update({
                                 ...property.ma,
-                                filezz: property.ma.filezz.filter(
-                                    (one) => one.id !== item.id,
-                                ),
+                                filezz: property.ma.filezz.filter((one) => one.id !== item.id),
                             })
                             .then((item) => sFlowPageStore.setAction(item.name, item))
                             .catch(sToastzzStore.showError)
@@ -97,9 +88,7 @@ export default function FileList(property: Property) {
                                     ...property.ma,
                                     filezz: [...property.ma.filezz, file],
                                 })
-                                .then((item) =>
-                                    sFlowPageStore.setAction(item.name, item),
-                                )
+                                .then((item) => sFlowPageStore.setAction(item.name, item))
                         }
                     }
                 })
@@ -116,15 +105,11 @@ export default function FileList(property: Property) {
                         <td>
                             <div className="btn-group me-2">
                                 <EditButton
-                                    file={getFileFullNameInCode(
-                                        getCodeFileName(item, ScriptExtention),
-                                    )}
+                                    file={getFileFullNameInCode(getCodeFileName(item, ScriptExtention))}
                                     content={Constant.ScriptCode}
                                 ></EditButton>
                                 <EditButton
-                                    file={getFileFullNameInCode(
-                                        getCodeFileName(item, TemplateExtention),
-                                    )}
+                                    file={getFileFullNameInCode(getCodeFileName(item, TemplateExtention))}
                                     content=""
                                 ></EditButton>
                             </div>
@@ -149,12 +134,7 @@ export default function FileList(property: Property) {
                                                 ...property.ma,
                                                 filezz: [...property.ma.filezz, file],
                                             })
-                                            .then((item) =>
-                                                sFlowPageStore.setAction(
-                                                    item.name,
-                                                    item,
-                                                ),
-                                            )
+                                            .then((item) => sFlowPageStore.setAction(item.name, item))
                                             .catch(sToastzzStore.showError)
                                     }}
                                 >
@@ -180,11 +160,7 @@ export default function FileList(property: Property) {
             <tr>
                 <td></td>
                 <td>
-                    <button
-                        className="btn btn-outline-success"
-                        type="button"
-                        onClick={selectFile}
-                    >
+                    <button className="btn btn-outline-success" type="button" onClick={selectFile}>
                         +
                     </button>
                 </td>

@@ -25,8 +25,7 @@ export default function IndexColumn(property: Property) {
             >
                 -
             </button>
-            {property.cicm.get(property.item.columnId)?.name ??
-                makeNotFoundText("Column", property.item.columnId)}
+            {property.cicm.get(property.item.columnId)?.name ?? makeNotFoundText("Column", property.item.columnId)}
         </>
     )
 }

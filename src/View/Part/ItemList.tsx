@@ -31,17 +31,13 @@ export default function ItemList(property: Property) {
     return (
         <ul className="list-unstyled">
             <li className="mb-1">
-                {property.title ? (
-                    <h3 className="inline me-3">{property.title}</h3>
-                ) : null}
+                {property.title ? <h3 className="inline me-3">{property.title}</h3> : null}
                 <SelectButton
                     isAdd
                     itemzz={property.source}
                     value={0}
                     change={function (id) {
-                        property
-                            .create(id)
-                            .catch(sToastzzStore.showError)
+                        property.create(id).catch(sToastzzStore.showError)
                     }}
                     className="inline wa"
                 ></SelectButton>
@@ -50,9 +46,7 @@ export default function ItemList(property: Property) {
                 <li key={item.id} className="mb-1">
                     <button
                         onClick={function () {
-                            return property
-                                .delete(item.id)
-                                .catch(sToastzzStore.showError)
+                            return property.delete(item.id).catch(sToastzzStore.showError)
                         }}
                         className="btn btn-outline-danger"
                         type="button"

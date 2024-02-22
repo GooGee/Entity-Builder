@@ -12,10 +12,7 @@ function File(property: Property) {
             <span className="text-primary">|</span>
             <button
                 onClick={() => treeStore.showFile(property.item.id)}
-                className={
-                    "button" +
-                    (property.item.id === treeStore.fileId ? " active" : "")
-                }
+                className={"button" + (property.item.id === treeStore.fileId ? " active" : "")}
                 type="button"
             >
                 {property.item.name}

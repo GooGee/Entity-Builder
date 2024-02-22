@@ -30,11 +30,7 @@ export default function FlowSideMenu() {
             <div>
                 <h3>Entity</h3>
                 <div>
-                    <button
-                        onClick={showEntityList}
-                        className="btn btn-outline-primary"
-                        type="button"
-                    >
+                    <button onClick={showEntityList} className="btn btn-outline-primary" type="button">
                         {sEntityPageStore.item?.name ?? "-- select an Entity --"}
                     </button>
                 </div>
@@ -42,12 +38,8 @@ export default function FlowSideMenu() {
 
             <ModuleList></ModuleList>
 
-            {sEntityPageStore.item === undefined ||
-            sModulePageStore.item === undefined ? null : (
-                <ActionList
-                    entity={sEntityPageStore.item}
-                    module={sModulePageStore.item}
-                ></ActionList>
+            {sEntityPageStore.item === undefined || sModulePageStore.item === undefined ? null : (
+                <ActionList entity={sEntityPageStore.item} module={sModulePageStore.item}></ActionList>
             )}
         </div>
     )

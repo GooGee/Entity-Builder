@@ -32,9 +32,7 @@ export default function CollectionDetail() {
             return
         }
 
-        setItemzz(
-            store.itemzz.filter((item) => item.collectionId === pageStore.item?.id),
-        )
+        setItemzz(store.itemzz.filter((item) => item.collectionId === pageStore.item?.id))
     }, [pageStore.item, store.itemzz])
 
     if (pageStore.item === undefined) {
@@ -55,12 +53,7 @@ export default function CollectionDetail() {
                 if (typeof item === "string") {
                     item = { name: item }
                 }
-                return makeCollectionItem(
-                    pageStore.item!.id,
-                    item["name"] ?? "",
-                    item["value"] ?? "",
-                    item["tag"] ?? "",
-                )
+                return makeCollectionItem(pageStore.item!.id, item["name"] ?? "", item["value"] ?? "", item["tag"] ?? "")
             })
             makeCollectionItemCRUD().createMany(data).catch(sToastzzStore.showError)
         } catch (error) {
@@ -75,15 +68,11 @@ export default function CollectionDetail() {
                     <th>name</th>
                     <th>
                         value
-                        {pageStore.item.valueDescription
-                            ? ` (${pageStore.item.valueDescription})`
-                            : ""}
+                        {pageStore.item.valueDescription ? ` (${pageStore.item.valueDescription})` : ""}
                     </th>
                     <th>
                         tag
-                        {pageStore.item.tagDescription
-                            ? ` (${pageStore.item.tagDescription})`
-                            : ""}
+                        {pageStore.item.tagDescription ? ` (${pageStore.item.tagDescription})` : ""}
                     </th>
                 </tr>
             </thead>
@@ -101,10 +90,7 @@ export default function CollectionDetail() {
                                     .then((response) => {
                                         if (response.isConfirmed) {
                                             return makeCollectionItemCRUD().create(
-                                                makeCollectionItem(
-                                                    pageStore.item!.id,
-                                                    response.value,
-                                                ),
+                                                makeCollectionItem(pageStore.item!.id, response.value),
                                             )
                                         }
                                     })

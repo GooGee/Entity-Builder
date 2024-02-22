@@ -8,16 +8,11 @@ export default function Bar() {
     function makeNavItem(item: Menu) {
         return (
             <li key={item.path} className="nav-item">
-                {makeNavLink(
-                    item,
-                    " nav-link" + (item.childzz.length ? " dropdown-toggle" : ""),
-                )}
+                {makeNavLink(item, " nav-link" + (item.childzz.length ? " dropdown-toggle" : ""))}
                 {item.childzz.length === 0 ? null : (
                     <ul className="dropdown-menu">
                         {item.childzz.map((item) => (
-                            <li key={item.path}>
-                                {makeNavLink(item, " dropdown-item")}
-                            </li>
+                            <li key={item.path}>{makeNavLink(item, " dropdown-item")}</li>
                         ))}
                     </ul>
                 )}
@@ -27,10 +22,7 @@ export default function Bar() {
 
     function makeNavLink(item: Menu, className: string) {
         return (
-            <NavLink
-                to={item.path}
-                className={({ isActive }) => (isActive ? "active " : "") + className}
-            >
+            <NavLink to={item.path} className={({ isActive }) => (isActive ? "active " : "") + className}>
                 {item.name}
             </NavLink>
         )
@@ -42,9 +34,7 @@ export default function Bar() {
                 <a className="navbar-brand">LB</a>
                 {store.connected ? (
                     <ul className="navbar-nav me-auto">
-                        {treezz
-                            .filter((item) => item.visible)
-                            .map((item) => makeNavItem(item))}
+                        {treezz.filter((item) => item.visible).map((item) => makeNavItem(item))}
                     </ul>
                 ) : null}
             </div>

@@ -13,9 +13,7 @@ export default function VariableDetail(property: Property) {
     const sToastzzStore = useToastzzStore()
 
     function update(item: LB.Variable) {
-        makeVariableCRUD()
-            .update(item)
-            .catch(sToastzzStore.showError)
+        makeVariableCRUD().update(item).catch(sToastzzStore.showError)
     }
 
     return (
@@ -70,10 +68,7 @@ export default function VariableDetail(property: Property) {
                 <tr>
                     <td>enum</td>
                     <td>
-                        <VariableValueList
-                            item={property.item}
-                            update={update}
-                        ></VariableValueList>
+                        <VariableValueList item={property.item} update={update}></VariableValueList>
                     </td>
                 </tr>
             </tbody>

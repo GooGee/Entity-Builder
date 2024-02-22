@@ -12,10 +12,7 @@ export default function WebLink(property: Property) {
 
     if (store.ide) {
         return (
-            <span
-                className={"btn btn-link " + property.className}
-                onClick={() => openLink(property.href)}
-            >
+            <span className={"btn btn-link " + property.className} onClick={() => openLink(property.href)}>
                 {property.children}
             </span>
         )

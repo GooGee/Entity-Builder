@@ -35,18 +35,14 @@ export default function TreePage() {
         }
 
         if (store.color === ColorEnum.white) {
-            return filezzStore.itemzz.filter((item) =>
-                item.name.includes(store.keyword),
-            )
+            return filezzStore.itemzz.filter((item) => item.name.includes(store.keyword))
         }
 
         if (store.keyword === "") {
             return filezzStore.itemzz.filter((item) => item.color === store.color)
         }
 
-        return filezzStore.itemzz.filter(
-            (item) => item.color === store.color && item.name.includes(store.keyword),
-        )
+        return filezzStore.itemzz.filter((item) => item.color === store.color && item.name.includes(store.keyword))
     }
 
     function getView() {

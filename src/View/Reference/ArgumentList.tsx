@@ -17,16 +17,8 @@ export default function ArgumentList(property: Property) {
     const [tfzz, setTfzz] = useState<LB.TypeFormat[]>([])
 
     useEffect(() => {
-        setParameterzz(
-            sWuParameterzzStore.itemzz.filter(
-                (item) => item.wuId === property.item.wuId,
-            ),
-        )
-        setTfzz(
-            sTypeFormatzzStore.itemzz.filter(
-                (item) => item.ownerId === property.item.id,
-            ),
-        )
+        setParameterzz(sWuParameterzzStore.itemzz.filter((item) => item.wuId === property.item.wuId))
+        setTfzz(sTypeFormatzzStore.itemzz.filter((item) => item.ownerId === property.item.id))
     }, [property.item, sTypeFormatzzStore.itemzz])
 
     if (parameterzz.length === 0) {

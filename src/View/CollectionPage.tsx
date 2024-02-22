@@ -16,9 +16,7 @@ export default function CollectionPage() {
             <LeftRightPanel
                 makeCRUD={makeCollectionCRUD as any}
                 onCreate={function (name) {
-                    makeCollectionCRUD()
-                        .create(makeCollection(name))
-                        .catch(sToastzzStore.showError)
+                    makeCollectionCRUD().create(makeCollection(name)).catch(sToastzzStore.showError)
                 }}
                 useItemPageStore={useCollectionPageStore}
                 useItemzzStore={useCollectionzzStore}

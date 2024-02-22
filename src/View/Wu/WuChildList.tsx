@@ -27,18 +27,10 @@ export default function WuChildList(property: Property) {
     const [childzz, setChildzz] = useState<LB.TypeFormat[]>([])
 
     useEffect(() => {
-        setChildzz(
-            sTypeFormatzzStore.itemzz.filter(
-                (item) => item.ownerWuChildId === property.item.id,
-            ),
-        )
+        setChildzz(sTypeFormatzzStore.itemzz.filter((item) => item.ownerWuChildId === property.item.id))
     }, [property.item, sTypeFormatzzStore.itemzz])
 
-    function add(
-        kind: OapiType,
-        wuId: number = 1,
-        wuParameterId: number | null = null,
-    ) {
+    function add(kind: OapiType, wuId: number = 1, wuParameterId: number | null = null) {
         const data = makeTypeFormat(kind, wuId, wuParameterId)
         data.ownerWuChildId = property.item.id
         return makeTypeFormatCRUD()
@@ -81,9 +73,7 @@ export default function WuChildList(property: Property) {
                             className="btn btn-outline-danger"
                             type="button"
                             onClick={function () {
-                                makeTypeFormatCRUD()
-                                    .delete(item.id)
-                                    .catch(sToastzzStore.showError)
+                                makeTypeFormatCRUD().delete(item.id).catch(sToastzzStore.showError)
                             }}
                         >
                             - {wp.name}
@@ -146,9 +136,7 @@ export default function WuChildList(property: Property) {
                                         return
                                     }
                                     if (found.id === property.item.id) {
-                                        sToastzzStore.showDanger(
-                                            "Including self will cause circular reference error",
-                                        )
+                                        sToastzzStore.showDanger("Including self will cause circular reference error")
                                         return
                                     }
                                     add(OapiType.Wu, found.id)
@@ -166,9 +154,7 @@ export default function WuChildList(property: Property) {
                     </tr>
                     <tr>
                         <td colSpan={3}>
-                            <span className="text-danger">
-                                Be careful of circular reference
-                            </span>
+                            <span className="text-danger">Be careful of circular reference</span>
                         </td>
                     </tr>
                 </tfoot>

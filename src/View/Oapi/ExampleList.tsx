@@ -25,9 +25,7 @@ export default function ExampleList(property: Property) {
             .then((response) =>
                 setItemzz(
                     response.filter(
-                        (item) =>
-                            item.requestId === property.requestId &&
-                            item.responseId === property.responseId,
+                        (item) => item.requestId === property.requestId && item.responseId === property.responseId,
                     ),
                 ),
             )

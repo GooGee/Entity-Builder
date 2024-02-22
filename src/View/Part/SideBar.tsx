@@ -32,20 +32,14 @@ export default function SideBar(property: Property) {
         if (store.keyword === "") {
             return property.itemzz.filter((item) => item.color === store.color)
         }
-        return property.itemzz.filter(
-            (item) => item.color === store.color && item.name.match(re),
-        )
+        return property.itemzz.filter((item) => item.color === store.color && item.name.match(re))
     }
 
     return (
         <div className={"col-3 py-3 h100 overflow-auto " + property.className}>
             <div className="d-flex align-items-center">
                 <h1 className="inline">{property.title}</h1>
-                <ColorButtonDropdown
-                    color={store.color}
-                    setColor={store.setColor}
-                    className="mx-1"
-                ></ColorButtonDropdown>
+                <ColorButtonDropdown color={store.color} setColor={store.setColor} className="mx-1"></ColorButtonDropdown>
                 {property.button}
             </div>
 

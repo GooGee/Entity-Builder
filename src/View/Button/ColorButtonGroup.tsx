@@ -11,9 +11,7 @@ function ColorButtonGroup(property: Property) {
         <div className={"color-button-group " + (property.className ?? "")}>
             {colorzz.map((item) => (
                 <span
-                    className={
-                        "color-button " + (item === property.color ? "active" : "")
-                    }
+                    className={"color-button " + (item === property.color ? "active" : "")}
                     key={item}
                     onClick={() => property.setColor(item)}
                     style={{

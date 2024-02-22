@@ -89,10 +89,7 @@ export default function DiagramPage() {
         [setEdgezz],
     )
 
-    function onNodeDragStop(
-        event: React.MouseEvent<Element, MouseEvent>,
-        node: Node<LB.Entity>,
-    ) {
+    function onNodeDragStop(event: React.MouseEvent<Element, MouseEvent>, node: Node<LB.Entity>) {
         // console.log(node.position)
         const data = {
             ...node.data,

@@ -40,10 +40,7 @@ export default function FileTabList(property: Property) {
         return (
             <table className="table">
                 <caption>
-                    <h3
-                        className="pointer hover-blue"
-                        onClick={() => sFlowPageStore.setStep(Step)}
-                    >
+                    <h3 className="pointer hover-blue" onClick={() => sFlowPageStore.setStep(Step)}>
                         {Step}
                     </h3>
                 </caption>
@@ -88,11 +85,7 @@ export default function FileTabList(property: Property) {
             <TabList tab={tab} tabzz={tabzz} setTab={setTab}></TabList>
 
             {tab === TabEnum.All ? (
-                <FileList
-                    entity={property.entity}
-                    ma={property.ma}
-                    module={property.module}
-                ></FileList>
+                <FileList entity={property.entity} ma={property.ma} module={property.module}></FileList>
             ) : null}
 
             {tab === TabEnum.Crud ? (
@@ -120,11 +113,7 @@ export default function FileTabList(property: Property) {
             ) : null}
 
             {tab === TabEnum.View ? (
-                <RacFileList
-                    entity={property.entity}
-                    ma={property.ma}
-                    module={property.module}
-                ></RacFileList>
+                <RacFileList entity={property.entity} ma={property.ma} module={property.module}></RacFileList>
             ) : null}
         </div>
     )

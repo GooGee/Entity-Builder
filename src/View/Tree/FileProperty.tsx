@@ -1,11 +1,6 @@
 import { makeFileCRUD } from "@/Database/makeCRUD"
 import Constant from "@/Model/Constant"
-import {
-    getCodeFileName,
-    getFileFullNameInCode,
-    ScriptExtention,
-    TemplateExtention,
-} from "@/Model/FileManager"
+import { getCodeFileName, getFileFullNameInCode, ScriptExtention, TemplateExtention } from "@/Model/FileManager"
 import showConfirm from "@/View/Dialog/showConfirm"
 import useFilezzStore from "@/Store/useFilezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
@@ -72,10 +67,7 @@ export default function FileProperty() {
                             </button>
                             <button
                                 onClick={() =>
-                                    showInput(
-                                        "Please input the file name",
-                                        file!.name,
-                                    ).then((response) => {
+                                    showInput("Please input the file name", file!.name).then((response) => {
                                         if (response.isConfirmed) {
                                             update({
                                                 ...file!,
@@ -174,9 +166,7 @@ export default function FileProperty() {
                     <td>script</td>
                     <td>
                         <EditButton
-                            file={getFileFullNameInCode(
-                                getCodeFileName(file, ScriptExtention),
-                            )}
+                            file={getFileFullNameInCode(getCodeFileName(file, ScriptExtention))}
                             content={Constant.ScriptCode}
                         ></EditButton>
                     </td>
@@ -185,9 +175,7 @@ export default function FileProperty() {
                     <td>template</td>
                     <td>
                         <EditButton
-                            file={getFileFullNameInCode(
-                                getCodeFileName(file, TemplateExtention),
-                            )}
+                            file={getFileFullNameInCode(getCodeFileName(file, TemplateExtention))}
                             content=""
                         ></EditButton>
                     </td>

@@ -17,9 +17,7 @@ export default function WuParameterList(property: Property) {
     const [parameterzz, setParameterzz] = useState<LB.WuParameter[]>([])
 
     useEffect(() => {
-        setParameterzz(
-            sWuParameterzzStore.itemzz.filter((item) => item.wuId === property.item.id),
-        )
+        setParameterzz(sWuParameterzzStore.itemzz.filter((item) => item.wuId === property.item.id))
     }, [property.item, sWuParameterzzStore.itemzz])
 
     return (
@@ -33,10 +31,7 @@ export default function WuParameterList(property: Property) {
                                 if (response.isConfirmed) {
                                     if (response.value) {
                                         return makeWuParameterCRUD().create(
-                                            makeWuParameter(
-                                                property.item.id,
-                                                response.value,
-                                            ),
+                                            makeWuParameter(property.item.id, response.value),
                                         )
                                     }
                                 }

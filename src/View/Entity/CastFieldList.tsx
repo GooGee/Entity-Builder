@@ -13,18 +13,14 @@ export default function CastFieldList(property: Property) {
     const [columnzz, setColumnzz] = useState<LB.Column[]>([])
 
     useEffect(() => {
-        setColumnzz(
-            columnzzStore.itemzz.filter((item) => item.entityId === property.entity.id),
-        )
+        setColumnzz(columnzzStore.itemzz.filter((item) => item.entityId === property.entity.id))
     }, [property.entity, columnzzStore.itemzz])
 
     return (
         <table className="table">
             <caption>
                 <h3 className="inline me-3">Cast</h3>
-                <WebLink href="https://laravel.com/docs/9.x/eloquent-mutators">
-                    doc
-                </WebLink>
+                <WebLink href="https://laravel.com/docs/9.x/eloquent-mutators">doc</WebLink>
             </caption>
             <thead>
                 <tr>

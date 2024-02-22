@@ -16,11 +16,7 @@ export default function ActionView(property: Property) {
     const sToastzzStore = useToastzzStore()
 
     return (
-        <ActionDetail
-            action={property.ma.name}
-            entity={property.entity}
-            ma={property.ma}
-        >
+        <ActionDetail action={property.ma.name} entity={property.entity} ma={property.ma}>
             <DeleteChangeButton
                 name={property.ma.name}
                 onChange={function () {
@@ -32,9 +28,7 @@ export default function ActionView(property: Property) {
                                         ...property.ma,
                                         name: response.value,
                                     })
-                                    .then((item) =>
-                                        sFlowPageStore.setAction(item.name, item),
-                                    )
+                                    .then((item) => sFlowPageStore.setAction(item.name, item))
                             }
                         })
                         .catch(sToastzzStore.showError)

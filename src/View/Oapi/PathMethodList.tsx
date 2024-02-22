@@ -19,11 +19,7 @@ export default function PathMethodList(property: Property) {
 
     const middlewarezz = getCollectionItemzz("Middleware").map((item) => item.name)
     const mazz = sModuleActionzz.itemzz
-        .filter(
-            (item) =>
-                item.entityId === property.item.entityId &&
-                item.moduleId === property.item.moduleId,
-        )
+        .filter((item) => item.entityId === property.item.entityId && item.moduleId === property.item.moduleId)
         .sort((aa, bb) => aa.name.localeCompare(bb.name))
 
     useEffect(() => {
@@ -33,9 +29,7 @@ export default function PathMethodList(property: Property) {
     function refresh() {
         makePathMethodCRUD()
             .findAll()
-            .then((response) =>
-                setItemzz(response.filter((item) => item.pathId === property.item.id)),
-            )
+            .then((response) => setItemzz(response.filter((item) => item.pathId === property.item.id)))
             .catch(sToastzzStore.showError)
     }
 

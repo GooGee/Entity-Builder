@@ -13,23 +13,17 @@ export default function RAC(property: Property) {
 
     const [columnzz, setColumnzz] = useState<LB.Column[]>([])
 
-    const nnzz = getCollectionItemzz("RAC").map(
-        (item) => [item.name, item.name] as [string, string],
-    )
+    const nnzz = getCollectionItemzz("RAC").map((item) => [item.name, item.name] as [string, string])
 
     useEffect(() => {
-        setColumnzz(
-            columnzzStore.itemzz.filter((item) => item.entityId === property.entity.id),
-        )
+        setColumnzz(columnzzStore.itemzz.filter((item) => item.entityId === property.entity.id))
     }, [property.entity, columnzzStore.itemzz])
 
     return (
         <table className="table">
             <caption>
                 <h3 className="inline me-3">React-Admin Component</h3>
-                <WebLink href="https://marmelab.com/react-admin/documentation.html">
-                    doc
-                </WebLink>
+                <WebLink href="https://marmelab.com/react-admin/documentation.html">doc</WebLink>
             </caption>
             <thead>
                 <tr>
@@ -40,12 +34,7 @@ export default function RAC(property: Property) {
             </thead>
             <tbody>
                 {columnzz.map((item) => (
-                    <RacColumn
-                        entity={property.entity}
-                        item={item}
-                        key={item.id}
-                        nnzz={nnzz}
-                    ></RacColumn>
+                    <RacColumn entity={property.entity} item={item} key={item.id} nnzz={nnzz}></RacColumn>
                 ))}
             </tbody>
         </table>

@@ -21,14 +21,8 @@ export default function WuColumnList(property: Property) {
     const [wuColumnMap, setWuColumnMap] = useState<Map<number, LB.WuColumn>>(new Map())
 
     useEffect(() => {
-        setColumnzz(
-            sColumnzzStore.itemzz.filter(
-                (item) => item.entityId === property.item.entityId,
-            ),
-        )
-        const zz = sWuColumnzzStore.itemzz.filter(
-            (item) => item.wuId === property.item.id,
-        )
+        setColumnzz(sColumnzzStore.itemzz.filter((item) => item.entityId === property.item.entityId))
+        const zz = sWuColumnzzStore.itemzz.filter((item) => item.wuId === property.item.id)
         setWuColumnMap(new Map(zz.map((item) => [item.columnId, item])))
     }, [sColumnzzStore.itemzz, property.item, sWuColumnzzStore.itemzz])
 
@@ -70,10 +64,7 @@ export default function WuColumnList(property: Property) {
                     </label>
                 </div>
 
-                <WebLink
-                    className="ms-3"
-                    href="https://spec.openapis.org/oas/v3.0.3#schema-object"
-                >
+                <WebLink className="ms-3" href="https://spec.openapis.org/oas/v3.0.3#schema-object">
                     doc
                 </WebLink>
             </caption>
@@ -88,15 +79,10 @@ export default function WuColumnList(property: Property) {
                 <tr>
                     <th className="w333">include / alias (can be empty)</th>
                     <th>
-                        {property.item.isRequest
-                            ? "include constraint"
-                            : "isArray / nullable / type / format"}
+                        {property.item.isRequest ? "include constraint" : "isArray / nullable / type / format"}
 
                         {property.item.isRequest ? null : (
-                            <WebLink
-                                className="ms-3"
-                                href="https://spec.openapis.org/oas/v3.0.3#data-types"
-                            >
+                            <WebLink className="ms-3" href="https://spec.openapis.org/oas/v3.0.3#data-types">
                                 doc
                             </WebLink>
                         )}

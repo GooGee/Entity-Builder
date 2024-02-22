@@ -74,11 +74,7 @@ export default function HomePage() {
                 {import.meta.env.DEV && store.connected ? (
                     <p>
                         <button
-                            onClick={() =>
-                                exportDB().then((response) =>
-                                    console.log(JSON.stringify(response)),
-                                )
-                            }
+                            onClick={() => exportDB().then((response) => console.log(JSON.stringify(response)))}
                             className="btn btn-outline-primary"
                             type="button"
                         >
@@ -86,9 +82,7 @@ export default function HomePage() {
                         </button>
                     </p>
                 ) : null}
-                {store.connected ? (
-                    <p className="text-success">connected to {location.origin}</p>
-                ) : null}
+                {store.connected ? <p className="text-success">connected to {location.origin}</p> : null}
                 {error ? (
                     <>
                         <p className="text-danger">{error}</p>

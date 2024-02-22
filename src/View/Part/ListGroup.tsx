@@ -15,8 +15,7 @@ export default function ListGroup(property: Property) {
                     <button
                         key={one.id}
                         className={
-                            "list-group-item list-group-item-action" +
-                            (property.item?.id === one.id ? " active" : "")
+                            "list-group-item list-group-item-action" + (property.item?.id === one.id ? " active" : "")
                         }
                         onClick={() => property.select(one)}
                     >

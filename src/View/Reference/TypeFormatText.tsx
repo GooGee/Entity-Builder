@@ -26,19 +26,11 @@ export default function TypeFormatText(property: Property) {
         return (
             <div>
                 <div>
-                    <button
-                        className="btn btn-outline-primary"
-                        type="button"
-                        onClick={() => setVisible(false)}
-                    >
+                    <button className="btn btn-outline-primary" type="button" onClick={() => setVisible(false)}>
                         OK
                     </button>
                 </div>
-                <TypeFormat
-                    id={property.id}
-                    item={property.item}
-                    wuId={property.wuId}
-                ></TypeFormat>
+                <TypeFormat id={property.id} item={property.item} wuId={property.wuId}></TypeFormat>
             </div>
         )
     }
@@ -62,10 +54,7 @@ export default function TypeFormatText(property: Property) {
     }
 
     return (
-        <span
-            className={property.isRoot ? "pointer" : ""}
-            onClick={() => (property.isRoot ? setVisible(true) : null)}
-        >
+        <span className={property.isRoot ? "pointer" : ""} onClick={() => (property.isRoot ? setVisible(true) : null)}>
             {text.slice(0, index)}
             {text.slice(index)}
         </span>

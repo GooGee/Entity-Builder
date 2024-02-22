@@ -40,18 +40,9 @@ export default function WuColumn(property: Property) {
             return <ConstraintList wc={property.wc}></ConstraintList>
         }
 
-        const tf = sTypeFormatzzStore.itemzz.find(
-            (item) => item.ownerColumnId === property.item.id,
-        )
+        const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerColumnId === property.item.id)
 
-        return (
-            <TypeFormatText
-                id={property.item.id}
-                isRoot
-                item={tf}
-                wuId={property.wu.id}
-            ></TypeFormatText>
-        )
+        return <TypeFormatText id={property.item.id} isRoot item={tf} wuId={property.wu.id}></TypeFormatText>
     }
 
     return (
@@ -66,10 +57,7 @@ export default function WuColumn(property: Property) {
                         role="switch"
                         id={"includeSwitchCheck" + property.item.id}
                     />
-                    <label
-                        className="form-check-label text-secondary"
-                        htmlFor={"includeSwitchCheck" + property.item.id}
-                    >
+                    <label className="form-check-label text-secondary" htmlFor={"includeSwitchCheck" + property.item.id}>
                         {property.wc ? "" : property.item.name}
                     </label>
                 </div>

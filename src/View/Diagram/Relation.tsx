@@ -36,10 +36,7 @@ export default function Relation(property: Property) {
                 {getRelationMeaning(property.item.type, reversed)}
             </td>
             <td>
-                <span
-                    onClick={() => modalStore.open(property.item.id)}
-                    className="button"
-                >
+                <span onClick={() => modalStore.open(property.item.id)} className="button">
                     {reversed ? property.item.name1 : property.item.name0}
                 </span>
             </td>

@@ -25,10 +25,7 @@ export default function ServerList(property: Property) {
             .then((response) =>
                 setItemzz(
                     response.filter(function (item) {
-                        return (
-                            item.requestId === property.requestId &&
-                            item.pathId === property.pathId
-                        )
+                        return item.requestId === property.requestId && item.pathId === property.pathId
                     }),
                 ),
             )

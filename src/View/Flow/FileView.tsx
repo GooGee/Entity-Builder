@@ -70,11 +70,7 @@ export default function FileView(property: Property) {
             <caption>
                 <span className="me-3">Directory:</span>
                 {directory
-                    ? sDirectoryzzStore.treeHelper.getDirectoryFullName(
-                          directory,
-                          property.entity,
-                          property.action,
-                      )
+                    ? sDirectoryzzStore.treeHelper.getDirectoryFullName(directory, property.entity, property.action)
                     : `Directory ${property.directoryId} not found`}
                 {property.isTest ? "/" + property.entity.name : ""}
             </caption>

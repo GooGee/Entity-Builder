@@ -38,10 +38,7 @@ export default function RequestDetail(property: Property) {
                             role="switch"
                             id={"requiredSwitchCheck" + property.item.id}
                         />
-                        <label
-                            className="form-check-label"
-                            htmlFor={"requiredSwitchCheck" + property.item.id}
-                        ></label>
+                        <label className="form-check-label" htmlFor={"requiredSwitchCheck" + property.item.id}></label>
                     </div>
                 </td>
             </tr>

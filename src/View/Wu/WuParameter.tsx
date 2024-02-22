@@ -23,9 +23,7 @@ export default function WuParameter(property: Property) {
                             showConfirm()
                                 .then((response) => {
                                     if (response.isConfirmed) {
-                                        return makeWuParameterCRUD().delete(
-                                            property.item.id,
-                                        )
+                                        return makeWuParameterCRUD().delete(property.item.id)
                                     }
                                 })
                                 .catch(sToastzzStore.showError)
@@ -36,10 +34,7 @@ export default function WuParameter(property: Property) {
                     </span>
                     <span
                         onClick={() =>
-                            showNameInput(
-                                "Please input the Parameter name",
-                                property.item.name,
-                            )
+                            showNameInput("Please input the Parameter name", property.item.name)
                                 .then((response) => {
                                     if (response.isConfirmed) {
                                         return update({
@@ -71,10 +66,7 @@ export default function WuParameter(property: Property) {
                         role="switch"
                         id={"isWuSwitchCheck" + property.item.id}
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor={"isWuSwitchCheck" + property.item.id}
-                    ></label>
+                    <label className="form-check-label" htmlFor={"isWuSwitchCheck" + property.item.id}></label>
                 </div>
             </td>
             <td>

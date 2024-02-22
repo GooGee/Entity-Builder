@@ -20,12 +20,8 @@ export default function VariableValueList(property: Property) {
                             .then((response) => {
                                 if (response.isConfirmed) {
                                     if (response.value) {
-                                        if (
-                                            property.item.enum.includes(response.value)
-                                        ) {
-                                            sToastzzStore.showDanger(
-                                                `${response.value} exists`,
-                                            )
+                                        if (property.item.enum.includes(response.value)) {
+                                            sToastzzStore.showDanger(`${response.value} exists`)
                                             return
                                         }
 

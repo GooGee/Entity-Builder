@@ -28,11 +28,7 @@ export default function Factory(property: Property) {
     const file = sFilezzStore.itemzz.find((item) => item.name === LayerEnum.Factory)
 
     useEffect(() => {
-        setColumnzz(
-            sColumnzzStore.itemzz.filter(
-                (item) => item.entityId === property.entity.id,
-            ),
-        )
+        setColumnzz(sColumnzzStore.itemzz.filter((item) => item.entityId === property.entity.id))
     }, [property.entity, sColumnzzStore.itemzz])
 
     return (
@@ -40,21 +36,11 @@ export default function Factory(property: Property) {
             <caption>
                 <h3 className="inline me-3">Factory</h3>
                 {file === undefined ? (
-                    <span className="text-danger">
-                        File {LayerEnum.Factory} not found
-                    </span>
+                    <span className="text-danger">File {LayerEnum.Factory} not found</span>
                 ) : (
-                    <FileButton
-                        action={""}
-                        className="me-3"
-                        file={file}
-                        fullName
-                        entity={property.entity}
-                    ></FileButton>
+                    <FileButton action={""} className="me-3" file={file} fullName entity={property.entity}></FileButton>
                 )}
-                <WebLink href="https://laravel.com/docs/9.x/eloquent-factories">
-                    doc
-                </WebLink>
+                <WebLink href="https://laravel.com/docs/9.x/eloquent-factories">doc</WebLink>
             </caption>
             <thead>
                 <tr>
@@ -81,16 +67,10 @@ export default function Factory(property: Property) {
                                 onClick={function () {
                                     setWaiting(true)
                                     runCodeFile(FactoryCodeFileName, property.entity)
-                                        .then((response) =>
-                                            makeColumnCRUD().updateMany(
-                                                response.result as LB.Column[],
-                                            ),
-                                        )
+                                        .then((response) => makeColumnCRUD().updateMany(response.result as LB.Column[]))
                                         .then(() => {
                                             setWaiting(false)
-                                            sToastzzStore.showSuccess(
-                                                "Select other Entity to see changes",
-                                            )
+                                            sToastzzStore.showSuccess("Select other Entity to see changes")
                                         })
                                         .catch((error) => {
                                             setWaiting(false)

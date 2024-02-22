@@ -25,9 +25,7 @@ export default function Validation(property: Property) {
     const constraintzz = getCollectionItemzz("ValidationRule")
 
     useEffect(() => {
-        setColumnzz(
-            columnzzStore.itemzz.filter((item) => item.entityId === property.entity.id),
-        )
+        setColumnzz(columnzzStore.itemzz.filter((item) => item.entityId === property.entity.id))
     }, [property.entity, columnzzStore.itemzz])
 
     return (
@@ -48,10 +46,7 @@ export default function Validation(property: Property) {
                     <tr key={item.id}>
                         <td>{item.name}</td>
                         <td>
-                            <ConstraintList
-                                constraintzz={constraintzz}
-                                column={item}
-                            ></ConstraintList>
+                            <ConstraintList constraintzz={constraintzz} column={item}></ConstraintList>
                         </td>
                     </tr>
                 ))}
@@ -76,7 +71,7 @@ export default function Validation(property: Property) {
                                         )
                                         .then(() => {
                                             setWaiting(false)
-                                            sToastzzStore.showSuccess('Validation rules added')
+                                            sToastzzStore.showSuccess("Validation rules added")
                                         })
                                         .catch((error) => {
                                             setWaiting(false)

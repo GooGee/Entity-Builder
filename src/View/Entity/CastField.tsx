@@ -16,10 +16,7 @@ export default function CastField(property: Property) {
 
     function update(data: LB.Column) {
         setItem(data)
-        return makeColumnCRUD()
-            .update(data)
-            .then(setItem)
-            .catch(sToastzzStore.showError)
+        return makeColumnCRUD().update(data).then(setItem).catch(sToastzzStore.showError)
     }
 
     return (
@@ -40,10 +37,7 @@ export default function CastField(property: Property) {
                         role="switch"
                         id={"fillableSwitchCheck" + item.id}
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor={"fillableSwitchCheck" + item.id}
-                    ></label>
+                    <label className="form-check-label" htmlFor={"fillableSwitchCheck" + item.id}></label>
                 </div>
                 <div className="form-check form-switch inline">
                     <input
@@ -59,10 +53,7 @@ export default function CastField(property: Property) {
                         role="switch"
                         id={"hiddenSwitchCheck" + item.id}
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor={"hiddenSwitchCheck" + item.id}
-                    ></label>
+                    <label className="form-check-label" htmlFor={"hiddenSwitchCheck" + item.id}></label>
                 </div>
                 <div className="form-check form-switch inline ms-3">
                     <input
@@ -78,10 +69,7 @@ export default function CastField(property: Property) {
                         role="switch"
                         id={"roSwitchCheck" + item.id}
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor={"roSwitchCheck" + item.id}
-                    ></label>
+                    <label className="form-check-label" htmlFor={"roSwitchCheck" + item.id}></label>
                 </div>
                 <div className="form-check form-switch inline ms-3">
                     <input
@@ -97,10 +85,7 @@ export default function CastField(property: Property) {
                         role="switch"
                         id={"woSwitchCheck" + item.id}
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor={"woSwitchCheck" + item.id}
-                    ></label>
+                    <label className="form-check-label" htmlFor={"woSwitchCheck" + item.id}></label>
                 </div>
             </td>
             <td>{item.type}</td>

@@ -16,11 +16,7 @@ export default function ConstraintList(property: Property) {
     const [wcczz, setWcczz] = useState<LB.WuColumnConstraint[]>([])
 
     useEffect(() => {
-        setConstraintzz(
-            sColumnConstraintzzStore.itemzz.filter(
-                (item) => item.columnId === property.wc.columnId,
-            ),
-        )
+        setConstraintzz(sColumnConstraintzzStore.itemzz.filter((item) => item.columnId === property.wc.columnId))
         refresh()
     }, [])
 
@@ -32,10 +28,7 @@ export default function ConstraintList(property: Property) {
     }
 
     function makeView(item: LB.ColumnConstraint) {
-        const found = wcczz.find(
-            (wcc) =>
-                wcc.columnConstraintId === item.id && wcc.wuColumnId === property.wc.id,
-        )
+        const found = wcczz.find((wcc) => wcc.columnConstraintId === item.id && wcc.wuColumnId === property.wc.id)
         return (
             <td>
                 <div className="form-check form-switch inline">
@@ -43,10 +36,7 @@ export default function ConstraintList(property: Property) {
                         checked={found !== undefined}
                         onChange={function () {
                             if (found) {
-                                makeWuColumnConstraintCRUD()
-                                    .delete(found.id)
-                                    .then(refresh)
-                                    .catch(sToastzzStore.showError)
+                                makeWuColumnConstraintCRUD().delete(found.id).then(refresh).catch(sToastzzStore.showError)
                                 return
                             }
                             makeWuColumnConstraintCRUD()
@@ -62,10 +52,7 @@ export default function ConstraintList(property: Property) {
                         role="switch"
                         id={"wccSwitchCheck" + item.id}
                     />
-                    <label
-                        className="form-check-label text-secondary"
-                        htmlFor={"wccSwitchCheck" + item.id}
-                    >
+                    <label className="form-check-label text-secondary" htmlFor={"wccSwitchCheck" + item.id}>
                         {item.name}
                         {item.parameter ? ":" + item.parameter : ""}
                     </label>

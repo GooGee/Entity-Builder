@@ -15,10 +15,7 @@ export default function WaitingButton(property: Property) {
             type="button"
         >
             {property.waiting ? (
-                <div
-                    className="spinner-border spinner-border-sm text-secondary me-1"
-                    role="status"
-                ></div>
+                <div className="spinner-border spinner-border-sm text-secondary me-1" role="status"></div>
             ) : null}
             {property.children}
         </button>

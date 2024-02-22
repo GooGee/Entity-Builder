@@ -29,10 +29,7 @@ export default function LeftRightPanel(property: Property) {
 
     const message = `Please input the ${property.title} name`
 
-    let showDialog: (
-        text: string,
-        inputValue: string,
-    ) => Promise<SweetAlertResult<any>> = showInput
+    let showDialog: (text: string, inputValue: string) => Promise<SweetAlertResult<any>> = showInput
     if (property.validateName) {
         showDialog = showNameInput
     }

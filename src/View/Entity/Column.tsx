@@ -46,10 +46,7 @@ export default function Column(property: Property) {
                         role="switch"
                         id={"inTableSwitchCheck" + item.id}
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor={"inTableSwitchCheck" + item.id}
-                    ></label>
+                    <label className="form-check-label" htmlFor={"inTableSwitchCheck" + item.id}></label>
                 </div>
                 <div className="btn-group">
                     <button
@@ -90,16 +87,10 @@ export default function Column(property: Property) {
             <td>
                 <button
                     onClick={() => {
-                        const typezz = sDoctrineColumnTypezzStore.itemzz.map(
-                            (item) => item.name,
-                        )
-                        sListModalStore.openCB(
-                            "Select a type",
-                            typezz,
-                            function (text) {
-                                return update({ ...item, type: text })
-                            },
-                        )
+                        const typezz = sDoctrineColumnTypezzStore.itemzz.map((item) => item.name)
+                        sListModalStore.openCB("Select a type", typezz, function (text) {
+                            return update({ ...item, type: text })
+                        })
                     }}
                     className="btn btn-outline-primary"
                     type="button"

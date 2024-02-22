@@ -40,9 +40,7 @@ function RelationModal() {
         return null
     }
 
-    const columnzz = columnzzStore.itemzz.filter(
-        (item) => item.entityId === store.entity1Id,
-    )
+    const columnzz = columnzzStore.itemzz.filter((item) => item.entityId === store.entity1Id)
 
     function showInput0() {
         showNameInput("Please input the name", store!.name0)
@@ -71,10 +69,7 @@ function RelationModal() {
     }
 
     function update(data: LB.Relation) {
-        makeRelationCRUD()
-            .update(data)
-            .then(setStore)
-            .catch(sToastzzStore.showError)
+        makeRelationCRUD().update(data).then(setStore).catch(sToastzzStore.showError)
     }
 
     return (
@@ -96,15 +91,9 @@ function RelationModal() {
                 <tbody>
                     <tr>
                         <td>{entity0}</td>
-                        <td className="text-secondary">
-                            {getRelationMeaning(store.type)}
-                        </td>
+                        <td className="text-secondary">{getRelationMeaning(store.type)}</td>
                         <td>
-                            <button
-                                onClick={showInput0}
-                                className="btn btn-outline-primary"
-                                type="button"
-                            >
+                            <button onClick={showInput0} className="btn btn-outline-primary" type="button">
                                 {store.name0}
                             </button>
                         </td>
@@ -112,15 +101,9 @@ function RelationModal() {
                     </tr>
                     <tr>
                         <td>{entity1}</td>
-                        <td className="text-secondary">
-                            {getRelationMeaning(store.type, true)}
-                        </td>
+                        <td className="text-secondary">{getRelationMeaning(store.type, true)}</td>
                         <td>
-                            <button
-                                onClick={showInput1}
-                                className="btn btn-outline-primary"
-                                type="button"
-                            >
+                            <button onClick={showInput1} className="btn btn-outline-primary" type="button">
                                 {store.name1}
                             </button>
                         </td>

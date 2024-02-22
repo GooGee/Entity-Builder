@@ -12,17 +12,11 @@ interface Property {
 export default function DoctrineView(property: Property) {
     const sToastzzStore = useToastzzStore()
 
-    const fmnzz = getCollectionItemzz("FakerMethod").map(
-        (item) => [item.name, item.name] as [string, string],
-    )
+    const fmnzz = getCollectionItemzz("FakerMethod").map((item) => [item.name, item.name] as [string, string])
 
-    const oapitzz = OapiTypezz.slice(0, 5).map(
-        (item) => [item, item] as [string, string],
-    )
+    const oapitzz = OapiTypezz.slice(0, 5).map((item) => [item, item] as [string, string])
 
-    const raczz = getCollectionItemzz("RAC").map(
-        (item) => [item.name, item.name] as [string, string],
-    )
+    const raczz = getCollectionItemzz("RAC").map((item) => [item.name, item.name] as [string, string])
 
     function update(data: LB.DoctrineColumnType) {
         makeDoctrineColumnTypeCRUD().update(data).catch(sToastzzStore.showError)
@@ -37,8 +31,7 @@ export default function DoctrineView(property: Property) {
                 >
                     Doctrine Column Type
                 </WebLink>
-                when creating a column with this type, clone the following properties to
-                the column.
+                when creating a column with this type, clone the following properties to the column.
             </caption>
             <tbody>
                 <tr>

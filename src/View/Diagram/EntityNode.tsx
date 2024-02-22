@@ -23,11 +23,7 @@ function EntityNode(property: Property) {
     const [columnzz, setColumnzz] = useState<LB.Column[]>([])
 
     useEffect(() => {
-        setColumnzz(
-            sColumnzzStore.itemzz.filter(
-                (item) => item.entityId === property.data.id && item.inTable,
-            ),
-        )
+        setColumnzz(sColumnzzStore.itemzz.filter((item) => item.entityId === property.data.id && item.inTable))
     }, [sColumnzzStore.itemzz])
 
     return (
@@ -49,10 +45,7 @@ function EntityNode(property: Property) {
                         -
                     </span>
                 )}
-                <span
-                    onClick={() => modalStore.open(property.data.id)}
-                    className="button mx-1"
-                >
+                <span onClick={() => modalStore.open(property.data.id)} className="button mx-1">
                     {property.data.name}
                 </span>
                 <button
@@ -76,30 +69,10 @@ function EntityNode(property: Property) {
                     <RelationList entity={property.data}></RelationList>
                 </>
             ) : null}
-            <Handle
-                type="source"
-                position={Position.Left}
-                id={"sourceLeft" + property.data.id}
-                isConnectable={false}
-            />
-            <Handle
-                type="source"
-                position={Position.Right}
-                id={"sourceRight" + property.data.id}
-                isConnectable={false}
-            />
-            <Handle
-                type="target"
-                position={Position.Left}
-                id={"targetLeft" + property.data.id}
-                isConnectable={false}
-            />
-            <Handle
-                type="target"
-                position={Position.Right}
-                id={"targetRight" + property.data.id}
-                isConnectable={false}
-            />
+            <Handle type="source" position={Position.Left} id={"sourceLeft" + property.data.id} isConnectable={false} />
+            <Handle type="source" position={Position.Right} id={"sourceRight" + property.data.id} isConnectable={false} />
+            <Handle type="target" position={Position.Left} id={"targetLeft" + property.data.id} isConnectable={false} />
+            <Handle type="target" position={Position.Right} id={"targetRight" + property.data.id} isConnectable={false} />
         </div>
     )
 }

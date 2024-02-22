@@ -22,10 +22,7 @@ export default function ColorButtonDropdown(property: Property) {
                 {colorzz.map((item) => (
                     <div key={item}>
                         <span
-                            className={
-                                "color-button " +
-                                (item === property.color ? "active" : "")
-                            }
+                            className={"color-button " + (item === property.color ? "active" : "")}
                             onClick={() => property.setColor(item)}
                             style={{
                                 backgroundColor: getBG(item, property.color),

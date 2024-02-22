@@ -101,10 +101,7 @@ export default function ModuleDetail(property: Property) {
                             className="btn btn-outline-primary"
                             type="button"
                             onClick={function () {
-                                showInput(
-                                    "Please input the Module name",
-                                    property.item.prefix,
-                                )
+                                showInput("Please input the Module name", property.item.prefix)
                                     .then(function (result) {
                                         if (result.isConfirmed) {
                                             return update({
@@ -124,20 +121,14 @@ export default function ModuleDetail(property: Property) {
                     <td>directory</td>
                     <td>
                         <button
-                            className={
-                                "btn btn-outline-" + (directory ? "primary" : "danger")
-                            }
+                            className={"btn btn-outline-" + (directory ? "primary" : "danger")}
                             type="button"
                             onClick={function () {
                                 select(false)
                             }}
                         >
                             {directory
-                                ? sDirectoryzzStore.treeHelper.getDirectoryFullName(
-                                      directory,
-                                      entity,
-                                      "",
-                                  )
+                                ? sDirectoryzzStore.treeHelper.getDirectoryFullName(directory, entity, "")
                                 : `Directory ${property.item.directoryId} not found`}
                         </button>
                     </td>
@@ -146,21 +137,14 @@ export default function ModuleDetail(property: Property) {
                     <td>test directory</td>
                     <td>
                         <button
-                            className={
-                                "btn btn-outline-" +
-                                (testDirectory ? "primary" : "danger")
-                            }
+                            className={"btn btn-outline-" + (testDirectory ? "primary" : "danger")}
                             type="button"
                             onClick={function () {
                                 select(true)
                             }}
                         >
                             {testDirectory
-                                ? sDirectoryzzStore.treeHelper.getDirectoryFullName(
-                                      testDirectory,
-                                      entity,
-                                      "",
-                                  )
+                                ? sDirectoryzzStore.treeHelper.getDirectoryFullName(testDirectory, entity, "")
                                 : `Directory ${property.item.testDirectoryId} not found`}
                         </button>
                     </td>

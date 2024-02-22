@@ -18,11 +18,7 @@ export default function ConstraintList(property: Property) {
     const [editing, setEditing] = useState(false)
 
     useEffect(() => {
-        setConstraintzz(
-            sColumnConstraintzzStore.itemzz.filter(
-                (item) => item.columnId === property.column.id,
-            ),
-        )
+        setConstraintzz(sColumnConstraintzzStore.itemzz.filter((item) => item.columnId === property.column.id))
     }, [property.column, sColumnConstraintzzStore.itemzz])
 
     function ruleText(item: LB.ColumnConstraint) {
@@ -41,11 +37,7 @@ export default function ConstraintList(property: Property) {
         <>
             {editing ? (
                 <div>
-                    <button
-                        onClick={() => setEditing(false)}
-                        className="btn btn-outline-primary"
-                        type="button"
-                    >
+                    <button onClick={() => setEditing(false)} className="btn btn-outline-primary" type="button">
                         OK
                     </button>
                     <table className="table">

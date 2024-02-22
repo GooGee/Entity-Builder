@@ -46,10 +46,7 @@ export default function ActionDetail(property: Property) {
                                 role="switch"
                                 id={"deprecatedSwitchCheck" + item.id}
                             />
-                            <label
-                                className="form-check-label"
-                                htmlFor={"deprecatedSwitchCheck" + item.id}
-                            ></label>
+                            <label className="form-check-label" htmlFor={"deprecatedSwitchCheck" + item.id}></label>
                         </div>
                     </td>
                 </tr>
@@ -70,10 +67,7 @@ export default function ActionDetail(property: Property) {
                                 role="switch"
                                 id={"inOapiSwitchCheck" + item.id}
                             />
-                            <label
-                                className="form-check-label"
-                                htmlFor={"inOapiSwitchCheck" + item.id}
-                            ></label>
+                            <label className="form-check-label" htmlFor={"inOapiSwitchCheck" + item.id}></label>
                         </div>
 
                         <span>if true, it will be included in OpenApi document</span>
@@ -96,10 +90,7 @@ export default function ActionDetail(property: Property) {
                                 role="switch"
                                 id={"inRouteSwitchCheck" + item.id}
                             />
-                            <label
-                                className="form-check-label"
-                                htmlFor={"inRouteSwitchCheck" + item.id}
-                            ></label>
+                            <label className="form-check-label" htmlFor={"inRouteSwitchCheck" + item.id}></label>
                         </div>
 
                         <span>if true, it will be included in route file</span>
@@ -108,10 +99,7 @@ export default function ActionDetail(property: Property) {
                 <tr>
                     <td>server</td>
                     <td>
-                        <ServerList
-                            requestId={property.ma.requestId}
-                            pathId={null}
-                        ></ServerList>
+                        <ServerList requestId={property.ma.requestId} pathId={null}></ServerList>
                     </td>
                     <td></td>
                 </tr>
@@ -154,10 +142,7 @@ export default function ActionDetail(property: Property) {
                             className="btn btn-outline-primary"
                             type="button"
                             onClick={function () {
-                                showNameInput(
-                                    "Please input an unique operationId",
-                                    item.operationId,
-                                )
+                                showNameInput("Please input an unique operationId", item.operationId)
                                     .then((response) => {
                                         if (response.isConfirmed) {
                                             return makeModuleActionCRUD()

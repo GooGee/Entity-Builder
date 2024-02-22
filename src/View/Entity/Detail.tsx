@@ -52,10 +52,7 @@ export default function Detail(property: Property) {
                                 role="switch"
                                 id={"isTableSwitchCheck" + property.item.id}
                             />
-                            <label
-                                className="form-check-label"
-                                htmlFor={"isTableSwitchCheck" + property.item.id}
-                            ></label>
+                            <label className="form-check-label" htmlFor={"isTableSwitchCheck" + property.item.id}></label>
                         </div>
                     </td>
                 </tr>
@@ -64,10 +61,7 @@ export default function Detail(property: Property) {
                     <td>
                         <button
                             onClick={() =>
-                                showInput(
-                                    "Please input the table name",
-                                    property.item.table,
-                                )
+                                showInput("Please input the table name", property.item.table)
                                     .then((response) => {
                                         if (response.isConfirmed) {
                                             return makeEntityCRUD().update({
@@ -81,14 +75,10 @@ export default function Detail(property: Property) {
                             className="btn btn-outline-primary"
                             type="button"
                         >
-                            {property.item.table
-                                ? property.item.table
-                                : property.item.name}
+                            {property.item.table ? property.item.table : property.item.name}
                         </button>
 
-                        <span className="ms-2">
-                            leave it empty to use the Entity name as table name
-                        </span>
+                        <span className="ms-2">leave it empty to use the Entity name as table name</span>
                     </td>
                 </tr>
                 <tr>

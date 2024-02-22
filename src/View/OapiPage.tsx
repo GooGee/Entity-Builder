@@ -34,12 +34,7 @@ export default function OapiPage() {
             </div>
 
             <div className="mb-3">
-                <textarea
-                    className="form-control"
-                    readOnly
-                    rows={11}
-                    value={text}
-                ></textarea>
+                <textarea className="form-control" readOnly rows={11} value={text}></textarea>
             </div>
         </div>
     )

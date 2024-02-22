@@ -42,9 +42,7 @@ export default function ControlButton(property: Property) {
 
                         setWaiting(true)
                         createMigrationFile()
-                            .then((response) =>
-                                sToastzzStore.showSuccess(response.data.data),
-                            )
+                            .then((response) => sToastzzStore.showSuccess(response.data.data))
                             .then(refreshDisk)
                             .then(property.read)
                             .catch(sToastzzStore.showError)
@@ -56,8 +54,8 @@ export default function ControlButton(property: Property) {
                     diff
                 </button>
                 <span>
-                    compare files in `database/Entity` with database schemas, and
-                    generate a migration file of their difference.
+                    compare files in `database/Entity` with database schemas, and generate a migration file of their
+                    difference.
                 </span>
             </div>
 

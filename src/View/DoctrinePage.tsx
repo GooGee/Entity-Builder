@@ -17,9 +17,7 @@ export default function DoctrinePage() {
             <LeftRightPanel
                 makeCRUD={makeDoctrineColumnTypeCRUD as any}
                 onCreate={function (name) {
-                    makeDoctrineColumnTypeCRUD()
-                        .create(makeDoctrineColumnType(name))
-                        .catch(sToastzzStore.showError)
+                    makeDoctrineColumnTypeCRUD().create(makeDoctrineColumnType(name)).catch(sToastzzStore.showError)
                 }}
                 useItemPageStore={useDoctrinePageStore}
                 useItemzzStore={useDoctrineColumnTypezzStore}

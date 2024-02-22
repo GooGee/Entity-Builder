@@ -17,11 +17,7 @@ export default function SelectMapButton(property: Property) {
                 property.change(event.target.value)
             }}
         >
-            <option
-                disabled={!property.allowEmpty}
-                hidden={!property.allowEmpty}
-                value=""
-            >
+            <option disabled={!property.allowEmpty} hidden={!property.allowEmpty} value="">
                 -- {property.verb ?? (property.isAdd ? "add" : "select")} --
             </option>
             {property.itemzz.map((item) => (

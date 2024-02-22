@@ -57,11 +57,7 @@ function ColumnModal() {
             shouldCloseOnOverlayClick={true}
         >
             <div className="mb-3">
-                <button
-                    onClick={showInput}
-                    className="btn btn-outline-primary"
-                    type="button"
-                >
+                <button onClick={showInput} className="btn btn-outline-primary" type="button">
                     {item.name}
                 </button>
 
@@ -98,9 +94,7 @@ function ColumnModal() {
                     <label className="form-label">default</label>
                     <input
                         value={item.default}
-                        onChange={(event) =>
-                            update({ ...item, default: event.target.value })
-                        }
+                        onChange={(event) => update({ ...item, default: event.target.value })}
                         type="text"
                         className="form-control"
                     />

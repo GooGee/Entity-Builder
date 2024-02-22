@@ -24,11 +24,7 @@ export default function ServerDetail(property: Property) {
     function refresh() {
         makeServerVariableCRUD()
             .findAll()
-            .then((response) =>
-                setItemzz(
-                    response.filter((item) => item.serverId === property.item.id),
-                ),
-            )
+            .then((response) => setItemzz(response.filter((item) => item.serverId === property.item.id)))
             .catch(sToastzzStore.showError)
     }
 
@@ -55,29 +51,22 @@ export default function ServerDetail(property: Property) {
                             role="switch"
                             id={"globalSwitchCheck" + property.item.id}
                         />
-                        <label
-                            className="form-check-label"
-                            htmlFor={"globalSwitchCheck" + property.item.id}
-                        ></label>
+                        <label className="form-check-label" htmlFor={"globalSwitchCheck" + property.item.id}></label>
                     </div>
 
                     <DeleteChangeButton
                         className="ms-1"
                         name={item.name}
                         onChange={function () {
-                            showInput("Please input server URI", item.name).then(
-                                (response) => {
-                                    if (response.isConfirmed) {
-                                        update({ ...item, name: response.value })
-                                    }
-                                },
-                            )
+                            showInput("Please input server URI", item.name).then((response) => {
+                                if (response.isConfirmed) {
+                                    update({ ...item, name: response.value })
+                                }
+                            })
                         }}
                         onDelete={function (isConfirmed) {
                             if (isConfirmed) {
-                                makeServerCRUD()
-                                    .delete(item.id)
-                                    .catch(sToastzzStore.showError)
+                                makeServerCRUD().delete(item.id).catch(sToastzzStore.showError)
                             }
                         }}
                     ></DeleteChangeButton>

@@ -11,12 +11,7 @@ interface Property {
 
 export default function ReferenceButton(property: Property) {
     if (property.item.type === OapiType.Enum) {
-        return (
-            <ReferenceEnum
-                item={property.item}
-                update={property.update}
-            ></ReferenceEnum>
-        )
+        return <ReferenceEnum item={property.item} update={property.update}></ReferenceEnum>
     }
 
     if (property.item.type === OapiType.WuParameter) {
@@ -25,19 +20,9 @@ export default function ReferenceButton(property: Property) {
         }
 
         return (
-            <ReferenceParameter
-                item={property.item}
-                wuId={property.wuId}
-                update={property.update}
-            ></ReferenceParameter>
+            <ReferenceParameter item={property.item} wuId={property.wuId} update={property.update}></ReferenceParameter>
         )
     }
 
-    return (
-        <ReferenceWu
-            item={property.item}
-            wuId={property.wuId}
-            update={property.update}
-        ></ReferenceWu>
-    )
+    return <ReferenceWu item={property.item} wuId={property.wuId} update={property.update}></ReferenceWu>
 }

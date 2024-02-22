@@ -16,9 +16,7 @@ export default function MapDetail(property: Property) {
     const sTypeFormatzzStore = useTypeFormatzzStore()
     const sWuPageStore = useWuPageStore()
 
-    const tf = sTypeFormatzzStore.itemzz.find(
-        (item) => item.ownerWuId === property.item.id,
-    )
+    const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerWuId === property.item.id)
 
     function update(item: LB.Wu) {
         sWuPageStore.setItem(item)
@@ -80,11 +78,7 @@ export default function MapDetail(property: Property) {
                 <tr>
                     <td>value type</td>
                     <td>
-                        <TypeFormat
-                            id={property.item.id}
-                            item={tf}
-                            wuId={property.item.id}
-                        ></TypeFormat>
+                        <TypeFormat id={property.item.id} item={tf} wuId={property.item.id}></TypeFormat>
                     </td>
                 </tr>
                 <tr>

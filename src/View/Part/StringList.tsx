@@ -12,9 +12,7 @@ export default function StringList(property: Property) {
     return (
         <ul className="list-unstyled">
             <li className="mb-1">
-                {property.title ? (
-                    <h3 className="inline me-3">{property.title}</h3>
-                ) : null}
+                {property.title ? <h3 className="inline me-3">{property.title}</h3> : null}
                 <SelectStringButton
                     isAdd
                     itemzz={property.source}

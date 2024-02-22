@@ -5,7 +5,6 @@ import useFilezzStore from "@/Store/useFilezzStore"
 import MigrationView from "./Migration/MigrationView"
 import SideBar from "./Part/SideBar"
 
-
 export default function MigrationPage() {
     const sEntityzzStore = useEntityzzStore()
     const sFilezzStore = useFilezzStore()

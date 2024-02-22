@@ -23,9 +23,7 @@ export default function IndexColumnList(property: Property) {
     function refresh() {
         makeIndexColumnCRUD()
             .findAllBelongTo([property.indexId], "indexId")
-            .then((response) =>
-                setColumnzz(response.sort((aa, bb) => aa.sort - bb.sort)),
-            )
+            .then((response) => setColumnzz(response.sort((aa, bb) => aa.sort - bb.sort)))
             .catch(sToastzzStore.showError)
     }
 
@@ -74,28 +72,16 @@ export default function IndexColumnList(property: Property) {
             >
                 <Droppable droppableId="IndexColumnListDroppable">
                     {(provided, snapshot) => (
-                        <ul
-                            className="list-unstyled"
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
+                        <ul className="list-unstyled" ref={provided.innerRef} {...provided.droppableProps}>
                             {columnzz.map((item, index) => (
-                                <Draggable
-                                    key={item.id}
-                                    draggableId={item.id.toString()}
-                                    index={index}
-                                >
+                                <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                                     {(provided, snapshot) => (
                                         <li
                                             ref={provided.innerRef}
                                             {...provided.draggableProps}
                                             {...provided.dragHandleProps}
                                         >
-                                            <IndexColumn
-                                                cicm={property.cicm}
-                                                item={item}
-                                                refresh={refresh}
-                                            ></IndexColumn>
+                                            <IndexColumn cicm={property.cicm} item={item} refresh={refresh}></IndexColumn>
                                         </li>
                                     )}
                                 </Draggable>

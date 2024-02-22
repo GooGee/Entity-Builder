@@ -33,12 +33,7 @@ export default function MigrationView(property: Property) {
         <>
             {sEntityPageStore.item === undefined ? null : (
                 <div className="mb-3">
-                    <FileButton
-                        action={""}
-                        file={property.file}
-                        fullName
-                        entity={sEntityPageStore.item}
-                    ></FileButton>
+                    <FileButton action={""} file={property.file} fullName entity={sEntityPageStore.item}></FileButton>
                 </div>
             )}
 

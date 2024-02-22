@@ -19,16 +19,11 @@ export default function ParameterDetail(property: Property) {
     const sToastzzStore = useToastzzStore()
     const sTypeFormatzzStore = useTypeFormatzzStore()
 
-    const tf = sTypeFormatzzStore.itemzz.find(
-        (item) => item.ownerColumnId === property.item.id,
-    )
+    const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerColumnId === property.item.id)
 
     function update(data: LB.Column) {
         sParameterPageStore.setItem(data)
-        makeColumnCRUD()
-            .update(data)
-            .then(sParameterPageStore.setItem)
-            .catch(sToastzzStore.showError)
+        makeColumnCRUD().update(data).then(sParameterPageStore.setItem).catch(sToastzzStore.showError)
     }
 
     return (
@@ -105,10 +100,7 @@ export default function ParameterDetail(property: Property) {
                                 role="switch"
                                 id={"explodeSwitchCheck" + property.item.id}
                             />
-                            <label
-                                className="form-check-label"
-                                htmlFor={"explodeSwitchCheck" + property.item.id}
-                            ></label>
+                            <label className="form-check-label" htmlFor={"explodeSwitchCheck" + property.item.id}></label>
                         </div>
                     </td>
                 </tr>
@@ -156,15 +148,10 @@ export default function ParameterDetail(property: Property) {
                     <td>
                         <span>constraint</span>
                         <br />
-                        <WebLink href="https://laravel.com/docs/9.x/validation">
-                            doc
-                        </WebLink>
+                        <WebLink href="https://laravel.com/docs/9.x/validation">doc</WebLink>
                     </td>
                     <td>
-                        <ConstraintList
-                            column={property.item}
-                            constraintzz={property.constraintzz}
-                        ></ConstraintList>
+                        <ConstraintList column={property.item} constraintzz={property.constraintzz}></ConstraintList>
                     </td>
                 </tr>
                 <tr>

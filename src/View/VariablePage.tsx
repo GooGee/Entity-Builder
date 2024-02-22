@@ -20,14 +20,10 @@ export default function VariablePage() {
                 title={PageEnum.Enum}
                 validateName={false}
                 onCreate={function (name) {
-                    makeVariableCRUD()
-                        .create(makeVariable(name))
-                        .catch(sToastzzStore.showError)
+                    makeVariableCRUD().create(makeVariable(name)).catch(sToastzzStore.showError)
                 }}
             >
-                {sVariablePageStore.item ? (
-                    <VariableDetail item={sVariablePageStore.item}></VariableDetail>
-                ) : undefined}
+                {sVariablePageStore.item ? <VariableDetail item={sVariablePageStore.item}></VariableDetail> : undefined}
             </LeftRightPanel>
         </div>
     )

@@ -20,14 +20,10 @@ export default function ExamplePage() {
                 title={PageEnum.Example}
                 validateName={false}
                 onCreate={function (name) {
-                    makeExampleCRUD()
-                        .create(makeExample(name))
-                        .catch(sToastzzStore.showError)
+                    makeExampleCRUD().create(makeExample(name)).catch(sToastzzStore.showError)
                 }}
             >
-                {sExamplePageStore.item ? (
-                    <ExampleDetail item={sExamplePageStore.item}></ExampleDetail>
-                ) : undefined}
+                {sExamplePageStore.item ? <ExampleDetail item={sExamplePageStore.item}></ExampleDetail> : undefined}
             </LeftRightPanel>
         </div>
     )

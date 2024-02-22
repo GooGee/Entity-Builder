@@ -22,9 +22,7 @@ export default function ServerPage() {
                                 showInput("Please input server URI", "https://")
                                     .then((response) => {
                                         if (response.isConfirmed) {
-                                            const data = makeSideBarItem(
-                                                response.value,
-                                            ) as LB.Server
+                                            const data = makeSideBarItem(response.value) as LB.Server
                                             data.global = true
                                             return makeServerCRUD().create(data)
                                         }
@@ -37,10 +35,7 @@ export default function ServerPage() {
                             +
                         </button>
 
-                        <WebLink
-                            className="ms-3"
-                            href="https://spec.openapis.org/oas/v3.0.3#server-object"
-                        >
+                        <WebLink className="ms-3" href="https://spec.openapis.org/oas/v3.0.3#server-object">
                             doc
                         </WebLink>
                     </caption>
@@ -58,8 +53,7 @@ export default function ServerPage() {
                     <tfoot>
                         <tr>
                             <td colSpan={2}>
-                                only global servers will be added to `servers` object of
-                                OpenApi document.
+                                only global servers will be added to `servers` object of OpenApi document.
                                 <br />
                                 non-global servers are for path / operation.
                             </td>

@@ -15,10 +15,7 @@ export default function CollectionItem(property: Property) {
 
     function update(item: LB.CollectionItem) {
         setItem(item)
-        makeCollectionItemCRUD()
-            .update(item)
-            .then(setItem)
-            .catch(sToastzzStore.showError)
+        makeCollectionItemCRUD().update(item).then(setItem).catch(sToastzzStore.showError)
     }
 
     return (

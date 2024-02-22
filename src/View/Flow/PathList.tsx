@@ -17,18 +17,14 @@ export default function PathList(property: Property) {
     const file = sFilezzStore.find(property.module.fileId)
 
     const routezz = sPathzzStore.itemzz.filter(
-        (item) =>
-            item.moduleId === property.module.id &&
-            item.entityId === property.entity.id,
+        (item) => item.moduleId === property.module.id && item.entityId === property.entity.id,
     )
 
     return (
         <div className="my-3">
             <div className="mb-3">
                 {file === undefined ? (
-                    <span className="text-danger">
-                        route file {property.module.fileId} not found
-                    </span>
+                    <span className="text-danger">route file {property.module.fileId} not found</span>
                 ) : (
                     <FileButton
                         action={""}

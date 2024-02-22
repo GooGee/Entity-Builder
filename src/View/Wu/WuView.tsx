@@ -16,27 +16,15 @@ export default function WuView() {
 
     return (
         <>
-            <TabList
-                tab={sWuPageStore.tab}
-                tabzz={tabzz}
-                setTab={sWuPageStore.setTab}
-            ></TabList>
+            <TabList tab={sWuPageStore.tab} tabzz={tabzz} setTab={sWuPageStore.setTab}></TabList>
 
-            {sWuPageStore.tab === tabzz[0] ? (
-                <WuColumnList item={sWuPageStore.item}></WuColumnList>
-            ) : null}
+            {sWuPageStore.tab === tabzz[0] ? <WuColumnList item={sWuPageStore.item}></WuColumnList> : null}
 
-            {sWuPageStore.tab === tabzz[1] ? (
-                <WuChildList item={sWuPageStore.item}></WuChildList>
-            ) : null}
+            {sWuPageStore.tab === tabzz[1] ? <WuChildList item={sWuPageStore.item}></WuChildList> : null}
 
-            {sWuPageStore.tab === tabzz[2] ? (
-                <MapDetail item={sWuPageStore.item}></MapDetail>
-            ) : null}
+            {sWuPageStore.tab === tabzz[2] ? <MapDetail item={sWuPageStore.item}></MapDetail> : null}
 
-            {sWuPageStore.tab === tabzz[3] ? (
-                <WuParameterList item={sWuPageStore.item}></WuParameterList>
-            ) : null}
+            {sWuPageStore.tab === tabzz[3] ? <WuParameterList item={sWuPageStore.item}></WuParameterList> : null}
         </>
     )
 }
