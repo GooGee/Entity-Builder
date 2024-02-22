@@ -7622,6 +7622,33 @@
                     ],
                     "id": 1,
                     "type": "string"
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "Visibility",
+                    "reserved": false,
+                    "default": "Private",
+                    "enum": [
+                        "Private",
+                        "Public"
+                    ],
+                    "type": "string",
+                    "id": 2
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "ContentStatus",
+                    "reserved": false,
+                    "default": "Draft",
+                    "enum": [
+                        "Archived",
+                        "Draft",
+                        "Published"
+                    ],
+                    "type": "string",
+                    "id": 3
                 }
             ],
             "ServerVariable": [
