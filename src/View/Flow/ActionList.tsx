@@ -29,11 +29,9 @@ export default function ActionList(property: Property) {
             .sort((aa, bb) => aa.name.localeCompare(bb.name)) ?? []
     const tab = tabzz.find((item) => sFlowPageStore.action === item.name)
 
-    const xActionzz = sModuleActionzzStore.itemzz.filter(
-        (item) =>
-            item.directoryId === property.module.directoryId &&
-            item.entityId === property.entity.id,
-    )
+    const xActionzz = sModuleActionzzStore.itemzz
+        .filter((item) => item.directoryId === property.module.directoryId && item.entityId === property.entity.id)
+        .sort((aa, bb) => aa.name.localeCompare(bb.name))
 
     useEffect(() => {
         if (
@@ -43,9 +41,7 @@ export default function ActionList(property: Property) {
             return
         }
         const path = sPathzzStore.itemzz.find(
-            (item) =>
-                item.entityId === property.entity.id &&
-                item.moduleId === property.module.id,
+            (item) => item.entityId === property.entity.id && item.moduleId === property.module.id,
         )
         sFlowPageStore.setPath(path)
 
@@ -127,15 +123,12 @@ export default function ActionList(property: Property) {
             .create(makeModuleAction(tab, property.entity, property.module))
             .then(function (item) {
                 sFlowPageStore.setAction(sFlowPageStore.action, item)
-                return makePathOf(
-                    item,
-                    property.entity,
-                    property.module,
-                    usePathzzStore.getState().itemzz,
-                ).then(function (path) {
-                    sFlowPageStore.setPath(path)
-                    return makePathMethod(path, item)
-                })
+                return makePathOf(item, property.entity, property.module, usePathzzStore.getState().itemzz).then(
+                    function (path) {
+                        sFlowPageStore.setPath(path)
+                        return makePathMethod(path, item)
+                    },
+                )
             })
             .catch(useToastzzStore.getState().showError)
     }
@@ -163,19 +156,15 @@ export default function ActionList(property: Property) {
                 <h3>{Step}</h3>
 
                 <div>
-                    <button
-                        className="btn btn-outline-primary ms-3"
-                        type="button"
-                        onClick={makeAction}
-                    >
+                    <button className="btn btn-outline-primary ms-3" type="button" onClick={makeAction}>
                         +
                     </button>
                 </div>
             </div>
 
-            <ul className={"nav nav-tabs"}>
-                {tabzz.map(makeTab)}
+            <ul className={"nav nav-tabs"}>{tabzz.map(makeTab)}</ul>
 
+            <ul className={"nav nav-tabs mt-3"}>
                 {xActionzz.map(function (item) {
                     return (
                         <li
@@ -188,9 +177,7 @@ export default function ActionList(property: Property) {
                             <span
                                 className={
                                     "nav-link " +
-                                    (sFlowPageStore.action === item.name
-                                        ? "active border-primary"
-                                        : "text-primary")
+                                    (sFlowPageStore.action === item.name ? "active border-primary" : "text-primary")
                                 }
                             >
                                 {item.name}
