@@ -3078,6 +3078,13 @@
                 },
                 {
                     "parentId": 41,
+                    "name": "ReadAll",
+                    "opened": true,
+                    "description": "",
+                    "id": 445
+                },
+                {
+                    "parentId": 41,
                     "description": "",
                     "opened": true,
                     "name": "ReadMany",
@@ -4418,6 +4425,26 @@
                     "directoryId": 430
                 },
                 {
+                    "directoryId": 445,
+                    "name": "ReadAllItem",
+                    "color": "#0ff",
+                    "layer": "Action",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "${action + entity.name}.php",
+                    "id": 445
+                },
+                {
+                    "directoryId": 445,
+                    "name": "ReadAllItemController",
+                    "color": "#0ff",
+                    "layer": "Controller",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
+                    "id": 446
+                },
+                {
                     "name": "ReadManyItem",
                     "color": "#0ff",
                     "layer": "Action",
@@ -4540,7 +4567,7 @@
                 {
                     "directoryId": 490,
                     "name": "ReadHomeItem",
-                    "color": "#fff",
+                    "color": "#00f",
                     "layer": "Action",
                     "description": "",
                     "nameSpacePattern": "",
@@ -4550,7 +4577,7 @@
                 {
                     "directoryId": 490,
                     "name": "ReadHomeItemController",
-                    "color": "#fff",
+                    "color": "#00f",
                     "layer": "Controller",
                     "description": "",
                     "nameSpacePattern": "",
