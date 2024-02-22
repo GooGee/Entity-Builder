@@ -5717,6 +5717,40 @@
                     "ownerWuId": null,
                     "ownerWuChildId": null,
                     "id": 56
+                },
+                {
+                    "isArray": false,
+                    "nullable": false,
+                    "type": "string",
+                    "format": "",
+                    "forWuParameterId": null,
+                    "ownerId": null,
+                    "variableId": null,
+                    "wuId": 1,
+                    "wuParameterId": null,
+                    "ownerColumnId": null,
+                    "ownerRequestId": null,
+                    "ownerResponseId": null,
+                    "ownerWuId": 9,
+                    "ownerWuChildId": null,
+                    "id": 57
+                },
+                {
+                    "isArray": false,
+                    "nullable": true,
+                    "type": "WuParameter",
+                    "format": "",
+                    "forWuParameterId": null,
+                    "ownerId": null,
+                    "variableId": null,
+                    "wuId": 1,
+                    "wuParameterId": 6,
+                    "ownerColumnId": 42,
+                    "ownerRequestId": null,
+                    "ownerResponseId": null,
+                    "ownerWuId": null,
+                    "ownerWuChildId": null,
+                    "id": 58
                 }
             ],
             "Column": [
@@ -6827,7 +6861,7 @@
                     "deprecated": false,
                     "example": "1",
                     "explode": false,
-                    "required": false,
+                    "required": true,
                     "style": "form",
                     "id": 34,
                     "raField": "TextField",
@@ -6991,10 +7025,10 @@
                     "inTable": false,
                     "allowReserved": false,
                     "deprecated": false,
-                    "example": "",
+                    "example": "10",
                     "explode": false,
                     "required": true,
-                    "style": "",
+                    "style": "form",
                     "raField": "NumberField",
                     "raInput": "NumberInput",
                     "id": 39
@@ -7027,7 +7061,7 @@
                     "example": "",
                     "explode": false,
                     "required": true,
-                    "style": "",
+                    "style": "form",
                     "raField": "TextField",
                     "raInput": "TextInput",
                     "id": 40
@@ -7060,10 +7094,43 @@
                     "example": "",
                     "explode": false,
                     "required": true,
-                    "style": "",
+                    "style": "form",
                     "raField": "TextField",
                     "raInput": "TextInput",
                     "id": 41
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "Filter",
+                    "reserved": false,
+                    "entityId": 8,
+                    "type": "object",
+                    "length": 0,
+                    "scale": 0,
+                    "default": "",
+                    "comment": "",
+                    "unsigned": false,
+                    "nullable": false,
+                    "cast": "",
+                    "fillable": false,
+                    "hidden": false,
+                    "ro": false,
+                    "wo": false,
+                    "fakeRaw": true,
+                    "fakeUnique": false,
+                    "fakeMethod": "",
+                    "fakeText": "",
+                    "inTable": false,
+                    "allowReserved": false,
+                    "deprecated": false,
+                    "example": "",
+                    "explode": false,
+                    "required": true,
+                    "style": "deepObject",
+                    "raField": "TextField",
+                    "raInput": "TextField",
+                    "id": 42
                 }
             ],
             "ColumnConstraint": [
@@ -7180,6 +7247,18 @@
                     "name": "in",
                     "parameter": "Rule::in(['asc', 'desc'])",
                     "id": 20
+                },
+                {
+                    "columnId": 34,
+                    "name": "min",
+                    "parameter": "1",
+                    "id": 21
+                },
+                {
+                    "columnId": 39,
+                    "name": "min",
+                    "parameter": "1",
+                    "id": 22
                 }
             ],
             "Relation": [],
@@ -7294,6 +7373,18 @@
                     "example": "",
                     "isMap": false,
                     "id": 8
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "ReadPage",
+                    "reserved": false,
+                    "entityId": 8,
+                    "type": "allOf",
+                    "isRequest": true,
+                    "example": "",
+                    "isMap": false,
+                    "id": 9
                 }
             ],
             "WuColumn": [
@@ -7464,9 +7555,75 @@
                     "columnId": 7,
                     "alias": "",
                     "id": 28
+                },
+                {
+                    "wuId": 9,
+                    "columnId": 34,
+                    "alias": "",
+                    "id": 29
+                },
+                {
+                    "wuId": 9,
+                    "columnId": 39,
+                    "alias": "",
+                    "id": 30
+                },
+                {
+                    "wuId": 9,
+                    "columnId": 40,
+                    "alias": "",
+                    "id": 31
+                },
+                {
+                    "wuId": 9,
+                    "columnId": 41,
+                    "alias": "",
+                    "id": 32
+                },
+                {
+                    "wuId": 9,
+                    "columnId": 42,
+                    "alias": "",
+                    "id": 33
                 }
             ],
-            "WuColumnConstraint": [],
+            "WuColumnConstraint": [
+                {
+                    "wuColumnId": 29,
+                    "columnConstraintId": 15,
+                    "id": 1
+                },
+                {
+                    "wuColumnId": 30,
+                    "columnConstraintId": 17,
+                    "id": 2
+                },
+                {
+                    "wuColumnId": 31,
+                    "columnConstraintId": 18,
+                    "id": 3
+                },
+                {
+                    "wuColumnId": 32,
+                    "columnConstraintId": 19,
+                    "id": 4
+                },
+                {
+                    "wuColumnId": 32,
+                    "columnConstraintId": 20,
+                    "id": 5
+                },
+                {
+                    "wuColumnId": 30,
+                    "columnConstraintId": 22,
+                    "id": 6
+                },
+                {
+                    "wuColumnId": 29,
+                    "columnConstraintId": 21,
+                    "id": 7
+                }
+            ],
             "WuParameter": [
                 {
                     "wuId": 2,
@@ -7502,6 +7659,13 @@
                     "description": "",
                     "isWu": true,
                     "id": 5
+                },
+                {
+                    "wuId": 9,
+                    "name": "FilterObject",
+                    "description": "",
+                    "isWu": true,
+                    "id": 6
                 }
             ],
             "Module": [
@@ -7596,6 +7760,15 @@
                     "summary": "",
                     "value": "{\n    \"code\": 200,\n    \"message\": \"OK\"\n}",
                     "id": 1
+                },
+                {
+                    "color": "#fff",
+                    "description": "",
+                    "name": "ReadPageRequest",
+                    "reserved": false,
+                    "summary": "",
+                    "value": "{\n    \"Page\": 1,\n    \"PerPage\": 10,\n    \"SortField\": \"Id\",\n    \"SortOrder\": \"desc\",\n    \"Filter\": {\n        \"Status\": 3,\n        \"UserId\": 3\n    },\n    \"Extra1\": {\n        \"Key1\": \"value1\",\n        \"Key2\": \"value2\"\n    },\n    \"Extra2\": {\n        \"Key1\": \"value1\",\n        \"Key2\": \"value2\"\n    }\n}",
+                    "id": 2
                 }
             ],
             "ExampleMap": [],
