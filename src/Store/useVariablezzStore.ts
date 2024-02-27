@@ -10,7 +10,10 @@ export type VariablezzStoreType = NamedItemzzStoreDataType<T>
 
 const useVariablezzStore = create<VariablezzStoreType>(function (set, get) {
     const data = makeNamedItemzzStoreData(set, get, makeVariableCRUD())
-    return data
+    return {
+        ...data,
+        sorting: true,
+    }
 })
 
 export default useVariablezzStore

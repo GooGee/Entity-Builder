@@ -1,7 +1,7 @@
 import makeRequest from "@/Database/Factory/makeRequest"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import { makeActionWu } from "@/Database/Factory/makeWu"
-import { makeRequestCRUD, makeTypeFormatCRUD, makeModuleActionCRUD } from "@/Database/makeCRUD"
+import { makeRequestCRUD, makeTypeFormatCRUD, makeModuleActionCRUD, makeParameterMapCRUD } from "@/Database/makeCRUD"
 import { OapiType } from "@/Model/Oapi"
 import { makeParameterName, makeRequestName } from "@/Service/makeName"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
@@ -17,6 +17,7 @@ import WuColumnList from "../Wu/WuColumnList"
 import createColumnTypeFormat from "@/Factory/createColumnTypeFormat"
 import useEntityzzStore from "@/Store/useEntityzzStore"
 import { PageEnum } from "@/menuzz"
+import useColumnzzStore from "@/Store/useColumnzzStore"
 
 const Step = StepEnum.Request
 
@@ -36,10 +37,14 @@ export default function ActionRequest(property: Property) {
     const sWuColumnzzStore = useWuColumnzzStore()
     const sWuzzStore = useWuzzStore()
 
+    const [filter, setFilter] = useState(false)
     const [wu, setWu] = useState<LB.Wu>()
 
     const nameRequest = makeRequestName(property.action, property.entity)
     const request = sRequestzzStore.find(property.ma.requestId)
+
+    const alias = "Filter"
+    const FilterName = makeParameterName(property.action, property.entity, alias)
 
     useEffect(() => {
         if (request === undefined) {
@@ -85,12 +90,31 @@ export default function ActionRequest(property: Property) {
     }
 
     function makeParameterFilter() {
-        const name = makeParameterName(property.action, property.entity, "Filter")
         const qp = useEntityzzStore.getState().findByName(PageEnum.ParameterInQuery)
         if (qp === undefined) {
             return
         }
-        createColumnTypeFormat(qp.id, name, "object", "", 0, "form", "", false).catch(sToastzzStore.showError)
+        const found = useColumnzzStore
+            .getState()
+            .itemzz.find((item) => item.entityId === qp.id && item.name === FilterName)
+        if (found) {
+            sToastzzStore.showError(`Parameter ${FilterName} already exists`)
+            return
+        }
+
+        createColumnTypeFormat(qp.id, FilterName, "object", "", 0, "form", "", false)
+            .then(function (column) {
+                sToastzzStore.showSuccess(`Parameter ${FilterName} created`)
+                return makeParameterMapCRUD().create({
+                    alias,
+                    columnId: column.id,
+                    pathId: null,
+                    requestId: property.ma.requestId,
+                    responseId: null,
+                })
+            })
+            .then(() => setFilter(true))
+            .catch(sToastzzStore.showError)
     }
 
     function makeRequestWu() {
@@ -155,11 +179,11 @@ export default function ActionRequest(property: Property) {
                 <h3 className="inline me-3">Parameter</h3>
                 {property.ma.name.includes("ReadPage") ? (
                     <button onClick={makeParameterFilter} className="btn btn-outline-primary" type="button">
-                        make filter
+                        make {FilterName}
                     </button>
                 ) : null}
             </div>
-            <ParameterList requestId={property.ma.requestId}></ParameterList>
+            <ParameterList filter={filter} requestId={property.ma.requestId}></ParameterList>
         </div>
     )
 }

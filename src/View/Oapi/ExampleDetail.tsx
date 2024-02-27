@@ -65,6 +65,7 @@ export default function ExampleDetail(property: Property) {
                                 })
                             }
                             className="form-control"
+                            spellCheck={false}
                         ></textarea>
                     </td>
                 </tr>

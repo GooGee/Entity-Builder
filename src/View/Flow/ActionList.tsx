@@ -154,12 +154,6 @@ export default function ActionList(property: Property) {
         <div>
             <div className="d-flex">
                 <h3>{Step}</h3>
-
-                <div>
-                    <button className="btn btn-outline-primary ms-3" type="button" onClick={makeAction}>
-                        +
-                    </button>
-                </div>
             </div>
 
             <ul className={"nav nav-tabs"}>{tabzz.map(makeTab)}</ul>
@@ -185,6 +179,12 @@ export default function ActionList(property: Property) {
                         </li>
                     )
                 })}
+
+                <li className="nav-item">
+                    <button className="btn btn-outline-primary ms-3" type="button" onClick={makeAction}>
+                        +
+                    </button>
+                </li>
             </ul>
         </div>
     )
