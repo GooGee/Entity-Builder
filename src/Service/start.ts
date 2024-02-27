@@ -12,7 +12,7 @@ import observe from "./observe"
 import startSaveTask from "./startSaveTask"
 import validateData from "./validateData"
 
-async function load(data: LB.AppInfoData | null, text: string | null) {
+async function load(data: LB.AppInfoData | null, text: string | null, needImport = false,) {
     makeJavaBridge()
 
     const preset = (await fetch("preset.json").then((r) => r.json())) as LB.AppInfoData
@@ -22,7 +22,7 @@ async function load(data: LB.AppInfoData | null, text: string | null) {
         validateData(data)
     }
     useOapiStore.getState().setOAPI(data.oapi)
-    migrate(data.db, text, preset)
+    migrate(data.db, text, preset, needImport)
     return importDB(data.db)
         .then(() => useModulePageStore.setState({ item: data?.db.tables.Module[0] }))
         .then(observe)
@@ -36,7 +36,7 @@ function saveDTS() {
         .then(() => refreshDisk())
 }
 
-export default function start(info: LB.AppInfo) {
+export default function start(info: LB.AppInfo, needImport = false,) {
     checkVersion(info.version)
     saveDTS()
 
@@ -49,7 +49,7 @@ export default function start(info: LB.AppInfo) {
             ...composer.autoload["psr-4"],
         })
     }
-    return load(aid, info.data).then(() => startSaveTask(info.data ?? ""))
+    return load(aid, info.data, needImport).then(() => startSaveTask(info.data ?? ""))
 }
 
 export function startDemo() {
