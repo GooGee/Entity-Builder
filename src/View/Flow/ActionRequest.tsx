@@ -179,7 +179,7 @@ export default function ActionRequest(property: Property) {
                 <h3 className="inline me-3">Parameter</h3>
                 {property.ma.name.includes("ReadPage") ? (
                     <button onClick={makeParameterFilter} className="btn btn-outline-primary" type="button">
-                        make {FilterName}
+                        + {FilterName}
                     </button>
                 ) : null}
             </div>
