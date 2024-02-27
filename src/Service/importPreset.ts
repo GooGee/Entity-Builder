@@ -7,9 +7,9 @@ export default function importPreset(db: LB.DBData, preset: LB.AppInfoData,) {
     })
 }
 
-function importMissing(itemzz: LB.IdItem[], preset: LB.IdItem[]) {
+function importMissing(itemzz: LB.IdItem[], source: LB.IdItem[]) {
     const map = new Map(itemzz.map((item) => [item.id, item]))
-    preset.forEach(function (item) {
+    source.forEach(function (item) {
         const found = map.get(item.id)
         if (found) {
             return
