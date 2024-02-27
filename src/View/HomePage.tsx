@@ -10,6 +10,7 @@ import WebLink from "./Button/WebLink"
 
 export default function HomePage() {
     const [error, setError] = useState("")
+    const [needImporting, setNeedImporting] = useState(false)
     const [waiting, setWaiting] = useState(false)
     const store = useAppInfoStore()
 
@@ -20,15 +21,14 @@ export default function HomePage() {
         setWaiting(true)
         setError("")
         connect()
-            .then((response) => start(response.data.data))
-            .then(() => {
-                setWaiting(false)
-                store.setConnected()
-            })
+            .then((response) => start(response.data.data, needImporting))
+            .then(() => store.setConnected())
             .catch((error) => {
                 console.log(error)
                 store.setConnected(false)
                 setError(getAxiosErrorMessage(error))
+            })
+            .finally(function () {
                 setWaiting(false)
             })
     }
@@ -46,13 +46,29 @@ export default function HomePage() {
             <div className="col-6 text-center">
                 <h1 className="text-secondary">{Constant.Name}</h1>
                 <p>{APP_VERSION}</p>
+                <p>
+                    {location.origin} {store.connected ? <span className="text-success">connected</span> : null}
+                </p>
+
                 {store.connected ? null : (
                     <p>
                         {waiting ? (
                             <span className="spinner-border text-primary"></span>
                         ) : (
                             <>
-                                <span>{location.origin}</span>
+                                <span className="form-check form-switch inline">
+                                    <input
+                                        checked={needImporting}
+                                        onChange={(event) => setNeedImporting(!needImporting)}
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="fillableSwitchCheck"
+                                    />
+                                    <label className="form-check-label" htmlFor="fillableSwitchCheck">
+                                        import missing data from preset.json
+                                    </label>
+                                </span>
                                 <br />
                                 <br />
                                 <WaitingButton onClick={doConnect} waiting={waiting}>
@@ -82,7 +98,7 @@ export default function HomePage() {
                         </button>
                     </p>
                 ) : null}
-                {store.connected ? <p className="text-success">connected to {location.origin}</p> : null}
+
                 {error ? (
                     <>
                         <p className="text-danger">{error}</p>
