@@ -1,13 +1,10 @@
 export default function importPreset(db: LB.DBData, preset: LB.AppInfoData,) {
-    importMissing(db.tables.Collection, preset.db.tables.Collection)
-    importMissing(db.tables.CollectionItem, preset.db.tables.CollectionItem)
-    importMissing(db.tables.Directory, preset.db.tables.Directory)
-    importMissing(db.tables.DoctrineColumnType, preset.db.tables.DoctrineColumnType)
-    importMissing(db.tables.File, preset.db.tables.File)
-    importMissing(db.tables.Entity, preset.db.tables.Entity)
-    importMissing(db.tables.TypeFormat, preset.db.tables.TypeFormat)
-    importMissing(db.tables.Column, preset.db.tables.Column)
-    importMissing(db.tables.ColumnConstraint, preset.db.tables.ColumnConstraint)
+    Object.keys(preset.db.tables).forEach(function (name) {
+        const table = name as keyof LB.DBTable
+        if (table in db.tables) {
+            importMissing(db.tables[table], preset.db.tables[table])
+        }
+    })
 }
 
 function importMissing(itemzz: LB.IdItem[], preset: LB.IdItem[]) {
