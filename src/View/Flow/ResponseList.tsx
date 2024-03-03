@@ -113,16 +113,28 @@ export default function ResponseList(property: Property) {
         return undefined
     }
 
+    function findWrapper(action: string) {
+        const wu = sWuzzStore.findByName("ApiItemzz")?.id
+        const map = new Map([
+            ["ReadAll", wu],
+            ["ReadMany", wu],
+            ["One", sWuzzStore.findByName("ApiItem")?.id],
+            ["ReadPage", sWuzzStore.findByName("ApiPage")?.id],
+        ])
+        for (const [key, value] of map) {
+            if (action.includes(key)) {
+                return value
+            }
+        }
+        return sWuzzStore.findByName("ApiData")?.id
+    }
+
     function makeResponseWu() {
         return makeResponseCRUD()
             .create(makeResponse(nameResponse))
             .then((lbr) => {
                 sToastzzStore.showSuccess(`Response ${lbr.name} created`)
-                const map = new Map([
-                    ["ReadMany", sWuzzStore.findByName("ApiItemzz")?.id],
-                    ["ReadPage", sWuzzStore.findByName("ApiPage")?.id],
-                ])
-                const wrapperId = map.get(property.action) ?? sWuzzStore.findByName("ApiItem")?.id ?? 1
+                const wrapperId = findWrapper(property.action) ?? 1
                 const data = makeTypeFormat(OapiType.Wu, wrapperId)
                 data.ownerResponseId = lbr.id
                 return makeTypeFormatCRUD()

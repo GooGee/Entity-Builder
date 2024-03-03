@@ -13,5 +13,5 @@ export function makeResponseName(action: string, entity: LB.Entity) {
 }
 
 export function makeWuName(action: string, entity: LB.Entity, isRequest: boolean) {
-    return makeParameterName(action, entity, isRequest ? "Form" : "DTO")
+    return makeParameterName(action, entity, isRequest ? "Form" : "Result")
 }
