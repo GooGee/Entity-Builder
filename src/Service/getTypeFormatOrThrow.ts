@@ -5,7 +5,14 @@ export default function getTypeFormatOrThrow(
 ) {
     const tf = tfzz.find((item) => item[column] === id)
     if (tf === undefined) {
-        throw new Error(`TypeFormat ${id} not found`)
+        const message = `TypeFormat of ${column} ${id} not found`
+        console.error(message)
+        // todo fix
+        const tf = tfzz.find((item) => item[column] === 1)
+        if (tf) {
+            return tf
+        }
+        throw new Error(message)
     }
     return tf
 }
