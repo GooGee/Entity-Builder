@@ -43,8 +43,5 @@ export default function makeColumn(
         explode: false,
         required: true,
         style,
-
-        raField: dct?.raField ?? "TextField",
-        raInput: dct?.raInput ?? "TextField",
     }
 }

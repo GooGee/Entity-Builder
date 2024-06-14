@@ -47,9 +47,6 @@ namespace LB {
         explode: boolean
         required: boolean
         style: string
-
-        raField: string
-        raInput: string
     }
 
     interface ColumnConstraint {
@@ -73,8 +70,6 @@ namespace LB {
         oapiFormat: string
         oapiType: string
         phpType: string
-        raField: string
-        raInput: string
     }
 
     interface Entity extends SideBarItem {

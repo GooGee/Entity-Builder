@@ -9,12 +9,12 @@ export default function migrateV035(db: LB.DBData, preset: LB.AppInfoData) {
         return
     }
 
-    db.tables.Column.forEach(function (item) {
-        item.raField = "TextField"
-        item.raInput = "TextField"
-    })
+    // db.tables.Column.forEach(function (item) {
+    //     item.raField = "TextField"
+    //     item.raInput = "TextField"
+    // })
 
-    const data = makeCollection("RAC") as LB.Collection
-    data.id = 17
-    db.tables.Collection.push(data)
+    // const data = makeCollection("RAC") as LB.Collection
+    // data.id = 17
+    // db.tables.Collection.push(data)
 }

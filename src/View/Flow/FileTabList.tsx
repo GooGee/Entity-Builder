@@ -5,7 +5,6 @@ import FileButton from "../Button/FileButton"
 import FileList from "../Entity/FileList"
 import TabList from "../Part/TabList"
 import FileView from "./FileView"
-import RacFileList from "./RacFileList"
 import { makeIdItemMap } from "@/Factory/makeMap"
 
 const Step = StepEnum.File
@@ -22,7 +21,6 @@ enum TabEnum {
     All = "All",
     Crud = "Crud",
     Test = "Test",
-    View = "View",
 }
 
 export default function FileTabList(property: Property) {
@@ -110,10 +108,6 @@ export default function FileTabList(property: Property) {
                     module={property.module}
                     directoryMap={directoryMap}
                 ></FileView>
-            ) : null}
-
-            {tab === TabEnum.View ? (
-                <RacFileList entity={property.entity} ma={property.ma} module={property.module}></RacFileList>
             ) : null}
         </div>
     )

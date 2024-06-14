@@ -12,7 +12,5 @@ export default function makeDoctrineColumnType(
         oapiFormat: "",
         oapiType: "",
         phpType,
-        raField: "",
-        raInput: "",
     }
 }

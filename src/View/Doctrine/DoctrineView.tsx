@@ -16,8 +16,6 @@ export default function DoctrineView(property: Property) {
 
     const oapitzz = OapiTypezz.slice(0, 5).map((item) => [item, item] as [string, string])
 
-    const raczz = getCollectionItemzz("RAC").map((item) => [item.name, item.name] as [string, string])
-
     function update(data: LB.DoctrineColumnType) {
         makeDoctrineColumnTypeCRUD().update(data).catch(sToastzzStore.showError)
     }
@@ -113,38 +111,6 @@ export default function DoctrineView(property: Property) {
                             className="form-control wa"
                             type="text"
                         />
-                    </td>
-                </tr>
-                <tr>
-                    <td>raField</td>
-                    <td>
-                        <SelectMapButton
-                            className="wa"
-                            itemzz={raczz}
-                            value={property.item.raField}
-                            change={function (raField) {
-                                update({
-                                    ...property.item,
-                                    raField,
-                                })
-                            }}
-                        ></SelectMapButton>
-                    </td>
-                </tr>
-                <tr>
-                    <td>raInput</td>
-                    <td>
-                        <SelectMapButton
-                            className="wa"
-                            itemzz={raczz}
-                            value={property.item.raInput}
-                            change={function (raInput) {
-                                update({
-                                    ...property.item,
-                                    raInput,
-                                })
-                            }}
-                        ></SelectMapButton>
                     </td>
                 </tr>
             </tbody>

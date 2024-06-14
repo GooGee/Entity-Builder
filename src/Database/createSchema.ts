@@ -72,8 +72,6 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("oapiFormat", lf.Type.STRING)
         .addColumn("oapiType", lf.Type.STRING)
         .addColumn("phpType", lf.Type.STRING)
-        .addColumn("raField", lf.Type.STRING)
-        .addColumn("raInput", lf.Type.STRING)
 
     item = SchemaEnum.File
     tb = builder
@@ -157,9 +155,6 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("explode", lf.Type.BOOLEAN)
         .addColumn("required", lf.Type.BOOLEAN)
         .addColumn("style", lf.Type.STRING)
-        // for React-Admin
-        .addColumn("raField", lf.Type.STRING)
-        .addColumn("raInput", lf.Type.STRING)
 
     makeForeignKey(tb, item, SchemaEnum.Entity)
     makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Entity), "name"])
