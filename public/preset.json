@@ -4215,21 +4215,21 @@
                     "directoryId": 340
                 },
                 {
-                    "name": "AbstractApiTest.php",
+                    "name": "AbstractApiTestBase.php",
                     "color": "#fff",
                     "layer": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "AbstractApiTest.php",
+                    "fileNamePattern": "AbstractApiTestBase.php",
                     "id": 370,
                     "description": "",
                     "directoryId": 84
                 },
                 {
-                    "name": "AbstractItemTest",
+                    "name": "AbstractItemTestBase",
                     "color": "#fff",
                     "layer": "Test",
                     "nameSpacePattern": "${entity.name}",
-                    "fileNamePattern": "Abstract${entity.name}Test.php",
+                    "fileNamePattern": "Abstract${entity.name}TestBase.php",
                     "id": 371,
                     "description": "",
                     "directoryId": 84
@@ -4586,12 +4586,12 @@
                 },
                 {
                     "directoryId": 88,
-                    "name": "AbstractFeatureTest.php",
+                    "name": "AbstractFeatureTestBase.php",
                     "color": "#fff",
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "",
-                    "fileNamePattern": "AbstractFeatureTest.php",
+                    "fileNamePattern": "AbstractFeatureTestBase.php",
                     "id": 570
                 },
                 {
