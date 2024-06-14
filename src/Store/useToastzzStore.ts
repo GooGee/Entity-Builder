@@ -55,7 +55,7 @@ const useToastzzStore = create<ToastzzStore>(function (set, get) {
             get().create(text, "text-danger", 0, detail)
         },
         showError(error: unknown) {
-            // console.log(error)
+            console.log(error)
             const text = getAxiosErrorMessage(error)
             const detail = typeof error === "string" ? undefined : JSON.stringify(error)
             get().showDanger(text, detail)
