@@ -2845,7 +2845,7 @@
                     "name": "smallint",
                     "reserved": false,
                     "default": "",
-                    "fakeMethod": "randomNumber",
+                    "fakeMethod": "numberBetween",
                     "fakeText": "",
                     "nullable": false,
                     "oapiFormat": "int16",
