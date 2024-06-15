@@ -11,8 +11,11 @@ import EditButton from "../Button/EditButton"
 import { Layerzz } from "@/Model/LayerEnum"
 import SelectStringButton from "../Button/SelectStringButton"
 import showInput from "../Dialog/showInput"
+import useEntityzzStore from "@/Store/useEntityzzStore"
+import FileButton from "../Button/FileButton"
 
 export default function FileProperty() {
+    const entity = useEntityzzStore.getState().itemzz[0]
     const store = useFilezzStore()
     const treeStore = useTreeStore()
     const sToastzzStore = useToastzzStore()
@@ -117,6 +120,8 @@ export default function FileProperty() {
                             />
                             <label className="form-check-label" htmlFor={"isSingleSwitchCheck" + file.id}></label>
                         </div>
+
+                        {file.isSingle ? <FileButton action="" file={file} entity={entity}></FileButton> : null}
                     </td>
                 </tr>
                 <tr>
