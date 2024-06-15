@@ -1,5 +1,4 @@
-import install, { CreateFilezz } from "@/Service/install"
-import useFilezzStore from "@/Store/useFilezzStore"
+import { getSingleFilezz } from "@/Service/install"
 import { useState } from "react"
 import FileItem from "./Entity/FileItem"
 import useEntityzzStore from "@/Store/useEntityzzStore"
@@ -8,8 +7,6 @@ export default function InstallPage() {
     const [waiting, setWaiting] = useState(false)
 
     const entity = useEntityzzStore.getState().itemzz[0]
-    const set = new Set(CreateFilezz)
-    const filezz = useFilezzStore.getState().itemzz.filter((item) => set.has(item.name))
 
     return (
         <div className="row justify-content-center">
@@ -23,7 +20,7 @@ export default function InstallPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {filezz.map((item) => (
+                        {getSingleFilezz().map((item) => (
                             <FileItem entity={entity} item={item} key={item.id}></FileItem>
                         ))}
                     </tbody>
