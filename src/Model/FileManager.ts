@@ -16,5 +16,5 @@ export function getCodeFileName(file: LB.File, extention: string) {
 }
 
 export function getFileFullNameInCode(name: string) {
-    return Constant.Folder + "/code/" + name
+    return Constant.Folder + "/code" + APP_VERSION_NUMBER + '/' + name
 }
