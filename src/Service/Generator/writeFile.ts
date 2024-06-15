@@ -34,7 +34,8 @@ export default function writeFile(
     }
 
     return cloneDB.then(function (db) {
-        return readFilezzInFolder(getDirectoryName("code")).then(function (response) {
+        const folder = 'code' + APP_VERSION_NUMBER
+        return readFilezzInFolder(getDirectoryName(folder)).then(function (response) {
             const fileMap = response.data.data
             const treeMap = makeLinkedTreeMap(db.tables.Directory)
             const treeHelper = makeTreeHelper(treeMap, psr4)

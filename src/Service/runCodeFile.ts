@@ -4,7 +4,8 @@ import { getDirectoryName, HelperCodeFileName } from "@/Model/FileManager"
 import { callCode } from "./Generator/runCode"
 
 export default function runCodeFile(name: string, entity: LB.Entity) {
-    return readFilezzInFolder(getDirectoryName("code")).then((response) =>
+    const folder = 'code' + APP_VERSION_NUMBER
+    return readFilezzInFolder(getDirectoryName(folder)).then((response) =>
         exportDB().then((db) => {
             const fileMap = response.data.data
             if (name in fileMap) {
