@@ -6,6 +6,7 @@ export default function makeFile(name: string, directoryId: number): OmitId<LB.F
         directoryId,
         name,
         color: ColorEnum.white,
+        isSingle: false,
         layer: "",
         description: "",
         nameSpacePattern: "",

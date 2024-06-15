@@ -99,6 +99,27 @@ export default function FileProperty() {
                     </td>
                 </tr>
                 <tr>
+                    <td>isSingle</td>
+                    <td>
+                        <div className="form-check form-switch">
+                            <input
+                                checked={file.isSingle}
+                                onChange={(event) =>
+                                    update({
+                                        ...file,
+                                        isSingle: event.target.checked,
+                                    })
+                                }
+                                className="form-check-input"
+                                type="checkbox"
+                                role="switch"
+                                id={"isSingleSwitchCheck" + file.id}
+                            />
+                            <label className="form-check-label" htmlFor={"isSingleSwitchCheck" + file.id}></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
                     <td>layer</td>
                     <td>
                         <SelectStringButton

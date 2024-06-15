@@ -77,6 +77,7 @@ export default function createSchema(builder: lf.Builder) {
     tb = builder
         .createTable(item)
         .addColumn("id", lf.Type.INTEGER)
+        .addColumn("isSingle", lf.Type.BOOLEAN)
         .addColumn("name", lf.Type.STRING)
         .addColumn("color", lf.Type.STRING)
         .addColumn("layer", lf.Type.STRING)

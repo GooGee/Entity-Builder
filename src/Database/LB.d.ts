@@ -97,6 +97,7 @@ namespace LB {
 
     interface File {
         id: number
+        isSingle: boolean
         directoryId: number
         name: string
         color: string
