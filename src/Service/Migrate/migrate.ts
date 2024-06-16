@@ -7,7 +7,6 @@ import migrateV040 from "./migrateV040"
 import migrateV041 from "./migrateV041"
 import migrateV042 from "./migrateV042"
 import migrateV043 from "./migrateV043"
-import importPreset from "../importPreset"
 
 const BreakingVersion = 37
 
@@ -17,12 +16,8 @@ export default function migrate(
     db: LB.DBData,
     text: string | null,
     preset: LB.AppInfoData,
-    needImport = false,
 ) {
     if (db.version === Version) {
-        if (needImport) {
-            importPreset(db, preset)
-        }
         return
     }
 
@@ -41,10 +36,6 @@ export default function migrate(
     migrateV041(db, preset)
     migrateV042(db, preset)
     migrateV043(db, preset)
-
-    if (needImport) {
-        importPreset(db, preset)
-    }
 }
 
 function backup(db: LB.DBData, text: string) {

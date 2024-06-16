@@ -11,6 +11,7 @@ import migrate from "./Migrate/migrate"
 import observe from "./observe"
 import startSaveTask from "./startSaveTask"
 import validateData from "./validateData"
+import importPreset from "./importPreset"
 
 async function load(data: LB.AppInfoData | null, text: string | null, needImport = false,) {
     makeJavaBridge()
@@ -22,7 +23,10 @@ async function load(data: LB.AppInfoData | null, text: string | null, needImport
         validateData(data)
     }
     useOapiStore.getState().setOAPI(data.oapi)
-    migrate(data.db, text, preset, needImport)
+    migrate(data.db, text, preset)
+    if (needImport) {
+        importPreset(data.db, preset)
+    }
     return importDB(data.db)
         .then(() => useModulePageStore.setState({ item: data?.db.tables.Module[0] }))
         .then(observe)
