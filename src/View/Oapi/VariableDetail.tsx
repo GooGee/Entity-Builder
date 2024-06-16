@@ -19,7 +19,7 @@ export default function VariableDetail(property: Property) {
     }
 
     function update(item: LB.Variable) {
-        makeVariableCRUD().update(item).catch(useToastzzStore().showError)
+        makeVariableCRUD().update(item).catch(useToastzzStore.getState().showError)
     }
 
     return (

@@ -3254,13 +3254,13 @@
                 },
                 {
                     "directoryId": 2,
-                    "name": "EntityEnum",
+                    "name": "EntityNameEnum",
                     "color": "#f00",
                     "isSingle": true,
                     "layer": "",
                     "description": "",
                     "nameSpacePattern": "Enum",
-                    "fileNamePattern": "EntityEnum.php",
+                    "fileNamePattern": "EntityNameEnum.php",
                     "id": 18
                 },
                 {
@@ -7043,9 +7043,9 @@
                     "description": "",
                     "name": "ApiVersion",
                     "reserved": true,
-                    "default": "v1",
+                    "default": "V1",
                     "enum": [
-                        "v1"
+                        "V1"
                     ],
                     "id": 1,
                     "type": "string"
