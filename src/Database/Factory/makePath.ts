@@ -31,23 +31,6 @@ export default function makePath(
     }
 }
 
-export function makePathFor(entity: LB.Entity, module: LB.Module, itemzz: LB.Path[]) {
-    let name = "/".concat(entity.name)
-    if (itemzz.find((item) => item.moduleId === module.id && item.name === name)) {
-        name += makePathParameterString()
-    }
-    if (itemzz.find((item) => item.moduleId === module.id && item.name === name)) {
-        name = "/".concat(entity.name).concat("_Page")
-    }
-    if (itemzz.find((item) => item.moduleId === module.id && item.name === name)) {
-        name = "/".concat(entity.name).concat("_My")
-    }
-    if (itemzz.find((item) => item.moduleId === module.id && item.name === name)) {
-        name = "/".concat(entity.name).concat("/") + new Date().getTime()
-    }
-    return makePath(name, entity.id, module.id)
-}
-
 export function makePathMethod(item: LB.Path, ma: LB.ModuleAction) {
     return makePathMethodCRUD().create({
         pathId: item.id,
