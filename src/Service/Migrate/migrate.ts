@@ -20,6 +20,9 @@ export default function migrate(
     needImport = false,
 ) {
     if (db.version === Version) {
+        if (needImport) {
+            importPreset(db, preset)
+        }
         return
     }
 
