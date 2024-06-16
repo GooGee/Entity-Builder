@@ -1,5 +1,5 @@
 import makeModuleAction from "@/Database/Factory/makeModuleAction"
-import { makeModuleActionCRUD } from "@/Database/makeCRUD"
+import { makeModuleActionCRUD, makeParameterMapCRUD } from "@/Database/makeCRUD"
 import useDirectoryzzStore from "@/Store/useDirectoryzzStore"
 import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useModuleActionzzStore from "@/Store/useModuleActionzzStore"
@@ -8,6 +8,8 @@ import { useEffect } from "react"
 import showNameInput from "../Dialog/showNameInput"
 import usePathzzStore from "@/Store/usePathzzStore"
 import { makePathMethod, makePathOf } from "@/Database/Factory/makePath"
+import useColumnzzStore from "@/Store/useColumnzzStore"
+import Constant from "@/Model/Constant"
 
 const Step = StepEnum.Action
 
@@ -126,7 +128,18 @@ export default function ActionList(property: Property) {
                 return makePathOf(item, property.entity, property.module, usePathzzStore.getState().itemzz).then(
                     function (path) {
                         sFlowPageStore.setPath(path)
-                        return makePathMethod(path, item)
+                        return makePathMethod(path, item).then(function () {
+                            if (item.name.includes("One") === false) {
+                                return
+                            }
+                            return makeParameterMapCRUD().create({
+                                alias: "",
+                                columnId: Constant.ColumnIdOfIdInParameterInPath,
+                                pathId: path.id,
+                                requestId: null,
+                                responseId: null,
+                            })
+                        })
                     },
                 )
             })

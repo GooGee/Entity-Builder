@@ -1,4 +1,6 @@
 export default class Constant {
+    static readonly ColumnIdOfIdInParameterInPath = 32
+
     static readonly Name = "Laravel Builder"
     static readonly Name2 = "laravel-builder"
     static readonly Folder = Constant.Name2
