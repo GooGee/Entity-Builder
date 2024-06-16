@@ -1,6 +1,6 @@
 const Version = 43
 
-export default function migrateV042(db: LB.DBData, preset: LB.AppInfoData) {
+export default function migrate(db: LB.DBData, preset: LB.AppInfoData) {
     if (db.version === Version) {
         db.version = Version + 1
     } else {
