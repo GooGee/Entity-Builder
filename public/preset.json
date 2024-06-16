@@ -3254,6 +3254,17 @@
                 },
                 {
                     "directoryId": 2,
+                    "name": "EventServiceProvider.php",
+                    "color": "#fff",
+                    "isSingle": true,
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "Providers",
+                    "fileNamePattern": "EventServiceProvider.php",
+                    "id": 21
+                },
+                {
+                    "directoryId": 2,
                     "name": "AbstractModel.php",
                     "color": "#fff",
                     "layer": "Model",

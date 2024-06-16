@@ -2,6 +2,10 @@ import ColorEnum from "@/Model/ColorEnum"
 import { OmitId } from "../dbhelper"
 
 export default function makeFile(name: string, directoryId: number): OmitId<LB.File> {
+    let fn = name
+    if (name.includes('.') === false) {
+        fn = fn + ".php"
+    }
     return {
         directoryId,
         name,
@@ -10,7 +14,7 @@ export default function makeFile(name: string, directoryId: number): OmitId<LB.F
         layer: "",
         description: "",
         nameSpacePattern: "",
-        fileNamePattern: name + ".php",
+        fileNamePattern: fn,
     }
 }
 
