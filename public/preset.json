@@ -3517,6 +3517,7 @@
                     "isSingle": false
                 },
                 {
+                    "directoryId": 84,
                     "name": "AbstractApiTestBase.php",
                     "color": "#fff",
                     "layer": "",
@@ -3524,10 +3525,10 @@
                     "fileNamePattern": "AbstractApiTestBase.php",
                     "id": 370,
                     "description": "",
-                    "directoryId": 84,
                     "isSingle": true
                 },
                 {
+                    "directoryId": 84,
                     "name": "AbstractItemTestBase",
                     "color": "#fff",
                     "layer": "Test",
@@ -3535,7 +3536,6 @@
                     "fileNamePattern": "Abstract${entity.name}TestBase.php",
                     "id": 371,
                     "description": "",
-                    "directoryId": 84,
                     "isSingle": false
                 },
                 {
@@ -3640,13 +3640,24 @@
                 {
                     "directoryId": 84,
                     "name": "ReadHomeItemTest",
-                    "color": "#fff",
+                    "color": "#0ff",
                     "layer": "Test",
                     "description": "",
                     "nameSpacePattern": "${entity.name}",
                     "fileNamePattern": "${action + entity.name}Test.php",
                     "id": 389,
                     "isSingle": false
+                },
+                {
+                    "directoryId": 84,
+                    "name": "ReadAllItemTest",
+                    "color": "#0ff",
+                    "isSingle": false,
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "${action + entity.name}Test.php",
+                    "id": 375
                 },
                 {
                     "directoryId": 400,
