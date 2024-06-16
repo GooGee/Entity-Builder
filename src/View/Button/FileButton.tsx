@@ -11,7 +11,7 @@ interface Property {
     fullName?: boolean
     ma?: LB.ModuleAction
     module?: LB.Module
-    entity: LB.Entity
+    entity: LB.IdNameItem
 }
 
 export default function FileButton(property: Property) {

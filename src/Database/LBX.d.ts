@@ -83,7 +83,7 @@ namespace LB {
         action: string
         db: DBData
         dependencyzz: string[]
-        entity: Entity
+        entity: IdNameItem
         file: File
         fileMap: StringMap
         helper: any
@@ -114,21 +114,21 @@ namespace LB {
     }
 
     interface DataForScriptTreeHelper {
-        getClassName: (file: File, entity: Entity, action: string) => string
-        getClassFullName: (file: File, entity: Entity, action: string) => string
+        getClassName: (file: File, entity: IdNameItem, action: string) => string
+        getClassFullName: (file: File, entity: IdNameItem, action: string) => string
         getDirectoryFullName: (
             directory: Directory,
-            entity: Entity,
+            entity: IdNameItem,
             action: string,
         ) => string
-        getFileName: (file: File, entity: Entity, action: string) => string
-        getFileFullName: (file: File, entity: Entity, action: string) => string
+        getFileName: (file: File, entity: IdNameItem, action: string) => string
+        getFileFullName: (file: File, entity: IdNameItem, action: string) => string
         getFullNameSpace: (
             directory: Directory,
-            entity: Entity,
+            entity: IdNameItem,
             action: string,
         ) => string
-        getFullNameSpaceOfFile: (file: File, entity: Entity, action: string) => string
+        getFullNameSpaceOfFile: (file: File, entity: IdNameItem, action: string) => string
         makeNameSpacezz: (directory: Directory, namezz: string[]) => string[]
         replacePSR4: (name: string) => void
     }

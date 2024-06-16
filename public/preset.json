@@ -3243,6 +3243,28 @@
                 },
                 {
                     "directoryId": 2,
+                    "name": "Enum",
+                    "color": "#f00",
+                    "isSingle": false,
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "Enum",
+                    "fileNamePattern": "${entity.name}.php",
+                    "id": 17
+                },
+                {
+                    "directoryId": 2,
+                    "name": "EntityEnum",
+                    "color": "#f00",
+                    "isSingle": true,
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "Enum",
+                    "fileNamePattern": "EntityEnum.php",
+                    "id": 18
+                },
+                {
+                    "directoryId": 2,
                     "name": "ApiEvent.php",
                     "color": "#f00",
                     "layer": "",

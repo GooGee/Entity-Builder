@@ -5,11 +5,11 @@ export default function makeTreeHelper(
     treeMap: Map<number, LinkedTreeNode<LB.Directory>>,
     psr4: LB.StringMap,
 ) {
-    function getClassName(file: LB.File, entity: LB.Entity, action: string) {
+    function getClassName(file: LB.File, entity: LB.IdNameItem, action: string) {
         return getFileName(file, entity, action).slice(0, -4)
     }
 
-    function getClassFullName(file: LB.File, entity: LB.Entity, action: string) {
+    function getClassFullName(file: LB.File, entity: LB.IdNameItem, action: string) {
         const data = { file, entity, action } as DataType
         const namezz = [file.fileNamePattern]
         if (file.nameSpacePattern) {
@@ -25,7 +25,7 @@ export default function makeTreeHelper(
 
     function getDirectoryFullName(
         directory: LB.Directory,
-        entity: LB.Entity,
+        entity: LB.IdNameItem,
         action: string,
     ) {
         const data = { entity, action } as DataType
@@ -35,11 +35,11 @@ export default function makeTreeHelper(
         return replacePSR4(parseTemplate(text, data))
     }
 
-    function getFileName(file: LB.File, entity: LB.Entity, action: string) {
+    function getFileName(file: LB.File, entity: LB.IdNameItem, action: string) {
         return parseTemplate(file.fileNamePattern, { entity, action })
     }
 
-    function getFileFullName(file: LB.File, entity: LB.Entity, action: string) {
+    function getFileFullName(file: LB.File, entity: LB.IdNameItem, action: string) {
         const data = { file, entity, action } as DataType
         const namezz = [file.fileNamePattern]
         if (file.nameSpacePattern) {
@@ -55,7 +55,7 @@ export default function makeTreeHelper(
 
     function getFullNameSpace(
         directory: LB.Directory,
-        entity: LB.Entity,
+        entity: LB.IdNameItem,
         action: string,
     ) {
         const data = { entity, action } as DataType
@@ -65,7 +65,7 @@ export default function makeTreeHelper(
         return parseTemplate(text, data).replaceAll("/", "\\")
     }
 
-    function getFullNameSpaceOfFile(file: LB.File, entity: LB.Entity, action: string) {
+    function getFullNameSpaceOfFile(file: LB.File, entity: LB.IdNameItem, action: string) {
         const text = getClassFullName(file, entity, action)
         return text.slice(0, text.lastIndexOf("\\"))
     }

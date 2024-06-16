@@ -19,7 +19,7 @@ import { callCode } from "./runCode"
 
 export default function writeFile(
     file: LB.File,
-    entity: LB.Entity,
+    entity: LB.IdNameItem,
     module: LB.Module | undefined = undefined,
     ma: LB.ModuleAction | undefined = undefined,
     action: string,
