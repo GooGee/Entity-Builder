@@ -31,7 +31,7 @@ export default function Constraint(property: Property) {
                         makeColumnConstraintCRUD()
                             .update({
                                 ...property.item,
-                                parameter: event.target.value,
+                                parameter: event.target.value ?? "",
                             })
                             .catch(sToastzzStore.showError)
                     }

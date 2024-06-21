@@ -22,10 +22,6 @@ export default function ConstraintList(property: Property) {
     }, [property.column, sColumnConstraintzzStore.itemzz])
 
     function ruleText(item: LB.ColumnConstraint) {
-        if (item.parameter.startsWith("Rule::")) {
-            return item.parameter
-        }
-
         if (item.parameter) {
             return `${item.name}:${item.parameter}`
         }
