@@ -2,11 +2,13 @@ import { getSingleFilezz } from "@/Service/install"
 import { useState } from "react"
 import FileItem from "./Entity/FileItem"
 import useEntityzzStore from "@/Store/useEntityzzStore"
+import useModulezzStore from "@/Store/useModulezzStore"
 
 export default function InstallPage() {
     const [waiting, setWaiting] = useState(false)
 
     const entity = useEntityzzStore.getState().itemzz[0]
+    const module = useModulezzStore.getState().itemzz[0]
 
     return (
         <div className="row justify-content-center">
@@ -21,7 +23,7 @@ export default function InstallPage() {
                     </thead>
                     <tbody>
                         {getSingleFilezz().map((item) => (
-                            <FileItem entity={entity} item={item} key={item.id}></FileItem>
+                            <FileItem entity={entity} item={item} key={item.id} module={module}></FileItem>
                         ))}
                     </tbody>
                 </table>
