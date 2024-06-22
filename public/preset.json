@@ -2835,6 +2835,111 @@
                     "opened": true,
                     "description": "",
                     "id": 88
+                },
+                {
+                    "parentId": 2,
+                    "name": "ApiGuest",
+                    "opened": true,
+                    "description": "",
+                    "id": 491
+                },
+                {
+                    "parentId": 491,
+                    "name": "${entity.name}",
+                    "opened": true,
+                    "description": "",
+                    "id": 492
+                },
+                {
+                    "parentId": 492,
+                    "name": "Cache",
+                    "opened": true,
+                    "description": "",
+                    "id": 493
+                },
+                {
+                    "parentId": 492,
+                    "name": "CreateMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 494
+                },
+                {
+                    "parentId": 492,
+                    "name": "CreateOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 495
+                },
+                {
+                    "parentId": 492,
+                    "name": "DeleteMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 496
+                },
+                {
+                    "parentId": 492,
+                    "name": "DeleteOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 497
+                },
+                {
+                    "parentId": 492,
+                    "name": "ReadMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 498
+                },
+                {
+                    "parentId": 492,
+                    "name": "ReadOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 499
+                },
+                {
+                    "parentId": 492,
+                    "name": "UpdateMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 500
+                },
+                {
+                    "parentId": 492,
+                    "name": "UpdateOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 501
+                },
+                {
+                    "parentId": 492,
+                    "name": "ReadPage",
+                    "opened": true,
+                    "description": "",
+                    "id": 502
+                },
+                {
+                    "parentId": 492,
+                    "name": "ReadAll",
+                    "opened": true,
+                    "description": "",
+                    "id": 503
+                },
+                {
+                    "parentId": 492,
+                    "name": "ReadHome",
+                    "opened": true,
+                    "description": "",
+                    "id": 504
+                },
+                {
+                    "parentId": 80,
+                    "name": "ApiGuest",
+                    "opened": true,
+                    "description": "",
+                    "id": 505
                 }
             ],
             "DoctrineColumnType": [
@@ -6955,6 +7060,17 @@
                     "prefix": "/Api",
                     "id": 2,
                     "fileId": 53
+                },
+                {
+                    "color": "#80f",
+                    "description": "",
+                    "name": "ApiGuest",
+                    "reserved": false,
+                    "directoryId": 492,
+                    "fileId": 53,
+                    "testDirectoryId": 505,
+                    "prefix": "/ApiGuest",
+                    "id": 3
                 }
             ],
             "Path": [
