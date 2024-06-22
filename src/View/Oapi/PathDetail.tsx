@@ -5,6 +5,7 @@ import { ReactElement } from "react"
 import ParameterList from "./ParameterList"
 import PathMethodList from "./PathMethodList"
 import ServerList from "./ServerList"
+import ColorButtonGroup from "../Button/ColorButtonGroup"
 
 interface Property {
     children: ReactElement
@@ -16,20 +17,33 @@ interface Property {
 
 export default function PathDetail(property: Property) {
     const sPathPageStore = usePathPageStore()
-    const sToastzzStore = useToastzzStore()
 
     function update(item: LB.Path) {
         sPathPageStore.setItem(item)
         makePathCRUD()
             .update(item)
             .then((response) => sPathPageStore.setItem(response))
-            .catch(sToastzzStore.showError)
+            .catch(useToastzzStore.getState().showError)
     }
 
     return (
         <table className="table td0-tar">
             <caption>{property.children}</caption>
             <tbody>
+                <tr>
+                    <td>color</td>
+                    <td>
+                        <ColorButtonGroup
+                            color={property.item.color}
+                            setColor={(color) =>
+                                update({
+                                    ...property.item,
+                                    color,
+                                })
+                            }
+                        ></ColorButtonGroup>
+                    </td>
+                </tr>
                 <tr>
                     <td className="w111">parameter</td>
                     <td>

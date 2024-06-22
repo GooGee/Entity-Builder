@@ -23,7 +23,7 @@ export default function ModuleDetail(property: Property) {
     const sModulePageStore = useModulePageStore()
     const sToastzzStore = useToastzzStore()
 
-    const entity = makeEntity("") as LB.Entity
+    const entity = makeEntity("Item") as LB.Entity
 
     const directory = sDirectoryzzStore.find(property.item.directoryId)
     const testDirectory = sDirectoryzzStore.find(property.item.testDirectoryId)
