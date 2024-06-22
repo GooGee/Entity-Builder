@@ -1,12 +1,16 @@
 import makeKeywordRE from "@/Service/makeKeywordRE"
 import useListModalStore from "@/Store/useListModalStore"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ReactModal from "react-modal"
 
 export default function ListModal() {
     const sListModalStore = useListModalStore()
 
-    const [text, setText] = useState("")
+    const [text, setText] = useState(sListModalStore.text)
+
+    useEffect(() => {
+        setText(sListModalStore.text)
+    }, [sListModalStore.text])
 
     const re = makeKeywordRE(text)
 
@@ -23,6 +27,7 @@ export default function ListModal() {
                     value={text}
                     onChange={function (event) {
                         setText(event.target.value)
+                        sListModalStore.setText(event.target.value)
                     }}
                     autoFocus
                     type="text"
