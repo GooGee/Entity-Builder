@@ -64,7 +64,7 @@ export default function FileList(property: Property) {
         if (sListModalStore.text === "") {
             sListModalStore.text = property.action
         }
-        const namezz = sFilezzStore.itemzz.map((item) => item.name)
+        const namezz = sFilezzStore.itemzz.filter((item) => item.isSingle === false).map((item) => item.name)
         sListModalStore.openCB("select a file", namezz, function (name) {
             const item = sFilezzStore.findByName(name)
             if (item === undefined) {

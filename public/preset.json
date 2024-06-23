@@ -3556,6 +3556,28 @@
                     "isSingle": true
                 },
                 {
+                    "directoryId": 65,
+                    "name": "ApiGuest.php",
+                    "color": "#fff",
+                    "isSingle": true,
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ApiGuest.php",
+                    "id": 54
+                },
+                {
+                    "directoryId": 65,
+                    "name": "ApiUser.php",
+                    "color": "#fff",
+                    "isSingle": true,
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "ApiUser.php",
+                    "id": 55
+                },
+                {
                     "directoryId": 70,
                     "name": "TypeScriptDeclaration",
                     "color": "#f00",
