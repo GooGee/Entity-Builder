@@ -2616,7 +2616,7 @@
                     "parentId": 2,
                     "description": "",
                     "opened": true,
-                    "name": "Admin",
+                    "name": "ApiAdmin",
                     "id": 10
                 },
                 {
@@ -2826,7 +2826,7 @@
                     "parentId": 80,
                     "description": "",
                     "opened": true,
-                    "name": "Admin",
+                    "name": "ApiAdmin",
                     "id": 81
                 },
                 {
@@ -7075,11 +7075,11 @@
                 {
                     "color": "#f00",
                     "description": "",
-                    "name": "Admin",
+                    "name": "ApiAdmin",
                     "reserved": false,
                     "directoryId": 11,
                     "testDirectoryId": 81,
-                    "prefix": "/Admin",
+                    "prefix": "/ApiAdmin",
                     "id": 1,
                     "fileId": 53
                 },
@@ -7100,7 +7100,7 @@
                     "name": "ApiGuest",
                     "reserved": false,
                     "directoryId": 492,
-                    "fileId": 53,
+                    "fileId": 54,
                     "testDirectoryId": 505,
                     "prefix": "/ApiGuest",
                     "id": 3
