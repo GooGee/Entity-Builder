@@ -6,7 +6,7 @@ let client = createClient()
 function createClient() {
     return axios.create({
         baseURL: location.origin + "/" + Constant.Name2,
-        timeout: 11000,
+        timeout: 33000,
     })
 }
 
@@ -31,10 +31,12 @@ export function putCode(file: string, content: string) {
     return client.put<LB.ApiResponse<null>>("code", { file, content })
 }
 
+export function readFile(file: string) {
+    return client.get<LB.ApiResponse<string>>("file", { params: { file } })
+}
+
 export function readFilezzInFolder(folder: string) {
-    return client.get<LB.ApiResponse<LB.StringMap>>("file", {
-        params: { folder },
-    })
+    return client.get<LB.ApiResponse<LB.StringMap>>("file", { params: { folder }, })
 }
 
 export function readDBSchema() {

@@ -6,6 +6,9 @@ import CaretLeft from "../Button/CaretLeft"
 import SkipEnd from "../Button/SkipEnd"
 import SkipStart from "../Button/SkipStart"
 import showConfirm from "../Dialog/showConfirm"
+import { MigrationCodeFileName } from "@/Model/FileManager"
+import runCodeFile from "@/Service/runCodeFile"
+import useEntityzzStore from "@/Store/useEntityzzStore"
 
 interface Property {
     waiting: boolean
@@ -33,6 +36,12 @@ export default function ControlButton(property: Property) {
     return (
         <div>
             <div className="mb-3">
+                {waiting === false ? null : (
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                )}
+
                 <button
                     disabled={waiting || property.waiting}
                     onClick={function () {
@@ -42,11 +51,13 @@ export default function ControlButton(property: Property) {
 
                         setWaiting(true)
                         createMigrationFile()
-                            .then((response) => sToastzzStore.showSuccess(response.data.data))
+                            .then(function (response) {
+                                sToastzzStore.showSuccess(response.data.data)
+                            })
                             .then(refreshDisk)
                             .then(property.read)
                             .catch(sToastzzStore.showError)
-                            .then(() => setWaiting(false))
+                            .finally(() => setWaiting(false))
                     }}
                     className="btn btn-outline-success me-2"
                     type="button"

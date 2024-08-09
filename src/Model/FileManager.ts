@@ -5,6 +5,7 @@ export const TemplateExtention = ".txt"
 
 export const FactoryCodeFileName = "code-factory.js"
 export const HelperCodeFileName = "code-helper.js"
+export const MigrationCodeFileName = "code-migration.js"
 export const ValidationCodeFileName = "code-validation.js"
 
 export function getDirectoryName(name: string) {
