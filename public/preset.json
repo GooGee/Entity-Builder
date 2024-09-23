@@ -106,35 +106,35 @@
             "CollectionItem": [
                 {
                     "collectionId": 5,
-                    "name": "DtCreate",
+                    "name": "CreatedAt",
                     "value": "",
                     "tag": "datetime",
                     "id": 379
                 },
                 {
                     "collectionId": 5,
-                    "name": "DtUpdate",
+                    "name": "UpdatedAt",
                     "value": "",
                     "tag": "datetime",
                     "id": 380
                 },
                 {
                     "collectionId": 5,
-                    "name": "DtDelete",
+                    "name": "DeletedAt",
                     "value": "",
                     "tag": "datetime",
                     "id": 381
                 },
                 {
                     "collectionId": 5,
-                    "name": "DtPublish",
+                    "name": "PublishedAt",
                     "value": "",
                     "tag": "datetime",
                     "id": 522
                 },
                 {
                     "collectionId": 5,
-                    "name": "DtArchive",
+                    "name": "ArchivedAt",
                     "value": "",
                     "tag": "datetime",
                     "id": 523
@@ -1191,14 +1191,14 @@
                 },
                 {
                     "collectionId": 11,
-                    "name": "DtCreate",
+                    "name": "CreatedAt",
                     "value": "",
                     "tag": "dateTime",
                     "id": 395
                 },
                 {
                     "collectionId": 11,
-                    "name": "DtUpdate",
+                    "name": "UpdatedAt",
                     "value": "",
                     "tag": "dateTime",
                     "id": 396
@@ -1219,21 +1219,21 @@
                 },
                 {
                     "collectionId": 14,
-                    "name": "DtCreate",
+                    "name": "CreatedAt",
                     "value": "",
                     "tag": "",
                     "id": 411
                 },
                 {
                     "collectionId": 14,
-                    "name": "DtUpdate",
+                    "name": "UpdatedAt",
                     "value": "",
                     "tag": "",
                     "id": 412
                 },
                 {
                     "collectionId": 14,
-                    "name": "DtDelete",
+                    "name": "DeletedAt",
                     "value": "",
                     "tag": "",
                     "id": 413
@@ -5894,7 +5894,7 @@
                 },
                 {
                     "entityId": 4,
-                    "name": "DtCreate",
+                    "name": "CreatedAt",
                     "type": "datetime",
                     "length": 0,
                     "scale": 0,
@@ -5929,7 +5929,7 @@
                 },
                 {
                     "entityId": 4,
-                    "name": "DtUpdate",
+                    "name": "UpdatedAt",
                     "type": "datetime",
                     "length": 0,
                     "scale": 0,
@@ -5964,7 +5964,7 @@
                 },
                 {
                     "entityId": 4,
-                    "name": "DtDelete",
+                    "name": "DeletedAt",
                     "type": "datetime",
                     "length": 0,
                     "scale": 0,
