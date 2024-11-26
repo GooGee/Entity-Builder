@@ -2940,6 +2940,27 @@
                     "opened": true,
                     "description": "",
                     "id": 505
+                },
+                {
+                    "parentId": 2,
+                    "name": "ApiUser",
+                    "opened": true,
+                    "description": "",
+                    "id": 506
+                },
+                {
+                    "parentId": 506,
+                    "name": "${entity.name}",
+                    "opened": true,
+                    "description": "",
+                    "id": 507
+                },
+                {
+                    "parentId": 80,
+                    "name": "ApiUser",
+                    "opened": true,
+                    "description": "",
+                    "id": 508
                 }
             ],
             "DoctrineColumnType": [
@@ -3572,7 +3593,7 @@
                     "color": "#fff",
                     "isSingle": true,
                     "layer": "",
-                    "description": "",
+                    "description": "Apis for accessing other users public data",
                     "nameSpacePattern": "",
                     "fileNamePattern": "ApiGuest.php",
                     "id": 54
@@ -3583,7 +3604,7 @@
                     "color": "#fff",
                     "isSingle": true,
                     "layer": "",
-                    "description": "",
+                    "description": "Apis for accessing users own data",
                     "nameSpacePattern": "",
                     "fileNamePattern": "ApiUser.php",
                     "id": 55
@@ -7074,7 +7095,7 @@
             "Module": [
                 {
                     "color": "#f00",
-                    "description": "",
+                    "description": "Apis for admins",
                     "name": "ApiAdmin",
                     "reserved": false,
                     "directoryId": 11,
@@ -7096,7 +7117,7 @@
                 },
                 {
                     "color": "#80f",
-                    "description": "",
+                    "description": "Apis for accessing other users public data",
                     "name": "ApiGuest",
                     "reserved": false,
                     "directoryId": 492,
@@ -7104,6 +7125,17 @@
                     "testDirectoryId": 505,
                     "prefix": "/ApiGuest",
                     "id": 3
+                },
+                {
+                    "color": "#0ff",
+                    "description": "Apis for accessing users own data",
+                    "name": "ApiUser",
+                    "reserved": false,
+                    "directoryId": 507,
+                    "testDirectoryId": 508,
+                    "fileId": 55,
+                    "prefix": "/ApiUser",
+                    "id": 4
                 }
             ],
             "Path": [
