@@ -2841,126 +2841,210 @@
                     "name": "ApiGuest",
                     "opened": true,
                     "description": "",
-                    "id": 491
-                },
-                {
-                    "parentId": 491,
-                    "name": "${entity.name}",
-                    "opened": true,
-                    "description": "",
-                    "id": 492
-                },
-                {
-                    "parentId": 492,
-                    "name": "Cache",
-                    "opened": true,
-                    "description": "",
-                    "id": 493
-                },
-                {
-                    "parentId": 492,
-                    "name": "CreateMany",
-                    "opened": true,
-                    "description": "",
-                    "id": 494
-                },
-                {
-                    "parentId": 492,
-                    "name": "CreateOne",
-                    "opened": true,
-                    "description": "",
-                    "id": 495
-                },
-                {
-                    "parentId": 492,
-                    "name": "DeleteMany",
-                    "opened": true,
-                    "description": "",
-                    "id": 496
-                },
-                {
-                    "parentId": 492,
-                    "name": "DeleteOne",
-                    "opened": true,
-                    "description": "",
-                    "id": 497
-                },
-                {
-                    "parentId": 492,
-                    "name": "ReadMany",
-                    "opened": true,
-                    "description": "",
-                    "id": 498
-                },
-                {
-                    "parentId": 492,
-                    "name": "ReadOne",
-                    "opened": true,
-                    "description": "",
-                    "id": 499
-                },
-                {
-                    "parentId": 492,
-                    "name": "UpdateMany",
-                    "opened": true,
-                    "description": "",
-                    "id": 500
-                },
-                {
-                    "parentId": 492,
-                    "name": "UpdateOne",
-                    "opened": true,
-                    "description": "",
                     "id": 501
                 },
                 {
-                    "parentId": 492,
-                    "name": "ReadPage",
-                    "opened": true,
+                    "parentId": 501,
+                    "name": "${entity.name}",
+                    "opened": false,
                     "description": "",
                     "id": 502
                 },
                 {
-                    "parentId": 492,
-                    "name": "ReadAll",
+                    "parentId": 502,
+                    "name": "Cache",
                     "opened": true,
                     "description": "",
                     "id": 503
                 },
                 {
-                    "parentId": 492,
-                    "name": "ReadHome",
+                    "parentId": 502,
+                    "name": "CreateMany",
                     "opened": true,
                     "description": "",
                     "id": 504
+                },
+                {
+                    "parentId": 502,
+                    "name": "CreateOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 505
+                },
+                {
+                    "parentId": 502,
+                    "name": "DeleteMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 506
+                },
+                {
+                    "parentId": 502,
+                    "name": "DeleteOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 507
+                },
+                {
+                    "parentId": 502,
+                    "name": "ReadMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 508
+                },
+                {
+                    "parentId": 502,
+                    "name": "ReadOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 509
+                },
+                {
+                    "parentId": 502,
+                    "name": "UpdateMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 510
+                },
+                {
+                    "parentId": 502,
+                    "name": "UpdateOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 511
+                },
+                {
+                    "parentId": 502,
+                    "name": "ReadPage",
+                    "opened": true,
+                    "description": "",
+                    "id": 512
+                },
+                {
+                    "parentId": 502,
+                    "name": "ReadAll",
+                    "opened": true,
+                    "description": "",
+                    "id": 513
+                },
+                {
+                    "parentId": 502,
+                    "name": "ReadHome",
+                    "opened": true,
+                    "description": "",
+                    "id": 514
                 },
                 {
                     "parentId": 80,
                     "name": "ApiGuest",
                     "opened": true,
                     "description": "",
-                    "id": 505
+                    "id": 555
                 },
                 {
                     "parentId": 2,
                     "name": "ApiUser",
                     "opened": true,
                     "description": "",
-                    "id": 506
+                    "id": 601
                 },
                 {
-                    "parentId": 506,
+                    "parentId": 601,
                     "name": "${entity.name}",
+                    "opened": false,
+                    "description": "",
+                    "id": 602
+                },
+                {
+                    "parentId": 602,
+                    "name": "Cache",
                     "opened": true,
                     "description": "",
-                    "id": 507
+                    "id": 603
+                },
+                {
+                    "parentId": 602,
+                    "name": "CreateMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 604
+                },
+                {
+                    "parentId": 602,
+                    "name": "CreateOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 605
+                },
+                {
+                    "parentId": 602,
+                    "name": "DeleteMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 606
+                },
+                {
+                    "parentId": 602,
+                    "name": "DeleteOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 607
+                },
+                {
+                    "parentId": 602,
+                    "name": "ReadMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 608
+                },
+                {
+                    "parentId": 602,
+                    "name": "ReadOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 609
+                },
+                {
+                    "parentId": 602,
+                    "name": "UpdateMany",
+                    "opened": true,
+                    "description": "",
+                    "id": 610
+                },
+                {
+                    "parentId": 602,
+                    "name": "UpdateOne",
+                    "opened": true,
+                    "description": "",
+                    "id": 611
+                },
+                {
+                    "parentId": 602,
+                    "name": "ReadPage",
+                    "opened": true,
+                    "description": "",
+                    "id": 612
+                },
+                {
+                    "parentId": 602,
+                    "name": "ReadAll",
+                    "opened": true,
+                    "description": "",
+                    "id": 613
+                },
+                {
+                    "parentId": 602,
+                    "name": "ReadHome",
+                    "opened": true,
+                    "description": "",
+                    "id": 614
                 },
                 {
                     "parentId": 80,
                     "name": "ApiUser",
                     "opened": true,
                     "description": "",
-                    "id": 508
+                    "id": 666
                 }
             ],
             "DoctrineColumnType": [
@@ -7120,9 +7204,9 @@
                     "description": "Apis for accessing other users public data",
                     "name": "ApiGuest",
                     "reserved": false,
-                    "directoryId": 492,
+                    "directoryId": 502,
                     "fileId": 54,
-                    "testDirectoryId": 505,
+                    "testDirectoryId": 555,
                     "prefix": "/ApiGuest",
                     "id": 3
                 },
@@ -7131,8 +7215,8 @@
                     "description": "Apis for accessing users own data",
                     "name": "ApiUser",
                     "reserved": false,
-                    "directoryId": 507,
-                    "testDirectoryId": 508,
+                    "directoryId": 602,
+                    "testDirectoryId": 666,
                     "fileId": 55,
                     "prefix": "/ApiUser",
                     "id": 4
