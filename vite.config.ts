@@ -29,7 +29,7 @@ export default defineConfig({
     server: {
         proxy: {
             "^/laravel-builder": {
-                target: "http://127.0.0.1",
+                target: "http://localhost:80",
                 changeOrigin: true,
                 cookieDomainRewrite: "",
             },
