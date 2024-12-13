@@ -262,7 +262,6 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("description", lf.Type.STRING)
         .addColumn("filezz", lf.Type.OBJECT)
         .addColumn("name", lf.Type.STRING)
-        .addColumn("operationId", lf.Type.STRING)
         .addColumn("summary", lf.Type.STRING)
         .addColumn("routeName", lf.Type.STRING)
         .addPrimaryKey(["id"], true)
@@ -270,7 +269,6 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Request)
     makeForeignKey(tb, item, SchemaEnum.Entity)
     makeForeignKey(tb, item, SchemaEnum.Module)
-    makeUniqueKey(tb, item, ["operationId"])
     makeUniqueKey(tb, item, [
         makeForeignKeyId(SchemaEnum.Entity),
         makeForeignKeyId(SchemaEnum.Module),

@@ -136,31 +136,6 @@ export default function ActionDetail(property: Property) {
                     </td>
                 </tr>
                 <tr>
-                    <td>operationId</td>
-                    <td>
-                        <button
-                            className="btn btn-outline-primary"
-                            type="button"
-                            onClick={function () {
-                                showNameInput("Please input an unique operationId", item.operationId)
-                                    .then((response) => {
-                                        if (response.isConfirmed) {
-                                            return makeModuleActionCRUD()
-                                                .update({
-                                                    ...item,
-                                                    operationId: response.value,
-                                                })
-                                                .then(setItem)
-                                        }
-                                    })
-                                    .catch(sToastzzStore.showError)
-                            }}
-                        >
-                            {item.operationId}
-                        </button>
-                    </td>
-                </tr>
-                <tr>
                     <td>description</td>
                     <td>
                         <textarea

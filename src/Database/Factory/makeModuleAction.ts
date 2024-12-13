@@ -16,7 +16,6 @@ export default function makeModuleAction(
         filezz: [],
         summary:
             module.name + " " + lodash.lowerCase(directory.name) + " " + entity.name,
-        operationId: module.name + "_" + directory.name + entity.name,
         directoryId: directory.id,
         entityId: entity.id,
         moduleId: module.id,
