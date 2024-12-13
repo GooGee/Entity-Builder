@@ -268,6 +268,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
         const found = entityMap.get(item.entityId)
         const data = makePath(
             item,
+            mimm,
             entityMap,
             marzzm,
             maipzzm,

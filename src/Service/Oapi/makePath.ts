@@ -10,6 +10,7 @@ export type ModuleActionWithMethod = LB.ModuleAction & { method: string }
 
 export default function makePath(
     item: LB.Path,
+    mimm: Map<number, LB.Module>,
     eiem: Map<number, LB.Entity>,
     marzzm: Map<number, ModuleActionResponseWithName[]>,
     maipzzm: Map<number, LB.Column[]>,
@@ -50,6 +51,8 @@ export default function makePath(
             old[item.status] = makeReferenceOf(item.name, ComponentKind.responses)
             return old
         }, Object.create(null) as Record<string, ReferenceObject>)
+        const module = mimm.get(item.moduleId)!
+        const entity = eiem.get(item.entityId)!
         const data: OperationObject = {
             deprecated: item.deprecated,
             description: item.description,
@@ -57,7 +60,7 @@ export default function makePath(
                 makeParameterReference(item, eiem),
             ),
             responses,
-            operationId: item.operationId,
+            operationId: module.name + "_" + item.name + entity.name,
             summary: item.summary,
             tags: [tag],
         }
