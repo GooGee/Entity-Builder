@@ -7206,35 +7206,35 @@
             ],
             "Module": [
                 {
-                    "color": "#f00",
-                    "description": "Apis for admins",
-                    "name": "ApiAdmin",
-                    "reserved": false,
-                    "directoryId": 11,
-                    "testDirectoryId": 81,
-                    "prefix": "/ApiAdmin",
-                    "id": 1,
-                    "fileId": 56
-                },
-                {
                     "color": "#0f0",
                     "description": "",
                     "name": "Api",
                     "reserved": false,
-                    "directoryId": 41,
-                    "testDirectoryId": 84,
+                    "directoryId": 102,
+                    "testDirectoryId": 101,
                     "prefix": "/Api",
+                    "id": 1,
+                    "fileId": 1000
+                },
+                {
+                    "color": "#f00",
+                    "description": "Apis for admins",
+                    "name": "ApiAdmin",
+                    "reserved": false,
+                    "directoryId": 202,
+                    "testDirectoryId": 201,
+                    "prefix": "/ApiAdmin",
                     "id": 2,
-                    "fileId": 53
+                    "fileId": 2000
                 },
                 {
                     "color": "#80f",
                     "description": "Apis for accessing other users public data",
                     "name": "ApiGuest",
                     "reserved": false,
-                    "directoryId": 502,
-                    "fileId": 54,
-                    "testDirectoryId": 555,
+                    "directoryId": 302,
+                    "fileId": 3000,
+                    "testDirectoryId": 301,
                     "prefix": "/ApiGuest",
                     "id": 3
                 },
@@ -7243,9 +7243,9 @@
                     "description": "Apis for accessing users own data",
                     "name": "ApiUser",
                     "reserved": false,
-                    "directoryId": 602,
-                    "testDirectoryId": 666,
-                    "fileId": 55,
+                    "directoryId": 402,
+                    "testDirectoryId": 401,
+                    "fileId": 4000,
                     "prefix": "/ApiUser",
                     "id": 4
                 }
