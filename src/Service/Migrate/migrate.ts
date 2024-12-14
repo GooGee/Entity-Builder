@@ -1,16 +1,9 @@
 import { putFile } from "@/api"
 import { getDirectoryName } from "@/Model/FileManager"
-import migrateV037 from "./migrateV037"
-import migrateV038 from "./migrateV038"
-import migrateV039 from "./migrateV039"
-import migrateV040 from "./migrateV040"
-import migrateV041 from "./migrateV041"
-import migrateV042 from "./migrateV042"
-import migrateV043 from "./migrateV043"
 
-const BreakingVersion = 37
+const BreakingVersion = 50
 
-export const Version = 44
+export const Version = 50
 
 export default function migrate(
     db: LB.DBData,
@@ -29,13 +22,6 @@ export default function migrate(
         throw new Error(`data version ${db.version} is no longer supported`)
     }
 
-    migrateV037(db, preset)
-    migrateV038(db, preset)
-    migrateV039(db, preset)
-    migrateV040(db, preset)
-    migrateV041(db, preset)
-    migrateV042(db, preset)
-    migrateV043(db, preset)
 }
 
 function backup(db: LB.DBData, text: string) {
