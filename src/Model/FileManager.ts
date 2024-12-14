@@ -13,7 +13,8 @@ export function getDirectoryName(name: string) {
 }
 
 export function getCodeFileName(file: LB.File, extention: string) {
-    return `file-${file.id + extention}`
+    const id = file.id.toString().padStart(4, "0")
+    return `file-${id + extention}`
 }
 
 export function getFileFullNameInCode(name: string) {
