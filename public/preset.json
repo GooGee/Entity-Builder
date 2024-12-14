@@ -2610,7 +2610,7 @@
                     "description": "",
                     "opened": true,
                     "name": "Database",
-                    "id": 50
+                    "id": 30
                 },
                 {
                     "parentId": 1,
@@ -2624,7 +2624,7 @@
                     "description": "",
                     "opened": true,
                     "name": "routes",
-                    "id": 80
+                    "id": 50
                 },
                 {
                     "parentId": 1,
@@ -2643,21 +2643,21 @@
                 {
                     "parentId": 10,
                     "description": "",
-                    "opened": true,
+                    "opened": false,
                     "name": "ApiAdmin",
                     "id": 200
                 },
                 {
                     "parentId": 10,
                     "name": "ApiGuest",
-                    "opened": true,
+                    "opened": false,
                     "description": "",
                     "id": 300
                 },
                 {
                     "parentId": 10,
                     "name": "ApiUser",
-                    "opened": true,
+                    "opened": false,
                     "description": "",
                     "id": 400
                 },
@@ -2692,14 +2692,14 @@
                 {
                     "parentId": 20,
                     "name": "ApiGuest",
-                    "opened": false,
+                    "opened": true,
                     "description": "",
                     "id": 301
                 },
                 {
                     "parentId": 20,
                     "name": "ApiUser",
-                    "opened": false,
+                    "opened": true,
                     "description": "",
                     "id": 401
                 },
@@ -3630,7 +3630,7 @@
                     "nameSpacePattern": "Entity",
                     "id": 1,
                     "description": "",
-                    "directoryId": 50,
+                    "directoryId": 30,
                     "isSingle": false
                 },
                 {
@@ -3641,7 +3641,7 @@
                     "fileNamePattern": "${entity.name}Factory.php",
                     "id": 13,
                     "description": "",
-                    "directoryId": 50,
+                    "directoryId": 30,
                     "isSingle": false
                 },
                 {
@@ -3685,11 +3685,11 @@
                     "fileNamePattern": "api.php",
                     "id": 50,
                     "description": "",
-                    "directoryId": 80,
+                    "directoryId": 50,
                     "isSingle": true
                 },
                 {
-                    "directoryId": 80,
+                    "directoryId": 50,
                     "name": "ApiAdmin.php",
                     "color": "#fff",
                     "isSingle": true,
@@ -3700,7 +3700,7 @@
                     "id": 2000
                 },
                 {
-                    "directoryId": 80,
+                    "directoryId": 50,
                     "name": "ApiGuest.php",
                     "color": "#fff",
                     "isSingle": true,
@@ -3711,7 +3711,7 @@
                     "id": 3000
                 },
                 {
-                    "directoryId": 80,
+                    "directoryId": 50,
                     "name": "ApiUser.php",
                     "color": "#fff",
                     "isSingle": true,
@@ -3729,7 +3729,7 @@
                     "fileNamePattern": "channels.php",
                     "id": 51,
                     "description": "",
-                    "directoryId": 80,
+                    "directoryId": 50,
                     "isSingle": true
                 },
                 {
@@ -3740,7 +3740,7 @@
                     "fileNamePattern": "console.php",
                     "id": 52,
                     "description": "",
-                    "directoryId": 80,
+                    "directoryId": 50,
                     "isSingle": true
                 },
                 {
@@ -3751,7 +3751,7 @@
                     "fileNamePattern": "web.php",
                     "id": 1000,
                     "description": "",
-                    "directoryId": 80,
+                    "directoryId": 50,
                     "isSingle": true
                 },
                 {
