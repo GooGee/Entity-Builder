@@ -2721,13 +2721,6 @@
                     "parentId": 102,
                     "description": "",
                     "opened": true,
-                    "name": "Cache",
-                    "id": 105
-                },
-                {
-                    "parentId": 102,
-                    "description": "",
-                    "opened": true,
                     "name": "CreateMany",
                     "id": 110
                 },
@@ -2807,6 +2800,279 @@
                     "opened": true,
                     "name": "UpdateOne",
                     "id": 190
+                },
+                {
+                    "parentId": 200,
+                    "description": "",
+                    "opened": true,
+                    "name": "${entity.name}",
+                    "id": 202
+                },
+                {
+                    "parentId": 202,
+                    "description": "",
+                    "opened": true,
+                    "name": "CreateMany",
+                    "id": 210
+                },
+                {
+                    "parentId": 202,
+                    "description": "",
+                    "opened": true,
+                    "name": "CreateOne",
+                    "id": 220
+                },
+                {
+                    "parentId": 202,
+                    "description": "",
+                    "opened": true,
+                    "name": "DeleteMany",
+                    "id": 230
+                },
+                {
+                    "parentId": 202,
+                    "description": "",
+                    "opened": true,
+                    "name": "DeleteOne",
+                    "id": 240
+                },
+                {
+                    "parentId": 202,
+                    "name": "ReadAll",
+                    "opened": true,
+                    "description": "",
+                    "id": 251
+                },
+                {
+                    "parentId": 202,
+                    "name": "ReadCurrent",
+                    "opened": true,
+                    "description": "",
+                    "id": 261
+                },
+                {
+                    "parentId": 202,
+                    "name": "ReadHome",
+                    "opened": true,
+                    "description": "",
+                    "id": 252
+                },
+                {
+                    "parentId": 202,
+                    "description": "",
+                    "opened": true,
+                    "name": "ReadMany",
+                    "id": 250
+                },
+                {
+                    "parentId": 202,
+                    "description": "",
+                    "opened": true,
+                    "name": "ReadOne",
+                    "id": 260
+                },
+                {
+                    "parentId": 202,
+                    "name": "ReadPage",
+                    "opened": true,
+                    "description": "",
+                    "id": 270
+                },
+                {
+                    "parentId": 202,
+                    "description": "",
+                    "opened": true,
+                    "name": "UpdateMany",
+                    "id": 280
+                },
+                {
+                    "parentId": 202,
+                    "description": "",
+                    "opened": true,
+                    "name": "UpdateOne",
+                    "id": 290
+                },
+                {
+                    "parentId": 300,
+                    "description": "",
+                    "opened": true,
+                    "name": "${entity.name}",
+                    "id": 302
+                },
+                {
+                    "parentId": 302,
+                    "description": "",
+                    "opened": true,
+                    "name": "CreateMany",
+                    "id": 310
+                },
+                {
+                    "parentId": 302,
+                    "description": "",
+                    "opened": true,
+                    "name": "CreateOne",
+                    "id": 320
+                },
+                {
+                    "parentId": 302,
+                    "description": "",
+                    "opened": true,
+                    "name": "DeleteMany",
+                    "id": 330
+                },
+                {
+                    "parentId": 302,
+                    "description": "",
+                    "opened": true,
+                    "name": "DeleteOne",
+                    "id": 340
+                },
+                {
+                    "parentId": 302,
+                    "name": "ReadAll",
+                    "opened": true,
+                    "description": "",
+                    "id": 351
+                },
+                {
+                    "parentId": 302,
+                    "name": "ReadCurrent",
+                    "opened": true,
+                    "description": "",
+                    "id": 361
+                },
+                {
+                    "parentId": 302,
+                    "name": "ReadHome",
+                    "opened": true,
+                    "description": "",
+                    "id": 352
+                },
+                {
+                    "parentId": 302,
+                    "description": "",
+                    "opened": true,
+                    "name": "ReadMany",
+                    "id": 350
+                },
+                {
+                    "parentId": 302,
+                    "description": "",
+                    "opened": true,
+                    "name": "ReadOne",
+                    "id": 360
+                },
+                {
+                    "parentId": 302,
+                    "name": "ReadPage",
+                    "opened": true,
+                    "description": "",
+                    "id": 370
+                },
+                {
+                    "parentId": 302,
+                    "description": "",
+                    "opened": true,
+                    "name": "UpdateMany",
+                    "id": 380
+                },
+                {
+                    "parentId": 302,
+                    "description": "",
+                    "opened": true,
+                    "name": "UpdateOne",
+                    "id": 390
+                },
+                {
+                    "parentId": 400,
+                    "description": "",
+                    "opened": true,
+                    "name": "${entity.name}",
+                    "id": 402
+                },
+                {
+                    "parentId": 402,
+                    "description": "",
+                    "opened": true,
+                    "name": "CreateMany",
+                    "id": 410
+                },
+                {
+                    "parentId": 402,
+                    "description": "",
+                    "opened": true,
+                    "name": "CreateOne",
+                    "id": 420
+                },
+                {
+                    "parentId": 402,
+                    "description": "",
+                    "opened": true,
+                    "name": "DeleteMany",
+                    "id": 430
+                },
+                {
+                    "parentId": 402,
+                    "description": "",
+                    "opened": true,
+                    "name": "DeleteOne",
+                    "id": 440
+                },
+                {
+                    "parentId": 402,
+                    "name": "ReadAll",
+                    "opened": true,
+                    "description": "",
+                    "id": 451
+                },
+                {
+                    "parentId": 402,
+                    "name": "ReadCurrent",
+                    "opened": true,
+                    "description": "",
+                    "id": 461
+                },
+                {
+                    "parentId": 402,
+                    "name": "ReadHome",
+                    "opened": true,
+                    "description": "",
+                    "id": 452
+                },
+                {
+                    "parentId": 402,
+                    "description": "",
+                    "opened": true,
+                    "name": "ReadMany",
+                    "id": 450
+                },
+                {
+                    "parentId": 402,
+                    "description": "",
+                    "opened": true,
+                    "name": "ReadOne",
+                    "id": 460
+                },
+                {
+                    "parentId": 402,
+                    "name": "ReadPage",
+                    "opened": true,
+                    "description": "",
+                    "id": 470
+                },
+                {
+                    "parentId": 402,
+                    "description": "",
+                    "opened": true,
+                    "name": "UpdateMany",
+                    "id": 480
+                },
+                {
+                    "parentId": 402,
+                    "description": "",
+                    "opened": true,
+                    "name": "UpdateOne",
+                    "id": 490
                 }
             ],
             "DoctrineColumnType": [
@@ -3231,17 +3497,6 @@
                     "nameSpacePattern": "",
                     "fileNamePattern": "AbstractController.php",
                     "id": 35,
-                    "description": "",
-                    "directoryId": 11,
-                    "isSingle": true
-                },
-                {
-                    "name": "AbstractItemCache.php",
-                    "color": "#fff",
-                    "layer": "",
-                    "nameSpacePattern": "",
-                    "fileNamePattern": "AbstractItemCache.php",
-                    "id": 34,
                     "description": "",
                     "directoryId": 11,
                     "isSingle": true
@@ -3714,7 +3969,7 @@
                     "layer": "Response",
                     "nameSpacePattern": "",
                     "fileNamePattern": "${action + entity.name}Response.php",
-                    "id": 1035,
+                    "id": 1040,
                     "description": "",
                     "directoryId": 102,
                     "isSingle": false
@@ -3725,42 +3980,9 @@
                     "layer": "Service",
                     "nameSpacePattern": "",
                     "fileNamePattern": "${action + entity.name}Service.php",
-                    "id": 1040,
+                    "id": 1050,
                     "description": "",
                     "directoryId": 102,
-                    "isSingle": false
-                },
-                {
-                    "name": "ItemCache",
-                    "color": "#fff",
-                    "layer": "Cache",
-                    "nameSpacePattern": "",
-                    "fileNamePattern": "${entity.name}Cache.php",
-                    "id": 1051,
-                    "description": "",
-                    "directoryId": 105,
-                    "isSingle": false
-                },
-                {
-                    "name": "ItemInGroupCache",
-                    "color": "#fff",
-                    "layer": "Cache",
-                    "nameSpacePattern": "",
-                    "fileNamePattern": "${entity.name}InGroupCache.php",
-                    "id": 1052,
-                    "description": "",
-                    "directoryId": 105,
-                    "isSingle": false
-                },
-                {
-                    "name": "ItemOfUserCache",
-                    "color": "#fff",
-                    "layer": "Cache",
-                    "nameSpacePattern": "",
-                    "fileNamePattern": "${entity.name}OfUserCache.php",
-                    "id": 1053,
-                    "description": "",
-                    "directoryId": 105,
                     "isSingle": false
                 },
                 {
