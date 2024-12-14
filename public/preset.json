@@ -3404,17 +3404,6 @@
             "File": [
                 {
                     "directoryId": 10,
-                    "name": "AbstractRepository.php",
-                    "color": "#fff",
-                    "layer": "Repository",
-                    "description": "",
-                    "nameSpacePattern": "Repository",
-                    "fileNamePattern": "AbstractRepository.php",
-                    "id": 31,
-                    "isSingle": true
-                },
-                {
-                    "directoryId": 10,
                     "name": "ApiEvent.php",
                     "color": "#f00",
                     "layer": "",
@@ -3467,17 +3456,6 @@
                     "nameSpacePattern": "Providers",
                     "fileNamePattern": "EventServiceProvider.php",
                     "id": 21
-                },
-                {
-                    "name": "Repository",
-                    "color": "#f00",
-                    "layer": "Repository",
-                    "nameSpacePattern": "Repository",
-                    "fileNamePattern": "${entity.name}Repository.php",
-                    "id": 14,
-                    "description": "",
-                    "directoryId": 10,
-                    "isSingle": false
                 },
                 {
                     "name": "Service",
