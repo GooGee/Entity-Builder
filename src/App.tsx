@@ -25,6 +25,7 @@ import WuPage from "./View/WuPage"
 import showNote from "./View/Dialog/showNote"
 import ListModal from "./View/Modal/ListModal"
 import InstallPage from "./View/InstallPage"
+import DangerPage from "./View/DangerPage"
 
 function App() {
     const store = useAppInfoStore()
@@ -41,6 +42,8 @@ function App() {
         switch (name) {
             case PageEnum.Collection:
                 return <CollectionPage></CollectionPage>
+            case PageEnum.DangerPage:
+                return <DangerPage></DangerPage>
             case PageEnum.Doctrine:
                 return <DoctrinePage></DoctrinePage>
             case PageEnum.Diagram:

@@ -1,6 +1,7 @@
 export enum PageEnum {
     Home = "Home",
     Collection = "Collection",
+    DangerPage = "DangerPage",
     Diagram = "Diagram",
     Doctrine = "Doctrine",
     Entity = "Entity",
