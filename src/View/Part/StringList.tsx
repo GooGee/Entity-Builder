@@ -14,6 +14,7 @@ export default function StringList(property: Property) {
             <li className="mb-1">
                 {property.title ? <h3 className="inline me-3">{property.title}</h3> : null}
                 <SelectStringButton
+                    className="wa"
                     isAdd
                     itemzz={property.source}
                     value=""

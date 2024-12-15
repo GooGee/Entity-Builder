@@ -7,7 +7,7 @@ import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect } from "react"
 import showNameInput from "../Dialog/showNameInput"
 import usePathzzStore from "@/Store/usePathzzStore"
-import { makePathMethod, makePathOf } from "@/Database/Factory/makePath"
+import { getHttpMethod, makePathOf } from "@/Database/Factory/makePath"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import Constant from "@/Model/Constant"
 
@@ -125,23 +125,25 @@ export default function ActionList(property: Property) {
             .create(makeModuleAction(tab, property.entity, property.module))
             .then(function (item) {
                 sFlowPageStore.setAction(sFlowPageStore.action, item)
-                return makePathOf(item, property.entity, property.module, usePathzzStore.getState().itemzz).then(
-                    function (path) {
-                        sFlowPageStore.setPath(path)
-                        return makePathMethod(path, item).then(function () {
-                            if (item.name.includes("One") === false) {
-                                return
-                            }
-                            return makeParameterMapCRUD().create({
-                                alias: "",
-                                columnId: Constant.ColumnIdOfIdInParameterInPath,
-                                pathId: path.id,
-                                requestId: null,
-                                responseId: null,
-                            })
-                        })
-                    },
-                )
+                return makePathOf(
+                    item,
+                    property.entity,
+                    property.module,
+                    sPathzzStore.itemzz,
+                    getHttpMethod(item.name),
+                ).then(function (path) {
+                    sFlowPageStore.setPath(path)
+                    if (item.name.includes("One") === false) {
+                        return
+                    }
+                    return makeParameterMapCRUD().create({
+                        alias: "",
+                        columnId: Constant.ColumnIdOfIdInParameterInPath,
+                        pathId: path.id,
+                        requestId: null,
+                        responseId: null,
+                    })
+                })
             })
             .catch(useToastzzStore.getState().showError)
     }

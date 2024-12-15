@@ -4,7 +4,7 @@ import makeSideBarItem from "./makeSideBarItem"
 import { ActionMethodMap, HttpMethod } from "@/Model/Oapi"
 import Constant from "@/Model/Constant"
 
-function getMethod(name: string): HttpMethod {
+export function getHttpMethod(name: string): HttpMethod {
     for (const [key, value] of ActionMethodMap.entries()) {
         if (name.includes(key)) {
             return value
@@ -21,6 +21,7 @@ export default function makePath(
     name: string,
     entityId: number,
     moduleId: number,
+    method: string,
 ): OmitId<LB.Path> {
     return {
         ...makeSideBarItem(name),
@@ -28,6 +29,8 @@ export default function makePath(
         entityId,
         description: "",
         summary: "",
+        method,
+        middlewarezz: [],
     }
 }
 
@@ -35,7 +38,7 @@ export function makePathMethod(item: LB.Path, ma: LB.ModuleAction) {
     return makePathMethodCRUD().create({
         pathId: item.id,
         moduleActionId: ma.id,
-        method: getMethod(ma.name),
+        method: getHttpMethod(ma.name),
         middlewarezz: ['auth'],
     })
 }
@@ -53,6 +56,7 @@ export function makePathOf(
     entity: LB.Entity,
     module: LB.Module,
     itemzz: LB.Path[],
+    method: string,
 ) {
     const name = makePathName(entity, ma)
     const found = itemzz.find(
@@ -62,5 +66,5 @@ export function makePathOf(
         return Promise.resolve(found)
     }
 
-    return makePathCRUD().create(makePath(name, entity.id, module.id))
+    return makePathCRUD().create(makePath(name, entity.id, module.id, method))
 }

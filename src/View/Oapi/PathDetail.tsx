@@ -6,17 +6,24 @@ import ParameterList from "./ParameterList"
 import PathMethodList from "./PathMethodList"
 import ServerList from "./ServerList"
 import ColorButtonGroup from "../Button/ColorButtonGroup"
+import PathMiddlewareList from "./PathMiddlewareList"
+import getCollectionItemzz from "@/Service/getCollectionItemzz"
+import SelectStringButton from "../Button/SelectStringButton"
+import { HttpMethodzz } from "@/Model/Oapi"
 
 interface Property {
     children: ReactElement
     entity: LB.Entity
     item: LB.Path
+    ma: LB.ModuleAction
     module: LB.Module
     onDelete?(): void
 }
 
 export default function PathDetail(property: Property) {
     const sPathPageStore = usePathPageStore()
+
+    const middlewarezz = getCollectionItemzz("Middleware").map((item) => item.name)
 
     function update(item: LB.Path) {
         sPathPageStore.setItem(item)
@@ -49,17 +56,43 @@ export default function PathDetail(property: Property) {
                     <td>
                         <ParameterList pathId={property.item.id}></ParameterList>
                     </td>
-                    <td></td>
+                </tr>
+                <tr>
+                    <td>method</td>
+                    <td>
+                        <SelectStringButton
+                            className="wa"
+                            itemzz={HttpMethodzz}
+                            value={property.item.method}
+                            change={(method) =>
+                                update({
+                                    ...property.item,
+                                    method,
+                                })
+                            }
+                        ></SelectStringButton>
+                    </td>
+                </tr>
+                <tr>
+                    <td>middlewarezz</td>
+                    <td>
+                        <PathMiddlewareList
+                            item={property.item}
+                            middlewarezz={middlewarezz}
+                            path={property.item}
+                            update={update}
+                        ></PathMiddlewareList>
+                    </td>
                 </tr>
                 <tr>
                     <td>server</td>
-                    <td colSpan={2}>
+                    <td>
                         <ServerList requestId={null} pathId={property.item.id}></ServerList>
                     </td>
                 </tr>
                 <tr>
                     <td>summary</td>
-                    <td colSpan={2}>
+                    <td>
                         <input
                             value={property.item.summary}
                             onChange={(event) =>
@@ -75,7 +108,7 @@ export default function PathDetail(property: Property) {
                 </tr>
                 <tr>
                     <td>description</td>
-                    <td colSpan={2}>
+                    <td>
                         <textarea
                             className="form-control"
                             value={property.item.description}
@@ -88,8 +121,6 @@ export default function PathDetail(property: Property) {
                         ></textarea>
                     </td>
                 </tr>
-
-                <PathMethodList item={property.item} module={property.module}></PathMethodList>
             </tbody>
         </table>
     )

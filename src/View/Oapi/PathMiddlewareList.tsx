@@ -1,10 +1,10 @@
 import StringList from "../Part/StringList"
 
 interface Property {
-    item: LB.PathMethod
+    item: LB.Path
     middlewarezz: string[]
     path: LB.Path
-    update(data: LB.PathMethod): void
+    update(data: LB.Path): void
 }
 
 export default function PathMiddlewareList(property: Property) {

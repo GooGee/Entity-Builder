@@ -166,6 +166,8 @@ namespace LB {
         name: string
         description: string
         summary: string
+        method: string
+        middlewarezz: string[]
     }
 
     interface PathMethod {

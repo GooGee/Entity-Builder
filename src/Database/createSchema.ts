@@ -247,7 +247,10 @@ export default function createSchema(builder: lf.Builder) {
     makeUniqueKey(tb, item, ["prefix"])
 
     item = SchemaEnum.Path
-    tb = createForSideBarItem(builder, item).addColumn("summary", lf.Type.STRING)
+    tb = createForSideBarItem(builder, item)
+        .addColumn("summary", lf.Type.STRING)
+        .addColumn("method", lf.Type.STRING)
+        .addColumn("middlewarezz", lf.Type.OBJECT)
     makeForeignKey(tb, item, SchemaEnum.Module)
     makeForeignKey(tb, item, SchemaEnum.Entity)
     makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Module), "name"])
@@ -378,16 +381,8 @@ export default function createSchema(builder: lf.Builder) {
         makeForeignKeyId(SchemaEnum.Variable),
     ])
 
-    item = SchemaEnum.PathMethod
-    tb = builder
-        .createTable(item)
-        .addColumn("method", lf.Type.STRING)
-        .addColumn("middlewarezz", lf.Type.OBJECT)
-        .addColumn("id", lf.Type.INTEGER)
-        .addPrimaryKey(["id"], true)
-    makeForeignKey(tb, item, SchemaEnum.ModuleAction)
-    makeForeignKey(tb, item, SchemaEnum.Path)
-    makeUniqueKey(tb, item, ["method", makeForeignKeyId(SchemaEnum.Path)])
+    // deprecated
+    builder.createTable(SchemaEnum.PathMethod)
 }
 
 function createForSideBarItem(builder: lf.Builder, item: SchemaEnum) {

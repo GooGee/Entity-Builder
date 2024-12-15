@@ -1,9 +1,10 @@
 import { putFile } from "@/api"
 import { getDirectoryName } from "@/Model/FileManager"
+import migrateV050 from "./migrateV050"
 
 const BreakingVersion = 50
 
-export const Version = 50
+export const Version = 51
 
 export default function migrate(
     db: LB.DBData,
@@ -22,6 +23,7 @@ export default function migrate(
         throw new Error(`data version ${db.version} is no longer supported`)
     }
 
+    migrateV050(db, preset)
 }
 
 function backup(db: LB.DBData, text: string) {
