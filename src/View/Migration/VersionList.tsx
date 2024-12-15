@@ -41,6 +41,7 @@ export default function VersionList() {
                 if (unmounted) {
                     return
                 }
+                response.data.data.migrationzz.sort((aa, bb) => bb.batch - aa.batch)
                 setState(response.data.data)
             })
             .finally(() => setWaiting(false))

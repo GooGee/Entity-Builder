@@ -41,7 +41,7 @@ export function createMany<T extends LB.IdItem>(
     if (import.meta.env.PROD) {
         const maxId = getMaxId(tt)
         // console.log(maxId)
-        const min = 1000
+        const min = 11000
         if (maxId < min) {
             data.forEach((item, index) => (item.id = min + index))
         }

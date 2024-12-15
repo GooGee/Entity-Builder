@@ -4261,6 +4261,17 @@
                     "isSingle": false
                 },
                 {
+                    "directoryId": 301,
+                    "name": "AbstractGuestItemTestBase",
+                    "color": "#fff",
+                    "isSingle": false,
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "Abstract${entity.name}TestBase.php",
+                    "id": 3002
+                },
+                {
                     "directoryId": 901,
                     "name": "AbstractFeatureTestBase.php",
                     "color": "#fff",
