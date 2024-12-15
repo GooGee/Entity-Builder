@@ -227,17 +227,6 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
     const maimam = makeIdItemMap(db.tables.ModuleAction)
 
     const pimazzm: Map<number, ModuleActionWithMethod[]> = new Map()
-    db.tables.PathMethod.forEach((item) => {
-        let found = pimazzm.get(item.pathId)
-        if (found === undefined) {
-            found = []
-            pimazzm.set(item.pathId, found)
-        }
-        const ma = maimam.get(item.moduleActionId)
-        if (ma && ma.inOapi) {
-            found.push({ ...ma, method: item.method })
-        }
-    })
 
     const sivzzm: Map<number, LB.Variable[]> = new Map()
     db.tables.ServerVariable.forEach((item) => {
@@ -279,6 +268,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
             sism,
             sivzzm,
             found?.name ?? "not found",
+            maimam,
         )
         if (data === null) {
             return

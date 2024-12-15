@@ -21,6 +21,7 @@ export default function makePath(
     sism: Map<number, LB.Server>,
     sivzzm: Map<number, LB.Variable[]>,
     tag: string,
+    maimam: Map<number, LB.ModuleAction>,
 ) {
     const path: PathItemObject = {
         description: item.description,
@@ -35,11 +36,18 @@ export default function makePath(
         path.servers = serverzz
     }
 
-    const mazz = pimazzm.get(item.id) ?? []
-    const ozz = mazz.filter((item) => (marzzm.get(item.id) ?? []).length)
-    if (ozz.length === 0) {
+    const ma = maimam.get(item.moduleActionId)
+    if (ma == null) {
         return null
     }
+    if (marzzm.has(item.id) === false) {
+        return null
+    }
+    
+    const ozz = [{
+        ...ma,
+        method: item.method,
+    }]
 
     const data = ozz.reduce(function (old, item) {
         const rzz = marzzm.get(item.id) ?? []
