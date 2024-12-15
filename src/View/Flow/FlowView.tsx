@@ -35,6 +35,78 @@ export default function FlowView() {
         backgroundColor = sModulePageStore.item.color + 2
     }
 
+    function makeView() {
+        if (sEntityPageStore.item === undefined) {
+            return <div>Select an Entity</div>
+        }
+
+        if (sModulePageStore.item == null) {
+            return <div>Select a Module</div>
+        }
+
+        if (sFlowPageStore.step === StepEnum.Module) {
+            return <ModuleDetail item={sModulePageStore.item}></ModuleDetail>
+        }
+
+        if (sFlowPageStore.ma == null) {
+            return <div>Select or create an Action</div>
+        }
+
+        if (sFlowPageStore.step === StepEnum.Path) {
+            return (
+                <PathView entity={sEntityPageStore.item} ma={sFlowPageStore.ma} module={sModulePageStore.item}></PathView>
+            )
+        }
+
+        if (sFlowPageStore.step === StepEnum.Action) {
+            return (
+                <ActionView
+                    entity={sEntityPageStore.item}
+                    ma={sFlowPageStore.ma}
+                    module={sModulePageStore.item}
+                ></ActionView>
+            )
+        }
+
+        if (sFlowPageStore.step === StepEnum.Request) {
+            return (
+                <ActionRequest
+                    action={sFlowPageStore.action}
+                    entity={sEntityPageStore.item}
+                    ma={sFlowPageStore.ma}
+                    module={sModulePageStore.item}
+                    step={sFlowPageStore.step}
+                ></ActionRequest>
+            )
+        }
+
+        if (sFlowPageStore.step === StepEnum.Response) {
+            return (
+                <ResponseList
+                    action={sFlowPageStore.action}
+                    entity={sEntityPageStore.item}
+                    ma={sFlowPageStore.ma}
+                    module={sModulePageStore.item}
+                    step={sFlowPageStore.step}
+                ></ResponseList>
+            )
+        }
+
+        if (sFlowPageStore.step === StepEnum.File) {
+            return (
+                <FileTabList
+                    action={sFlowPageStore.action}
+                    entity={sEntityPageStore.item}
+                    ma={sFlowPageStore.ma}
+                    module={sModulePageStore.item}
+                    step={sFlowPageStore.step}
+                ></FileTabList>
+            )
+        }
+
+        return null
+    }
+
     return (
         <div>
             <div className="position-fixed bg-white w-100" style={{ zIndex: 111 }}>
@@ -51,51 +123,7 @@ export default function FlowView() {
 
             <div style={{ height: "77px" }}></div>
 
-            {sModulePageStore.item && sFlowPageStore.step === StepEnum.Module ? (
-                <ModuleDetail item={sModulePageStore.item}></ModuleDetail>
-            ) : null}
-
-            {sModulePageStore.item && sFlowPageStore.ma && sFlowPageStore.step === StepEnum.Path ? (
-                <PathView entity={sEntityPageStore.item} ma={sFlowPageStore.ma} module={sModulePageStore.item}></PathView>
-            ) : null}
-
-            {sModulePageStore.item && sFlowPageStore.ma && sFlowPageStore.step === StepEnum.Action ? (
-                <ActionView
-                    entity={sEntityPageStore.item}
-                    ma={sFlowPageStore.ma}
-                    module={sModulePageStore.item}
-                ></ActionView>
-            ) : null}
-
-            {sFlowPageStore.ma && sModulePageStore.item && sFlowPageStore.step === StepEnum.Request ? (
-                <ActionRequest
-                    action={sFlowPageStore.action}
-                    entity={sEntityPageStore.item}
-                    ma={sFlowPageStore.ma}
-                    module={sModulePageStore.item}
-                    step={sFlowPageStore.step}
-                ></ActionRequest>
-            ) : null}
-
-            {sFlowPageStore.ma && sModulePageStore.item && sFlowPageStore.step === StepEnum.Response ? (
-                <ResponseList
-                    action={sFlowPageStore.action}
-                    entity={sEntityPageStore.item}
-                    ma={sFlowPageStore.ma}
-                    module={sModulePageStore.item}
-                    step={sFlowPageStore.step}
-                ></ResponseList>
-            ) : null}
-
-            {sFlowPageStore.ma && sModulePageStore.item && sFlowPageStore.step === StepEnum.File ? (
-                <FileTabList
-                    action={sFlowPageStore.action}
-                    entity={sEntityPageStore.item}
-                    ma={sFlowPageStore.ma}
-                    module={sModulePageStore.item}
-                    step={sFlowPageStore.step}
-                ></FileTabList>
-            ) : null}
+            {makeView()}
         </div>
     )
 }
