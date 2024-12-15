@@ -168,6 +168,7 @@ namespace LB {
         summary: string
         method: string
         middlewarezz: string[]
+        moduleActionId: number
     }
 
     interface PathMethod {

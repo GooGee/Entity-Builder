@@ -22,6 +22,7 @@ export default function makePath(
     entityId: number,
     moduleId: number,
     method: string,
+    moduleActionId: number,
 ): OmitId<LB.Path> {
     return {
         ...makeSideBarItem(name),
@@ -31,6 +32,7 @@ export default function makePath(
         summary: "",
         method,
         middlewarezz: [],
+        moduleActionId,
     }
 }
 
@@ -66,5 +68,5 @@ export function makePathOf(
         return Promise.resolve(found)
     }
 
-    return makePathCRUD().create(makePath(name, entity.id, module.id, method))
+    return makePathCRUD().create(makePath(name, entity.id, module.id, method, ma.id))
 }

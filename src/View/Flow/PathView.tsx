@@ -24,7 +24,7 @@ export default function PathView(property: Property) {
         return (
             item.entityId === property.entity.id &&
             item.moduleId === property.module.id &&
-            item.name.includes(property.ma.name)
+            item.moduleActionId === property.ma.id
         )
     })
 

@@ -246,15 +246,6 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Directory, "testDirectoryId")
     makeUniqueKey(tb, item, ["prefix"])
 
-    item = SchemaEnum.Path
-    tb = createForSideBarItem(builder, item)
-        .addColumn("summary", lf.Type.STRING)
-        .addColumn("method", lf.Type.STRING)
-        .addColumn("middlewarezz", lf.Type.OBJECT)
-    makeForeignKey(tb, item, SchemaEnum.Module)
-    makeForeignKey(tb, item, SchemaEnum.Entity)
-    makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Module), "name"])
-
     item = SchemaEnum.ModuleAction
     tb = builder
         .createTable(item)
@@ -277,6 +268,16 @@ export default function createSchema(builder: lf.Builder) {
         makeForeignKeyId(SchemaEnum.Module),
         "name",
     ])
+
+    item = SchemaEnum.Path
+    tb = createForSideBarItem(builder, item)
+        .addColumn("summary", lf.Type.STRING)
+        .addColumn("method", lf.Type.STRING)
+        .addColumn("middlewarezz", lf.Type.OBJECT)
+    makeForeignKey(tb, item, SchemaEnum.Module)
+    makeForeignKey(tb, item, SchemaEnum.Entity)
+    makeForeignKey(tb, item, SchemaEnum.ModuleAction)
+    makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Module), "name"])
 
     item = SchemaEnum.ParameterMap
     tb = builder

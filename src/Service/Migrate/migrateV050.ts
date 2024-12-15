@@ -9,10 +9,7 @@ export default function migrate(db: LB.DBData, preset: LB.AppInfoData) {
         return
     }
 
-    db.tables.Path.forEach(function (item) {
-        item.method = HttpMethod.get
-        item.middlewarezz = []
-    })
+    db.tables.Path = []
 
     db.tables.PathMethod = []
 }
