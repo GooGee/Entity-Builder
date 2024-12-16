@@ -47,9 +47,6 @@ namespace LB {
         explode: boolean
         required: boolean
         style: string
-
-        raField: string
-        raInput: string
     }
 
     interface ColumnConstraint {
@@ -73,8 +70,6 @@ namespace LB {
         oapiFormat: string
         oapiType: string
         phpType: string
-        raField: string
-        raInput: string
     }
 
     interface Entity extends SideBarItem {
@@ -102,6 +97,7 @@ namespace LB {
 
     interface File {
         id: number
+        isSingle: boolean
         directoryId: number
         name: string
         color: string
@@ -144,7 +140,6 @@ namespace LB {
         description: string
         summary: string
         routeName: string
-        operationId: string
         requestId: number
     }
 
@@ -171,6 +166,9 @@ namespace LB {
         name: string
         description: string
         summary: string
+        method: string
+        middlewarezz: string[]
+        moduleActionId: number
     }
 
     interface PathMethod {
@@ -279,6 +277,7 @@ namespace LB {
         isWu: boolean
     }
 }
+
 namespace LB {
     interface ApiErrorResponse {
         message: string
