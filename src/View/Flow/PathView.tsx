@@ -2,12 +2,14 @@ import { makeParameterMapCRUD, makePathCRUD } from "@/Database/makeCRUD"
 import useFlowPageStore from "@/Store/useFlowPageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import DeleteChangeButton from "@/View/Button/DeleteChangeButton"
+import FileButton from "@/View/Button/FileButton"
 import showInput from "@/View/Dialog/showInput"
 import PathDetail from "@/View/Oapi/PathDetail"
 import PathList from "./PathList"
 import usePathzzStore from "@/Store/usePathzzStore"
 import { makePathOf, getHttpMethod } from "@/Database/Factory/makePath"
 import Constant from "@/Model/Constant"
+import useFilezzStore from "@/Store/useFilezzStore"
 
 interface Property {
     entity: LB.Entity
@@ -19,6 +21,25 @@ export default function PathView(property: Property) {
     const sFlowPageStore = useFlowPageStore()
     const susePathzzStore = usePathzzStore()
     const sToastzzStore = useToastzzStore()
+
+    function makeFileButton() {
+        const file = useFilezzStore.getState().find(property.module.fileId)
+
+        if (file) {
+            return (
+                <FileButton
+                    action={""}
+                    className="mx-3"
+                    file={file}
+                    fullName
+                    entity={property.entity}
+                    module={property.module}
+                ></FileButton>
+            )
+        }
+
+        return <span className="text-danger">route file {property.module.fileId} not found</span>
+    }
 
     const path = susePathzzStore.itemzz.find(function (item) {
         return (
@@ -57,6 +78,8 @@ export default function PathView(property: Property) {
                 >
                     +
                 </button>
+
+                {makeFileButton()}
             </div>
         )
     }
@@ -88,6 +111,8 @@ export default function PathView(property: Property) {
                     }
                 }}
             ></DeleteChangeButton>
+
+            {makeFileButton()}
         </PathDetail>
     )
 }

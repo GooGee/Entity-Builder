@@ -1,7 +1,6 @@
 import { makePathCRUD } from "@/Database/makeCRUD"
 import usePathPageStore from "@/Store/usePathPageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
-import { ReactElement } from "react"
 import ParameterList from "./ParameterList"
 import PathMethodList from "./PathMethodList"
 import ServerList from "./ServerList"
@@ -10,9 +9,10 @@ import PathMiddlewareList from "./PathMiddlewareList"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import SelectStringButton from "../Button/SelectStringButton"
 import { HttpMethodzz } from "@/Model/Oapi"
+import { ReactNode } from "react"
 
 interface Property {
-    children: ReactElement
+    children: ReactNode
     entity: LB.Entity
     item: LB.Path
     ma: LB.ModuleAction
