@@ -88,14 +88,7 @@ export default function PathMethod(property: Property) {
                     }}
                 ></SelectButton>
             </td>
-            <td>
-                <PathMiddlewareList
-                    item={found}
-                    middlewarezz={property.middlewarezz}
-                    path={property.path}
-                    update={update}
-                ></PathMiddlewareList>
-            </td>
+            <td></td>
         </tr>
     )
 }
