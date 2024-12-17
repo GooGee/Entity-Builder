@@ -72,7 +72,7 @@ export default function ActionResponse(property: Property) {
                 <SelectButton
                     className="wa"
                     itemzz={sResponsezzStore.itemzz.filter(
-                        (item) => item.id === 1 || item.name.startsWith(property.entity.name + "_"),
+                        (item) => item.id < 11 || item.name.startsWith(property.entity.name + "_"),
                     )}
                     value={property.item.responseId}
                     change={function (id) {

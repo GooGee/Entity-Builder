@@ -37,7 +37,7 @@ function saveDTS() {
     return fetch(file)
         .then((response) => response.text())
         .then((text) => putFile(getDirectoryName(file), text))
-        .then(() => refreshDisk())
+        .then(refreshDisk)
 }
 
 export default function start(info: LB.AppInfo, needImport = false,) {
