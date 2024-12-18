@@ -3426,7 +3426,7 @@
                 },
                 {
                     "directoryId": 10,
-                    "name": "EntityNameEnum",
+                    "name": "EntityNameEnum.php",
                     "color": "#f00",
                     "isSingle": true,
                     "layer": "",
@@ -3456,6 +3456,17 @@
                     "nameSpacePattern": "Providers",
                     "fileNamePattern": "EventServiceProvider.php",
                     "id": 21
+                },
+                {
+                    "directoryId": 10,
+                    "name": "Handler.php",
+                    "color": "#fff",
+                    "isSingle": true,
+                    "layer": "",
+                    "description": "",
+                    "nameSpacePattern": "Exceptions",
+                    "fileNamePattern": "Handler.php",
+                    "id": 150
                 },
                 {
                     "name": "Service",
@@ -4425,12 +4436,12 @@
                 {
                     "isArray": false,
                     "nullable": true,
-                    "type": "WuParameter",
+                    "type": "any",
                     "format": "",
                     "ownerId": null,
                     "variableId": 1,
                     "wuId": 1,
-                    "wuParameterId": 1,
+                    "wuParameterId": null,
                     "ownerColumnId": 3,
                     "ownerRequestId": null,
                     "ownerResponseId": null,
@@ -5387,7 +5398,7 @@
                 },
                 {
                     "entityId": 2,
-                    "name": "Errors",
+                    "name": "Error",
                     "type": "string",
                     "length": 0,
                     "scale": 0,
