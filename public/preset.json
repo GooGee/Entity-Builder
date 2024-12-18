@@ -7157,6 +7157,11 @@
                     "wuColumnId": 29,
                     "columnConstraintId": 21,
                     "id": 7
+                },
+                {
+                    "wuColumnId": 30,
+                    "columnConstraintId": 23,
+                    "id": 8
                 }
             ],
             "WuParameter": [
@@ -7249,6 +7254,23 @@
                     "id": 4
                 }
             ],
+            "ModuleAction": [
+                {
+                    "deprecated": false,
+                    "inOapi": true,
+                    "inRoute": true,
+                    "name": "root",
+                    "description": "",
+                    "routeName": "",
+                    "filezz": [],
+                    "summary": "Api root EmptyEntity",
+                    "directoryId": 1,
+                    "entityId": 1,
+                    "moduleId": 1,
+                    "requestId": 1,
+                    "id": 1
+                }
+            ],
             "Path": [
                 {
                     "name": "/",
@@ -7259,10 +7281,12 @@
                     "parameterzz": [],
                     "reserved": true,
                     "id": 1,
-                    "moduleId": 1
+                    "moduleId": 1,
+                    "moduleActionId": 1,
+                    "middlewarezz": [],
+                    "method": "patch"
                 }
             ],
-            "ModuleAction": [],
             "ParameterMap": [],
             "Request": [
                 {
@@ -7390,7 +7414,7 @@
             ],
             "PathMethod": []
         },
-        "version": 50
+        "version": 51
     },
     "oapi": {
         "openapi": "3.0.3",
