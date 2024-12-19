@@ -24,11 +24,12 @@ export default function FileFilterList(property: Property) {
     )
 
     const [Color, setColor] = useState<string>(found?.color ?? ColorEnum.red)
-    const [Text, setText] = useState("")
+    const [Text, setText] = useState(property.ma.name)
 
     useEffect(() => {
         setColor(found?.color ?? ColorEnum.red)
-    }, [property.ma])
+        setText(property.ma.name)
+    }, [property.ma.id])
 
     return (
         <>
@@ -55,6 +56,7 @@ export default function FileFilterList(property: Property) {
                     }
                     return item.color === Color
                 })
+                .sort((aa, bb) => aa.name.localeCompare(bb.name))
                 .map(function (item) {
                     return (
                         <tr key={item.id}>
