@@ -2,7 +2,6 @@ export enum PageEnum {
     Home = "Home",
     Collection = "Collection",
     DangerPage = "DangerPage",
-    Diagram = "Diagram",
     Doctrine = "Doctrine",
     Entity = "Entity",
     Enum = "Enum",
@@ -44,7 +43,6 @@ export default menuzz
 export const treezz = [
     new Menu(PageEnum.Home, URI),
     new Menu(PageEnum.Collection, makePath(PageEnum.Collection)),
-    new Menu(PageEnum.Diagram, makePath(PageEnum.Diagram)),
     new Menu(PageEnum.Doctrine, makePath(PageEnum.Doctrine)),
     new Menu(PageEnum.Entity, makePath(PageEnum.Entity)),
     new Menu(PageEnum.Flow, makePath(PageEnum.Flow)),

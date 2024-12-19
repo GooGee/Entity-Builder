@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom"
 import menuzz, { PageEnum } from "./menuzz"
 import useAppInfoStore from "./Store/useAppInfoStore"
 import CollectionPage from "./View/CollectionPage"
-import DiagramPage from "./View/DiagramPage"
 import DoctrinePage from "./View/DoctrinePage"
 import EntityPage from "./View/EntityPage"
 import ExamplePage from "./View/ExamplePage"
@@ -46,8 +45,6 @@ function App() {
                 return <DangerPage></DangerPage>
             case PageEnum.Doctrine:
                 return <DoctrinePage></DoctrinePage>
-            case PageEnum.Diagram:
-                return <DiagramPage></DiagramPage>
             case PageEnum.Entity:
                 return <EntityPage></EntityPage>
             case PageEnum.Example:
