@@ -23,11 +23,11 @@ export default function FileFilterList(property: Property) {
         (item) => item.name.startsWith(property.ma.name) && item.color !== ColorEnum.white,
     )
 
-    const [Color, setColor] = useState<string>(found?.color ?? ColorEnum.white)
+    const [Color, setColor] = useState<string>(found?.color ?? ColorEnum.red)
     const [Text, setText] = useState("")
 
     useEffect(() => {
-        setColor(found?.color ?? ColorEnum.white)
+        setColor(found?.color ?? ColorEnum.red)
     }, [property.ma])
 
     return (

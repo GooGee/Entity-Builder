@@ -90,7 +90,7 @@ export default function HomePage() {
                 {import.meta.env.DEV && store.connected ? (
                     <p>
                         <button
-                            onClick={() => exportDB().then((response) => console.log(JSON.stringify(response)))}
+                            onClick={() => exportDB().then((response) => console.log(JSON.stringify(response, null, 4)))}
                             className="btn btn-outline-primary"
                             type="button"
                         >
