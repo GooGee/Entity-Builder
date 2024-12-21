@@ -2789,6 +2789,13 @@
                 },
                 {
                     "parentId": 102,
+                    "name": "UpdateCurrent",
+                    "opened": true,
+                    "description": "",
+                    "id": 191
+                },
+                {
+                    "parentId": 102,
                     "description": "",
                     "opened": true,
                     "name": "UpdateMany",
@@ -4292,6 +4299,39 @@
                     "fileNamePattern": "AbstractFeatureTestBase.php",
                     "id": 9001,
                     "isSingle": true
+                },
+                {
+                    "directoryId": 191,
+                    "name": "UpdateCurrentItem",
+                    "color": "#80f",
+                    "isSingle": false,
+                    "layer": "Action",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "${action + entity.name}.php",
+                    "id": 1911
+                },
+                {
+                    "directoryId": 191,
+                    "name": "UpdateCurrentItemController",
+                    "color": "#80f",
+                    "isSingle": false,
+                    "layer": "Controller",
+                    "description": "",
+                    "nameSpacePattern": "",
+                    "fileNamePattern": "${action + entity.name}Controller.php",
+                    "id": 1912
+                },
+                {
+                    "directoryId": 101,
+                    "name": "UpdateCurrentItemTest",
+                    "color": "#80f",
+                    "isSingle": false,
+                    "layer": "Test",
+                    "description": "",
+                    "nameSpacePattern": "${entity.name}",
+                    "fileNamePattern": "${action + entity.name}Test.php",
+                    "id": 1910
                 }
             ],
             "Entity": [
