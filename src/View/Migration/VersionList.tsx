@@ -41,7 +41,7 @@ export default function VersionList() {
                 if (unmounted) {
                     return
                 }
-                response.data.data.migrationzz.sort((aa, bb) => bb.batch - aa.batch)
+                response.data.data.migrationzz.sort((aa, bb) => aa.batch - bb.batch)
                 setState(response.data.data)
             })
             .finally(() => setWaiting(false))
@@ -59,6 +59,7 @@ export default function VersionList() {
         }
         migrationzz.push({ batch: 0, migration })
     })
+    migrationzz.reverse()
 
     function makeView(item: LB.Migration) {
         if (item.migration.endsWith(".php")) {
