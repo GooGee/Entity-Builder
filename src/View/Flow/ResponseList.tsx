@@ -126,7 +126,7 @@ export default function ResponseList(property: Property) {
                 return value
             }
         }
-        return sWuzzStore.findByName("ApiData")?.id
+        return sWuzzStore.findByName("ApiValue")?.id
     }
 
     function makeResponseWu() {

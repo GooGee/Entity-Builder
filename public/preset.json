@@ -5424,7 +5424,7 @@
                 },
                 {
                     "entityId": 2,
-                    "name": "Data",
+                    "name": "Value",
                     "type": "string",
                     "length": 0,
                     "scale": 0,
@@ -5460,7 +5460,7 @@
                 {
                     "entityId": 2,
                     "name": "Error",
-                    "type": "string",
+                    "type": "object",
                     "length": 0,
                     "scale": 0,
                     "default": "",
@@ -5495,7 +5495,7 @@
                 {
                     "entityId": 2,
                     "name": "Item",
-                    "type": "string",
+                    "type": "object",
                     "length": 0,
                     "scale": 0,
                     "default": "",
@@ -5530,7 +5530,7 @@
                 {
                     "entityId": 2,
                     "name": "Itemzz",
-                    "type": "string",
+                    "type": "array",
                     "length": 0,
                     "scale": 0,
                     "default": "",
@@ -5565,7 +5565,7 @@
                 {
                     "entityId": 2,
                     "name": "Page",
-                    "type": "string",
+                    "type": "object",
                     "length": 0,
                     "scale": 0,
                     "default": "",
@@ -6889,7 +6889,7 @@
                 {
                     "color": "#fff",
                     "description": "",
-                    "name": "ApiData",
+                    "name": "ApiValue",
                     "reserved": false,
                     "entityId": 2,
                     "type": "allOf",
@@ -7376,7 +7376,7 @@
                 {
                     "color": "#fff",
                     "description": "",
-                    "name": "ApiDataResponse",
+                    "name": "ApiValueResponse",
                     "reserved": false,
                     "example": "",
                     "mediaType": "application/json",
