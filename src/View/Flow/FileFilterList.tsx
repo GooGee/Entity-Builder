@@ -35,15 +35,25 @@ export default function FileFilterList(property: Property) {
         <>
             <tr>
                 <td colSpan={2}>
-                    <input
-                        value={Text}
-                        onChange={function (event) {
-                            setText(event.target.value)
-                        }}
-                        className="form-control mb-1"
-                        placeholder="filter by name"
-                        type="text"
-                    />
+                    <div>
+                        <button
+                            className="btn btn-outline-danger m-1"
+                            onClick={function () {
+                                setText("")
+                            }}
+                        >
+                            X
+                        </button>
+                        <input
+                            value={Text}
+                            onChange={function (event) {
+                                setText(event.target.value)
+                            }}
+                            className="form-control inline wa"
+                            placeholder="filter by name"
+                            type="text"
+                        />
+                    </div>
 
                     <ColorButtonGroup color={Color} setColor={setColor}></ColorButtonGroup>
                 </td>
