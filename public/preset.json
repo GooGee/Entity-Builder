@@ -2588,6 +2588,20 @@
                     "value": "",
                     "tag": "Content",
                     "id": 521
+                },
+                {
+                    "collectionId": 5,
+                    "name": "EntityType",
+                    "value": "",
+                    "tag": "",
+                    "id": 524
+                },
+                {
+                    "collectionId": 5,
+                    "name": "EntityId",
+                    "value": "",
+                    "tag": "",
+                    "id": 525
                 }
             ],
             "Directory": [
@@ -6745,8 +6759,8 @@
                 {
                     "id": 3,
                     "columnId": 25,
-                    "name": "required",
-                    "parameter": ""
+                    "name": "min",
+                    "parameter": "3"
                 },
                 {
                     "id": 4,
@@ -6855,6 +6869,18 @@
                     "name": "max",
                     "parameter": "100",
                     "id": 23
+                },
+                {
+                    "columnId": 25,
+                    "name": "regex",
+                    "parameter": "/^[A-Za-z]+[A-Za-z0-9]*$/",
+                    "id": 24
+                },
+                {
+                    "columnId": 25,
+                    "name": "required",
+                    "parameter": "",
+                    "id": 25
                 }
             ],
             "Relation": [],
