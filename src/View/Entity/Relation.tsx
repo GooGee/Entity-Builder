@@ -117,7 +117,26 @@ export default function Relation(property: Property) {
                             }).catch(sToastzzStore.showError)
                         }}
                     ></SelectButton>
-                ) : null}
+                ) : (
+                    <div className="form-check form-switch">
+                        <input
+                            checked={property.item.addToModel}
+                            onChange={(event) =>
+                                update({
+                                    ...property.item,
+                                    addToModel: event.target.checked,
+                                }).catch(sToastzzStore.showError)
+                            }
+                            className="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id={"addToModelSwitchCheck" + property.item.id}
+                        />
+                        <label className="form-check-label" htmlFor={"addToModelSwitchCheck" + property.item.id}>
+                            add method to Model
+                        </label>
+                    </div>
+                )}
             </td>
         </tr>
     )

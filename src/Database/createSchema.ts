@@ -176,6 +176,7 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("type", lf.Type.STRING)
         .addColumn("name0", lf.Type.STRING)
         .addColumn("name1", lf.Type.STRING)
+        .addColumn("addToModel", lf.Type.BOOLEAN)
         .addPrimaryKey(["id"], true)
     makeForeignKey(tb, item, SchemaEnum.Entity, "entity0Id")
     makeForeignKey(tb, item, SchemaEnum.Entity, "entity1Id")

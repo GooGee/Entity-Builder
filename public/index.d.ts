@@ -187,6 +187,7 @@ namespace LB {
         entity0Id: number
         entity1Id: number
         column1Id: number
+        addToModel: boolean
     }
 
     interface Request extends Response {
@@ -277,7 +278,6 @@ namespace LB {
         isWu: boolean
     }
 }
-
 namespace LB {
     interface ApiErrorResponse {
         message: string
@@ -363,7 +363,7 @@ namespace LB {
         action: string
         db: DBData
         dependencyzz: string[]
-        entity: Entity
+        entity: IdNameItem
         file: File
         fileMap: StringMap
         helper: any
@@ -387,14 +387,6 @@ namespace LB {
             itemzz: IdNameItem[],
             map?: Map<number, string>,
         ) => Map<number, string>
-        makeTypeFormatText: (
-            tf: LB.TypeFormat,
-            tfzz: LB.TypeFormat[],
-            variablezz: LB.Variable[],
-            wpzz: LB.WuParameter[],
-            wuzz: LB.Wu[],
-            prefix: string,
-        ) => string
         ma?: ModuleAction
         module?: Module
         tree: DataForScriptTreeHelper
@@ -402,21 +394,21 @@ namespace LB {
     }
 
     interface DataForScriptTreeHelper {
-        getClassName: (file: File, entity: Entity, action: string) => string
-        getClassFullName: (file: File, entity: Entity, action: string) => string
+        getClassName: (file: File, entity: IdNameItem, action: string) => string
+        getClassFullName: (file: File, entity: IdNameItem, action: string) => string
         getDirectoryFullName: (
             directory: Directory,
-            entity: Entity,
+            entity: IdNameItem,
             action: string,
         ) => string
-        getFileName: (file: File, entity: Entity, action: string) => string
-        getFileFullName: (file: File, entity: Entity, action: string) => string
+        getFileName: (file: File, entity: IdNameItem, action: string) => string
+        getFileFullName: (file: File, entity: IdNameItem, action: string) => string
         getFullNameSpace: (
             directory: Directory,
-            entity: Entity,
+            entity: IdNameItem,
             action: string,
         ) => string
-        getFullNameSpaceOfFile: (file: File, entity: Entity, action: string) => string
+        getFullNameSpaceOfFile: (file: File, entity: IdNameItem, action: string) => string
         makeNameSpacezz: (directory: Directory, namezz: string[]) => string[]
         replacePSR4: (name: string) => void
     }

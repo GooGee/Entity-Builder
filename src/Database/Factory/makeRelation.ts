@@ -90,5 +90,6 @@ export default function makeRelation(
         entity0Id,
         entity1Id,
         column1Id,
+        addToModel: false,
     }
 }

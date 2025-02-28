@@ -187,6 +187,7 @@ namespace LB {
         entity0Id: number
         entity1Id: number
         column1Id: number
+        addToModel: boolean
     }
 
     interface Request extends Response {
