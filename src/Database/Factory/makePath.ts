@@ -46,7 +46,7 @@ export function makePathMethod(item: LB.Path, ma: LB.ModuleAction) {
 }
 
 function makePathName(entity: LB.Entity, ma: LB.ModuleAction) {
-    const pathName = `/${entity.name}/${ma.name}`
+    const pathName = `/${entity.name}-${ma.name}`
     if (ma.name.includes("One")) {
         return pathName + makePathParameterString()
     }
