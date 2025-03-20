@@ -61,11 +61,10 @@ export function makePathOf(
     method: string,
 ) {
     const name = makePathName(entity, ma)
-    const found = itemzz.find(
-        (item) => item.moduleId === module.id && item.name === name,
-    )
+    const found = itemzz.find((item) => item.entityId === entity.id && item.moduleId === module.id && item.name === name)
     if (found) {
-        return Promise.resolve(found)
+        found.moduleActionId = ma.id
+        return makePathCRUD().update(found)
     }
 
     return makePathCRUD().create(makePath(name, entity.id, module.id, method, ma.id))
