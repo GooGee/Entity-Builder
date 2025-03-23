@@ -3131,8 +3131,6 @@
                     "oapiFormat": "int16",
                     "oapiType": "integer",
                     "phpType": "int",
-                    "raField": "NumberField",
-                    "raInput": "NumberInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3149,8 +3147,6 @@
                     "oapiFormat": "int32",
                     "oapiType": "integer",
                     "phpType": "int",
-                    "raField": "NumberField",
-                    "raInput": "NumberInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3167,8 +3163,6 @@
                     "oapiFormat": "int64",
                     "oapiType": "integer",
                     "phpType": "int",
-                    "raField": "NumberField",
-                    "raInput": "NumberInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3185,8 +3179,6 @@
                     "oapiFormat": "double",
                     "oapiType": "number",
                     "phpType": "float",
-                    "raField": "NumberField",
-                    "raInput": "NumberInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3203,8 +3195,6 @@
                     "oapiFormat": "float",
                     "oapiType": "number",
                     "phpType": "float",
-                    "raField": "NumberField",
-                    "raInput": "NumberInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3221,8 +3211,6 @@
                     "oapiFormat": "",
                     "oapiType": "string",
                     "phpType": "string",
-                    "raField": "TextField",
-                    "raInput": "TextInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3239,8 +3227,6 @@
                     "oapiFormat": "",
                     "oapiType": "string",
                     "phpType": "string",
-                    "raField": "RichTextField",
-                    "raInput": "RichTextInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3257,8 +3243,6 @@
                     "oapiFormat": "",
                     "oapiType": "string",
                     "phpType": "string",
-                    "raField": "TextField",
-                    "raInput": "TextInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3275,8 +3259,6 @@
                     "oapiFormat": "binary",
                     "oapiType": "string",
                     "phpType": "mixed",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "ro": false,
                     "wo": false
                 },
@@ -3293,8 +3275,6 @@
                     "oapiFormat": "binary",
                     "oapiType": "string",
                     "phpType": "mixed",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "ro": false,
                     "wo": false
                 },
@@ -3311,8 +3291,6 @@
                     "oapiFormat": "",
                     "oapiType": "integer",
                     "phpType": "int",
-                    "raField": "BooleanField",
-                    "raInput": "BooleanInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3329,8 +3307,6 @@
                     "oapiFormat": "date",
                     "oapiType": "string",
                     "phpType": "string",
-                    "raField": "DateField",
-                    "raInput": "DateInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3347,8 +3323,6 @@
                     "oapiFormat": "date-time",
                     "oapiType": "string",
                     "phpType": "string",
-                    "raField": "DateField",
-                    "raInput": "DateTimeInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3365,8 +3339,6 @@
                     "oapiFormat": "date-time",
                     "oapiType": "string",
                     "phpType": "string",
-                    "raField": "DateField",
-                    "raInput": "DateTimeInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3383,8 +3355,6 @@
                     "oapiFormat": "time",
                     "oapiType": "string",
                     "phpType": "string",
-                    "raField": "TextField",
-                    "raInput": "TimeInput",
                     "ro": false,
                     "wo": false
                 },
@@ -3401,8 +3371,6 @@
                     "oapiFormat": "",
                     "oapiType": "string",
                     "phpType": "array",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "ro": false,
                     "wo": false
                 },
@@ -3419,8 +3387,6 @@
                     "oapiFormat": "",
                     "oapiType": "any",
                     "phpType": "array",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "ro": false,
                     "wo": false
                 },
@@ -3437,8 +3403,6 @@
                     "oapiFormat": "",
                     "oapiType": "any",
                     "phpType": "array",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "ro": false,
                     "wo": false
                 }
@@ -5397,8 +5361,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5432,8 +5394,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5467,8 +5427,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5502,8 +5460,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5537,8 +5493,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5572,8 +5526,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5607,8 +5559,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5642,8 +5592,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5677,8 +5625,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5712,8 +5658,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5747,8 +5691,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5782,8 +5724,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5817,8 +5757,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5852,8 +5790,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5887,8 +5823,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5922,8 +5856,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5957,8 +5889,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -5992,8 +5922,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6027,8 +5955,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6062,8 +5988,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6097,8 +6021,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6132,8 +6054,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "DateField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6167,8 +6087,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "DateField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6202,8 +6120,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "DateField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6237,8 +6153,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextInput",
                     "hidden": false
                 },
                 {
@@ -6272,8 +6186,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextInput",
                     "hidden": false
                 },
                 {
@@ -6307,8 +6219,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "PasswordInput",
                     "hidden": true
                 },
                 {
@@ -6342,8 +6252,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": true
                 },
                 {
@@ -6377,8 +6285,6 @@
                     "required": true,
                     "reserved": false,
                     "style": "",
-                    "raField": "TextField",
-                    "raInput": "BooleanInput",
                     "hidden": false
                 },
                 {
@@ -6410,8 +6316,6 @@
                     "required": true,
                     "style": "simple",
                     "id": 32,
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6443,8 +6347,6 @@
                     "required": true,
                     "style": "form",
                     "id": 34,
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6476,8 +6378,6 @@
                     "required": false,
                     "style": "simple",
                     "id": 35,
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6509,8 +6409,6 @@
                     "required": true,
                     "style": "simple",
                     "id": 36,
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6542,8 +6440,6 @@
                     "required": false,
                     "style": "simple",
                     "id": 37,
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6575,8 +6471,6 @@
                     "required": false,
                     "style": "simple",
                     "id": 38,
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "hidden": false
                 },
                 {
@@ -6608,8 +6502,6 @@
                     "explode": false,
                     "required": true,
                     "style": "form",
-                    "raField": "NumberField",
-                    "raInput": "NumberInput",
                     "id": 39
                 },
                 {
@@ -6641,8 +6533,6 @@
                     "explode": false,
                     "required": true,
                     "style": "form",
-                    "raField": "TextField",
-                    "raInput": "TextInput",
                     "id": 40
                 },
                 {
@@ -6674,8 +6564,6 @@
                     "explode": false,
                     "required": true,
                     "style": "form",
-                    "raField": "TextField",
-                    "raInput": "TextInput",
                     "id": 41
                 },
                 {
@@ -6707,8 +6595,6 @@
                     "explode": false,
                     "required": true,
                     "style": "deepObject",
-                    "raField": "TextField",
-                    "raInput": "TextField",
                     "id": 42
                 },
                 {
