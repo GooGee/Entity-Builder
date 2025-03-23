@@ -7,6 +7,9 @@ import showInput from "../Dialog/showInput"
 import useFlowPageStore from "@/Store/useFlowPageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 
+const CrudFileSet = new Set(["Event", "EventListener", "Request"])
+const TestFileSet = new Set(["AbstractItemTestBase", "AbstractGuestItemTestBase"])
+
 interface Property {
     directoryId: number
     isTest: boolean
@@ -61,6 +64,17 @@ export default function FileFilterList(property: Property) {
 
             {suseFilezzStore.itemzz
                 .filter(function (item) {
+                    if (property.isTest) {
+                        const found = TestFileSet.has(item.name)
+                        if (found) {
+                            return true
+                        }
+                    } else {
+                        const found = CrudFileSet.has(item.name)
+                        if (found) {
+                            return true
+                        }
+                    }
                     if (Text) {
                         return item.name.includes(Text)
                     }
@@ -70,7 +84,6 @@ export default function FileFilterList(property: Property) {
                 .map(function (item) {
                     return (
                         <tr key={item.id}>
-                            <td>{item.name}</td>
                             <td>
                                 <button
                                     className="btn btn-outline-primary"
@@ -104,9 +117,10 @@ export default function FileFilterList(property: Property) {
                                             .catch(sToastzzStore.showError)
                                     }}
                                 >
-                                    +
+                                    + {item.name}
                                 </button>
                             </td>
+                            <td>{item.description}</td>
                         </tr>
                     )
                 })}

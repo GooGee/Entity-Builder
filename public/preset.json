@@ -3962,7 +3962,7 @@
                     "isSingle": false
                 },
                 {
-                    "name": "Listener",
+                    "name": "EventListener",
                     "color": "#fff",
                     "layer": "Event",
                     "nameSpacePattern": "",
@@ -3974,7 +3974,7 @@
                 },
                 {
                     "directoryId": 102,
-                    "name": "ListenerOfMany",
+                    "name": "EventListenerOfMany",
                     "color": "#fff",
                     "layer": "Event",
                     "description": "",
@@ -7501,7 +7501,7 @@
             ],
             "PathMethod": []
         },
-        "version": 51
+        "version": 52
     },
     "oapi": {
         "openapi": "3.0.3",
