@@ -10,6 +10,7 @@ import ColorButtonGroup from "../Button/ColorButtonGroup"
 import DeleteChangeButton from "../Button/DeleteChangeButton"
 import SelectButton from "../Button/SelectButton"
 import showInput from "../Dialog/showInput"
+import FileButton from "../Button/FileButton"
 
 interface Property {
     children?: ReactElement
@@ -27,6 +28,25 @@ export default function ModuleDetail(property: Property) {
 
     const directory = sDirectoryzzStore.find(property.item.directoryId)
     const testDirectory = sDirectoryzzStore.find(property.item.testDirectoryId)
+
+    function makeFileButton() {
+        const file = useFilezzStore.getState().find(property.item.fileId)
+
+        if (file) {
+            return (
+                <FileButton
+                    action={""}
+                    className="mx-3"
+                    file={file}
+                    fullName
+                    entity={entity}
+                    module={property.item}
+                ></FileButton>
+            )
+        }
+
+        return <span className="text-danger">route file {property.item.fileId} not found</span>
+    }
 
     function select(isTest: boolean) {
         sDirectoryModal.openCB("Please select a Directory", function (itemId) {
@@ -78,6 +98,8 @@ export default function ModuleDetail(property: Property) {
                         }
                     }}
                 ></DeleteChangeButton>
+
+                {makeFileButton()}
             </caption>
             <tbody>
                 <tr>

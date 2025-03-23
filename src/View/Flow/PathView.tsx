@@ -22,25 +22,6 @@ export default function PathView(property: Property) {
     const susePathzzStore = usePathzzStore()
     const sToastzzStore = useToastzzStore()
 
-    function makeFileButton() {
-        const file = useFilezzStore.getState().find(property.module.fileId)
-
-        if (file) {
-            return (
-                <FileButton
-                    action={""}
-                    className="mx-3"
-                    file={file}
-                    fullName
-                    entity={property.entity}
-                    module={property.module}
-                ></FileButton>
-            )
-        }
-
-        return <span className="text-danger">route file {property.module.fileId} not found</span>
-    }
-
     const path = susePathzzStore.itemzz.find(function (item) {
         return (
             item.entityId === property.entity.id &&
@@ -78,8 +59,6 @@ export default function PathView(property: Property) {
                 >
                     +
                 </button>
-
-                {makeFileButton()}
             </div>
         )
     }
@@ -111,8 +90,6 @@ export default function PathView(property: Property) {
                     }
                 }}
             ></DeleteChangeButton>
-
-            {makeFileButton()}
         </PathDetail>
     )
 }
