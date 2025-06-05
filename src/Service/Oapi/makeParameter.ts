@@ -18,7 +18,6 @@ export default function makeParameter(
     schema?: SchemaObject | ReferenceObject,
 ) {
     const data: HeaderObject = {
-        allowReserved: column.allowReserved,
         deprecated: column.deprecated,
         description: column.description,
         explode: column.explode,

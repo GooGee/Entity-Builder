@@ -148,7 +148,6 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("fakeText", lf.Type.STRING)
         // for OpenApi parameter
         .addColumn("inTable", lf.Type.BOOLEAN)
-        .addColumn("allowReserved", lf.Type.BOOLEAN)
         .addColumn("color", lf.Type.STRING)
         .addColumn("deprecated", lf.Type.BOOLEAN)
         .addColumn("description", lf.Type.BOOLEAN)

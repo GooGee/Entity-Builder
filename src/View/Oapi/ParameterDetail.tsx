@@ -36,30 +36,6 @@ export default function ParameterDetail(property: Property) {
                     </td>
                 </tr>
                 <tr>
-                    <td>allowReserved</td>
-                    <td>
-                        <div className="form-check form-switch">
-                            <input
-                                checked={property.item.allowReserved}
-                                onChange={(event) =>
-                                    update({
-                                        ...property.item!,
-                                        allowReserved: event.target.checked,
-                                    })
-                                }
-                                className="form-check-input"
-                                type="checkbox"
-                                role="switch"
-                                id={"allowReservedSwitchCheck" + property.item.id}
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor={"allowReservedSwitchCheck" + property.item.id}
-                            ></label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
                     <td>deprecated</td>
                     <td>
                         <div className="form-check form-switch">

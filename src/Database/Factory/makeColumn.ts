@@ -36,7 +36,6 @@ export default function makeColumn(
         fakeText: dct?.fakeText ?? "",
 
         inTable,
-        allowReserved: false,
         deprecated: false,
         description: "",
         example: "",

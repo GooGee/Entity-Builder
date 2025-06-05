@@ -40,7 +40,6 @@ namespace LB {
         // typeFormatId: number
 
         inTable: boolean
-        allowReserved: boolean
         deprecated: boolean
         description: string
         example: string
