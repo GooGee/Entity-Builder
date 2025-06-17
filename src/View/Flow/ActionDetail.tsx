@@ -51,29 +51,6 @@ export default function ActionDetail(property: Property) {
                     </td>
                 </tr>
                 <tr>
-                    <td>inOapi</td>
-                    <td>
-                        <div className="form-check form-switch inline">
-                            <input
-                                checked={item.inOapi}
-                                onChange={(event) =>
-                                    update({
-                                        ...item,
-                                        inOapi: event.target.checked,
-                                    })
-                                }
-                                className="form-check-input"
-                                type="checkbox"
-                                role="switch"
-                                id={"inOapiSwitchCheck" + item.id}
-                            />
-                            <label className="form-check-label" htmlFor={"inOapiSwitchCheck" + item.id}></label>
-                        </div>
-
-                        <span>if true, it will be included in OpenApi document</span>
-                    </td>
-                </tr>
-                <tr>
                     <td>inRoute</td>
                     <td>
                         <div className="form-check form-switch inline">
