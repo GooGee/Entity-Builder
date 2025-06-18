@@ -13,7 +13,8 @@ export default function migrate(db: LB.DBData, preset: LB.AppInfoData) {
 
     if (db.tables.ModuleAction.length === 0) {
         const ma = makeModuleAction(
-            db.tables.Directory[0],
+            // db.tables.Directory[0],
+            '',
             db.tables.Entity[0],
             db.tables.Module[0],
         )

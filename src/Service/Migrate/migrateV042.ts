@@ -8,7 +8,7 @@ export default function migrateV042(db: LB.DBData, preset: LB.AppInfoData) {
     }
 
     db.tables.ModuleAction.forEach((item) => {
-        item.inOapi = true
+        // item.inOapi = true
         item.inRoute = true
     })
 }
