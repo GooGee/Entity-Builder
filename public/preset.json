@@ -2779,6 +2779,48 @@
 					"opened": true,
 					"name": "${entity.name}",
 					"id": 802
+				},
+				{
+					"parentId": 101,
+					"name": "${entity.name}",
+					"opened": true,
+					"description": "",
+					"id": 1001
+				},
+				{
+					"parentId": 201,
+					"name": "${entity.name}",
+					"opened": true,
+					"description": "",
+					"id": 2001
+				},
+				{
+					"parentId": 301,
+					"name": "${entity.name}",
+					"opened": true,
+					"description": "",
+					"id": 3001
+				},
+				{
+					"parentId": 401,
+					"name": "${entity.name}",
+					"opened": true,
+					"description": "",
+					"id": 4001
+				},
+				{
+					"parentId": 801,
+					"name": "${entity.name}",
+					"opened": true,
+					"description": "",
+					"id": 8001
+				},
+				{
+					"parentId": 901,
+					"name": "${entity.name}",
+					"opened": true,
+					"description": "",
+					"id": 9001
 				}
 			],
 			"DoctrineColumnType": [
@@ -3425,7 +3467,7 @@
 					"isSingle": true
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "AbstractItemTestBase",
 					"color": "#fff",
 					"layer": "Test",
@@ -3436,7 +3478,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "CreateManyItemTest",
 					"color": "#f0f",
 					"layer": "Test",
@@ -3454,11 +3496,11 @@
 					"fileNamePattern": "${action + entity.name}Test.php",
 					"id": 1200,
 					"description": "",
-					"directoryId": 101,
+					"directoryId": 1001,
 					"isSingle": false
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "DeleteManyItemTest",
 					"color": "#ff0",
 					"layer": "Test",
@@ -3476,11 +3518,11 @@
 					"fileNamePattern": "${action + entity.name}Test.php",
 					"id": 1400,
 					"description": "",
-					"directoryId": 101,
+					"directoryId": 1001,
 					"isSingle": false
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "ReadAllItemTest",
 					"color": "#0ff",
 					"isSingle": false,
@@ -3491,7 +3533,7 @@
 					"id": 1510
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "ReadCurrentItemTest",
 					"color": "#00f",
 					"isSingle": false,
@@ -3502,7 +3544,7 @@
 					"id": 1610
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "ReadHomeItemTest",
 					"color": "#0ff",
 					"layer": "Test",
@@ -3520,7 +3562,7 @@
 					"fileNamePattern": "${action + entity.name}Test.php",
 					"id": 1500,
 					"description": "",
-					"directoryId": 101,
+					"directoryId": 1001,
 					"isSingle": false
 				},
 				{
@@ -3531,11 +3573,11 @@
 					"fileNamePattern": "${action + entity.name}Test.php",
 					"id": 1600,
 					"description": "",
-					"directoryId": 101,
+					"directoryId": 1001,
 					"isSingle": false
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "ReadPageItemTest",
 					"color": "#0ff",
 					"layer": "Test",
@@ -3546,7 +3588,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "UpdateManyItemTest",
 					"color": "#08f",
 					"layer": "Test",
@@ -3564,7 +3606,7 @@
 					"fileNamePattern": "${action + entity.name}Test.php",
 					"id": 1900,
 					"description": "",
-					"directoryId": 101,
+					"directoryId": 1001,
 					"isSingle": false
 				},
 				{
@@ -3942,7 +3984,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 301,
+					"directoryId": 3001,
 					"name": "AbstractGuestItemTestBase",
 					"color": "#fff",
 					"isSingle": false,
@@ -3986,7 +4028,7 @@
 					"id": 1912
 				},
 				{
-					"directoryId": 101,
+					"directoryId": 1001,
 					"name": "UpdateCurrentItemTest",
 					"color": "#80f",
 					"isSingle": false,
