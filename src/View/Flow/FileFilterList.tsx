@@ -98,12 +98,11 @@ export default function FileFilterList(property: Property) {
                                                             directoryId: property.directoryId,
                                                             isExtra: true,
                                                             fileNamePattern: result.value,
-                                                            id: item.id,
                                                         } as LB.ModuleActionFile
                                                         if (property.isTest) {
                                                             file.nameSpacePattern = property.entity.name
                                                         } else {
-                                                            file.nameSpacePattern = property.ma.name
+                                                            file.nameSpacePattern = ''
                                                         }
                                                         return makeModuleActionCRUD()
                                                             .update({
