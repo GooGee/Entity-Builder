@@ -10,6 +10,8 @@ import usePathzzStore from "@/Store/usePathzzStore"
 import { getHttpMethod, makePathOf } from "@/Database/Factory/makePath"
 import useColumnzzStore from "@/Store/useColumnzzStore"
 import Constant from "@/Model/Constant"
+import useFilezzStore from "@/Store/useFilezzStore"
+import LayerEnum from "@/Model/LayerEnum"
 
 const Step = StepEnum.Action
 
@@ -19,21 +21,15 @@ interface Property {
 }
 
 export default function ActionList(property: Property) {
-    const sDirectoryzzStore = useDirectoryzzStore()
+    const suseFilezzStore = useFilezzStore()
     const sFlowPageStore = useFlowPageStore()
     const sModuleActionzzStore = useModuleActionzzStore()
     const sPathzzStore = usePathzzStore()
 
-    const tabzz =
-        sDirectoryzzStore.treeMap
-            .get(property.module.directoryId)
-            ?.childzz?.slice()
-            .sort((aa, bb) => aa.name.localeCompare(bb.name)) ?? []
-    const tab = tabzz.find((item) => sFlowPageStore.action === item.name)
-
-    const xActionzz = sModuleActionzzStore.itemzz
-        .filter((item) => item.directoryId === property.module.directoryId && item.entityId === property.entity.id)
+    const tabzz = suseFilezzStore.itemzz
+        .filter((item) => item.layer === LayerEnum.Action)
         .sort((aa, bb) => aa.name.localeCompare(bb.name))
+    const tab = tabzz.find((item) => sFlowPageStore.action === item.name)
 
     useEffect(() => {
         if (
@@ -54,16 +50,17 @@ export default function ActionList(property: Property) {
         }
     }, [property.entity, property.module])
 
-    function find(mad: LB.Directory) {
+    function find(file: LB.File) {
         return sModuleActionzzStore.itemzz.find(
             (item) =>
                 item.entityId === property.entity.id &&
                 item.moduleId === property.module.id &&
-                item.directoryId === mad.id,
+                item.directoryId === property.module.directoryId &&
+                item.name === file.name,
         )
     }
 
-    function getCN(mad: LB.Directory, ma?: LB.ModuleAction) {
+    function getCN(mad: LB.File, ma?: LB.ModuleAction) {
         let cn = "nav-link"
         if (tab) {
             if (mad.id === tab.id) {
@@ -81,21 +78,7 @@ export default function ActionList(property: Property) {
         return cn
     }
 
-    function makeAction() {
-        showNameInput("please input the action name", "").then(function (result) {
-            if (result.isConfirmed) {
-                if (result.value) {
-                    const md = sDirectoryzzStore.find(property.module.directoryId)
-                    if (md) {
-                        const folder = { ...md, name: result.value }
-                        makeModuleActionAll(folder)
-                    }
-                }
-            }
-        })
-    }
-
-    function makeButton(mad: LB.Directory, ma?: LB.ModuleAction) {
+    function makeButton(mad: LB.File, ma?: LB.ModuleAction) {
         if (tab === undefined) {
             return null
         }
@@ -111,7 +94,7 @@ export default function ActionList(property: Property) {
         return (
             <span
                 onClick={function () {
-                    makeModuleActionAll(tab)
+                    makeModuleActionAll(tab.name)
                 }}
                 className="badge bg-success rounded-pill"
             >
@@ -120,9 +103,9 @@ export default function ActionList(property: Property) {
         )
     }
 
-    function makeModuleActionAll(tab: LB.Directory) {
+    function makeModuleActionAll(name: string) {
         makeModuleActionCRUD()
-            .create(makeModuleAction(tab, property.entity, property.module))
+            .create(makeModuleAction(name, property.entity, property.module))
             .then(function (item) {
                 sFlowPageStore.setAction(sFlowPageStore.action, item)
                 return makePathOf(
@@ -148,18 +131,18 @@ export default function ActionList(property: Property) {
             .catch(useToastzzStore.getState().showError)
     }
 
-    function makeTab(mad: LB.Directory) {
-        const ma = find(mad)
+    function makeTab(file: LB.File) {
+        const ma = find(file)
         return (
             <li
-                key={mad.id}
+                key={file.id}
                 onClick={function () {
-                    sFlowPageStore.setAction(mad.name, ma)
+                    sFlowPageStore.setAction(file.name, ma)
                 }}
                 className="nav-item nav-item-fill"
             >
-                <span className={getCN(mad, ma)}>
-                    {mad.name} {makeButton(mad, ma)}
+                <span className={getCN(file, ma)}>
+                    {file.name} {makeButton(file, ma)}
                 </span>
             </li>
         )
@@ -173,34 +156,7 @@ export default function ActionList(property: Property) {
 
             <ul className={"nav nav-tabs"}>{tabzz.map(makeTab)}</ul>
 
-            <ul className={"nav nav-tabs mt-3"}>
-                {xActionzz.map(function (item) {
-                    return (
-                        <li
-                            key={"ma" + item.id}
-                            className="nav-item nav-item-fill"
-                            onClick={function () {
-                                sFlowPageStore.setAction(item.name, item)
-                            }}
-                        >
-                            <span
-                                className={
-                                    "nav-link " +
-                                    (sFlowPageStore.action === item.name ? "active border-primary" : "text-primary")
-                                }
-                            >
-                                {item.name}
-                            </span>
-                        </li>
-                    )
-                })}
-
-                <li className="nav-item">
-                    <button className="btn btn-outline-primary ms-3" type="button" onClick={makeAction}>
-                        +
-                    </button>
-                </li>
-            </ul>
+            <div>to create a new Action, go to Tree page.</div>
         </div>
     )
 }

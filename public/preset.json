@@ -2664,23 +2664,30 @@
 				{
 					"parentId": 10,
 					"description": "",
-					"opened": false,
+					"opened": true,
 					"name": "ApiAdmin",
 					"id": 200
 				},
 				{
 					"parentId": 10,
 					"name": "ApiGuest",
-					"opened": false,
+					"opened": true,
 					"description": "",
 					"id": 300
 				},
 				{
 					"parentId": 10,
 					"name": "ApiUser",
-					"opened": false,
+					"opened": true,
 					"description": "",
 					"id": 400
+				},
+				{
+					"parentId": 10,
+					"name": "Crud",
+					"opened": true,
+					"description": "",
+					"id": 800
 				},
 				{
 					"parentId": 10,
@@ -2726,6 +2733,13 @@
 				},
 				{
 					"parentId": 20,
+					"name": "Crud",
+					"opened": true,
+					"description": "",
+					"id": 801
+				},
+				{
+					"parentId": 20,
 					"name": "Feature",
 					"opened": true,
 					"description": "",
@@ -2739,193 +2753,11 @@
 					"id": 102
 				},
 				{
-					"parentId": 102,
-					"description": "",
-					"opened": true,
-					"name": "CreateMany",
-					"id": 110
-				},
-				{
-					"parentId": 102,
-					"description": "",
-					"opened": true,
-					"name": "CreateOne",
-					"id": 120
-				},
-				{
-					"parentId": 102,
-					"description": "",
-					"opened": true,
-					"name": "DeleteMany",
-					"id": 130
-				},
-				{
-					"parentId": 102,
-					"description": "",
-					"opened": true,
-					"name": "DeleteOne",
-					"id": 140
-				},
-				{
-					"parentId": 102,
-					"name": "ReadAll",
-					"opened": true,
-					"description": "",
-					"id": 151
-				},
-				{
-					"parentId": 102,
-					"name": "ReadCurrent",
-					"opened": true,
-					"description": "",
-					"id": 161
-				},
-				{
-					"parentId": 102,
-					"name": "ReadHome",
-					"opened": true,
-					"description": "",
-					"id": 152
-				},
-				{
-					"parentId": 102,
-					"description": "",
-					"opened": true,
-					"name": "ReadMany",
-					"id": 150
-				},
-				{
-					"parentId": 102,
-					"description": "",
-					"opened": true,
-					"name": "ReadOne",
-					"id": 160
-				},
-				{
-					"parentId": 102,
-					"name": "ReadPage",
-					"opened": true,
-					"description": "",
-					"id": 170
-				},
-				{
-					"parentId": 102,
-					"name": "UpdateCurrent",
-					"opened": true,
-					"description": "",
-					"id": 191
-				},
-				{
-					"parentId": 102,
-					"description": "",
-					"opened": true,
-					"name": "UpdateMany",
-					"id": 180
-				},
-				{
-					"parentId": 102,
-					"description": "",
-					"opened": true,
-					"name": "UpdateOne",
-					"id": 190
-				},
-				{
 					"parentId": 200,
 					"description": "",
 					"opened": true,
 					"name": "${entity.name}",
 					"id": 202
-				},
-				{
-					"parentId": 202,
-					"description": "",
-					"opened": true,
-					"name": "CreateMany",
-					"id": 210
-				},
-				{
-					"parentId": 202,
-					"description": "",
-					"opened": true,
-					"name": "CreateOne",
-					"id": 220
-				},
-				{
-					"parentId": 202,
-					"description": "",
-					"opened": true,
-					"name": "DeleteMany",
-					"id": 230
-				},
-				{
-					"parentId": 202,
-					"description": "",
-					"opened": true,
-					"name": "DeleteOne",
-					"id": 240
-				},
-				{
-					"parentId": 202,
-					"name": "ReadAll",
-					"opened": true,
-					"description": "",
-					"id": 251
-				},
-				{
-					"parentId": 202,
-					"name": "ReadCurrent",
-					"opened": true,
-					"description": "",
-					"id": 261
-				},
-				{
-					"parentId": 202,
-					"name": "ReadHome",
-					"opened": true,
-					"description": "",
-					"id": 252
-				},
-				{
-					"parentId": 202,
-					"description": "",
-					"opened": true,
-					"name": "ReadMany",
-					"id": 250
-				},
-				{
-					"parentId": 202,
-					"description": "",
-					"opened": true,
-					"name": "ReadOne",
-					"id": 260
-				},
-				{
-					"parentId": 202,
-					"name": "ReadPage",
-					"opened": true,
-					"description": "",
-					"id": 270
-				},
-				{
-					"parentId": 202,
-					"name": "UpdateCurrent",
-					"opened": true,
-					"description": "",
-					"id": 291
-				},
-				{
-					"parentId": 202,
-					"description": "",
-					"opened": true,
-					"name": "UpdateMany",
-					"id": 280
-				},
-				{
-					"parentId": 202,
-					"description": "",
-					"opened": true,
-					"name": "UpdateOne",
-					"id": 290
 				},
 				{
 					"parentId": 300,
@@ -2935,97 +2767,6 @@
 					"id": 302
 				},
 				{
-					"parentId": 302,
-					"description": "",
-					"opened": true,
-					"name": "CreateMany",
-					"id": 310
-				},
-				{
-					"parentId": 302,
-					"description": "",
-					"opened": true,
-					"name": "CreateOne",
-					"id": 320
-				},
-				{
-					"parentId": 302,
-					"description": "",
-					"opened": true,
-					"name": "DeleteMany",
-					"id": 330
-				},
-				{
-					"parentId": 302,
-					"description": "",
-					"opened": true,
-					"name": "DeleteOne",
-					"id": 340
-				},
-				{
-					"parentId": 302,
-					"name": "ReadAll",
-					"opened": true,
-					"description": "",
-					"id": 351
-				},
-				{
-					"parentId": 302,
-					"name": "ReadCurrent",
-					"opened": true,
-					"description": "",
-					"id": 361
-				},
-				{
-					"parentId": 302,
-					"name": "ReadHome",
-					"opened": true,
-					"description": "",
-					"id": 352
-				},
-				{
-					"parentId": 302,
-					"description": "",
-					"opened": true,
-					"name": "ReadMany",
-					"id": 350
-				},
-				{
-					"parentId": 302,
-					"description": "",
-					"opened": true,
-					"name": "ReadOne",
-					"id": 360
-				},
-				{
-					"parentId": 302,
-					"name": "ReadPage",
-					"opened": true,
-					"description": "",
-					"id": 370
-				},
-				{
-					"parentId": 302,
-					"name": "UpdateCurrent",
-					"opened": true,
-					"description": "",
-					"id": 391
-				},
-				{
-					"parentId": 302,
-					"description": "",
-					"opened": true,
-					"name": "UpdateMany",
-					"id": 380
-				},
-				{
-					"parentId": 302,
-					"description": "",
-					"opened": true,
-					"name": "UpdateOne",
-					"id": 390
-				},
-				{
 					"parentId": 400,
 					"description": "",
 					"opened": true,
@@ -3033,95 +2774,11 @@
 					"id": 402
 				},
 				{
-					"parentId": 402,
+					"parentId": 800,
 					"description": "",
 					"opened": true,
-					"name": "CreateMany",
-					"id": 410
-				},
-				{
-					"parentId": 402,
-					"description": "",
-					"opened": true,
-					"name": "CreateOne",
-					"id": 420
-				},
-				{
-					"parentId": 402,
-					"description": "",
-					"opened": true,
-					"name": "DeleteMany",
-					"id": 430
-				},
-				{
-					"parentId": 402,
-					"description": "",
-					"opened": true,
-					"name": "DeleteOne",
-					"id": 440
-				},
-				{
-					"parentId": 402,
-					"name": "ReadAll",
-					"opened": true,
-					"description": "",
-					"id": 451
-				},
-				{
-					"parentId": 402,
-					"name": "ReadCurrent",
-					"opened": true,
-					"description": "",
-					"id": 461
-				},
-				{
-					"parentId": 402,
-					"name": "ReadHome",
-					"opened": true,
-					"description": "",
-					"id": 452
-				},
-				{
-					"parentId": 402,
-					"description": "",
-					"opened": true,
-					"name": "ReadMany",
-					"id": 450
-				},
-				{
-					"parentId": 402,
-					"description": "",
-					"opened": true,
-					"name": "ReadOne",
-					"id": 460
-				},
-				{
-					"parentId": 402,
-					"name": "ReadPage",
-					"opened": true,
-					"description": "",
-					"id": 470
-				},
-				{
-					"parentId": 402,
-					"name": "UpdateCurrent",
-					"opened": true,
-					"description": "",
-					"id": 491
-				},
-				{
-					"parentId": 402,
-					"description": "",
-					"opened": true,
-					"name": "UpdateMany",
-					"id": 480
-				},
-				{
-					"parentId": 402,
-					"description": "",
-					"opened": true,
-					"name": "UpdateOne",
-					"id": 490
+					"name": "${entity.name}",
+					"id": 802
 				}
 			],
 			"DoctrineColumnType": [
@@ -3918,11 +3575,11 @@
 					"fileNamePattern": "${action + entity.name}Event.php",
 					"id": 1010,
 					"description": "",
-					"directoryId": 102,
+					"directoryId": 802,
 					"isSingle": false
 				},
 				{
-					"directoryId": 102,
+					"directoryId": 802,
 					"name": "EventOfMany",
 					"color": "#fff",
 					"layer": "Event",
@@ -3940,12 +3597,12 @@
 					"fileNamePattern": "${action + entity.name}Listener.php",
 					"id": 1030,
 					"description": "",
-					"directoryId": 102,
+					"directoryId": 802,
 					"isSingle": false
 				},
 				{
-					"directoryId": 102,
-					"name": "EventListenerOfMany",
+					"directoryId": 802,
+					"name": "EventOfManyListener",
 					"color": "#fff",
 					"layer": "Event",
 					"description": "",
@@ -3984,12 +3641,12 @@
 					"fileNamePattern": "${action + entity.name}Service.php",
 					"id": 1070,
 					"description": "",
-					"directoryId": 102,
+					"directoryId": 802,
 					"isSingle": false
 				},
 				{
-					"directoryId": 110,
-					"name": "CreateManyItem",
+					"directoryId": 802,
+					"name": "CreateMany",
 					"color": "#f0f",
 					"layer": "Action",
 					"description": "",
@@ -3999,7 +3656,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 110,
+					"directoryId": 102,
 					"name": "CreateManyItemController",
 					"color": "#f0f",
 					"layer": "Controller",
@@ -4010,7 +3667,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 110,
+					"directoryId": 102,
 					"name": "CreateManyItemRequest",
 					"color": "#f0f",
 					"layer": "Request",
@@ -4021,14 +3678,14 @@
 					"isSingle": false
 				},
 				{
-					"name": "CreateOneItem",
+					"name": "CreateOne",
 					"color": "#f80",
 					"layer": "Action",
 					"nameSpacePattern": "",
 					"fileNamePattern": "${action + entity.name}.php",
 					"id": 1201,
 					"description": "",
-					"directoryId": 120,
+					"directoryId": 802,
 					"isSingle": false
 				},
 				{
@@ -4039,12 +3696,12 @@
 					"fileNamePattern": "${action + entity.name}Controller.php",
 					"id": 1202,
 					"description": "",
-					"directoryId": 120,
+					"directoryId": 102,
 					"isSingle": false
 				},
 				{
-					"directoryId": 130,
-					"name": "DeleteManyItem",
+					"directoryId": 802,
+					"name": "DeleteMany",
 					"color": "#ff0",
 					"layer": "Action",
 					"description": "",
@@ -4054,7 +3711,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 130,
+					"directoryId": 102,
 					"name": "DeleteManyItemController",
 					"color": "#ff0",
 					"layer": "Controller",
@@ -4065,14 +3722,14 @@
 					"isSingle": false
 				},
 				{
-					"name": "DeleteOneItem",
+					"name": "DeleteOne",
 					"color": "#0f0",
 					"layer": "Action",
 					"nameSpacePattern": "",
 					"fileNamePattern": "${action + entity.name}.php",
 					"id": 1401,
 					"description": "",
-					"directoryId": 140,
+					"directoryId": 802,
 					"isSingle": false
 				},
 				{
@@ -4083,18 +3740,18 @@
 					"fileNamePattern": "${action + entity.name}Controller.php",
 					"id": 1402,
 					"description": "",
-					"directoryId": 140,
+					"directoryId": 102,
 					"isSingle": false
 				},
 				{
-					"name": "ReadManyItem",
+					"name": "ReadMany",
 					"color": "#0ff",
 					"layer": "Action",
 					"nameSpacePattern": "",
 					"fileNamePattern": "${action + entity.name}.php",
 					"id": 1501,
 					"description": "",
-					"directoryId": 150,
+					"directoryId": 802,
 					"isSingle": false
 				},
 				{
@@ -4105,12 +3762,12 @@
 					"fileNamePattern": "${action + entity.name}Controller.php",
 					"id": 1502,
 					"description": "",
-					"directoryId": 150,
+					"directoryId": 102,
 					"isSingle": false
 				},
 				{
-					"directoryId": 151,
-					"name": "ReadAllItem",
+					"directoryId": 802,
+					"name": "ReadAll",
 					"color": "#0ff",
 					"layer": "Action",
 					"description": "",
@@ -4120,7 +3777,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 151,
+					"directoryId": 102,
 					"name": "ReadAllItemController",
 					"color": "#0ff",
 					"layer": "Controller",
@@ -4131,8 +3788,8 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 152,
-					"name": "ReadHomeItem",
+					"directoryId": 802,
+					"name": "ReadHome",
 					"color": "#0ff",
 					"layer": "Action",
 					"description": "",
@@ -4142,7 +3799,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 152,
+					"directoryId": 102,
 					"name": "ReadHomeItemController",
 					"color": "#0ff",
 					"layer": "Controller",
@@ -4153,14 +3810,14 @@
 					"isSingle": false
 				},
 				{
-					"name": "ReadOneItem",
+					"name": "ReadOne",
 					"color": "#00f",
 					"layer": "Action",
 					"nameSpacePattern": "",
 					"fileNamePattern": "${action + entity.name}.php",
 					"id": 1601,
 					"description": "",
-					"directoryId": 160,
+					"directoryId": 802,
 					"isSingle": false
 				},
 				{
@@ -4171,12 +3828,12 @@
 					"fileNamePattern": "${action + entity.name}Controller.php",
 					"id": 1602,
 					"description": "",
-					"directoryId": 160,
+					"directoryId": 102,
 					"isSingle": false
 				},
 				{
-					"directoryId": 161,
-					"name": "ReadCurrentItem",
+					"directoryId": 802,
+					"name": "ReadCurrent",
 					"color": "#00f",
 					"isSingle": false,
 					"layer": "Action",
@@ -4186,7 +3843,7 @@
 					"id": 1611
 				},
 				{
-					"directoryId": 161,
+					"directoryId": 102,
 					"name": "ReadCurrentItemController",
 					"color": "#00f",
 					"isSingle": false,
@@ -4197,8 +3854,8 @@
 					"id": 1612
 				},
 				{
-					"directoryId": 170,
-					"name": "ReadPageItem",
+					"directoryId": 802,
+					"name": "ReadPage",
 					"color": "#0ff",
 					"layer": "Action",
 					"description": "",
@@ -4208,7 +3865,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 170,
+					"directoryId": 102,
 					"name": "ReadPageItemController",
 					"color": "#0ff",
 					"layer": "Controller",
@@ -4219,7 +3876,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 170,
+					"directoryId": 102,
 					"name": "ReadPageItemRequest",
 					"color": "#0ff",
 					"layer": "Request",
@@ -4230,8 +3887,8 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 180,
-					"name": "UpdateManyItem",
+					"directoryId": 802,
+					"name": "UpdateMany",
 					"color": "#08f",
 					"layer": "Action",
 					"description": "",
@@ -4241,7 +3898,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 180,
+					"directoryId": 102,
 					"name": "UpdateManyItemController",
 					"color": "#08f",
 					"layer": "Controller",
@@ -4252,7 +3909,7 @@
 					"isSingle": false
 				},
 				{
-					"directoryId": 180,
+					"directoryId": 102,
 					"name": "UpdateManyItemRequest",
 					"color": "#08f",
 					"layer": "Request",
@@ -4263,14 +3920,14 @@
 					"isSingle": false
 				},
 				{
-					"name": "UpdateOneItem",
+					"name": "UpdateOne",
 					"color": "#80f",
 					"layer": "Action",
 					"nameSpacePattern": "",
 					"fileNamePattern": "${action + entity.name}.php",
 					"id": 1901,
 					"description": "",
-					"directoryId": 190,
+					"directoryId": 802,
 					"isSingle": false
 				},
 				{
@@ -4281,7 +3938,7 @@
 					"fileNamePattern": "${action + entity.name}Controller.php",
 					"id": 1902,
 					"description": "",
-					"directoryId": 190,
+					"directoryId": 102,
 					"isSingle": false
 				},
 				{
@@ -4307,8 +3964,8 @@
 					"isSingle": true
 				},
 				{
-					"directoryId": 191,
-					"name": "UpdateCurrentItem",
+					"directoryId": 802,
+					"name": "UpdateCurrent",
 					"color": "#80f",
 					"isSingle": false,
 					"layer": "Action",
@@ -4318,7 +3975,7 @@
 					"id": 1911
 				},
 				{
-					"directoryId": 191,
+					"directoryId": 102,
 					"name": "UpdateCurrentItemController",
 					"color": "#80f",
 					"isSingle": false,
@@ -7212,7 +6869,7 @@
 					"fileId": 2000
 				},
 				{
-					"color": "#80f",
+					"color": "#f80",
 					"description": "Apis for accessing other users public data",
 					"name": "ApiGuest",
 					"reserved": false,
@@ -7232,6 +6889,17 @@
 					"fileId": 4000,
 					"prefix": "/ApiUser",
 					"id": 4
+				},
+				{
+					"color": "#fff",
+					"description": "Crud",
+					"name": "Crud",
+					"reserved": false,
+					"directoryId": 802,
+					"testDirectoryId": 801,
+					"fileId": 1000,
+					"prefix": "/Crud",
+					"id": 8
 				}
 			],
 			"ModuleAction": [
