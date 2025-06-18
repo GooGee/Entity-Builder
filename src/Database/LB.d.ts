@@ -123,7 +123,6 @@ namespace LB {
         directoryId: number
         fileId: number
         testDirectoryId: number
-        prefix: string
     }
 
     interface ModuleAction {

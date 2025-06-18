@@ -240,11 +240,10 @@ export default function createSchema(builder: lf.Builder) {
     makeUniqueKey(tb, item, [makeForeignKeyId(SchemaEnum.Wu), "name"])
 
     item = SchemaEnum.Module
-    tb = createForSideBarUniqueItem(builder, item).addColumn("prefix", lf.Type.STRING)
+    tb = createForSideBarUniqueItem(builder, item)
     makeForeignKey(tb, item, SchemaEnum.File)
     makeForeignKey(tb, item, SchemaEnum.Directory)
     makeForeignKey(tb, item, SchemaEnum.Directory, "testDirectoryId")
-    makeUniqueKey(tb, item, ["prefix"])
 
     item = SchemaEnum.ModuleAction
     tb = builder

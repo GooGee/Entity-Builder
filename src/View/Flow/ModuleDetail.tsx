@@ -117,29 +117,6 @@ export default function ModuleDetail(property: Property) {
                     </td>
                 </tr>
                 <tr>
-                    <td>URI prefix</td>
-                    <td>
-                        <button
-                            className="btn btn-outline-primary"
-                            type="button"
-                            onClick={function () {
-                                showInput("Please input the Module name", property.item.prefix)
-                                    .then(function (result) {
-                                        if (result.isConfirmed) {
-                                            return update({
-                                                ...property.item,
-                                                prefix: result.value,
-                                            })
-                                        }
-                                    })
-                                    .catch(sToastzzStore.showError)
-                            }}
-                        >
-                            {property.item.prefix}
-                        </button>
-                    </td>
-                </tr>
-                <tr>
                     <td>directory</td>
                     <td>
                         <button

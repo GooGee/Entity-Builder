@@ -5,7 +5,7 @@ import migrateV051 from "./migrateV051"
 
 const BreakingVersion = 50
 
-export const Version = 53
+export const Version = 52
 
 export default function migrate(
     db: LB.DBData,

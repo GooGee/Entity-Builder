@@ -2,20 +2,20 @@ import lodash from "lodash"
 import { OmitId } from "../dbhelper"
 
 export default function makeModuleAction(
-    directory: LB.Directory,
+    name: string,
     entity: LB.Entity,
     module: LB.Module,
 ): OmitId<LB.ModuleAction> {
     return {
         deprecated: false,
         inRoute: true,
-        name: directory.name,
+        name: name,
         description: "",
         routeName: "",
         filezz: [],
         summary:
-            module.name + " " + lodash.lowerCase(directory.name) + " " + entity.name,
-        directoryId: directory.id,
+            module.name + " " + lodash.lowerCase(name) + " " + entity.name,
+        directoryId: module.directoryId,
         entityId: entity.id,
         moduleId: module.id,
         requestId: 1,
