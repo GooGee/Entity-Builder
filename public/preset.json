@@ -2691,6 +2691,13 @@
 				},
 				{
 					"parentId": 10,
+					"name": "Service",
+					"opened": true,
+					"description": "",
+					"id": 900
+				},
+				{
+					"parentId": 10,
 					"description": "",
 					"opened": true,
 					"name": "Base",
@@ -2781,6 +2788,13 @@
 					"id": 802
 				},
 				{
+					"parentId": 900,
+					"description": "",
+					"opened": true,
+					"name": "${entity.name}",
+					"id": 902
+				},
+				{
 					"parentId": 101,
 					"name": "${entity.name}",
 					"opened": true,
@@ -2832,7 +2846,7 @@
 					"reserved": false,
 					"default": "",
 					"fakeMethod": "numberBetween",
-					"fakeText": "",
+					"fakeText": "0",
 					"nullable": false,
 					"oapiFormat": "int16",
 					"oapiType": "integer",
@@ -2848,7 +2862,7 @@
 					"reserved": false,
 					"default": "",
 					"fakeMethod": "numberBetween",
-					"fakeText": "",
+					"fakeText": "0",
 					"nullable": false,
 					"oapiFormat": "int32",
 					"oapiType": "integer",
@@ -2864,7 +2878,7 @@
 					"reserved": false,
 					"default": "",
 					"fakeMethod": "numberBetween",
-					"fakeText": "",
+					"fakeText": "0",
 					"nullable": false,
 					"oapiFormat": "int64",
 					"oapiType": "integer",
@@ -2880,7 +2894,7 @@
 					"reserved": false,
 					"default": "",
 					"fakeMethod": "randomFloat",
-					"fakeText": "",
+					"fakeText": "0",
 					"nullable": false,
 					"oapiFormat": "double",
 					"oapiType": "number",
@@ -2896,7 +2910,7 @@
 					"reserved": false,
 					"default": "",
 					"fakeMethod": "randomFloat",
-					"fakeText": "",
+					"fakeText": "0",
 					"nullable": false,
 					"oapiFormat": "float",
 					"oapiType": "number",
@@ -3184,11 +3198,11 @@
 					"name": "Service",
 					"color": "#f00",
 					"layer": "",
-					"nameSpacePattern": "Service",
+					"nameSpacePattern": "",
 					"fileNamePattern": "${entity.name}Service.php",
 					"id": 9101,
 					"description": "",
-					"directoryId": 10,
+					"directoryId": 902,
 					"isSingle": false
 				},
 				{
@@ -6934,7 +6948,7 @@
 				},
 				{
 					"color": "#fff",
-					"description": "Crud",
+					"description": "Crud only",
 					"name": "Crud",
 					"reserved": false,
 					"directoryId": 802,
