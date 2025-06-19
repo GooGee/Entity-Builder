@@ -30,6 +30,14 @@ export default function ActionList(property: Property) {
         .filter((item) => item.layer === LayerEnum.Action)
         .sort((aa, bb) => aa.name.localeCompare(bb.name))
     const tab = tabzz.find((item) => sFlowPageStore.action === item.name)
+    const nameset = new Set(tabzz.map((item) => item.name))
+
+    const actionzz = sModuleActionzzStore.itemzz.filter(
+        (item) =>
+            item.directoryId === property.module.directoryId &&
+            item.entityId === property.entity.id &&
+            !nameset.has(item.name),
+    )
 
     useEffect(() => {
         if (
@@ -78,6 +86,16 @@ export default function ActionList(property: Property) {
         return cn
     }
 
+    function makeAction() {
+        showNameInput("please input the action name", "").then(function (result) {
+            if (result.isConfirmed) {
+                if (result.value) {
+                    makeModuleActionAll(result.value)
+                }
+            }
+        })
+    }
+
     function makeButton(mad: LB.File, ma?: LB.ModuleAction) {
         if (tab === undefined) {
             return null
@@ -107,7 +125,8 @@ export default function ActionList(property: Property) {
         makeModuleActionCRUD()
             .create(makeModuleAction(name, property.entity, property.module))
             .then(function (item) {
-                sFlowPageStore.setAction(sFlowPageStore.action, item)
+                sFlowPageStore.setAction(name, item)
+
                 return makePathOf(
                     item,
                     property.entity,
@@ -119,6 +138,7 @@ export default function ActionList(property: Property) {
                     if (item.name.includes("One") === false) {
                         return
                     }
+
                     return makeParameterMapCRUD().create({
                         alias: "",
                         columnId: Constant.ColumnIdOfIdInParameterInPath,
@@ -156,7 +176,34 @@ export default function ActionList(property: Property) {
 
             <ul className={"nav nav-tabs"}>{tabzz.map(makeTab)}</ul>
 
-            <div>to create a new Action, go to Tree page.</div>
+            <ul className={"nav nav-tabs mt-3"}>
+                {actionzz.map(function (item) {
+                    return (
+                        <li
+                            key={"ma" + item.id}
+                            className="nav-item nav-item-fill"
+                            onClick={function () {
+                                sFlowPageStore.setAction(item.name, item)
+                            }}
+                        >
+                            <span
+                                className={
+                                    "nav-link " +
+                                    (sFlowPageStore.action === item.name ? "active border-primary" : "text-primary")
+                                }
+                            >
+                                {item.name}
+                            </span>
+                        </li>
+                    )
+                })}
+
+                <li className="nav-item">
+                    <button className="btn btn-outline-primary ms-3" type="button" onClick={makeAction}>
+                        +
+                    </button>
+                </li>
+            </ul>
         </div>
     )
 }
