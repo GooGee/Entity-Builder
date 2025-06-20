@@ -6,7 +6,7 @@ import Constant from "@/Model/Constant"
 
 export function getHttpMethod(name: string): HttpMethod {
     for (const [key, value] of ActionMethodMap.entries()) {
-        if (name.includes(key)) {
+        if (name.startsWith(key)) {
             return value
         }
     }

@@ -52,6 +52,7 @@ export const ActionMethodMap = new Map([
     ["Delete", HttpMethod.delete],
     ["Read", HttpMethod.get],
     ["Update", HttpMethod.patch],
+    ["Upload", HttpMethod.post],
 ])
 
 export enum ParameterLocation {
