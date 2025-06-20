@@ -4003,7 +4003,7 @@
 					"color": "#fff",
 					"isSingle": false,
 					"layer": "Test",
-					"description": "",
+					"description": "this file is used to overwrite the Uri path",
 					"nameSpacePattern": "",
 					"fileNamePattern": "Abstract${entity.name}TestBase.php",
 					"id": 3002
@@ -6948,7 +6948,7 @@
 				},
 				{
 					"color": "#fff",
-					"description": "Crud only",
+					"description": "Crud db only",
 					"name": "Crud",
 					"reserved": false,
 					"directoryId": 802,

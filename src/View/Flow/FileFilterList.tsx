@@ -65,6 +65,9 @@ export default function FileFilterList(property: Property) {
             {suseFilezzStore.itemzz
                 .filter(function (item) {
                     if (property.isTest) {
+                        if (item.name.includes("Test") === false) {
+                            return false
+                        }
                         const found = TestFileSet.has(item.name)
                         if (found) {
                             return true
@@ -75,6 +78,7 @@ export default function FileFilterList(property: Property) {
                             return true
                         }
                     }
+
                     if (Text) {
                         return item.name.includes(Text)
                     }

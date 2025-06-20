@@ -14,7 +14,6 @@ import FileFilterList from "./FileFilterList"
 interface Property {
     action: string
     directoryId: number
-    source: LB.File[]
     isTest: boolean
     ma: LB.ModuleAction
     module: LB.Module

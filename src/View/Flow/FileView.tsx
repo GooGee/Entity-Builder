@@ -14,56 +14,8 @@ interface Property {
 
 export default function FileView(property: Property) {
     const sDirectoryzzStore = useDirectoryzzStore()
-    const sFilezzStore = useFilezzStore()
 
     const directory = sDirectoryzzStore.find(property.directoryId)
-
-    const itemzz = sFilezzStore.itemzz
-        .filter((item) => {
-            if (property.isTest) {
-                return item.directoryId === property.module.testDirectoryId
-            }
-            return (
-                item.directoryId === property.ma.directoryId ||
-                findSimilarAction(property.ma.name, item.directoryId) ||
-                item.directoryId === property.module.directoryId
-            )
-        })
-        .sort((aa, bb) => {
-            if (aa.directoryId === bb.directoryId) {
-                return aa.name.localeCompare(bb.name)
-            }
-            return aa.directoryId - bb.directoryId
-        })
-
-    function findSimilarAction(name: string, directoryId: number) {
-        const directory = property.directoryMap.get(directoryId)
-        if (directory === undefined) {
-            return false
-        }
-
-        const similar = name.includes(directory.name)
-        if (similar) {
-            return inModule(directory.parentId)
-        }
-
-        return false
-
-        function inModule(directoryId: number | null): boolean {
-            if (directoryId === null) {
-                return false
-            }
-            if (directoryId === property.module.directoryId) {
-                return true
-            }
-
-            const directory = property.directoryMap.get(directoryId)
-            if (directory === undefined) {
-                return false
-            }
-            return inModule(directory.parentId)
-        }
-    }
 
     return (
         <table className="table">
@@ -87,7 +39,6 @@ export default function FileView(property: Property) {
                 isTest={property.isTest}
                 ma={property.ma}
                 module={property.module}
-                source={itemzz}
             ></FileList>
         </table>
     )
