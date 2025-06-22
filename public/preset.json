@@ -3515,6 +3515,17 @@
 				},
 				{
 					"directoryId": 1001,
+					"name": "CloneOneItemTest",
+					"color": "#f80",
+					"isSingle": false,
+					"layer": "Test",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Test.php",
+					"id": 1210
+				},
+				{
+					"directoryId": 1001,
 					"name": "DeleteManyItemTest",
 					"color": "#ff0",
 					"layer": "Test",
@@ -3751,6 +3762,28 @@
 					"nameSpacePattern": "",
 					"fileNamePattern": "${action + entity.name}Controller.php",
 					"id": 1202,
+					"description": "",
+					"directoryId": 102,
+					"isSingle": false
+				},
+				{
+					"directoryId": 802,
+					"name": "CloneOne",
+					"color": "#f80",
+					"isSingle": false,
+					"layer": "Action",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}.php",
+					"id": 1211
+				},
+				{
+					"name": "CloneOneItemController",
+					"color": "#f80",
+					"layer": "Controller",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Controller.php",
+					"id": 1212,
 					"description": "",
 					"directoryId": 102,
 					"isSingle": false

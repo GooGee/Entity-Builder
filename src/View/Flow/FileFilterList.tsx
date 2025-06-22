@@ -7,7 +7,7 @@ import showInput from "../Dialog/showInput"
 import useFlowPageStore from "@/Store/useFlowPageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 
-const CrudFileSet = new Set(["Event", "EventListener", "Request"])
+const CrudFileSet = new Set(["Event", "EventListener", "EventOfMany", "EventOfManyListener", "Request"])
 const TestFileSet = new Set(["AbstractItemTestBase", "AbstractGuestItemTestBase"])
 
 interface Property {
