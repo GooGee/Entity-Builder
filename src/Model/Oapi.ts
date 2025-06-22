@@ -48,6 +48,7 @@ export enum HttpMethod {
 export const HttpMethodzz = Object.keys(HttpMethod) as Array<keyof typeof HttpMethod>
 
 export const ActionMethodMap = new Map([
+    ["Clone", HttpMethod.post],
     ["Create", HttpMethod.post],
     ["Delete", HttpMethod.delete],
     ["Read", HttpMethod.get],
