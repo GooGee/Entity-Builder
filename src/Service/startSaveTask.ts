@@ -5,15 +5,17 @@ import useSettingStore from "@/Store/useSettingStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 
 const SaveInterval = 1222
-const NewBackupAfter = 111
+const NewBackupAfter = 33 // create a new backup file after this many changes
+
+let amount = 0
+let waiting = false
 
 export default function startSaveTask(data: string) {
-    let amount = 0
-    let waiting = false
     setInterval(function () {
         if (waiting) {
             return
         }
+
         exportDB()
             .then(function (db) {
                 const text = JSON.stringify({
@@ -24,6 +26,7 @@ export default function startSaveTask(data: string) {
                 if (text === data) {
                     return
                 }
+
                 data = text
                 amount += 1
                 waiting = true

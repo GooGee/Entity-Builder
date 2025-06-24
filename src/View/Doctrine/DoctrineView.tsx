@@ -60,7 +60,7 @@ export default function DoctrineView(property: Property) {
                                     fakeText: event.target.value,
                                 })
                             }
-                            className="form-control wa"
+                            className="form-control"
                             type="text"
                         />
                     </td>
@@ -108,7 +108,7 @@ export default function DoctrineView(property: Property) {
                                     phpType: event.target.value,
                                 })
                             }
-                            className="form-control wa"
+                            className="form-control"
                             type="text"
                         />
                     </td>

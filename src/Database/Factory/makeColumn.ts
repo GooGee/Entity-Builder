@@ -33,7 +33,7 @@ export default function makeColumn(
         fakeRaw: true,
         fakeUnique: false,
         fakeMethod: dct?.fakeMethod ?? "",
-        fakeText: dct?.fakeText ?? "",
+        fakeText: value ? value : dct?.fakeText ?? "",
 
         inTable,
         deprecated: false,

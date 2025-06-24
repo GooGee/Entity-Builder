@@ -6942,7 +6942,6 @@
 					"reserved": false,
 					"directoryId": 102,
 					"testDirectoryId": 1001,
-					"prefix": "/Api",
 					"id": 1,
 					"fileId": 1000
 				},
@@ -6953,7 +6952,6 @@
 					"reserved": false,
 					"directoryId": 202,
 					"testDirectoryId": 2001,
-					"prefix": "/ApiAdmin",
 					"id": 2,
 					"fileId": 2000
 				},
@@ -6965,7 +6963,6 @@
 					"directoryId": 302,
 					"fileId": 3000,
 					"testDirectoryId": 3001,
-					"prefix": "/ApiGuest",
 					"id": 3
 				},
 				{
@@ -6976,7 +6973,6 @@
 					"directoryId": 402,
 					"testDirectoryId": 4001,
 					"fileId": 4000,
-					"prefix": "/ApiUser",
 					"id": 4
 				},
 				{
@@ -6987,8 +6983,17 @@
 					"directoryId": 802,
 					"testDirectoryId": 8001,
 					"fileId": 1000,
-					"prefix": "/Crud",
 					"id": 8
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "Service",
+					"reserved": false,
+					"directoryId": 902,
+					"fileId": 1000,
+					"testDirectoryId": 9001,
+					"id": 9
 				}
 			],
 			"ModuleAction": [
