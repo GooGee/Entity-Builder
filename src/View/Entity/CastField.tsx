@@ -21,7 +21,9 @@ export default function CastField(property: Property) {
 
     return (
         <tr>
-            <td>{item.name}</td>
+            <td>
+                <span className={item.inTable ? "" : "text-secondary"}>{item.name}</span>
+            </td>
             <td>
                 <div className="form-check form-switch inline">
                     <input

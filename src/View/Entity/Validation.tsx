@@ -44,7 +44,9 @@ export default function Validation(property: Property) {
             <tbody>
                 {columnzz.map((item) => (
                     <tr key={item.id}>
-                        <td>{item.name}</td>
+                        <td>
+                            <span className={item.inTable ? "" : "text-secondary"}>{item.name}</span>
+                        </td>
                         <td>
                             <ConstraintList constraintzz={constraintzz} column={item}></ConstraintList>
                         </td>
