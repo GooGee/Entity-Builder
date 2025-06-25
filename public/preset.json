@@ -4084,6 +4084,39 @@
 					"nameSpacePattern": "",
 					"fileNamePattern": "${action + entity.name}Test.php",
 					"id": 1910
+				},
+				{
+					"directoryId": 802,
+					"name": "PublishOne",
+					"color": "#80f",
+					"isSingle": false,
+					"layer": "Action",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}.php",
+					"id": 1921
+				},
+				{
+					"directoryId": 102,
+					"name": "PublishOneItemController",
+					"color": "#80f",
+					"isSingle": false,
+					"layer": "Controller",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Controller.php",
+					"id": 1922
+				},
+				{
+					"directoryId": 1001,
+					"name": "PublishOneItemTest",
+					"color": "#80f",
+					"isSingle": false,
+					"layer": "Test",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Test.php",
+					"id": 1920
 				}
 			],
 			"Entity": [
