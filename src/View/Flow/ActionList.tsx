@@ -32,12 +32,14 @@ export default function ActionList(property: Property) {
     const tab = tabzz.find((item) => sFlowPageStore.action === item.name)
     const nameset = new Set(tabzz.map((item) => item.name))
 
-    const actionzz = sModuleActionzzStore.itemzz.filter(
-        (item) =>
-            item.directoryId === property.module.directoryId &&
-            item.entityId === property.entity.id &&
-            !nameset.has(item.name),
-    )
+    const actionzz = sModuleActionzzStore.itemzz
+        .filter(
+            (item) =>
+                item.directoryId === property.module.directoryId &&
+                item.entityId === property.entity.id &&
+                !nameset.has(item.name),
+        )
+        .sort((aa, bb) => aa.name.localeCompare(bb.name))
 
     useEffect(() => {
         if (
