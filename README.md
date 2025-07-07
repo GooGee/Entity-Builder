@@ -1,6 +1,6 @@
 # Laravel Builder
 
-Intuitive productivity tool for Laravel. [demo](https://googee.github.io/laravel-builder/build003)
+Intuitive productivity tool for Laravel. [demo](https://googee.github.io/laravel-builder/build006)
 
 You no longer need to write migrations, Doctrine will do it for you.
 

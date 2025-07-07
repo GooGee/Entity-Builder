@@ -2978,7 +2978,7 @@
 					"nullable": false,
 					"oapiFormat": "binary",
 					"oapiType": "string",
-					"phpType": "mixed",
+					"phpType": "string",
 					"ro": false,
 					"wo": false
 				},
@@ -2994,7 +2994,7 @@
 					"nullable": false,
 					"oapiFormat": "binary",
 					"oapiType": "string",
-					"phpType": "mixed",
+					"phpType": "string",
 					"ro": false,
 					"wo": false
 				},
@@ -3105,8 +3105,8 @@
 					"fakeText": "",
 					"nullable": false,
 					"oapiFormat": "",
-					"oapiType": "any",
-					"phpType": "array",
+					"oapiType": "string",
+					"phpType": "string",
 					"ro": false,
 					"wo": false
 				},
@@ -3121,8 +3121,8 @@
 					"fakeText": "",
 					"nullable": false,
 					"oapiFormat": "",
-					"oapiType": "any",
-					"phpType": "array",
+					"oapiType": "string",
+					"phpType": "string",
 					"ro": false,
 					"wo": false
 				}
