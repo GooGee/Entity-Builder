@@ -4117,6 +4117,83 @@
 					"nameSpacePattern": "",
 					"fileNamePattern": "${action + entity.name}Test.php",
 					"id": 1920
+				},
+				{
+					"name": "UploadOneItemTest",
+					"color": "#f80",
+					"layer": "Test",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Test.php",
+					"id": 1250,
+					"description": "",
+					"directoryId": 1001,
+					"isSingle": false
+				},
+				{
+					"directoryId": 802,
+					"name": "UploadOne",
+					"color": "#f80",
+					"isSingle": false,
+					"layer": "Action",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}.php",
+					"id": 1251
+				},
+				{
+					"directoryId": 102,
+					"name": "UploadOneItemRequest",
+					"color": "#f80",
+					"layer": "Request",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Request.php",
+					"id": 1255,
+					"isSingle": false
+				},
+				{
+					"directoryId": 102,
+					"name": "UploadOneItemController",
+					"color": "#f80",
+					"isSingle": false,
+					"layer": "Controller",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Controller.php",
+					"id": 1252
+				},
+				{
+					"name": "DownloadOneItemTest",
+					"color": "#00f",
+					"layer": "Test",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Test.php",
+					"id": 1650,
+					"description": "",
+					"directoryId": 1001,
+					"isSingle": false
+				},
+				{
+					"directoryId": 802,
+					"name": "DownloadOne",
+					"color": "#00f",
+					"isSingle": false,
+					"layer": "Action",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}.php",
+					"id": 1651
+				},
+				{
+					"directoryId": 102,
+					"name": "DownloadOneItemController",
+					"color": "#00f",
+					"isSingle": false,
+					"layer": "Controller",
+					"description": "",
+					"nameSpacePattern": "",
+					"fileNamePattern": "${action + entity.name}Controller.php",
+					"id": 1652
 				}
 			],
 			"Entity": [
