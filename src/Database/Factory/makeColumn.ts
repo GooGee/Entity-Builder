@@ -1,3 +1,4 @@
+import Constant from "@/Model/Constant"
 import { OmitId } from "../dbhelper"
 import makeSideBarItem from "./makeSideBarItem"
 
@@ -13,6 +14,18 @@ export default function makeColumn(
     comment: string = "",
     inTable = true,
 ): OmitId<LB.Column> {
+
+    let fakeMethod = ''
+    let fakeText = ''
+    if (name.endsWith(Constant.Id)) {
+        // ok
+    } else {
+        if (dct) {
+            fakeMethod = dct.fakeMethod
+            fakeText = dct.fakeText
+        }
+    }
+
     return {
         ...makeSideBarItem(name),
         entityId,
@@ -32,8 +45,8 @@ export default function makeColumn(
         wo: false,
         fakeRaw: true,
         fakeUnique: false,
-        fakeMethod: dct?.fakeMethod ?? "",
-        fakeText: value ? value : dct?.fakeText ?? "",
+        fakeMethod,
+        fakeText: value ? value : fakeText,
 
         inTable,
         deprecated: false,
