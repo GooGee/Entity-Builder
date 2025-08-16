@@ -26,6 +26,15 @@ export default function makeColumn(
         }
     }
 
+    let cast = ''
+    if (type === 'date') {
+        cast = 'date'
+    } else {
+        if (type.startsWith('datetime')) {
+            cast = 'datetime'
+        }
+    }
+
     return {
         ...makeSideBarItem(name),
         entityId,
@@ -38,7 +47,7 @@ export default function makeColumn(
         unsigned: false,
         nullable: false,
 
-        cast: "",
+        cast,
         fillable: false,
         hidden: false,
         ro: rozz.findIndex((item) => item.name === name) > -1,
