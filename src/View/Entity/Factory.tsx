@@ -38,7 +38,7 @@ export default function Factory(property: Property) {
                 {file === undefined ? (
                     <span className="text-danger">File {LayerEnum.Factory} not found</span>
                 ) : (
-                    <FileButton action={""} className="me-3" file={file} fullName entity={property.entity}></FileButton>
+                    <FileButton className="me-3" file={file} fullName entity={property.entity}></FileButton>
                 )}
                 <WebLink href="https://laravel.com/docs/9.x/eloquent-factories">doc</WebLink>
             </caption>

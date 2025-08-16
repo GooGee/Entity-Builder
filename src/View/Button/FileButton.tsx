@@ -5,7 +5,6 @@ import useToastzzStore from "@/Store/useToastzzStore"
 import EditButton from "./EditButton"
 
 interface Property {
-    action: string
     className?: string
     file: LB.File
     fullName?: boolean
@@ -19,21 +18,15 @@ export default function FileButton(property: Property) {
     const sPsr4Store = usePsr4Store()
     const sToastzzStore = useToastzzStore()
 
-    const name = sDirectoryzzStore.treeHelper.getFileName(property.file, property.entity, property.action)
-    const file = sDirectoryzzStore.treeHelper.getFileFullName(property.file, property.entity, property.action)
+    const action = property.ma ? property.ma.name : ""
+    const name = sDirectoryzzStore.treeHelper.getFileName(property.file, property.entity, action)
+    const file = sDirectoryzzStore.treeHelper.getFileFullName(property.file, property.entity, action)
 
     return (
         <div className={"btn-group " + property.className}>
             <button
                 onClick={() => {
-                    writeFile(
-                        property.file,
-                        property.entity,
-                        property.module,
-                        property.ma,
-                        property.action,
-                        sPsr4Store.psr4,
-                    )
+                    writeFile(property.file, property.entity, property.module, property.ma, action, sPsr4Store.psr4)
                         .then((response) => sToastzzStore.showSuccess(response.data.data))
                         .catch(sToastzzStore.showError)
                 }}

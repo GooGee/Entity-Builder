@@ -50,7 +50,7 @@ export default function ColumnList(property: Property) {
                 {model === undefined ? (
                     <span className="text-danger">File ModelBase not found</span>
                 ) : property.entity.isTable ? (
-                    <FileButton action={""} file={model} fullName entity={property.entity}></FileButton>
+                    <FileButton file={model} fullName entity={property.entity}></FileButton>
                 ) : null}
             </caption>
             <thead>

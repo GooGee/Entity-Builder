@@ -21,7 +21,6 @@ import ActionResponse from "./ActionResponse"
 const Step = StepEnum.Response
 
 interface Property {
-    action: string
     entity: LB.Entity
     ma: LB.ModuleAction
     module: LB.Module
@@ -37,7 +36,7 @@ export default function ResponseList(property: Property) {
 
     const [itemzz, setItemzz] = useState<LB.ModuleActionResponse[]>([])
 
-    const nameResponse = makeResponseName(property.action, property.entity)
+    const nameResponse = makeResponseName(property.ma.name, property.entity)
 
     const statuszz = getCollectionItemzz("HttpStatus")
 
@@ -134,7 +133,7 @@ export default function ResponseList(property: Property) {
             .create(makeResponse(nameResponse))
             .then((lbr) => {
                 sToastzzStore.showSuccess(`Response ${lbr.name} created`)
-                const wrapperId = findWrapper(property.action) ?? 1
+                const wrapperId = findWrapper(property.ma.name) ?? 1
                 const data = makeTypeFormat(OapiType.Wu, wrapperId)
                 data.ownerResponseId = lbr.id
                 return makeTypeFormatCRUD()

@@ -10,7 +10,6 @@ import { makeIdItemMap } from "@/Factory/makeMap"
 const Step = StepEnum.File
 
 interface Property {
-    action: string
     entity: LB.Entity
     ma: LB.ModuleAction
     module: LB.Module
@@ -49,12 +48,12 @@ export default function FileTabList(property: Property) {
                                 const namea = sDirectoryzzStore.treeHelper.getFileName(
                                     aa,
                                     property.entity,
-                                    property.action,
+                                    property.ma.name,
                                 )
                                 const nameb = sDirectoryzzStore.treeHelper.getFileName(
                                     bb,
                                     property.entity,
-                                    property.action,
+                                    property.ma.name,
                                 )
                                 return namea.localeCompare(nameb)
                             }
@@ -64,7 +63,6 @@ export default function FileTabList(property: Property) {
                             <tr key={item.id}>
                                 <td>
                                     <FileButton
-                                        action={property.action}
                                         file={item}
                                         fullName
                                         ma={property.ma}
@@ -88,7 +86,6 @@ export default function FileTabList(property: Property) {
 
             {tab === TabEnum.Crud ? (
                 <FileView
-                    action={property.action}
                     directoryId={property.module.directoryId}
                     entity={property.entity}
                     isTest={false}
@@ -100,7 +97,6 @@ export default function FileTabList(property: Property) {
 
             {tab === TabEnum.Test ? (
                 <FileView
-                    action={property.action}
                     directoryId={property.module.testDirectoryId}
                     entity={property.entity}
                     isTest={true}

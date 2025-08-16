@@ -35,7 +35,6 @@ export default function ModuleDetail(property: Property) {
         if (file) {
             return (
                 <FileButton
-                    action={""}
                     className="mx-3"
                     file={file}
                     fullName

@@ -3,7 +3,6 @@ import useFilezzStore from "@/Store/useFilezzStore"
 import FileList from "./FileList"
 
 interface Property {
-    action: string
     directoryId: number
     entity: LB.Entity
     isTest: boolean
@@ -22,7 +21,7 @@ export default function FileView(property: Property) {
             <caption>
                 <span className="me-3">Directory:</span>
                 {directory
-                    ? sDirectoryzzStore.treeHelper.getDirectoryFullName(directory, property.entity, property.action)
+                    ? sDirectoryzzStore.treeHelper.getDirectoryFullName(directory, property.entity, property.ma.name)
                     : `Directory ${property.directoryId} not found`}
                 {property.isTest ? "/" + property.entity.name : ""}
             </caption>
@@ -33,7 +32,6 @@ export default function FileView(property: Property) {
                 </tr>
             </thead>
             <FileList
-                action={property.action}
                 directoryId={property.directoryId}
                 entity={property.entity}
                 isTest={property.isTest}

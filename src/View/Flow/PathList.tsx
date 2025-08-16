@@ -27,7 +27,6 @@ export default function PathList(property: Property) {
                     <span className="text-danger">route file {property.module.fileId} not found</span>
                 ) : (
                     <FileButton
-                        action={""}
                         file={file}
                         fullName
                         entity={property.entity}

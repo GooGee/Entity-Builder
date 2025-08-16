@@ -80,7 +80,7 @@ export default function VariableDetail(property: Property) {
                 <tr>
                     <td></td>
                     <td>
-                        <FileButton action="" file={file} entity={property.item}></FileButton>
+                        <FileButton file={file} entity={property.item}></FileButton>
                     </td>
                 </tr>
             </tbody>

@@ -83,7 +83,6 @@ export default function FlowView() {
         if (sFlowPageStore.step === StepEnum.Response) {
             return (
                 <ResponseList
-                    action={sFlowPageStore.action}
                     entity={sEntityPageStore.item}
                     ma={sFlowPageStore.ma}
                     module={sModulePageStore.item}
@@ -95,7 +94,6 @@ export default function FlowView() {
         if (sFlowPageStore.step === StepEnum.File) {
             return (
                 <FileTabList
-                    action={sFlowPageStore.action}
                     entity={sEntityPageStore.item}
                     ma={sFlowPageStore.ma}
                     module={sModulePageStore.item}

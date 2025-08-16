@@ -121,7 +121,7 @@ export default function FileProperty() {
                             <label className="form-check-label" htmlFor={"isSingleSwitchCheck" + file.id}></label>
                         </div>
 
-                        {file.isSingle ? <FileButton action="" file={file} entity={entity}></FileButton> : null}
+                        {file.isSingle ? <FileButton file={file} entity={entity}></FileButton> : null}
                     </td>
                 </tr>
                 <tr>

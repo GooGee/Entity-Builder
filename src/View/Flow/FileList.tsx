@@ -12,7 +12,6 @@ import showInput from "../Dialog/showInput"
 import FileFilterList from "./FileFilterList"
 
 interface Property {
-    action: string
     directoryId: number
     isTest: boolean
     ma: LB.ModuleAction
@@ -49,7 +48,6 @@ export default function FileList(property: Property) {
                                 -
                             </button>
                             <FileButton
-                                action={property.action}
                                 className="ms-3"
                                 entity={property.entity}
                                 file={item}

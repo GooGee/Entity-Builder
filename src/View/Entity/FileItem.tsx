@@ -42,7 +42,6 @@ export default function FileItem(property: Property) {
             <td>
                 <div>{getName(property.item)}</div>
                 <FileButton
-                    action=""
                     file={property.item}
                     entity={property.entity}
                     ma={property.ma}
