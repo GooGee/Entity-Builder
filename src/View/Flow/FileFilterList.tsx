@@ -7,7 +7,7 @@ import showInput from "../Dialog/showInput"
 import useFlowPageStore from "@/Store/useFlowPageStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 
-const CrudFileSet = new Set(["Event", "EventListener", "EventOfMany", "EventOfManyListener", "Request"])
+const CrudFileSet = new Set(["Request"])
 const TestFileSet = new Set(["AbstractItemTestBase", "AbstractGuestItemTestBase"])
 
 interface Property {
@@ -15,6 +15,11 @@ interface Property {
     isTest: boolean
     ma: LB.ModuleAction
     entity: LB.Entity
+}
+
+function getFirstWord(text: string): string {
+    const words = text.match(/[A-Z][a-z]+/g) || [""]
+    return words.length > 0 ? words[0] : ""
 }
 
 export default function FileFilterList(property: Property) {
@@ -33,6 +38,47 @@ export default function FileFilterList(property: Property) {
         setColor(found?.color ?? ColorEnum.red)
         setText(property.ma.name)
     }, [property.ma.id])
+
+    function filter() {
+        let found = false
+        const firstWord = getFirstWord(Text)
+        const zz: LB.File[] = []
+        const filezz = suseFilezzStore.itemzz.filter(function (item) {
+            if (property.isTest) {
+                if (item.name.includes("Test") === false) {
+                    return false
+                }
+                const found = TestFileSet.has(item.name)
+                if (found) {
+                    return true
+                }
+            } else {
+                const found = CrudFileSet.has(item.name)
+                if (found) {
+                    return true
+                }
+            }
+
+            if (Text) {
+                const match = item.name.includes(Text)
+                if (match) {
+                    found = true
+                    return true
+                }
+                if (item.name.startsWith(firstWord)) {
+                    zz.push(item)
+                }
+                return false
+            }
+
+            return item.color === Color
+        })
+        
+        if (found) {
+            return filezz
+        }
+        return [...filezz, ...zz]
+    }
 
     return (
         <>
@@ -62,28 +108,7 @@ export default function FileFilterList(property: Property) {
                 </td>
             </tr>
 
-            {suseFilezzStore.itemzz
-                .filter(function (item) {
-                    if (property.isTest) {
-                        if (item.name.includes("Test") === false) {
-                            return false
-                        }
-                        const found = TestFileSet.has(item.name)
-                        if (found) {
-                            return true
-                        }
-                    } else {
-                        const found = CrudFileSet.has(item.name)
-                        if (found) {
-                            return true
-                        }
-                    }
-
-                    if (Text) {
-                        return item.name.includes(Text)
-                    }
-                    return item.color === Color
-                })
+            {filter()
                 .sort((aa, bb) => aa.name.localeCompare(bb.name))
                 .map(function (item) {
                     return (
