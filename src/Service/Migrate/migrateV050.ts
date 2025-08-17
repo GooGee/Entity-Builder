@@ -17,6 +17,7 @@ export default function migrate(db: LB.DBData, preset: LB.AppInfoData) {
             '',
             db.tables.Entity[0],
             db.tables.Module[0],
+            [],
         )
         db.tables.ModuleAction.push({ ...ma, id: 1 })
     }

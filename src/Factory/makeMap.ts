@@ -35,15 +35,10 @@ interface NameType {
     name: string
 }
 
-function makeNameItemMap<T extends NameType>(
+export function makeNameItemMap<T extends NameType>(
     itemzz: T[],
     map: Map<string, T> = new Map(),
 ) {
     itemzz.forEach((item) => map.set(item.name, item))
-    return map
-}
-
-function makeNameMap(itemzz: NameType[], map: Map<string, string> = new Map()) {
-    itemzz.forEach((item) => map.set(item.name, item.name))
     return map
 }

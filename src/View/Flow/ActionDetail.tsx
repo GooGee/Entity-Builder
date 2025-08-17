@@ -70,7 +70,7 @@ export default function ActionDetail(property: Property) {
                             <label className="form-check-label" htmlFor={"inRouteSwitchCheck" + item.id}></label>
                         </div>
 
-                        <span>if true, it will be included in route file</span>
+                        <span>if true, it will be included in route file and api doc</span>
                     </td>
                 </tr>
                 <tr>

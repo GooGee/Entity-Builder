@@ -1,13 +1,14 @@
 import lodash from "lodash"
 import { OmitId } from "../dbhelper"
-import findWrapperWu from "@/Service/findWrapperWu"
+import { findWrapperWuId } from "@/Service/findWrapperWu"
 
 export default function makeModuleAction(
     name: string,
     entity: LB.Entity,
     module: LB.Module,
+    itemzz: LB.Wu[],
 ): OmitId<LB.ModuleAction> {
-    const responseWuId = findWrapperWu(name) ?? 1
+    const responseWuId = findWrapperWuId(name, itemzz)
     return {
         deprecated: false,
         inRoute: true,

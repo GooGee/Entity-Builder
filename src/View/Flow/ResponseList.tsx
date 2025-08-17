@@ -22,7 +22,7 @@ import { useState, useEffect } from "react"
 import SelectButton from "../Button/SelectButton"
 import WuColumnList from "../Wu/WuColumnList"
 import ActionResponse from "./ActionResponse"
-import findWrapperWu from "@/Service/findWrapperWu"
+import { findWrapperWuId, WuNamezz } from "@/Service/findWrapperWu"
 
 const Step = StepEnum.Response
 
@@ -124,7 +124,7 @@ export default function ResponseList(property: Property) {
             .create(makeResponse(nameResponse))
             .then((lbr) => {
                 sToastzzStore.showSuccess(`Response ${lbr.name} created`)
-                const wrapperId = findWrapperWu(property.ma.name) ?? 1
+                const wrapperId = findWrapperWuId(property.ma.name, sWuzzStore.itemzz)
                 const data = makeTypeFormat(OapiType.Wu, wrapperId)
                 data.ownerResponseId = lbr.id
                 return makeTypeFormatCRUD()
@@ -165,8 +165,7 @@ export default function ResponseList(property: Property) {
     }
 
     function makeWuSelect() {
-        const wuNamezz = ["ApiError", "ApiItem", "ApiItemzz", "ApiPage", "ApiText", "ApiValue"]
-        const wuzz = sWuzzStore.itemzz.filter((item) => wuNamezz.includes(item.name))
+        const wuzz = sWuzzStore.itemzz.filter((item) => WuNamezz.includes(item.name))
         if (wuzz.length === 0) {
             return null
         }
@@ -192,8 +191,8 @@ export default function ResponseList(property: Property) {
 
                 {found == null ? null : (
                     <span>
-                        &nbsp;auto create Response with `{found.name}&lt;{property.entity.name}&gt;`, if no Response
-                        added.
+                        &nbsp;auto add Response with `{found.name}&lt;{property.entity.name}&gt;` to api doc, if no
+                        Response added.
                     </span>
                 )}
             </div>

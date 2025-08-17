@@ -12,6 +12,7 @@ import useColumnzzStore from "@/Store/useColumnzzStore"
 import Constant from "@/Model/Constant"
 import useFilezzStore from "@/Store/useFilezzStore"
 import LayerEnum from "@/Model/LayerEnum"
+import useWuzzStore from "@/Store/useWuzzStore"
 
 const Step = StepEnum.Action
 
@@ -125,7 +126,7 @@ export default function ActionList(property: Property) {
 
     function makeModuleActionAll(name: string) {
         makeModuleActionCRUD()
-            .create(makeModuleAction(name, property.entity, property.module))
+            .create(makeModuleAction(name, property.entity, property.module, useWuzzStore.getState().itemzz))
             .then(function (item) {
                 sFlowPageStore.setAction(name, item)
 

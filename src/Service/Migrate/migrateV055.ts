@@ -1,3 +1,4 @@
+import { findWrapperWuId } from "../findWrapperWu"
 
 const Version = 55
 
@@ -9,6 +10,6 @@ export default function migrate(db: LB.DBData, preset: LB.AppInfoData) {
     }
 
     db.tables.ModuleAction.forEach(function (item) {
-        item.responseWuId = 1
+        item.responseWuId = findWrapperWuId(item.name, db.tables.Wu)
     })
 }

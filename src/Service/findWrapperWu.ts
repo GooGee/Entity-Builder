@@ -1,20 +1,31 @@
-import useWuzzStore from "@/Store/useWuzzStore"
+import { makeNameItemMap } from "@/Factory/makeMap"
 
-export default function findWrapperWu(action: string) {
-    const ss = useWuzzStore.getState()
-    const many = ss.findByName("ApiItemzz")?.id
-    const one = ss.findByName("ApiItem")?.id
+export const WuNamezz = ["ApiError", "ApiItem", "ApiItemzz", "ApiPage", "ApiText", "ApiValue"]
+
+const Name_Wu_map = new Map<string, LB.Wu>()
+
+export default function findWrapperWu(action: string, itemzz: LB.Wu[]) {
+    if (Name_Wu_map.size === 0) {
+        makeNameItemMap(itemzz, Name_Wu_map)
+    }
+
+    const many = Name_Wu_map.get("ApiItemzz")
+    const one = Name_Wu_map.get("ApiItem")
     const map = new Map([
         ["ReadAll", many],
         ["ReadMany", many],
         ["Current", one],
         ["One", one],
-        ["ReadPage", ss.findByName("ApiPage")?.id],
+        ["ReadPage", Name_Wu_map.get("ApiPage")],
     ])
     for (const [key, value] of map) {
         if (action.includes(key)) {
             return value
         }
     }
-    return ss.findByName("ApiValue")?.id
+    return Name_Wu_map.get("ApiValue")
+}
+
+export function findWrapperWuId(action: string, itemzz: LB.Wu[]) {
+    return findWrapperWu(action, itemzz)?.id ?? 1
 }
