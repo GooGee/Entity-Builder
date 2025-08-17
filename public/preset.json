@@ -5240,6 +5240,74 @@
 					"ownerWuId": null,
 					"ownerWuChildId": null,
 					"id": 62
+				},
+				{
+					"isArray": false,
+					"nullable": false,
+					"type": "Wu",
+					"format": "",
+					"forWuParameterId": null,
+					"ownerId": null,
+					"variableId": null,
+					"wuId": 1,
+					"wuParameterId": null,
+					"ownerColumnId": 45,
+					"ownerRequestId": null,
+					"ownerResponseId": null,
+					"ownerWuId": null,
+					"ownerWuChildId": null,
+					"id": 63
+				},
+				{
+					"isArray": false,
+					"nullable": false,
+					"type": "Wu",
+					"format": "",
+					"forWuParameterId": null,
+					"ownerId": null,
+					"variableId": null,
+					"wuId": 1,
+					"wuParameterId": null,
+					"ownerColumnId": 46,
+					"ownerRequestId": null,
+					"ownerResponseId": null,
+					"ownerWuId": null,
+					"ownerWuChildId": null,
+					"id": 64
+				},
+				{
+					"isArray": false,
+					"nullable": false,
+					"type": "Wu",
+					"format": "",
+					"forWuParameterId": null,
+					"ownerId": null,
+					"variableId": null,
+					"wuId": 1,
+					"wuParameterId": null,
+					"ownerColumnId": 47,
+					"ownerRequestId": null,
+					"ownerResponseId": null,
+					"ownerWuId": null,
+					"ownerWuChildId": null,
+					"id": 65
+				},
+				{
+					"isArray": true,
+					"nullable": false,
+					"type": "Wu",
+					"format": "",
+					"forWuParameterId": null,
+					"ownerId": null,
+					"variableId": null,
+					"wuId": 1,
+					"wuParameterId": null,
+					"ownerColumnId": 48,
+					"ownerRequestId": null,
+					"ownerResponseId": null,
+					"ownerWuId": null,
+					"ownerWuChildId": null,
+					"id": 66
 				}
 			],
 			"Column": [
@@ -6257,7 +6325,7 @@
 					"deprecated": false,
 					"example": "",
 					"explode": false,
-					"required": true,
+					"required": false,
 					"style": "form",
 					"id": 34,
 					"hidden": false
@@ -6413,7 +6481,7 @@
 					"deprecated": false,
 					"example": "",
 					"explode": false,
-					"required": true,
+					"required": false,
 					"style": "form",
 					"id": 39
 				},
@@ -6444,7 +6512,7 @@
 					"deprecated": false,
 					"example": "",
 					"explode": false,
-					"required": true,
+					"required": false,
 					"style": "form",
 					"id": 40
 				},
@@ -6475,7 +6543,7 @@
 					"deprecated": false,
 					"example": "",
 					"explode": false,
-					"required": true,
+					"required": false,
 					"style": "form",
 					"id": 41
 				},
@@ -6506,7 +6574,7 @@
 					"deprecated": false,
 					"example": "",
 					"explode": false,
-					"required": true,
+					"required": false,
 					"style": "deepObject",
 					"id": 42
 				},
@@ -6570,6 +6638,126 @@
 					"required": true,
 					"style": "",
 					"id": 44
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "WhereNot",
+					"reserved": false,
+					"entityId": 8,
+					"type": "object",
+					"length": 0,
+					"scale": 0,
+					"default": "",
+					"comment": "",
+					"unsigned": false,
+					"nullable": false,
+					"cast": "",
+					"fillable": false,
+					"hidden": false,
+					"ro": false,
+					"wo": false,
+					"fakeRaw": true,
+					"fakeUnique": false,
+					"fakeMethod": "",
+					"fakeText": "",
+					"inTable": false,
+					"deprecated": false,
+					"example": "",
+					"explode": false,
+					"required": false,
+					"style": "deepObject",
+					"id": 45
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "WhereIn",
+					"reserved": false,
+					"entityId": 8,
+					"type": "object",
+					"length": 0,
+					"scale": 0,
+					"default": "",
+					"comment": "",
+					"unsigned": false,
+					"nullable": false,
+					"cast": "",
+					"fillable": false,
+					"hidden": false,
+					"ro": false,
+					"wo": false,
+					"fakeRaw": true,
+					"fakeUnique": false,
+					"fakeMethod": "",
+					"fakeText": "",
+					"inTable": false,
+					"deprecated": false,
+					"example": "",
+					"explode": false,
+					"required": false,
+					"style": "deepObject",
+					"id": 46
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "WhereNotIn",
+					"reserved": false,
+					"entityId": 8,
+					"type": "object",
+					"length": 0,
+					"scale": 0,
+					"default": "",
+					"comment": "",
+					"unsigned": false,
+					"nullable": false,
+					"cast": "",
+					"fillable": false,
+					"hidden": false,
+					"ro": false,
+					"wo": false,
+					"fakeRaw": true,
+					"fakeUnique": false,
+					"fakeMethod": "",
+					"fakeText": "",
+					"inTable": false,
+					"deprecated": false,
+					"example": "",
+					"explode": false,
+					"required": false,
+					"style": "deepObject",
+					"id": 47
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "Sortzz",
+					"reserved": false,
+					"entityId": 8,
+					"type": "array",
+					"length": 0,
+					"scale": 0,
+					"default": "",
+					"comment": "",
+					"unsigned": false,
+					"nullable": false,
+					"cast": "",
+					"fillable": false,
+					"hidden": false,
+					"ro": false,
+					"wo": false,
+					"fakeRaw": true,
+					"fakeUnique": false,
+					"fakeMethod": "",
+					"fakeText": "[]",
+					"inTable": false,
+					"deprecated": false,
+					"example": "",
+					"explode": false,
+					"required": false,
+					"style": "",
+					"id": 48
 				}
 			],
 			"ColumnConstraint": [
@@ -6710,6 +6898,12 @@
 					"name": "required",
 					"parameter": "",
 					"id": 25
+				},
+				{
+					"columnId": 48,
+					"name": "array",
+					"parameter": "",
+					"id": 26
 				}
 			],
 			"Relation": [],
@@ -7066,6 +7260,30 @@
 					"columnId": 2,
 					"alias": "",
 					"id": 36
+				},
+				{
+					"wuId": 9,
+					"columnId": 45,
+					"alias": "",
+					"id": 37
+				},
+				{
+					"wuId": 9,
+					"columnId": 46,
+					"alias": "",
+					"id": 38
+				},
+				{
+					"wuId": 9,
+					"columnId": 47,
+					"alias": "",
+					"id": 39
+				},
+				{
+					"wuId": 9,
+					"columnId": 48,
+					"alias": "",
+					"id": 40
 				}
 			],
 			"WuColumnConstraint": [
@@ -7108,6 +7326,11 @@
 					"wuColumnId": 30,
 					"columnConstraintId": 23,
 					"id": 8
+				},
+				{
+					"wuColumnId": 40,
+					"columnConstraintId": 26,
+					"id": 9
 				}
 			],
 			"WuParameter": [
@@ -7230,7 +7453,8 @@
 					"entityId": 1,
 					"moduleId": 1,
 					"requestId": 1,
-					"id": 1
+					"id": 1,
+					"responseWuId": 2
 				}
 			],
 			"Path": [
@@ -7297,7 +7521,7 @@
 					"description": "Status 422 Validation Error",
 					"name": "ApiErrorResponse",
 					"reserved": false,
-					"example": "",
+					"example": "{\n    \"Code\": 200,\n    \"Message\": \"OK\",\n    \"Error\": {\n        \"property1\": [\n            \"property1 is required\"\n        ],\n        \"property2\": [\n            \"property2 is required\",\n            \"property2 must be an integer\"\n        ]\n    }\n}",
 					"mediaType": "application/json",
 					"id": 3
 				}
@@ -7385,7 +7609,7 @@
 			],
 			"PathMethod": []
 		},
-		"version": 55
+		"version": 56
 	},
 	"oapi": {
 		"openapi": "3.0.3",
