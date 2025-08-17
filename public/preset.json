@@ -4931,7 +4931,7 @@
 				{
 					"isArray": false,
 					"nullable": false,
-					"type": "string",
+					"type": "number",
 					"format": "",
 					"ownerId": 43,
 					"variableId": 1,
@@ -5190,6 +5190,56 @@
 					"ownerWuId": null,
 					"ownerWuChildId": null,
 					"id": 59
+				},
+				{
+					"isArray": false,
+					"nullable": false,
+					"type": "string",
+					"format": "",
+					"forWuParameterId": null,
+					"ownerId": null,
+					"variableId": null,
+					"wuId": 1,
+					"wuParameterId": null,
+					"ownerColumnId": 44,
+					"ownerRequestId": null,
+					"ownerResponseId": null,
+					"ownerWuId": null,
+					"ownerWuChildId": null,
+					"id": 60
+				},
+				{
+					"isArray": false,
+					"nullable": false,
+					"type": "string",
+					"format": "",
+					"forWuParameterId": null,
+					"ownerId": null,
+					"variableId": null,
+					"wuId": 1,
+					"wuParameterId": null,
+					"ownerColumnId": null,
+					"ownerRequestId": null,
+					"ownerResponseId": null,
+					"ownerWuId": 10,
+					"ownerWuChildId": null,
+					"id": 61
+				},
+				{
+					"isArray": false,
+					"nullable": false,
+					"type": "Wu",
+					"format": "",
+					"ownerId": null,
+					"variableId": 1,
+					"wuId": 10,
+					"wuParameterId": null,
+					"ownerColumnId": null,
+					"ownerRequestId": null,
+					"ownerResponseId": 4,
+					"ownerWuId": null,
+					"ownerWuChildId": null,
+					"id": 62
 				}
 			],
 			"Column": [
@@ -5262,7 +5312,7 @@
 				{
 					"entityId": 2,
 					"name": "Value",
-					"type": "string",
+					"type": "integer",
 					"length": 0,
 					"scale": 0,
 					"default": "",
@@ -6490,6 +6540,36 @@
 					"required": true,
 					"style": "simple",
 					"id": 43
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "Text",
+					"reserved": false,
+					"entityId": 2,
+					"type": "string",
+					"length": 0,
+					"scale": 0,
+					"default": "",
+					"comment": "",
+					"unsigned": false,
+					"nullable": false,
+					"cast": "",
+					"fillable": false,
+					"hidden": false,
+					"ro": false,
+					"wo": false,
+					"fakeRaw": true,
+					"fakeUnique": false,
+					"fakeMethod": "sentence",
+					"fakeText": "",
+					"inTable": false,
+					"deprecated": false,
+					"example": "",
+					"explode": false,
+					"required": true,
+					"style": "",
+					"id": 44
 				}
 			],
 			"ColumnConstraint": [
@@ -6756,6 +6836,18 @@
 					"example": "",
 					"isMap": false,
 					"id": 9
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "ApiText",
+					"reserved": false,
+					"entityId": 2,
+					"type": "allOf",
+					"isRequest": false,
+					"example": "",
+					"isMap": false,
+					"id": 10
 				}
 			],
 			"WuColumn": [
@@ -6956,6 +7048,24 @@
 					"columnId": 42,
 					"alias": "",
 					"id": 33
+				},
+				{
+					"wuId": 10,
+					"columnId": 44,
+					"alias": "",
+					"id": 34
+				},
+				{
+					"wuId": 10,
+					"columnId": 1,
+					"alias": "",
+					"id": 35
+				},
+				{
+					"wuId": 10,
+					"columnId": 2,
+					"alias": "",
+					"id": 36
 				}
 			],
 			"WuColumnConstraint": [
@@ -7002,7 +7112,7 @@
 			],
 			"WuParameter": [
 				{
-					"wuId": 2,
+					"wuId": 1,
 					"name": "ItemType",
 					"description": "",
 					"isWu": false,
@@ -7167,9 +7277,18 @@
 				{
 					"color": "#fff",
 					"description": "",
+					"name": "ApiTextResponse",
+					"reserved": false,
+					"example": "{\n    \"Code\": 200,\n    \"Message\": \"OK\",\n    \"Text\": \"\"\n}",
+					"mediaType": "application/json",
+					"id": 4
+				},
+				{
+					"color": "#fff",
+					"description": "content data is type `boolean` or `number` or `null`",
 					"name": "ApiValueResponse",
 					"reserved": false,
-					"example": "",
+					"example": "{\n    \"Code\": 200,\n    \"Message\": \"OK\",\n    \"Value\": null\n}",
 					"mediaType": "application/json",
 					"id": 2
 				},
