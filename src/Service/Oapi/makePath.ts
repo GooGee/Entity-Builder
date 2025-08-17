@@ -15,7 +15,6 @@ export default function makePath(
     marzzm: Map<number, ModuleActionResponseWithName[]>,
     maipzzm: Map<number, LB.Column[]>,
     pipzzm: Map<number, LB.Column[]>,
-    pimazzm: Map<number, ModuleActionWithMethod[]>,
     rbirbm: Map<number, LB.Request>,
     smzz: LB.ServerMap[],
     sism: Map<number, LB.Server>,
@@ -43,7 +42,7 @@ export default function makePath(
     if (marzzm.has(item.moduleActionId) === false) {
         return null
     }
-    
+
     const ozz = [{
         ...ma,
         method: item.method,
