@@ -138,6 +138,7 @@ namespace LB {
         summary: string
         routeName: string
         requestId: number
+        responseWuId: number
     }
 
     interface ModuleActionResponse {

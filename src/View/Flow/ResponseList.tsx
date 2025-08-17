@@ -2,12 +2,17 @@ import makeModuleActionResponse from "@/Database/Factory/makeModuleActionRespons
 import makeResponse from "@/Database/Factory/makeResponse"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import { findOrMakeWu } from "@/Database/Factory/makeWu"
-import { makeResponseCRUD, makeTypeFormatCRUD, makeModuleActionResponseCRUD } from "@/Database/makeCRUD"
+import {
+    makeResponseCRUD,
+    makeTypeFormatCRUD,
+    makeModuleActionResponseCRUD,
+    makeModuleActionCRUD,
+} from "@/Database/makeCRUD"
 import createTypeFormatArgumentzz from "@/Factory/createTypeFormatArgumentzz"
 import { OapiType } from "@/Model/Oapi"
 import getCollectionItemzz from "@/Service/getCollectionItemzz"
 import { makeResponseName } from "@/Service/makeName"
-import { StepEnum } from "@/Store/useFlowPageStore"
+import useFlowPageStore, { StepEnum } from "@/Store/useFlowPageStore"
 import useResponsezzStore from "@/Store/useResponsezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import useTypeFormatzzStore from "@/Store/useTypeFormatzzStore"
@@ -17,6 +22,7 @@ import { useState, useEffect } from "react"
 import SelectButton from "../Button/SelectButton"
 import WuColumnList from "../Wu/WuColumnList"
 import ActionResponse from "./ActionResponse"
+import findWrapperWu from "@/Service/findWrapperWu"
 
 const Step = StepEnum.Response
 
@@ -33,6 +39,7 @@ export default function ResponseList(property: Property) {
     const sTypeFormatzzStore = useTypeFormatzzStore()
     const sWuColumnzzStore = useWuColumnzzStore()
     const sWuzzStore = useWuzzStore()
+    const suseFlowPageStore = useFlowPageStore()
 
     const [itemzz, setItemzz] = useState<LB.ModuleActionResponse[]>([])
 
@@ -112,28 +119,12 @@ export default function ResponseList(property: Property) {
         return undefined
     }
 
-    function findWrapper(action: string) {
-        const wu = sWuzzStore.findByName("ApiItemzz")?.id
-        const map = new Map([
-            ["ReadAll", wu],
-            ["ReadMany", wu],
-            ["One", sWuzzStore.findByName("ApiItem")?.id],
-            ["ReadPage", sWuzzStore.findByName("ApiPage")?.id],
-        ])
-        for (const [key, value] of map) {
-            if (action.includes(key)) {
-                return value
-            }
-        }
-        return sWuzzStore.findByName("ApiValue")?.id
-    }
-
     function makeResponseWu() {
         return makeResponseCRUD()
             .create(makeResponse(nameResponse))
             .then((lbr) => {
                 sToastzzStore.showSuccess(`Response ${lbr.name} created`)
-                const wrapperId = findWrapper(property.ma.name) ?? 1
+                const wrapperId = findWrapperWu(property.ma.name) ?? 1
                 const data = makeTypeFormat(OapiType.Wu, wrapperId)
                 data.ownerResponseId = lbr.id
                 return makeTypeFormatCRUD()
@@ -173,6 +164,42 @@ export default function ResponseList(property: Property) {
             .catch(sToastzzStore.showError)
     }
 
+    function makeWuSelect() {
+        const wuNamezz = ["ApiError", "ApiItem", "ApiItemzz", "ApiPage", "ApiText", "ApiValue"]
+        const wuzz = sWuzzStore.itemzz.filter((item) => wuNamezz.includes(item.name))
+        if (wuzz.length === 0) {
+            return null
+        }
+
+        const found = wuzz.find((item) => item.id === property.ma.responseWuId)
+
+        return (
+            <div>
+                <SelectButton
+                    className="wa inline"
+                    itemzz={wuzz}
+                    value={found?.id ?? wuzz[0].id}
+                    change={function (index, item) {
+                        if (item) {
+                            makeModuleActionCRUD()
+                                .update({ ...property.ma, responseWuId: item.id })
+                                .then(function (item) {
+                                    suseFlowPageStore.setAction(item.name, item)
+                                })
+                        }
+                    }}
+                ></SelectButton>
+
+                {found == null ? null : (
+                    <span>
+                        &nbsp;auto create Response with `{found.name}&lt;{property.entity.name}&gt;`, if no Response
+                        added.
+                    </span>
+                )}
+            </div>
+        )
+    }
+
     function refresh() {
         return makeModuleActionResponseCRUD()
             .findAll()
@@ -189,9 +216,10 @@ export default function ResponseList(property: Property) {
         <>
             <table className="table td0-tal">
                 <caption>
+                    {makeWuSelect()}
                     <div>
                         {sResponsezzStore.findByName(nameResponse) ? null : (
-                            <span onClick={makeResponseWu} className="btn btn-outline-primary">
+                            <span onClick={makeResponseWu} className="btn btn-outline-primary mt-1">
                                 + {nameResponse}
                             </span>
                         )}
