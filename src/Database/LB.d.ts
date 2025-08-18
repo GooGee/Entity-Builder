@@ -132,7 +132,6 @@ namespace LB {
         filezz: ModuleActionFile[]
         moduleId: number
         deprecated: boolean
-        inRoute: boolean
         name: string
         description: string
         summary: string

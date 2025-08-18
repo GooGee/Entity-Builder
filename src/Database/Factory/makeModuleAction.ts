@@ -10,7 +10,6 @@ export default function makeModuleAction(
     const responseWuId = findWrapperWuId(name, itemzz)
     return {
         deprecated: false,
-        inRoute: true,
         name: name,
         description: "",
         routeName: "",

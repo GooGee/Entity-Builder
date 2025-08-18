@@ -52,9 +52,6 @@ function prepare(
         if (ma == null) {
             return
         }
-        if (ma.inRoute === false) {
-            return
-        }
         if (ModuleActionResponse_map.has(item.moduleActionId)) {
             return
         }

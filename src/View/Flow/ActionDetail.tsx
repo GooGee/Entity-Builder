@@ -51,29 +51,6 @@ export default function ActionDetail(property: Property) {
                     </td>
                 </tr>
                 <tr>
-                    <td>inRoute</td>
-                    <td>
-                        <div className="form-check form-switch inline">
-                            <input
-                                checked={item.inRoute}
-                                onChange={(event) =>
-                                    update({
-                                        ...item,
-                                        inRoute: event.target.checked,
-                                    })
-                                }
-                                className="form-check-input"
-                                type="checkbox"
-                                role="switch"
-                                id={"inRouteSwitchCheck" + item.id}
-                            />
-                            <label className="form-check-label" htmlFor={"inRouteSwitchCheck" + item.id}></label>
-                        </div>
-
-                        <span>if true, it will be included in route file and api doc</span>
-                    </td>
-                </tr>
-                <tr>
                     <td>server</td>
                     <td>
                         <ServerList requestId={property.ma.requestId} pathId={null}></ServerList>
