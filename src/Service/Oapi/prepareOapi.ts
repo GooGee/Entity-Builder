@@ -31,6 +31,28 @@ export type OapiDate = {
     ResponseId_Columnzz_map: Map<number, LB.Column[]>
 }
 
+let bigId = 111_222_333
+let wcid = bigId
+
+function makeAllWuColumn(
+    tables: LB.DBTable,
+    entity: LB.Entity,
+    EntityId_Columnzz_map: Map<number, LB.Column[]>,
+    wu: LB.Wu,
+) {
+    const czz = EntityId_Columnzz_map.get(entity.id) ?? []
+    czz.filter((item) => item.inTable && item.hidden === false)
+        .forEach((item) => {
+            tables.WuColumn.push({
+                wuId: wu.id,
+                columnId: item.id,
+                alias: "",
+                id: wcid,
+            })
+            wcid += 1
+        })
+}
+
 function prepare(
     moduleId: number,
     tables: LB.DBTable,
@@ -43,8 +65,6 @@ function prepare(
     WuId_WuParameter_map: Map<number, LB.WuParameter>,
 ) {
 
-    let bigId = 111_222_333
-    let wcid = bigId
     const ResponseNameSet = new Set(tables.Response.map((item) => item.name))
     const WuName_Wu_map = makeNameItemMap(tables.Wu)
 
@@ -85,17 +105,12 @@ function prepare(
             Wu_map.set(wu.id, wu)
             WuName_Wu_map.set(entity.name, wu)
 
-            const czz = EntityId_Columnzz_map.get(entity.id) ?? []
-            czz.filter((item) => item.inTable && item.hidden === false)
-                .forEach((item) => {
-                    tables.WuColumn.push({
-                        wuId: wu!.id,
-                        columnId: item.id,
-                        alias: "",
-                        id: wcid,
-                    })
-                    wcid += 1
-                })
+            makeAllWuColumn(tables, entity, EntityId_Columnzz_map, wu)
+        } else {
+            const wc = tables.WuColumn.find((item) => item.wuId === wu!.id)
+            if (wc == null) {
+                makeAllWuColumn(tables, entity, EntityId_Columnzz_map, wu)
+            }
         }
 
         const response = makeResponse(name) as LB.Response

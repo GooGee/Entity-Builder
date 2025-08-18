@@ -17,6 +17,11 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
         externalDocs: data.externalDocs,
     })
 
+    let pathzz = db.tables.Path
+    if (moduleId) {
+        pathzz = db.tables.Path.filter((item) => item.moduleId === moduleId)
+        db.tables.Path = pathzz
+    }
     const dd = prepareOapi(moduleId, db.tables)
 
     const eiem: Map<number, LB.Example> = new Map()
@@ -145,13 +150,13 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
 
     const tagSet: Set<string> = new Set()
 
-    db.tables.Path.sort(function (aa, bb) {
+    pathzz.sort(function (aa, bb) {
         if (aa.moduleId === bb.moduleId) {
             return aa.name.localeCompare(bb.name)
         }
         return aa.moduleId - bb.moduleId
     })
-    db.tables.Path.forEach((item) => {
+    pathzz.forEach((item) => {
         const data = makePath(
             item,
             dd.Module_map,
