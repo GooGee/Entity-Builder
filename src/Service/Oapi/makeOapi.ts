@@ -10,14 +10,14 @@ import makeSchemaWu from "./makeSchemaWu"
 import makeServer from "./makeServer"
 import prepareOapi from "./prepareOapi"
 
-export default function makeOapi(data: OpenAPIObject, db: LB.DBData) {
+export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: number) {
     const builder = OpenApiBuilder.create({
         ...OpenApiBuilder.create().getSpec(),
         info: data.info,
         externalDocs: data.externalDocs,
     })
 
-    const dd = prepareOapi(db.tables)
+    const dd = prepareOapi(moduleId, db.tables)
 
     const eiem: Map<number, LB.Example> = new Map()
     db.tables.Example.forEach((item) => {

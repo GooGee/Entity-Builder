@@ -32,6 +32,7 @@ export type OapiDate = {
 }
 
 function prepare(
+    moduleId: number,
     tables: LB.DBTable,
     Entity_map: Map<number, LB.Entity>,
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
@@ -47,16 +48,22 @@ function prepare(
     const ResponseNameSet = new Set(tables.Response.map((item) => item.name))
     const WuName_Wu_map = makeNameItemMap(tables.Wu)
 
-    tables.Path.forEach(function (item) {
-        const ma = ModuleAction_map.get(item.moduleActionId)
+    tables.Path.forEach(function (path) {
+        if (path.moduleId !== moduleId) {
+            return
+        }
+        const ma = ModuleAction_map.get(path.moduleActionId)
         if (ma == null) {
             return
         }
-        if (ModuleActionResponse_map.has(item.moduleActionId)) {
+        if (ModuleActionResponse_map.has(path.moduleActionId)) {
             return
         }
         const entity = Entity_map.get(ma.entityId)
         if (entity == null) {
+            return
+        }
+        if (entity.id === 1) {
             return
         }
 
@@ -126,7 +133,7 @@ function prepare(
 
 }
 
-export default function prepareOapi(tables: LB.DBTable) {
+export default function prepareOapi(moduleId: number, tables: LB.DBTable) {
 
     const Entity_map = makeIdItemMap(tables.Entity)
     const Column_map = makeIdItemMap(tables.Column)
@@ -159,6 +166,7 @@ export default function prepareOapi(tables: LB.DBTable) {
     })
 
     prepare(
+        moduleId,
         tables,
         Entity_map,
         EntityId_Columnzz_map,
