@@ -14,6 +14,7 @@ interface Property {
     entity: LB.Entity
     ma: LB.ModuleAction
     module: LB.Module
+    path?: LB.Path
 }
 
 export default function PathView(property: Property) {
@@ -21,14 +22,7 @@ export default function PathView(property: Property) {
     const susePathzzStore = usePathzzStore()
     const sToastzzStore = useToastzzStore()
 
-    const path = susePathzzStore.itemzz.find(function (item) {
-        return (
-            item.entityId === property.entity.id &&
-            item.moduleId === property.module.id &&
-            item.moduleActionId === property.ma.id
-        )
-    })
-
+    const path = property.path
     if (path == null) {
         return (
             <div>

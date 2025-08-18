@@ -10,11 +10,13 @@ import FileTabList from "./FileTabList"
 import ModuleDetail from "./ModuleDetail"
 import PathView from "./PathView"
 import ResponseList from "./ResponseList"
+import usePathzzStore from "@/Store/usePathzzStore"
 
 export default function FlowView() {
     const sEntityPageStore = useEntityPageStore()
     const sFlowPageStore = useFlowPageStore()
     const sModulePageStore = useModulePageStore()
+    const susePathzzStore = usePathzzStore()
 
     useEffect(() => {
         if (sModulePageStore.item === undefined) {
@@ -36,7 +38,7 @@ export default function FlowView() {
     }
 
     function makeView() {
-        if (sEntityPageStore.item === undefined) {
+        if (sEntityPageStore.item == null) {
             return <div>Select an Entity</div>
         }
 
@@ -52,12 +54,6 @@ export default function FlowView() {
             return <div>Select or create an Action</div>
         }
 
-        if (sFlowPageStore.step === StepEnum.Path) {
-            return (
-                <PathView entity={sEntityPageStore.item} ma={sFlowPageStore.ma} module={sModulePageStore.item}></PathView>
-            )
-        }
-
         if (sFlowPageStore.step === StepEnum.Action) {
             return (
                 <ActionView
@@ -68,6 +64,25 @@ export default function FlowView() {
             )
         }
 
+        const path = susePathzzStore.itemzz.find(function (item) {
+            return (
+                item.entityId === sEntityPageStore.item?.id &&
+                item.moduleId === sModulePageStore.item?.id &&
+                item.moduleActionId === sFlowPageStore.ma?.id
+            )
+        })
+
+        if (sFlowPageStore.step === StepEnum.Path) {
+            return (
+                <PathView
+                    entity={sEntityPageStore.item}
+                    ma={sFlowPageStore.ma}
+                    module={sModulePageStore.item}
+                    path={path}
+                ></PathView>
+            )
+        }
+
         if (sFlowPageStore.step === StepEnum.Request) {
             return (
                 <ActionRequest
@@ -75,6 +90,7 @@ export default function FlowView() {
                     entity={sEntityPageStore.item}
                     ma={sFlowPageStore.ma}
                     module={sModulePageStore.item}
+                    path={path}
                     step={sFlowPageStore.step}
                 ></ActionRequest>
             )
@@ -86,6 +102,7 @@ export default function FlowView() {
                     entity={sEntityPageStore.item}
                     ma={sFlowPageStore.ma}
                     module={sModulePageStore.item}
+                    path={path}
                     step={sFlowPageStore.step}
                 ></ResponseList>
             )
