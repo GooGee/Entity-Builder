@@ -7,6 +7,7 @@ export default function makeReference(tf: LB.TypeFormat, wiwm: Map<number, LB.Wu
 
     const wu = wiwm.get(tf.wuId)
     if (wu === undefined) {
+        console.log(`Wu not found for TypeFormat: ${tf.id}, wuId: ${tf.wuId}`)
         return makeReferenceEmpty()
     }
 

@@ -37,6 +37,7 @@ export default function makeSchemaWuComputed(
     const czz = wiczzm.get(wu.id) ?? []
     const wczz = wiwkzzm.get(wu.id) ?? []
     if (wczz.length === 0 && czz.length === 0 && wu.isMap === false) {
+        console.error(`makeSchemaWuComputed: Wu ${wu.name} has no columns or child TypeFormat, returning empty reference`)
         return makeReferenceEmpty()
     }
 

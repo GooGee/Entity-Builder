@@ -34,6 +34,7 @@ export default function makeSchemaWu(
         if (wu.id === 1) {
             return makeSchemaObject({})
         }
+        console.error(`makeSchemaWu: Wu ${wu.name} has no columns or child TypeFormat, returning empty reference`)
         return makeReferenceEmpty()
     }
 
