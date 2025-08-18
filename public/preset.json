@@ -5243,14 +5243,14 @@
 				},
 				{
 					"isArray": false,
-					"nullable": false,
-					"type": "Wu",
+					"nullable": true,
+					"type": "WuParameter",
 					"format": "",
 					"forWuParameterId": null,
 					"ownerId": null,
 					"variableId": null,
 					"wuId": 1,
-					"wuParameterId": null,
+					"wuParameterId": 7,
 					"ownerColumnId": 45,
 					"ownerRequestId": null,
 					"ownerResponseId": null,
@@ -5260,14 +5260,14 @@
 				},
 				{
 					"isArray": false,
-					"nullable": false,
-					"type": "Wu",
+					"nullable": true,
+					"type": "WuParameter",
 					"format": "",
 					"forWuParameterId": null,
 					"ownerId": null,
 					"variableId": null,
 					"wuId": 1,
-					"wuParameterId": null,
+					"wuParameterId": 8,
 					"ownerColumnId": 46,
 					"ownerRequestId": null,
 					"ownerResponseId": null,
@@ -5277,14 +5277,14 @@
 				},
 				{
 					"isArray": false,
-					"nullable": false,
-					"type": "Wu",
+					"nullable": true,
+					"type": "WuParameter",
 					"format": "",
 					"forWuParameterId": null,
 					"ownerId": null,
 					"variableId": null,
 					"wuId": 1,
-					"wuParameterId": null,
+					"wuParameterId": 9,
 					"ownerColumnId": 47,
 					"ownerRequestId": null,
 					"ownerResponseId": null,
@@ -5300,7 +5300,7 @@
 					"forWuParameterId": null,
 					"ownerId": null,
 					"variableId": null,
-					"wuId": 1,
+					"wuId": 11,
 					"wuParameterId": null,
 					"ownerColumnId": 48,
 					"ownerRequestId": null,
@@ -5308,6 +5308,23 @@
 					"ownerWuId": null,
 					"ownerWuChildId": null,
 					"id": 66
+				},
+				{
+					"isArray": false,
+					"nullable": false,
+					"type": "string",
+					"format": "",
+					"forWuParameterId": null,
+					"ownerId": null,
+					"variableId": null,
+					"wuId": 1,
+					"wuParameterId": null,
+					"ownerColumnId": null,
+					"ownerRequestId": null,
+					"ownerResponseId": null,
+					"ownerWuId": 11,
+					"ownerWuChildId": null,
+					"id": 67
 				}
 			],
 			"Column": [
@@ -7042,6 +7059,18 @@
 					"example": "",
 					"isMap": false,
 					"id": 10
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "SortObject",
+					"reserved": false,
+					"entityId": 8,
+					"type": "allOf",
+					"isRequest": false,
+					"example": "",
+					"isMap": false,
+					"id": 11
 				}
 			],
 			"WuColumn": [
@@ -7284,6 +7313,18 @@
 					"columnId": 48,
 					"alias": "",
 					"id": 40
+				},
+				{
+					"wuId": 11,
+					"columnId": 40,
+					"alias": "",
+					"id": 41
+				},
+				{
+					"wuId": 11,
+					"columnId": 41,
+					"alias": "",
+					"id": 42
 				}
 			],
 			"WuColumnConstraint": [
@@ -7375,6 +7416,27 @@
 					"description": "",
 					"isWu": true,
 					"id": 6
+				},
+				{
+					"wuId": 9,
+					"name": "WhereNotObject",
+					"description": "",
+					"isWu": true,
+					"id": 7
+				},
+				{
+					"wuId": 9,
+					"name": "WhereInObject",
+					"description": "",
+					"isWu": true,
+					"id": 8
+				},
+				{
+					"wuId": 9,
+					"name": "WhereNotInObject",
+					"description": "",
+					"isWu": true,
+					"id": 9
 				}
 			],
 			"Module": [
