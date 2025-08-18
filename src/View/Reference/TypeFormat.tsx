@@ -29,7 +29,7 @@ export default function TypeFormat(property2: Property) {
     const property = property2 as Property2
 
     if (property.wuId === undefined && property.item.type === OapiType.WuParameter) {
-        return <span className="text-danger">WuParameter is only available in Wu page</span>
+        return <span className="text-danger">&lt;T&gt;</span>
     }
 
     function getTypezz() {

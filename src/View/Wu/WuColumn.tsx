@@ -36,11 +36,14 @@ export default function WuColumn(property: Property) {
             return null
         }
 
-        if (property.wu.isRequest) {
-            return <ConstraintList wc={property.wc}></ConstraintList>
-        }
-
         const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerColumnId === property.item.id)
+        if (tf?.wuParameterId) {
+            // ok
+        } else {
+            if (property.wu.isRequest) {
+                return <ConstraintList wc={property.wc}></ConstraintList>
+            }
+        }
 
         return <TypeFormatText id={property.item.id} isRoot item={tf} wuId={property.wu.id}></TypeFormatText>
     }
