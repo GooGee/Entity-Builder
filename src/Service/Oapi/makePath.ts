@@ -43,62 +43,51 @@ export default function makePath(
         return null
     }
 
-    const ozz = [{
-        ...ma,
-        method: item.method,
-    }]
+    const rzz = marzzm.get(ma.id) ?? []
+    if (rzz.length === 0) {
+        return path
+    }
 
-    const data = ozz.reduce(function (old, item) {
-        const rzz = marzzm.get(item.id) ?? []
-        if (rzz.length === 0) {
-            return old
-        }
-
-        const responses = rzz.reduce(function (old, item) {
-            old[item.status] = makeReferenceOf(item.name, ComponentKind.responses)
-            return old
-        }, Object.create(null) as Record<string, ReferenceObject>)
-        const module = mimm.get(item.moduleId)!
-        const entity = eiem.get(item.entityId)!
-        const data: OperationObject = {
-            deprecated: item.deprecated,
-            description: item.description,
-            parameters: (maipzzm.get(item.requestId) ?? []).map((item) =>
-                makeParameterReference(item, eiem),
-            ),
-            responses,
-            operationId: module.name + "_" + item.name + "_" + entity.name,
-            summary: item.summary.length ? item.summary : makeSummart(module, item, entity),
-            tags: [module.name, entity.name],
-        }
-
-        const serverzz = makeServerzz(item.requestId, 1)
-        if (serverzz.length) {
-            data.servers = serverzz
-        }
-
-        const method = item.method as keyof typeof HttpMethod
-        old[method] = data
-        if (["get", "delete"].includes(item.method)) {
-            return old
-        }
-
-        // empty
-        if (item.requestId === 1) {
-            return old
-        }
-
-        const request = rbirbm.get(item.requestId)!
-        data.requestBody = makeReferenceOf(request.name, ComponentKind.requestBodies)
+    const responses = rzz.reduce(function (old, item) {
+        old[item.status] = makeReferenceOf(item.name, ComponentKind.responses)
         return old
-    }, path)
-    return data
+    }, Object.create(null) as Record<string, ReferenceObject>)
+    const module = mimm.get(ma.moduleId)!
+    const entity = eiem.get(ma.entityId)!
+    const data: OperationObject = {
+        deprecated: ma.deprecated,
+        description: ma.description,
+        parameters: (maipzzm.get(ma.requestId) ?? []).map((item) =>
+            makeParameterReference(item, eiem),
+        ),
+        responses,
+        operationId: module.name + "_" + ma.name + "_" + entity.name,
+        summary: ma.summary.length ? ma.summary : makeSummart(module, ma, entity),
+        tags: [module.name, entity.name],
+    }
+
+    const method = item.method as keyof typeof HttpMethod
+    path[method] = data
+    if (["get", "delete"].includes(item.method)) {
+        return path
+    }
+
+    // empty
+    if (ma.requestId === 1) {
+        return path
+    }
+
+    const request = rbirbm.get(ma.requestId)!
+    data.requestBody = makeReferenceOf(request.name, ComponentKind.requestBodies)
+    return path
 
     function makeServerzz(requestId: number, pathId: number) {
-        const serverzz = smzz
+        return smzz
             .filter((item) => item.requestId === requestId && item.pathId === pathId)
-            .map((item) => sism.get(item.serverId)!)
-        return serverzz.map((item) => makeServer(item, sivzzm))
+            .map((item) => {
+                const server = sism.get(item.serverId)!
+                return makeServer(server, sivzzm)
+            })
     }
 }
 
