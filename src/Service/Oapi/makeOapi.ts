@@ -22,7 +22,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
         pathzz = db.tables.Path.filter((item) => item.moduleId === moduleId)
         db.tables.Path = pathzz
     }
-    const dd = prepareOapi(moduleId, db.tables)
+    const dd = prepareOapi(db.tables)
 
     const eiem: Map<number, LB.Example> = new Map()
     db.tables.Example.forEach((item) => {

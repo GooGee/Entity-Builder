@@ -54,7 +54,6 @@ function makeAllWuColumn(
 }
 
 function prepare(
-    moduleId: number,
     tables: LB.DBTable,
     Entity_map: Map<number, LB.Entity>,
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
@@ -69,9 +68,6 @@ function prepare(
     const WuName_Wu_map = makeNameItemMap(tables.Wu)
 
     tables.Path.forEach(function (path) {
-        if (moduleId && path.moduleId !== moduleId) {
-            return
-        }
         const ma = ModuleAction_map.get(path.moduleActionId)
         if (ma == null) {
             return
@@ -148,7 +144,7 @@ function prepare(
 
 }
 
-export default function prepareOapi(moduleId: number, tables: LB.DBTable) {
+export default function prepareOapi(tables: LB.DBTable) {
 
     const Entity_map = makeIdItemMap(tables.Entity)
     const Column_map = makeIdItemMap(tables.Column)
@@ -181,7 +177,6 @@ export default function prepareOapi(moduleId: number, tables: LB.DBTable) {
     })
 
     prepare(
-        moduleId,
         tables,
         Entity_map,
         EntityId_Columnzz_map,
