@@ -57,6 +57,7 @@ function prepare(
     tables: LB.DBTable,
     Entity_map: Map<number, LB.Entity>,
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
+    Module_map: Map<number, LB.Module>,
     ModuleAction_map: Map<number, LB.ModuleAction>,
     ModuleActionResponse_map: Map<number, LB.ModuleActionResponse>,
     Response_map: Map<number, LB.Response>,
@@ -68,6 +69,10 @@ function prepare(
     const WuName_Wu_map = makeNameItemMap(tables.Wu)
 
     tables.Path.forEach(function (path) {
+        const module = Module_map.get(path.moduleId)
+        if (module == null) {
+            return
+        }
         const ma = ModuleAction_map.get(path.moduleActionId)
         if (ma == null) {
             return
@@ -83,7 +88,7 @@ function prepare(
             return
         }
 
-        const name = makeResponseName(ma.name, entity)
+        const name = makeResponseName(module, ma, entity)
         if (ResponseNameSet.has(name)) {
             return
         }
@@ -180,6 +185,7 @@ export default function prepareOapi(tables: LB.DBTable) {
         tables,
         Entity_map,
         EntityId_Columnzz_map,
+        Module_map,
         ModuleAction_map,
         ModuleActionResponse_map,
         Response_map,

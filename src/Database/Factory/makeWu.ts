@@ -34,12 +34,13 @@ export function findOrMakeWu(
 }
 
 export function makeActionWu(
-    action: string,
+    module: LB.Module,
+    ma: LB.ModuleAction,
     entity: LB.Entity,
     isRequest: boolean,
     store: WuzzStore,
 ) {
-    const name = makeWuName(action, entity, isRequest)
+    const name = makeWuName(module, ma, entity, isRequest)
     return findOrMakeWu(name, entity, isRequest, store)
 }
 

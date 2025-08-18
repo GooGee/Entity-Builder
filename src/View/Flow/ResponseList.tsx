@@ -44,7 +44,7 @@ export default function ResponseList(property: Property) {
 
     const [itemzz, setItemzz] = useState<LB.ModuleActionResponse[]>([])
 
-    const nameResponse = makeResponseName(property.ma.name, property.entity)
+    const nameResponse = makeResponseName(property.module, property.ma, property.entity)
 
     const statuszz = getCollectionItemzz("HttpStatus")
 

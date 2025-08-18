@@ -40,12 +40,12 @@ export default function ActionRequest(property: Property) {
     const [time, setTime] = useState(0)
     const [wu, setWu] = useState<LB.Wu>()
 
-    const nameRequest = makeRequestName(property.action, property.entity)
+    const nameRequest = makeRequestName(property.module, property.ma, property.entity)
     const request = sRequestzzStore.find(property.ma.requestId)
     const item = sRequestzzStore.findByName(nameRequest)
 
     const alias = "Filter"
-    const FilterName = makeParameterName(property.action, property.entity, alias)
+    const FilterName = makeParameterName(property.module, property.ma, property.entity, alias)
 
     useEffect(() => {
         if (request === undefined) {
@@ -121,7 +121,7 @@ export default function ActionRequest(property: Property) {
     }
 
     function makeRequestWu() {
-        return makeActionWu(property.action, property.entity, true, sWuzzStore)
+        return makeActionWu(property.module, property.ma, property.entity, true, sWuzzStore)
             .then((wu) => {
                 setWu(wu)
                 sToastzzStore.showSuccess(`Wu ${wu.name} created`)
