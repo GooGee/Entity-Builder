@@ -1,3 +1,4 @@
+import lodash from "lodash"
 import { HttpMethod } from "@/Model/Oapi"
 import { OperationObject, PathItemObject, ReferenceObject } from "openapi3-ts"
 import { makeParameterReference } from "./makeParameter"
@@ -67,8 +68,8 @@ export default function makePath(
                 makeParameterReference(item, eiem),
             ),
             responses,
-            operationId: module.name + "_" + item.name + entity.name,
-            summary: item.summary,
+            operationId: module.name + "_" + item.name + "_" + entity.name,
+            summary: item.summary.length ? item.summary : makeSummart(module, item, entity),
             tags: [tag],
         }
 
@@ -100,4 +101,8 @@ export default function makePath(
             .map((item) => sism.get(item.serverId)!)
         return serverzz.map((item) => makeServer(item, sivzzm))
     }
+}
+
+function makeSummart(module: LB.Module, ma: LB.ModuleAction, entity: LB.Entity) {
+    return module.name + " " + lodash.lowerCase(ma.name) + " " + entity.name
 }

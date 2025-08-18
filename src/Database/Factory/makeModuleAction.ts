@@ -1,4 +1,3 @@
-import lodash from "lodash"
 import { OmitId } from "../dbhelper"
 import { findWrapperWuId } from "@/Service/findWrapperWu"
 
@@ -16,7 +15,7 @@ export default function makeModuleAction(
         description: "",
         routeName: "",
         filezz: [],
-        summary: module.name + " " + lodash.lowerCase(name) + " " + entity.name,
+        summary: '',
         directoryId: module.directoryId,
         entityId: entity.id,
         moduleId: module.id,
