@@ -1,8 +1,6 @@
 import { makeModuleActionCRUD } from "@/Database/makeCRUD"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { ReactElement, useEffect, useState } from "react"
-import showNameInput from "../Dialog/showNameInput"
-import ServerList from "../Oapi/ServerList"
 
 interface Property {
     action: string
@@ -49,13 +47,6 @@ export default function ActionDetail(property: Property) {
                             <label className="form-check-label" htmlFor={"deprecatedSwitchCheck" + item.id}></label>
                         </div>
                     </td>
-                </tr>
-                <tr>
-                    <td>server</td>
-                    <td>
-                        <ServerList requestId={property.ma.requestId} pathId={null}></ServerList>
-                    </td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td>summary</td>
