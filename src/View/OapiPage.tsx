@@ -10,7 +10,7 @@ export default function OapiPage() {
     const suseModulezzStore = useModulezzStore()
     const sOapiStore = useOapiStore()
 
-    const [moduleId, setModuleId] = useState(1)
+    const [moduleId, setModuleId] = useState(0)
     const [text, setText] = useState("")
 
     return (
@@ -24,14 +24,12 @@ export default function OapiPage() {
                     editor
                 </WebLink>
                 <SelectButton
+                    allow0
                     className="inline wa mx-3"
+                    verb="all"
                     value={moduleId}
                     itemzz={suseModulezzStore.itemzz}
-                    change={function (index, item) {
-                        if (item) {
-                            setModuleId(item.id)
-                        }
-                    }}
+                    change={setModuleId}
                 ></SelectButton>
                 <button
                     onClick={() =>

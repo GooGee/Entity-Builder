@@ -1,4 +1,5 @@
 interface Property<T extends LB.IdNameItem> {
+    allow0?: boolean
     className?: string
     itemzz: T[]
     isAdd?: boolean
@@ -20,7 +21,7 @@ export default function SelectButton<T extends LB.IdNameItem>(property: Property
                 )
             }}
         >
-            <option disabled hidden value={0}>
+            <option disabled={!property.allow0} hidden={!property.allow0} value={0}>
                 -- {property.verb ?? (property.isAdd ? "add" : "select")} --
             </option>
             {property.itemzz.map((item) => (

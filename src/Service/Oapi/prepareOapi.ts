@@ -49,7 +49,7 @@ function prepare(
     const WuName_Wu_map = makeNameItemMap(tables.Wu)
 
     tables.Path.forEach(function (path) {
-        if (path.moduleId !== moduleId) {
+        if (moduleId && path.moduleId !== moduleId) {
             return
         }
         const ma = ModuleAction_map.get(path.moduleActionId)
