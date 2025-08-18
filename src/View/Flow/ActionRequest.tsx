@@ -26,7 +26,6 @@ interface Property {
     entity: LB.Entity
     ma: LB.ModuleAction
     module: LB.Module
-    path?: LB.Path
     step: string
 }
 
@@ -64,10 +63,6 @@ export default function ActionRequest(property: Property) {
             setWu(undefined)
         }
     }, [property.ma.requestId])
-
-    if (property.path == null) {
-        return <div>Create a Path first</div>
-    }
 
     if (property.step === Step) {
         // ok

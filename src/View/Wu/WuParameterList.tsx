@@ -23,7 +23,8 @@ export default function WuParameterList(property: Property) {
     return (
         <table className="table">
             <caption>
-                <h3 className="inline">WuParameter</h3>
+                <h3 className="inline mx-1">WuParameter</h3>
+                <span>generic type</span>
                 <span
                     onClick={() => {
                         showNameInput("Please input the WuParameter name", "")

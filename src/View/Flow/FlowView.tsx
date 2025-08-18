@@ -90,7 +90,6 @@ export default function FlowView() {
                     entity={sEntityPageStore.item}
                     ma={sFlowPageStore.ma}
                     module={sModulePageStore.item}
-                    path={path}
                     step={sFlowPageStore.step}
                 ></ActionRequest>
             )

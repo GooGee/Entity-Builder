@@ -47,7 +47,8 @@ export default function HomePage() {
                 <h1 className="text-secondary">{Constant.Name}</h1>
                 <p>{APP_VERSION}</p>
                 <p>
-                    {location.origin} {store.connected ? <span className="text-success">connected</span> : null}
+                    {location.origin}{" "}
+                    {store.connected && store.ide ? <span className="text-success">connected</span> : null}
                 </p>
 
                 {store.connected ? null : (
