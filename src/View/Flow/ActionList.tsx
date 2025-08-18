@@ -129,27 +129,6 @@ export default function ActionList(property: Property) {
             .create(makeModuleAction(name, property.entity, property.module, useWuzzStore.getState().itemzz))
             .then(function (item) {
                 sFlowPageStore.setAction(name, item)
-
-                return makePathOf(
-                    item,
-                    property.entity,
-                    property.module,
-                    sPathzzStore.itemzz,
-                    getHttpMethod(item.name),
-                ).then(function (path) {
-                    sFlowPageStore.setPath(path)
-                    if (item.name.includes("One") === false) {
-                        return
-                    }
-
-                    return makeParameterMapCRUD().create({
-                        alias: "",
-                        columnId: Constant.ColumnIdOfIdInParameterInPath,
-                        pathId: path.id,
-                        requestId: null,
-                        responseId: null,
-                    })
-                })
             })
             .catch(useToastzzStore.getState().showError)
     }
