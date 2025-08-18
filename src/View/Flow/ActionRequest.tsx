@@ -42,19 +42,18 @@ export default function ActionRequest(property: Property) {
 
     const nameRequest = makeRequestName(property.module, property.ma, property.entity)
     const request = sRequestzzStore.find(property.ma.requestId)
-    const item = sRequestzzStore.findByName(nameRequest)
 
     const alias = "Filter"
     const FilterName = makeParameterName(property.module, property.ma, property.entity, alias)
 
     useEffect(() => {
-        if (request === undefined) {
+        if (request == null) {
             setWu(undefined)
             return
         }
 
         const tf = sTypeFormatzzStore.itemzz.find((item) => item.ownerRequestId === request.id)
-        if (tf === undefined) {
+        if (tf == null) {
             return
         }
 
@@ -65,34 +64,87 @@ export default function ActionRequest(property: Property) {
         }
     }, [property.ma.requestId])
 
-    if (property.step === Step) {
-        // ok
-    } else {
+    function makeAllParameter() {
         const wczz = sWuColumnzzStore.itemzz.filter((item) => item.wuId === wu?.id)
+        if (wczz.length === 0) {
+            sToastzzStore.showError("No columns")
+            return
+        }
+        const qp = useEntityzzStore.getState().findByName(PageEnum.ParameterInQuery)
+        if (qp == null) {
+            sToastzzStore.showError("ParameterInQuery entity not found")
+            return
+        }
 
-        return (
-            <div className="my-3">
-                <h3 className="pointer hover-blue text-secondary" onClick={() => sFlowPageStore.setStep(Step)}>
-                    {Step}
-                </h3>
-
-                {request === undefined ? null : (
-                    <div className="mt-3">
-                        {request.name}{" "}
-                        {wu === undefined || request.id === 1 ? null : wczz.length === 0 ? (
-                            <span className="text-danger">(0 fields)</span>
-                        ) : (
-                            <span className="text-secondary">({wczz.length} fields)</span>
-                        )}
-                    </div>
-                )}
-            </div>
+        const cidSet = new Set<number>(wczz.map((wc) => wc.columnId))
+        const czz = useColumnzzStore.getState().itemzz.filter((item) => cidSet.has(item.id))
+        const nameSet = new Set<string>(
+            czz.map((item) => makeParameterName(property.module, property.ma, property.entity, item.name)),
         )
+        const eczz = useColumnzzStore
+            .getState()
+            .itemzz.filter((item) => item.entityId === qp.id && nameSet.has(item.name))
+        const existSet = new Set<number>(eczz.map((item) => item.id))
+        const all: Promise<LB.Column>[] = []
+        czz.forEach(function (column) {
+            if (existSet.has(column.id)) {
+                return
+            }
+
+            const name = makeParameterName(property.module, property.ma, property.entity, column.name)
+            all.push(createColumnTypeFormat(qp.id, name, column.type, column.default))
+        })
+        if (all.length) {
+            Promise.all(all)
+                .then(function (czz) {
+                    const zz = czz.map((column) => ({
+                        alias: column.name.split("_").reverse()[0],
+                        columnId: column.id,
+                        pathId: null,
+                        requestId: property.ma.requestId,
+                        responseId: null,
+                    }))
+                    return makeParameterMapCRUD()
+                        .createMany(zz)
+                        .then(function () {
+                            setTime(new Date().getTime())
+                            sToastzzStore.showSuccess(`Parameters created: ${all.length}`)
+                        })
+                })
+                .catch(sToastzzStore.showError)
+        }
+    }
+
+    function makeParameterButton() {
+        if (property.ma.requestId === 1) {
+            return null
+        }
+        if (request == null) {
+            return null
+        }
+
+        if (property.ma.name.startsWith("ReadPage")) {
+            return (
+                <button onClick={makeParameterFilter} className="btn btn-outline-primary" type="button">
+                    + {FilterName}
+                </button>
+            )
+        }
+
+        if (property.ma.name.startsWith("Read")) {
+            return (
+                <button onClick={makeAllParameter} className="btn btn-outline-primary" type="button">
+                    add Parameters from colomns
+                </button>
+            )
+        }
+
+        return null
     }
 
     function makeParameterFilter() {
         const qp = useEntityzzStore.getState().findByName(PageEnum.ParameterInQuery)
-        if (qp === undefined) {
+        if (qp == null) {
             return
         }
         const found = useColumnzzStore
@@ -149,7 +201,7 @@ export default function ActionRequest(property: Property) {
     return (
         <div>
             <div className="my-2">
-                {item ? null : (
+                {sRequestzzStore.findByName(nameRequest) ? null : (
                     <span onClick={makeRequestWu} className="btn btn-outline-primary">
                         + {nameRequest}
                     </span>
@@ -171,7 +223,7 @@ export default function ActionRequest(property: Property) {
                 ></SelectButton>
             </div>
 
-            {wu === undefined ? null : (
+            {wu == null ? null : (
                 <>
                     <h3 className="my-3">{wu.name}</h3>
                     <WuColumnList item={wu} noCaption></WuColumnList>
@@ -180,11 +232,7 @@ export default function ActionRequest(property: Property) {
 
             <div>
                 <h3 className="inline me-3">Parameter</h3>
-                {item && property.ma.name.includes("ReadPage") ? (
-                    <button onClick={makeParameterFilter} className="btn btn-outline-primary" type="button">
-                        + {FilterName}
-                    </button>
-                ) : null}
+                {makeParameterButton()}
             </div>
             <ParameterList time={time} requestId={property.ma.requestId}></ParameterList>
         </div>
