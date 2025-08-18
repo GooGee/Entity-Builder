@@ -145,9 +145,13 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
 
     const tagSet: Set<string> = new Set()
 
-    db.tables.Path.sort((aa, bb) => aa.name.localeCompare(bb.name))
+    db.tables.Path.sort(function (aa, bb) {
+        if (aa.moduleId === bb.moduleId) {
+            return aa.name.localeCompare(bb.name)
+        }
+        return aa.moduleId - bb.moduleId
+    })
     db.tables.Path.forEach((item) => {
-        const found = dd.Entity_map.get(item.entityId)
         const data = makePath(
             item,
             dd.Module_map,
@@ -159,18 +163,19 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
             db.tables.ServerMap,
             dd.Server_map,
             dd.ServerId_Variablezz_map,
-            found?.name ?? "not found",
             dd.ModuleAction_map,
         )
         if (data === null) {
             return
         }
 
-        if (found) {
-            tagSet.add(found.name)
-        }
+        const found = dd.Entity_map.get(item.entityId)!
+        tagSet.add(found.name)
 
-        builder.addPath(item.name, data)
+        const module = dd.Module_map.get(item.moduleId)!
+        tagSet.add(module.name)
+
+        builder.addPath('/' + module.name + item.name, data)
     })
 
     Array.from(tagSet)

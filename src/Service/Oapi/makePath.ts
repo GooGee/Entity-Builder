@@ -20,7 +20,6 @@ export default function makePath(
     smzz: LB.ServerMap[],
     sism: Map<number, LB.Server>,
     sivzzm: Map<number, LB.Variable[]>,
-    tag: string,
     maimam: Map<number, LB.ModuleAction>,
 ) {
     const path: PathItemObject = {
@@ -70,7 +69,7 @@ export default function makePath(
             responses,
             operationId: module.name + "_" + item.name + "_" + entity.name,
             summary: item.summary.length ? item.summary : makeSummart(module, item, entity),
-            tags: [tag],
+            tags: [module.name, entity.name],
         }
 
         const serverzz = makeServerzz(item.requestId, 1)
