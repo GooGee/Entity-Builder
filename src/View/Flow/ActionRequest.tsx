@@ -37,11 +37,12 @@ export default function ActionRequest(property: Property) {
     const sWuColumnzzStore = useWuColumnzzStore()
     const sWuzzStore = useWuzzStore()
 
-    const [filter, setFilter] = useState(false)
+    const [time, setTime] = useState(0)
     const [wu, setWu] = useState<LB.Wu>()
 
     const nameRequest = makeRequestName(property.action, property.entity)
     const request = sRequestzzStore.find(property.ma.requestId)
+    const item = sRequestzzStore.findByName(nameRequest)
 
     const alias = "Filter"
     const FilterName = makeParameterName(property.action, property.entity, alias)
@@ -102,9 +103,11 @@ export default function ActionRequest(property: Property) {
             return
         }
 
-        createColumnTypeFormat(qp.id, FilterName, "object", "", 0, "form", "", false)
+        const tf = makeTypeFormat(OapiType.Wu, wu?.id || 1)
+        return createColumnTypeFormat(qp.id, FilterName, "object", "", 0, "form", "", false, tf)
             .then(function (column) {
                 sToastzzStore.showSuccess(`Parameter ${FilterName} created`)
+
                 return makeParameterMapCRUD().create({
                     alias,
                     columnId: column.id,
@@ -113,7 +116,7 @@ export default function ActionRequest(property: Property) {
                     responseId: null,
                 })
             })
-            .then(() => setFilter(true))
+            .then(() => setTime(new Date().getTime()))
             .catch(sToastzzStore.showError)
     }
 
@@ -146,7 +149,7 @@ export default function ActionRequest(property: Property) {
     return (
         <div>
             <div className="my-2">
-                {sRequestzzStore.findByName(nameRequest) ? null : (
+                {item ? null : (
                     <span onClick={makeRequestWu} className="btn btn-outline-primary">
                         + {nameRequest}
                     </span>
@@ -177,13 +180,13 @@ export default function ActionRequest(property: Property) {
 
             <div>
                 <h3 className="inline me-3">Parameter</h3>
-                {property.ma.name.includes("ReadPage") ? (
+                {item && property.ma.name.includes("ReadPage") ? (
                     <button onClick={makeParameterFilter} className="btn btn-outline-primary" type="button">
                         + {FilterName}
                     </button>
                 ) : null}
             </div>
-            <ParameterList filter={filter} requestId={property.ma.requestId}></ParameterList>
+            <ParameterList time={time} requestId={property.ma.requestId}></ParameterList>
         </div>
     )
 }

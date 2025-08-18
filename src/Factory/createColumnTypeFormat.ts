@@ -1,3 +1,4 @@
+import { OmitId } from "@/Database/dbhelper"
 import makeColumn from "@/Database/Factory/makeColumn"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import { makeColumnCRUD, makeTypeFormatCRUD } from "@/Database/makeCRUD"
@@ -13,15 +14,19 @@ export default function createColumnTypeFormat(
     style: string = "",
     comment: string = "",
     inTable = true,
+    tf?: OmitId<LB.TypeFormat>
 ): Promise<LB.Column> {
     const rozz = getCollectionItemzz("ReadOnlyColumn")
     const dct = useDoctrineColumnTypezzStore.getState().findByName(type)
     return makeColumnCRUD()
-        .create(
-            makeColumn(entityId, name, type, value, length, rozz, dct, style, comment, inTable),
-        )
+        .create(makeColumn(entityId, name, type, value, length, rozz, dct, style, comment, inTable))
         .then((item) => {
-            const tf = makeTypeFormat(
+            if (tf) {
+                tf.ownerColumnId = item.id
+                return makeTypeFormatCRUD().create(tf).then(() => item)
+            }
+
+            tf = makeTypeFormat(
                 dct?.oapiType as any,
                 1,
                 null,
@@ -33,5 +38,4 @@ export default function createColumnTypeFormat(
             )
             return makeTypeFormatCRUD().create(tf).then(() => item)
         })
-
 }

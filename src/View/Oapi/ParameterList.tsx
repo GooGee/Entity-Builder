@@ -6,7 +6,7 @@ import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect, useState } from "react"
 
 interface Property {
-    filter?: boolean
+    time?: number
     pathId?: number
     requestId?: number
     responseId?: number
@@ -28,7 +28,7 @@ export default function ParameterList(property: Property) {
 
     useEffect(() => {
         refresh()
-    }, [property.filter, property.pathId, property.requestId, property.responseId])
+    }, [property.time, property.pathId, property.requestId, property.responseId])
 
     function getItemzz() {
         if (property.responseId) {
