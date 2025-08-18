@@ -40,7 +40,6 @@ namespace LB {
         // typeFormatId: number
 
         inTable: boolean
-        allowReserved: boolean
         deprecated: boolean
         description: string
         example: string
@@ -124,7 +123,6 @@ namespace LB {
         directoryId: number
         fileId: number
         testDirectoryId: number
-        prefix: string
     }
 
     interface ModuleAction {
@@ -134,13 +132,12 @@ namespace LB {
         filezz: ModuleActionFile[]
         moduleId: number
         deprecated: boolean
-        inOapi: boolean
-        inRoute: boolean
         name: string
         description: string
         summary: string
         routeName: string
         requestId: number
+        responseWuId: number
     }
 
     interface ModuleActionResponse {

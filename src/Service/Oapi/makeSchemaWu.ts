@@ -57,9 +57,10 @@ export default function makeSchemaWu(
             wpiam,
         )
         if (isSchemaColumn(data)) {
-            if (column.ro) {
-                data.readOnly = true
-            }
+            // not working
+            // if (column.ro) {
+            //     data.readOnly = true
+            // }
             if (column.wo) {
                 data.writeOnly = true
             }
