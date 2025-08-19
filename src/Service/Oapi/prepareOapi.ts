@@ -86,7 +86,11 @@ function makeAllParameter(
         return
     }
 
-    const ParameterColumnzz = EntityId_Columnzz_map.get(ParameterEntity.id) ?? []
+    let ParameterColumnzz = EntityId_Columnzz_map.get(ParameterEntity.id)
+    if (ParameterColumnzz == null) {
+        ParameterColumnzz = []
+        EntityId_Columnzz_map.set(ParameterEntity.id, ParameterColumnzz)
+    }
     const ParameterColumnNameSet = new Set(ParameterColumnzz.map((item) => item.name))
 
     wuColumnzz.forEach((item) => {
@@ -113,6 +117,7 @@ function makeAllParameter(
         nc.style = 'form'
         tables.Column.push(nc)
         Column_map.set(nc.id, nc)
+        ParameterColumnzz.push(nc)
 
         const tf = makeTypeFormat(
             column.type as any,
@@ -146,16 +151,18 @@ function makeAllWuColumn(
     wu: LB.Wu,
 ) {
     const czz = EntityId_Columnzz_map.get(entity.id) ?? []
-    czz.filter((item) => item.inTable && item.hidden === false)
-        .forEach((item) => {
-            tables.WuColumn.push({
-                wuId: wu.id,
-                columnId: item.id,
-                alias: "",
-                id: wcid,
-            })
-            wcid += 1
+    czz.forEach((item) => {
+        if (item.inTable && item.hidden) {
+            return
+        }
+        tables.WuColumn.push({
+            wuId: wu.id,
+            columnId: item.id,
+            alias: "",
+            id: wcid,
         })
+        wcid += 1
+    })
 }
 
 /**
