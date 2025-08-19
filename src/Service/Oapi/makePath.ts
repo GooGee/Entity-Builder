@@ -4,26 +4,19 @@ import { OperationObject, PathItemObject, ReferenceObject } from "openapi3-ts"
 import { makeParameterReference } from "./makeParameter"
 import { ComponentKind, makeReferenceOf } from "./makeReference"
 import makeServer from "./makeServer"
+import { OapiDto } from "./prepareOapiDto"
 
 export type ModuleActionResponseWithName = LB.ModuleActionResponse & { name: string }
 
 export default function makePath(
     item: LB.Path,
-    mimm: Map<number, LB.Module>,
-    eiem: Map<number, LB.Entity>,
-    marzzm: Map<number, ModuleActionResponseWithName[]>,
-    maipzzm: Map<number, LB.Column[]>,
-    pipzzm: Map<number, LB.Column[]>,
-    rbirbm: Map<number, LB.Request>,
+    od: OapiDto,
     smzz: LB.ServerMap[],
-    sism: Map<number, LB.Server>,
-    sivzzm: Map<number, LB.Variable[]>,
-    maimam: Map<number, LB.ModuleAction>,
 ) {
     const path: PathItemObject = {
         description: item.description,
-        parameters: (pipzzm.get(item.id) ?? []).map((item) =>
-            makeParameterReference(item, eiem),
+        parameters: (od.PathId_Columnzz_map.get(item.id) ?? []).map((item) =>
+            makeParameterReference(item, od.Entity_map),
         ),
         summary: item.summary,
     }
@@ -33,15 +26,15 @@ export default function makePath(
         path.servers = serverzz
     }
 
-    const ma = maimam.get(item.moduleActionId)
+    const ma = od.ModuleAction_map.get(item.moduleActionId)
     if (ma == null) {
         return null
     }
-    if (marzzm.has(item.moduleActionId) === false) {
+    if (od.ModuleActionId_ModuleActionResponseWithNamezz_map.has(item.moduleActionId) === false) {
         return null
     }
 
-    const rzz = marzzm.get(ma.id) ?? []
+    const rzz = od.ModuleActionId_ModuleActionResponseWithNamezz_map.get(ma.id) ?? []
     if (rzz.length === 0) {
         return path
     }
@@ -50,12 +43,12 @@ export default function makePath(
         old[item.status] = makeReferenceOf(item.name, ComponentKind.responses)
         return old
     }, Object.create(null) as Record<string, ReferenceObject>)
-    const module = mimm.get(ma.moduleId)!
-    const entity = eiem.get(ma.entityId)!
+    const module = od.Module_map.get(ma.moduleId)!
+    const entity = od.Entity_map.get(ma.entityId)!
     const data: OperationObject = {
         deprecated: ma.deprecated,
         description: ma.description,
-        parameters: (maipzzm.get(ma.requestId) ?? []).map((item) => makeParameterReference(item, eiem)),
+        parameters: (od.RequestId_Columnzz_map.get(ma.requestId) ?? []).map((item) => makeParameterReference(item, od.Entity_map)),
         responses,
         operationId: module.name + "_" + ma.name + "_" + entity.name,
         summary: ma.summary.length ? ma.summary : makeSummart(module, ma, entity),
@@ -76,7 +69,7 @@ export default function makePath(
         return path
     }
 
-    const request = rbirbm.get(ma.requestId)!
+    const request = od.Request_map.get(ma.requestId)!
     data.requestBody = makeReferenceOf(request.name, ComponentKind.requestBodies)
     return path
 
@@ -84,8 +77,8 @@ export default function makePath(
         return smzz
             .filter((item) => item.requestId === requestId && item.pathId === pathId)
             .map((item) => {
-                const server = sism.get(item.serverId)!
-                return makeServer(server, sivzzm)
+                const server = od.Server_map.get(item.serverId)!
+                return makeServer(server, od.ServerId_Variablezz_map)
             })
     }
 }

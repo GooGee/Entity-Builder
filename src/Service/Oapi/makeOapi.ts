@@ -1,5 +1,4 @@
 import { OpenApiBuilder, OpenAPIObject, ReferenceObject } from "openapi3-ts"
-import getTypeFormatOrThrow from "../getTypeFormatOrThrow"
 import makeMediaType from "./makeMediaType"
 import makeParameter from "./makeParameter"
 import makePath from "./makePath"
@@ -8,7 +7,7 @@ import makeSchemaEnum, { makeSchemaEnumName } from "./makeSchemaEnum"
 import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
 import makeSchemaWu from "./makeSchemaWu"
 import makeServer from "./makeServer"
-import prepareOapiDto from "./prepareOapiDto"
+import prepareOapiDto, { getTypeFormatOrThrow } from "./prepareOapiDto"
 
 export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: number) {
     const builder = OpenApiBuilder.create({
@@ -22,7 +21,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
         pathzz = db.tables.Path.filter((item) => item.moduleId === moduleId)
         db.tables.Path = pathzz
     }
-    const dd = prepareOapiDto(db.tables)
+    const od = prepareOapiDto(db.tables)
 
     const eiem: Map<number, LB.Example> = new Map()
     db.tables.Example.forEach((item) => {
@@ -52,43 +51,31 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
         }
     })
 
-
-    const tfzz = db.tables.TypeFormat
-
     db.tables.Wu.forEach((wu) => {
-        const wpzz = dd.WuId_WuParameterzz_map.get(wu.id) ?? []
+        const wpzz = od.WuId_WuParameterzz_map.get(wu.id) ?? []
         if (wpzz.length) {
             return
         }
 
-        builder.addSchema(
-            wu.name,
-            makeSchemaWu(wu, tfzz, dd,) as any,
-        )
+        builder.addSchema(wu.name, makeSchemaWu(wu, od,) as any,)
     })
 
     db.tables.ParameterMap.forEach((item) => {
-        const column = dd.Column_map.get(item.columnId)
+        const column = od.Column_map.get(item.columnId)
         if (column === undefined) {
             return
         }
 
-        const tf = getTypeFormatOrThrow(column.id, "ownerColumnId", tfzz)
+        const tf = getTypeFormatOrThrow(column.id, od.OwnerColumnId_TypeFormatzz_map)
 
         makeParameter(
             item,
             column,
-            dd.Entity_map,
+            od.Entity_map,
             builder,
             makeSchemaTypeFormat(
                 tf,
-                tfzz,
-                dd.OwnerId_TypeFormatzz_map,
-                dd.Variable_map,
-                dd.WuId_Columnzz_map,
-                dd.OwnerWuChildId_TypeFormatzz_map,
-                dd.Wu_map,
-                dd.WuId_WuParameterzz_map,
+                od,
                 [],
                 new Map(),
             ) as any,
@@ -100,14 +87,8 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
             content: {
                 [item.mediaType]: makeMediaType(
                     item,
-                    tfzz,
-                    dd.OwnerId_TypeFormatzz_map,
-                    dd.Variable_map,
+                    od,
                     riezzm,
-                    dd.WuId_Columnzz_map,
-                    dd.OwnerWuChildId_TypeFormatzz_map,
-                    dd.Wu_map,
-                    dd.WuId_WuParameterzz_map,
                 ),
             },
             description: item.description,
@@ -120,18 +101,12 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
             content: {
                 [item.mediaType]: makeMediaType(
                     item,
-                    tfzz,
-                    dd.OwnerId_TypeFormatzz_map,
-                    dd.Variable_map,
+                    od,
                     riezzm,
-                    dd.WuId_Columnzz_map,
-                    dd.OwnerWuChildId_TypeFormatzz_map,
-                    dd.Wu_map,
-                    dd.WuId_WuParameterzz_map,
                 ),
             },
             description: item.description,
-            headers: (dd.ResponseId_Columnzz_map.get(item.id) ?? []).reduce(function (old, item) {
+            headers: (od.ResponseId_Columnzz_map.get(item.id) ?? []).reduce(function (old, item) {
                 old[item.name] = makeReferenceOf(item.name, ComponentKind.headers)
                 return old
             }, Object.create(null) as Record<string, ReferenceObject>),
@@ -140,9 +115,9 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
 
 
     db.tables.Server.forEach((item) => {
-        dd.Server_map.set(item.id, item)
+        od.Server_map.set(item.id, item)
         if (item.global) {
-            builder.addServer(makeServer(item, dd.ServerId_Variablezz_map))
+            builder.addServer(makeServer(item, od.ServerId_Variablezz_map))
         }
     })
 
@@ -157,25 +132,17 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
     pathzz.forEach((item) => {
         const data = makePath(
             item,
-            dd.Module_map,
-            dd.Entity_map,
-            dd.ModuleActionId_ModuleActionResponseWithNamezz_map,
-            dd.RequestId_Columnzz_map,
-            dd.PathId_Columnzz_map,
-            dd.Request_map,
+            od,
             db.tables.ServerMap,
-            dd.Server_map,
-            dd.ServerId_Variablezz_map,
-            dd.ModuleAction_map,
         )
         if (data === null) {
             return
         }
 
-        const found = dd.Entity_map.get(item.entityId)!
+        const found = od.Entity_map.get(item.entityId)!
         tagSet.add(found.name)
 
-        const module = dd.Module_map.get(item.moduleId)!
+        const module = od.Module_map.get(item.moduleId)!
         tagSet.add(module.name)
 
         builder.addPath('/' + module.name + item.name, data)

@@ -28,13 +28,17 @@ export type OapiDto = {
     WuId_Columnzz_map: Map<number, ColumnWithWuColumnId[]>
     WuId_WuColumnzz_map: Map<number, LB.WuColumn[]>
     WuId_WuParameter_map: Map<number, LB.WuParameter>
+    WuId_WuParameterzz_map: Map<number, LB.WuParameter[]>
     PathId_Columnzz_map: Map<number, LB.Column[]>
     RequestId_Columnzz_map: Map<number, LB.Column[]>
     ResponseId_Columnzz_map: Map<number, LB.Column[]>
     ServerId_Variablezz_map: Map<number, LB.Variable[]>
+    OwnerColumnId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
     OwnerId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
-    WuId_WuParameterzz_map: Map<number, LB.WuParameter[]>
+    OwnerRequestId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
+    OwnerResponseId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
     OwnerWuChildId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
+    OwnerWuId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
     ModuleActionId_ModuleActionResponseWithNamezz_map: Map<number, ModuleActionResponseWithName[]>
 }
 
@@ -42,6 +46,14 @@ export type OapiDto = {
 let bigId = 111_222_333
 let wcid = bigId
 
+
+export function getTypeFormatOrThrow(id: number, TypeFormatzz_map: Map<number, LB.TypeFormat[]>) {
+    const tfzz = TypeFormatzz_map.get(id)
+    if (tfzz == null || tfzz.length === 0) {
+        throw new Error(`id ${id} not found in TypeFormatzz_map`)
+    }
+    return tfzz[0]
+}
 
 /**
  * for `get` request with a requestBody, since requestBody is not valid in OpenApi 3.0,
@@ -408,15 +420,68 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
         "wuId",
     )
 
-    const OwnerId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = makeChildzzMap(
-        tables.TypeFormat,
-        "ownerId",
-    )
-
-    const OwnerWuChildId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = makeChildzzMap(
-        tables.TypeFormat,
-        "ownerWuChildId",
-    )
+    const OwnerColumnId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = new Map()
+    const OwnerId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = new Map()
+    const OwnerRequestId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = new Map()
+    const OwnerResponseId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = new Map()
+    const OwnerWuChildId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = new Map()
+    const OwnerWuId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = new Map()
+    tables.TypeFormat.forEach(function (item) {
+        if (item.ownerColumnId) {
+            let found = OwnerColumnId_TypeFormatzz_map.get(item.ownerColumnId)
+            if (found == null) {
+                found = []
+                OwnerColumnId_TypeFormatzz_map.set(item.ownerColumnId, found)
+            }
+            found.push(item)
+            return
+        }
+        if (item.ownerId) {
+            let found = OwnerId_TypeFormatzz_map.get(item.ownerId)
+            if (found == null) {
+                found = []
+                OwnerId_TypeFormatzz_map.set(item.ownerId, found)
+            }
+            found.push(item)
+            return
+        }
+        if (item.ownerRequestId) {
+            let found = OwnerRequestId_TypeFormatzz_map.get(item.ownerRequestId)
+            if (found == null) {
+                found = []
+                OwnerRequestId_TypeFormatzz_map.set(item.ownerRequestId, found)
+            }
+            found.push(item)
+            return
+        }
+        if (item.ownerResponseId) {
+            let found = OwnerResponseId_TypeFormatzz_map.get(item.ownerResponseId)
+            if (found == null) {
+                found = []
+                OwnerResponseId_TypeFormatzz_map.set(item.ownerResponseId, found)
+            }
+            found.push(item)
+            return
+        }
+        if (item.ownerWuChildId) {
+            let found = OwnerWuChildId_TypeFormatzz_map.get(item.ownerWuChildId)
+            if (found == null) {
+                found = []
+                OwnerWuChildId_TypeFormatzz_map.set(item.ownerWuChildId, found)
+            }
+            found.push(item)
+            return
+        }
+        if (item.ownerWuId) {
+            let found = OwnerWuId_TypeFormatzz_map.get(item.ownerWuId)
+            if (found == null) {
+                found = []
+                OwnerWuId_TypeFormatzz_map.set(item.ownerWuId, found)
+            }
+            found.push(item)
+            return
+        }
+    })
 
     const ModuleActionId_ModuleActionResponseWithNamezz_map: Map<number, ModuleActionResponseWithName[]> = new Map()
     tables.ModuleActionResponse.forEach((item) => {
@@ -493,8 +558,12 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
         ResponseId_Columnzz_map,
         ServerId_Variablezz_map,
 
+        OwnerColumnId_TypeFormatzz_map,
         OwnerId_TypeFormatzz_map,
+        OwnerRequestId_TypeFormatzz_map,
+        OwnerResponseId_TypeFormatzz_map,
         OwnerWuChildId_TypeFormatzz_map,
+        OwnerWuId_TypeFormatzz_map,
 
         ModuleActionId_ModuleActionResponseWithNamezz_map,
     }

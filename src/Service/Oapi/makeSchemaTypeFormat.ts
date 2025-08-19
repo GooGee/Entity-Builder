@@ -16,16 +16,11 @@ import makeReference, {
 } from "./makeReference"
 import { makeSchemaEnumName } from "./makeSchemaEnum"
 import makeSchemaWuComputed from "./makeSchemaWuComputed"
+import { OapiDto } from "./prepareOapiDto"
 
 export default function makeSchemaTypeFormat(
     tf: LB.TypeFormat,
-    tfzz: LB.TypeFormat[],
-    tfzzm: Map<number, LB.TypeFormat[]>,
-    vivm: Map<number, LB.Variable>,
-    wiczzm: Map<number, LB.Column[]>,
-    wiwkzzm: Map<number, LB.TypeFormat[]>,
-    wiwm: Map<number, LB.Wu>,
-    wiwpzzm: Map<number, LB.WuParameter[]>,
+    od: OapiDto,
     argumentzz: (OapiReference | OapiSchema)[],
     wpiam: Map<number, OapiReference | OapiSchema>,
 ): OapiReference | OapiSchema {
@@ -50,7 +45,7 @@ export default function makeSchemaTypeFormat(
         }
 
         if (tf.type === OapiType.Enum) {
-            const item = vivm.get(tf.variableId ?? 0)
+            const item = od.Variable_map.get(tf.variableId ?? 0)
             if (item === undefined) {
                 throw new Error(makeNotFoundText("Enum", tf.variableId ?? ""))
             }
@@ -68,9 +63,9 @@ export default function makeSchemaTypeFormat(
         }
 
         if (tf.type === OapiType.Wu) {
-            const zz = tfzzm.get(tf.id) ?? []
+            const zz = od.OwnerId_TypeFormatzz_map.get(tf.id) ?? []
             if (zz.length) {
-                const wu = wiwm.get(tf.wuId)
+                const wu = od.Wu_map.get(tf.wuId)
                 if (wu === undefined) {
                     throw new Error(makeNotFoundText("Wu", tf.wuId))
                 }
@@ -78,31 +73,19 @@ export default function makeSchemaTypeFormat(
                 const pzz = zz.map((item) =>
                     makeSchemaTypeFormat(
                         item,
-                        tfzz,
-                        tfzzm,
-                        vivm,
-                        wiczzm,
-                        wiwkzzm,
-                        wiwm,
-                        wiwpzzm,
+                        od,
                         argumentzz,
                         wpiam,
                     ),
                 )
                 return makeSchemaWuComputed(
                     wu,
-                    tfzz,
-                    tfzzm,
-                    vivm,
-                    wiczzm,
-                    wiwkzzm,
-                    wiwm,
-                    wiwpzzm,
+                    od,
                     pzz,
                 )
             }
 
-            return makeReference(tf, wiwm)
+            return makeReference(tf, od.Wu_map)
         }
 
         const data = {

@@ -9,24 +9,18 @@ import {
     isSchemaColumn,
     OapiType,
 } from "@/Model/Oapi"
-import getTypeFormatOrThrow from "../getTypeFormatOrThrow"
 import { makeReferenceEmpty } from "./makeReference"
 import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
-import { OapiDto } from "./prepareOapiDto"
+import { getTypeFormatOrThrow, OapiDto } from "./prepareOapiDto"
 
 /**
  * only includes Wu that has no WuParameter
  */
-export default function makeSchemaWu(
-    wu: LB.Wu,
-    tfzz: LB.TypeFormat[],
-    od: OapiDto,
-): OapiReference | OapiSchemaComposition | OapiSchemaObject {
+export default function makeSchemaWu(wu: LB.Wu, od: OapiDto,): OapiReference | OapiSchemaComposition | OapiSchemaObject {
     if (wu.id === 1) {
         return makeSchemaObject({})
     }
 
-    const wiwpzzm: Map<number, LB.WuParameter[]> = new Map()
     const argumentzz: (OapiReference | OapiSchema)[] = []
     const wpiam: Map<number, OapiReference | OapiSchema> = new Map()
     const czz = od.WuId_Columnzz_map.get(wu.id) ?? []
@@ -38,20 +32,14 @@ export default function makeSchemaWu(
 
     const requiredzz: string[] = []
     const properties = czz.reduce(function (old, column) {
-        const tf = getTypeFormatOrThrow(column.id, "ownerColumnId", tfzz)
+        const tf = getTypeFormatOrThrow(column.id, od.OwnerColumnId_TypeFormatzz_map)
         if (includingWuParameter(tf, od)) {
             return old
         }
 
         const data = makeSchemaTypeFormat(
             tf,
-            tfzz,
-            od.OwnerId_TypeFormatzz_map,
-            od.Variable_map,
-            od.WuId_Columnzz_map,
-            od.OwnerWuChildId_TypeFormatzz_map,
-            od.Wu_map,
-            wiwpzzm,
+            od,
             argumentzz,
             wpiam,
         )
@@ -92,17 +80,11 @@ export default function makeSchemaWu(
     }
 
     if (wu.isMap) {
-        const tf = getTypeFormatOrThrow(wu.id, "ownerWuId", tfzz)
+        const tf = getTypeFormatOrThrow(wu.id, od.OwnerWuId_TypeFormatzz_map)
         if (includingWuParameter(tf, od) === false) {
             schema.additionalProperties = makeSchemaTypeFormat(
                 tf,
-                tfzz,
-                od.OwnerId_TypeFormatzz_map,
-                od.Variable_map,
-                od.WuId_Columnzz_map,
-                od.OwnerWuChildId_TypeFormatzz_map,
-                od.Wu_map,
-                wiwpzzm,
+                od,
                 argumentzz,
                 wpiam,
             )
@@ -118,13 +100,7 @@ export default function makeSchemaWu(
         childzz.push(
             makeSchemaTypeFormat(
                 tf,
-                tfzz,
-                od.OwnerId_TypeFormatzz_map,
-                od.Variable_map,
-                od.WuId_Columnzz_map,
-                od.OwnerWuChildId_TypeFormatzz_map,
-                od.Wu_map,
-                wiwpzzm,
+                od,
                 argumentzz,
                 wpiam,
             ),
@@ -136,10 +112,7 @@ export default function makeSchemaWu(
     return makeSchemaComposition(childzz, wu.type as CompositionKind)
 }
 
-function includingWuParameter(
-    tf: LB.TypeFormat,
-    od: OapiDto,
-): boolean {
+function includingWuParameter(tf: LB.TypeFormat, od: OapiDto,): boolean {
     if (tf.type === OapiType.WuParameter) {
         return true
     }

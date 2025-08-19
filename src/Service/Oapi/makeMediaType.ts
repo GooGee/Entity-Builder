@@ -1,35 +1,20 @@
 import { OapiReference } from "@/Model/Oapi"
 import { MediaTypeObject } from "openapi3-ts"
-import getTypeFormatOrThrow from "../getTypeFormatOrThrow"
 import { ComponentKind, makeReferenceOf } from "./makeReference"
 import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
+import { getTypeFormatOrThrow, OapiDto } from "./prepareOapiDto"
 
 export default function makeMediaType(
     item: LB.Response,
-    tfzz: LB.TypeFormat[],
-    tfzzm: Map<number, LB.TypeFormat[]>,
-    vivm: Map<number, LB.Variable>,
+    od: OapiDto,
     riezzm: Map<string, LB.Example[]>,
-    wiczzm: Map<number, LB.Column[]>,
-    wiwkzzm: Map<number, LB.TypeFormat[]>,
-    wiwm: Map<number, LB.Wu>,
-    wiwpzzm: Map<number, LB.WuParameter[]>,
 ) {
-    const tf = getTypeFormatOrThrow(
-        item.id,
-        "required" in item ? "ownerRequestId" : "ownerResponseId",
-        tfzz,
-    )
+    const map = "required" in item ? od.OwnerRequestId_TypeFormatzz_map : od.OwnerResponseId_TypeFormatzz_map
+    const tf = getTypeFormatOrThrow(item.id, map,)
     const data: MediaTypeObject = {
         schema: makeSchemaTypeFormat(
             tf,
-            tfzz,
-            tfzzm,
-            vivm,
-            wiczzm,
-            wiwkzzm,
-            wiwm,
-            wiwpzzm,
+            od,
             [],
             new Map(),
         ) as any,
