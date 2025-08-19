@@ -193,7 +193,7 @@ function prepare(
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
     Module_map: Map<number, LB.Module>,
     ModuleAction_map: Map<number, LB.ModuleAction>,
-    ModuleActionId_ModuleActionResponsezz_map: Map<number, LB.ModuleActionResponse[]>,
+    ModuleActionId_ModuleActionResponsezz_map: Map<number, ModuleActionResponseWithName[]>,
     ModuleActionResponse_map: Map<number, LB.ModuleActionResponse>,
     Request_map: Map<number, LB.Request>,
     Response_map: Map<number, LB.Response>,
@@ -294,8 +294,9 @@ function prepare(
             tables.TypeFormat.push(wptf)
         }
 
-        const mar = makeModuleActionResponse('200', ma.id, response.id) as LB.ModuleActionResponse
+        const mar = makeModuleActionResponse('200', ma.id, response.id) as ModuleActionResponseWithName
         mar.id = bigId
+        mar.name = response.name
         tables.ModuleActionResponse.push(mar)
         ModuleActionResponse_map.set(mar.id, mar)
         if (marzz == null) {
@@ -333,10 +334,18 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
         found.push(item)
     })
 
-    const ModuleActionId_ModuleActionResponsezz_map: Map<number, LB.ModuleActionResponse[]> = makeChildzzMap(
-        tables.ModuleActionResponse,
-        "moduleActionId",
-    )
+    const ModuleActionId_ModuleActionResponsezz_map: Map<number, ModuleActionResponseWithName[]> = new Map()
+    tables.ModuleActionResponse.forEach((item) => {
+        let found = ModuleActionId_ModuleActionResponsezz_map.get(item.moduleActionId)
+        if (found == null) {
+            found = []
+            ModuleActionId_ModuleActionResponsezz_map.set(item.moduleActionId, found)
+        }
+        const response = Response_map.get(item.responseId)
+        if (response) {
+            found.push({ ...item, name: response.name })
+        }
+    })
 
     const WuColumnId_ColumnConstraintzz_map: Map<number, LB.ColumnConstraint[]> = new Map()
     tables.WuColumnConstraint.forEach((item) => {
@@ -484,19 +493,6 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
         }
     })
 
-    const ModuleActionId_ModuleActionResponseWithNamezz_map: Map<number, ModuleActionResponseWithName[]> = new Map()
-    tables.ModuleActionResponse.forEach((item) => {
-        let found = ModuleActionId_ModuleActionResponseWithNamezz_map.get(item.moduleActionId)
-        if (found == null) {
-            found = []
-            ModuleActionId_ModuleActionResponseWithNamezz_map.set(item.moduleActionId, found)
-        }
-        const response = Response_map.get(item.responseId)
-        if (response) {
-            found.push({ ...item, name: response.name })
-        }
-    })
-
     // for path
     const PathId_Columnzz_map: Map<number, LB.Column[]> = new Map()
     // for response
@@ -566,6 +562,6 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
         OwnerWuChildId_TypeFormatzz_map,
         OwnerWuId_TypeFormatzz_map,
 
-        ModuleActionId_ModuleActionResponsezz_map: ModuleActionId_ModuleActionResponseWithNamezz_map,
+        ModuleActionId_ModuleActionResponsezz_map,
     }
 }
