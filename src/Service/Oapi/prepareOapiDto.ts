@@ -170,7 +170,7 @@ function makeAllWuColumn(
 ) {
     const czz = EntityId_Columnzz_map.get(entity.id) ?? []
     czz.forEach((item) => {
-        if (item.inTable && item.hidden) {
+        if (item.inTable === false || item.hidden) {
             return
         }
         tables.WuColumn.push({
