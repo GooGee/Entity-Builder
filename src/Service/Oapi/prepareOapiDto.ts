@@ -13,6 +13,7 @@ type ColumnWithWuColumnId = LB.Column & { wuColumnId: number }
 
 export type OapiDto = {
     Column_map: Map<number, LB.Column>
+    ColumnConstraint_map: Map<number, LB.ColumnConstraint>
     Entity_map: Map<number, LB.Entity>
     Module_map: Map<number, LB.Module>
     ModuleAction_map: Map<number, LB.ModuleAction>
@@ -31,9 +32,9 @@ export type OapiDto = {
     RequestId_Columnzz_map: Map<number, LB.Column[]>
     ResponseId_Columnzz_map: Map<number, LB.Column[]>
     ServerId_Variablezz_map: Map<number, LB.Variable[]>
-    TypeFormatChildzz_map: Map<number, LB.TypeFormat[]>
+    OwnerId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
     WuId_WuParameterzz_map: Map<number, LB.WuParameter[]>
-    WuId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
+    OwnerWuChildId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
     ModuleActionId_ModuleActionResponseWithNamezz_map: Map<number, ModuleActionResponseWithName[]>
 }
 
@@ -295,7 +296,7 @@ function prepare(
 
 }
 
-export default function prepareOapiDto(tables: LB.DBTable) {
+export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
 
     const Column_map = makeIdItemMap(tables.Column)
     const ColumnConstraint_map = makeIdItemMap(tables.ColumnConstraint)
@@ -402,17 +403,17 @@ export default function prepareOapiDto(tables: LB.DBTable) {
         }
     })
 
-    const TypeFormatChildzz_map: Map<number, LB.TypeFormat[]> = makeChildzzMap(
-        tables.TypeFormat,
-        "ownerId",
-    )
-
     const WuId_WuParameterzz_map: Map<number, LB.WuParameter[]> = makeChildzzMap(
         tables.WuParameter,
         "wuId",
     )
 
-    const WuId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = makeChildzzMap(
+    const OwnerId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = makeChildzzMap(
+        tables.TypeFormat,
+        "ownerId",
+    )
+
+    const OwnerWuChildId_TypeFormatzz_map: Map<number, LB.TypeFormat[]> = makeChildzzMap(
         tables.TypeFormat,
         "ownerWuChildId",
     )
@@ -485,15 +486,15 @@ export default function prepareOapiDto(tables: LB.DBTable) {
         WuId_Columnzz_map,
         WuId_WuColumnzz_map,
         WuId_WuParameter_map,
+        WuId_WuParameterzz_map,
 
         PathId_Columnzz_map,
         RequestId_Columnzz_map,
         ResponseId_Columnzz_map,
         ServerId_Variablezz_map,
 
-        TypeFormatChildzz_map,
-        WuId_WuParameterzz_map,
-        WuId_TypeFormatzz_map,
+        OwnerId_TypeFormatzz_map,
+        OwnerWuChildId_TypeFormatzz_map,
 
         ModuleActionId_ModuleActionResponseWithNamezz_map,
     }

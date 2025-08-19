@@ -30,7 +30,7 @@ export default function makeSchemaWu(
     const argumentzz: (OapiReference | OapiSchema)[] = []
     const wpiam: Map<number, OapiReference | OapiSchema> = new Map()
     const czz = od.WuId_Columnzz_map.get(wu.id) ?? []
-    const wczz = od.WuId_TypeFormatzz_map.get(wu.id) ?? []
+    const wczz = od.OwnerWuChildId_TypeFormatzz_map.get(wu.id) ?? []
     if (wczz.length === 0 && czz.length === 0 && wu.isMap === false) {
         console.error(`makeSchemaWu: Wu ${wu.name} has no columns or child TypeFormat, returning empty reference`)
         return makeReferenceEmpty()
@@ -46,10 +46,10 @@ export default function makeSchemaWu(
         const data = makeSchemaTypeFormat(
             tf,
             tfzz,
-            od.TypeFormatChildzz_map,
+            od.OwnerId_TypeFormatzz_map,
             od.Variable_map,
             od.WuId_Columnzz_map,
-            od.WuId_TypeFormatzz_map,
+            od.OwnerWuChildId_TypeFormatzz_map,
             od.Wu_map,
             wiwpzzm,
             argumentzz,
@@ -97,10 +97,10 @@ export default function makeSchemaWu(
             schema.additionalProperties = makeSchemaTypeFormat(
                 tf,
                 tfzz,
-                od.TypeFormatChildzz_map,
+                od.OwnerId_TypeFormatzz_map,
                 od.Variable_map,
                 od.WuId_Columnzz_map,
-                od.WuId_TypeFormatzz_map,
+                od.OwnerWuChildId_TypeFormatzz_map,
                 od.Wu_map,
                 wiwpzzm,
                 argumentzz,
@@ -119,10 +119,10 @@ export default function makeSchemaWu(
             makeSchemaTypeFormat(
                 tf,
                 tfzz,
-                od.TypeFormatChildzz_map,
+                od.OwnerId_TypeFormatzz_map,
                 od.Variable_map,
                 od.WuId_Columnzz_map,
-                od.WuId_TypeFormatzz_map,
+                od.OwnerWuChildId_TypeFormatzz_map,
                 od.Wu_map,
                 wiwpzzm,
                 argumentzz,
@@ -144,7 +144,7 @@ function includingWuParameter(
         return true
     }
 
-    const argumentzz = od.TypeFormatChildzz_map.get(tf.id) ?? []
+    const argumentzz = od.OwnerId_TypeFormatzz_map.get(tf.id) ?? []
     if (argumentzz.find((item) => includingWuParameter(item, od))) {
         return true
     }

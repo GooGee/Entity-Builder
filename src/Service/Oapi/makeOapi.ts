@@ -35,9 +35,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
     })
 
 
-    db.tables.Variable.forEach((item) =>
-        builder.addSchema(makeSchemaEnumName(item.name), makeSchemaEnum(item) as any),
-    )
+    db.tables.Variable.forEach((item) => builder.addSchema(makeSchemaEnumName(item.name), makeSchemaEnum(item) as any))
 
     const riezzm: Map<string, LB.Example[]> = new Map()
     db.tables.ExampleMap.forEach((item) => {
@@ -65,11 +63,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
 
         builder.addSchema(
             wu.name,
-            makeSchemaWu(
-                wu,
-                tfzz,
-                dd,
-            ) as any,
+            makeSchemaWu(wu, tfzz, dd,) as any,
         )
     })
 
@@ -89,10 +83,10 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
             makeSchemaTypeFormat(
                 tf,
                 tfzz,
-                dd.TypeFormatChildzz_map,
+                dd.OwnerId_TypeFormatzz_map,
                 dd.Variable_map,
                 dd.WuId_Columnzz_map,
-                dd.WuId_TypeFormatzz_map,
+                dd.OwnerWuChildId_TypeFormatzz_map,
                 dd.Wu_map,
                 dd.WuId_WuParameterzz_map,
                 [],
@@ -107,11 +101,11 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
                 [item.mediaType]: makeMediaType(
                     item,
                     tfzz,
-                    dd.TypeFormatChildzz_map,
+                    dd.OwnerId_TypeFormatzz_map,
                     dd.Variable_map,
                     riezzm,
                     dd.WuId_Columnzz_map,
-                    dd.WuId_TypeFormatzz_map,
+                    dd.OwnerWuChildId_TypeFormatzz_map,
                     dd.Wu_map,
                     dd.WuId_WuParameterzz_map,
                 ),
@@ -127,11 +121,11 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
                 [item.mediaType]: makeMediaType(
                     item,
                     tfzz,
-                    dd.TypeFormatChildzz_map,
+                    dd.OwnerId_TypeFormatzz_map,
                     dd.Variable_map,
                     riezzm,
                     dd.WuId_Columnzz_map,
-                    dd.WuId_TypeFormatzz_map,
+                    dd.OwnerWuChildId_TypeFormatzz_map,
                     dd.Wu_map,
                     dd.WuId_WuParameterzz_map,
                 ),
