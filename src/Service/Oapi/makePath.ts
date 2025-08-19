@@ -6,8 +6,6 @@ import { ComponentKind, makeReferenceOf } from "./makeReference"
 import makeServer from "./makeServer"
 import { OapiDto } from "./prepareOapiDto"
 
-export type ModuleActionResponseWithName = LB.ModuleActionResponse & { name: string }
-
 export default function makePath(
     item: LB.Path,
     od: OapiDto,
@@ -30,11 +28,11 @@ export default function makePath(
     if (ma == null) {
         return null
     }
-    if (od.ModuleActionId_ModuleActionResponseWithNamezz_map.has(item.moduleActionId) === false) {
+    if (od.ModuleActionId_ModuleActionResponsezz_map.has(item.moduleActionId) === false) {
         return null
     }
 
-    const rzz = od.ModuleActionId_ModuleActionResponseWithNamezz_map.get(ma.id) ?? []
+    const rzz = od.ModuleActionId_ModuleActionResponsezz_map.get(ma.id) ?? []
     if (rzz.length === 0) {
         return path
     }

@@ -1,5 +1,4 @@
 import { makeChildzzMap, makeIdItemMap, makeNameItemMap } from "@/Factory/makeMap"
-import { ModuleActionResponseWithName } from "./makePath"
 import makeModuleActionResponse from "@/Database/Factory/makeModuleActionResponse"
 import makeResponse from "@/Database/Factory/makeResponse"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
@@ -10,6 +9,8 @@ import { PageEnum } from "@/menuzz"
 import makeColumn from "@/Database/Factory/makeColumn"
 
 type ColumnWithWuColumnId = LB.Column & { wuColumnId: number }
+
+type ModuleActionResponseWithName = LB.ModuleActionResponse & { name: string }
 
 export type OapiDto = {
     Column_map: Map<number, LB.Column>
@@ -39,7 +40,7 @@ export type OapiDto = {
     OwnerResponseId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
     OwnerWuChildId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
     OwnerWuId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
-    ModuleActionId_ModuleActionResponseWithNamezz_map: Map<number, ModuleActionResponseWithName[]>
+    ModuleActionId_ModuleActionResponsezz_map: Map<number, ModuleActionResponseWithName[]>
 }
 
 
@@ -134,7 +135,7 @@ function makeAllParameter(
         nc.style = 'form'
         tables.Column.push(nc)
         Column_map.set(nc.id, nc)
-        ParameterColumnzz.push(nc)
+        ParameterColumnzz!.push(nc)
 
         const tf = makeTypeFormat(
             column.type as any,
@@ -565,6 +566,6 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
         OwnerWuChildId_TypeFormatzz_map,
         OwnerWuId_TypeFormatzz_map,
 
-        ModuleActionId_ModuleActionResponseWithNamezz_map,
+        ModuleActionId_ModuleActionResponsezz_map: ModuleActionId_ModuleActionResponseWithNamezz_map,
     }
 }
