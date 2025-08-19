@@ -9,7 +9,7 @@ import { makeParameterName, makeResponseName } from "../makeName"
 import { PageEnum } from "@/menuzz"
 import makeColumn from "@/Database/Factory/makeColumn"
 
-export type OapiDate = {
+export type OapiDto = {
     Column_map: Map<number, LB.Column>
     Entity_map: Map<number, LB.Entity>
     Module_map: Map<number, LB.Module>
@@ -21,16 +21,18 @@ export type OapiDate = {
     Variable_map: Map<number, LB.Variable>
     Wu_map: Map<number, LB.Wu>
     EntityId_Columnzz_map: Map<number, LB.Column[]>
+    WuColumnId_ColumnConstraintzz_map: Map<number, LB.ColumnConstraint[]>
     WuId_Columnzz_map: Map<number, LB.Column[]>
+    WuId_WuColumnzz_map: Map<number, LB.WuColumn[]>
     WuId_WuParameter_map: Map<number, LB.WuParameter>
+    PathId_Columnzz_map: Map<number, LB.Column[]>
+    RequestId_Columnzz_map: Map<number, LB.Column[]>
+    ResponseId_Columnzz_map: Map<number, LB.Column[]>
     ServerId_Variablezz_map: Map<number, LB.Variable[]>
     TypeFormatChildzz_map: Map<number, LB.TypeFormat[]>
     WuId_WuParameterzz_map: Map<number, LB.WuParameter[]>
     WuId_TypeFormatzz_map: Map<number, LB.TypeFormat[]>
     ModuleActionId_ModuleActionResponseWithNamezz_map: Map<number, ModuleActionResponseWithName[]>
-    PathId_Columnzz_map: Map<number, LB.Column[]>
-    RequestId_Columnzz_map: Map<number, LB.Column[]>
-    ResponseId_Columnzz_map: Map<number, LB.Column[]>
 }
 
 
@@ -291,7 +293,7 @@ function prepare(
 
 }
 
-export default function prepareOapi(tables: LB.DBTable) {
+export default function prepareOapiDto(tables: LB.DBTable) {
 
     const Column_map = makeIdItemMap(tables.Column)
     const ColumnConstraint_map = makeIdItemMap(tables.ColumnConstraint)

@@ -8,7 +8,7 @@ import makeSchemaEnum, { makeSchemaEnumName } from "./makeSchemaEnum"
 import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
 import makeSchemaWu from "./makeSchemaWu"
 import makeServer from "./makeServer"
-import prepareOapi from "./prepareOapi"
+import prepareOapiDto from "./prepareOapiDto"
 
 export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: number) {
     const builder = OpenApiBuilder.create({
@@ -22,7 +22,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
         pathzz = db.tables.Path.filter((item) => item.moduleId === moduleId)
         db.tables.Path = pathzz
     }
-    const dd = prepareOapi(db.tables)
+    const dd = prepareOapiDto(db.tables)
 
     const eiem: Map<number, LB.Example> = new Map()
     db.tables.Example.forEach((item) => {
