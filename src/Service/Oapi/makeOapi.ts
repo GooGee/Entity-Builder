@@ -68,11 +68,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
             makeSchemaWu(
                 wu,
                 tfzz,
-                dd.TypeFormatChildzz_map,
-                dd.Variable_map,
-                dd.WuId_Columnzz_map,
-                dd.WuId_TypeFormatzz_map,
-                dd.Wu_map
+                dd,
             ) as any,
         )
     })

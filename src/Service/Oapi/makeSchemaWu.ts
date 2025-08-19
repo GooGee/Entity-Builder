@@ -12,6 +12,7 @@ import {
 import getTypeFormatOrThrow from "../getTypeFormatOrThrow"
 import { makeReferenceEmpty } from "./makeReference"
 import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
+import { OapiDto } from "./prepareOapiDto"
 
 /**
  * only includes Wu that has no WuParameter
@@ -19,39 +20,37 @@ import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
 export default function makeSchemaWu(
     wu: LB.Wu,
     tfzz: LB.TypeFormat[],
-    tfzzm: Map<number, LB.TypeFormat[]>,
-    vivm: Map<number, LB.Variable>,
-    wiczzm: Map<number, LB.Column[]>,
-    wiwkzzm: Map<number, LB.TypeFormat[]>,
-    wiwm: Map<number, LB.Wu>,
+    od: OapiDto,
 ): OapiReference | OapiSchemaComposition | OapiSchemaObject {
+    if (wu.id === 1) {
+        return makeSchemaObject({})
+    }
+
     const wiwpzzm: Map<number, LB.WuParameter[]> = new Map()
     const argumentzz: (OapiReference | OapiSchema)[] = []
     const wpiam: Map<number, OapiReference | OapiSchema> = new Map()
-    const czz = wiczzm.get(wu.id) ?? []
-    const wczz = wiwkzzm.get(wu.id) ?? []
+    const czz = od.WuId_Columnzz_map.get(wu.id) ?? []
+    const wczz = od.WuId_TypeFormatzz_map.get(wu.id) ?? []
     if (wczz.length === 0 && czz.length === 0 && wu.isMap === false) {
-        if (wu.id === 1) {
-            return makeSchemaObject({})
-        }
         console.error(`makeSchemaWu: Wu ${wu.name} has no columns or child TypeFormat, returning empty reference`)
         return makeReferenceEmpty()
     }
 
+    const requiredzz: string[] = []
     const properties = czz.reduce(function (old, column) {
         const tf = getTypeFormatOrThrow(column.id, "ownerColumnId", tfzz)
-        if (includingWuParameter(tf, tfzzm)) {
+        if (includingWuParameter(tf, od)) {
             return old
         }
 
         const data = makeSchemaTypeFormat(
             tf,
             tfzz,
-            tfzzm,
-            vivm,
-            wiczzm,
-            wiwkzzm,
-            wiwm,
+            od.TypeFormatChildzz_map,
+            od.Variable_map,
+            od.WuId_Columnzz_map,
+            od.WuId_TypeFormatzz_map,
+            od.Wu_map,
             wiwpzzm,
             argumentzz,
             wpiam,
@@ -64,6 +63,13 @@ export default function makeSchemaWu(
             if (column.wo) {
                 data.writeOnly = true
             }
+            const cczz = od.WuColumnId_ColumnConstraintzz_map.get(column.wuColumnId)
+            if (cczz) {
+                const required = cczz.some((cc) => cc.name === 'present' || cc.name === 'required')
+                if (required) {
+                    requiredzz.push(column.name)
+                }
+            }
         }
 
         old[column.name] = data
@@ -74,6 +80,9 @@ export default function makeSchemaWu(
         description: wu.description,
         properties,
     })
+    if (requiredzz.length) {
+        schema.required = requiredzz
+    }
     if (wu.example) {
         schema.example = wu.example
     }
@@ -84,15 +93,15 @@ export default function makeSchemaWu(
 
     if (wu.isMap) {
         const tf = getTypeFormatOrThrow(wu.id, "ownerWuId", tfzz)
-        if (includingWuParameter(tf, tfzzm) === false) {
+        if (includingWuParameter(tf, od) === false) {
             schema.additionalProperties = makeSchemaTypeFormat(
                 tf,
                 tfzz,
-                tfzzm,
-                vivm,
-                wiczzm,
-                wiwkzzm,
-                wiwm,
+                od.TypeFormatChildzz_map,
+                od.Variable_map,
+                od.WuId_Columnzz_map,
+                od.WuId_TypeFormatzz_map,
+                od.Wu_map,
                 wiwpzzm,
                 argumentzz,
                 wpiam,
@@ -110,11 +119,11 @@ export default function makeSchemaWu(
             makeSchemaTypeFormat(
                 tf,
                 tfzz,
-                tfzzm,
-                vivm,
-                wiczzm,
-                wiwkzzm,
-                wiwm,
+                od.TypeFormatChildzz_map,
+                od.Variable_map,
+                od.WuId_Columnzz_map,
+                od.WuId_TypeFormatzz_map,
+                od.Wu_map,
                 wiwpzzm,
                 argumentzz,
                 wpiam,
@@ -129,14 +138,14 @@ export default function makeSchemaWu(
 
 function includingWuParameter(
     tf: LB.TypeFormat,
-    tfzzm: Map<number, LB.TypeFormat[]>,
+    od: OapiDto,
 ): boolean {
     if (tf.type === OapiType.WuParameter) {
         return true
     }
 
-    const argumentzz = tfzzm.get(tf.id) ?? []
-    if (argumentzz.find((item) => includingWuParameter(item, tfzzm))) {
+    const argumentzz = od.TypeFormatChildzz_map.get(tf.id) ?? []
+    if (argumentzz.find((item) => includingWuParameter(item, od))) {
         return true
     }
     return false

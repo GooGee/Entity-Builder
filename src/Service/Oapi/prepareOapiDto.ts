@@ -9,6 +9,8 @@ import { makeParameterName, makeResponseName } from "../makeName"
 import { PageEnum } from "@/menuzz"
 import makeColumn from "@/Database/Factory/makeColumn"
 
+type ColumnWithWuColumnId = LB.Column & { wuColumnId: number }
+
 export type OapiDto = {
     Column_map: Map<number, LB.Column>
     Entity_map: Map<number, LB.Entity>
@@ -22,7 +24,7 @@ export type OapiDto = {
     Wu_map: Map<number, LB.Wu>
     EntityId_Columnzz_map: Map<number, LB.Column[]>
     WuColumnId_ColumnConstraintzz_map: Map<number, LB.ColumnConstraint[]>
-    WuId_Columnzz_map: Map<number, LB.Column[]>
+    WuId_Columnzz_map: Map<number, ColumnWithWuColumnId[]>
     WuId_WuColumnzz_map: Map<number, LB.WuColumn[]>
     WuId_WuParameter_map: Map<number, LB.WuParameter>
     PathId_Columnzz_map: Map<number, LB.Column[]>
@@ -371,7 +373,7 @@ export default function prepareOapiDto(tables: LB.DBTable) {
         WuId_WuParameter_map,
     )
 
-    const WuId_Columnzz_map: Map<number, LB.Column[]> = new Map()
+    const WuId_Columnzz_map: Map<number, ColumnWithWuColumnId[]> = new Map()
     tables.WuColumn.forEach((item) => {
         let found = WuId_Columnzz_map.get(item.wuId)
         if (found == null) {
@@ -384,7 +386,7 @@ export default function prepareOapiDto(tables: LB.DBTable) {
         if (item.alias) {
             name = item.alias
         }
-        found.push({ ...column, name })
+        found.push({ ...column, name, wuColumnId: item.id })
     })
 
     const ServerId_Variablezz_map: Map<number, LB.Variable[]> = new Map()
