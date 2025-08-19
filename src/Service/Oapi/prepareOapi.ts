@@ -38,6 +38,10 @@ let bigId = 111_222_333
 let wcid = bigId
 
 
+/**
+ * for `get` request with a requestBody, since requestBody is not valid in OpenApi 3.0,
+ * so create parameters for each column in the requestBody
+ */
 function makeAllParameter(
     tables: LB.DBTable,
     ma: LB.ModuleAction,
@@ -154,6 +158,9 @@ function makeAllWuColumn(
         })
 }
 
+/**
+ * for paths without any response, create a 200 response with content of the entity
+ */
 function prepare(
     tables: LB.DBTable,
     Column_map: Map<number, LB.Column>,
@@ -161,6 +168,7 @@ function prepare(
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
     Module_map: Map<number, LB.Module>,
     ModuleAction_map: Map<number, LB.ModuleAction>,
+    ModuleActionId_ModuleActionResponsezz_map: Map<number, LB.ModuleActionResponse[]>,
     ModuleActionResponse_map: Map<number, LB.ModuleActionResponse>,
     Request_map: Map<number, LB.Request>,
     Response_map: Map<number, LB.Response>,
@@ -183,7 +191,8 @@ function prepare(
         if (ma == null) {
             return
         }
-        if (ModuleActionResponse_map.has(path.moduleActionId)) {
+        let marzz = ModuleActionId_ModuleActionResponsezz_map.get(path.moduleActionId)
+        if (marzz && marzz.length > 0) {
             return
         }
         const entity = Entity_map.get(ma.entityId)
@@ -225,7 +234,7 @@ function prepare(
             wu.id = bigId
             tables.Wu.push(wu)
             Wu_map.set(wu.id, wu)
-            WuName_Wu_map.set(entity.name, wu)
+            WuName_Wu_map.set(wu.name, wu)
 
             makeAllWuColumn(tables, entity, EntityId_Columnzz_map, wu)
         } else {
@@ -263,7 +272,12 @@ function prepare(
         const mar = makeModuleActionResponse('200', ma.id, response.id) as LB.ModuleActionResponse
         mar.id = bigId
         tables.ModuleActionResponse.push(mar)
-        ModuleActionResponse_map.set(ma.id, mar)
+        ModuleActionResponse_map.set(mar.id, mar)
+        if (marzz == null) {
+            marzz = []
+            ModuleActionId_ModuleActionResponsezz_map.set(ma.id, marzz)
+        }
+        marzz.push(mar)
 
         bigId += 1
     })
@@ -293,6 +307,11 @@ export default function prepareOapi(tables: LB.DBTable) {
         }
         found.push(item)
     })
+
+    const ModuleActionId_ModuleActionResponsezz_map: Map<number, LB.ModuleActionResponse[]> = makeChildzzMap(
+        tables.ModuleActionResponse,
+        "moduleActionId",
+    )
 
     const WuColumnId_ColumnConstraintzz_map: Map<number, LB.ColumnConstraint[]> = new Map()
     tables.WuColumnConstraint.forEach((item) => {
@@ -333,6 +352,7 @@ export default function prepareOapi(tables: LB.DBTable) {
         EntityId_Columnzz_map,
         Module_map,
         ModuleAction_map,
+        ModuleActionId_ModuleActionResponsezz_map,
         ModuleActionResponse_map,
         Request_map,
         Response_map,
@@ -437,8 +457,9 @@ export default function prepareOapi(tables: LB.DBTable) {
     }
 
     return {
-        Entity_map,
         Column_map,
+        ColumnConstraint_map,
+        Entity_map,
         Module_map,
         ModuleAction_map,
         ModuleActionResponse_map,
@@ -449,6 +470,7 @@ export default function prepareOapi(tables: LB.DBTable) {
         Wu_map,
 
         EntityId_Columnzz_map,
+        WuColumnId_ColumnConstraintzz_map,
         WuId_Columnzz_map,
         WuId_WuColumnzz_map,
         WuId_WuParameter_map,
@@ -457,6 +479,7 @@ export default function prepareOapi(tables: LB.DBTable) {
         RequestId_Columnzz_map,
         ResponseId_Columnzz_map,
         ServerId_Variablezz_map,
+
         TypeFormatChildzz_map,
         WuId_WuParameterzz_map,
         WuId_TypeFormatzz_map,
