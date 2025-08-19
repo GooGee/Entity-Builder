@@ -7,8 +7,6 @@ import makeServer from "./makeServer"
 
 export type ModuleActionResponseWithName = LB.ModuleActionResponse & { name: string }
 
-export type ModuleActionWithMethod = LB.ModuleAction & { method: string }
-
 export default function makePath(
     item: LB.Path,
     mimm: Map<number, LB.Module>,
@@ -57,9 +55,7 @@ export default function makePath(
     const data: OperationObject = {
         deprecated: ma.deprecated,
         description: ma.description,
-        parameters: (maipzzm.get(ma.requestId) ?? []).map((item) =>
-            makeParameterReference(item, eiem),
-        ),
+        parameters: (maipzzm.get(ma.requestId) ?? []).map((item) => makeParameterReference(item, eiem)),
         responses,
         operationId: module.name + "_" + ma.name + "_" + entity.name,
         summary: ma.summary.length ? ma.summary : makeSummart(module, ma, entity),
@@ -68,12 +64,15 @@ export default function makePath(
 
     const method = item.method as keyof typeof HttpMethod
     path[method] = data
-    if (["get", "delete"].includes(item.method)) {
-        return path
-    }
 
     // empty
     if (ma.requestId === 1) {
+        return path
+    }
+    if (method === HttpMethod.delete) {
+        return path
+    }
+    if (method === HttpMethod.get) {
         return path
     }
 

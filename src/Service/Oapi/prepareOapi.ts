@@ -4,12 +4,14 @@ import makeModuleActionResponse from "@/Database/Factory/makeModuleActionRespons
 import makeResponse from "@/Database/Factory/makeResponse"
 import makeTypeFormat from "@/Database/Factory/makeTypeFormat"
 import makeWu from "@/Database/Factory/makeWu"
-import { OapiType } from "@/Model/Oapi"
-import { makeResponseName } from "../makeName"
+import { HttpMethod, OapiType } from "@/Model/Oapi"
+import { makeParameterName, makeResponseName } from "../makeName"
+import { PageEnum } from "@/menuzz"
+import makeColumn from "@/Database/Factory/makeColumn"
 
 export type OapiDate = {
-    Entity_map: Map<number, LB.Entity>
     Column_map: Map<number, LB.Column>
+    Entity_map: Map<number, LB.Entity>
     Module_map: Map<number, LB.Module>
     ModuleAction_map: Map<number, LB.ModuleAction>
     ModuleActionResponse_map: Map<number, LB.ModuleActionResponse>
@@ -31,8 +33,107 @@ export type OapiDate = {
     ResponseId_Columnzz_map: Map<number, LB.Column[]>
 }
 
+
 let bigId = 111_222_333
 let wcid = bigId
+
+
+function makeAllParameter(
+    tables: LB.DBTable,
+    ma: LB.ModuleAction,
+    Column_map: Map<number, LB.Column>,
+    EntityId_Columnzz_map: Map<number, LB.Column[]>,
+    Module_map: Map<number, LB.Module>,
+    ParameterEntity: LB.Entity,
+    Request_map: Map<number, LB.Request>,
+    WuColumnId_ColumnConstraintzz_map: Map<number, LB.ColumnConstraint[]>,
+    WuId_WuColumnzz_map: Map<number, LB.WuColumn[]>,
+) {
+    if (ma.requestId === 1) {
+        return
+    }
+
+    const module = Module_map.get(ma.moduleId)
+    if (module == null) {
+        return
+    }
+
+    const request = Request_map.get(ma.requestId)
+    if (request == null) {
+        return
+    }
+    if (tables.ParameterMap.some((item) => item.requestId === request.id)) {
+        return
+    }
+
+    const tf = tables.TypeFormat.find((item) => item.ownerRequestId === request.id)
+    if (tf == null) {
+        return
+    }
+    if (tf.wuId === 1) {
+        return
+    }
+
+    const wuColumnzz = WuId_WuColumnzz_map.get(tf.wuId)
+    if (wuColumnzz == null) {
+        return
+    }
+    if (wuColumnzz.length === 0) {
+        return
+    }
+
+    const ParameterColumnzz = EntityId_Columnzz_map.get(ParameterEntity.id) ?? []
+    const ParameterColumnNameSet = new Set(ParameterColumnzz.map((item) => item.name))
+
+    wuColumnzz.forEach((item) => {
+        const column = Column_map.get(item.columnId)
+        if (column == null) {
+            return
+        }
+
+        const name = makeParameterName(module, ma, ParameterEntity, column.name)
+        if (ParameterColumnNameSet.has(name)) {
+            return
+        }
+
+        let required = false
+        const cczz = WuColumnId_ColumnConstraintzz_map.get(item.id)
+        if (cczz) {
+            required = cczz.some((cc) => cc.name === 'present' || cc.name === 'required')
+        }
+
+        const nc = makeColumn(ParameterEntity.id, name, column.type,) as LB.Column
+        nc.id = wcid
+        wcid += 1
+        nc.required = required
+        nc.style = 'form'
+        tables.Column.push(nc)
+        Column_map.set(nc.id, nc)
+
+        const tf = makeTypeFormat(
+            column.type as any,
+            1,
+            null,
+            null,
+            null,
+            null,
+            nc.id,
+        ) as LB.TypeFormat
+        tf.id = wcid
+        wcid += 1
+        tables.TypeFormat.push(tf)
+
+        tables.ParameterMap.push({
+            id: wcid,
+            alias: column.name,
+            columnId: nc.id,
+            pathId: null,
+            requestId: request.id,
+            responseId: null,
+        })
+        wcid += 1
+    })
+}
 
 function makeAllWuColumn(
     tables: LB.DBTable,
@@ -55,16 +156,21 @@ function makeAllWuColumn(
 
 function prepare(
     tables: LB.DBTable,
+    Column_map: Map<number, LB.Column>,
     Entity_map: Map<number, LB.Entity>,
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
     Module_map: Map<number, LB.Module>,
     ModuleAction_map: Map<number, LB.ModuleAction>,
     ModuleActionResponse_map: Map<number, LB.ModuleActionResponse>,
+    Request_map: Map<number, LB.Request>,
     Response_map: Map<number, LB.Response>,
     Wu_map: Map<number, LB.Wu>,
+    WuColumnId_ColumnConstraintzz_map: Map<number, LB.ColumnConstraint[]>,
+    WuId_WuColumnzz_map: Map<number, LB.WuColumn[]>,
     WuId_WuParameter_map: Map<number, LB.WuParameter>,
 ) {
 
+    const ParameterEntity = tables.Entity.find((item) => item.name === PageEnum.ParameterInQuery)!
     const ResponseNameSet = new Set(tables.Response.map((item) => item.name))
     const WuName_Wu_map = makeNameItemMap(tables.Wu)
 
@@ -96,6 +202,21 @@ function prepare(
         const wrapper = Wu_map.get(ma.responseWuId)
         if (wrapper == null) {
             return
+        }
+
+        const method = path.method as keyof typeof HttpMethod
+        if (method === HttpMethod.get) {
+            makeAllParameter(
+                tables,
+                ma,
+                Column_map,
+                EntityId_Columnzz_map,
+                Module_map,
+                ParameterEntity,
+                Request_map,
+                WuColumnId_ColumnConstraintzz_map,
+                WuId_WuColumnzz_map,
+            )
         }
 
         let wu = WuName_Wu_map.get(entity.name)
@@ -151,8 +272,9 @@ function prepare(
 
 export default function prepareOapi(tables: LB.DBTable) {
 
-    const Entity_map = makeIdItemMap(tables.Entity)
     const Column_map = makeIdItemMap(tables.Column)
+    const ColumnConstraint_map = makeIdItemMap(tables.ColumnConstraint)
+    const Entity_map = makeIdItemMap(tables.Entity)
     const Module_map = makeIdItemMap(tables.Module)
     const ModuleAction_map = makeIdItemMap(tables.ModuleAction)
     const ModuleActionResponse_map = makeIdItemMap(tables.ModuleActionResponse)
@@ -165,9 +287,32 @@ export default function prepareOapi(tables: LB.DBTable) {
     const EntityId_Columnzz_map: Map<number, LB.Column[]> = new Map()
     tables.Column.forEach((item) => {
         let found = EntityId_Columnzz_map.get(item.entityId)
-        if (found === undefined) {
+        if (found == null) {
             found = []
             EntityId_Columnzz_map.set(item.entityId, found)
+        }
+        found.push(item)
+    })
+
+    const WuColumnId_ColumnConstraintzz_map: Map<number, LB.ColumnConstraint[]> = new Map()
+    tables.WuColumnConstraint.forEach((item) => {
+        let found = WuColumnId_ColumnConstraintzz_map.get(item.wuColumnId)
+        if (found == null) {
+            found = []
+            WuColumnId_ColumnConstraintzz_map.set(item.wuColumnId, found)
+        }
+        const cc = ColumnConstraint_map.get(item.columnConstraintId)
+        if (cc) {
+            found.push(cc)
+        }
+    })
+
+    const WuId_WuColumnzz_map: Map<number, LB.WuColumn[]> = new Map()
+    tables.WuColumn.forEach((item) => {
+        let found = WuId_WuColumnzz_map.get(item.wuId)
+        if (found == null) {
+            found = []
+            WuId_WuColumnzz_map.set(item.wuId, found)
         }
         found.push(item)
     })
@@ -175,7 +320,7 @@ export default function prepareOapi(tables: LB.DBTable) {
     const WuId_WuParameter_map = new Map<number, LB.WuParameter>()
     tables.WuParameter.forEach((item) => {
         let found = WuId_WuParameter_map.get(item.wuId)
-        if (found === undefined) {
+        if (found == null) {
             found = item
             WuId_WuParameter_map.set(item.wuId, found)
         }
@@ -183,20 +328,24 @@ export default function prepareOapi(tables: LB.DBTable) {
 
     prepare(
         tables,
+        Column_map,
         Entity_map,
         EntityId_Columnzz_map,
         Module_map,
         ModuleAction_map,
         ModuleActionResponse_map,
+        Request_map,
         Response_map,
         Wu_map,
+        WuColumnId_ColumnConstraintzz_map,
+        WuId_WuColumnzz_map,
         WuId_WuParameter_map,
     )
 
     const WuId_Columnzz_map: Map<number, LB.Column[]> = new Map()
     tables.WuColumn.forEach((item) => {
         let found = WuId_Columnzz_map.get(item.wuId)
-        if (found === undefined) {
+        if (found == null) {
             found = []
             WuId_Columnzz_map.set(item.wuId, found)
         }
@@ -212,7 +361,7 @@ export default function prepareOapi(tables: LB.DBTable) {
     const ServerId_Variablezz_map: Map<number, LB.Variable[]> = new Map()
     tables.ServerVariable.forEach((item) => {
         let found = ServerId_Variablezz_map.get(item.serverId)
-        if (found === undefined) {
+        if (found == null) {
             found = []
             ServerId_Variablezz_map.set(item.serverId, found)
         }
@@ -240,7 +389,7 @@ export default function prepareOapi(tables: LB.DBTable) {
     const ModuleActionId_ModuleActionResponseWithNamezz_map: Map<number, ModuleActionResponseWithName[]> = new Map()
     tables.ModuleActionResponse.forEach((item) => {
         let found = ModuleActionId_ModuleActionResponseWithNamezz_map.get(item.moduleActionId)
-        if (found === undefined) {
+        if (found == null) {
             found = []
             ModuleActionId_ModuleActionResponseWithNamezz_map.set(item.moduleActionId, found)
         }
@@ -277,7 +426,7 @@ export default function prepareOapi(tables: LB.DBTable) {
         targetId: number,
     ) {
         let found = map.get(targetId)
-        if (found === undefined) {
+        if (found == null) {
             found = []
             map.set(targetId, found)
         }
@@ -301,6 +450,7 @@ export default function prepareOapi(tables: LB.DBTable) {
 
         EntityId_Columnzz_map,
         WuId_Columnzz_map,
+        WuId_WuColumnzz_map,
         WuId_WuParameter_map,
 
         PathId_Columnzz_map,
