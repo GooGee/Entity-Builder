@@ -162,6 +162,9 @@ function makeAllParameter(
     })
 }
 
+/**
+ * for response
+ */
 function makeAllWuColumn(
     tables: LB.DBTable,
     entity: LB.Entity,
@@ -169,12 +172,20 @@ function makeAllWuColumn(
     wu: LB.Wu,
     WuId_WuColumnzz_map: Map<number, LB.WuColumn[]>,
 ) {
+    console.log(`makeAllWuColumn for wu ${wu.name}(${wu.id}) entity ${entity.name}(${entity.id})`)
+
+    const wuColumnzz = WuId_WuColumnzz_map.get(wu.id) ?? []
+    const columnIdSet = new Set(wuColumnzz.map((item) => item.columnId))
     const czz = EntityId_Columnzz_map.get(entity.id) ?? []
     czz.forEach((item) => {
-        if (item.inTable === false || item.hidden) {
+        if (item.inTable === false || item.hidden || item.wo) {
+            return
+        }
+        if (columnIdSet.has(item.id)) {
             return
         }
 
+        columnIdSet.add(item.id)
         const wc: LB.WuColumn = {
             wuId: wu.id,
             columnId: item.id,
@@ -390,6 +401,28 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
             found = item
             WuId_WuParameter_map.set(item.wuId, found)
         }
+    })
+
+    tables.Wu.forEach(function (wu) {
+        if (wu.isRequest) {
+            return
+        }
+        if (wu.includeAll === false) {
+            return
+        }
+
+        const entity = Entity_map.get(wu.entityId)
+        if (entity == null) {
+            return
+        }
+
+        makeAllWuColumn(
+            tables,
+            entity,
+            EntityId_Columnzz_map,
+            wu,
+            WuId_WuColumnzz_map,
+        )
     })
 
     prepare(
