@@ -11,5 +11,6 @@ export default function migrate(db: LB.DBData, preset: LB.AppInfoData) {
 
     db.tables.ModuleAction.forEach(function (item) {
         item.responseWuId = findWrapperWuId(item.name, db.tables.Wu)
+        item.responseContentWuId = 1
     })
 }

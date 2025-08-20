@@ -261,6 +261,7 @@ export default function createSchema(builder: lf.Builder) {
     makeForeignKey(tb, item, SchemaEnum.Entity)
     makeForeignKey(tb, item, SchemaEnum.Module)
     makeForeignKey(tb, item, SchemaEnum.Wu, "responseWuId")
+    makeForeignKey(tb, item, SchemaEnum.Wu, "responseContentWuId")
     makeUniqueKey(tb, item, [
         makeForeignKeyId(SchemaEnum.Entity),
         makeForeignKeyId(SchemaEnum.Module),

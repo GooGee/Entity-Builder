@@ -20,5 +20,6 @@ export default function makeModuleAction(
         moduleId: module.id,
         requestId: 1,
         responseWuId,
+        responseContentWuId: 1,
     }
 }
