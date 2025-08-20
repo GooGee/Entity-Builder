@@ -57,5 +57,6 @@ export default function makeWu(
         description: "",
         example: "",
         isMap: false,
+        includeAll: false,
     }
 }

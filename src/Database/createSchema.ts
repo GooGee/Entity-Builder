@@ -209,6 +209,7 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("example", lf.Type.STRING)
         .addColumn("isRequest", lf.Type.BOOLEAN)
         .addColumn("isMap", lf.Type.BOOLEAN)
+        .addColumn("includeAll", lf.Type.BOOLEAN) // include all columns from Entity
     makeForeignKey(tb, item, SchemaEnum.Entity)
 
     item = SchemaEnum.WuColumn

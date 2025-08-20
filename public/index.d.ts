@@ -251,6 +251,7 @@ namespace LB {
         description: string
         example: string
         isMap: boolean
+        includeAll: boolean
         // typeFormatId: number
         // tf: TypeFormat
     }
