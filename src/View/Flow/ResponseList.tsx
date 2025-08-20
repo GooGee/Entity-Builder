@@ -175,32 +175,49 @@ export default function ResponseList(property: Property) {
             return null
         }
 
+        const cwzz = sWuzzStore.itemzz.filter((item) => item.name.includes(property.entity.name))
+
         const found = wuzz.find((item) => item.id === property.ma.responseWuId)
+        const content = cwzz.find((item) => item.id === property.ma.responseContentWuId)
 
         return (
-            <div>
+            <>
                 <SelectButton
                     className="wa inline"
                     itemzz={wuzz}
                     value={found?.id ?? wuzz[0].id}
-                    change={function (index, item) {
-                        if (item) {
-                            makeModuleActionCRUD()
-                                .update({ ...property.ma, responseWuId: item.id })
-                                .then(function (item) {
-                                    suseFlowPageStore.setAction(item.name, item)
-                                })
-                        }
+                    change={function (id) {
+                        makeModuleActionCRUD()
+                            .update({ ...property.ma, responseWuId: id })
+                            .then(function (item) {
+                                suseFlowPageStore.setAction(item.name, item)
+                            })
+                            .catch(sToastzzStore.showError)
+                    }}
+                ></SelectButton>
+
+                <SelectButton
+                    className="wa inline mx-3"
+                    itemzz={cwzz}
+                    value={content?.id ?? 0}
+                    verb="content"
+                    change={function (id) {
+                        makeModuleActionCRUD()
+                            .update({ ...property.ma, responseContentWuId: id })
+                            .then(function (item) {
+                                suseFlowPageStore.setAction(item.name, item)
+                            })
+                            .catch(sToastzzStore.showError)
                     }}
                 ></SelectButton>
 
                 {found == null ? null : (
-                    <span>
-                        &nbsp;auto add Response with `{found.name}&lt;{property.entity.name}&gt;` to api doc, if no
-                        Response added.
-                    </span>
+                    <div>
+                        &nbsp;auto add Response with `{found.name}&lt;{content ? content.name : property.entity.name}&gt;`
+                        to api doc, if no Response added.
+                    </div>
                 )}
-            </div>
+            </>
         )
     }
 
@@ -220,7 +237,6 @@ export default function ResponseList(property: Property) {
         <>
             <table className="table td0-tal">
                 <caption>
-                    {makeWuSelect()}
                     <div>
                         {sResponsezzStore.findByName(nameResponse) ? null : (
                             <span onClick={makeResponseWu} className="btn btn-outline-primary mt-1">
@@ -265,6 +281,11 @@ export default function ResponseList(property: Property) {
                         <td></td>
                         <td></td>
                     </tr>
+                    {itemzz.length ? null : (
+                        <tr>
+                            <td colSpan={3}>{makeWuSelect()}</td>
+                        </tr>
+                    )}
                 </tfoot>
             </table>
 
