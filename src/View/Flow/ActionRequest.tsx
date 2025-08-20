@@ -152,9 +152,7 @@ export default function ActionRequest(property: Property) {
                 <SelectButton
                     className="wa"
                     itemzz={sRequestzzStore.itemzz.filter(
-                        (item) =>
-                            item.id === 1 ||
-                            item.name.startsWith(property.module.name + "_" + property.entity.name + "_"),
+                        (item) => item.id === 1 || item.name.includes("_" + property.entity.name + "_"),
                     )}
                     value={property.ma.requestId}
                     change={function (requestId) {
