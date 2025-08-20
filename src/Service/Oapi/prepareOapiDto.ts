@@ -167,19 +167,29 @@ function makeAllWuColumn(
     entity: LB.Entity,
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
     wu: LB.Wu,
+    WuId_WuColumnzz_map: Map<number, LB.WuColumn[]>,
 ) {
     const czz = EntityId_Columnzz_map.get(entity.id) ?? []
     czz.forEach((item) => {
         if (item.inTable === false || item.hidden) {
             return
         }
-        tables.WuColumn.push({
+
+        const wc: LB.WuColumn = {
             wuId: wu.id,
             columnId: item.id,
             alias: "",
             id: wcid,
-        })
+        }
         wcid += 1
+        tables.WuColumn.push(wc)
+
+        let wuColumnzz = WuId_WuColumnzz_map.get(wu.id)
+        if (wuColumnzz == null) {
+            wuColumnzz = []
+            WuId_WuColumnzz_map.set(wu.id, wuColumnzz)
+        }
+        wuColumnzz.push(wc)
     })
 }
 
@@ -253,22 +263,6 @@ function prepare(
             )
         }
 
-        let wu = WuName_Wu_map.get(entity.name)
-        if (wu == null) {
-            wu = makeWu(entity.name, entity.id) as LB.Wu
-            wu.id = bigId
-            tables.Wu.push(wu)
-            Wu_map.set(wu.id, wu)
-            WuName_Wu_map.set(wu.name, wu)
-
-            makeAllWuColumn(tables, entity, EntityId_Columnzz_map, wu)
-        } else {
-            const wc = tables.WuColumn.find((item) => item.wuId === wu!.id)
-            if (wc == null) {
-                makeAllWuColumn(tables, entity, EntityId_Columnzz_map, wu)
-            }
-        }
-
         const response = makeResponse(name) as LB.Response
         response.id = bigId
         tables.Response.push(response)
@@ -282,6 +276,25 @@ function prepare(
 
         const wp = WuId_WuParameter_map.get(wrapper.id)
         if (wp && wp.isWu) {
+            let wu = Wu_map.get(ma.responseContentWuId)
+            if (ma.responseContentWuId === 1) {
+                wu = WuName_Wu_map.get(entity.name)
+            }
+            if (wu == null) {
+                wu = makeWu(entity.name, entity.id) as LB.Wu
+                wu.id = bigId
+                tables.Wu.push(wu)
+                Wu_map.set(wu.id, wu)
+                WuName_Wu_map.set(wu.name, wu)
+
+                makeAllWuColumn(tables, entity, EntityId_Columnzz_map, wu, WuId_WuColumnzz_map)
+            } else {
+                const wczz = WuId_WuColumnzz_map.get(wu.id)
+                if (wczz == null || wczz.length === 0) {
+                    makeAllWuColumn(tables, entity, EntityId_Columnzz_map, wu, WuId_WuColumnzz_map)
+                }
+            }
+
             const wptf = makeTypeFormat(
                 OapiType.Wu,
                 wu.id,
