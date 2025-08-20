@@ -64,6 +64,29 @@ export default function WuColumnList(property: Property) {
                     </label>
                 </div>
 
+                {property.item.isRequest ? null : (
+                    <div className="form-check form-switch inline mx-3">
+                        <input
+                            checked={property.item.includeAll}
+                            onChange={function (event) {
+                                makeWuCRUD()
+                                    .update({
+                                        ...property.item,
+                                        includeAll: event.target.checked,
+                                    })
+                                    .catch(sToastzzStore.showError)
+                            }}
+                            className="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="includeAllSwitchCheck"
+                        />
+                        <label className="form-check-label" htmlFor="includeAllSwitchCheck">
+                            includeAll
+                        </label>
+                    </div>
+                )}
+
                 <WebLink className="ms-3" href="https://spec.openapis.org/oas/v3.0.3#schema-object">
                     doc
                 </WebLink>
