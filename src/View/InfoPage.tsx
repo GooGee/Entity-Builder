@@ -5,12 +5,14 @@ import InfoDetail from "./Oapi/InfoDetail"
 import LicenseDetail from "./Oapi/LicenseDetail"
 import TabList from "./Part/TabList"
 import ExternalDetail from "./Oapi/ExternalDetail"
+import ExportJson from "./Oapi/ExportJson"
 
 enum Tab {
     contact = "contact",
     external = "external",
     info = "info",
     license = "license",
+    export = "export",
 }
 
 export default function InfoPage() {
@@ -34,6 +36,8 @@ export default function InfoPage() {
         if (tab === Tab.license) {
             return <LicenseDetail></LicenseDetail>
         }
+
+        return <ExportJson></ExportJson>
     }
 
     return (
