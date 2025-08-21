@@ -1,7 +1,8 @@
 import {
-    isSchemaComposition,
+    CompositionKind,
     isSchemaReference,
     makeSchemaArray,
+    makeSchemaComposition,
     OapiReference,
     OapiSchema,
     OapiSchemaAny,
@@ -29,11 +30,8 @@ export default function makeSchemaTypeFormat(
         schema = makeSchemaArray(schema)
     }
     if (tf.nullable) {
-        if (isSchemaComposition(schema)) {
-            return schema
-        }
         if (isSchemaReference(schema)) {
-            return schema
+            schema = makeSchemaComposition([schema], CompositionKind.allOf)
         }
         schema.nullable = tf.nullable
     }

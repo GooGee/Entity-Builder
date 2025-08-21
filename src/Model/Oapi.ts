@@ -117,14 +117,17 @@ export type OapiSchemaComposition =
 
 interface OapiSchemaCompositionAllOf {
     [CompositionKind.allOf]: (OapiReference | OapiSchema)[]
+    nullable?: boolean
 }
 
 interface OapiSchemaCompositionAnyOf {
     [CompositionKind.anyOf]: (OapiReference | OapiSchema)[]
+    nullable?: boolean
 }
 
 interface OapiSchemaCompositionOneOf {
     [CompositionKind.oneOf]: (OapiReference | OapiSchema)[]
+    nullable?: boolean
 }
 
 export interface OapiSchemaObject extends OapiSchemaAny {
