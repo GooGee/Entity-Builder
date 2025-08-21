@@ -34,7 +34,9 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
     })
 
 
-    db.tables.Variable.forEach((item) => builder.addSchema(makeSchemaEnumName(item.name), makeSchemaEnum(item) as any))
+    db.tables.Variable
+        .sort((aa, bb) => aa.name.localeCompare(bb.name))
+        .forEach((item) => builder.addSchema(makeSchemaEnumName(item.name), makeSchemaEnum(item) as any))
 
     const riezzm: Map<string, LB.Example[]> = new Map()
     db.tables.ExampleMap.forEach((item) => {
@@ -51,7 +53,17 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
         }
     })
 
-    db.tables.Wu.forEach((wu) => {
+    db.tables.Wu.sort(function (aa, bb) {
+        const ea = od.Entity_map.get(aa.entityId)
+        const eb = od.Entity_map.get(bb.entityId)
+        if (ea === undefined || eb === undefined) {
+            return 0
+        }
+        if (ea.name === eb.name) {
+            return aa.name.localeCompare(bb.name)
+        }
+        return ea.name.localeCompare(eb.name)
+    }).forEach((wu) => {
         const wpzz = od.WuId_WuParameterzz_map.get(wu.id) ?? []
         if (wpzz.length) {
             return
