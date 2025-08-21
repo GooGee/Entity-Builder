@@ -64,6 +64,7 @@ function makeAllParameter(
     tables: LB.DBTable,
     ma: LB.ModuleAction,
     Column_map: Map<number, LB.Column>,
+    Name_DoctrineColumnType_map = new Map<string, LB.DoctrineColumnType>(),
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
     Module_map: Map<number, LB.Module>,
     ParameterEntity: LB.Entity,
@@ -137,14 +138,20 @@ function makeAllParameter(
         Column_map.set(nc.id, nc)
         ParameterColumnzz!.push(nc)
 
+        const dct = Name_DoctrineColumnType_map.get(column.type)
+        let type = 'string'
+        if (dct) {
+            type = dct.oapiType
+        }
         const tf = makeTypeFormat(
-            column.type as any,
+            type as any,
             1,
             null,
             null,
             null,
             null,
             nc.id,
+            dct?.oapiFormat || '',
         ) as LB.TypeFormat
         tf.id = wcid
         wcid += 1
@@ -210,6 +217,7 @@ function makeAllWuColumn(
 function prepare(
     tables: LB.DBTable,
     Column_map: Map<number, LB.Column>,
+    Name_DoctrineColumnType_map = new Map<string, LB.DoctrineColumnType>(),
     Entity_map: Map<number, LB.Entity>,
     EntityId_Columnzz_map: Map<number, LB.Column[]>,
     Module_map: Map<number, LB.Module>,
@@ -265,6 +273,7 @@ function prepare(
                 tables,
                 ma,
                 Column_map,
+                Name_DoctrineColumnType_map,
                 EntityId_Columnzz_map,
                 Module_map,
                 ParameterEntity,
@@ -348,6 +357,11 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
     const Variable_map = makeIdItemMap(tables.Variable)
     const Wu_map = makeIdItemMap(tables.Wu)
 
+    const Name_DoctrineColumnType_map = new Map<string, LB.DoctrineColumnType>()
+    tables.DoctrineColumnType.forEach((item) => {
+        Name_DoctrineColumnType_map.set(item.name, item)
+    })
+
     const EntityId_Columnzz_map: Map<number, LB.Column[]> = new Map()
     tables.Column.forEach((item) => {
         let found = EntityId_Columnzz_map.get(item.entityId)
@@ -428,6 +442,7 @@ export default function prepareOapiDto(tables: LB.DBTable): OapiDto {
     prepare(
         tables,
         Column_map,
+        Name_DoctrineColumnType_map,
         Entity_map,
         EntityId_Columnzz_map,
         Module_map,
