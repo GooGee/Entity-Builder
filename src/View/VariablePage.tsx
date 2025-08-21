@@ -6,6 +6,7 @@ import makeVariable from "@/Database/Factory/makeVariable"
 import LeftRightPanel from "./Part/LeftRightPanel"
 import useVariablePageStore from "@/Store/useVariablePageStore"
 import { PageEnum } from "@/menuzz"
+import ImportModal from "./Modal/ImportModal"
 
 export default function VariablePage() {
     const sVariablePageStore = useVariablePageStore()
@@ -25,6 +26,8 @@ export default function VariablePage() {
             >
                 {sVariablePageStore.item ? <VariableDetail item={sVariablePageStore.item}></VariableDetail> : undefined}
             </LeftRightPanel>
+
+            <ImportModal></ImportModal>
         </div>
     )
 }

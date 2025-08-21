@@ -1,5 +1,6 @@
 import useToastzzStore from "@/Store/useToastzzStore"
 import showInput from "../Dialog/showInput"
+import useImportModalStore from "@/Store/useImportModalStore"
 
 interface Property {
     item: LB.Variable
@@ -25,8 +26,7 @@ export default function VariableValueList(property: Property) {
                                             return
                                         }
 
-                                        const zz = [...property.item.enum]
-                                        zz.push(response.value)
+                                        const zz = [...property.item.enum, response.value]
                                         zz.sort()
                                         property.update({
                                             ...property.item,
@@ -39,6 +39,33 @@ export default function VariableValueList(property: Property) {
                     }}
                 >
                     +
+                </button>
+
+                <button
+                    className="btn btn-outline-primary ms-3"
+                    type="button"
+                    onClick={function () {
+                        const ss = useImportModalStore.getState()
+                        ss.openCB(1, "import values", "Please input a list of values, one per line", function (text) {
+                            const linezz = text.split(/\r?\n/)
+                            if (linezz.length === 0) {
+                                ss.close()
+                                return
+                            }
+
+                            const set = new Set<string>(property.item.enum)
+                            linezz.forEach((item) => set.add(item.trim()))
+                            const zz = Array.from(set).sort()
+                            property.update({
+                                ...property.item,
+                                enum: zz,
+                            })
+
+                            ss.close()
+                        })
+                    }}
+                >
+                    import
                 </button>
             </li>
 
