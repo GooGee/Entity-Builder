@@ -4945,23 +4945,6 @@
 				{
 					"isArray": false,
 					"nullable": false,
-					"type": "number",
-					"format": "",
-					"ownerId": 43,
-					"variableId": 1,
-					"wuId": 1,
-					"wuParameterId": null,
-					"ownerColumnId": null,
-					"ownerRequestId": null,
-					"ownerResponseId": null,
-					"ownerWuId": null,
-					"ownerWuChildId": null,
-					"id": 44,
-					"forWuParameterId": 1
-				},
-				{
-					"isArray": false,
-					"nullable": false,
 					"type": "Wu",
 					"format": "",
 					"ownerId": null,

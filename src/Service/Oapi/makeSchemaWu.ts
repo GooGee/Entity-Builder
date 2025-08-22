@@ -17,6 +17,8 @@ import { getTypeFormatOrThrow, OapiDto } from "./prepareOapiDto"
  * only includes Wu that has no WuParameter
  */
 export default function makeSchemaWu(wu: LB.Wu, od: OapiDto,): OapiReference | OapiSchemaComposition | OapiSchemaObject {
+    console.log(`makeSchemaWu: ${wu.name} (${wu.id})`)
+
     if (wu.id === 1) {
         return makeSchemaObject({})
     }

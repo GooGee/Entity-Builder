@@ -35,6 +35,13 @@ export default function CastFieldList(property: Property) {
                     <CastField key={item.id} item={item}></CastField>
                 ))}
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colSpan={4}>
+                        <p>hidden columns are not included in the API doc.</p>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     )
 }

@@ -226,7 +226,7 @@ namespace LB {
         // targetId: number
         // argumentzz: TypeFormat[]
         forWuParameterId: number | null
-        ownerId: number | null
+        ownerId: number | null // TypeFormat id. e.g. `Array<string>`
         variableId: number | null
         wuId: number
         wuParameterId: number | null

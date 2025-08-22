@@ -106,7 +106,7 @@ export default function createSchema(builder: lf.Builder) {
         .addColumn("format", lf.Type.STRING)
         .addColumn("isArray", lf.Type.BOOLEAN)
         .addColumn("nullable", lf.Type.BOOLEAN)
-        .addColumn("ownerId", lf.Type.INTEGER) // TypeFormat id
+        .addColumn("ownerId", lf.Type.INTEGER) // TypeFormat id. e.g. `Array<string>`
         .addNullable(["ownerId"])
     makeForeignKey(tb, item, SchemaEnum.Variable)
     makeForeignKey(tb, item, SchemaEnum.Wu)

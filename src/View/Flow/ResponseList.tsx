@@ -22,7 +22,7 @@ import { useState, useEffect } from "react"
 import SelectButton from "../Button/SelectButton"
 import WuColumnList from "../Wu/WuColumnList"
 import ActionResponse from "./ActionResponse"
-import { findWrapperWuId, WuNamezz } from "@/Service/findWrapperWu"
+import { findWrapperWuId, WuNameSet } from "@/Service/findWrapperWu"
 
 const Step = StepEnum.Response
 
@@ -170,7 +170,7 @@ export default function ResponseList(property: Property) {
     }
 
     function makeWuSelect() {
-        const wuzz = sWuzzStore.itemzz.filter((item) => WuNamezz.includes(item.name))
+        const wuzz = sWuzzStore.itemzz.filter((item) => WuNameSet.has(item.name))
         if (wuzz.length === 0) {
             return null
         }

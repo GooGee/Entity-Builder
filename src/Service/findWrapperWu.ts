@@ -1,6 +1,7 @@
 import { makeNameItemMap } from "@/Factory/makeMap"
 
 export const WuNamezz = ["ApiError", "ApiItem", "ApiItemzz", "ApiPage", "ApiText", "ApiValue"]
+export const WuNameSet = new Set(WuNamezz)
 
 const Name_Wu_map = new Map<string, LB.Wu>()
 

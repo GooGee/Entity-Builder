@@ -185,7 +185,7 @@ function makeAllWuColumn(
     const columnIdSet = new Set(wuColumnzz.map((item) => item.columnId))
     const czz = EntityId_Columnzz_map.get(entity.id) ?? []
     czz.forEach((item) => {
-        if (item.inTable === false || item.hidden || item.wo) {
+        if (item.inTable === false || item.hidden) {
             return
         }
         if (columnIdSet.has(item.id)) {
