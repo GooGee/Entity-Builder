@@ -3,7 +3,7 @@ import makeMediaType from "./makeMediaType"
 import makeParameter from "./makeParameter"
 import makePath from "./makePath"
 import { makeReferenceOf, ComponentKind } from "./makeReference"
-import makeSchemaEnum, { makeSchemaEnumName } from "./makeSchemaEnum"
+import makeSchemaEnum, { fillEntityTypeEnum, makeSchemaEnumName } from "./makeSchemaEnum"
 import makeSchemaTypeFormat from "./makeSchemaTypeFormat"
 import makeSchemaWu from "./makeSchemaWu"
 import makeServer from "./makeServer"
@@ -34,6 +34,7 @@ export default function makeOapi(data: OpenAPIObject, db: LB.DBData, moduleId: n
     })
 
 
+    fillEntityTypeEnum(db.tables.Variable, db.tables.Entity)
     db.tables.Variable
         .sort((aa, bb) => aa.name.localeCompare(bb.name))
         .forEach((item) => builder.addSchema(makeSchemaEnumName(item.name), makeSchemaEnum(item) as any))

@@ -7685,14 +7685,11 @@
 				},
 				{
 					"color": "#fff",
-					"description": "",
-					"name": "Visibility",
-					"reserved": false,
-					"default": "Private",
-					"enum": [
-						"Private",
-						"Public"
-					],
+					"description": "All `Entity` with `isTable` will be added to this Enum automatically in OpenApi doc",
+					"name": "EntityTypeEnum",
+					"reserved": true,
+					"default": "",
+					"enum": [],
 					"type": "string",
 					"id": 2
 				},
