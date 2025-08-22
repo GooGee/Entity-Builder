@@ -176,6 +176,27 @@
 				},
 				{
 					"collectionId": 5,
+					"name": "EntityType",
+					"value": "",
+					"tag": "string",
+					"id": 524
+				},
+				{
+					"collectionId": 5,
+					"name": "EntityId",
+					"value": "",
+					"tag": "integer",
+					"id": 525
+				},
+				{
+					"collectionId": 5,
+					"name": "Entity",
+					"value": "",
+					"tag": "object",
+					"id": 527
+				},
+				{
+					"collectionId": 5,
 					"name": "Image",
 					"value": "",
 					"tag": "string",
@@ -1251,6 +1272,13 @@
 					"value": "",
 					"tag": "",
 					"id": 414
+				},
+				{
+					"collectionId": 15,
+					"name": "application/octet-stream",
+					"value": "",
+					"tag": "",
+					"id": 528
 				},
 				{
 					"collectionId": 15,
@@ -2595,20 +2623,6 @@
 					"value": "",
 					"tag": "Content",
 					"id": 521
-				},
-				{
-					"collectionId": 5,
-					"name": "EntityType",
-					"value": "",
-					"tag": "string",
-					"id": 524
-				},
-				{
-					"collectionId": 5,
-					"name": "EntityId",
-					"value": "",
-					"tag": "integer",
-					"id": 525
 				}
 			],
 			"Directory": [
@@ -4338,7 +4352,7 @@
 				{
 					"isArray": false,
 					"nullable": true,
-					"type": "any",
+					"type": "number",
 					"format": "",
 					"ownerId": null,
 					"variableId": 1,
@@ -5325,6 +5339,23 @@
 					"ownerWuId": 11,
 					"ownerWuChildId": null,
 					"id": 67
+				},
+				{
+					"isArray": false,
+					"nullable": false,
+					"type": "string",
+					"format": "",
+					"forWuParameterId": null,
+					"ownerId": null,
+					"variableId": null,
+					"wuId": 1,
+					"wuParameterId": null,
+					"ownerColumnId": null,
+					"ownerRequestId": null,
+					"ownerResponseId": null,
+					"ownerWuId": 12,
+					"ownerWuChildId": null,
+					"id": 68
 				}
 			],
 			"Column": [
@@ -6929,6 +6960,11 @@
 					"entityId": 4,
 					"type": "unique",
 					"id": 1
+				},
+				{
+					"entityId": 4,
+					"type": "unique",
+					"id": 2
 				}
 			],
 			"IndexColumn": [
@@ -6937,6 +6973,12 @@
 					"columnId": 26,
 					"sort": 0,
 					"id": 1
+				},
+				{
+					"indexId": 2,
+					"columnId": 25,
+					"sort": 0,
+					"id": 2
 				}
 			],
 			"Wu": [
@@ -6950,7 +6992,8 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 1
+					"id": 1,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -6962,7 +7005,8 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 2
+					"id": 2,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -6974,7 +7018,8 @@
 					"isRequest": false,
 					"example": "{\n    \"property1\": [\"property1 is required\"],\n    \"property2\": [\"property2 is required\", \"property2 must be an integer\"]\n}",
 					"isMap": true,
-					"id": 3
+					"id": 3,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -6986,7 +7031,8 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 4
+					"id": 4,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -6998,7 +7044,8 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 5
+					"id": 5,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -7010,7 +7057,8 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 6
+					"id": 6,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -7022,7 +7070,8 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 7
+					"id": 7,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -7034,7 +7083,8 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 8
+					"id": 8,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -7046,7 +7096,8 @@
 					"isRequest": true,
 					"example": "",
 					"isMap": false,
-					"id": 9
+					"id": 9,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -7058,7 +7109,8 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 10
+					"id": 10,
+					"includeAll": false
 				},
 				{
 					"color": "#fff",
@@ -7070,7 +7122,21 @@
 					"isRequest": false,
 					"example": "",
 					"isMap": false,
-					"id": 11
+					"id": 11,
+					"includeAll": false
+				},
+				{
+					"color": "#fff",
+					"description": "",
+					"name": "OneOfEntity",
+					"reserved": false,
+					"entityId": 1,
+					"type": "allOf",
+					"isRequest": false,
+					"example": "",
+					"isMap": false,
+					"includeAll": false,
+					"id": 12
 				}
 			],
 			"WuColumn": [
@@ -7671,7 +7737,7 @@
 			],
 			"PathMethod": []
 		},
-		"version": 56
+		"version": 57
 	},
 	"oapi": {
 		"openapi": "3.0.3",
