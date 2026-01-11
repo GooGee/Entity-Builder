@@ -4,10 +4,14 @@ import useToastzzStore from "@/Store/useToastzzStore"
 import { useEffect, useState } from "react"
 import Constraint from "./Constraint"
 import ConstraintGroup from "./ConstraintGroup"
+import { ValidationCodeFileName } from "@/Model/FileManager"
+import runCodeFile from "@/Service/runCodeFile"
+import WaitingButton from "../Button/WaitingButton"
 
 interface Property {
     constraintzz: LB.CollectionItem[]
     column: LB.Column
+    entity: LB.Entity
 }
 
 export default function ConstraintList(property: Property) {
@@ -16,6 +20,7 @@ export default function ConstraintList(property: Property) {
 
     const [constraintzz, setConstraintzz] = useState<LB.ColumnConstraint[]>([])
     const [editing, setEditing] = useState(false)
+    const [waiting, setWaiting] = useState(false)
 
     useEffect(() => {
         setConstraintzz(sColumnConstraintzzStore.itemzz.filter((item) => item.columnId === property.column.id))
@@ -33,9 +38,35 @@ export default function ConstraintList(property: Property) {
         <>
             {editing ? (
                 <div>
-                    <button onClick={() => setEditing(false)} className="btn btn-outline-primary" type="button">
-                        OK
-                    </button>
+                    <div className="btn-group">
+                        <button onClick={() => setEditing(false)} className="btn btn-outline-success" type="button">
+                            OK
+                        </button>
+                        <WaitingButton
+                            waiting={waiting}
+                            onClick={function () {
+                                setWaiting(true)
+                                runCodeFile(ValidationCodeFileName, property.entity, {
+                                    Column: property.column,
+                                    OnlyOne: true,
+                                })
+                                    .then((response) =>
+                                        makeColumnConstraintCRUD().updateMany(response.result as LB.ColumnConstraint[]),
+                                    )
+                                    .then(() => {
+                                        setWaiting(false)
+                                        sToastzzStore.showSuccess("Validation rules added")
+                                    })
+                                    .catch((error) => {
+                                        setWaiting(false)
+                                        sToastzzStore.showError(error)
+                                    })
+                            }}
+                        >
+                            Auto
+                        </WaitingButton>
+                    </div>
+
                     <table className="table">
                         <tbody>
                             {constraintzz.map((item) => (

@@ -94,7 +94,11 @@ export default function ParameterPage(property: Property) {
                             showDialog={showInput}
                             useItemPageStore={useParameterPageStore}
                         ></RightTop>
-                        <ParameterDetail constraintzz={constraintzz} item={sParameterPageStore.item}></ParameterDetail>
+                        <ParameterDetail
+                            constraintzz={constraintzz}
+                            entity={entity}
+                            item={sParameterPageStore.item}
+                        ></ParameterDetail>
                     </>
                 )}
             </div>

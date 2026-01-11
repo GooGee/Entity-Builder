@@ -11,6 +11,7 @@ import TypeFormat from "../Reference/TypeFormat"
 
 interface Property {
     constraintzz: LB.CollectionItem[]
+    entity: LB.Entity
     item: LB.Column
 }
 
@@ -127,7 +128,11 @@ export default function ParameterDetail(property: Property) {
                         <WebLink href="https://laravel.com/docs/9.x/validation">doc</WebLink>
                     </td>
                     <td>
-                        <ConstraintList column={property.item} constraintzz={property.constraintzz}></ConstraintList>
+                        <ConstraintList
+                            column={property.item}
+                            constraintzz={property.constraintzz}
+                            entity={property.entity}
+                        ></ConstraintList>
                     </td>
                 </tr>
                 <tr>

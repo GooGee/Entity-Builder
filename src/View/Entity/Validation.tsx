@@ -48,7 +48,11 @@ export default function Validation(property: Property) {
                             <span className={item.inTable ? "" : "text-secondary"}>{item.name}</span>
                         </td>
                         <td>
-                            <ConstraintList constraintzz={constraintzz} column={item}></ConstraintList>
+                            <ConstraintList
+                                constraintzz={constraintzz}
+                                column={item}
+                                entity={property.entity}
+                            ></ConstraintList>
                         </td>
                     </tr>
                 ))}
@@ -56,36 +60,35 @@ export default function Validation(property: Property) {
             <tfoot>
                 <tr>
                     <td>
-                        <div className="btn-group">
-                            <EditButton
-                                file={getFileFullNameInCode(ValidationCodeFileName)}
-                                content={Constant.ScriptCode}
-                            ></EditButton>
-                            <WaitingButton
-                                waiting={waiting}
-                                onClick={function () {
-                                    setWaiting(true)
-                                    runCodeFile(ValidationCodeFileName, property.entity)
-                                        .then((response) =>
-                                            makeColumnConstraintCRUD().updateMany(
-                                                response.result as LB.ColumnConstraint[],
-                                            ),
-                                        )
-                                        .then(() => {
-                                            setWaiting(false)
-                                            sToastzzStore.showSuccess("Validation rules added")
-                                        })
-                                        .catch((error) => {
-                                            setWaiting(false)
-                                            sToastzzStore.showError(error)
-                                        })
-                                }}
-                            >
-                                Run
-                            </WaitingButton>
-                        </div>
+                        <EditButton
+                            file={getFileFullNameInCode(ValidationCodeFileName)}
+                            content={Constant.ScriptCode}
+                        ></EditButton>
                     </td>
-                    <td>set constraint</td>
+                    <td>
+                        <span className="mx-1">set all constraints</span>
+
+                        <WaitingButton
+                            waiting={waiting}
+                            onClick={function () {
+                                setWaiting(true)
+                                runCodeFile(ValidationCodeFileName, property.entity)
+                                    .then((response) =>
+                                        makeColumnConstraintCRUD().updateMany(response.result as LB.ColumnConstraint[]),
+                                    )
+                                    .then(() => {
+                                        setWaiting(false)
+                                        sToastzzStore.showSuccess("Validation rules added")
+                                    })
+                                    .catch((error) => {
+                                        setWaiting(false)
+                                        sToastzzStore.showError(error)
+                                    })
+                            }}
+                        >
+                            Run
+                        </WaitingButton>
+                    </td>
                 </tr>
             </tfoot>
         </table>
