@@ -3,8 +3,8 @@ import { exportDB } from "@/Database/getDBC"
 import { getDirectoryName, HelperCodeFileName } from "@/Model/FileManager"
 import { callCode } from "./Generator/runCode"
 
-export default function runCodeFile(name: string, entity: LB.Entity) {
-    const folder = 'code' + APP_VERSION_NUMBER
+export default function runCodeFile(name: string, entity: LB.Entity, DataMap: Record<string, any> = {}) {
+    const folder = "code" + APP_VERSION_NUMBER
     return readFilezzInFolder(getDirectoryName(folder)).then((response) =>
         exportDB().then((db) => {
             const fileMap = response.data.data
@@ -19,6 +19,7 @@ export default function runCodeFile(name: string, entity: LB.Entity) {
                 fileMap,
                 entity,
                 result: [],
+                DataMap,
             }
             if (HelperCodeFileName in fileMap) {
                 callCode(fileMap[HelperCodeFileName], data)

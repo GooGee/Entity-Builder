@@ -81,6 +81,7 @@ namespace LB {
 
     interface DataForScript {
         action: string
+        DataMap: Record<string, any>
         db: DBData
         dependencyzz: string[]
         entity: IdNameItem
