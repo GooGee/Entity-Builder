@@ -25,16 +25,17 @@ export default function writeFile(
     action: string,
     psr4: LB.StringMap,
     dbCopy: LB.DBData | undefined = undefined,
+    DataMap: Record<string, any> = {},
 ) {
     let cloneDB
     if (dbCopy === undefined) {
-        cloneDB = exportDB().then(db => cloneDeep(db))
+        cloneDB = exportDB().then((db) => cloneDeep(db))
     } else {
         cloneDB = Promise.resolve(dbCopy)
     }
 
     return cloneDB.then(function (db) {
-        const folder = 'code' + APP_VERSION_NUMBER
+        const folder = "code" + APP_VERSION_NUMBER
         return readFilezzInFolder(getDirectoryName(folder)).then(function (response) {
             const fileMap = response.data.data
             const treeMap = makeLinkedTreeMap(db.tables.Directory)
@@ -57,6 +58,7 @@ export default function writeFile(
                 treeMap,
                 action,
                 helper: {},
+                DataMap,
             }
 
             if (HelperCodeFileName in fileMap) {
@@ -77,9 +79,7 @@ export default function writeFile(
                 nunjucks.renderString(fileMap[tn], ddd)
                 const set = new Set(ddd.dependencyzz)
                 set.delete(treeHelper.getClassFullName(file, entity, action))
-                ddd.dependencyzz = Array.from(set).sort((aa, bb) =>
-                    aa.localeCompare(bb),
-                )
+                ddd.dependencyzz = Array.from(set).sort((aa, bb) => aa.localeCompare(bb))
                 const content = nunjucks.renderString(fileMap[tn], ddd)
 
                 const name = treeHelper.getFileFullName(file, entity, action)
