@@ -42,21 +42,37 @@ export default function Relation(property: Property) {
     return (
         <tr>
             <td className="text-secondary">
+                <button
+                    onClick={function () {
+                        showConfirm()
+                            .then((response) => {
+                                if (response.isConfirmed) {
+                                    return makeRelationCRUD().delete(property.item.id)
+                                }
+                            })
+                            .catch(sToastzzStore.showError)
+                    }}
+                    className="btn btn-outline-danger"
+                    type="button"
+                >
+                    -
+                </button>
+            </td>
+            <td>
+                <div className="mt-1">
+                    {property.entity.name} {getRelationMeaning(property.item.type, reversed)}
+                </div>
+            </td>
+            <td>
                 <div className="btn-group">
                     <button
-                        onClick={function () {
-                            showConfirm()
-                                .then((response) => {
-                                    if (response.isConfirmed) {
-                                        return makeRelationCRUD().delete(property.item.id)
-                                    }
-                                })
-                                .catch(sToastzzStore.showError)
-                        }}
-                        className="btn btn-outline-danger"
+                        className="btn btn-outline-primary"
                         type="button"
+                        onClick={function () {
+                            change(name, reversed)
+                        }}
                     >
-                        -
+                        {name}
                     </button>
                     <button
                         onClick={function () {
@@ -68,26 +84,6 @@ export default function Relation(property: Property) {
                         type="button"
                     >
                         + Column
-                    </button>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <div className="mt-1">{getRelationMeaning(property.item.type, reversed)}</div>
-
-                    {self && property.item.type === RelationType.OneToMany ? <div className="mt-4">has many</div> : null}
-                </div>
-            </td>
-            <td>
-                <div>
-                    <button
-                        className="btn btn-outline-primary"
-                        type="button"
-                        onClick={function () {
-                            change(name, reversed)
-                        }}
-                    >
-                        {name}
                     </button>
                 </div>
 
@@ -133,7 +129,7 @@ export default function Relation(property: Property) {
                             id={"addToModelSwitchCheck" + property.item.id}
                         />
                         <label className="form-check-label" htmlFor={"addToModelSwitchCheck" + property.item.id}>
-                            add method to Model
+                            add method to {property.entity.name}.php
                         </label>
                     </div>
                 )}

@@ -43,8 +43,8 @@ export default function RelationList(property: Property) {
             </caption>
             <thead>
                 <tr>
-                    <th className="w222"></th>
                     <th className="w111"></th>
+                    <th className="w222"></th>
                     <th>name</th>
                     <th>foreign key</th>
                 </tr>
