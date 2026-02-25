@@ -22,7 +22,7 @@ export function buildRelation(
     return makeColumnCRUD()
         .findChildzz(entity1Id, makeForeignKeyId(SchemaEnum.Entity))
         .then((response) => {
-            const found = response.find((item) => item.name === fk)
+            const found = response.find((item) => item.name.includes(fk))
             if (found) {
                 return create(found.id)
             }
