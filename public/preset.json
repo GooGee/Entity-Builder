@@ -1094,21 +1094,21 @@
 				{
 					"collectionId": 9,
 					"name": "date",
-					"value": "\\Illuminate\\Support\\Carbon",
+					"value": "\\Carbon\\CarbonInterface",
 					"tag": "",
 					"id": 361
 				},
 				{
 					"collectionId": 9,
 					"name": "datetime",
-					"value": "\\Illuminate\\Support\\Carbon",
+					"value": "\\Carbon\\CarbonInterface",
 					"tag": "",
 					"id": 362
 				},
 				{
 					"collectionId": 9,
 					"name": "datetime:Y-m-d H:i:s",
-					"value": "\\Illuminate\\Support\\Carbon",
+					"value": "\\Carbon\\CarbonInterface",
 					"tag": "",
 					"id": 363
 				},
@@ -1164,14 +1164,14 @@
 				{
 					"collectionId": 9,
 					"name": "immutable_date",
-					"value": "\\Illuminate\\Support\\Carbon",
+					"value": "\\Carbon\\CarbonInterface",
 					"tag": "",
 					"id": 371
 				},
 				{
 					"collectionId": 9,
 					"name": "immutable_datetime",
-					"value": "\\Illuminate\\Support\\Carbon",
+					"value": "\\Carbon\\CarbonInterface",
 					"tag": "",
 					"id": 372
 				},
