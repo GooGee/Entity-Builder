@@ -1,20 +1,26 @@
-interface Property {
+type ValueType = number | string
+
+interface Property<T extends ValueType> {
     allowEmpty?: boolean
     className?: string
     isAdd?: boolean
-    itemzz: Array<[number | string, string]>
-    value: number | string
+    itemzz: Array<[T, string]>
+    value: T
     verb?: string
-    change(key: number | string): void
+    change(key: T): void
 }
 
-export default function SelectMapButton(property: Property) {
+export default function SelectMapButton<T extends ValueType>(property: Property<T>) {
     return (
         <select
             className={"form-select " + (property.className ?? "")}
             value={property.value}
             onChange={function (event) {
-                property.change(event.target.value)
+                let value: ValueType = event.target.value
+                if (typeof property.value === "number") {
+                    value = parseInt(event.target.value)
+                }
+                property.change(value as T)
             }}
         >
             <option disabled={!property.allowEmpty} hidden={!property.allowEmpty} value="">
