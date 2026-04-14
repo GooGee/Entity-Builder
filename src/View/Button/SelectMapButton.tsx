@@ -2,10 +2,10 @@ interface Property {
     allowEmpty?: boolean
     className?: string
     isAdd?: boolean
-    itemzz: Array<[string, string]>
-    value: string
+    itemzz: Array<[number | string, string]>
+    value: number | string
     verb?: string
-    change(key: string): void
+    change(key: number | string): void
 }
 
 export default function SelectMapButton(property: Property) {

@@ -1,6 +1,9 @@
 import { makeModuleActionCRUD } from "@/Database/makeCRUD"
+import useModulezzStore from "@/Store/useModulezzStore"
 import useToastzzStore from "@/Store/useToastzzStore"
 import { ReactElement, useEffect, useState } from "react"
+import SelectMapButton from "../Button/SelectMapButton"
+import useModuleActionzzStore from "@/Store/useModuleActionzzStore"
 
 interface Property {
     action: string
@@ -10,9 +13,11 @@ interface Property {
 }
 
 export default function ActionDetail(property: Property) {
+    const suseModulezzStore = useModulezzStore()
     const sToastzzStore = useToastzzStore()
 
     const [item, setItem] = useState(property.ma)
+    const [ModuleId, setModuleId] = useState(property.ma.moduleId)
 
     useEffect(() => {
         setItem(property.ma)
@@ -93,6 +98,51 @@ export default function ActionDetail(property: Property) {
                             }
                             className="form-control"
                         ></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>move to</td>
+                    <td>
+                        <SelectMapButton
+                            className="inline wa"
+                            itemzz={suseModulezzStore.itemzz.map((item) => [item.id, item.name])}
+                            value={ModuleId}
+                            change={(value) => setModuleId(Number(value))}
+                        />
+
+                        <button
+                            className="btn btn-outline-warning mx-3"
+                            disabled={property.ma.moduleId === ModuleId}
+                            type="button"
+                            onClick={function () {
+                                if (confirm("Are you sure?")) {
+                                    const module = suseModulezzStore.find(ModuleId)
+                                    if (module == null) {
+                                        sToastzzStore.showDanger(`ModuleId ${ModuleId} not found`)
+                                        return
+                                    }
+
+                                    const found = useModuleActionzzStore
+                                        .getState()
+                                        .itemzz.find((item) => item.name === item.name)
+                                    if (found) {
+                                        sToastzzStore.showDanger(
+                                            `Action ${item.name} already exists in Module ${module.name}.`,
+                                        )
+                                        return
+                                    }
+
+                                    update({
+                                        ...item,
+                                        moduleId: ModuleId,
+                                        directoryId: module.directoryId,
+                                    })
+                                }
+                            }}
+                        >
+                            move
+                        </button>
                     </td>
                 </tr>
             </tbody>
