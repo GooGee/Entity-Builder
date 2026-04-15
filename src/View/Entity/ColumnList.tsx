@@ -32,15 +32,27 @@ export default function ColumnList(property: Property) {
         setColumnzz(sColumnzzStore.itemzz.filter((item) => item.entityId === property.entity.id))
     }, [property.entity, sColumnzzStore.itemzz])
 
-    function add(name: string, type: string, value: string, comment: string = "") {
+    function add(
+        name: string,
+        type: string,
+        value: string,
+        comment: string = "",
+        length: number = 0,
+        scale = 0,
+        nullable = false,
+    ) {
         return createColumnTypeFormat(
             property.entity.id,
             name,
             type,
             value,
-            "decimal" === type ? 11 : 0,
+            "decimal" === type ? 11 : length,
             "",
             comment,
+            true,
+            undefined,
+            nullable,
+            scale,
         ).catch(sToastzzStore.showError)
     }
 
@@ -114,7 +126,19 @@ export default function ColumnList(property: Property) {
                                                 if (typeof item === "string") {
                                                     item = { name: item }
                                                 }
-                                                add(item["name"] ?? "", item["type"] ?? "", "", item["comment"] ?? "")
+                                                const name = item["name"] ?? ""
+                                                if (name === "") {
+                                                    return
+                                                }
+                                                add(
+                                                    name,
+                                                    item["type"] ?? "",
+                                                    item["default"] ?? "",
+                                                    item["comment"] ?? "",
+                                                    item["length"] ?? 0,
+                                                    item["scale"] ?? 0,
+                                                    item["nullable"] ?? false,
+                                                )
                                             })
                                         } catch (error) {
                                             sToastzzStore.showError(error)
@@ -135,14 +159,30 @@ export default function ColumnList(property: Property) {
                             className="btn btn-outline-success"
                             type="button"
                             onClick={function () {
-                                const text = JSON.stringify(columnzz)
+                                const text = JSON.stringify(
+                                    columnzz.map(function (item) {
+                                        return {
+                                            name: item.name,
+                                            type: item.type,
+                                            default: item.default,
+                                            comment: item.comment,
+                                            length: item.length,
+                                            scale: item.scale,
+                                            nullable: item.nullable,
+                                        }
+                                    }),
+                                )
                                 Swal.fire({
+                                    confirmButtonColor: "#09f",
                                     confirmButtonText: "Copy",
                                     input: "textarea",
                                     inputValue: text,
                                     text: "export",
                                     width: "88%",
-                                }).then(function () {
+                                }).then(function (result) {
+                                    if (result.isConfirmed === false) {
+                                        return
+                                    }
                                     navigator.clipboard.writeText(text)
                                     sToastzzStore.showOK()
                                 })

@@ -13,10 +13,11 @@ export default function makeColumn(
     style: string = "",
     comment: string = "",
     inTable = true,
+    nullable = false,
+    scale = 0,
 ): OmitId<LB.Column> {
-
-    let fakeMethod = ''
-    let fakeText = ''
+    let fakeMethod = ""
+    let fakeText = ""
     if (name.endsWith(Constant.Id)) {
         // ok
     } else {
@@ -26,12 +27,12 @@ export default function makeColumn(
         }
     }
 
-    let cast = ''
-    if (type === 'date') {
-        cast = 'date'
+    let cast = ""
+    if (type === "date") {
+        cast = "date"
     } else {
-        if (type.startsWith('datetime')) {
-            cast = 'datetime'
+        if (type.startsWith("datetime")) {
+            cast = "datetime"
         }
     }
 
@@ -41,11 +42,11 @@ export default function makeColumn(
         name,
         type,
         length,
-        scale: 0,
+        scale,
         default: value,
         comment,
         unsigned: false,
-        nullable: false,
+        nullable,
 
         cast,
         fillable: false,

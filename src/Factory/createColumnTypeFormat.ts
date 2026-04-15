@@ -14,28 +14,40 @@ export default function createColumnTypeFormat(
     style: string = "",
     comment: string = "",
     inTable = true,
-    tf?: OmitId<LB.TypeFormat>
+    tf?: OmitId<LB.TypeFormat>,
+    nullable = false,
+    scale = 0,
 ): Promise<LB.Column> {
     const rozz = getCollectionItemzz("ReadOnlyColumn")
     const dct = useDoctrineColumnTypezzStore.getState().findByName(type)
     return makeColumnCRUD()
-        .create(makeColumn(entityId, name, type, value, length, rozz, dct, style, comment, inTable))
+        .create(
+            makeColumn(
+                entityId,
+                name,
+                type,
+                value,
+                length,
+                rozz,
+                dct,
+                style,
+                comment,
+                inTable,
+                nullable,
+                scale,
+            ),
+        )
         .then((item) => {
             if (tf) {
                 tf.ownerColumnId = item.id
-                return makeTypeFormatCRUD().create(tf).then(() => item)
+                return makeTypeFormatCRUD()
+                    .create(tf)
+                    .then(() => item)
             }
 
-            tf = makeTypeFormat(
-                dct?.oapiType as any,
-                1,
-                null,
-                null,
-                null,
-                null,
-                item.id,
-                dct?.oapiFormat,
-            )
-            return makeTypeFormatCRUD().create(tf).then(() => item)
+            tf = makeTypeFormat(dct?.oapiType as any, 1, null, null, null, null, item.id, dct?.oapiFormat)
+            return makeTypeFormatCRUD()
+                .create(tf)
+                .then(() => item)
         })
 }
