@@ -9,6 +9,7 @@ import { useState, useEffect } from "react"
 import FileButton from "../Button/FileButton"
 import SelectButton from "../Button/SelectButton"
 import Column from "./Column"
+import Swal from "sweetalert2"
 
 interface Property {
     entity: LB.Entity
@@ -93,35 +94,63 @@ export default function ColumnList(property: Property) {
                         ></SelectButton>
                     </td>
                     <td>
-                        <span
+                        <button
                             onClick={function () {
-                                sImportModalStore.openCB(property.entity.id, "import column", undefined, function (text) {
-                                    if (text === "") {
-                                        return
-                                    }
-                                    try {
-                                        const zz = JSON.parse(text)
-                                        if (Array.isArray(zz) === false) {
-                                            sToastzzStore.showDanger("text is not JSON array")
+                                sImportModalStore.openCB(
+                                    property.entity.id,
+                                    "import column",
+                                    undefined,
+                                    function (text) {
+                                        if (text === "") {
                                             return
                                         }
-                                        zz.forEach((item: any) => {
-                                            if (typeof item === "string") {
-                                                item = { name: item }
+                                        try {
+                                            const zz = JSON.parse(text)
+                                            if (Array.isArray(zz) === false) {
+                                                sToastzzStore.showDanger("text is not JSON array")
+                                                return
                                             }
-                                            add(item["name"] ?? "", item["type"] ?? "", "", item["comment"] ?? "")
-                                        })
-                                    } catch (error) {
-                                        sToastzzStore.showError(error)
-                                    }
-                                })
+                                            zz.forEach((item: any) => {
+                                                if (typeof item === "string") {
+                                                    item = { name: item }
+                                                }
+                                                add(item["name"] ?? "", item["type"] ?? "", "", item["comment"] ?? "")
+                                            })
+                                        } catch (error) {
+                                            sToastzzStore.showError(error)
+                                        }
+                                    },
+                                    `[
+{ "name": "Id", "type": "integer" }
+]`,
+                                )
                             }}
                             className="btn btn-outline-primary"
                         >
                             import
-                        </span>
+                        </button>
                     </td>
-                    <td></td>
+                    <td>
+                        <button
+                            className="btn btn-outline-success"
+                            type="button"
+                            onClick={function () {
+                                const text = JSON.stringify(columnzz)
+                                Swal.fire({
+                                    confirmButtonText: "Copy",
+                                    input: "textarea",
+                                    inputValue: text,
+                                    text: "export",
+                                    width: "88%",
+                                }).then(function () {
+                                    navigator.clipboard.writeText(text)
+                                    sToastzzStore.showOK()
+                                })
+                            }}
+                        >
+                            export
+                        </button>
+                    </td>
                 </tr>
             </tfoot>
         </table>
