@@ -36,7 +36,7 @@ export default function ActionList(property: Property) {
     const actionzz = sModuleActionzzStore.itemzz
         .filter(
             (item) =>
-                item.directoryId === property.module.directoryId &&
+                item.moduleId === property.module.id &&
                 item.entityId === property.entity.id &&
                 !nameset.has(item.name),
         )
@@ -66,7 +66,6 @@ export default function ActionList(property: Property) {
             (item) =>
                 item.entityId === property.entity.id &&
                 item.moduleId === property.module.id &&
-                item.directoryId === property.module.directoryId &&
                 item.name === file.name,
         )
     }
