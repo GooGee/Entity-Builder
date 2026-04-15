@@ -6,6 +6,7 @@ export default function ImportModal() {
     const sImportModalStore = useImportModalStore()
 
     const [text, setText] = useState("")
+    const [Waiting, setWaiting] = useState(false)
 
     return (
         <ReactModal
@@ -17,8 +18,16 @@ export default function ImportModal() {
             <div className="mb-3">
                 <h3 className="inline me-3">{sImportModalStore.title}</h3>
                 <button
+                    disabled={Waiting}
                     onClick={function () {
-                        sImportModalStore.callback(text)
+                        setWaiting(true)
+                        try {
+                            sImportModalStore.callback(text)
+                        } catch (error) {
+                            console.error(error)
+                        } finally {
+                            setWaiting(false)
+                        }
                     }}
                     className="btn btn-outline-primary"
                     type="button"
