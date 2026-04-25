@@ -27,85 +27,79 @@ import InstallPage from "./View/InstallPage"
 import DangerPage from "./View/DangerPage"
 
 function App() {
-    const store = useAppInfoStore()
+	const store = useAppInfoStore()
 
-    useEffect(() => {
-        const sp = new URLSearchParams(window.location.search)
-        const ide = sp.get("ide")
-        if (ide) {
-            store.setIde(ide)
-        }
-    }, [])
+	useEffect(() => {
+		const sp = new URLSearchParams(window.location.search)
+		const ide = sp.get("ide")
+		if (ide) {
+			store.setIde(ide)
+		}
+	}, [])
 
-    function getPage(name: PageEnum) {
-        switch (name) {
-            case PageEnum.Collection:
-                return <CollectionPage></CollectionPage>
-            case PageEnum.DangerPage:
-                return <DangerPage></DangerPage>
-            case PageEnum.Doctrine:
-                return <DoctrinePage></DoctrinePage>
-            case PageEnum.Entity:
-                return <EntityPage></EntityPage>
-            case PageEnum.Example:
-                return <ExamplePage></ExamplePage>
-            case PageEnum.Flow:
-                return <FlowPage></FlowPage>
-            case PageEnum.Info:
-                return <InfoPage></InfoPage>
-            case PageEnum.Install:
-                return <InstallPage></InstallPage>
-            case PageEnum.Migration:
-                return <MigrationPage></MigrationPage>
-            case PageEnum.OpenApi:
-                return <OapiPage></OapiPage>
-            case PageEnum.ParameterInHeader:
-            case PageEnum.ParameterInCookie:
-            case PageEnum.ParameterInPath:
-            case PageEnum.ParameterInQuery:
-                return <ParameterPage page={name}></ParameterPage>
-            case PageEnum.Request:
-                return <RequestPage></RequestPage>
-            case PageEnum.Response:
-                return <ResponsePage></ResponsePage>
-            case PageEnum.Server:
-                return <ServerPage></ServerPage>
-            case PageEnum.Enum:
-                return <VariablePage></VariablePage>
-            case PageEnum.Tree:
-                return <TreePage></TreePage>
-            case PageEnum.Wu:
-                return <WuPage></WuPage>
-            case PageEnum.Toast:
-                return <ToastPage></ToastPage>
-        }
-        return <HomePage></HomePage>
-    }
+	function getPage(name: PageEnum) {
+		switch (name) {
+			case PageEnum.Collection:
+				return <CollectionPage></CollectionPage>
+			case PageEnum.DangerPage:
+				return <DangerPage></DangerPage>
+			case PageEnum.Doctrine:
+				return <DoctrinePage></DoctrinePage>
+			case PageEnum.Entity:
+				return <EntityPage></EntityPage>
+			case PageEnum.Example:
+				return <ExamplePage></ExamplePage>
+			case PageEnum.Flow:
+				return <FlowPage></FlowPage>
+			case PageEnum.Info:
+				return <InfoPage></InfoPage>
+			case PageEnum.Install:
+				return <InstallPage></InstallPage>
+			case PageEnum.Migration:
+				return <MigrationPage></MigrationPage>
+			case PageEnum.OpenApi:
+				return <OapiPage></OapiPage>
+			case PageEnum.ParameterInHeader:
+			case PageEnum.ParameterInCookie:
+			case PageEnum.ParameterInPath:
+			case PageEnum.ParameterInQuery:
+				return <ParameterPage page={name}></ParameterPage>
+			case PageEnum.Request:
+				return <RequestPage></RequestPage>
+			case PageEnum.Response:
+				return <ResponsePage></ResponsePage>
+			case PageEnum.Server:
+				return <ServerPage></ServerPage>
+			case PageEnum.Enum:
+				return <VariablePage></VariablePage>
+			case PageEnum.Tree:
+				return <TreePage></TreePage>
+			case PageEnum.Wu:
+				return <WuPage></WuPage>
+			case PageEnum.Toast:
+				return <ToastPage></ToastPage>
+		}
+		return <HomePage></HomePage>
+	}
 
-    return (
-        <>
-            <Bar></Bar>
-            <div className="container-fluid">
-                <Routes>
-                    {menuzz
-                        .filter((item) => item.visible)
-                        .map((item) => (
-                            <Route key={item.path} path={item.path} element={getPage(item.name)} />
-                        ))}
-                </Routes>
+	return (
+		<>
+			<Bar></Bar>
+			<div className="container-fluid">
+				<Routes>
+					{menuzz
+						.filter((item) => item.visible)
+						.map((item) => (
+							<Route key={item.path} path={item.path} element={getPage(item.name)} />
+						))}
+				</Routes>
 
-                <ToastGroup></ToastGroup>
-            </div>
+				<ToastGroup></ToastGroup>
+			</div>
 
-            <ListModal></ListModal>
-
-            <div className="position-fixed bottom-0 end-0 bg-white m-3" style={{ zIndex: 1222 }}>
-                <button className="btn btn-outline-primary" onClick={showNote}>
-                    note
-                </button>
-            </div>
-        </>
-    )
+			<ListModal></ListModal>
+		</>
+	)
 }
 
 export default App

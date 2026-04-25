@@ -129,7 +129,7 @@ export default function Relation(property: Property) {
                             id={"addToModelSwitchCheck" + property.item.id}
                         />
                         <label className="form-check-label" htmlFor={"addToModelSwitchCheck" + property.item.id}>
-                            add method to {property.entity.name}.php
+                            add method to {property.entity.name}Base.php
                         </label>
                     </div>
                 )}
