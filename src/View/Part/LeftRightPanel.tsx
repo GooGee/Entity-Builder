@@ -2,7 +2,7 @@ import CRUD from "@/Database/CRUD"
 import { NamedItemzzStoreDataType } from "@/Factory/makeNamedItemzzStoreData"
 import { SideBarDataType } from "@/Factory/makeSideBarStoreData"
 import useToastzzStore from "@/Store/useToastzzStore"
-import { ReactElement, useEffect } from "react"
+import { ReactElement, useEffect, useRef } from "react"
 import { SweetAlertResult } from "sweetalert2"
 import showInput from "../Dialog/showInput"
 import showNameInput from "../Dialog/showNameInput"
@@ -10,94 +10,106 @@ import RightTop from "./RightTop"
 import SideBar from "./SideBar"
 
 interface Property {
-    children?: ReactElement
-    className?: string
-    itemzz?: LB.SideBarItem[]
-    title: string
-    validateName?: boolean
-    makeCRUD(): CRUD<LB.SideBarItem>
-    onCreate?(name: string): void
-    onCreateClick?(): void
-    useItemzzStore(): NamedItemzzStoreDataType<LB.SideBarItem>
-    useItemPageStore(): SideBarDataType<LB.SideBarItem>
+	children?: ReactElement
+	className?: string
+	itemzz?: LB.SideBarItem[]
+	title: string
+	validateName?: boolean
+	makeCRUD(): CRUD<LB.SideBarItem>
+	onCreate?(name: string): void
+	onCreateClick?(): void
+	useItemzzStore(): NamedItemzzStoreDataType<LB.SideBarItem>
+	useItemPageStore(): SideBarDataType<LB.SideBarItem>
 }
 
 export default function LeftRightPanel(property: Property) {
-    const sPageStore = property.useItemPageStore()
-    const sItemzzStore = property.useItemzzStore()
-    const sToastzzStore = useToastzzStore()
+	const panel = useRef<HTMLDivElement>(null)
 
-    const message = `Please input the ${property.title} name`
+	const sPageStore = property.useItemPageStore()
+	const sItemzzStore = property.useItemzzStore()
+	const sToastzzStore = useToastzzStore()
 
-    let showDialog: (text: string, inputValue: string) => Promise<SweetAlertResult<any>> = showInput
-    if (property.validateName) {
-        showDialog = showNameInput
-    }
+	const message = `Please input the ${property.title} name`
 
-    useEffect(() => {
-        if (sPageStore.item === undefined) {
-            return
-        }
+	let showDialog: (text: string, inputValue: string) => Promise<SweetAlertResult<any>> = showInput
+	if (property.validateName) {
+		showDialog = showNameInput
+	}
 
-        const found = sItemzzStore.find(sPageStore.item.id)
-        sPageStore.setItem(found)
-    }, [sItemzzStore.itemzz])
+	useEffect(() => {
+		if (sPageStore.item === undefined) {
+			return
+		}
 
-    function makeButton() {
-        if (property.onCreateClick === undefined && property.onCreate === undefined) {
-            return
-        }
+		const found = sItemzzStore.find(sPageStore.item.id)
+		sPageStore.setItem(found)
+	}, [sItemzzStore.itemzz])
 
-        return (
-            <button
-                onClick={
-                    property.onCreateClick ??
-                    function () {
-                        showDialog(message, "")
-                            .then((response) => {
-                                if (response.isConfirmed) {
-                                    if (response.value) {
-                                        if (property.onCreate) {
-                                            return property.onCreate(response.value)
-                                        }
-                                    }
-                                }
-                            })
-                            .catch(sToastzzStore.showError)
-                    }
-                }
-                className="btn btn-outline-primary"
-                type="button"
-            >
-                +
-            </button>
-        )
-    }
+	function makeButton() {
+		if (property.onCreateClick === undefined && property.onCreate === undefined) {
+			return
+		}
 
-    return (
-        <>
-            <SideBar
-                className={property.className}
-                title={property.title}
-                button={makeButton()}
-                itemzz={property.itemzz ?? sItemzzStore.itemzz}
-                useStore={property.useItemPageStore}
-            ></SideBar>
+		return (
+			<button
+				onClick={
+					property.onCreateClick ??
+					function () {
+						showDialog(message, "")
+							.then((response) => {
+								if (response.isConfirmed) {
+									if (response.value) {
+										if (property.onCreate) {
+											return property.onCreate(response.value)
+										}
+									}
+								}
+							})
+							.catch(sToastzzStore.showError)
+					}
+				}
+				className="btn btn-outline-primary"
+				type="button"
+			>
+				+
+			</button>
+		)
+	}
 
-            <div className={"col-9 py-3 h100 overflow-auto " + property.className}>
-                {sPageStore.item === undefined ? null : (
-                    <RightTop
-                        item={sPageStore.item}
-                        makeCRUD={property.makeCRUD}
-                        message={message}
-                        showDialog={showDialog}
-                        useItemPageStore={property.useItemPageStore}
-                        validateName={property.validateName}
-                    ></RightTop>
-                )}
+	return (
+		<>
+			<SideBar
+				className={property.className}
+				title={property.title}
+				button={makeButton()}
+				itemzz={property.itemzz ?? sItemzzStore.itemzz}
+				useStore={property.useItemPageStore}
+			></SideBar>
 
-                {property.children}
-            </div>
-        </>
-    )
+			<div className={"col-9 py-3 h100 overflow-auto " + property.className} ref={panel}>
+				{sPageStore.item === undefined ? null : (
+					<RightTop
+						item={sPageStore.item}
+						makeCRUD={property.makeCRUD}
+						message={message}
+						showDialog={showDialog}
+						useItemPageStore={property.useItemPageStore}
+						validateName={property.validateName}
+					></RightTop>
+				)}
+
+				{property.children}
+
+				<div className="position-fixed bottom-0 end-0 bg-white m-5" style={{ zIndex: 1222 }}>
+					<button
+						className="btn btn-outline-primary rounded-circle"
+						onClick={() => panel.current?.scrollTo({ top: 0, behavior: "smooth" })}
+						style={{ width: 44, height: 44 }}
+					>
+						▲
+					</button>
+				</div>
+			</div>
+		</>
+	)
 }
